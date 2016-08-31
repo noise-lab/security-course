@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>COS 432: Information Security</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="http://gtnoise.net/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="http://gtnoise.net/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://gtnoise.net/bootstrap/js/bootstrap.min.js"></script>
+
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1>Information Security</h1>
+    <p class="lead">COS 432, Princeton University Fall 2016</p>
+  </div>
+</header>
+
+<div class="row">
+<div class="span2">
+</div>
+<div class="span9">
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Home</a></li>
+    <li><a href="#tab2" data-toggle="tab">Syllabus</a></li>
+    <li><a href="#tab3" data-toggle="tab">Schedule</a></li>
+    <li><a href="#tab4" data-toggle="tab">Resources</a></li>
+    <li><a href="#tab5" data-toggle="tab">Assignments</a></li>
+
+
+  </ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <div class="page-header">       
+	<h3>Overview</h3>
+      </div>
+          <p class="lead">
+Security issues in computing, communications, and electronic
+      commerce. Goals and vulnerabilities; legal and ethical issues;
+      basic cryptology; private and authenticated communication;
+      electronic commerce; software security; viruses and other
+      malicious code; operating system protection; trusted systems
+      design; network security; firewalls; policy, administration and
+      procedures; auditing; physical security; disaster recovery;
+      reliability; content protection; privacy. 
+  </p>
+
+<h3>Logistics</h3>
+      
+<p>
+  <address><strong>Contact:</strong><br>
+    Prof. <a href="http://www.cs.princeton.edu/~feamster/">
+      Nick Feamster</a><br>
+    310 Sherrerd Hall <br>
+    &lt;my last name&gt;@cs.princeton.edu<br>
+    </address>
+<p />
+
+      <p>
+    <strong>TAs:</strong><br />
+      <a href="http://www.cs.princeton.edu/~sa8/">Sotirios Apostolakis</a><br
+    />
+      <a href="http://www.cs.princeton.edu/">Qipeng Liu</a><br />
+      <a href="http://www.cs.princeton.edu/">Ming-Yee Tsang</a><br
+    />
+      <a href="http://www.cs.princeton.edu/">Weikun Yang</a><br />
+      
+      </p>
+      
+      <p>
+      <strong>Class Location and Time:</strong><br />
+      Lectures: Mondays and Wednesdays, 11:00 am-12:20 pm, Room TBD<br />
+      </p>
+
+      <p>
+      <strong>Office Hours (subject to change; check Piazza for updates):</strong><br />
+      Nick: Monday and Wednesday 1:30-2:30p (Sherrerd 310) <br />
+      TA 1: TBD <br />
+      <p/>
+      </div>
+
+
+<div class="tab-pane" id="tab2">
+
+
+  <h3>
+Course Format
+</h3>
+<p> The course will meet twice a week for 80-minute lectures.</p>
+
+<h3>Recommended Background</h3>
+
+  <p>
+Prerequisite: COS 217 and COS 226.
+  <p>
+
+  
+<h3>Grading</h3>
+
+<p>
+  Grading is based on:
+  <ul>
+    <li>a midterm (15%)</li>
+    <li>a final exam (25%)</li>
+    <li>homework assignments (60%)</li>
+    </ul>
+  </p>
+
+<h3>Late Policy</h3>
+
+    <p>
+    We understand that sometimes life events occur and that it's not
+    always possible to meet every deadline. As such, we are willing to
+    accept late assignments according to the following policy:
+
+    <ul>
+
+      <li> You start the term with a grace period "balance" of 96
+      hours.</li>
+
+      <li> Each assignment will be due at 6:00 p.m. (Princeton Local Time) on
+      the due date. </li> 
+
+      <li> For each assignment, every hour late (or fraction thereof)
+      that you turn in the assignment will subtract one hour from your
+      grace-period balance.  For example, if you turn in your assignment
+      at 1:02 a.m. on the date after the due date, we will count this as
+      two hours against your grace period.</li>
+      
+      <li> As long as your grace period balance is positive, you can
+      turn in any assignment late without penalty.</li>
+
+      <li> Once your grace period balance reaches zero, you will receive
+      half credit for any assignment that you turn in, as long as you
+      turn it in within one week of the due date.  If your grace period
+      balance is zero and you turn in an assignment more than one week
+      late, you will receive no credit for the
+      assignment. <b>Important:</b> You must still turn in all
+      assignments to pass the course, even if you receive zero points on
+      an assignment.  Turning in all assignments is a necessary
+      condition for passing.</li>
+      
+      </ul>
+      Excuses with medical documentation are a legitimate exception and
+      will not count against your late period.  Any other reasons for
+      lateness---including but not limited to interviews, conferences,
+      etc.---are <i>not</i> legitimate excuses and any resulting
+      lateness will count against your grace period.
+    
+<h3>Honor Code</h3>
+
+	  <p>
+	  Students are expected to abide by the Princeton University Honor
+	  Code. Honest and ethical behavior is expected at all
+	  times. All incidents of suspected dishonesty will be reported
+	  to and handled by the office of student affairs. You are to do
+	  all assignments yourself, unless explicitly told
+	  otherwise. You may discuss the assignments with your
+	  classmates, but you may not copy any solution (or part of a
+	  solution) from a classmate.</p>
+
+<h3>Reading</h3>
+
+<p>
+There is no required or suggested textbook in this course, 
+because there is no one book that covers the right material in an 
+up-to-date fashion. The resources part of this page includes a list of
+      good books on security.
+
+ </p>
+      
+
+  
+</div>
+
+
+<div class="tab-pane" id="tab3">
+
+      <p>This schedule and syllabus is preliminary and subject to
+      change. Suggested reading assignments refer to the Peterson/Davie book (5th
+      edition), unless otherwise specified.</p>
+
+  <p><strong>Videos:</strong> In addition to the readings, we recommend
+  watching the corresponding videos from the <a href="http://goo.gl/4Kjrro">YouTube
+  Playlist</a>, before lecture.  
+</p>
+
+  <p><strong>Slides:</strong> All slides will be posted on the course
+  website before lecture. Slides may be updated during
+  lecture (e.g., with drawings, notes, and real-time revisions); slides
+  will again be updated after lecture.</p> 
+
+<table class="table table-striped">
+  <tr class=success>
+    <td>
+      <strong>Date</strong>
+      </td>
+
+      <td>
+      <strong>Topic</strong>
+      </td>
+<td>
+      <strong>Preparation</strong>
+      </td>
+    <td>
+      <strong>Notes</strong>
+      </td>
+    </tr>
+
+
+
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>September 14</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Course Overview / Security in Computing</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>September 19</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Ethics and the Law</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><b>Module 1: Systems Security</b></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>September 21</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Memory Protection, Access Control, Control Hijacking</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>September 26</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Malware</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>September 28</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Isolation, Sandboxing, Virtual Machines</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>October 3</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Passwords and Biometrics</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>October 5</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Tamper Resistance, Trusted Computing, Secure Operating Systems</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>October 10</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Web Security: TLS, CSS, XSRF</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>October 12</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Web Privacy: Tracking</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><b>Module 2: Cryptography</b></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>October 17</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Message Integrity, Pseudorandom Functions</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>October 19</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Stream Ciphers, Block Ciphers</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>October 24</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><span style="color: rgb(241, 52, 0);"><b>Midterm</b></span></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>October 26</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Public Key Cryptography</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>November 7</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Key Exchange and Key Management</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><b>Module 3: Network Security</b></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>November 9</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Public Key Infrastructure: HTTPS, RPKI</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>November 14</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Worms and Botnets</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>November 16</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>DDoS: Spoofing, Reflection, Amplification</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>November 21</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Spam, Phishing</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>November 28</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Network Defenses: TLS, IPSec, IDS, Firewalls</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><b>Module 4: Security in Context</b></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>November 30</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Anonymous Communication</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>December 5</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Internet Censorship</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>December 7</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Security of Cyberphysical Systems</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>December 12</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Cloud Security</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>December 14</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:33.33%;">
+<div>Human Factors</div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+<td style="border-style:solid;border-width:1px;border-color:rgb(219,219,219);padding:10px;margin:0px;width:16.665%;">
+<div><br/></div>
+</td>
+</tr>
+</table>
+</div>
+
+    <div class="tab-pane" id="tab4">
+
+      <h3>Course Resources</h3>
+      <ul>
+	<li><a href="https://piazza.com/princeton/fall2016/cos432">Piazza
+	Online Discussion Forum</a></li>
+		<li><a
+      href="https://blackboard.princeton.edu/webapps/blackboard/execute/courseMain?course_id=_1917370_1">Course
+      Blackboard Page</a></li>
+
+	</ul>
+
+
+<h3> Optional Reading </h3>
+
+
+There are many good books about cryptography, but relatively few good ones
+about other computer security topics.
+
+  <ul>
+
+<li>		<a href="http://www.cl.cam.ac.uk/~rja14/book.html">Security
+        Engineering</a> by Ross Anderson [Covers security in general, with many non-computing examples.]</li>
+
+	<li><a href="">Applied Cryptography</a> by Bruce Schneier.  
+[Very broad coverage of crypto and its applications.]</li> 
+
+<li>        <a href="https://www.schneier.com/book-ce.html">Cryptography
+Engineering</a> by Ferguson, Schneier, and Kohno</li>
+
+<li><a
+href="http://nob.cs.ucdavis.edu/book/book-intro/index.html">Introduction
+to Computer Security</a> by Matt Bishop</li> 
+
+<li><a href="http://williamstallings.com/ComputerSecurity/">Computer
+        Security: Principles and Practice</a> by William Stallings</li>
+	
+<li><a
+	href="http://nob.cs.ucdavis.edu/book/book-aands/index.html">Computer
+	Security: Art and Science</a> by Matt Bishop</li>
+	
+<li><a
+        href="http://www.amazon.com/Security-Computing-Edition-Charles-Pfleeger/dp/0134085043">Security
+        in Computing</a> by Charles P. Pfleeger</li>
+	
+<li><a href="http://www.securitybook.net">Introduction to Computer
+	Security</a> by Michael Goodrich and Roberto Tamassia</li> 
+
+	<li><a href="">Computer Security</a> by Dieter Gollman.  [General security textbook.  
+Good for what it covers, but doesn't cover everything.]</li>  
+
+<li><a href="">Building Secure Software</a> by John Viega and Gary McGraw.  [How to write
+software that will have fewer security bugs.]</li>
+
+<li><a href="">The Tangled Web: A Guide to
+Securing Modern Web Applications</a> by  Michal Zalewski. [Web security. Strikes a good
+balance between conceptual exposition and messy detail.]</li>
+
+</ul>
+
+
+	
+    </div>
+
+    <div class="tab-pane" id="tab5">
+      <h3>Assignments</h3>
+
+	  <ul>
+<li> TBD </li>
+	  </ul>
+      
+    </div>
+      
+    
+
+  </div>
+</div>
+
+</div>
+</div>
+
+  </body>
+</html>
