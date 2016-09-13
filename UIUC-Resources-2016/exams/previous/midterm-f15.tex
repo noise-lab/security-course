@@ -1,0 +1,581 @@
+\documentclass[addpoints,answers]{exam}
+\usepackage{url}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{listings}
+\usepackage{mathtools}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\lhead{\ifcontinuation{Question \ContinuedQuestion\ continues\ldots}{}}
+\chead{ECE 422 / CS 461, Midterm Exam}
+\rhead{Monday, October 5th, 2015}
+\lfoot{Points: \makebox[.5in]{\hrulefill} / \pointsonpage{\thepage}}
+\cfoot{\thepage\ of \numpages}
+\rfoot{NetID:\enspace\makebox[1.5in]{\hrulefill}}
+%\rfoot{\netid}
+
+\qformat{\thequestiontitle\dotfill \emph{\totalpoints\ points}}
+
+\begin{document}
+
+\begin{titlepage}
+  \vspace*{\fill}
+  \begin{center}
+    \Large\textbf{ECE 422 / CS 461, Midterm Exam}\\
+    \large\textit{Monday, October 5th, 2015}\\
+  \end{center}
+  \vspace{.5in}
+  \par\large{Name:}\hrulefill\\
+  \par\large{NetID:}\hrulefill\\
+  \vspace{.5in}
+  \begin{itemize}
+  \item Be sure that your exam booklet has \numpages\ pages.
+  \item Absolutely no interaction between students is allowed.
+  \item Show all of your work.
+  \item Write all answers in the space provided.
+  \item Closed book, closed notes.
+  \item No electronic devices allowed.
+  \item You have \textbf{TWO HOURS} to complete this exam.
+  \end{itemize}
+  \vspace*{\fill}
+\end{titlepage}
+\newpage 
+
+\begin{center}
+  \vspace*{\stretch{1}}
+  \gradetable[v][pages]
+  \vspace*{\stretch{1}}
+\end{center}
+\newpage
+
+\begin{questions}
+
+\titledquestion{Question \thequestion: Multiple Choice}
+
+\textbf{For each question, circle all that apply.}
+
+\begin{parts}
+
+\part[2]
+
+What is a good source of randomness?
+
+\begin{choices}
+\choice Time to boot up the operating system in seconds.
+\correctchoice Ambient noise in the room.
+\choice A random seed generated a month ago.
+\choice 32-bit word stored at memory address 0x1000.
+\choice None of the above.
+
+\end{choices}
+
+\part[2]
+
+Diffie-Hellman key exchange will assure a secure connection between two trusted parties.
+
+\begin{choices}
+	\choice True
+	\correctchoice False
+\end{choices}
+
+\part[2]
+
+Sending a message in the presence of an eavesdropper without revealing
+the contents of the message itself is ensuring which aspect(s) of security?
+
+\begin{choices}
+\correctchoice Confidentiality
+\choice Integrity
+\choice Availability
+\choice Authenticity
+\end{choices}
+
+\part[2] %ching yang
+
+A digital signature is used to ensure which aspect(s) of security?
+
+\begin{choices}
+\choice Confidentiality
+\correctchoice Integrity
+\choice Availability
+\correctchoice Authenticity
+\end{choices}
+
+\part[2]  %Siddharth Q1
+
+SSL/TLS protects which layer(s) of the Internet?
+
+\begin{choices}
+\choice Physical
+\choice Data Link
+\choice Network
+\choice Transport
+\correctchoice Application
+\end{choices}
+
+\part[2] %Siddharth Q1
+
+Which of the following security goals are addressed by the HTTPS protocol?
+
+\begin{choices}
+\correctchoice Integrity
+\choice Availability
+\correctchoice Confidentiality
+\choice Privacy
+\end{choices}
+
+\part[2] %simon's multiple
+
+Which of the following are correct?
+
+\begin{choices}
+\choice In order to identify new vulnerabilities, you should always convince yourself that the current system design is secure.
+\choice Sniffing an unsecured public network for educational or research purpose is ethically and legally accepted, as long as the data is not used against the users.
+\choice During development, secure design should be considered after all of the planned features are implemented.
+\choice Computer ethics are no different than traditional ethics, so existing policies are adequate.
+\correctchoice None of the above.
+\end{choices}
+
+\pagebreak
+
+\part[2] %simon's multiple
+
+In MP1, you convinced us that you correctly ``guessed'' the random
+number by exploiting one of the MD5 vulnerabilities. Which attack did
+you use to accomplish this?
+
+\begin{choices}
+\choice Pre-image attack
+\correctchoice Collision attack
+\choice Length extension attack
+\choice Birthday attack
+\choice Rainbow attack
+\end{choices}
+
+\part[2] %simon's multiple
+
+In the previous question's ``guessing'' scenario, which security
+property did the attack compromise?
+
+\begin{choices}
+\choice Confidentiality
+\correctchoice Integrity
+\choice Availability
+\choice Authenticity
+\choice Accountability
+\end{choices}
+
+\part[2] %simon's multiple
+
+Which of the following is most likely to occur at the data-link layer?
+
+\begin{choices}
+\choice DNS Spoofing
+\choice IP Spoofing
+\correctchoice ARP Spoofing
+\choice TCP/SYN Flood
+\choice Fork bomb
+\end{choices}
+
+\part[2]  % -Gene
+
+What do trusted certificate authorities (CAs) do for us?
+
+\begin{choices}
+\choice They prevent attackers from stealing private keys
+\correctchoice They vouch for the identities of websites
+\choice They check for IP Spoofing
+\choice They establish network connections between clients and servers
+\choice Actually, they don't do anything
+\end{choices}
+
+\part[2] %ching yang
+
+P(m) is an application of a RSA public key on message m. K(m) is an
+application of a RSA private key on message m.
+P(K(P(K(P(P(K(P(K(K(m)))))))))) results in m.
+
+\begin{choices}
+\correctchoice True
+\choice False
+\end{choices}
+
+\part[2] %ching yang
+
+Since there are 10000 possibilities for a 4 digit PIN, in real life
+1234 is the pin for about 0.01\% of people's credit cards.
+
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[2]  % -Gene
+
+Having more intermediate certificate authorities helps making the Internet more secure.
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[2]  % -Gene
+
+If a SMTP server supports STARTTLS, then the emails from that server
+will be encrypted.
+
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[2] % Faisal
+
+A system admin is concerned about staff browsing inappropriate
+material on the Internet via HTTPS. It has been suggested that the
+company purchase a product which could decrypt the SSL session, scan
+the content and then repackage the SSL session without staff
+knowing. Which of the following type of attacks is similar to this
+product?
+
+\begin{choices}
+\choice Spoofing
+\correctchoice Man-in-the-Middle
+\choice Replay
+\choice TCP/IP hijacking
+\end {choices}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: Short Answer}
+
+\begin{parts}
+
+\part[4]
+
+Name two properties of a viable hash function.
+
+\begin{solutionorbox}[2in]   
+\begin{lstlisting}
++2 points for each of the following up to a max of 4.
+
+1. Given h(m) it should be difficult to find m.
+2. Given m1 it should be difficult to find m2 such that h(m1)= h(m2)
+3. It should be difficult to find any m1, m2 such that h(m1) = h(m2)
+\end{lstlisting}
+\end{solutionorbox}
+
+
+\part[2] % Shivam Short Answer
+Why is the Merkle-Damgard construction susceptible to length extension attacks? Explain.
+
+\begin{solutionorbox}[2in]
+The construction is susceptible because of the manner in which it
+processes and hashes inputs. The construction is built around a
+compression function and maintains an internal state. The result of
+the compression function (which is the hash) is also the internal
+state. Attackers can simply obtain the hash of longer messages by
+applying the compression function for each new block of
+data. Essentially, by knowing the state, attackers can make the
+compression function pick up where it left off when adding appending
+data.
+\end{solutionorbox}
+
+\pagebreak
+
+\part[4] % Shivam Short Answer
+List two drawbacks of RSA.
+
+\begin{solutionorbox}[2in]
++2 points for each of the following up to a max of 4.
+
+1. It's a factor of 1000 (or more) times slower than AES. \newline
+2. The cost goes up approximately as a cube of the key size. \newline
+3. The message must be shorter than N, where N = p * q.
+\end{solutionorbox}
+
+\part[2] % -Gene
+
+In the unpatched version of Heartbeat protocol in OpenSSL, how was it vulnerable to the Heartbleed exploit?
+
+\begin{solutionorbox}[2in]
+The server trusts user input (length) and doesn't verify (i.e, The
+Given message length and actual message length were not verified to be
+the same. Therefore, the server would dump chunks of memory back to
+the client if given message length is larger than actual message
+length)
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: Symmetric and Asymmetric Cryptography}
+
+Client Alice wants to send a message \textit{M} to Bob. Assume Alice
+and Bob share a symmetric key \textit{K} and have securely distributed
+their public keys \textit{P\_A} and \textit{P\_B} to each
+other. Private keys of Alice and Bob are \textit{S\_A} and
+\textit{S\_B} respectively. Design messages that Alice must send to
+meet the security requirement below.
+
+Notation: 
+\begin{itemize}
+\item $x \parallel y$ (concatenation) 
+\item $\{x\}_y$ (x is encrypted using key y) 
+\item $MAC_y(x)$ (MAC of x using key y) 
+\item $A \xrightarrow{x} B$ (A sending x to B)
+\end{itemize}
+
+Examples:
+\begin{itemize}
+\item $A \xrightarrow{M} B$ The message \textit{M} is sent from Alice to Bob
+\item $A \xrightarrow{\{S\_A \parallel M\}_{S\_A}} B$ The message
+  \textit{M} is concatenated with Alice's private key \textit{S\_A}
+  and the resulting concatenation is encrypted with Alice's private
+  key \textit{S\_A}. The encrypted message is sent to Bob.
+\end{itemize}
+
+\begin{parts}
+
+\part[2]
+
+Using the symmetric key, design a message that enables Bob to verify the message is from Alice where only integrity is preserved.
+
+\begin{solutionorbox}[1in]   
+$A \xrightarrow{M \parallel MAC_k(M)} B$
+\end{solutionorbox}
+
+\part[2]
+
+Using public key cryptography, design a message that enables Bob to
+verify the message source, Alice, and preserves only integrity.
+
+\begin{solutionorbox}[1in]   
+$A \xrightarrow{\{M\}_{S\_A}} B$
+\end{solutionorbox}
+
+\part[2]
+
+Using public key cryptography, design a message that protects only the
+confidentiality of the message sent from Alice to Bob.
+
+\begin{solutionorbox}[1in]   
+$A \xrightarrow{\{M\}_{P\_B}} B$
+\end{solutionorbox}
+
+\part[2]
+
+Using public key cryptography, design a message that enables Bob to
+verify the message source, Alice, and when both integrity and
+confidentiality are protected.
+
+\begin{solutionorbox}[1in]   
+$A \xrightarrow{\{\{M\}_{P\_B}\}_{S\_A}\}} B$
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak 
+
+\titledquestion{Question \thequestion: Code Injection}
+
+\begin{parts}
+
+\part[2] %code vs data
+What is a fundamental problem of any code injection attack?
+
+\begin{solutionorbox}[1in]
+The user input supplied is interpreted as code not as data.
+\end{solutionorbox}
+
+\part[2] %Shellshock
+What is Shellshock?
+
+\begin{solutionorbox}[1in] 
+%definition from https://en.wikipedia.org/wiki/Shellshock_(software_bug)
+Shellshock vulnerability is a type of bug where a Unix Bash shell executes commands which are concatenated to the end of function definition stored in the values of environment variables.\\
+(1 point) pointing out that it is a vulnerability in Unix Bash shell\\
+(1 point) mentioning that this is a code vulnerability against code injection to environment variables
+\end{solutionorbox}
+
+\part[2] %SQL injection question
+
+Consider following php code snippet for SQL query.
+
+\begin{lstlisting}
+$query = "SELECT * FROM users WHERE id='$id'"; //type of id is an integer
+\end{lstlisting}
+
+This query is undoubtably vulnerable against any SQL injection. Explain a protection measure we can take to protect this code against SQL injection.
+
+\begin{solutionorbox}[1in]   
+
+Solution 1: Write a prepared statement so that the input received from GET request is interpreted as an integer.
+
+Solution 2: Use mysqli\_real\_escape\_string() on the input received from GET request so that the input is sanitized.
+\end{solutionorbox}
+
+\part[3] %XSS
+A new web application has a page named "faceboard" which is composed
+of a list of comments. Any user can anonymously write a comment, which
+can be viewed by any visitor of the webpage. When the webserver of
+this application receives a message input from any user, the backend
+interprets and/or sanitizes the input using a protection measure you
+have suggested in part c. After applying this security measure, is
+"faceboard" secure against adversaries? If not, list one vulnerability
+and a security measure which can improve the protection of
+"faceboard".
+
+\begin{solutionorbox}[1in]
+
+(1 point) No, it is not secure.\\ 
+(1 point) This application is vulnerable to XSS.\\
+(1 point) Filter HTML special characters (e.g., htmlspecialchars() in php)
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: Web Application Security}
+
+\begin{parts}
+
+\part[3] %Same-Origin Policy question which is similar to discussion section question
+
+Which of following URLs share the same origin with http://www.cs461.com/dir/page1.html?
+
+\begin{lstlisting}
+(a) http://www.cs461.com/dir2/page2.html
+(b) http://www.cs461.com/dir/dir3/page3.html
+(c) http://www.cs461.co.kr/dir/page1.html
+(d) https://www.cs461.com/dir/page1.html
+(e) http://cs461.com/dir/page1.html
+(f) http://en.cs461.com/dir/page1.html
+(g) http://username:password@www.cs461.com/dir/page1.html
+\end{lstlisting}
+
+\begin{solutionorbox}[1in]   
+\begin{lstlisting}
+(a) http://www.cs461.com/dir2/page2.html
+(b) http://www.cs461.com/dir/dir3/page3.html
+(g) http://username:password@www.cs461.com/dir/page1.html
+\end{lstlisting}
+\end{solutionorbox}
+
+\part %csrf example
+When Alice sends 100.00 dollars to Bob via http://www.bank.com, the website receives a GET request to http://www.bank.com with parameters listed below.
+
+\begin{lstlisting}
+to_username: "bob"
+transaction_type: "transfer"
+amount: 100.00
+\end{lstlisting}
+
+\begin{subparts}
+
+\subpart[1]
+Malory wants to exploit this request mechanism. Write a URL so that when that URL is clicked by Alice, she will send 200.00 dollars to Malory.\\
+
+\begin{solutionorbox}[1in]   
+(1 points) \url{http://www.bank.com/?to_username=malory&transaction_type=transfer&amount=200.00}
+\end{solutionorbox}
+
+\subpart[2] Does changing type of request from GET to POST solve the problem? Explain.
+
+\begin{solutionorbox}[1in]   
+(1 point) No, it will not. \\
+(1 point) Malory could craft a html form on a malicious website so that when Alice visits this website, JavaScript auto submits the form to http://www.bank.com. 
+\end{solutionorbox}
+
+\end{subparts}
+
+\part[2] %token validation
+A website uses token validation in order to prevent CSRF attack. The website generates the token using a rand() function which generates a pseudorandom number from 0 to RAND\_MAX. What is a potential problem for this website? Assume this website is secure against any other type of attacks including XSS.
+
+\begin{solutionorbox}[1in]   
+The strength of this mechanism depends on the size of RAND\_MAX. The range of output from rand() can be too small such that the adversary may brute-force through token range to find the token.
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+\titledquestion{Question \thequestion: Applied Cryptography}
+
+\begin{parts}
+
+\part[2]  %Question 1 -Due
+
+Assume that a block cipher operates on blocks of size 512 bits. What
+would be the length of the padding (in bits) generated by the
+algorithm if you apply the cipher to a message that is 128 bits long?
+
+\begin{solutionorbox}[1in]   
+384 bits
+\end{solutionorbox}
+
+\part[2]  %Question 2 -Due
+
+Assume that a block cipher operates on blocks of size 512 bits.  What would
+be the length of the padding (in bits) generated by the algorithm if
+you apply the cipher to a message that is 1024 bits long?
+
+\begin{solutionorbox}[1in]   
+512 bits
+\end{solutionorbox}
+
+\part[4]  %Question 3 -Due
+
+Recall that a one-time pad is a symmetric encryption scheme where a
+random bit string of the same length as the message is generated to be
+use as a key, and each bit $c_i$ of the encrypted message is compute
+by $c_i = m_i $ XOR $ k_i$, where $m_i$ is the $i^{th}$ bit of the
+message, and $k_i$ is the $i^{th}$ bit of the key.  Why do we use XOR
+instead of other logic operation such as AND or OR?
+\begin{solutionorbox}[1in]   
+(2 points) XOR is reversible: you cannot decrypt the cipher if you use AND or OR\\
+(2 points) XOR a known bit with a random bit and the result is equally likely to be 0 or 1, so the cipher does not reveal anything about the plaintext or the key because roughly half of the bits of the original plaintext is flipped.
+\end{solutionorbox}
+
+\pagebreak
+
+\part[4]  %Question 4 -Due
+
+Consider the following hash function:
+
+\begin{verbatim}
+def strong_hash(m):
+    hash_val = 0xFF
+    for each byte of m:
+        hash_val = hash_val XOR byte
+        
+    return hash_val
+\end{verbatim}
+
+The hash function basically compute a 8-bit digest of the message by computing the XOR of each byte in the message, then XOR the result with 0xFF.  Also, recall that a hash function is second-preimage resistance if given $x$, it is hard to find $x' \neq x$ such that $strong\_hash(x) == strong\_hash(x')$.  Is strong\_hash second-preimage resistance? If yes, explain why and if not, find the second preimage $x'$ for $x$ = 0xAA.
+
+\begin{solutionorbox}[2in]   
+(2 points) No, strong\_hash is not second-preimage resistance.  
+(2 points) The easiest answer for the second part is 0xAA00 or 0x00AA
+\end{solutionorbox}
+
+\part[2] %Question 5 -Due
+
+In MP1 checkpoint 2, We ask you to find the private key of an RSA key pair given a public key and RSA modulo of a 2048-bit RSA.  As the size of the modulo is 2048 bits, it is not feasible to try to factorize the modulo to find the two prime roots, so we suggest that you use Wiener's attack to recover the private key.  What is the weakness in our RSA keypair that allows Wiener's attack to work?
+
+\begin{solutionorbox}[1in]   
+The private key is small
+\end{solutionorbox}
+
+\end{parts}
+
+
+\end{questions}
+
+\end{document}

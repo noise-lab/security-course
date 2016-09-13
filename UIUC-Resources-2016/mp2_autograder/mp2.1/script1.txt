@@ -1,0 +1,2 @@
+USE project2;
+DROP TABLE IF EXISTS user, users, history, Users, User, History;

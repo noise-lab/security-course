@@ -1,0 +1,90 @@
+*Checkpoint 2*
+2.1_default
+Puppy Linux
+4.3.1
+
+2.1_behavior: 5 points (manual)
+Booting the suspect's machine is a bad idea in general because it
+might do nasty things unless a secret command is entered. This
+specific machine boots a Puppy Linux install unless the GRUB menu
+is used to boot the "real" Ubuntu install. The Puppy Linux 
+writes zeros to the hard drive, presumably in an
+attempt to warn the accomplice of the investigation and then
+interfere with the investigation.
+
+2.1_primary
+Linux Ubuntu
+14.04 or 14.04.03
+
+2.2
+wh1t3r0s3
+
+2.3_usernames
+ladiesman461
+ladiesman461
+
+2.3_relationship: 10 points (manual)
+Victim's girlfriend
+
+2.4_link
+
+2.4_weapon
+toxic candy
+
+2.4_method: 5 points (manual)
+chicago pickup
+
+2.5
+aborted
+
+2.6_account
+ladiesman461
+
+2.6_tools
+nmap
+hydra
+
+2.6_ip
+10.46.2.106
+10.46.2.105
+
+2.6_connection
+yes
+ssh_host_ecdsa_key
+ssh_host_ecdsa_key.pub
+
+2.6_password
+sexyman
+
+2.7??
+toxic candy_10oz.jpg
+
+2.8_accomplice
+illini.pony.express@gmail.com
+
+2.8_location
+sp16
+   ikenberrycommons (40.104, -88.234)
+   bookstore        (40.108, -88.228)
+   morrowplots      (40.104, -88.226)
+   siebel           (40.113, -88.225)
+   washingtonpark   (40.109, -88.236)
+
+fa15
+   armory           (40.105, -88.233)
+   hilton           (40.098, -88.246)
+   isr              (40.109, -88.220)
+   panda            (40.110, -88.228)
+   terminal         (40.115, -88.241)
+
+2.8_originaltime
+2200
+
+2.8_actualtime
+unknown
+
+2.9
+Leet Haxor
+
+2.10
+no

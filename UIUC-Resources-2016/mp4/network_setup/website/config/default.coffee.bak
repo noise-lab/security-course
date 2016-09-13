@@ -1,0 +1,13 @@
+module.exports =
+  server:
+    port: 5380
+  algos:
+    hmac: 'SHA256'
+    message: 'aes256'
+  keys:
+    message: 'This is a super secret key which shall never be guessed by any mortal man (probably)'
+    password: 'this is a really long key used for encrypting the output data'
+  location:
+    host: '10.2.2.87'
+    port: 443
+    scheme: 'https'

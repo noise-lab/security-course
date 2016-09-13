@@ -1,0 +1,101 @@
+<General instruction>
+How this project works is that students are given the forensics_release_fa15.raw disk image (Victim's). They can use either live analysis or autopsy for dead analysis, and find information about the possibility of murder. Then, they will be given another disk image of the suspect (2 different scenarios for different student groups), and they will evidence of murder and decide whether the suspect is the real criminal. 
+
+<VM setup>
+0. Shared scripts
+   % https://goo.gl/GMQyT8
+
+1. OS username:password
+   *Victim*
+   % ladiesman461:sexyman
+   % root:sexyboy
+
+   *Suspect1*
+   % l337h4x0r:leet123!@#
+
+   *Suspect2*
+   % wh1t3r0s3:whiterose123!@#
+
+2. Pidgin chat account username:password - pw will be changed before release
+   *Victim*
+   % ladiesman461@jwchat.org:sexyman123!@#
+
+   *Suspect1*
+   % l337h4x0r@jwchat.org:leet123!@#
+
+   *Suspect2*
+   % wh1t3r0s3@jwchat.org:whiterose123!@#
+
+   *Alice*
+   % alice.innocuous@jwchat.org:alice123!@#
+
+3. Email account username:password (IMAP enabled, Thunderbird email client) - pw will be changed before release
+   *Suspect1*
+   % leet.haxor.0401@gmail.com:leet123!@#
+
+   *Suspect2*
+   % wh1t3.r0s3.0401@gmail.com:whiterose123!@#
+
+   *Accomplice*
+   % nefarious.accomplice.1995@gmail.com:nefarious123!@#
+
+   *Illini Pony Express*
+   % illini.pony.express@gmail.com:pony123!@#
+
+4. VM MAC addresses
+   % ladiesman - 0800279745F0
+   % leethaxor - 0800273BCB2F
+   % whiterose - 080027727BB0
+
+5. Escape Location: link, coordinates
+   *Instruction*
+   % (modify to VM's link) https://goo.gl/0Ywz4H
+   % all links requires NetID login on Google Apps@Illinois
+
+   *leethaxor*
+   % bookstore - 	https://goo.gl/PeHB8Z, srRnnY (40.108, -88.229)
+   % eceb - 		https://goo.gl/DdaITg, Y79Xwg (40.114, -88.231)
+   % powerplant - 	https://goo.gl/uuRgTF, jggFYY (40.105, -88.241)
+   % siebel - 		https://goo.gl/Dqcfvz, 8HCqGD (40.114, -88.226)
+   % union - 		https://goo.gl/FNdO4O, MPE5dH (40.109, -88.229)
+
+   *whiterose*
+   % armory - 		https://goo.gl/qghwPd, gsH6jO (40.105, -88.233)
+   % hilton - 		https://goo.gl/Wv91fm, nfBeK7 (40.098, -88.246)
+   % isr - 		    https://goo.gl/rvlyq4, uZXNR9 (40.109, -88.220)
+   % panda - 		https://goo.gl/Wfmxub, LgYiLq (40.110, -88.228)
+   % terminal - 	https://goo.gl/Mk5XCj, 1TLwda (40.115, -88.241)
+
+6. SSH public/private key pair
+   *Source*
+   % /home/$username$/.ssh/known_hosts
+
+   *Destination*
+   % /etc/ssh/ directory
+   % public key: ssh_host_$filename$.pub (filename is specified from source machine)
+   % private key: ssh_host_$filename$ (filename is same as above)
+
+7. IP addresses
+   *current machine*
+   % /var/log/syslog
+   % /var/NetworkManager/dhclient-XXXXXX-XXXXX-...
+   % find the one that matches the time stamp when the remote connection was made
+
+   *attacker's machine, remote machine trying to connect*
+   % /var/log/auth.log
+   % analyze the behavior of each login attempt and list out suspiciously looking ones
+
+<Useful commands>
+1. convert from raw to vdi (from the mp5 instruction):
+   % VBoxManage convertdd {original_file}.raw {output_file}.vdi -format VDI
+
+2. convert vdi to raw:
+   % VBoxManage clonehd {original_file}.vdi {output_file}.raw --format RAW
+   or
+   % VBoxManage internalcommands converttoraw {original_file}.vdi {output_file}.raw
+
+3. resize vdi:
+   % VBoxManage modifyhd --resize {new_size_in_MB} {filename}.vdi
+
+4. change UUID of the disk image (this is necessary if you want to make a backup vm and have both registered to virtualbox):
+   % VBoxManage internalcommands sethduuid {filename}.vdi

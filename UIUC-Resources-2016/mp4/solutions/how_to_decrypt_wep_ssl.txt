@@ -1,0 +1,29 @@
+How to decrypt WEP+SSL
+1. Put wireless interface into monitor mode
+    $ sudo airmon-ng start {wireless_interface} {channel#}
+    * you should already know the channel# at this point.
+
+Decrypting WEP+SSL using Wireshark
+2. Open Wireshark and capture encrypted packets on {monitor_interface}
+
+3. Enter WEP key into Wireshark.
+    * Preferences -> Protocols -> IEEE 802.11 -> Decryption Keys Edit...
+    * Check the box next to 'Enable decryption'
+
+4. Enter SSL private key file into Wireshark
+    * Preferences -> Protocols -> SSL -> RSA keys list Edit...
+
+If Wireshark fails to decrypt both simultaenously, try the following.
+
+Decrypting WEP using tcpdump and airdecap-ng
+1. Use tcpdump to capture encrypted packets in monitor mode
+    $ sudo tcpdump -i {monitor_interface} -I -s 0 -w {output_file}
+    * note that packets are captured using monitor interface, not wireless interface
+    * -I capture in monitor mode
+    * -s 0 makes sure all packets are captured without any truncation
+
+2. Use airdecap-ng (included in aircrack-ng suite) to decrypt WEP
+    $ airdecap-ng -w {wep_key} {output_file_from_2}
+    * creates a new pcap
+
+3. Open the WEP decrypted PCAP with Wireshark and enter SSL private key.

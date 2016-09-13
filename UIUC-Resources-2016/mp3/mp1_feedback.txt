@@ -1,0 +1,53 @@
+1. More python basic tutorial on input format conversion: binary, hex, int,
+string vs. raw data
+
+	binascii.hexlify()
+	binascii.unhexlify()
+
+	hex(int)
+	int(hex, 16)
+	bin(int): you may want to append [2:] at the end in order to strip '0b'
+	for values only
+
+2. Pycrypto library: input format of the functions, return value
+
+	Note: there was no error for "not" decoding the ciphertext but the
+	resulting plaintext will be wrong is ciphertext hex string isn't decoded
+	when passing onto the function.
+	Provide the links to the possible crypto libraries in the document
+
+3. Confusion on lenth extension attack concept
+
+	Existence of padding in the new query
+	URL setup for testing the verification of the new token is necessary
+
+4. Confusion about generating collision pair to insert different print
+statements in the blob
+
+5. Emphasize the submission requirement: bits, bytes, hex, text etc.
+
+6. Updated command line: fastcoll -> ./fastcoll
+
+7. For part 4.1, instead of writing a report (requires format), ask them to
+submit resulting files
+
+	file1, file2 (./fastcoll -o file1 file2: raw binary)
+	md5_file1file2 (openssl dgst -md5 file1 file2: text)
+	sha256_file1file2 (openssl dgst -sha256 file1 file2: text)
+
+	Then, we can use the similar format as Michigan autograder
+
+8. Autograder update for late submission check
+
+9. For part 1.3, so many autograder failure due to 
+
+	including plaintext in the file
+	various formatting of key value
+	including labels (e.g. key = xxx)
+
+	Better change to plaintext for submission as other parts in part 1
+
+10. For better grading, it's better to remove tarball submission, but rather
+include/submit all the files within the SVN directory. Untarring may result in
+various format (sub folders etc.) and some students updated some files only
+in the tarball etc.

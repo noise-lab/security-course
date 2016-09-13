@@ -1,0 +1,28 @@
+TODO:
+
+MUST:
+- update the latex document to have the same numbering format as the rest of the MPs.  Namely, add '1.' as prefix to each section.
+- revise or remove the weiner attack RSA exercise
+- provide more framework for postscript part
+- add some md5 exercise to MP1.1
+- revisit autograder and partial credit assignment
+
+Details:
+- Take a second look at the postscript exercise to see if it is necessary to use postscript.  Many students complains that they need to learn postscript just for this assignment, and that we didn't provide them with enough information.  To that end, here's what I think should be done:
+	- Standardize the programs that we'll use for grading (e.g. ghostscript for linux, preview for mac, etc)
+	- Give them a 'Hello World' skeleton, similar to MP2's framework javascript code, so at least they have a compilable ps file that prints something.  Possibly throws in a conditional statement as well.
+	- 3 hours between the number announcement and the due date may be a bit too short for online students.  You may also want to change the assignment so that if they submitted all guess files with the same hash, then give them full score.  Not sure if this will be harder to check.
+- Some specific problems from piazza that is worth mentioning:
+		- Compilation error: make sure there are no mismatched parentheses in the blobs
+		- For the md5 collision ("good and evil") part, some students will try to use the filename as leverage, so make sure to change the autograder to rename the files before grading.  
+
+- The RSA exercise is a little trivial at the moment because I recenetly found a library that does the entire thing on github.  We definitely should replace this task, but nothing in Ryan's MP is on this difficulty level.
+	- Or, we could keep it, but provide students with more details.  e.g. you MUST submit code, we'll check the code.  "You must not just use a library".  "You must cite all libraries you used (e.g. some of the math library)".  "Here are some libraries you might want to use: A, B, C".  Maybe we should just reveal the attack name? Overall, this should be a straight forward exercise of executing an attack against RSA with a given algorithm and approach.
+
+- May need to revise checkpoint 1 to include more tools-related tasks such as something for md5.  Better idea: have them implement a simple block cipher/hash function and see why collision and length extension works on that simple algorithm.
+
+- Let's just make each team submit one solution, and does not grade any repo with a blank parners.txt
+
+- Teach them the basic of http GET request url, e.g. the correct syntax.  We might as well provide them with a bogus local server that will check if their answer is parse-able by our grader.
+
+- Update the WHA task to include testing that their implementation is correct? Not sure if necessary.

@@ -1,0 +1,68 @@
+XSS grading steps:
+
+**************************
+The grading is designed to run on linux and Mac, and I don't know if it will runs on windows, so if you don't have access to a linux machine, you may need to use a vm.
+**************************
+
+0. Check out from svn at https://subversion.ews.illinois.edu/svn/sp16-ece422/
+   If this is the first time you check out, it's going to take a while.
+
+1. Install selenium with 'pip install selenium'
+   if you don't have pip: https://pip.pypa.io/en/latest/installing.html
+
+2. Modify the following in grade_p2.py (see TODOs)
+- choose your students' list 
+{HB: list_0.txt, Dhruv: list_1.txt, Siddharth: list_2.txt}
+
+- change the svn path to be your svn's root folder
+
+- change the path of Firefox 44 executable if necessary
+You can download it from http://ftp.mozilla.org/pub/firefox/releases/
+
+3. At your svn root folder, do 'svn update -r {"2016-03-07 18:15"}' to update all student's directory to the latest revision before the deadline. Don't forget to apply different date/time for people who used their extensions. Format is always {"yyyy-mm-dd hh:15"} with 15 minutes extra to deadline. Change directory to ./_class and do 'svn up' to bring the grading script to the most recent version.  You will run grade_p2.py to grade the mps. There is no parameter required for this file, so just type
+
+python grade_p2.py
+
+when you are ready to grade mps.
+
+  The grader will grade all students in one go, so please make sure you have enough time to do it in one setting.  If you cannot or if the grading script crashed, make notes from the console or from the lastest p2_gradexxx.csv who the last student you graded is, then modify the list_x.txt file to exclude the students you have already graded.  
+
+  If a student's solution crashed the grader, exclude them from grading and let HB know.  The script will output a file p2_grades_xxx.csv each time the script is run.  You can easily merge these files by concatenating them if you have to.
+
+5. Once all gradings are done, run 'svn up' at the svn root directory then add five files to 
+   _class/_private/mp2_autograder named as follow:
+
+       list_x.csv
+
+Rubric for XSS:
+
+2.2.3.2:
+- check for sign of attacks in url and keep checking url between the steps
+- login as an user with history. hit enter after password
+- search for 111
+- click search again
+- search for 222
+- click back: should be homepage
+- click back: should be searching for 111
+- click forward: should be homepage
+- click forward: should be searching for 222
+- replace the url with the payload displayed in terminal (this will reload the page)
+- search for 333: there should be no payload in history between 222 and 333
+- logout
+- check the console, there should be nav events for all searches and homepage, one login, one logout. nav events for home page after login/logout is not mandatory.
+
+2.2.3.2 is the only one will be graded for all functionalities.  Check the boxes in GUI for all the tasks that the student accomplishes.  Put something short in the comment for the reason why the student loses point if applicable.
+
+  
+everything else (2.2.3.3 ~ 2.2.3.6):
+- check for sign of attacks in url and keep checking url between the steps
+- login as same user with history
+- search for 111
+- click search again
+- logout
+- check the console, there should be nav events for all searches and homepage, one login, one logout.
+
++2 point if payload is injected successfully
++3 point if payload is persistence, spying works correctly, and no sign of attack in url.
+
+In an attempt to prevent cascading errors from 2.2.3.2, we will only check for minimal functionality for other parts. They automatically gets two points if the homepage of bungle is loaded correctly, and three points if the spying works correctly throughout.

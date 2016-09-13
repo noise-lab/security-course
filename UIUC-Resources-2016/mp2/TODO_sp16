@@ -1,0 +1,10 @@
+1. [especially 2.1] make sure Bungle is upto date (jquery version, Bottle API version etc)
+2. [2.1.2] the instructions are vague, so make it more specific (we only asked them to submit a script which creates two tables for SP16 semester)
+3. [discussion] make sure introduce web does not contain "attack stuff" 
+--> instead add more SQL, iframe, POST and GET and more javascript stuff
+4. write a format checker to avoid sql error for 2.1.2 and other parts of MP
+5. [2.2.3] try to make 2.2.3 grading autograded if possible
+6. [2.2.3] remove instructions regarding netcat and just encourage them to use simple_server.py
+7. [server setup] change database populating script so that you add actual md5 of victim and attacker
+8. [2.2.1.3] Tell students not to use source code/hash from reference of 2.2.1.3. A good way for this is to actually tell them one of the answers is the hash from the reference and do not accept that hash as an answer.
+9. [2.2.2.2] discourage use of settimeout()

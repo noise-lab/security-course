@@ -1,0 +1,135 @@
+Setup instructions (for OS X El Capitan):
+    * server runs ./website/app.coffee to host webpages that students can access
+    * client(s) runs ./website/client.coffee to continuously send randomly-generated login credentials to a https page
+    * app.coffee doesn't actually host https page, so the server needs to run its own https service through apache2
+    * server hosts ftp and ssh services
+    * ssl private key used for https is made available through ftp
+    * set up dhcp service once everything else is working properly
+    * hardenings and firewall should be the last step
+
+0. [server & clients] Connect to Internet through Ethernet
+    * do not connect to wifi
+    * set static ip if the network doesn't provide dhcp
+1. [server & clients] Apply system updates first
+2. [server & clients] Install Xcode
+    * try to run git/svn on terminal, it will ask you to install Xcode
+3. [server & clients] Enable remote access for easy access
+    * enable remote access through System Preferences > Sharing
+        * change the list of allowed users from Administrators to a specific user
+        * confirm if remote access with password works fine
+4. [server & clients] Install Node.js + npm
+    * download and install package: https://nodejs.org/dist/v4.4.0/node-v4.4.0.pkg
+
+SVN checkout
+Change directory to 'network_setup'
+5. [server & clients] Run sudo ./common_setup.sh {hostname} {username}. The script does the followings:
+    * system reboot at the end
+    * sets hostname
+    * sets vim stuff
+    * add authorized public keys to .ssh/authorized_keys
+        * public keys of the TAs who wish to remote access
+        * maybe public keys of the other server/client machine
+        * to generate keys:
+            * ex) ssh-keygen -b 1024 -t rsa -f id_rsa -P ""
+            * github ex) ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+        * permissions:
+            chmod go-w ~/
+            chmod 700 ~/.ssh
+            chmod 600 ~/.ssh/authorized_keys
+    * disable password authentication on SSH server
+        * /etc/ssh/sshd_config should have followings
+            * UsePAM yes
+            * AuthorizedKeysFile .ssh/authorized_keys
+            * ChallengeResponseAuthentication no
+            * PasswordAuthentication no
+    * install coffee-script
+    * install other npm packages
+6. [server & clients] Install other necessary tools
+    * install wireshark from the website
+
+Change directory to 'server'
+7. [server only] Run sudo ./apache_setup.sh to enable and configure apache2. The script does the followings:
+    * generates rsa key pair
+        * sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /private/etc/apache2/server.key -out /private/etc/apache2/server.crt
+    * starts apache2
+        * sudo apachectl start
+    * copies SP16 apache config and index.html
+        * ./server/apache2/httpd.conf
+            * line 52: Listen {wifi_ip}:443
+            * uncomment line 89 (socache_shmcb_module), line 143 (ssl_module), line 516 (httpd-ssl.conf)
+        * /etc/apache2/extra/httpd-ssl.conf
+            * line 36: specify wifi ip
+        * ./server/apache2/extra/httpd-ssl.conf
+            * line 36: Listen {wifi_ip}:443
+            * line 53: SSLCipherSuite AES128-SHA (something that doesn't provide forward secrecy)
+            * line 125-129: configure accordingly
+        * ./server/apache2/extra/httpd-vhosts.conf
+            * leave it as empty to disable port 80 (http)
+    * for more details: https://getgrav.org/blog/mac-os-x-apache-setup-ssl
+8. [server only] Install brew and vsftpd
+    * install homebrew
+        * /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    * install vsftpd
+        * brew install vsftpd
+9. [server only] Run sudo ./vsftp_setup.sh to configure ftp. The script does the followings:
+    * copies SP16 conf files
+    * sets rootdir to Public
+    * copies server private key to Public
+    * adds to launchd
+    * conf file from SP16 at ./server/vsftp/
+10. [server only] Run sudo ./dhcp_setup.sh to configure dhcp. The script does the followings:
+    * copies ./dhcp/bootpd.plist to /etc/bootpd.plist
+    * copies ./dhcp/bootptab to /etc/bootptab
+    * edit bootpd.plist accordingly
+    * conf files from SP16 at ./server/dhcp/
+    * for more details: http://krypted.com/mac-os-x/running-dhcp-on-mountain-lion-server/
+11. [server & clients] Connect to the WEP wireless network
+    * set static ip for server
+
+Change directory to 'website'
+12. [server & clients] Modify the provided CoffeeScript files at ./website
+    * update ./website/config/default.coffee accordingly
+        * server port
+        * hmac, message algorithms
+        * message, password keys, expiration in minutes
+        * https host (server) ip, port
+    * update ./website/views/layout.hbs
+        * line 15: change the port if necessary
+    * client.coffee
+        * line 25: change '/secret' to existing https page
+        * SP16 used /secret/index.html), which redirects to the correct http page hosted by app.coffee (http://server:9000/secret)
+        * change line 36 to control the frequency
+    * static/css (not important)
+        * if you want to make the pages look more elegant
+
+Change directory to 'server'
+13. [server] Launch coffeescript webpage using the script
+    * ./launch_website.py - restarts app.coffee if stopped due to error
+
+Change directory to 'client'
+14. [clients] generate traffic with scripts
+    * ./send_cred.sh - sends credentials, and resets wifi adapter if failed several times
+    * ./file_request.sh - downloads some file from the server to generate more traffic
+
+15. [server & clients] Confirm that all services (coffeescript pages, https, ftp) are working properly
+16. [server & clients] Hardening + firewall
+    * for firewall, consider using murus
+    * other tips
+        * just go through the entire System Preferences and configure appropriately
+        * if not used, disable
+        * set screensaver/turnoff display time, require password after screensaver
+        * disable sleep or log out after x min
+        * disable automatic login
+17. [server & clients] Testing/maintenance
+    * see everything works fine after reboot
+    * figure out what you can and cannot fix through remote access
+    * regularly check if the devices went down
+        * clients wifi adapters have gone down randomly in the past
+    * use sudo ./check_service.sh located at 'server'
+        * checks if httpd, vsftpd, dhcp are running
+    * use ./update_pubkey.sh located at 'ssh'
+        * replaces the authorized_keys with the most recent version from svn
+    * to clear dhcp leases:
+        * $ sudo launchctl stop /System/Library/LaunchDaemons/bootps.plist
+        * $ sudo rm -f /var/db/dhcpd_leases
+        * $ sudo launchctl start /System/Library/LaunchDaemons/bootps.plist

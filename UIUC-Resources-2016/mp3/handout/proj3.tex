@@ -1,0 +1,714 @@
+%%%%%%%%%%%%%%%%
+% Set options
+\newcommand{\mpnumber}{mp3}
+\newcommand{\settitle}{Project 3: Cryptography}
+\newcommand{\course}{CS461/ECE422}
+\newcommand{\coursename}{Computer Security I}
+\newcommand{\duedate}{Wednesday, March 30}
+\newcommand{\checkpointduedate}{Monday, March 14}
+\newcommand{\duetime}{6:00pm}
+\newcommand{\distdate}{March 7, 2016}
+\newcommand{\semester}{Spring 2016}
+\newcommand{\firstcheckpointpercent}{2\%}
+\newcommand{\secondcheckpointpercent}{10\%}
+\newcommand{\staffemail}{\textbf{ece422-staff@illinois.edu}}
+
+%%%%%%%%%%%%%%%%
+
+\documentclass[letterpaper,12pt]{report}
+\usepackage{fullpage}
+\usepackage[protrusion=true,expansion=auto]{microtype}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{mathptmx}
+\usepackage{textcomp}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{paralist}
+\usepackage{url}
+\usepackage[
+  breaklinks=true,colorlinks=true,linkcolor=black,%
+  citecolor=black,urlcolor=black,bookmarks=false,bookmarksopen=false,%
+  pdfauthor={\course},%
+  pdftitle={\settitle},%
+  pdftex]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\def\textsb#1{{\fontseries{sb}\selectfont #1}}
+\usepackage{mdframed}
+\setcounter{secnumdepth}{3}
+
+\newcommand{\problemsetdone}{\bigskip\hfill$\Box{}$}
+
+\newcommand{\htitle}
+{
+     \noindent\parbox{\textwidth}
+    {
+        \course\hfill \distdate\newline
+        \coursename\hfill 
+        \settitle \vspace*{-.5ex}\newline
+        \mbox{}\hrulefill\mbox{}
+    }
+    \vspace{8pt}
+    \begin{center}{\Large\bf{\settitle}}\end{center}
+}
+\newcommand{\handout}
+{
+    \thispagestyle{empty}
+    \markboth{}{}
+    \pagestyle{plain}
+    \htitle
+}
+
+\newcommand{\problemsetheader}
+{
+\setlength{\parindent}{0pt}
+
+
+This project is split into two parts, with the first checkpoint due on {\bf \checkpointduedate} at {\bf \duetime} and the second checkpoint due on {\bf \duedate} at {\bf \duetime}. The first checkpoint is worth {\firstcheckpointpercent} of your total grade, and the second checkpoint is worth \secondcheckpointpercent.  We strongly recommend that you get started early. Each semester everyone will be given ONE late extension that allows you to turn in up to one assignment(checkpoint) up to 24 hours after the due date. Extensions are not automatic. So, if you want to use your late extension, you MUST send an e-mail to {\staffemail} BEFORE the due date. Late work will not be accepted after 24 hours past the due date. 
+\medskip
+
+This is a group project; you SHOULD work in \textbf{teams of two} and if you are in teams of two, you MUST submit one project per team.  Please find a partner as soon as possible.  If have trouble forming a team, post to Piazza's partner search forum. Not all groups will finish all the tasks in all
+the MPs. The tasks in each MP are designed to be progressively harder with the final tasks in each
+MP having been designed as *significant* challenges.
+
+\medskip
+
+The code and other answers your group submits MUST be entirely your own work, and you are bound by the Student Code.  You MAY consult with other students about the conceptualization of the project and the meaning of the questions, but you MUST NOT look at any part of someone else's solution or collaborate with anyone outside your group.  You may consult published references, provided that you appropriately cite them (e.g., with program comments), as you would in an academic paper.
+
+\medskip
+
+Solutions MUST be submitted electronically in any one of the group member's svn directory, following the submission checklist given at the end of each checkpoint. Details on the filename and submission guideline is listed at the end of the document.
+
+\medskip
+
+\hrulefill
+
+\medskip
+
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\handout
+%\setlength{\parindent}{0pt}
+\problemsetheader
+
+\medskip
+\noindent
+\emph{``Anyone, from the most clueless amateur to the best cryptographer, can create an algorithm that he himself can't break."}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-- Bruce Schneier 
+\medskip
+\pagebreak
+
+\vspace{-6pt}
+\section*{Introduction}
+In this project, you will be using cryptographic libraries to decrypt multiple type of ciphers, furthermore breaking them, and launch attacks on widely used cryptographic hash functions, including length-extension attacks and collision attacks.  In \ref{sec:encryption_library}, you will be decrypting ciphers with given ciphertexts and key values.  Then, you will use the same technique to break a weak cipher with a limited key space.  In \ref{sec:hash_library}, you will start out with a small exercise that uses a hash function to observe the avalanche effect, and then build a weak hash algorithm and find collision on a given string. In \ref{sec:md5_length_extension}, we will guide you through attacking the authentication capability of an imaginary server API.  The attack will exploit the length-extension vulnerability of hash functions in the MD5 and SHA family.  In \ref{sec:breaking_rsa}, you will be attacking RSA, a widely-use public key encryption algorithm.  In \ref{sec:md5_collision}, you will use a cutting-edge tool to generate different messages with the same MD5 hash value (collisions).  You'll then investigate how that capability can be exploited to conceal malicious behavior in software. Lastly, in \ref{sec:md5_collision_application}, you will use collision attack to undermined integrity of a set of documents.
+
+\subsection*{Objectives:}
+
+\begin{itemize}
+\item Become familiar with existing cryptographic libraries and how to utilize them
+\item Understand pitfalls in cryptography and appreciate why you should not write your own cryptographic library
+\item Execute classic cryptographic attack on md5 and other broken cryptographic libraries
+\item Appreciate why you should use HMAC-SHA256 as a substitute for common hash functions.
+\end{itemize}
+
+\section*{Guidelines}
+\begin{itemize}
+\item You SHOULD work in a group of 2.
+\item You MUST use Python.
+\item Your answers may or may not be the same as your classmates'.
+\item All the necessary files to start the project will given under the folder called ``\mpnumber'' in your SVN directory.
+We've also generated some empty files for you to submit your answers in.  You MUST submit your answers in the provided files; we will only grade what's there!
+\end{itemize}
+
+\pagebreak
+
+\setcounter{chapter}{3}
+\section{Checkpoint 1 (20 points)}
+\subsection{Python tutorial}
+\label{sec:python_tutorial}
+In this section, you will be writing several python scripts to do string encoding and manipulations needed to correctly read our input files and submit your answers.
+
+\subsubsection{Reading .hex files}
+In the later parts of this mp, you will be reading in {.hex} file, which is a plaintext files containing an ascii string representing a single hexadecimal number.  This is an example content of a .hex file:
+\begin{mdframed}
+3dab821d92b5ca7f48beee066996b8abc82f7e5646a0561710ea5bc11c80d
+\end{mdframed}
+
+The following python code snippet will read the content of the file as a string and store it in \texttt{file\_content}:
+
+\begin{mdframed}
+\begin{verbatim}
+# strip() remove any leading or trailing whitespace characters
+with open(`file_name') as f: 
+    file_content = f.read().strip()
+\end{verbatim}
+\end{mdframed}
+
+From here, there's a number of things that you could do. Depending on the cryptographic library that you are using, you may need to use different data type, but here we list the most common conversions that you may need:
+\begin{mdframed}
+\begin{verbatim}
+# parse the string into a binary array representing the hexadecimal number
+binary_content = file_content.decode(`hex') 
+
+# parse the string into integer
+integer_parsed = int(file_content,16)
+
+# parse an integer to a hexstring and remove the leading `0x'           
+str = hex(integer_parsed)[2:]
+
+# parse an integer to a binary string and remove the leading `0b'
+str = bin(integer_parsed)[2:]
+\end{verbatim}
+\end{mdframed}
+
+\pagebreak
+
+\subsubsection{Exercise  (2 points)  \hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:python_exercise}
+\paragraph{Files}
+
+\begin{enumerate}
+\item \texttt{ \ref{sec:python_exercise}\_value.hex}: an ascii string representing a hexadecimal value
+\end{enumerate}
+
+Based on what you learn in the last section, we want to to convert the given value into different representations and submit them in the specified files.
+
+\paragraph{What to submit}
+\begin{enumerate}
+\item Convert the value in {\tt \ref{sec:python_exercise}\_value.hex} to decimal and submit the decimal number as a string in \texttt{sol\_\ref{sec:python_exercise}\_decimal.txt}
+
+\item Convert the value in {\tt \ref{sec:python_exercise}\_value.hex} to binary and submit the binary number as a string in \texttt{sol\_\ref{sec:python_exercise}\_binary.txt}
+\end{enumerate}
+
+
+
+\subsection{Symmetric Encryption, Public Key Encryption, and Cryptographic Hashes}
+\label{sec:encryption_library}
+In this section, you will be writing your own cryptographic library to decrypt a substitution cipher, and using existing cryptographic libraries to experiment with a symmetric encryption called AES and a public key encryption called RSA.
+
+\subsubsection{Substitution Cipher (3 points)  \hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:substitution_cipher}
+\paragraph{Files}
+
+\begin{enumerate}
+\item {\tt \ref{sec:substitution_cipher}\_sub\_key.txt}: key
+\item {\tt \ref{sec:substitution_cipher}\_sub\_ciphertext.txt}: ciphertext
+\end{enumerate}
+
+{\tt sub\_key.txt} contains a permutation of the 26 upper-case letters that represents the key for a substitution cipher. Using this key, the $i$th letter in the alphabet in the plaintext has been replaced by the $i$th letter in {\tt \ref{sec:substitution_cipher}\_sub\_key.txt} to produce ciphertext in {\tt \ref{sec:substitution_cipher}\_sub\_ciphertext.txt}. For example, if the first three letters in your {\tt \ref{sec:substitution_cipher}\_sub\_key.txt} are {\tt ZDF}..., then all {\tt A}s in the plaintext have become {\tt Z}s in the ciphertext, all {\tt B}s have become {\tt D}s, and all {\tt C}s have become {\tt F}s. The plaintext we encrypted is a clue from the gameshow Jeopardy and has only upper-case letters, numbers and spaces. Numbers and spaces in the plaintext were not encrypted. They appear exactly as they did in the plaintext.  Your task is to write a python script that decrypt the ciphertext with the given key and submit the plaintext.  Create a python script named {\tt sol\_\ref{sec:substitution_cipher}.py} that decrypt a substitution ciphertext with a given key and write the plaintext to a specified file.  You script takes three arguments from the command line: the ciphertext file, the key file, and the output file. We will run your script as follow:
+\begin{mdframed}
+\begin{verbatim}
+$ python your_script.py ciphertext_file key_file output_file
+\end{verbatim}
+\end{mdframed}
+
+Additionally, you have to submit the plaintext, which is obtained using the key {\tt \ref{sec:substitution_cipher}\_sub\_key.txt} to decrypt {\tt \ref{sec:substitution_cipher}\_sub\_ciphertext.txt},  in the file {\tt sol\_\ref{sec:substitution_cipher}.txt}.
+
+\smallskip
+\noindent
+
+\paragraph{What to submit}
+Your python script in {\tt sol\_\ref{sec:substitution_cipher}.py} and your plaintext in {\tt sol\_\ref{sec:substitution_cipher}.txt}
+
+
+\subsubsection{AES: Decrypting AES (3 points)  \hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:decrypting_aes}
+\paragraph{Files}
+
+\begin{enumerate}
+\item {\tt \ref{sec:decrypting_aes}\_aes\_key.hex}: key
+\item {\tt \ref{sec:decrypting_aes}\_aes\_iv.hex}: initialization vector
+\item {\tt \ref{sec:decrypting_aes}\_aes\_ciphertext.hex}: ciphertext
+\end{enumerate}
+
+{\tt \ref{sec:decrypting_aes}\_aes\_key.hex} contains a 256-bit AES key represented as an ascii string of hexadecimal values. {\tt \ref{sec:decrypting_aes}\_aes\_iv.hex} contains a 128-bit Initialization Vector in a similar representation. We encrypted a Jeopardy clue using AES in CBC mode with this key and IV and wrote the resulting ciphertext (also stored in hexadecimal) in {\tt \ref{sec:decrypting_aes}\_aes\_ciphertext.hex}.  Create a python script named {\tt sol\_\ref{sec:decrypting_aes}.py} that decrypt the ciphertext using the provided information and output the plaintext to a specified file.  You script takes four arguments from the command line: the ciphertext file, the key file, the iv file, and the output file. We will run your script as follow:
+\begin{mdframed}
+\begin{verbatim}
+$ python your_script.py ciphertext_file key_file iv_file output_file
+\end{verbatim}
+\end{mdframed}
+
+\smallskip
+
+\subsubsection*{Cryptographic Library}
+For this checkpoint, we recommend PyCrypto, an open-source crypto library for python.  PyCrypto can be installed using pip with \texttt{sudo pip install pycrypto} or by going to their website at \url{https://www.dlitz.net/software/pycrypto/}.  
+
+
+\noindent
+
+\paragraph{What to submit}
+
+Your python script in {\tt sol\_\ref{sec:decrypting_aes}.py} and the decrypted message in {\tt sol\_\ref{sec:decrypting_aes}.txt}.
+
+\subsubsection{AES: Breaking A Weak AES Key (3 points)  \hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:weak_aes}
+\paragraph{Files}
+
+\begin{enumerate}
+\item {\tt \ref{sec:weak_aes}\_aes\_weak\_ciphertext.hex}: ciphertext
+\end{enumerate}
+
+As with the last task, we encrypted a Jeopardy clue using 256-bit AES in CBC mode and stored the result in hexadecimal in the file {\tt \ref{sec:weak_aes}\_aes\_weak\_ciphertext.hex}. For this task, though, we haven't supplied the key. All we'll tell you about the key is that it is 256 bits long and its 251 most significant (leftmost) bits are all 0's. The initialization vector was set to all 0s. First, find all plaintexts in the given key space. Then, you will review the plaintexts to find the correct plaintext that is in Jeopardy clue and the corresponding key.  
+\smallskip
+\noindent
+
+\paragraph{What to submit}
+% \textbf{Find all the plaintexts in the given key space and submit it in {\tt aes\_weak\_plaintext.txt}.}
+Find the \textbf{key} of the appropriate plaintext and submit it as a hex string in {\tt sol\_\ref{sec:weak_aes}.hex}.  Remember that this AES key is 256 bit long.
+
+\subsubsection{Decrypting cipher text with RSA (3 points)  \hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:decrypt_rsa}
+\paragraph{Files}
+
+\begin{enumerate}
+\item {\tt \ref{sec:decrypt_rsa}\_RSA\_private\_key.hex}: RSA private key (d) as hexdecimal string
+\item {\tt \ref{sec:decrypt_rsa}\_RSA\_modulo.hex}: RSA modulo (N) as hexadecimal string
+\item {\tt \ref{sec:decrypt_rsa}\_RSA\_ciphertext.hex}: an encrypted prime number that is encrypted with 1024-bit RSA as hexadecimal string
+\end{enumerate}
+
+In this part we use 1024 bit textbook RSA to encrypt a prime number with your public key and stored it in {\tt \ref{sec:decrypt_rsa}\_RSA\_ciphertext.hex} as a hex string.  Create a python script named \texttt{sol\_\ref{sec:decrypt_rsa}.py} that takes as an argument the ciphertext, private key, and RSA modulo to compute the plaintext prime number and write it as a hexstring to a specified file. We will run your script as follow:
+\begin{mdframed}
+\begin{verbatim}
+$ python your_script.py ciphertext_file key_file modulo_file output_file
+\end{verbatim}
+\end{mdframed}
+
+\paragraph{Hint} You SHOULD complete this part with python's \texttt{math} library. 
+
+\smallskip
+\noindent
+
+\paragraph{What to submit}
+Your python script in \texttt{sol\_\ref{sec:decrypt_rsa}.py} and the prime number as a hex string in \texttt{sol\_\ref{sec:decrypt_rsa}.hex}.
+
+
+\subsection{Hash Functions}
+\label{sec:hash_library}
+This section will give you a chance to explore cryptographic hashing using existing cryptographic libraries and illustrate the pitfall in writing your own cryptographic functions.
+
+\subsubsection{Avalanche Effect (3 points)  \hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:avalanche_effect}
+\paragraph{Files}
+
+\begin{enumerate}
+\item {\tt \ref{sec:avalanche_effect}\_input\_string.txt}: original string
+\item {\tt \ref{sec:avalanche_effect}\_perturbed\_string.txt}: perturbed string
+\end{enumerate}
+
+{\tt \ref{sec:avalanche_effect}\_input\_string.txt} contains another Jeopardy clue in ASCII. 
+\newline
+{\tt \ref{sec:avalanche_effect}\_perturbed\_string.txt} is an exact copy of this string with one bit flipped. We're going to use these two strings to demonstrate the avalanche effect by generating the SHA-256 hash of both strings and counting how many bits are different in the two results (a.k.a. the Hamming distance.)
+
+\smallskip
+What are their SHA-256 hashes?  Verify that they're different.\\
+(\texttt{\$ openssl dgst -sha256 \ref{sec:avalanche_effect}\_input\_string.txt \ref{sec:avalanche_effect}\_perturbed\_string.txt})
+\smallskip
+Create a python script named \texttt{sol\_\ref{sec:avalanche_effect}.py} that takes as an argument two text files and an output file, and output the hamming distance of the SHA-256 hash of the string in the two files as a hexstring to a specified output file.  We will run your script as follow:
+\begin{mdframed}
+\begin{verbatim}
+$ python your_script.py file_1.txt file_2.txt output_file
+\end{verbatim}
+\end{mdframed}
+
+\smallskip
+\noindent
+
+\paragraph{What to submit}
+% \textbf{Compute the number of bits different between the two hash outputs and submit it in {\tt hashdiff\_difference.txt} as a single decimal number.}
+Your python script in {\tt sol\_\ref{sec:avalanche_effect}.py} and the hamming distance as a hexstring in {\tt sol\_\ref{sec:avalanche_effect}.hex}.
+
+\subsubsection{Weak Hashing Algorithm (3 points)  \hfill\rm\normalsize (\emph{Difficulty: Medium})}
+\label{sec:wha}
+\paragraph{Files}
+
+\begin{enumerate}
+\item {\tt \ref{sec:wha}\_input\_string.txt}: input string
+\end{enumerate}
+
+Below you'll find the pseudocode for a weak hashing algorithm we're calling {\tt WHA}. It operates on bytes (block size 8-bits) and outputs a 32-bit hash. 
+% You'll use this hash for tasks 3 and 4 (and the bonus, if you're feeling brave), where we'll explore what can go wrong with a weak cryptographic hash.
+\begin{mdframed}
+\begin{verbatim}
+ WHA:
+ Input{inStr: a binary string of bytes}
+ Output{outHash: 32-bit hashcode for the inStr in a series of hex values}
+ Mask: 0x3FFFFFFF
+ outHash: 0
+ for byte in input
+ 	 intermediate_value = ((byte XOR 0xCC) Left Shift 24) OR 
+                        ((byte XOR 0x33) Left Shift 16) OR 
+                        ((byte XOR 0xAA) Left Shift 8) OR 
+ 	                      (byte XOR 0x55)
+ 	 outHash =(outHash AND Mask) + (intermediate_value AND Mask)
+ return outHash
+\end{verbatim}
+\end{mdframed}
+
+\noindent
+First, you'll need to implement {\tt WHA} in python. Here are some sample inputs to test your implementation: {\tt WHA("Hello world!") = 0x50b027cf} and {\tt WHA("I am Groot.")=0x57293cbb}
+
+\smallskip
+\noindent
+In the file {\tt \ref{sec:wha}\_input\_string.txt}, you'll find another Jeopardy clue (surprise!) Your goal is to find another string that produces the same {\tt WHA} output as this Jeopardy clue. In other words, demonstrate that this hash is not second preimage resistant. 
+
+\smallskip
+\noindent
+Find a string with the same {\tt WHA} output as {\tt \ref{sec:wha}\_input\_string.txt} and submit it in {\tt sol\_\ref{sec:wha}.txt}. Also, submit the code for WHA algorithm code with the name {\tt sol\_\ref{sec:wha}.py}.  Your python script should take as an argument a text file and an output file, and output the WHA hash of the content of the file as a hexstring in the specified file.  We will run your script as follow:
+\begin{mdframed}
+\begin{verbatim}
+$ python your_script.py file.txt output_file
+\end{verbatim}
+\end{mdframed}
+
+\paragraph{What to submit}
+
+Your python script in {\tt sol\_\ref{sec:wha}.py} and the collision string in {\tt sol\_\ref{sec:wha}.txt}
+
+\pagebreak
+\section*{Checkpoint 1: Submission Checklist}
+ 
+The following blank files for checkpoint 1 has been created in your subversion repository under the directory \mpnumber.  Put your solution inside the corresponding file then commit it to subversion. All .hex and .txt files MUST be submitted as ascii plaintext, and any lines in .txt and .hex submissions that begin with `\#' will be ignored.
+
+\begin{itemize}
+\item {\tt partners.txt} [One netid on each line]
+\item {\tt sol\_\ref{sec:python_exercise}\_decimal.txt}
+\item {\tt sol\_\ref{sec:python_exercise}\_binary.txt}
+\item {\tt sol\_\ref{sec:substitution_cipher}.py}
+\item {\tt sol\_\ref{sec:substitution_cipher}.txt}
+\item {\tt sol\_\ref{sec:decrypting_aes}.py}
+\item {\tt sol\_\ref{sec:decrypting_aes}.txt}
+\item {\tt sol\_\ref{sec:weak_aes}.hex}
+\item {\tt sol\_\ref{sec:decrypt_rsa}.py}
+\item {\tt sol\_\ref{sec:decrypt_rsa}.hex}
+\item {\tt sol\_\ref{sec:avalanche_effect}.py}
+\item {\tt sol\_\ref{sec:avalanche_effect}.hex}
+\item {\tt sol\_\ref{sec:wha}.py}
+\item {\tt sol\_\ref{sec:wha}.txt}
+\end{itemize}
+
+\subsubsection*{example content of .txt solution file}
+\begin{mdframed}
+\# this line is ignored\\
+SPN WMKTQIW QR SPBW HQGRSEMW HQVS QY VEKW 
+\end{mdframed}
+\subsubsection*{example content of .hex solution file}
+\begin{mdframed}
+\# this line is also ignored \\
+3dab821d92b5ca7f48beee066996b8abc82f7e5646a0561710ea5bc11c80d
+\end{mdframed}
+\medskip
+
+
+
+\pagebreak
+
+\section{Checkpoint 2 (100 points)}
+Note: There is a component of section \ref{sec:md5_collision_application} that MUST be submitted by \textbf{2:00PM} on \duedate.  Please read ahead and plan accordingly.
+
+\subsection{Length Extension (20 points)  \hfill\rm\normalsize (\emph{Difficulty: Medium})}
+\label{sec:md5_length_extension}
+In most applications, you should use MACs such as HMAC-SHA256 instead of plain cryptographic hash functions (e.g.\ MD5, SHA-1, or SHA-256), because hashes, also known as digests, fail to match our intuitive security expectations.  What we really want is something that behaves like a pseudorandom function, which HMACs seem to approximate and hash functions do not.
+ 
+\medskip
+ 
+One difference between hash functions and pseudorandom functions is that many hashes are subject to \emph{length extension}.  All the hash functions we've discussed use a design called the Merkle-Damg\r{a}rd  construction.  Each is built around a \emph{compression function} $f$ and maintains an internal state $s$, which is initialized to a fixed constant.  Messages are processed in fixed-sized blocks by applying the compression function to the current state and current block to compute an updated internal state, i.e.~$s_{i+1} =  f(s_i, b_i)$.  The result of the final application of the compression function becomes the output of the hash function.
+
+\medskip
+ 
+A consequence of this design is that if we know the hash of an $n$-block message, we can find the hash of longer messages by applying the compression function for each block $b_{n+1}, b_{n+2}, \ldots$ that we want to add.  This process is called length extension, and it can be used to attack many applications of hash functions.
+ 
+\subsubsection{Experiment with Length Extension in Python}
+
+To experiment with this idea, we'll use a Python implementation of the MD5 hash function, though SHA-1 and SHA-256 are vulnerable to length extension in the same way.  You should have a pymd5.py module in your subversion directory. Documentation for pymd5 is available by running \texttt{\$ pydoc pymd5}.  To follow along with these examples, run Python in interactive mode (\texttt{\$ python -i}) and run the command \texttt{from pymd5 import md5, padding}.
+  
+\medskip
+
+Consider the string ``Use HMAC, not hashes''.  We can compute its MD5 hash by running:
+\begin{mdframed}
+\begin{verbatim}
+m = "Use HMAC, not hashes"
+h = md5()
+h.update(m)
+print h.hexdigest()
+\end{verbatim}
+\end{mdframed}
+
+or, more compactly, \texttt{print md5(m).hexdigest()}.  The output should be:
+
+\begin{mdframed}
+\begin{verbatim}
+3ecc68efa1871751ea9b0b1a5b25004d
+\end{verbatim}
+\end{mdframed}
+ 
+MD5 processes messages in 512-bit blocks, so, internally,  the hash function pads $m$ to a multiple of that length.  The padding consists of the bit 1, followed by as many 0 bits as necessary, followed by a 64-bit count of the number of bits in the unpadded message. (If the 1 and count won't fit in the current block, an additional block is added.)  You can use the function \texttt{padding(\emph{count})} in the \texttt{pymd5} module to compute the padding that will be added to a \texttt{\emph{count}}-bit message.
+ 
+\medskip
+
+Even if we didn't know \texttt{m}, we could compute the hash of longer messages of the general form \texttt{m~+~padding(len(m)*8) + \emph{suffix}} by setting the initial internal state of our MD5 function to \texttt{MD5(m)}, instead of the default initialization value, and setting the function's message length counter to the size of $m$ plus the padding (a multiple of the block size).  To find the padded message length, guess the length of $m$ and run \texttt{bits = (\emph{length\_of\_m} + len(padding(\emph{length\_of\_m}*8)))*8}. 
+
+\medskip
+
+The \texttt{pymd5} module lets you specify these parameters as additional arguments to the \texttt{md5} object:
+\begin{mdframed}
+\begin{verbatim}
+h = md5(state="3ecc68efa1871751ea9b0b1a5b25004d".decode("hex"), count=512)
+\end{verbatim}
+\end{mdframed}
+
+\smallskip
+ 
+Now you can use length extension to find the hash of a longer string that appends the suffix ``Good advice".  Simply run:
+\begin{mdframed}
+\begin{verbatim}
+x = "Good advice"
+h.update(x)
+print h.hexdigest()
+\end{verbatim}
+\end{mdframed}
+
+to execute the compression function over \texttt{x} and output the resulting hash.  Verify that it equals the MD5 hash of \texttt{m + padding(len(m)*8) + x}.  Notice that, due to the length-extension property of MD5, we didn't need to know the value of \texttt{m} to compute the hash of the longer string---all we needed to know was \texttt{m}'s length and its MD5 hash.
+
+\medskip
+
+This component is intended to introduce length extension and familiarize you with the Python MD5 module we will be using; you will not need to submit anything for it.
+
+\subsubsection{Conduct a Length Extension Attack}
+ \label{sec:length_extension}
+\paragraph{Files}
+
+\begin{enumerate}
+\item {\tt \ref{sec:length_extension}\_query.txt}: query
+\item {\tt \ref{sec:length_extension}\_command3.txt}: command3
+\end{enumerate}
+
+One example of when length extension causes a serious vulnerability is when people mistakenly try to construct something like an HMAC by using $hash(secret \parallel message)$, where $\parallel$ indicates concatenation.  For example, Professor Vuln E. Rabble has created a web application with an API that allows client-side programs to perform an action on behalf of a user by loading URLs of the form:
+ \medskip
+ 
+{\url{http://ece422.org/project3/api?token=b301afea7dd96db3066e631741446ca1\&user=admin\&command1=ListFiles\&command2=NoOp}}
+
+\medskip
+ 
+where \texttt{token} is MD5(\emph{user's 8-character password} $\parallel$ \texttt{user=}.... [\emph{the rest of the URL starting from \texttt{user=} and ending with the last command}]).  The domain name is given as an example, we did not setup a webserver for this assignment.
+ 
+\medskip
+ 
+Text files with the query of the URL {\tt \ref{sec:length_extension}\_query.txt} and the command line to append \texttt{\ref{sec:length_extension}\_command3.txt} is provided. Using the techniques that you learned in the previous section and without guessing the password, apply length extension to create a new query in the URL ending with command specified in the file, \texttt{\&command3=DeleteAllFiles}, that is treated as valid by the server API. We will run your script as follow:
+\begin{mdframed}
+\begin{verbatim}
+$ python your_script.py query_file command3_file output_file
+\end{verbatim}
+\end{mdframed}
+
+\medskip
+
+Create a python script named \texttt{sol\_\ref{sec:length_extension}.py} that takes as a commandline argument a filename containing a valid query in the url and modify it such that it will execute \texttt{DeleteAllFiles} command as the user then output the new query to a specified file.  You may assume that the query will always begin with token.
+
+\medskip
+
+\emph{Hint:} You might want to use the \texttt{quote()} function from Python's \texttt{urllib} module to encode non-ASCII characters in the padding.
+
+\medskip
+
+\emph{Historical fact:} In 2009, security researchers found that the API used by the photo-sharing site Flickr  suffered from a length-extension vulnerability almost exactly like the one in this exercise.
+
+\paragraph{What to submit}
+
+Your python script in \texttt{sol\_\ref{sec:length_extension}.py} and the modified query in \texttt{sol\_\ref{sec:length_extension}.txt}. 
+
+ \subsection{Breaking the RSA (30 points)  \hfill\rm\normalsize (\emph{Difficulty: Hard})}
+ \label{sec:breaking_rsa}
+ \paragraph{Files}
+
+\begin{enumerate}
+\item \texttt { \ref{sec:breaking_rsa}\_ciphertext.hex}: ciphertext in hex string
+\item \texttt { \ref{sec:breaking_rsa}\_public\_key.hex}: public key in hex string
+\item \texttt { \ref{sec:breaking_rsa}\_modulo.hex}: RSA modulo in hex string
+\end{enumerate}
+
+Let's see if you can break the RSA.  You are given a ciphertext in \texttt{\ref{sec:breaking_rsa}\_ciphertext.hex} that was encrypted with 1024-bit RSA using the key in {\ref{sec:breaking_rsa}\_public\_key.hex} and the modulo in {\ref{sec:breaking_rsa}\_modulo.hex}. You do not know the necessary key to decrypt this ciphertext, but you do know that there is a weakness in this RSA key pair that makes it vulnerable to one of the attacks discussed in discussion section (Please do not ask for the computation time and power consumption of our machine). The plaintext that was encrypted is a decimal integer number < the RSA modulo with a certain pattern that should be obvious when you decrypt it (The pattern is visible when the number is in its decimal representation, not hex).  Your task is to find the private key and the decrypt the ciphertext to get the plaintext.
+
+\medskip
+
+Create a python script named \texttt{sol\_\ref{sec:breaking_rsa}.py} that takes four input from the commandline: the ciphertext, the public key, the modulo, and the output file, and compute the decrypted number then write it as a hexstring to the output file. We will run your script as follow:
+\begin{mdframed}
+\begin{verbatim}
+$ python your_script.py ciphertext_file key_file modulo_file output_file
+\end{verbatim}
+\end{mdframed}
+ 
+ \paragraph{What to submit}
+Your python script in \texttt{sol\_\ref{sec:breaking_rsa}.py} and the decrypted number as a hex string in \texttt{sol\_\ref{sec:breaking_rsa}.hex}
+
+
+\subsection{MD5 Collisions (20 points)  \hfill\rm\normalsize (\emph{Difficulty: Medium})}
+\label{sec:md5_collision}
+MD5 was once the most widely used cryptographic hash function, but today it is considered dangerously insecure.  This is because cryptanalysts have discovered efficient algorithms for finding \emph{collisions}---pairs of messages with the same MD5 hash value.
+ 
+\medskip
+ 
+The first known collisions were announced on August 17, 2004 by Xiaoyun Wang, Dengguo Feng, Xuejia Lai, and Hongbo Yu. Here's one pair of colliding messages they published:
+
+\medskip
+
+Message 1:
+ \smallskip
+ 
+\texttt{d131dd02c5e6eec4693d9a0698aff95c 2fcab58712467eab4004583eb8fb7f89\\
+55ad340609f4b30283e488832571415a 085125e8f7cdc99fd91dbdf280373c5b\\
+d8823e3156348f5bae6dacd436c919c6 dd53e2b487da03fd02396306d248cda0\\
+e99f33420f577ee8ce54b67080a80d1e c69821bcb6a8839396f9652b6ff72a70}\\
+
+Message 2:
+\smallskip
+
+\texttt{d131dd02c5e6eec4693d9a0698aff95c 2fcab50712467eab4004583eb8fb7f89\\
+55ad340609f4b30283e4888325f1415a 085125e8f7cdc99fd91dbd7280373c5b\\
+d8823e3156348f5bae6dacd436c919c6 dd53e23487da03fd02396306d248cda0\\
+e99f33420f577ee8ce54b67080280d1e c69821bcb6a8839396f965ab6ff72a70}
+ 
+ \medskip
+ 
+Convert each group of hex strings into a binary file.\\
+(On Linux, run \texttt{\$ xxd -r -p file.hex > file}.)
+ 
+ \begin{enumerate}
+ \item What are the MD5 hashes of the two binary files?  Verify that they're the same.\\
+(\texttt{\$ openssl dgst -md5 file1 file2})
+ 
+ \item What are their SHA-256 hashes?  Verify that they're different.\\
+(\texttt{\$ openssl dgst -sha256 file1 file2})
+ \end{enumerate}
+ 
+This component is intended to introduce you to MD5 collisions; you will not submit anything for it.
+
+\subsubsection{Generating Collisions Yourself}
+
+In 2004, Wang's method took more than 5 hours to find a collision on a desktop PC.  Since then, researchers have introduced vastly more efficient collision finding algorithms.  You can compute your own MD5 collisions using a tool written by Marc Stevens that uses a more advanced technique.  You can download the \texttt{fastcoll} tool here:
+\medskip
+ 
+\url{http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5.exe.zip} (Windows executable) or\\
+\url{http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip} (source code)
+\medskip
+
+If you are building \texttt{fastcoll} from source, you can compile using this makefile:
+\url{https://subversion.ews.illinois.edu/svn/sp16-ece422/_shared/mp3/Makefile}.  You will also need the Boost libraries.  On Ubuntu, you can install these using \texttt{apt-get install libboost-all-dev}.  On OS~X, you can install Boost via the Homebrew package manager using \texttt{brew install boost}.
+ 
+\begin{enumerate}
+\item Generate your own collision with this tool.  How long did it take?\\
+(\texttt{\$ time ./fastcoll -o file1 file2})
+\item What are your files?  To get a hex dump, run \texttt{\$ xxd -p file}.
+\item What are their MD5 hashes?  Verify that they're the same.
+\item What are their SHA-256 hashes?  Verify that they're different.
+\end{enumerate}
+ 
+This component is intended to introduce you to MD5 collisions; you will not submit anything for it.
+
+ \subsubsection{A Hash Collision Attack}
+The collision attack lets us generate two messages with the same MD5 hash and any chosen (identical) prefix.  Due to MD5's length-extension behavior, we can append any suffix to both messages and know that the longer messages will also collide.  This lets us construct files that differ only in a binary ``blob'' in the middle and have the same MD5 hash, i.e.\ ${prefix} \parallel {blob}_A \parallel {suffix}$ and ${prefix} \parallel {blob}_B \parallel {suffix}$.
+
+\medskip
+ 
+We can leverage this to create two programs that have identical MD5 hashes but wildly different behaviors.  We'll use Python, but almost any language would do.  Copy and paste the following three lines into a file called \texttt{prefix}: (Note: writing below lines yourself may lead to encoding mismatch and the error may occur while running the resulting python code)
+
+\begin{verbatim}
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+blob = """
+\end{verbatim}
+ 
+and put these three lines into a file called \texttt{suffix}:
+ 
+ \begin{verbatim}
+"""
+from hashlib import sha256
+print sha256(blob).hexdigest()
+\end{verbatim}
+ 
+Now use \texttt{fastcoll} to generate two files with the same MD5 hash that both begin with \texttt{prefix}.  (\texttt{\$~fastcoll -p prefix -o col1 col2}).  Then append the suffix to both (\texttt{\$ cat col1 suffix > file1.py; cat col2 suffix > file2.py}).  Verify that \texttt{file1.py} and \texttt{file2.py} have the same MD5 hash but generate different output.
+ 
+ \medskip
+
+Extend this technique to produce another pair of programs, \texttt{good} and \texttt{evil}, that also share the same MD5 hash.  One program should execute a benign payload: \texttt{print "I come in peace."}  The second should execute a pretend malicious payload: \texttt{print "Prepare to be destroyed!"}. Note that we may rename these program before grading them.
+
+\vspace{-6pt}
+\paragraph{What to submit}
+Two Python 2.x scripts named \texttt{sol\_\ref{sec:md5_collision}\_good.py} and \texttt{sol\_\ref{sec:md5_collision}\_evil.py} that have the same MD5 hash, have different SHA-256 hashes, and print the specified messages.
+
+\subsection{Guess the number (30 points)  \hfill\rm\normalsize (\emph{Difficulty: Hard})}
+\label{sec:md5_collision_application}
+The goal of this task is to guess a number that we will announce in class on \duedate.  
+
+\medskip
+
+Note: You MUST complete this section and submit \texttt{sol\_\ref{sec:md5_collision_application}\_hash.hex} to svn {\bf before 2:00PM on \duedate}. 
+
+\medskip
+
+Here are the rules:
+ 
+\begin{enumerate}
+
+\item At the start of class on March 30, Professor Bailey will announce the winning number, which will be an integer in the range $[0,63]$.
+ 
+\item Prior to the announcement, each student may register one guess.  To keep everything fair, your guesses will be kept secret using the following procedure:
+
+\begin{enumerate}
+
+\item You'll create a PostScript file that, when printed, produces a single page that contains only the statement: ``\texttt{\emph{netid1 netid2} guesses \emph{n}}''.
+ 
+\item You'll register your guess by submitting MD5 hash of your file to \texttt{sol\_\ref{sec:md5_collision_application}\_hash.hex}.  \textbf{We must receive your hash value before the professor announces the pick}.
+
+\item You and your partner MUST produce a file that includes both of your netids.
+
+\end{enumerate}
+ 
+\item If your guess is correct, you can claim the prize by submitting your PostScript file to \texttt{sol\_\ref{sec:md5_collision_application}.ps}.  We will verify its MD5 hash, print it to a PostScript printer, and check that the statement is correct.
+
+\item You MUST submit all source code and postscript files that you generated in \texttt{sol\_\ref{sec:md5_collision_application}.tar.gz}.
+
+\end{enumerate}
+ 
+\emph{Hint:} You're allowed to trick us if it will teach us not to use a Turing-complete printer control language with a hash function that has weak collision resistance. \\
+
+\newpage
+
+\section*{Checkpoint 2: Submission Checklist}
+  
+\textbf{Note:} If your team decided to use the late extension for this checkpoint, your \texttt{sol\_\ref{sec:md5_collision_application}.tar.gz} MUST include all 64 postscript files with the same md5 hash that correspond to all possible guesses in order to receive points for this part.\\
+
+The following blank files for checkpoint 2 has been created in your subversion repository under the directory \mpnumber.  Put your solution inside the corresponding file then commit it to subversion. All .hex and .txt files MUST be submitted as ascii plaintext, and any lines in .txt and .hex submissions that begin with `\#' will be ignored.
+
+\begin{itemize}
+\item {\tt partners.txt} [One netid on each line]
+\item {\tt sol\_\ref{sec:length_extension}.py}
+\item {\tt sol\_\ref{sec:length_extension}.txt}
+\item {\tt sol\_\ref{sec:breaking_rsa}.py}
+\item {\tt sol\_\ref{sec:breaking_rsa}.hex}
+\item {\tt sol\_\ref{sec:md5_collision}\_good.py}
+\item {\tt sol\_\ref{sec:md5_collision}\_evil.py}
+\item {\tt sol\_\ref{sec:md5_collision_application}\_hash.hex} (MUST be submitted by \textbf{2:00PM} on \duedate)
+\item {\tt sol\_\ref{sec:md5_collision_application}.ps}
+\item {\tt sol\_\ref{sec:md5_collision_application}.tar.gz}
+\end{itemize}
+
+\subsubsection*{example content of .txt solution file}
+\begin{mdframed}
+\# this line is ignored\\
+SPN WMKTQIW QR SPBW HQGRSEMW HQVS QY VEKW 
+\end{mdframed}
+\subsubsection*{example content of .hex solution file}
+\begin{mdframed}
+\# this line is also ignored \\
+3dab821d92b5ca7f48beee066996b8abc82f7e5646a0561710ea5bc11c80d
+\end{mdframed}
+
+\end{document}

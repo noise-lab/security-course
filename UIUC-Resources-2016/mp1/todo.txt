@@ -1,0 +1,3 @@
+early simple autograder to check if:
+-compilable
+-correct cookie values

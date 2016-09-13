@@ -1,0 +1,97 @@
+*Checkpoint 2*
+2.1_default
+Puppy Linux
+4.3.1
+
+2.1_behavior: 5 points (manual)
+Booting the suspect's machine is a bad idea in general because it
+might do nasty things unless a secret command is entered. This
+specific machine boots a Puppy Linux install unless the GRUB menu
+is used to boot the "real" Ubuntu install. The Puppy Linux 
+writes zeros to the hard drive, presumably in an
+attempt to warn the accomplice of the investigation and then
+interfere with the investigation.
+
+1. When puppy is booted, it tries to load a save file pupsave.2fs which saves the previous state.
+2. After that it runs /etc/rc.d/rc.sysinit.
+3. Line 460 in the script:
+echo -ne "\nTHEFT DETECTED, ENGAGING SECURITY SYSTEM" > /dev/console
+dd if=/dev/zero of=/dev/sda
+
+# rc.sysinit is extracted from the save file and included in evidence/
+
+2.1_primary
+Linux Ubuntu
+15.10
+
+2.2
+l337h4x0r
+
+2.3_usernames
+alice.innocuous
+alice.innocuous
+
+2.3_relationship: 10 points (manual)
+Boyfriend of girlfriend cheated with Victim
+
+2.4_link
+
+2.4_weapon
+nerf gun
+
+2.4_method (manual)
+local store pickup
+
+2.5
+hackers
+
+2.6_account
+root
+
+2.6_tools
+nmap
+hydra
+
+2.6_ip
+10.46.1.105
+
+2.6_connection
+yes
+ssh_host_ecdsa_key
+ssh_host_ecdsa_key.pub
+
+2.6_password
+sexyboy
+
+2.7
+suicidenote.doc
+
+2.8_accomplice
+nefarious.accomplice.1995@gmail.com
+
+2.8_location
+sp16
+   memorialstadium  (40.098, -88.237)
+   isr              (40.108, -88.230)
+   eceb             (40.114, -88.228)
+   ncsa             (40.114, -88.223)
+   researchpark     (40.092, -88.238) 
+
+fa15
+   bookstore        (40.108, -88.229)
+   eceb             (40.114, -88.231)
+   powerplant       (40.105, -88.241)
+   siebel           (40.114, -88.226)
+   union            (40.109, -88.229)
+
+2.8_originaltime
+2200
+
+2.8_actualtime
+2140
+
+2.9
+Leet Haxor
+
+2.10
+yes

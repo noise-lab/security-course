@@ -1,0 +1,49 @@
+I. Constructing the LAMP:
+This server was hosted on Ubuntu 14.04 LTS last semester. The server was running ok even with the peak workload from students near the deadline. Make sure you properly setup the LAMP. If you do not make Apache handle the requests, wsgiref, the default request handler for bottle, will be used and it cannot handle large traffic so that the website will go down regularly.
+
+Commands to install LAMP components (based on Ubuntu 14.04 LTS, sudo needed for most commands):
+
+apt-get update
+apt-get install mysql-server
+apt-get install libapache2-mod-php5 php5-mysql
+apt-get install libapache2-mod-wsgi
+apt-get install python-mysqldb
+
+wget https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+pip install bottle
+
+Add bungle.conf to /etc/apache2/sites-available and use command:
+a2ensite bungle
+
+Note: You may need to change bungle.conf and app.py depending on where mp2 is located at.
+
+II. Generating the sql database:
+
+First, create some fresh secrets in mp2 directory. If SQL cannot get file's content correctly, hard-code the values:
+
+openssl rand -hex 32 > dbrw.secret
+openssl rand -hex 32 > dbro.secret
+openssl rand -hex 32 > auth.secret
+openssl rand -hex 32 > db.sqlinject_3.secret
+
+To create the SQL database, run mysql -u root -p and run:
+source project2_sqlscript.txt
+
+NOTE: Before running this script, make sure you substitute << >> with respective values.
+
+Finally, make sure you do TODOs for php files for following directories:
+
+sqlinject0
+sqlinject1
+sqlinject2
+sqlinject3
+
+You probably need to hard code dbrw.secret in bungle/database.py
+
+III. to start a local server, run 
+
+cd bungle
+python project2.py
+
+and connect to http://127.0.0.1:8080/

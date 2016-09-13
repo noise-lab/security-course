@@ -1,0 +1,26 @@
+{
+    "ip": {
+        "client1": "10.20.16.65",
+        "client2": "10.20.16.198",
+        "server": "10.20.16.64"
+    },
+    "protocol": {
+        "dhcp": [
+            "dhcp",
+            "dhcpc"
+        ],
+        "ftp": "ftp",
+        "http": [
+            "http",
+            "appss-lm"
+        ],
+        "https": [
+            "https",
+            "ssl",
+            "ssl/http",
+            "tls"
+        ]
+    },
+    "wep": "vEry5ecUrepW!",
+    "year": "5"
+}

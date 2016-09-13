@@ -1,0 +1,36 @@
+Network
+    ssid      : cs461sp16
+    ch        : 6
+    bssid     : 9e:09:01:11:3c:d7
+    wep(ascii): vEry5ecUrepW!
+    wep(hex)  : 76457279356563557265705721
+
+Client1 (#1)
+    s/n       : C07Q5547G1HV
+    mac(eth)  : 38:c9:86:00:53:09
+    addr      : siebl-1129-cs461-01.cs.illinois.edu
+    mac(wifi) : ac:29:3a:eb:74:d0
+    hostname  : jason-work
+    ip        : 10.20.16.198
+    user      : ece422-staff
+    pw        : goldJo<e31!
+
+Client2 (#2)
+    s/n       : C07Q53TUG1HV
+    mac(eth)  : 38:c9:86:00:40:4a
+    addr      : siebl-1129-cs461-02.cs.illinois.edu
+    mac(wifi) : ac:29:3a:eb:14:04
+    hostname  : hello-world
+    ip        : 10.20.16.65
+    user      : ece422-staff
+    pw        : goldJo<e31!
+
+Server (#3)
+    s/n       : C07QH0H2G1J2
+    mac(eth)  : 38:c9:86:0d:8b:e1
+    addr      : siebl-1129-cs461-03.cs.illinois.edu
+    mac(wifi) : 04:69:f8:de:6c:17 
+    hostname  : Precious
+    ip        : 10.20.16.64
+    user      : cs461-staff
+    pw        : goldJo<e31!

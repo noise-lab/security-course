@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sqlinject0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+      .content { margin-top: 50px; }
+      h2 { margin-top: 0; margin-bottom: 20px; }
+    </style>
+  </head>
+  <body>
+  <!-- 
+	 "What could go wrong?" 
+
+                            -- jhalderm 
+  -->
+    <div class="container">
+      <div class="content">
+	<div class="well" style="max-width: 475px; margin: 0 auto 10px;">
+	  <h2>sqlinject0</h2>
+          <form action="checklogin.php" method="post" class="form-inline">
+	    <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username" name="username">
+	    </div>
+	    <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password" name="password">
+	    </div>
+	    <button class="btn btn-primary" type="submit">Sign in</button>
+          </form>
+	</div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

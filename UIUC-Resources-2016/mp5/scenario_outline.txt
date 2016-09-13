@@ -1,0 +1,133 @@
+**Fall 2015**
+On Halloween day in 2015, a terrible crime occurred on University of Illinois at Urbana Champaign campus.
+Hapless Victim was murdered while studying in the *location*.
+Detailed campus map can be found on http://illinois.edu/map/view.
+Victim was last seen alive on October 31, 2015 during dinner around 7pm,
+and was discovered dead at approximately 6am the next morning. 
+Officers recovered the projectile shown below (Weapon image), which appears, inexplicably, to have been the cause of death.
+
+The case went cold on November 7th, when the leading suspect, Nefarious Criminal, fled the country and disappeared. 
+Officers seized his computer, but the hard disk was encrypted and investigators were unable to crack the password. 
+No further evidence could be found.
+
+There was finally a break in the case yesterday, November 10th, when Nefarious Criminal 
+was picked up by authorities on a beach in South America. 
+(maybe left it encrypted this time)
+
+Behind note: the motivation of the crime is based on betrayed friendship over a girl they mutually liked.
+*location*: once the image is created, we can vary the location to create multiple answers.
+
+The victim was found dead as the suicidal note was written. At first, the investigation department thought the victim has suicided. 
+However, with further investigation, they concluded that the victim was murdered.
+
+Motivation: Suspect1's girlfriend cheated with Victim. Suspect2 is a girlfriend of the Victim getting jealous that he flirts with Suspect1's girlfriend.
+
+Google (UIUC) apps to upload VMs and picture files etc.
+
+**Checkpoint 1: to explore Victim's VM
+1. Decrypt encrypted hard disk image
+2. Find whether the first VM is the victim's or suspect's.
+3. On a encrypted text file, the guideline for checkpoint 2 is found. Location to download VM can be provided here.
+4. what did victim search on google
+5. author's name
+6. modification/creation time of suicidal note
+7. how did the suspect access? what was the suspect's IP? what tool was used
+
+<Victim: ladiesman461>
+1. SNS history
+   - exchanged messages with the suspect to show the friendship and aggravated relationship
+   - forged message shows depression: lead to conclude suicidal
+2. history on changed password
+3. history on hydra attack for remote access from suspect
+4. network attack exercise history while taking computer security course: time should be long before the incident for irrelevant evidence
+5. communicating with girls to reveal the details on relationship
+   - email to l337h4x0r (gf)
+6. search history to make it suicidal
+7. Two different suicidal notes with different time frame
+   - one was written before the crime happened (with gun)
+   - one was written after the crime happened (with poison)
+8. auth.log
+
+**Checkpoint 2: Different students' group get different suspect's VM and figure out whether it was the actual criminal or not at the end of the MP
+1. suspect's search history
+2. recover plan.jpg
+3. evidence shows the motivation
+4. tools used to do the attack: aircrack, arpspoof, ssh s?
+5. what else did the suspect change: password
+6. what was the original password?
+7. what is the real location of escape
+8. who is the actual murderer (small point, connecting dots is not the main goal of this MP)
+
+<Suspect1: l337h4x0r, Actual criminal>
+1. Operating system: Two layered Linux system to prevent from live analysis and reset hard drive to all zeros
+   - Puppy Linux: default boot to remove all memory in hard drive
+   - Ubuntu: actual Linux OS installed, booted with selection under GRUB menu
+2. recover deleted file: image file on murder plan (photo of hand-written scratch paper)
+3. internet search history
+   - purchase history of the weapon: lightsaber
+   - research on halloween costume, fake blood 
+4. SNS history on communication with the victim
+5. finds Victim's conversation with his GF
+6. plan murder (plan.jpg -> deleted)
+   - has to be an extension that saves the thumbnail (bmp, gimp)
+   - search for tools used for muder
+   - actual weapon: gun
+7. put it in action at some point
+8. Hydra to victim's PC (encrypted?) -> where to perform this?
+9. ssh into the PC, change password
+   - save old/new passwords in encrypted zip file
+10. conversation/email thread with accomplice
+   - actual escape plan (meet at certain place)
+   - sending pictures of the locations to meet (instead of the actual file, but include the link, variation)
+   - discussion on the time (around 10:31pm, because it's halloween) and method to escape
+   - shared plan file
+11. remote login to remove the evidence
+
+<Suspect2: wh1t3r0s3, Not the actual criminal>
+1. Similar setting with suspect 1
+2. SNS history on communication with the victim
+3. finds Victim's conversation with her BF and another girl
+4. plan murder (plan.jpg -> deleted)
+   - searching Breaking Bad drama
+   - actual weapon: poison on candy
+5. NO murder action
+6. Hydra to victim's PC
+7. ssh into the PC, change password
+   - save old/new passwords in encrypted zip file
+8. leave a bus ticket.pdf for escape but as fake lead
+
+
+**Spring 2015**
+<Scenario>
+On Thanksgiving 2009, a terrible crime occurred on University of Michigan campus. 
+Hapless Victim, a leading figure in the university community, was shot while working in the EECS building. 
+Detailed building information and map can be found on http://campusinfo.umich.edu/campusmap/56. 
+Victim was last seen alive on November 25, 2009, shortly before midnight, 
+and was discovered dead at approximately 6a.m. the next morning. 
+Officers recovered the projectile shown below (Exhibit A), which appears, inexplicably, to have been the cause of death.
+
+The case went cold on December 1, when the leading suspect, Nefarious Criminal, fled the country and disappeared. 
+Officers seized his computer, but the hard disk was encrypted and investigators were unable to crack the password. 
+No further evidence could be found.
+
+There was finally a break in the case last week, when Nefarious Criminal 
+was picked up by authorities on a beach in South America. 
+Among his possessions was a Post-It note with the hard disk password on it. 
+We have decrypted the drive and made it available for your analysis.
+
+<Evidence: Suspect - VM dead analysis>
+1. Operating system: Two layered Linux system to prevent from live analysis and reset hard drive to all zeros
+   - Puppy Linux: default boot to remove all memory in hard drive
+   - Ubuntu (Xubuntu 9.04): actual Linux OS installed, booted with selection under GRUB menu
+2. password encrypted zip file: contains list of possible passwords for remote machine access
+3. recover deleted file: image file on murder plan
+4. internet search evidence
+   - research on weapon
+   - purchase history on the weapon (placed item in the cart)
+5. chat history with accomplice to help escape
+6. remote server machine ip address (attacked): ssh host
+
+<Evidence: Victim - VM server live analysis>
+1. modified html file
+2. changed user password
+3. hydra attacked trace

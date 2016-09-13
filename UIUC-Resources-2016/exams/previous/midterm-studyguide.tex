@@ -1,0 +1,768 @@
+\documentclass[addpoints]{exam}
+\usepackage{url}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{listings}
+\usepackage{mathtools}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\lhead{\ifcontinuation{Question \ContinuedQuestion\ continues\ldots}{}}
+\chead{ECE 422 / CS 461, Midterm Exam}
+\rhead{Monday, October 5th, 2015}
+\lfoot{Points: \makebox[.5in]{\hrulefill} / \pointsonpage{\thepage}}
+\cfoot{\thepage\ of \numpages}
+\rfoot{NetID:\enspace\makebox[1.5in]{\hrulefill}}
+%\rfoot{\netid}
+
+\qformat{\thequestiontitle\dotfill \emph{\totalpoints\ points}}
+
+\begin{document}
+
+\begin{titlepage}
+  \vspace*{\fill}
+  \begin{center}
+    \Large\textbf{ECE 422 / CS 461, Midterm Exam Study Guide}\\
+  \end{center}
+  \vspace{.5in}
+  \par\large{Name:}\hrulefill\\
+  \par\large{NetID:}\hrulefill\\
+  \vspace{.5in}
+  \begin{itemize}
+  \item Be sure that your exam booklet has \numpages\ pages.
+  \item Absolutely no interaction between students is allowed.
+  \item Show all of your work.
+  \item Write all answers in the space provided.
+  \item Closed book, closed notes.
+  \item No electronic devices allowed.
+  \item You have \textbf{TWO HOURS} to complete this exam.
+  \end{itemize}
+  \vspace*{\fill}
+\end{titlepage}
+\newpage 
+
+\begin{center}
+  \vspace*{\stretch{1}}
+  \gradetable[v][pages]
+  \vspace*{\stretch{1}}
+\end{center}
+\newpage
+
+\begin{questions}
+
+\titledquestion{Question \thequestion: Multiple Choice}
+
+\textbf{For each question, circle all that apply.}
+
+\begin{parts}
+
+\part[1] %simon's t/f #1
+
+Confidentiality ensures anonymity.
+
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\part[1]
+
+Malware that propogates itself without any human interaction is called: %- Siddharth
+
+\begin{choices}
+	\choice Trojan Horse
+	\choice Rootkit
+	\correctchoice Worm
+	\choice Virus
+\end{choices}
+
+\part[1]
+
+An attacker places the address of a series of gadgets on the stack. What is she doing? %- Siddharth
+
+\begin{choices}
+	\correctchoice Return oriented programming
+	\choice Smashing the stack
+	\choice Formatted string attack
+	\choice Dictionary attack
+\end{choices}
+
+\part[1]
+
+If a file should have permissions read/write for owner, read for group, and write for others, what should the permission bits look like?   %- Siddharth
+
+\begin{choices}
+	\choice -rwxr---w-
+	\correctchoice -rw-r---w-
+	\choice -rw--w-r--
+	\choice --w-rw-r--
+\end{choices}
+
+\part[1]
+
+In MP1, you used a buffer overflow attack to result in transferring control to your shellcode.
+What did you overwrite that would result in the program transferring control to your shellcode?
+\begin{choices}
+	\choice Local variables
+	\choice Saved base pointer
+	\correctchoice Return Address
+	\choice Function arguments
+\end{choices}
+
+\part[1]
+
+Consider the following C function signature: %-chingyang
+\begin{lstlisting}
+void foo(int var1, int var2, int var3)
+\end{lstlisting}
+In the 32-bit C calling convention learned in class, which of the following correctly describes how parameters are passed to the function?
+
+\begin{choices}
+	\choice Pushed onto the stack in this order: var1, var2, var3
+	\correctchoice Pushed onto the stack in this order: var3, var2, var1
+	\choice Placed in registers: var1 in EAX, var2 in EBX, var3 in ECX
+	\choice Placed in registers: var3 in EAX, var2 in EBX, var1 in ECX
+\end{choices}
+
+
+\part[2]
+
+What is a good source of randomness?
+
+\begin{choices}
+\choice Time to boot up the operating system in seconds.
+\correctchoice Ambient noise in the room.
+\choice A random seed generated a month ago.
+\choice 32-bit word stored at memory address 0x1000.
+\choice None of the above.
+
+\end{choices}
+
+\part[2]
+
+Diffie-Hellman key exchange will assure a secure connection between two trusted parties.
+
+\begin{choices}
+	\choice True
+	\correctchoice False
+\end{choices}
+
+\part[2]
+
+Sending a message in the presence of an eavesdropper without revealing
+the contents of the message itself is ensuring which aspect(s) of security?
+
+\begin{choices}
+\correctchoice Confidentiality
+\choice Integrity
+\choice Availability
+\choice Authenticity
+\end{choices}
+
+\part[2] %ching yang
+
+A digital signature is used to ensure which aspect(s) of security?
+
+\begin{choices}
+\choice Confidentiality
+\correctchoice Integrity
+\choice Availability
+\correctchoice Authenticity
+\end{choices}
+
+\part[2] %simon's multiple
+
+In MP3, you convinced us that you correctly ``guessed'' the random
+number by exploiting one of the MD5 vulnerabilities. Which attack did
+you use to accomplish this?
+
+\begin{choices}
+\choice Pre-image attack
+\correctchoice Collision attack
+\choice Length extension attack
+\choice Birthday attack
+\choice Rainbow attack
+\end{choices}
+
+\part[2] %simon's multiple
+
+In the previous question's ``guessing'' scenario, which security
+property did the attack compromise?
+
+\begin{choices}
+\choice Confidentiality
+\correctchoice Integrity
+\choice Availability
+\choice Authenticity
+\choice Accountability
+\end{choices}
+
+
+\part[2] %ching yang
+
+P(m) is an application of a RSA public key on message m. K(m) is an
+application of a RSA private key on message m.
+P(K(P(K(P(P(K(P(K(K(m)))))))))) results in m.
+
+\begin{choices}
+\correctchoice True
+\choice False
+\end{choices}
+
+\part[2] %ching yang
+
+Since there are 10000 possibilities for a 4 digit PIN, in real life
+1234 is the pin for about 0.01\% of people's credit cards.
+
+\begin{choices}
+\choice True
+\correctchoice False
+\end{choices}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: Short Answer}
+
+\begin{parts}
+
+\part[2]
+
+A novice programmer has written the code "movb \$11, \%ax;  int \$0x80", expecting execve to be called, but that did not happen, explain why. %-Zhengping
+
+\begin{solutionorbox}[2in]   
+	\begin{lstlisting}
+ax contains 11, but top 16 bits of eax contains garbage. So syscall number is undefined.
+	\end{lstlisting}
+\end{solutionorbox}
+
+\part[1] %understanding structure of stack (this problem can be revoked) by HB
+In MP1, the spec introduced a helper function called \texttt{pack("<I", addr)} when writing a solution in python. Why would one need to modify each word with pack()?
+\begin{solutionorbox}[1in]
+	(1 point) the little endianess of x86 requires each word to be stored backwards
+\end{solutionorbox}
+	
+\part[1] %strcpy vs strncpy by HB
+Why is strcpy more vulnerable than strncpy?
+	
+\begin{solutionorbox}[1in]
+	The buffer size is not determined for strcpy so that the adversary can easily create a buffer overflow and overwrite important areas such as return addresses.\\
+	(1 point for mentioning about buffer size specification which leads to stack overflow)
+\end{solutionorbox}
+	
+\pagebreak
+
+\part[2] %limitations when writing shellcode by HB
+When writing shellcode, an adversary is prevented from using some specific characters. 
+Provide an example and describe why.
+	
+\begin{solutionorbox}[1in]
+	(1 point) Any choice of function and character pair below is fine.\\
+	null char or /0 (strcpy)\\
+	/n (gets)\\
+	whitespace (scanf)
+\end{solutionorbox}
+	
+\part[2] %DEP by HB
+What is Data Execution Prevention (DEP)? What is a similar conceptual protection measure that prevents SQL injection in web programming?
+	
+\begin{solutionorbox}[1in]
+	%definition from https://en.wikipedia.org/wiki/Data_Execution_Prevention
+	(1 point) DEP marks areas of memory as either executable or non-executable (read/write) so that data is not interpreted as code in memory.\\
+	(1 point) prepared statements
+\end{solutionorbox}
+	
+\part[2] %DEP2 by HB
+Although DEP is a strong protection measure against stack smashing, implementing only DEP still leaves a room of vulnerability against advanced stack smashing. What kind of attack is it still vulnerable against? Why?
+	
+\begin{solutionorbox}[1in] 
+	(1 point) The system is vulnerable against ROP/return-to-libc.\\
+	(1 point) The code written in style of return-to-libc uses function from the language's library (libc), but the library code cannot reside in non-executable area. Thus, preventing part of stack to be non-executable is not helpful.
+\end{solutionorbox}
+
+\part[1] %DEP3 by HB
+Assuming you have answered problem (k) correctly, suggest an additional protection measure which could strengthen your system against the attack from part (k).
+	
+\begin{solutionorbox}[1in]   
+	ASLR
+\end{solutionorbox}
+
+\part[2]
+
+Describe the dormant phase and action phase of a computer virus. %-Dhruv V
+
+\begin{solutionorbox}[1in]   
+	\begin{lstlisting}
+	Dormant - The virus is laying low and avoiding detection
+	Action - The virus performs the malicious action that it was designed to perform.
+	\end{lstlisting}
+\end{solutionorbox}
+
+\pagebreak
+
+\part[3]
+
+Identify three access control designs.
+
+\begin{solutionorbox}[2in]   
+	\begin{lstlisting}
+	+1 point: Mandatory Access Control
+
+	+1 point: Discretionary Action Control
+
+	+1 point: Role Based Action Control
+
+	\end{lstlisting}
+\end{solutionorbox}
+
+\part[4]
+
+Name two properties of a viable hash function.
+
+\begin{solutionorbox}[2in]   
+\begin{lstlisting}
++2 points for each of the following up to a max of 4.
+
+1. Given h(m) it should be difficult to find m.
+2. Given m1 it should be difficult to find m2 such that h(m1)= h(m2)
+3. It should be difficult to find any m1, m2 such that h(m1) = h(m2)
+\end{lstlisting}
+\end{solutionorbox}
+
+
+\part[2] % Shivam Short Answer
+Why is the Merkle-Damgard construction susceptible to length extension attacks? Explain.
+
+\begin{solutionorbox}[2in]
+The construction is susceptible because of the manner in which it
+processes and hashes inputs. The construction is built around a
+compression function and maintains an internal state. The result of
+the compression function (which is the hash) is also the internal
+state. Attackers can simply obtain the hash of longer messages by
+applying the compression function for each new block of
+data. Essentially, by knowing the state, attackers can make the
+compression function pick up where it left off when adding appending
+data.
+\end{solutionorbox}
+
+\pagebreak
+
+\part[4] % Shivam Short Answer
+List two drawbacks of RSA.
+
+\begin{solutionorbox}[2in]
++2 points for each of the following up to a max of 4.
+
+1. It's a factor of 1000 (or more) times slower than AES. \newline
+2. The cost goes up approximately as a cube of the key size. \newline
+3. The message must be shorter than N, where N = p * q.
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: Symmetric and Asymmetric Cryptography}
+
+Client Alice wants to send a message \textit{M} to Bob. Assume Alice
+and Bob share a symmetric key \textit{K} and have securely distributed
+their public keys \textit{P\_A} and \textit{P\_B} to each
+other. Private keys of Alice and Bob are \textit{S\_A} and
+\textit{S\_B} respectively. Design messages that Alice must send to
+meet the security requirement below.
+
+Notation: 
+\begin{itemize}
+\item $x \parallel y$ (concatenation) 
+\item $\{x\}_y$ (x is encrypted using key y) 
+\item $MAC_y(x)$ (MAC of x using key y) 
+\item $A \xrightarrow{x} B$ (A sending x to B)
+\end{itemize}
+
+Examples:
+\begin{itemize}
+\item $A \xrightarrow{M} B$ The message \textit{M} is sent from Alice to Bob
+\item $A \xrightarrow{\{S\_A \parallel M\}_{S\_A}} B$ The message
+  \textit{M} is concatenated with Alice's private key \textit{S\_A}
+  and the resulting concatenation is encrypted with Alice's private
+  key \textit{S\_A}. The encrypted message is sent to Bob.
+\end{itemize}
+
+\begin{parts}
+
+\part[2]
+
+Using the symmetric key, design a message that enables Bob to verify the message is from Alice where only integrity is preserved.
+
+\begin{solutionorbox}[1in]   
+$A \xrightarrow{M \parallel MAC_k(M)} B$
+\end{solutionorbox}
+
+\part[2]
+
+Using public key cryptography, design a message that enables Bob to
+verify the message source, Alice, and preserves only integrity.
+
+\begin{solutionorbox}[1in]   
+$A \xrightarrow{\{M\}_{S\_A}} B$
+\end{solutionorbox}
+
+\part[2]
+
+Using public key cryptography, design a message that protects only the
+confidentiality of the message sent from Alice to Bob.
+
+\begin{solutionorbox}[1in]   
+$A \xrightarrow{\{M\}_{P\_B}} B$
+\end{solutionorbox}
+
+\part[2]
+
+Using public key cryptography, design a message that enables Bob to
+verify the message source, Alice, and when both integrity and
+confidentiality are protected.
+
+\begin{solutionorbox}[1in]   
+$A \xrightarrow{\{\{M\}_{P\_B}\}_{S\_A}\}} B$
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak 
+
+\titledquestion{Question \thequestion: Code Injection}
+
+\begin{parts}
+
+\part[2] %code vs data
+What is a fundamental problem of any code injection attack?
+
+\begin{solutionorbox}[1in]
+The user input supplied is interpreted as code not as data.
+\end{solutionorbox}
+
+\part[2] %Shellshock
+What is Shellshock?
+
+\begin{solutionorbox}[1in] 
+%definition from https://en.wikipedia.org/wiki/Shellshock_(software_bug)
+Shellshock vulnerability is a type of bug where a Unix Bash shell executes commands which are concatenated to the end of function definition stored in the values of environment variables.\\
+(1 point) pointing out that it is a vulnerability in Unix Bash shell\\
+(1 point) mentioning that this is a code vulnerability against code injection to environment variables
+\end{solutionorbox}
+
+\part[2] %SQL injection question
+
+Consider following php code snippet for SQL query.
+
+\begin{lstlisting}
+$query = "SELECT * FROM users WHERE id='$id'"; //type of id is an integer
+\end{lstlisting}
+
+This query is undoubtably vulnerable against any SQL injection. Explain a protection measure we can take to protect this code against SQL injection.
+
+\begin{solutionorbox}[1in]   
+
+Solution 1: Write a prepared statement so that the input received from GET request is interpreted as an integer.
+
+Solution 2: Use mysqli\_real\_escape\_string() on the input received from GET request so that the input is sanitized.
+\end{solutionorbox}
+
+\part[3] %XSS
+A new web application has a page named "faceboard" which is composed
+of a list of comments. Any user can anonymously write a comment, which
+can be viewed by any visitor of the webpage. When the webserver of
+this application receives a message input from any user, the backend
+interprets and/or sanitizes the input using a protection measure you
+have suggested in part c. After applying this security measure, is
+"faceboard" secure against adversaries? If not, list one vulnerability
+and a security measure which can improve the protection of
+"faceboard".
+
+\begin{solutionorbox}[1in]
+
+(1 point) No, it is not secure.\\ 
+(1 point) This application is vulnerable to XSS.\\
+(1 point) Filter HTML special characters (e.g., htmlspecialchars() in php)
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: Web Application Security}
+
+\begin{parts}
+
+\part[3] %Same-Origin Policy question which is similar to discussion section question
+
+Which of following URLs share the same origin with http://www.cs461.com/dir/page1.html?
+
+\begin{lstlisting}
+(a) http://www.cs461.com/dir2/page2.html
+(b) http://www.cs461.com/dir/dir3/page3.html
+(c) http://www.cs461.co.kr/dir/page1.html
+(d) https://www.cs461.com/dir/page1.html
+(e) http://cs461.com/dir/page1.html
+(f) http://en.cs461.com/dir/page1.html
+(g) http://username:password@www.cs461.com/dir/page1.html
+\end{lstlisting}
+
+\begin{solutionorbox}[1in]   
+\begin{lstlisting}
+(a) http://www.cs461.com/dir2/page2.html
+(b) http://www.cs461.com/dir/dir3/page3.html
+(g) http://username:password@www.cs461.com/dir/page1.html
+\end{lstlisting}
+\end{solutionorbox}
+
+\part %csrf example
+When Alice sends 100.00 dollars to Bob via http://www.bank.com, the website receives a GET request to http://www.bank.com with parameters listed below.
+
+\begin{lstlisting}
+to_username: "bob"
+transaction_type: "transfer"
+amount: 100.00
+\end{lstlisting}
+
+\begin{subparts}
+
+\subpart[1]
+Malory wants to exploit this request mechanism. Write a URL so that when that URL is clicked by Alice, she will send 200.00 dollars to Malory.\\
+
+\begin{solutionorbox}[1in]   
+(1 points) \url{http://www.bank.com/?to_username=malory&transaction_type=transfer&amount=200.00}
+\end{solutionorbox}
+
+\subpart[2] Does changing type of request from GET to POST solve the problem? Explain.
+
+\begin{solutionorbox}[1in]   
+(1 point) No, it will not. \\
+(1 point) Malory could craft a html form on a malicious website so that when Alice visits this website, JavaScript auto submits the form to http://www.bank.com. 
+\end{solutionorbox}
+
+\end{subparts}
+
+\part[2] %token validation
+A website uses token validation in order to prevent CSRF attack. The website generates the token using a rand() function which generates a pseudorandom number from 0 to RAND\_MAX. What is a potential problem for this website? Assume this website is secure against any other type of attacks including XSS.
+
+\begin{solutionorbox}[1in]   
+The strength of this mechanism depends on the size of RAND\_MAX. The range of output from rand() can be too small such that the adversary may brute-force through token range to find the token.
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+\titledquestion{Question \thequestion: Applied Cryptography}
+
+\begin{parts}
+
+\part[2]  %Question 1 -Due
+
+Assume that a block cipher operates on blocks of size 512 bits. What
+would be the length of the padding (in bits) generated by the
+algorithm if you apply the cipher to a message that is 128 bits long?
+
+\begin{solutionorbox}[1in]   
+384 bits
+\end{solutionorbox}
+
+\part[2]  %Question 2 -Due
+
+Assume that a block cipher operates on blocks of size 512 bits.  What would
+be the length of the padding (in bits) generated by the algorithm if
+you apply the cipher to a message that is 1024 bits long?
+
+\begin{solutionorbox}[1in]   
+512 bits
+\end{solutionorbox}
+
+\part[4]  %Question 3 -Due
+
+Recall that a one-time pad is a symmetric encryption scheme where a
+random bit string of the same length as the message is generated to be
+use as a key, and each bit $c_i$ of the encrypted message is compute
+by $c_i = m_i $ XOR $ k_i$, where $m_i$ is the $i^{th}$ bit of the
+message, and $k_i$ is the $i^{th}$ bit of the key.  Why do we use XOR
+instead of other logic operation such as AND or OR?
+\begin{solutionorbox}[1in]   
+(2 points) XOR is reversible: you cannot decrypt the cipher if you use AND or OR\\
+(2 points) XOR a known bit with a random bit and the result is equally likely to be 0 or 1, so the cipher does not reveal anything about the plaintext or the key because roughly half of the bits of the original plaintext is flipped.
+\end{solutionorbox}
+
+\pagebreak
+
+\part[4]  %Question 4 -Due
+
+Consider the following hash function:
+
+\begin{verbatim}
+def strong_hash(m):
+    hash_val = 0xFF
+    for each byte of m:
+        hash_val = hash_val XOR byte
+        
+    return hash_val
+\end{verbatim}
+
+The hash function basically compute a 8-bit digest of the message by computing the XOR of each byte in the message, then XOR the result with 0xFF.  Also, recall that a hash function is second-preimage resistance if given $x$, it is hard to find $x' \neq x$ such that $strong\_hash(x) == strong\_hash(x')$.  Is strong\_hash second-preimage resistance? If yes, explain why and if not, find the second preimage $x'$ for $x$ = 0xAA.
+
+\begin{solutionorbox}[2in]   
+(2 points) No, strong\_hash is not second-preimage resistance.  
+(2 points) The easiest answer for the second part is 0xAA00 or 0x00AA
+\end{solutionorbox}
+
+\part[2] %Question 5 -Due
+
+In MP1 checkpoint 2, We ask you to find the private key of an RSA key pair given a public key and RSA modulo of a 2048-bit RSA.  As the size of the modulo is 2048 bits, it is not feasible to try to factorize the modulo to find the two prime roots, so we suggest that you use Wiener's attack to recover the private key.  What is the weakness in our RSA keypair that allows Wiener's attack to work?
+
+\begin{solutionorbox}[1in]   
+The private key is small
+\end{solutionorbox}
+
+\end{parts}
+
+\pagebreak
+
+\titledquestion{Question \thequestion: AppSec MP Question (MP-specific)}  % -Gene
+
+\begin{parts}
+
+\part[4]
+
+Consider the following function:
+
+\begin{lstlisting}
+void foo(char *arg)
+{
+   ... 
+   char buf[32];
+   strcpy(buf, arg);
+}
+\end{lstlisting}
+
+\textbf{arg} is a pointer to a char string that is the command line input from the user.  
+Make these assumptions:
+\begin{itemize}
+\item The machine is a 32-bit little-endian system that behaves like the VM from MP1.
+\item All the defences mentioned in lectures are off
+\item You see the following information when the program arrives to the breakpoint at foo that you set earlier with the command \texttt{break foo} :
+\begin{itemize}
+\item \textbf{buf} begins at 0xbffebfa0. 
+\item $(gdb)$  x/2wx \$ebp\\
+0xbffebfd8: 0xbffec064 0x08048fe5
+\end{itemize}
+\end{itemize}
+
+
+
+Describe parts of the input (\textbf{arg}) that you would give to the program to overflow the buffer (\textbf{buf}) and execute the same shellcode that was given for the MP. The file shellcode.py has size of 23 bytes. Be specific and include exact numbers.
+
+\begin{solutionorbox}[2in]
+shellcode + 0xd8-0xa0+4-23 = 37 bytes of 'A' or junk + 0xbffebfa0 (start of buffer, where shellcode is)
+
++1 including shellcode
++2 return addr at the correct location (60 bytes then return addr)
++1 return addr has correct value (to shellcode)
+
+\end{solutionorbox}
+
+\part[2]
+
+Continue from part(a): if instead, you see the following information when the program arrives to the breakpoint at foo that you set earlier with the command \texttt{break foo} :
+\begin{itemize}
+\item \textbf{buf} begins at 0xbffebfa0. 
+\item $(gdb)$  x/2wx \$ebp\\
+0xbffebfd8: 0xbffec064 0x08034586
+\end{itemize}
+
+Would you need to change your solution from part(a) to achive the same goal? Explain your answer.
+
+\begin{solutionorbox}[1in]
+
++1 NO
++1 Changing the legit return addr is irrelavant to where your shellcode is
+
+\end{solutionorbox}
+
+
+\pagebreak
+\part[4]
+
+Consider the following gadgets. The first column is the address in hexadecimal representation, and the second column is the instruction at that address:
+
+\begin{verbatim}
+8051750:	xor    %eax,%eax 
+8051752:	ret  
+
+8058680:	cmp    $0xffffff83,%eax
+8058683:	jne    80586f8 <_exit>
+8058689:	mov    %eax,(%ecx)
+805868f:	ret   
+
+8058679:	mov    %ecx,(%eax)
+805867f:	ret   
+
+8057360:        pop    %edx
+8057361:	pop    %ecx
+8057362:	pop    %ebx
+8057363:	ret  
+
+8057ae0:	int    $0x80
+\end{verbatim}
+
+Assume these are the only gadgets that you can use, how would you set the value at memory address 0xbffe3222 to be 0x00000000 (a null pointer)? Draw a picture of the stack showing how you would chain the gadgets. (Label the location of the original return address and label which way is the top/bottom of the stack)
+
+\begin{solutionorbox}[3in]
+top of stack \\
+0x8051750 \#set eax to 0 (original return address) \\
+0x8057361 \#pop ecx and ebx \\
+0xbffe3222 \#ecx value \\
+0xanything \#ebx value \\
+0x8058689 \#mov 0 in eax to mem[ecx] which is 0xbffe3222
+
+-2 if answer contains 8058680, 8058683, 8057ae0, or 8058679 (undefined behavior)
+-2 if answer doesn't have enough values on the stack to pop to registers
++1 sets eax to 0
++1 pops 0xbffe3222 to ecx
++2 mov eax to mem[ecx]
+
+\end{solutionorbox}
+
+\part[4]
+Continue from part(c): assume the value at memory address 0xbffe3222 is originally 0xc0a8ea66, and you want to change the value to 0x00000066. How do you need to modify your answer from part(c) to achieve this goal?
+
+\begin{solutionorbox}[1in]
++4 modify the value for pop ecx instruction to be 0xbffe3223 or +2 mentioning little endian or +1 using a modified value for ecx but wrong address
+\end{solutionorbox}
+
+\pagebreak
+
+\part[2]
+
+Why would one want to use a callback shell(4.2.10) as the payload instead of a regular shell(shellcode.py)?
+
+\begin{solutionorbox}[1in]
+The attacker will be able to control the machine over a network instead of just locally. 2 points all or nothing
+
+\end{solutionorbox}
+
+\part[2]
+
+If ASLR was on for MP1.2, would your answers still work? Why?
+
+\begin{solutionorbox}[1in]
++1 NO
++1 Return addr and payload addr are randomized 
+
+\end{solutionorbox}
+
+\end{parts}
+
+\end{questions}
+
+\end{document}

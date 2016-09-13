@@ -1,0 +1,600 @@
+%%%%%%%%%%%%%%%%
+% Set options
+
+\newcommand{\settitle}{Project 1: Application Security}
+\newcommand{\course}{CS461/ECE422}
+\newcommand{\coursename}{Computer Security I}
+\newcommand{\distdate}{January 28, 2016}
+
+%%%%%%%%%%%%%%%%
+
+\documentclass[letterpaper,12pt]{report}
+\usepackage{fullpage}
+\usepackage[protrusion=true,expansion=auto]{microtype}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{mathptmx}
+\usepackage{textcomp}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{paralist}
+\usepackage{url}
+\usepackage[
+  breaklinks=true,colorlinks=true,linkcolor=black,%
+  citecolor=black,urlcolor=black,bookmarks=false,bookmarksopen=false,%
+  pdfauthor={\course},%
+  pdftitle={\settitle},%
+  pdftex]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\def\textsb#1{{\fontseries{sb}\selectfont #1}}
+\usepackage{mdframed}
+\setcounter{secnumdepth}{3}
+
+
+\newcommand{\problemsetdone}{\bigskip\hfill$\Box{}$}
+
+\newcommand{\htitle}
+{
+     \noindent\parbox{\textwidth}
+    {
+        \course\hfill \distdate\newline
+        \coursename\hfill 
+        \settitle \vspace*{-.5ex}\newline
+        \mbox{}\hrulefill\mbox{}
+    }
+    \vspace{8pt}
+    \begin{center}{\Large\bf{\settitle}}\end{center}
+}
+\newcommand{\handout}
+{
+    \thispagestyle{empty}
+    \markboth{}{}
+    \pagestyle{plain}
+    \htitle
+}
+
+\newcommand{\problemsetheader}
+{
+\setlength{\parindent}{0pt}
+
+\medskip
+
+This project is split into two parts, with the first checkpoint due on {\bf Monday, February 8} at {\bf 6:00pm}.\ and the second checkpoint due on  {\bf Wednesday, February 17} at {\bf 6:00pm}.\ The first checkpoint is worth 2\% of your total grade, and the second checkpoint is worth 10\%. We strongly recommend
+that you get started early. Each semester everyone will be given ONE late extension that allows
+you to turn in up to one assignment up to 24 hours after the due date. Extensions are not automatic.
+So, if you want to use your late extension, you MUST send an e-mail to {\bf ece422-staff@illinois.edu}.
+Late work will not be accepted after 24 hours past the due date.
+
+
+\medskip
+
+This is a group project; you SHOULD work in {\bf teams of two} and if you are in teams of two, you
+MUST submit one project per team. Please find a partner as soon as possible. If have trouble
+forming a team, post to Piazza's partner search forum.
+
+
+\medskip
+
+The code and other answers your group submits MUST be entirely your own work, and you are bound
+by the Student Code. You MAY consult with other students about the conceptualization of the
+project and the meaning of the questions, but you MUST NOT look at any part of someone else's
+solution or collaborate with anyone outside your group. You may consult published references,
+provided that you appropriately cite them (e.g., with program comments), as you would in an
+academic paper.
+
+\medskip
+
+Solutions MUST be submitted electronically in any one of the group member's svn directory,
+following the submission checklist given at the end of each checkpoint. Details on the filename and
+submission guideline is listed at the end of the document.
+
+
+\medskip
+
+\hrulefill
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\handout
+%\setlength{\parindent}{0pt}
+\problemsetheader
+
+\medskip
+\emph{``History has taught us: never underestimate the amount of money, time, and effort someone will expend to thwart a security system.''}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-- Bruce Schneier 
+\pagebreak
+\section*{Introduction}
+
+This project will introduce you to control-flow hijacking vulnerabilities in application software, including buffer overflows. You will be working through this MP in a virtual machine environment starting with some practice programs for you to get familiar with the tools you need. We will then provide a series of vulnerable programs which you will develop exploits.
+
+\subsection*{Objectives}
+\begin{itemize}
+\item Be able to identify and avoid buffer overflow vulnerabilities in native code.
+\item Understand the severity of buffer overflows and the necessity of standard defenses.
+\item Gain familiarity with machine architecture and assembly language.
+\end{itemize}
+
+\subsection*{Read this First}
+
+{This project asks you to develop attacks and test them in a virtual machine you control.  Attempting the same kinds of attacks against others' systems without authorization is prohibited by law and university policies and may result in \emph{fines, expulsion, and jail time}.   \textbf{You MUST NOT attack anyone else's system without authorization!}  Per the course ethics policy, you are required to respect the privacy and  property rights of others at all times, \emph{or else you will fail the course.}  See the ``Ethics, Law, and University Policies'' section on the course website.
+
+\section*{Setup}
+
+Buffer-overflow exploitation depends on specific details of the target system, so we are providing an Ubuntu VM in which you should develop and test your attacks.  We've also slightly tweaked the configuration to disable security features that would complicate your work.  We'll use this precise configuration to grade your submissions, so you MUST NOT use your own VM.
+
+\begin{enumerate}
+\item Download VirtualBox from \url{https://www.virtualbox.org/} and install it on your computer.  VirtualBox runs on Windows, Linux, and Mac OS.
+\item Get the VM file at \url{https://subversion.ews.illinois.edu/svn/sp16-ece422/_shared/mp1/AppSec.ova}.  This file is 1.3~GB, so we recommend downloading it from campus.
+\item Launch VirtualBox and select File $\rhd$ Import Appliance to add the VM.
+\item Start the VM.  There is a user named \texttt{ubuntu} with password \texttt{ubuntu}.
+\item We have generated blank submission files for you in your subversion repo.  Check out the files with this command:\\
+\texttt{svn checkout https://subversion.ews.illinois.edu/svn/sp16-ece422/NETID/mp1}
+\item Download \url{https://subversion.ews.illinois.edu/svn/sp16-ece422/_shared/mp1/mp1.tar.gz} from inside the VM.  This file contains all of the programs for both checkpoints.
+\item Put \texttt{mp1.tar.gz} inside your mp1 folder that you checked out from svn.
+\item Decompress \texttt{mp1.tar.gz} in your mp1 folder with \texttt{tar xf mp1.tar.gz}
+\item Each person's solutions will be slightly different.  You MUST personalize the programs by running:\\
+\texttt{./setcookie \emph{netid} }\\
+{\bf Use the netid of the repository that you will be submitting your team's solution.}  MAKE SURE the netid is correct! IF YOU ARE CHANGING YOUR COOKIE, make sure to \texttt{make clean} first and then recompile!
+\item \texttt{sudo make}\quad (The password you're prompted for is \texttt{ubuntu}.)
+
+
+\end{enumerate}
+
+\pagebreak
+
+\vspace{-16pt}
+
+\section*{Resources and Guidelines}
+
+\vspace{-3pt}
+\paragraph{No Attack Tools!}
+You MUST NOT use special-purpose tools meant for testing security or exploiting vulnerabilities.  You MUST complete the project using only general purpose tools, such as \texttt{gdb}.
+
+\vspace{-6pt}
+\paragraph{GDB}
+You will make extensive use of the GDB debugger. Useful commands that you may not know are ``\texttt{disassemble}'', ``\texttt{info reg}'', ``\texttt{x}'', and setting breakpoints. See the GDB help for details, and don't be afraid to experiment!  This quick reference may also be useful: \\ \url{https://courses.engr.illinois.edu/ece391/references/doc-gdb.pdf}
+
+\vspace{-6pt}
+\paragraph{x86 Assembly}
+These are many good references for Intel assembly language, but note that this project targets the 32-bit x86 ISA.  The stack is organized differently in x86 and x86\_64. If you are reading any online documentation, ensure that it is based on the x86 architecture, not  x86\_64. Here is one reference to the syntax that we are using: \\ \url{https://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html#s3}
+
+\newpage
+
+%Set counter for MP number
+\setcounter{chapter}{1}
+
+\section{Checkpoint 1 (20 points)}
+\label{sec:checkpoint_1}
+The practice programs for this project are designed to let you get familiar with GDB, stackframe for C functions, x86 assembly, and linux system calls so you have the tools to tackle checkpoint 2. We have provided source code and a Makefile that compiles all the programs for both checkpoint 1 and checkpoint 2.  Your solutions MUST work as compiled and executed within the provided VM.
+
+\smallskip
+
+\subsection{GDB practice (4 points) }
+\label{sec:gdb_practice}
+This program really doesn't do anything on its own, but it allows you to practice GDB and look at what the program is doing at a lower level. You have two jobs here. The first job is to look at where the function \texttt{practice} is going to return. The second job is to find out what's the value in register \texttt{eax} right before the function \texttt{practice} returns.
+
+\smallskip
+
+Here's one approach you might take:
+\begin{enumerate}
+\item Start the debugger (\texttt{gdb \ref{sec:gdb_practice}}), set a breakpoint at function \texttt{practice}:\\ \texttt{(gdb) b practice}, then run the program: \texttt{(gdb) r}.
+\item Think about where the return address would be relative to register \texttt{ebp} (the base pointer).
+\item Examine(x in gdb) that memory location: \texttt{(gdb) x 0xAddress} or \texttt{(gdb) x \$ebp+\#} and put your answer in \texttt{\ref{sec:gdb_practice}\_addr.txt}. \\
+Remember you can use \texttt{(gdb) info reg} to look at the values of registers at that breakpoint!
+\item Disassemble \texttt{practice} with \texttt{(gdb) disas practice} then set a breakpoint at the address of \texttt{ret} instruction to pause the program right before \texttt{practice} returns. You can do this with \texttt{(gdb) b *0x0804dead} if the \texttt{ret} instruction is located at address \texttt{0x0804dead}. After that, continue to that breakpoint: \texttt{(gdb) c}.
+\item With \texttt{(gdb) info reg}, you can look at the value in \texttt{eax} and put your answer in \texttt{\ref{sec:gdb_practice}\_eax.txt}.
+\end{enumerate}
+
+\paragraph{What to submit}
+Submit the return address of the function \texttt{practice} in \texttt{\ref{sec:gdb_practice}\_addr.txt} and the value of \texttt{eax} right before \texttt{practice} returns in \texttt{\ref{sec:gdb_practice}\_eax.txt}. You MUST submit both in hexadecimal represntation (0x prefix is optional). 
+
+\subsection{Assembly practice (4 points) }
+\label{sec:assembly_easy}
+
+This time, the function \texttt{practice} prints different things depending on the arguments. Your job is to call the C function from your x86 assembly code with the correct arguments so that the C function prints out "\texttt{Good job!}".
+
+\smallskip
+
+Here are some questions to think about (you do not need to submit the answers to these):
+\begin{enumerate}
+\item How are argruments passed to a C function?
+\item In what order should the argruments be pushed onto the stack?
+\end{enumerate}
+
+\smallskip
+
+Tips:
+\begin{enumerate}
+\item Use \texttt{push \$0x12341234} to push arbitrary hex value onto the stack.
+\item Use \texttt{call function\_name} to call functions.
+\end {enumerate}
+
+\paragraph{What to submit}
+Submit your x86 assembly code in \texttt{\ref{sec:assembly_easy}.S}. Make sure the entire program exits properly with your assembly code!
+
+\subsection{Assembly practice with pointer(s) (4 points) }
+\label{sec:assembly_med}
+Just like \texttt{\ref{sec:assembly_easy}}, your goal is to call the function \texttt{practice} with the correct arguments so that the function prints out "\texttt{Good job!}". Notice that the parameters are slightly different than \texttt{\ref{sec:assembly_easy}}.
+
+\smallskip
+
+Hint: Think about what would be on top of the stack if you do: \\ \texttt{push \$0x12341234} \\ \texttt{mov \%esp,\%eax} \\ \texttt{push \%eax}
+
+
+ \paragraph{What to submit}
+Submit your x86 assembly code in \texttt{\ref{sec:assembly_med}.S}. Make sure the entire program exits properly with your assembly code!
+
+
+\subsection{Assembly practice with pointer(s) and string(s) (4 points) }
+\label{sec:assembly_hard}
+Just like \texttt{\ref{sec:assembly_easy}} and \texttt{\ref{sec:assembly_med}}, your goal is to call the function \texttt{practice} with the correct arguments so that the function prints out "\texttt{Good job!}". Notice that the parameters are slightly different than \texttt{\ref{sec:assembly_easy}} and \texttt{\ref{sec:assembly_med}}.
+
+\smallskip
+
+Tips:
+\begin{enumerate}
+\item Byte order for x86 is little endian.
+\item Characters are read from top to bottom of the stack (low memory to high memory)
+\item What character/value indicates end of string?
+\end{enumerate}
+
+ \paragraph{What to submit}
+Submit your x86 assembly code in \texttt{\ref{sec:assembly_hard}.S}. Make sure the entire program exits properly with your assembly code!
+
+\subsection{Introduction to Linux function calls (4 points) }
+\label{sec:sys_call}
+
+Your goal for this practice is to invoke a system call through \texttt{int 0x80} to open up a shell.
+
+\smallskip
+
+Tips:
+\begin{enumerate}
+\item Use the system call \texttt{sys\_execve} with the correct arguments.
+\item The funtion signature of \texttt{sys\_execve} in C: \\ \texttt{int execve(const char *filename, char *const argv[],char *const envp[]);}
+\item Instead of passing the arguments through the stack, arguments should be put into registers for system calls.
+\item The system call number should be placed in register \texttt{eax}.
+\item The arguments for system calls should be placed in \texttt{ebx}, \texttt{ecx}, \texttt{edx}, \texttt{esi}, \texttt{edi}, and \texttt{ebp} in order
+\item To start a shell, the first argument (filename) should be a string that contains something like /bin/sh.
+\item Reading Linux man pages may help.
+\item Some arguments may need to be terminated with a null character/pointer.
+
+\end{enumerate}
+
+\paragraph{What to submit}
+Submit your x86 assembly code in \texttt{\ref{sec:sys_call}.S}. 
+
+\section*{Checkpoint 1: Submission Checklist}
+
+The following blank files for checkpoint 1 has been created in your subversion repository under the directory mp1.  Put your cookie and solution inside the corresponding file then commit it to subversion.
+
+\medskip
+
+\begin{itemize}
+
+\item \texttt{partners.txt} \ \ [One netid on each line]
+
+\item \texttt{cookie} \ \ [Generated by \texttt{setcookie} based on your netid.]
+
+\item \texttt{\ref{sec:gdb_practice}\_addr.txt}
+
+\item \texttt{\ref{sec:gdb_practice}\_eax.txt}
+
+\item \texttt{\ref{sec:assembly_easy}.S}
+
+\item \texttt{\ref{sec:assembly_med}.S}
+
+\item \texttt{\ref{sec:assembly_hard}.S}
+
+\item \texttt{\ref{sec:sys_call}.S}
+
+\end{itemize}
+
+\medskip
+
+Do not add any unnecessary files to your repository.  Be sure to test that your solutions work correctly in the provided VM without installing any additional packages.
+
+
+
+
+
+
+\newpage
+
+\section{Checkpoint 2 (100 points)}
+\label{sec:checkpoint_2}
+Again, we have provided source code and a Makefile that compiles all the programs for both checkpoint 1 and checkpoint 2. We are going to refer to these vulnerable programs as "targets" for the rest of the MP. Your solutions MUST work against these targets as compiled and executed within the provided VM.
+
+
+
+\subsection{Overwriting a variable on the stack (8 points)\hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:target0}
+
+This program takes input from \texttt{stdin} and prints a message.  Your job is to provide input that makes it output: ``\texttt{Hi \emph{netid}! Your grade is A+.}''.  To accomplish this, your input will need to overwrite another variable stored on the stack.
+
+\smallskip
+
+Here's one approach you might take:
+\begin{enumerate}
+\item Examine \texttt{\ref{sec:target0}.c}.  Where is the buffer overflow?
+\item Start the debugger (\texttt{gdb \ref{sec:target0}}) and disassemble \_main: \texttt{(gdb) disas \_main}\\
+Identify the function calls and the arguments passed to them.
+\item Draw a picture of the stack.  How are \texttt{name[]} and \texttt{grade[]} stored relative to each other?
+\item How could a value read into \texttt{name[]} affect the value contained in \texttt{grade[]}?  Test your hypothesis by running \texttt{./\ref{sec:target0}} on the command line with different inputs.
+\end{enumerate}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target0}.py} that prints a line to be passed as input to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{python \ref{sec:target0}.py | ./\ref{sec:target0}}
+
+\medskip
+
+Hint: In Python, you can write strings containing non-printable ASCII characters by using the escape sequence ``\texttt{\textbackslash x\emph{nn}}'', where \emph{nn} is a 2-digit hex value.  To cause Python to repeat a character $n$ times, you can do: \texttt{print "X"*n}.
+
+\subsection{Overwriting the return address (8 points)\hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:target1}
+
+This program takes input from \texttt{stdin} and prints a message.  Your job is to provide input that makes it output: ``\texttt{Your grade is perfect.}''  Your input will need to overwrite the return address so that the function \texttt{vulnerable()} transfers control to \texttt{print\_good\_grade()} when it returns.
+
+\begin{enumerate}
+\item Examine \texttt{\ref{sec:target1}.c}.  Where is the buffer overflow?
+\item Disassemble \texttt{print\_good\_grade}.  What is its starting address?
+\item Set a breakpoint at the beginning of \texttt{vulnerable} and run the program.\\
+\texttt{(gdb) break vulnerable}\\
+\texttt{(gdb) run}
+\item Disassemble \texttt{vulnerable} and draw the stack.  Where is \texttt{input[]} stored relative to \texttt{\%ebp}?  How long an input would overwrite this value and the return address?
+\item Examine the \texttt{\%esp} and \texttt{\%ebp} registers: \texttt{(gdb) info reg}
+\item What are the current values of the saved frame pointer and return address from the stack frame?  You can examine two words of memory at \texttt{\%ebp} using:
+\texttt{(gdb) x/2wx \$ebp}
+\item What should these values be in order to redirect control to the desired function?
+\end{enumerate}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target1}.py} that prints a line to be passed as input to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{python \ref{sec:target1}.py | ./\ref{sec:target1}}
+
+\medskip
+
+When debugging your program, it may be helpful to view a hex dump of the output.  Try this:
+\smallskip
+
+\quad\texttt{python \ref{sec:target1}.py | hd}
+\medskip
+
+Remember that x86 is little endian.  Use Python's \texttt{struct} module to output little-endian values:
+\smallskip
+
+\quad\texttt{from struct import pack}
+
+\quad\texttt{print pack("<I", 0xDEADBEEF)}
+
+\subsection{Redirecting control to shellcode (8 points)\hfill\rm\normalsize (\emph{Difficulty: Easy})}
+\label{sec:target2}
+
+The remaining targets are owned by the \texttt{root} user and have the \texttt{suid} bit set.  Your goal is to cause them to launch a shell, which will therefore have root privileges.  This and later targets all take input as command-line arguments rather than from \texttt{stdin}.  Unless otherwise noted, you should use the shellcode we have provided in \texttt{shellcode.py}.  Successfully placing this shellcode in memory and setting the instruction pointer to the beginning of the shellcode (e.g., by returning or jumping to it) will open a shell.
+
+\begin{enumerate}
+\item Examine \texttt{\ref{sec:target2}.c}.  Where is the buffer overflow?
+\item Create a Python program named \texttt{\ref{sec:target2}.py} that outputs the provided shellcode:\\
+\texttt{from shellcode import shellcode}\\
+\texttt{print shellcode}
+\item Set up the target in GDB using the output of your program as its argument:\\
+\texttt{gdb -{}-args ./\ref{sec:target2} \$(python \ref{sec:target2}.py)}
+\item Set a breakpoint in \texttt{vulnerable} and start the target.
+\item Disassemble \texttt{vulnerable}.  Where does \texttt{buf} begin relative to \texttt{\%ebp}?  What's the current value of \texttt{\%ebp}?  What will be the starting address of the shellcode?
+\item Identify the address after the call to \texttt{strcpy} and set a breakpoint there:\\
+\texttt{(gdb) break *0x08048efb}\\
+Continue the program until it reaches that breakpoint.\\
+\texttt{(gdb) cont}
+\item Examine the bytes of memory where you think the shellcode is to confirm your calculation:\\
+\texttt{(gdb) x/32bx 0x\emph{address}}
+\item Disassemble the shellcode:  \texttt{(gdb) disas/r 0x\emph{address},+32}\\
+  How does it work?
+\item Modify your solution to overwrite the return address and cause it to jump to the beginning of the shellcode.
+\end{enumerate}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target2}.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./\ref{sec:target2} \$(python \ref{sec:target2}.py)}
+
+\medskip
+
+If you are successful, you will see a root shell prompt (\texttt{\#}).  Running \texttt{whoami} will output ``\texttt{root}''.
+
+\medskip
+
+If your program segfaults, you can examine the state at the time of the crash using GDB with the core dump: \texttt{gdb ./\ref{sec:target2} core}.  The file \texttt{core} won't be created if a file with the same name already exists.  Also, since the target runs as root, you will need to run it using \texttt{sudo ./\ref{sec:target2}} in order for the core dump to be created.
+
+\subsection{Overwriting the return address indirectly (9 points)\hfill\rm\normalsize (\emph{Difficulty: Medium})}
+\label{sec:target3}
+
+In this target, the programmer is using a safer function (\texttt{strncpy}) to copy the input string to a buffer. Therefore, the buffer overflow exploit is restricted and cannot directly overwrite the return address.   However, this programmer has miscalculated the length of the buffer. Hopefully this will help you to find another way to gain contorl.  Your input should cause the provided shellcode to execute and open a root shell.
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target3}.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./\ref{sec:target3} \$(python \ref{sec:target3}.py)}
+
+\subsection{Beyond strings (9 points)\hfill\rm\normalsize (\emph{Difficulty: Medium})}
+\label{sec:target4}
+
+This target takes as its command-line argument the name of a data file it will read.  The file format is a 32-bit count followed by that many 32-bit integers.  Create a data file that causes the provided shellcode to execute and opens a root shell.
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target4}.py} that outputs the contents of a data file to be read by the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{python \ref{sec:target4}.py > tmp; ./\ref{sec:target4} tmp}
+
+\subsection{Bypassing DEP (9 points)\hfill\rm\normalsize (\emph{Difficulty: Medium})}
+\label{sec:target5}
+
+This program resembles \texttt{\ref{sec:target2}}, but it has been compiled with data execution prevention (DEP) enabled.  DEP means that the processor will refuse to execute instructions stored on the stack.  You can overflow the stack and modify values like the return address, but you can't jump to any shellcode you inject.  You need to find another way to run the command \texttt{/bin/sh} and open a root shell.
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target5}.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./\ref{sec:target5} \$(python \ref{sec:target5}.py)}
+
+\medskip
+
+For this target, it's acceptable if the program segfaults after the root shell is closed.
+
+\subsection{Variable stack position (9 points)\hfill\rm\normalsize (\emph{Difficulty: Medium})}
+\label{sec:target6}
+
+When we constructed the previous targets, we ensured that the stack would be in the same position every time the vulnerable function was called, but this is often not the case in real targets.  In fact, a defense called ASLR (address-space layout randomization) makes buffer overflows harder to exploit by changing the position of the stack and other memory areas on each execution.  This target resembles \texttt{\ref{sec:target2}}, but the stack position is randomly offset by 0x10--0x110 bytes each time it runs.  You need to construct an input that always opens a root shell despite this randomization.
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target6}.py} that prints a line to be used as the command-line argument to the target. \textbf{Your solution MUST NOT cause the program to print out any error messages}. Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./\ref{sec:target6} \$(python \ref{sec:target6}.py)}
+
+\subsection{Linked list exploitation (10 points)\hfill\rm\normalsize (\emph{Difficulty: Hard})}
+\label{sec:target7}
+
+This program implements a doubly linked list on the heap.  It takes three command-line arguments.  Figure out a way to exploit it to open a root shell.  You may need to modify the provided shellcode slightly.
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target7}.py} that print lines to be used for each of the command-line arguments to the target. Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./\ref{sec:target7} \$(python \ref{sec:target7}.py)}
+
+\subsection{Returned-oriented Programming (10 points)\hfill\rm\normalsize (\emph{Difficulty: Hard})}
+\label{sec:target8}
+
+This target uses the same code as \texttt{\ref{sec:target2}}, but it is compiled with DEP enabled. Your job is to contruct a ROP attack to open a root shell. 
+
+\smallskip
+
+Tips:
+\begin{enumerate}
+\item You can use objdump to search for useful gadgets: \\ \texttt{objdump -d ./\ref{sec:target8} > \ref{sec:target8}.txt}
+\item Reading Havoc's paper may help: \url{https://cseweb.ucsd.edu/~hovav/dist/geometry.pdf}
+
+\end{enumerate}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target8}.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./\ref{sec:target8} \$(python \ref{sec:target8}.py)}
+
+\subsection{Callback shell (10 points)\hfill\rm\normalsize (\emph{Difficulty: Hard})}
+\label{sec:target9}
+
+This target uses the same code as \texttt{\ref{sec:target3}}, but you have a different objective.  Instead of opening a root shell, implement your own shellcode to implement a \emph{callback shell}.  Your shellcode should open a TCP connection to \texttt{127.0.0.1} on port \texttt{31337}.  Commands received over this connection should be executed at a root shell, and the output should be sent back to the remote machine.
+
+\smallskip
+
+Tips:
+\begin{enumerate}
+\item Lecture 11 slide 2 is a good starting point.
+\item Network byte order for \texttt{s\_addr} and \texttt{sin\_addr} are in big endian.
+\item You can write your shellcode in x86 assembly, then use objdump to translate the shellcode to hex.
+
+\end{enumerate}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target9}.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./\ref{sec:target9} \$(python \ref{sec:target9}.py)}
+
+\medskip
+
+For the remote end of the connection, use netcat:
+
+\smallskip
+
+\quad\texttt{nc -l 31337}
+
+\medskip
+
+To receive credit, you MUST include (as an extended comment in your Python file) a fully annotated disassembly on your shellcode that explains in detail how it works.
+
+\subsection{Format String Attack (10 points)\hfill\rm\normalsize (\emph{Difficulty: Medium})}
+\label{sec:target10}
+
+Did you know that \texttt{printf} is actually vulnerable to an attack called format string attack? Your job is to exploit this and open a root shell. You should think about what the format specifier \texttt{\%n} does.
+
+\paragraph{What to submit}
+Create a Python program named \texttt{\ref{sec:target10}.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./\ref{sec:target10} \$(python \ref{sec:target10}.py)}
+
+
+\section*{Checkpoint 2: Submission Checklist}
+
+The following blank files has been created in your subversion repository under the directory mp1.  Put your cookie and solution inside the corresponding file then commit it to subversion.
+
+\medskip
+
+\begin{itemize}
+
+\item \texttt{partners.txt} \ \ [One netid on each line]
+
+\item \texttt{cookie} \ \ [Generated by \texttt{setcookie} based on your netid.]
+
+\item \texttt{\ref{sec:target0}.py}
+
+\item \texttt{\ref{sec:target1}.py}
+
+\item \texttt{\ref{sec:target2}.py}
+
+\item \texttt{\ref{sec:target3}.py}
+
+\item \texttt{\ref{sec:target4}.py}
+
+\item \texttt{\ref{sec:target5}.py}
+
+\item \texttt{\ref{sec:target6}.py}
+
+\item \texttt{\ref{sec:target7}.py}
+
+\item \texttt{\ref{sec:target8}.py}
+
+\item \texttt{\ref{sec:target9}.py}
+
+\item \texttt{\ref{sec:target10}.py}
+
+\end{itemize}
+
+
+\medskip
+
+Your files can make use of standard Python libraries and the provided \texttt{shellcode.py}, but they MUST be otherwise self-contained.  Do not add any unnecessary files to your repository.  Be sure to test that your solutions work correctly in the provided VM without installing any additional packages.
+
+\end{document}
+
+
+ 

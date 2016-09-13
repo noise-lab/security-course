@@ -1,0 +1,69 @@
+-- Main project --
+create database project2;
+create user 'project2'@'localhost' identified by '<<password from dbrw.secret>>';
+create user 'project2-ro'@'localhost' identified by '<<password from dbro.secret>>';
+grant insert,update,select on project2.* to 'project2'@'localhost';
+grant select on project2.* to 'project2-ro'@'localhost';
+use project2;
+create table users (id int not null auto_increment, 
+                username varchar(32) not null, 
+                password varchar(32) not null, 
+                passwordhash blob(16), 
+                primary key (id), 
+                unique index (username)
+);
+create table history (id int not null auto_increment, 
+                user_id int not null, 
+                query varchar(2048) not null, 
+                primary key (id), 
+                index (user_id)
+);
+
+-- HB: I strongly encourage you to create victim and attacker using Bungle interface rather than using queries below --
+
+insert into users (username,password,passwordhash) values ('victim', '<<hard to guess password>>', '<<raw md5 hash of password>>');
+insert into users (username,password,passwordhash) values ('attacker', 'l33th4x', '<<raw md5 hash of l33th4x>>');
+
+
+-- Extra credit tables --
+create database proj2_inject3;
+use proj2_inject3;
+CREATE TABLE inject3_users (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  first_name varchar(30) DEFAULT NULL,
+  hash_last blob(16) DEFAULT NULL,
+  last_name varchar(30) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+INSERT INTO inject3_users VALUES (1,'Gulshan','','Singh'),(2,'Travis','','Finkenauer'),(3,'Jonathan','','Pevarnek'),(4,'Alex','','Halderman');
+
+CREATE TABLE HINT (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  message varchar(128) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+INSERT INTO HINT VALUES (1,'go to table SECRET and get a secret string from row with your md5(netid)');
+
+CREATE TABLE foo (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  message varchar(128) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+INSERT INTO foo VALUES (1,'Nothing to see here, move along');
+
+-- HB: You must populate the database below using a separate script --
+
+CREATE TABLE SECRET (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  hash varchar(32) NOT NULL,
+  secret varchar(128) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+-- Extra credit user --
+create user 'inject_3'@'localhost' identified by '<<password from db.sqlinject3.secret>>';
+revoke all privileges, grant option from inject_3@localhost;
+grant select on proj2_inject3.foo to inject_3@localhost;
+grant select on proj2_inject3.HINT to inject_3@localhost;
+grant select on proj2_inject3.inject3_users to inject_3@localhost;
+grant select on proj2_inject3.SECRET to inject_3@localhost;

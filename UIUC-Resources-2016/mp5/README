@@ -1,0 +1,81 @@
+*Fall 2015*
+0. Students have far too imaginary creativity on every possibilities.
+
+1. 5.1.4_attackerip: specify submission format to list one ip address per line.
+
+2. re-encrypt the password.zip file: fcrackzip doesn't work properly unless -u option is defined.
+It lists all possible password combinations no matter the length is incorrect.
+UMich ones was able to extract to a few possible ones if the length has matched.
+
+3. Linux Autopsy 2.24 (available from apt-get) doesn't support ext4.
+Our VM is based on ext4 which is unable to show all file system if version under 3.0.6.
+Update the instruction to download version 4.0.0 and compile.
+
+4. Check Unix Handbook reference link.
+
+5. 5.1.2 conversation submission format: add full account address as example and highlight username to be submitted.
+Username vs Display name vs Computer name
+
+6. Add a question asking for the timezone setting of the system.
+
+7. Include some hint in the scenario that toy factor (weapon) is considered equally dangerous as real weapons. Maybe submit a SKU number of the product purchased.
+
+8. Students are unable to resolve when the file looked corrupted. Hint should be given to look into metadata or change back to PDF format.
+
+9. Many confusions about extraction vs recovery. We should remove photorec from discussion slide.
+
+10. OS behavior question was somehow much more commonly asked this semester although it was the same question. We should give hint this is the reason why live analysis can be risky.
+
+11. Version number variation: kernel version vs OS version
+
+12. Ambiguity on "tools" definition. Maybe we should change to commands?
+
+13. fcrackzip options (e.g. -u) doesn't work on Windows OS
+
+14. Zooming on google maps changes the coordinates. We should find more consistent, definite way of obtaining coordinates.
+
+15. Clarify time order: earlier to recent
+
+16. Many of the short answer questions can have variations and cause difficulties. One way is to make it multiple choices?
+
+17. Linux Autopsy has "export" option rather than "extract"
+
+18. More hints should be given on finding private and public keys for SSH connection.
+
+19. Definition on accomplice on whiterose VM, can be slightly misleading.
+
+20. Clarify that creator=author on 5.2.9
+
+21. Remove the method the weapon was obtained.
+
+22. Remove manual grading questions, and modify the default OS behavior question to finding the script that wipes the disk.
+
+23. Find a way to avoid cheating next semester who might have sources from this semester. Simple way to tamper the setting to create slightly different scenario. Mounts VM, inputs the random nonce somewhere and alter the evidence.
+
+24. Cheating detection: 1) if you are given scenario A, and did B (incorrect percentage), 2) did you get it wrong in the same way that somebody else got it wrong
+
+25. MUST have cheat detection, SHOULD have cheat prevention, syntactically detective.
+
+26. Format: case insensitive
+
+27. The checkpoint 2 points summation were 110 points -> change the document and grader
+
+28. 5.2.10 restate the question to "commit the crime" to "murderer".
+
+*Spring 2015*
+1. EWS environment setup: VM, software tools (maybe tools on VMs)
+
+2. Demo should be performed on EWS system
+
+3. No additional hydra attack on the remote machine. (Some students attempted)
+
+4. Single IP address should be requested for the permission.
+
+5. Security setting on remote machine
+
+6. More efficient way to manage students group with IP address
+
+7. Emphasize more on "further questions"
+
+8. How about we only give permission to the correct IP address? Checkpoint
+submission?

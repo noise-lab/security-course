@@ -1,0 +1,5 @@
+PLEASE PLEASE PLEASE DO THIS:
+- Update the autograder to behave consistently with the other MPs in regard to distribution of grade reports and creation of csv file for compass.
+- Remove the RSA Wiener attack task (OR make it clear what we want the student to do). The main problem is that students grab codes from github and submit them thinking it was OK.
+- Create a better assisted autograder for the PostScript task. The current autograder does not take into account the tarball that the students submitted.
+

@@ -1,0 +1,11 @@
+mp5	mp5	05/04/2015
+Testing 5.2.1 Operating Systems	10	_class/_private/mp5_autograder/grader_script/grade_5.2.1.py
+Testing 5.2.2.1 Username	5	_class/_private/mp5_autograder/grader_script/grade_5.2.2.1.py
+Testing 5.2.2.2 Conversation	5	_class/_private/mp5_autograder/grader_script/grade_5.2.2.2.py
+Testing 5.2.2.3 Search History	10	_class/_private/mp5_autograder/grader_script/grade_5.2.2.3.py
+Testing 5.2.2.4 Encrypted File	10	_class/_private/mp5_autograder/grader_script/grade_5.2.2.4.py
+Testing 5.2.2.5 Attack	20	_class/_private/mp5_autograder/grader_script/grade_5.2.2.5.py
+Testing 5.2.2.6 File Export/Recovery	10	_class/_private/mp5_autograder/grader_script/grade_5.2.2.6.py
+Testing 5.2.2.7 Escape Plan	20	_class/_private/mp5_autograder/grader_script/grade_5.2.2.7.py
+Testing 5.2.2.8 File Metadata	5	_class/_private/mp5_autograder/grader_script/grade_5.2.2.8.py
+Testing 5.2.2.9 Final Decision	5	_class/_private/mp5_autograder/grader_script/grade_5.2.2.9.py
