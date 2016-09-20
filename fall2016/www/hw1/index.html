@@ -1,0 +1,369 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+
+<title>COS 432 Assignment 1, Fall 2016</title>
+</head>
+
+<body>
+
+<div class = "container">
+
+<h3>Assignment 1 - Cryptography</h3>
+
+<h4>Due on Wed, Sep 28 at 6:00pm (<a href="#part1">part 1</a>) and Wed, Oct 5 at 6:00pm (<a href="#part2">part 2</a>) </h4>
+<p>
+This assignment has two parts that each account for half of the total grade. In this assignment you will build code to implement a secure facility for client-server communication across the Internet. You should work on this assignment by yourself and we strongly recommend that you get started early. Submit your code using <a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1">this link</a>.
+
+<h4 id="part1">Part I</h4>
+
+<p>
+We will give you some of the code you need, and we'll ask you to provide
+certain functions missing from the code we provide.  You can 
+<a href="provided1.zip">download the code we are providing</a>.  
+<p>
+We are giving you one fully implemented code file, on which you should build
+all of the crypto functionality you need to do this assignment. The
+file <tt>PRF.java</tt> gives you access to a pseudo-random function, as
+described in lecture.   This is the only crypto primitive you are
+allowed to use---any other crypto
+you use must be built (by you) on top of this file.   Specifically, you 
+may <i>not</i> use any other crypto libraries, not even the ones that are part
+of the standard Java libraries.   
+<p>
+In this assignment you will implement three facilities, by modifying four
+Java code files.   You will modify <tt>PRGen.java</tt> to implement a 
+pseudo-random generator class.  You will modify <tt>StreamCipher.java</tt> to
+implement a stream cipher.  You will modify <tt>AuthEncryptor.java</tt> and
+<tt>AuthDecryptor.java</tt> to implement a facility for authenticated-encryption 
+and decryption.
+In each case, we have provided you with a code file in which some parts are
+"stubbed out."   You will replace the stubbed out pieces with code that
+actually works and provides the required security guarantee.   We have
+put a comment saying "IMPLEMENT THIS" everywhere that you have to supply
+code. 
+<p><b>PRGen.</b>Your PRGen class should implement the following API:
+<pre>
+public class PRGen extends Random {
+    public PRGen(byte[] key)      //creates a new PRGen
+    protected int next(int bits)  //generates the next pseudorandom number
+}
+</pre>
+
+<p>You do not need to implement any other methods of the Random class. The <tt>long</tt>
+key that is used by the parent Random class will not be used by your PRGen class.
+
+<p>As stated in the <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Random.html#next(int)">Random</a> 
+spec "The general contract of next is that it returns an int value and if the 
+argument <tt>bits</tt> is between 1 and 32 (inclusive), then that many low-order bits 
+of the returned value will be (approximately) independently chosen bit values, each 
+of which is (approximately) equally likely to be 0 or 1." For example, if you call 
+next(4), it will return an int between 0 and 15. If you call next(32), it will return an
+int between -2,147,483,648 and 2,147,483,647 (the highest order bit determines the sign).
+
+<p>Your PRGen must obey the following three properties:
+<ul>
+    <li>It must be <b>pseudorandom</b>, meaning that there is no (known) way to distinguish
+    its output from that of a truly random generator, unless you know the key. </ii>
+    <li>It must be <b>deterministic</b>, meaning that if two programs create generators with
+        the same seed, and then the two programs make the same sequence of calls to their 
+        generators, they should receive the same return values from all of those calls.</li>
+    <li>It must be <b>backtracking-resistant</b>, meaning that if an adversary is able to observe
+        the full state of the generator at some point in time, that adversary cannot 
+        reconstruct any of the output that was produced by previous calls to the
+        generator. Note that the .next function in java.util.Random is not backtracking-resistant.</li>
+</ul>
+<p><b>StreamCipher.</b>Your StreamCipher class should implement the following API:
+<pre>
+public class StreamCipher {
+    public StreamCipher(byte[] key, byte[] nonceArr, int nonceOffset)
+    public StreamCipher(byte[] key, byte[] nonce)
+    public byte cryptByte(byte in)                          //encrypts the next byte
+    public void cryptBytes(byte[] inBuf, int inOffset,      //encrypts next numBytes
+               byte[] outBuf, int outOffset,                //in the inBuf, writing
+               int numBytes)                                //results to the outBuf
+}
+</pre>
+This class encrypts or decrypts a stream of bytes, using a stream cipher. (Recall that
+for a stream cipher, encryption and decryption are the same operation.)
+
+<p><b>AuthEncryptor.</b>Your AuthEncryptor class should implement the following API:
+<pre>
+public class AuthEncryptor {
+    public AuthEncryptor(byte[] key)       
+    public byte[] encrypt(byte[] in, byte[] nonce, boolean includeNonce)
+}
+</pre>
+<p>This class is used to perform authenticated encryption on values.
+Authenticated encryption protects the
+confidentiality of a value, so that the only way to recover the initial value is to
+decrypt the value using the same key and nonce that was used to encrypt it.   At the same time,
+authenticated encryption protects the integrity of a value, so that a party decrypting the value 
+using the same key and nonce (that were used to encrypt it) can verify that nobody has tampered with the
+value since it was encrypted.
+<p>Code that uses AuthEncryptor will be required to pass in a different nonce for
+every call to encrypt.  The AuthEncryptor class is not required to detect violations
+of this rule; it is the responsibility of the code that uses AuthEncryptor to avoid
+re-using a nonce with the same AuthEncryptor instance.</p>
+<p>If includeNonce is true, then the nonce should be included (in plaintext form)
+in the output of encrypt.  If includeNonce is false, then the nonce should still be
+used in calculating the output, but the nonce itself should not be copied into the output.
+(Presumably the party who will decrypt the message already knows what the nonce will be.)
+<p><b>AuthDecryptor.</b>Your AuthDecryptor class should implement the following API:
+<pre>
+public class AuthDecryptor {
+    public AuthDecryptor(byte[] key)
+    public byte[] decrypt(byte[] in)       
+    public byte[] decrypt(byte[] in, byte[] nonce)     
+}
+</pre>
+<p>The value passed as <tt>in</tt> will normally
+have been created by calling encrypt() with the same nonce in an AuthEncryptor that was
+initialized with the same key as this AuthDecryptor. 
+<p>If the integrity of the input value cannot be verified (that is, if the
+input value could not have been created by calling encrypt() with the same
+nonce in an AuthEncryptor that was initialized with the same key as this
+AuthDecryptor), 
+then this method returns null.   Otherwise it returns a newly allocated 
+byte-array containing the plaintext value that was originally 
+passed to <tt>encrypt()</tt>.</p>
+<p>If the nonce is included in the message, then the message should be decrypted with
+<tt>decrypt(byte[] in)</tt>.  Otherwise, the nonce should be provided along with the
+ciphertext to <tt>decrypt(byte[] in, byte[] nonce)</tt>.
+
+<p><b>Tips for Getting Started.</b> This list may grow in response to Piazza questions.
+<ul>
+<li>Make sure you understand what a PRF is, and how you can use the PRF class to 
+determinstically generate pseudorandom values. See the comments in <tt>PRF.java</tt>
+for examples.</li>
+<li>You don't have to use every bit generated by your PRF.</li>
+<li>The spec is deliberately vague regarding how you should accomplish each task.
+There is a significant design component to each problem.</li>
+<li>The bulk of the work for this assignment will be in the design, not the
+implementation. It shouldn't take many additional lines of code to complete the classes. Our
+reference solutions are 75, 61, 66, and 76 lines of code (the whole file, including everything, even comments, 
+whitespace, brackets, etc.) for <tt>PRGen</tt>, 
+<tt>StreamCipher</tt>, <tt>AuthEncryptor</tt>, and <tt>AuthDecryptor</tt> respectively.</li>
+
+</ul>
+<p><b>Advice on testing crypto code.</b>  As always, it's important to test your
+code.  But you should be aware that crypto code presents different testing 
+issues than other code does.   Testing can sanity-check your code, but it can't
+verify that your code has the desired security properties.   For example,
+if your code is encrypting data for confidentiality, you can test whether
+the ciphertext is the right size, and you can test whether the ciphertext 
+looks kind of randomish, and you can test whether different plaintexts yield
+different ciphertexts.  But you can't test whether there is a way for an
+adversary to recover the plaintext.   So by all means test your code --- if
+you don't, it's almost certain not to work --- but remember that passing the
+tests is not enough.
+<p>
+<b>Submitting your solution.</b> You should only submit 4 files: <tt>PRGen.java</tt>,
+<tt>StreamCipher.java</tt>, <tt>AuthEncryptor.java</tt>, and <tt>AuthDecryptor.java</tt>. <b>You may submit any number of times. Only your most recent submission
+will be graded.</b>
+Submit your code using <a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1">this link</a>.
+
+
+<hr/>
+
+<h4 id="part2">Part II</h4>
+
+In this part, you'll add functionality to the code you wrote for 
+part 1, toward the goal of implementing a secure facility for 
+client-server communication across the Internet.
+<p>
+As before, we will give you some of the code you need, and we'll ask you to 
+provide certain functions missing from the code we provide.  You can 
+<a href="provided2.zip">download the code we are providing</a>.  Create a 
+fresh directory and unzip the downloaded code into it.   Then copy into that
+same directory all of the <tt>.java</tt> files from your solution to part
+1.   As before, you must not use any crypto libraries; the only primitives you
+may use are the ones we gave you, and ones you implemented from scratch 
+yourself.
+<p>
+In this part you will implement three facilities, by modifying three
+Java code files.   You will modify <tt>RSAKeyPair.java</tt> to generate an
+RSA key-pair.  You will modify <tt>RSAKey.java</tt> to implement secure RSA
+encryption and decryption, and to create and verify digital signatures.  
+You will modify <tt>KeyExchange.java</tt> to 
+implement a secure key exchange.   As in the previous assignment,
+we have provided you with code files in which some parts are
+"stubbed out".   You will replace the stubbed out pieces with code that
+actually works and provides the required security guarantee.   We have
+put a comment saying "IMPLEMENT THIS" everywhere that you have to supply
+code.
+<p>
+Although your solution may call on code that you wrote for part 1, your
+solution to this homework should not rely on any specific properties of your
+part 1 code.   We will test your solution with <i>our own 
+implementation</i> of the part 1 functionality. Your 
+solution must work correctly when we do this --- this shouldn't be a problem 
+as long as you respect the API boundaries between the different 
+classes we have given you.
+<p><b>RSAKeyPair.</b> Your RSAKeyPair class should implement the following API:
+<pre>
+public class RSAKeyPair {
+    public RSAKeyPair(PRGen rand, int numBits)    
+    public RSAKey getPublicKey()                   //already implemented
+    public RSAKey getPrivateKey()                  //already implemented
+    public BigInteger[] getPrimes()                
+}
+</pre>
+<p>For <tt>RSAKeyPair</tt>, the bulk of the interesting work is performed by the constructor. This constuctor 
+should create an RSA key pair using the algorithm discussed in class. The constructor
+will use the PRGen called <tt>rand</tt> to get pseudorandom bits. numBits is the size in bits of each
+  of the primes that will be used. The key pair should be stored as a pair of <tt>RSAKey</tt> objects.
+  
+<p><tt>getPrimes()</tt> is a method we've added in order to help us
+  with the grading process. getPrimes() should return the two primes
+  that were used in key generation. Typically, you would not
+  explicitly have a method to return these primes. The primes may be
+  returned in either order.</p>
+
+<p><b>RSAKey.</b> Your RSAKey class should implement the following API:
+<pre>
+public class RSAKey {
+    public RSAKey(BigInteger theExponent, BigInteger theModulus) // already implemented
+    public BigInteger getExponent()                              // already implemented   
+    public BigInteger getModulus()                               // already implemented
+    public byte[] encrypt(byte[] plaintext, PRGen prgen)                        
+    public byte[] decrypt(byte[] ciphertext)
+    public byte[] sign(byte[] message, PRGen prgen) 
+    public boolean verifySignature(byte[] message, byte[] signature) 
+    public int maxPlaintextLength()
+    public byte[] encodeOaep(byte[] input, PRGen prgen)
+    public byte[] decodeOaep(byte[] input)
+    public byte[] addPadding(byte[] input)
+    public byte[] removePadding(byte[] input)
+
+</pre>
+<p>The <tt>RSAKey</tt> class implements core RSA functions, namely encrypting/decryption as well
+  as signing/verification. Note that the <tt>RSAKey</tt> class is used for both public and private
+  keys, even though some key/method combinations are unlikely to be used in practice. For
+  example, it is unlikely that the <tt>sign()</tt> method of a public <tt>RSAKey</tt> would ever be used.
+<p>The <tt>encrypt()</tt> method should encrypt the plaintext using optimal asymmetric 
+  encryption padding (OAEP) as discussed in class. It is not enough to simply 
+  exponentiate and mod the plaintext.  <tt>encrypt()</tt>, <tt>sign()</tt>, and <tt> encodeOaep()</tt> take a
+  PRGen parameter, in case the implementation wants to use some pseudorandom bits.
+  The <tt>decrypt()</tt> method should be able to decrypt the ciphertext. 
+  <!--In practice, <tt>encrypt()</tt> is only used by RSAKey objects
+      which represent a public key, and <tt>decrypt()</tt> is only used by RSAKey objects
+      which represent a private key. slightly misleading -->
+</p>
+<p>Your code for OAEP encoding and decoding should be in the provided <tt>encodeOaep()</tt> and <tt>decodeOaep()</tt>
+  methods. Your other methods should call these utility methods to encode/decode when necessary. For full credit, don't forget to pad the input to the OAEP algorithm if it is too short -- this is necessary to guarantee security (otherwise the exponentiated message might be smaller than the modulus).</p>
+<p>The <tt>sign()</tt> method should
+  generate a signature (array of bytes) that can be verified by the 
+  <tt>verifySignature()</tt> method of the other <tt>RSAKey</tt> in the private/public <tt>RSAKey</tt> pair.
+  You should not include the entire message as part of the signature; assume that the verifier
+  will already have access to this message. This assumption of access is reflected
+in the API for <tt>verifySignature()</tt>, which accepts the message as one of its arguments.
+<p>The <tt>verifySignature()</tt> method should be used by a public <tt>RSAKey</tt> object to
+verify a signature generated by the corresponding private <tt>RSAKey</tt>'s <tt>sign()</tt> method.
+<p>The <tt>maxPlaintextLength()</tt> method should return the largest N such that any
+plaintext of size N bytes can be encrypted with this key and padding scheme.  Your code must correctly operate on plaintexts
+that are any size less than or equal to the size returned by <tt>maxPlaintextLength()</tt>.
+<P> The <tt>addPadding()</tt> and <tt>removePadding()</tt> methods are used to pad the input to the OAEP algorithm
+if it is too short. <b>You should not call these methods from within encodeOAEP()/decodeOAEP().</b> See below for more information on this.
+<p><b>KeyExchange.</b> Your KeyExchange class should implement the following API:
+<pre>
+public class KeyExchange {
+    public static final int OUTPUT_SIZE_BYTES
+    public static final int OUTPUT_SIZE_BITS
+    public KeyExchange(PRGen rand, boolean iAmServer)
+    public byte[] prepareOutMessage() 
+    public byte[] processInMessage(byte[] inMessage) 
+}
+</pre>
+<p>The constructor should prepare to do a key exchange. <tt>rand</tt> is a secure 
+pseudorandom generator that can be used by the implementation.   <tt>iAmServer</tt> is
+true if and only if we are playing the server role in this exchange.   Each exchange 
+has two participants; one of them plays the client role and the other plays the
+server role.<br>
+<p>Once the <tt>KeyExchange</tt> object is created, two things have to happen for the key exchange process
+to be complete: 
+<ol>
+<li>Call prepareOutMessage on this object, and send the result to the other participant.</li>
+<li>Receive the result of the other participant's prepareOutMessage, and pass it in as the 
+argument to a call on this object's processInMessage.</li>
+</ol>
+These two things can happen in either order, or even concurrently (e.g., in different threads).
+This code must work correctly regardless of the order.
+<p>The call to processInMessage should behave as follows:
+<ul>
+<li>If passed a null value, then throw a NullPointerException.</li>
+<li>Otherwise, if passed a value that could not possibly have been generated
+by prepareOutMessage, then return null.</li>
+<li>Otherwise, return a "digest" (hash) value with length <tt>OUTPUT_SIZE_BYTES</tt> and the property described below.</li>
+</ul>
+<p>Your KeyExchange class must provide the following security guarantee: If the two 
+participants end up with the same non-null digest value, then this digest value
+is not known to anyone else.   This must be true even if third parties
+can observe and modify the messages sent between the participants.
+<p>This code is NOT required to check whether the two participants end up with
+  the same digest value; the code calling this must verify that property.
+<p><b>Assignment Tips and Tricks.</b>
+  <ul>
+    <li>Start with <tt>RSAKeyPair</tt>. While it is true that it contains instances of
+      <tt>RSAKey</tt>, <tt>RSAKeyPair</tt> does not use any of the methods that you'll
+      be implementing in <tt>RSAKey</tt>.</li>
+    <li>As in part 1, the spec is deliberately vague regarding how you should accomplish each task.
+      There is a significant design component to each problem.</li>
+    <li>Make sure to run your code with the java
+      -ea flag, so that assertions are enabled. </li>
+    <li>Use BigInteger:</li>
+    <ul>
+    <li>Since you'll be doing math with very
+      large integers, you'll probably want to use the <tt><a href="https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html">java.math.BigInteger</a></tt>
+      library class for any such operations. This class provides myriad functions that you may 
+      find useful for this assignment, particularly as BigInteger was originally designed
+      with RSA implementation in mind. (Using <tt>BigInteger</tt> doesn't violate our rule against 
+      using external crypto primitives, because <tt>BigInteger</tt> provides basic
+      mathematical functions, and not crypto.)</li>
+    <li>If you find yourself writing complex functions involving BigIntegers (e.g. manually
+      testing primality, manually generating primes, manually finding the gcd of two numbers,
+      manually finding d given p, q, and e, etc.), you're doing way
+      more work than you need to. Find the appropriate BigInteger method.</li>
+    <li>One particularly useful BigInteger function is <a href="https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html#modPow%28java.math.BigInteger,%20java.math.BigInteger%29">modPow()</a>.</li>
+    <li>Converting back and forth between BigIntegers and byte[] arrays is a major hassle.
+      It's surprisingly hard to get this code right.  We have given you code, in the HW2Util.java
+      file, that can do this.</li>
+    <li>For maximum elegance in RSAKey, your message should only be in
+      BigInteger format for the purposes of exponentiating and modulusing. In other words,
+      when you're applying OAEP, padding, unOAEP, etc., it's much easier to deal with your
+      input in terms of byte[].</li>
+    </ul>
+    <li>In class, we said that given public and private keys (d, N) and (e, N), we have that
+      x = (x^(de) mod N), iff 0 &lt; x &lt; N. Thus, if you're going to
+      use the built in BigInteger functions to encrypt and decrypt, it is important that
+      you represent your input message as a positive BigInteger.</li>
+    <li>An RSAKey object does not know if it is "private" or "public". Indeed, it is even
+      possible to sign messages using a public key or encrypt using a private key, though neither
+      of these strange operations are likely to be useful in pratice.</li>
+    <li> We recommend that first you get your code working for the case where all inputs are full sized, <strong>then</strong> modify your code so that it handles padding. When you implement padding, the relevant code should be in
+      the provided <tt>addPadding()</tt> and <tt>removePadding()</tt> methods. Your other methods should call
+      these utility methods to pad/unpad when necessary.</li>
+    <li>There is a bit more programming this week. Our
+      reference solutions are 45, 151, and 84 lines of code (including everything, even comments, 
+      whitespace, brackets, etc.) for <tt>RSAKeyPair</tt>, 
+      <tt>RSAKey</tt>, and <tt>KeyExchange</tt> respectively.</li>
+    <li>If your think that your solution to
+      part 1 is flawed, you will want to correct these mistakes before testing
+      your implementation of part 2.  Alternatively, you can use a precompiled version
+      of our sample solution for part 1, which you can get <a href="hw1.jar">here</a>.</li>
+</ul></p>
+
+<p><b>Submitting your solution.</b> You should only submit 4 files: <tt>RSAKeyPair.java</tt>,
+<tt>RSAKey.java</tt>, and <tt>KeyExchange.java</tt>. Please cite any sources you used when developing your code. <b>You may submit any number of times. Only your most recent submission
+    will be graded.</b>
+  Submit your code using <a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1">this link</a>.
+</p>
+
+<p><br/>
+<font size="1">Copyright 1998-2014, Edward W. Felten.</font> </p>
+</div>
+</body>
+</html>
