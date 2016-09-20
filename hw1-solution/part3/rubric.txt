@@ -1,0 +1,112 @@
+Total points:   80
+
+SecureChannel: 72 points
+README       : 8 points
+
+If a point deduction says "P.o.P." this means you should post on 
+the staff Piazza  so we can discuss. Remember to mark your post private.
+
+Special note: For this assignment, please deduct only a total of 4 points
+total for static variable errors! In other words, if their entire pipeline
+is broken because of static variables, and is otherwise totally functional,
+you should give them an overall score of 76/80.
+
+A student can score at worst a 0 on any particular program. This list
+will certainly grow, so keep an eye on it as you go.
+
+General errors:
+======================================================================
+ * Does not compile
+   [ -8 and ask student to resubmit ]
+
+ * API check fails.
+   [ Case by case basis - post on Piazza ]
+ 
+ * Uses disallowed crypto libraries
+   [ Case by case basis - post on Piazza ]
+
+ * Has checkstyle errors that are not justified
+   [ -2 - Error for importing ByteBuffer should be ignored ]
+
+ * Has findbug errors that are not justified
+   [ -2 ]
+
+ * Has print statements that must be commented out to run
+   [ -2 ]
+
+NOTE: for general errors please only deduct a maximum of the given number
+of points for the entire assignment
+
+==============================================================
+
+Base points:
+ [ +72 ] S0_Authenticated-Diffie-Hellman-Seeds-AuthEncryptor
+ [ +72 ] S1_Client-Generated-Key-Seeds-AuthEncryptor
+
+Deductions:
+
+Note: for the various close channel deductions, checking that the sent message
+      is not null with assertions is also acceptable
+
+ * [ -2 ] Key size for AuthEncryptor/StreamCipher/PRGen is too small, will
+          cause assertion failures. [-2 total deduction maximum!]
+
+ * [ -4 ] Client does not close channel if initial handshake is suspicious
+
+ * [ -4 ] DHKE implementation is flawed and is vulnerable to a MITM attack
+ 
+ * [ -2 ] Recipient does not close channel if received data is bad
+ 
+ * [ -1 ] Server's private key is kept in memory
+
+ * [ -4 ] Vulnerable to reflection attacks
+          Examples: Uses same key for AuthEncryptor and AuthDecryptor
+
+ * [ -4 ] Vulnerable to out of order attacks
+          Examples: Uses the same nonce for multiple AuthEncryptor messages
+            on the same machine.
+ 
+ * [ -2 ] Same key is reused but the implementation is not vulnerable to reflection
+            or out of order attacks due to nonce implementation
+          Examples: One AuthEncryptor has a nonce which counts up and the other side
+            has a nonce which counts down.
+
+ * [ -6 ] Signature is of known fixed value - allows adversary to form
+          new connections with any adversary by logging traffic once.
+          Examples: Signing DHConstants.p
+
+ * [ -1 ] Unnecessarily reimplements Diffie-Hellman instead of using 
+          KeyExchange
+
+ * [ -4 ] Deadlock is possible (may cause timeout error).
+ 
+ * [ -4 ] Implementation can't handle one-side sending several messages in a row
+          Examples: Student expects a ping-pong pattern of messages between client
+            and server.
+
+ [P.o.P.] : Other mistake not mentioned here
+
+==============================================================
+
+Known schemes:
+
+S0_Authenticated-Diffie-Hellman-Seeds-AuthEncryptor:
+Uses KeyExchange to exchange a secret key. Server signs outMessage. Client 
+verifies signature of inMessage. AuthEncryptor and AuthDecryptor created using 
+output of KeyExchange.inMessage to create two different derived keys. 
+sendMessage sends .encrypt() output. receiveMessage .decrypts() data.
+
+S1_Client-Generated-Key-Seeds-AuthEncryptor:
+Client generates a secret key and sends it to the server encrypted with public 
+key. Server decrypts the secret key. Both sides use that key to set up a AuthEncryptor 
+and AuthDecryptor with different derived keys. sendMessage sends .encrypt() output. 
+receiveMessage .decrypts() data.
+
+======================================================
+README
+
+For no answer, give 0 points. For a poor answer, give +2 points. For a reasonable 
+answer, give +4 points. Most students should get full credit on this part. 
+
+ [+0/+2/+4] points for explaining their security goals (a.k.a. their threat model)
+ [+0/+2/+4] points for explaining how they achieve these goals

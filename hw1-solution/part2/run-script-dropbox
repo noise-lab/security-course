@@ -1,0 +1,97 @@
+#!/bin/csh
+# 
+# To execute this script, see ~cos126/assignments/hello/run-script
+
+
+
+echo "For more information on how to read this grade report, see the grade report guide:\nhttp://www.princeton.edu/~pmittal/teaching/ele432-spring15/gradeReport.html\n"
+echo "DISCLAIMER: Passing these tests does not guarantee passing the private scripts - you should be testing your code yourself as well\n"
+
+echo "Please report any apparent bugs in this experimental Dropbox grading script on Piazza\n"
+
+unalias *
+
+limit cpu 120 seconds
+limit core 0
+
+
+set RELATIVE_PATH    = "`dirname $0`" #relative
+set RUNSCRIPT_PATH   = "`( cd $RELATIVE_PATH && pwd)`" #absolutized and normalized
+set GRADEROOT        = `dirname $RUNSCRIPT_PATH`
+source $GRADEROOT/bin/setEnvironmentVariables
+setenv IS_DROPBOX     1
+
+# test data
+set ASSIGNMENT_NAME  = "HW2"
+setenv REQUIRED        "RSAKeyPair RSAKey KeyExchange"
+setenv EXTRA_CREDIT    ""
+setenv FILES_TO_COPY   "*.txt"
+
+
+if (! -d $WORKSPACE) then
+    mkdir        $OUTPUT $WORKSPACE
+    chmod 2770   $OUTPUT $WORKSPACE
+endif
+
+# do for each name in current directory
+foreach name ($argv)
+
+    if ( -e "$WORKSPACE/$name") then
+        /bin/rm -rf $WORKSPACE/$name  >>& /dev/null
+    endif
+
+    if ( -e "$OUTPUT/$name") then
+        /bin/rm -rf $OUTPUT/$name  >>& /dev/null
+    endif
+
+    echo -n $name
+    echo -n ": "
+
+    # skip if directory doesn't exist
+    set files  = `ls $name/*  |& grep -v "No such file or directory" |& grep -v "No match"`
+    if ("$files" == "") then
+        echo "no files submitted"
+        continue
+    endif
+
+    cat < /dev/null > $OUTPUT/$name
+    $SCRIPTS/listfiles.scr  $name
+
+    #copy reference solution from HW1
+    cp -f $GRADEROOT/HW1/solution/AuthEncryptor.java $WORKSPACE/$name
+    cp -f $GRADEROOT/HW1/solution/AuthDecryptor.java $WORKSPACE/$name
+    cp -f $GRADEROOT/HW1/solution/StreamCipher.java $WORKSPACE/$name
+    cp -f $GRADEROOT/HW1/solution/PRGen.java $WORKSPACE/$name
+    
+    cp -f $GRADEROOT/HW2/starter-code/DHConstants.java $WORKSPACE/$name
+    cp -f $GRADEROOT/HW2/starter-code/HW2Util.java $WORKSPACE/$name
+    
+    cp -f $GRADEROOT/std/StrongPRGen.java $WORKSPACE/$name
+    cp -f $GRADEROOT/std/PRF.java $WORKSPACE/$name
+
+    $SCRIPTS/compile.scr    $name
+    $SCRIPTS/checkstyle.scr $name
+    $SCRIPTS/findbugs.scr   $name
+    $SCRIPTS/api.scr        $name
+    
+
+    $SCRIPTS/recompileGrader.scr $name        
+    $SCRIPTS/execute.scr    $name RSAKeyPair
+    
+    setenv ECHO_TEXT ""
+    $SCRIPTS/execute.scr    $name RSAKey
+    unsetenv PRINT_TEXT
+    setenv ECHO_TEXT ""
+
+    $SCRIPTS/execute.scr    $name KeyExchange  
+    unsetenv PRINT_TEXT
+    unsetenv ECHO_TEXT
+    $SCRIPTS/postProcess.scr $name $REQUIRED
+
+    if ( -e "$WORKSPACE/$name") then
+        /bin/rm -rf $WORKSPACE/$name  >>& /dev/null
+    endif
+
+    echo "done.\n"
+
+end

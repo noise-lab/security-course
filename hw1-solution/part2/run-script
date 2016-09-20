@@ -1,0 +1,82 @@
+#!/bin/csh 
+# 
+# To execute this script, see ~cos126/assignments/hello/run-script
+
+unalias *
+
+set RELATIVE_PATH    = "`dirname $0`" #relative
+set RUNSCRIPT_PATH   = "`( cd $RELATIVE_PATH && pwd)`" #absolutized and normalized
+set GRADEROOT        = `dirname $RUNSCRIPT_PATH`
+source $GRADEROOT/bin/setEnvironmentVariables
+
+if ($ENABLE_LIMITS == 1) then
+    limit cputime 200 seconds
+    limit core 0
+endif
+
+# test data
+set ASSIGNMENT_NAME  = "RSA"
+setenv REQUIRED        "RSAKeyPair RSAKey KeyExchange"
+setenv EXTRA_CREDIT    ""
+setenv FILES_TO_COPY   "*.txt"
+
+/bin/rm -rf  $OUTPUT $WORKSPACE   >>& /dev/null
+mkdir        $OUTPUT $WORKSPACE
+chmod 2770   $OUTPUT $WORKSPACE
+
+
+# do for each name in current directory
+foreach name ($argv)
+    echo -n $name
+    echo -n ": "
+
+    # skip if directory doesn't exist
+    set files  = `ls $name/*  |& grep -v "No such file or directory" |& grep -v "No match"`
+    if ("$files" == "") then
+        echo "no files submitted"
+        continue
+    endif
+
+    cat < /dev/null > $OUTPUT/$name
+
+    $SCRIPTS/listfiles.scr  $name
+
+    #copy reference solution from HW1
+    cp -f $GRADEROOT/HW1/solution/AuthEncryptor.java $WORKSPACE/$name
+    cp -f $GRADEROOT/HW1/solution/AuthDecryptor.java $WORKSPACE/$name
+    cp -f $GRADEROOT/HW1/solution/StreamCipher.java $WORKSPACE/$name
+    cp -f $GRADEROOT/HW1/solution/PRGen.java $WORKSPACE/$name
+    
+    cp -f $GRADEROOT/HW2/starter-code/DHConstants.java $WORKSPACE/$name
+    cp -f $GRADEROOT/HW2/starter-code/HW2Util.java $WORKSPACE/$name
+    
+    cp -f $GRADEROOT/std/StrongPRGen.java $WORKSPACE/$name
+    cp -f $GRADEROOT/std/PRF.java $WORKSPACE/$name
+
+    $SCRIPTS/compile.scr    $name
+    $SCRIPTS/checkstyle.scr $name
+    $SCRIPTS/findbugs.scr   $name
+    $SCRIPTS/api.scr        $name
+
+    $SCRIPTS/recompileGrader.scr $name    
+    $SCRIPTS/execute.scr    $name RSAKeyPair
+
+    # Test RSAKey with reference RSAKeyPair
+    cp -f $GRADEROOT/HW2/solution/RSAKeyPair.java $WORKSPACE/$name
+    $SCRIPTS/compile.scr    $name
+    setenv PRINT_TEXT "executing with reference RSAKeyPair"
+    setenv ECHO_TEXT ""
+    $SCRIPTS/execute.scr    $name RSAKey
+    unsetenv PRINT_TEXT
+    setenv ECHO_TEXT ""
+
+    $SCRIPTS/execute.scr    $name KeyExchange    
+    
+    $SCRIPTS/postProcess.scr $name $REQUIRED    
+    $SCRIPTS/print.scr      $name
+
+    echo "done."
+
+end
+
+# $SCRIPTS/tar.scr $ASSIGNMENT_NAME

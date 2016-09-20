@@ -1,0 +1,196 @@
+Total points:   80
+
+PRGen         - 30 points 
+StreamCipher - 10 points
+AuthEncryptor    - 30 points
+AuthDecryptor  - 10 points
+
+If a point deduction says "P.o.P." this means you should post on 
+the staff Piazza  so we can discuss. Remember to mark your post private.
+
+Special note: For this assignment, please deduct only a total of 4 points
+total for static variable errors! In other words, if their entire pipeline
+is broken because of static variables, and is otherwise totally functional,
+you should give them an overall score of 76/80.
+
+A student can score at worst a 0 on any particular program.
+
+General errors:
+======================================================================
+ * Does not compile
+   [ -8 and ask student to resubmit ]
+
+ * Does not obey API
+   [ Case by case basis - post on Piazza ]
+ 
+ * Uses disallowed crypto libraries
+   [ Case by case basis - post on Piazza ]
+
+ * Checkstyle errors, no netid in heading, lack of defensive copying
+   [ -0 ] - Warn students, will deduct next time
+
+ * [ -2 ] Print statements left in. Maybe higher in future assignments
+
+PRGen.java (30 points max)
+=====================================================================
+Security Issues (these will probably not fail any tests!)
+ * [ P.o.P.  ] Output does not depend on key (no other security deductions)
+ * [ P.o.P.  ] Always returns same output or outputs in a cycle
+             Cycle is likely if student does not use PRF
+
+ * State Recovery Flaws: 
+   . [ -4  ] Output provides program state
+   . [ -0  ] Outputs part of hidden state, but at least 8 bytes remain unrevealed
+
+ * Forward Secrecy Flaws:
+   . [ -6  ]  Not forward secret
+              Examples: Initial key stored in memory,
+              Using a counter based scheme
+   . [ -2  ]  Not foward secret for previous state
+              Examples: Advances state before output (state for ouput stays in memory until next call)
+                        Stores output in memory
+
+Next behavior 
+ * [ -4 ] Static instance variables ruin otherwise functional code
+ * [ P.o.P. ] output is truly non-deterministic
+
+
+Statistical Test Errors Byte
+ * Error in converting byte[] to int (may manifest itself as
+   distribution or range problem)
+   . [ -4 ] Fundamental error in approach or >1 careless error
+   . [ -2 ] Minor careless conversion error (one too many shifts, etc.)
+   . [ -2 ] Error that involves sign extension when moving between bytes and bits
+   . [ -2 ] Error that occurs only for numBits = 32
+   . [ -2 ] Range is correct except includes negative values,
+            e.g. range should be [0, 15], student has [-15, 15]
+
+ * [ P.o.P. ] Distribution is biased or doesn't cover range
+              for reasons unrelated to byte[] to int conversion
+ 
+
+
+Error handling
+  * [ -0 ] Accepts keys of less than KeySizeBytes 
+           Note: Assertions are ok, but are not detected by the probe!
+
+Implementation Issues
+ * [ -0 ] Undercommenting non-obvious code (we will deduct in the future)
+ * [ -4 ] Extremely convoluted architecture (P.o.P. if not sure on severity)
+ * [ -2 ] Mildly convoluted architecture
+
+
+
+StreamCipher.java (10 points max)
+=====================================================================
+
+Major Security Flaws
+ * [ -5 ] Same bits are used to encrypt/decrypt by consecutive calls
+            to cryptByte() or cryptBytes()
+ * [ -5 ] Same bits are used to encrypt/decrypt every byte in cryptBytes()
+ * [ -5 ] Changing nonce does not change output
+
+ * Distribution
+   . [P.o.P] Distribution is somehow biased
+
+Basic Functionality
+ * Encryption function encrypts only a subset of bits
+   . [ -2 ] Careless mistake (e.g. xoring against only 4 bits instead of 8)
+ * Decryption function is unable to decrypt encrypted data
+   . [ -5 ] Failure due to fundamental design issue
+   . [ -2 ] Failure due to careless mistake
+ * Set nonce changes output, but not securely
+   . [ -5 ] Failure due to fundamental design issue
+   . [ -2 ] Failure due to careless mistake
+
+Implementation Issues
+ * [ -1 ] Reimplemented PRG
+ * [ -1 ] Reimplemented cryptByte in crypteBytes
+ * [ -2 ] Static instance variables ruin otherwise functional code
+ * [ -2 ] Implementation fails to use input or output offsets
+ * [ -2 ] setNonce fails to use arr offset 
+ * [ -0 ] Passes keys to PRGen that do not match their PRGen.KeySizeBytes
+
+
+NOTE: Grade AuthEncryptor/AuthDecryptor together
+=====================================================================
+
+AuthEncryptor.java (30 points max)
+=====================================================================
+
+Special note: The conventional MAC strategy is to use PRF(key, data),
+where key is a special integrity key generated from the AuthEncryptor key,
+and data is the original message (possibly concatenated with a sequence
+number).
+
+If they use a non-conventional MAC other than those listed below, please 
+post it on Piazza.
+
+Security Issues (might get caught by autograder)
+ * Integrity security flaws [max loss of 10 points]
+   . [ -10 ] No MAC, or completely useless MAC
+   . [ -6  ] Otherwise functioning MAC of 2 or fewer bytes
+   . [ -2  ] MAC of between 3 and 7 bytes
+   . [ -5  ] MAC is always same length as message (easy to forge short messages)
+   . [ -1  ] MAC is always same length as message, but has minimum length of
+             at least 8 bytes to prevent security problems. Write note to student
+             that this approach is inefficient!
+   . [ -3  ] MAC is always same length as message, but has minimum length of
+             at least 3 bytes to prevent security problems.
+   . [ -6  ] Vulnerable to replay attacks 
+             This is pretty likely if AuthEncryptor returns same output if called
+             with two different nonces.
+
+
+ * Confidentiality security flaws (should be handled by StreamCipher!)
+   . [ P.o.P. ] Does not use StreamCipher, replacement is insecure
+
+More subtle security flaws (will probably not get caught by autograder)
+   * Key re-use 
+     . [ -4 ] Designed to use same key for integrity and confidentiality
+     . [ -3 ] Integrity and/or confidentiality key can be derived from each other
+     . [ -2 ] Careless error results in same key for integrity and conf.
+   * [ -4 ] Does not MAC nonce.
+   * [ -3 ] MACs nonce, but has separate MAC for nonce and message.
+            This allows an attacker to swap nonces between messages.
+   * [ -4 ] Creates MAC based on unencrypted message, 
+            then encrypts entire stream. Do not deduct if their MAC is useless
+
+Distribution
+ * [ P.o.P. ] Distribution is somehow biased 
+
+Implementation Issues
+ * [ -1 ] Reimplemented StreamCipher functionality
+ * [ -0 ] Undercommenting non-obvious code (we will deduct in the future)
+ * [ -4 ] Extremely convoluted architecture (P.o.P. if not sure on severity)
+ * [ -2 ] Mildly convoluted architecture
+ * [ -0 ] Do not deduct for convoluted ways of creating a 32 byte key,
+          unless it's really bad. The best way is to use .nextBytes().
+          Instead write a note recommending use of nextBytes.
+ * [ -4 ] Static instance variables ruin otherwise functional code
+ * [ -0 ] Passes keys to StreamCipher that do not match their 
+          StreamCipher.KeySizeBytes
+ * [ -5 ] Significant loss of bits when re-keying
+ * [ -3 ] Message includes a nonce in encrypted text as a check for integrity (not to spec)
+ * [ -3 ] Message does (not) include nonce when nonceIncluded set to false (true)
+ * [ -6 ] Messages need to decrypted in the order they are encrypted.
+          This tends to happen if the student gets new bytes from a
+          PRGen on each call to encrypt.
+
+
+AuthDecryptor.java (10 points max)
+=====================================================================
+
+Basic Functionality
+ * [ -6 ] AuthDecryptor cannot correctly unseal data with the correct key and
+          nonce
+
+Error Handling (-2 per error below, cap point loss at -4)
+ * [ -2 ] AuthDecryptor fails to return null for messages with incorrect key
+ * [ -2 ] AuthDecryptor fails to return null for altered data
+ * [ -2 ] AuthDecryptor fails to return null for messages with incorrect nonce
+
+Implementation Issues
+ * [ -2 ] Static instance variables ruin otherwise functional code
+ * [ -2 ] Uses nonce from argument instead of message when nonceIncluded set
+        to True (autograder should catch this).
