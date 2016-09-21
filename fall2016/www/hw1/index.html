@@ -14,9 +14,15 @@
 
 <h3>Assignment 1 - Cryptography</h3>
 
-<h4>Due on Wed, Sep 28 at 6:00pm (<a href="#part1">part 1</a>) and Wed, Oct 5 at 6:00pm (<a href="#part2">part 2</a>) </h4>
+<h4>Due date:</h4>
+<ul>
+  <li><a href="#part1">Part I</a> -- <b>Wed, Sep 28 at 6:00pm</b></li>
+  <li><a href="#part2">Part II</a> -- <b>Wed, Oct 5 at 6:00pm</b></li>
+  <li><a href="#part3">Part III</a> -- <b>Mon, Oct 10 at 6:00pm</b></li>
+</ul>
+
 <p>
-This assignment has two parts that each account for half of the total grade. In this assignment you will build code to implement a secure facility for client-server communication across the Internet. You should work on this assignment by yourself and we strongly recommend that you get started early. Submit your code using <a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1">this link</a>.
+This assignment has threen parts that each account for one third of the total grade. In this assignment you will build code to implement a secure facility for client-server communication across the Internet. You should work on this assignment by yourself and we strongly recommend that you get started early.
 
 <h4 id="part1">Part I</h4>
 
@@ -164,7 +170,7 @@ tests is not enough.
 <b>Submitting your solution.</b> You should only submit 4 files: <tt>PRGen.java</tt>,
 <tt>StreamCipher.java</tt>, <tt>AuthEncryptor.java</tt>, and <tt>AuthDecryptor.java</tt>. <b>You may submit any number of times. Only your most recent submission
 will be graded.</b>
-Submit your code using <a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1">this link</a>.
+Submit your code using <a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1-1">this link</a>.
 
 
 <hr/>
@@ -353,14 +359,143 @@ can observe and modify the messages sent between the participants.
     <li>If your think that your solution to
       part 1 is flawed, you will want to correct these mistakes before testing
       your implementation of part 2.  Alternatively, you can use a precompiled version
-      of our sample solution for part 1, which you can get <a href="hw1.jar">here</a>.</li>
+      of our sample solution for part 1, which you can get <a href="hw1.jar">here</a> after the submission deadline for part 1.</li>
 </ul></p>
 
-<p><b>Submitting your solution.</b> You should only submit 4 files: <tt>RSAKeyPair.java</tt>,
+<p><b>Submitting your solution.</b> You should only submit 3 files: <tt>RSAKeyPair.java</tt>,
 <tt>RSAKey.java</tt>, and <tt>KeyExchange.java</tt>. Please cite any sources you used when developing your code. <b>You may submit any number of times. Only your most recent submission
     will be graded.</b>
-  Submit your code using <a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1">this link</a>.
+  Submit your code using <a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1-2">this link</a>.
 </p>
+
+<h4 id="part3">Part III</h4>
+
+In this assignment, you'll add functionality to the code you wrote for 
+Homeworks 1 and 2, to reach the goal of implementing a secure facility for 
+client-server communication across the Internet.
+<p>
+As before, we will give you some of the code you need, and we'll ask you to 
+provide certain functions missing from the code we provide.  You can 
+<a href="provided3.zip">download the code we are providing</a>.  Create a 
+fresh directory and unzip the downloaded code into it.   Then copy into that
+same directory all of the <tt>.java</tt> files from your solutions to Homeworks
+1 and 2.   As before, you must not use any crypto libraries; the only 
+primitives you may use are the ones we gave you, and ones you implemented 
+from scratch yourself. If you'd like to use our reference solutions for
+part 1 and 2, you may download them
+<a href="hw2.jar">
+here</a> after the submission deadline of part 2. Note that this library does not contain source code.
+<p>
+
+In this assignment you will implement a secure channel abstraction that
+can be used by two programs, a client and a server, to communicate across
+the network, with the confidentiality and integrity of messages guaranteed.
+We have given you a class <tt>InsecureChannel</tt> which implements
+a channel that works but is not secure: everything is sent in unprotected
+cleartext.   We have also given you stubbed-out code for a class
+<tt>SecureChannel</tt> that extends <tt>InsecureChannel</tt> and (once you
+have modified it) will protect security and confidentiality.
+<p>To facilitate the testing process, we have provided a few test files. The
+  first is Util432s.java, which provides a few methods used by the
+  other testing files (feel free to use these methods for debugging).
+  The second is ChannelTest.java, which provides a demonstration that the
+  InsecureChannel class works correctly. The third is SecureChannelTest,
+  which you can use to test your SecureChannel class (once implemented).
+  Note that this class does NOT test security properties, instead testing
+  only basic functionality. Note the commented out lines which give an
+  example of how
+  you can Util432s for debugging. The fourth is InsecureChannelDebug, which is
+  a special version of InsecureChannel which provides the ability to
+  echo channel transmissions to the screen. To use this class, simply
+  rename the file "InsecureChannel.java" and place it in the same
+  directory as SecureChannel.java. 
+<p>
+Although your solution will call on code that you wrote for Homeworks 1 and 2, 
+we will test your solution with <i>our own 
+implementation</i> of the Homework 1 and 2 functionality.  Your solution must 
+work correctly when we do this --- this shouldn't be a problem for you as
+long as you respect the API requirements of the previous assignments.
+<p>
+<b>IMPORTANT</b>: For this assignment, we will also <b>REQUIRE</b> a
+README file. In the file, you should describe your setup and your
+threat model: What are you doing? How would a user of the classes
+you've written use them? And what security properties (against what
+sort of adversary) should they expect to get if they use them
+correctly? This should be in addition to any documentation you would
+normally put in comments or a README.
+<p>
+We're not looking for <i>War and Peace</i> in this (i.e. it doesn't
+need to be very long). Rather, you should provide a clean and clear
+description of your security goals and how they are achieved in a few
+paragraphs at most.
+<p>
+<p><b>SecureChannel.</b> Your SecureChannel class should implement the following API:
+<pre>
+public class SecureChannel extends InsecureChannel {
+    public SecureChannel(InputStream inStr, OutputStream outStr, 
+       PRGen rand, boolean iAmServer,
+             RSAKey serverKey) throws IOException 
+    public void sendMessage(byte[] message) throws IOException
+    public byte[] receiveMessage() throws IOException
+}
+</pre>
+<p>The constructor will contain the vast majority of your code. Its role is to set
+up the secure channel such that the sendMessage and receiveMessage methods can
+do their jobs. These methods should provide authenticated encryption
+for the messages that pass over the channel, ensuring that messages arrive at the 
+receiving end in the same order that they were send on the sending end. 
+Furthermore, when the client
+is setting up its channel, it should also authenticate the server's identity, 
+and should take whatever steps are necessary to
+detect any man-in-the-middle. If
+one of the two parties (server or client) detects a potential security problem during
+channel construction, that party should close the channel by calling close(). You can assume the serverKey (public key) passed to the constructor of SecureChannel on the client side of the communication is verified externally in some way (for example via a trusted certificate).
+<p>The underlying InsecureChannel will normally deliver messages in the same order they were sent.
+But note that an adversary might try to reorder messages.  <tt>receiveMessage</tt> should return
+null if an invalid or out-of-order message shows up.
+<p><b>Assignment Tips and Tricks.</b> This list will definitely grow in response to Piazza questions.
+<ul>
+<li>Start by looking at ChannelTest.java, which will provide you with a better understanding of
+  how InsecureChannel (and SecureChannel) are intended to be used. In particular, two instances
+  of InsecureChannel will be created (one for the server->client channel and one
+  for the client->server channel), each of which connects up two data streams (one input
+  and one output data stream). Messages are sent through the channel using the sendMessage() method,
+  and whenever a message is sent via a channel, it stays there until a
+  corresponding receiveMessage() call is made. Luckily for you, you won't need to think
+  about InputStreams or OutputStreams at all. That is all taken of in InscureChannel.java
+  and in the main function of the ChannelTests. 
+</li>
+<li>If you're unfamiliar with InputStreams and OutputStreams, don't worry,
+you won't be dealing with them very closely. Same goes for Runnable classes and Threads. 
+</li>
+<li>Another thing you might try is copying InsecureChannelDebug over InsecureChannel and
+  running ChannelTest, which will let you see the raw traffic being sent over the channel.
+</li>
+<li>From there, look at SecureChannelTest.java to get a feeling for how the SecureChannel
+  instantiations differ.</li>
+<li>From here, you should design a threat model. Carefully consider everything that
+your adversary is trying to do that you'd like to prevent. 
+</li>
+<li>Once you feel comfortable with your threat model, consider what tools you
+have available from HW1 and HW2. Your design should be <b>modular</b>,
+where specific classes solve specific subtasks. Sketch everything out schematically and
+try to find ways to compromise the security of your design. Perhaps
+the best way to do this is to start your design early, sleep on it, and then come back
+later to analyze it from a perspective that has been freshened by sleep.
+</li>
+<li>Once you feel comfortable with your overall design, implement and test.
+</li>
+<li>For reference, our solution is a mere 87 lines of code. Unlike part 1 and 2,
+you should not run into any programming challenges while writing SecureChannel (though
+writing additional tests beyond ChannelTest might be tough). Your code should
+be very straightforward and easy to code up from your design.
+</li>
+<li>In SecureChannelTest, if a thread calls "readMessage" and 
+there is no message available, it will wait until a message becomes available. </li>
+</ul>
+<b>Submitting your solution</b>:  You should only submit <tt>SecureChannel.java</tt> using
+<a href="https://dropbox.cs.princeton.edu/COS432_F2016/HW1-3">
+this link</a>.
 
 <p><br/>
 <font size="1">Copyright 1998-2014, Edward W. Felten.</font> </p>
