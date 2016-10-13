@@ -1,0 +1,518 @@
+%%%%%%%%%%%%%%%%
+% Set options
+
+\newcommand{\settitle}{Assignment 2: Application Security}
+\newcommand{\course}{COS 432}
+\newcommand{\coursename}{Information Security}
+\newcommand{\distdate}{October 12, 2016}
+
+%%%%%%%%%%%%%%%%
+
+\documentclass[letterpaper,12pt]{report}
+\usepackage{fullpage}
+\usepackage[protrusion=true,expansion=auto]{microtype}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{mathptmx}
+\usepackage{textcomp}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{paralist}
+\usepackage{url}
+\usepackage[
+  breaklinks=true,colorlinks=true,linkcolor=black,%
+  citecolor=black,urlcolor=black,bookmarks=false,bookmarksopen=false,%
+  pdfauthor={\course},%
+  pdftitle={\settitle},%
+  pdftex]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\def\textsb#1{{\fontseries{sb}\selectfont #1}}
+\usepackage{mdframed}
+\setcounter{secnumdepth}{3}
+
+
+\newcommand{\problemsetdone}{\bigskip\hfill$\Box{}$}
+
+\newcommand{\htitle}
+{
+     \noindent\parbox{\textwidth}
+    {
+        \course\hfill \distdate\newline
+        \coursename\hfill 
+        \settitle \vspace*{-.5ex}\newline
+        \mbox{}\hrulefill\mbox{}
+    }
+    \vspace{8pt}
+    \begin{center}{\Large\bf{\settitle}}\end{center}
+}
+\newcommand{\handout}
+{
+    \thispagestyle{empty}
+    \markboth{}{}
+    \pagestyle{plain}
+    \htitle
+}
+
+\newcommand{\problemsetheader}
+{
+\setlength{\parindent}{0pt}
+
+\medskip
+
+This project is due on {\bf Friday, October 28 at 6 p.m.}. You will work in {\bf
+teams of two} and submit one project per team. Please find a partner as soon as
+possible. If you have trouble forming a team, post to Piazza's partner search forum.
+
+\medskip
+
+The code and other answers your group submits must be entirely your own work.
+You may consult with other students about the conceptualization of the project
+and the meaning of the questions, but you must not look at any part of someone
+else's solution or collaborate with anyone outside your group. You may consult
+published references, provided that you appropriately cite them (e.g., with
+program comments), as you would in an academic paper.
+
+\medskip
+
+Solutions must be submitted electronically by one of the group members. Details
+on the submission guideline are listed at the end of the document.
+
+\medskip
+
+\hrulefill
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\handout
+%\setlength{\parindent}{0pt}
+\problemsetheader
+
+\medskip
+%\emph{``History has taught us: never underestimate the amount of money, time, and effort someone will expend to thwart a security system.''}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-- Bruce Schneier 
+%\pagebreak
+
+\section*{Introduction}
+
+This project will introduce you to control-flow hijacking vulnerabilities in
+application software, including buffer overflows. We will provide a series of
+vulnerable programs and a virtual machine environment in which you will develop
+exploits.
+
+\begin{itemize}
+\item Be able to identify and avoid buffer overflow vulnerabilities in native code.
+\item Understand the severity of buffer overflows and the necessity of standard defenses.
+\item Gain familiarity with machine architecture and assembly language.
+\end{itemize}
+
+\subsection*{Read this First}
+
+{This project asks you to develop attacks and test them in a virtual machine you
+control.  Attempting the same kinds of attacks against others' systems without
+authorization is prohibited by law and university policies and may result in
+\emph{fines, expulsion, and jail time}.   \textbf{You must not attack anyone
+else's system without authorization!}  Per the course ethics policy, you are
+required to respect the privacy and  property rights of others at all times,
+\emph{or else you will fail the course.}  
+
+\section*{Setup}
+
+Buffer-overflow exploitation depends on specific details of the target system,
+so we are providing an Ubuntu VM in which you should develop and test your
+attacks.  We've also slightly tweaked the configuration to disable security
+features that would complicate your work.  We'll use this precise configuration
+to grade your submissions, so you must not use your own VM.
+
+\begin{enumerate}
+\item Download VirtualBox from \url{https://www.virtualbox.org/} and install it on your computer.  VirtualBox runs on Windows, Linux, and Mac OS.
+\item Get the VM file at
+\url{https://www.cs.princeton.edu/~sa8/cos432/AppSec.ova}.
+This file is 1.4~GB, so we recommend downloading it from campus.
+\item Launch VirtualBox and select File $\rhd$ Import Appliance to add the VM.
+\item Start the VM.  There is a user named \texttt{ubuntu} with password \texttt{ubuntu}.
+\item Download
+\url{https://www.cs.princeton.edu/courses/archive/fall16/cos432/hw2/targets.tar.gz} from inside
+the VM.  This file contains all of the programs you will exploit.
+\item Decompress \texttt{targets.tar.gz} with \texttt{tar xf targets.tar.gz}
+\item \texttt{cd targets}
+\item Each group's programs will be slightly different. Personalize the programs by running:\\
+\texttt{./setcookie \emph{netid} }\\
+{\bf Use the netid of the person who will be submitting your team's solution.}
+Make sure the netid is correct! If you are changing your cookie, make sure to \texttt{make clean} first and then recompile!
+\item \texttt{sudo make}\quad (The password you're prompted for is \texttt{ubuntu}.)
+
+
+\end{enumerate}
+
+%\pagebreak
+
+%\vspace{-16pt}
+
+\section*{Resources and Guidelines}
+
+\vspace{-3pt} \paragraph{No Attack Tools!} You must not use special-purpose
+tools meant for testing security or exploiting vulnerabilities.  You must
+complete the project using only general purpose tools, such as \texttt{gdb}.
+
+\vspace{-6pt} 
+\paragraph{Control Hijacking} 
+Before you begin this project, it is advised to read
+"Smashing the Stack for Fun and Profit" available at
+\url{https://www.cs.princeton.edu/courses/archive/fall16/cos432/hw2/stack_smashing.pdf}.  
+It was published 20 years ago, so don't expect all the low-level details to be
+completely compatible with modern systems. However, it is a classic
+paper on the topic of buffer overflows and a great read for
+understanding variances of these attacks.
+
+
+\vspace{-6pt}
+\paragraph{GDB}
+You will make extensive use of the GDB debugger. Useful commands 
+are ``\texttt{disassemble}'', ``\texttt{info reg}'', ``\texttt{x}'',
+and setting breakpoints. See the GDB help for details, and don't be afraid to
+experiment!  This quick reference may also be useful: \\
+\url{https://www.cs.princeton.edu/courses/archive/fall16/cos432/hw2/gdb-refcard.pdf}
+
+\vspace{-6pt} \paragraph{x86 Assembly} These are many good references for Intel
+assembly language, but note that this project targets the 32-bit x86 ISA.  The
+stack is organized differently in x86 and x86\_64. If you are reading any online
+documentation, ensure that it is based on the x86 architecture, not  x86\_64.
+Here is one reference to the syntax that we are using: \\
+\url{https://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html#s3}
+
+%\newpage
+
+
+\section*{Targets}
+\label{sec:targets}
+
+The provided programs for this project are simple, short C programs with
+(mostly) clear security vulnerabilities. We are going to refer to these
+vulnerable programs as "targets". We have provided source code and a Makefile
+that compiles all the targets. Your solutions must work against these targets
+as compiled and executed within the provided VM.
+
+
+
+\subsection*{target0: Overwriting a variable on the stack}
+\label{sec:target0}
+
+This program takes input from \texttt{stdin} and prints a message.  Your job is to provide input that makes it output: ``\texttt{Hi \emph{netid}! Your grade is A+.}''.  To accomplish this, your input will need to overwrite another variable stored on the stack.
+
+\smallskip
+
+Here's one approach you might take:
+\begin{enumerate}
+\item Examine \texttt{target0.c}.  Where is the buffer overflow?
+\item Start the debugger (\texttt{gdb target0}) and disassemble \_main: \texttt{(gdb) disas \_main}\\
+Identify the function calls and the arguments passed to them.
+\item Draw a picture of the stack.  How are \texttt{name[]} and \texttt{grade[]} stored relative to each other?
+\item How could a value read into \texttt{name[]} affect the value contained in \texttt{grade[]}?  Test your hypothesis by running \texttt{./target0} on the command line with different inputs.
+\end{enumerate}
+
+\textit{\underline{Solution}: 10 bytes are
+allocated in the stack for the local buffer name and the next 5 bytes are
+allocated for buffer grade. So, as input to target, we give the netid, fill with zero
+until we have 10 bytes and then put "A+" to overwrite the grade buffer. }
+
+\paragraph{What to submit}
+Create a Python program named \texttt{sol0.py} that prints a line to be passed as input to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{python sol0.py | ./target0}
+
+\medskip
+
+Hint: In Python, you can write strings containing non-printable ASCII characters by using the escape sequence ``\texttt{\textbackslash x\emph{nn}}'', where \emph{nn} is a 2-digit hex value.  To cause Python to repeat a character $n$ times, you can do: \texttt{print "X"*n}.
+
+\subsection*{target1: Overwriting the return address}
+\label{sec:target1}
+
+This program takes input from \texttt{stdin} and prints a message.  Your job is to provide input that makes it output: ``\texttt{Your grade is perfect.}''  Your input will need to overwrite the return address so that the function \texttt{vulnerable()} transfers control to \texttt{print\_good\_grade()} when it returns.
+
+\begin{enumerate}
+\item Examine \texttt{target1.c}.  Where is the buffer overflow?
+\item Disassemble \texttt{print\_good\_grade}.  What is its starting address? \\
+\textit{Extra Hints:} 
+\vspace{-11pt}
+\begin{enumerate}
+\item \textit{\texttt{gdb target1}}  
+\item \textit {\texttt{disas print\_good\_grade}} 
+\item \textit{Starting address: 0x08048efe}
+\end{enumerate}
+\item Set a breakpoint at the beginning of \texttt{vulnerable} and run the program.\\
+\texttt{(gdb) break vulnerable}\\
+\texttt{(gdb) run}
+\item Disassemble \texttt{vulnerable} and draw the stack.  Where is
+\texttt{input[]} stored relative to \texttt{\%ebp}?  How long an input would
+overwrite this value and the return address? \\
+\textit{Extra Hints:} 
+\vspace{-11pt}
+\begin{enumerate}
+\item \textit{\texttt{disas vulnerable}}  
+\item \textit {lea -0xc(\%ebp),\%eax instruction shows that input[] is stored 12 bytes
+away from the base pointer(or else frame pointer). Frame pointer points to the
+previous frame pointer (4 bytes). After the previous frame pointer the return
+address(4 bytes) is kept. So input should be 20 bytes long. } 
+\end {enumerate}
+\item Examine the \texttt{\%esp} and \texttt{\%ebp} registers: \texttt{(gdb)
+info reg} 
+\item What are the current values of the saved frame pointer and return address from the stack frame?  You can examine two words of memory at \texttt{\%ebp} using:
+\texttt{(gdb) x/2wx \$ebp}
+\item What should these values be in order to redirect control to the desired
+function? \\
+\textit{Extra Hint:} 
+\vspace{-11pt}
+\begin{enumerate}
+\item \textit{The return address should be equal to the starting address of
+print\_good\_grade (0x08048efe)}
+\end{enumerate}
+
+\end{enumerate}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{sol1.py} that prints a line to be passed as input to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{python sol1.py | ./target1}
+
+\medskip
+
+When debugging your program, it may be helpful to view a hex dump of the output.  Try this:
+\smallskip
+
+\quad\texttt{python sol1.py | hd}
+\medskip
+
+Remember that x86 is little endian.  Use Python's \texttt{struct} module to output little-endian values:
+\smallskip
+
+\quad\texttt{from struct import pack}
+
+\quad\texttt{print pack("<I", 0xDEADBEEF)}
+
+\subsection*{target2: Redirecting control to shellcode}
+\label{sec:target2}
+
+The remaining targets are owned by the \texttt{root} user and have the \texttt{suid} bit set.  Your goal is to cause them to launch a shell, which will therefore have root privileges.  This and later targets all take input as command-line arguments rather than from \texttt{stdin}.  Unless otherwise noted, you should use the shellcode we have provided in \texttt{shellcode.py}.  Successfully placing this shellcode in memory and setting the instruction pointer to the beginning of the shellcode (e.g., by returning or jumping to it) will open a shell.
+
+\begin{enumerate}
+\item Examine \texttt{target2.c}.  Where is the buffer overflow?
+\item Create a Python program named \texttt{sol2.py} that outputs the provided shellcode:\\
+\texttt{from shellcode import shellcode}\\
+\texttt{print shellcode}
+\item Set up the target in GDB using the output of your program as its argument:\\
+\texttt{gdb -{}-args ./target2 \$(python sol2.py)}
+\item Set a breakpoint in \texttt{vulnerable} and start the target.
+\item Disassemble \texttt{vulnerable}.  Where does \texttt{buf} begin relative
+to \texttt{\%ebp}?  What's the current value of \texttt{\%ebp}?  What will be
+the starting address of the shellcode?  \\
+\textit{Extra Hints:}
+\vspace{-11pt}
+\begin{enumerate}
+\item \textit{lea  -0x6c(\%ebp),\%eax instruction shows that buff begins 108 (0x6c) bytes away from the base pointer.}
+\item \textit{\texttt{info reg \$ebp} (current value of \$ebp is 0xbffe9988)}
+\item \textit{Starting address of the shellcode will be 0xbffe9988 - 0x6c}
+\end{enumerate}
+\item Identify the address after the call to \texttt{strcpy} and set a breakpoint there:\\
+\texttt{(gdb) break *addr}\\
+Continue the program until it reaches that breakpoint.\\
+\texttt{(gdb) cont} \\
+\textit{Extra Hint:}
+\vspace{-11pt}
+\begin{enumerate}
+\item \textit{In the disassembled vulnerable the instruction address after the function call is 0x08048efb}
+\end{enumerate}
+\item Examine the bytes of memory where you think the shellcode is to confirm your calculation:\\
+\texttt{(gdb) x/32bx 0x\emph{address}}
+\item Disassemble the shellcode:  \texttt{(gdb) disas/r 0x\emph{address},+32}\\
+  How does it work?
+\item Modify your solution to overwrite the return address and cause it to jump to the beginning of the shellcode. \\
+\textit{Extra Hint:}
+\vspace{-11pt}
+\begin{enumerate}
+\item \textit{The return address is stored at \$ebp+4. Need to replace it with the starting address of the shellcode, Start of shellcode and return address are 112 bytes apart. So, we need to fill (112-len(shellcode)) bytes with an arbitrary value.}
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{sol2.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./target2 \$(python sol2.py)}
+
+\medskip
+
+If you are successful, you will see a root shell prompt (\texttt{\#}).  Running \texttt{whoami} will output ``\texttt{root}''.
+
+\medskip
+
+If your program segfaults, you can examine the state at the time of the crash using GDB with the core dump: \texttt{gdb ./target2 core}.  The file \texttt{core} won't be created if a file with the same name already exists.  Also, since the target runs as root, you will need to run it using \texttt{sudo ./target2} in order for the core dump to be created.
+
+\subsection*{target3: Overwriting the return address indirectly }
+\label{sec:target3}
+
+In this target, the programmer is using a safer function (\texttt{strncpy}) to copy the input string to a buffer. Therefore, the buffer overflow exploit is restricted and cannot directly overwrite the return address.   However, this programmer has miscalculated the length of the buffer. Hopefully this will help you to find another way to gain contorl.  Your input should cause the provided shellcode to execute and open a root shell.
+\\
+%\vspace{11pt}                                                                                                                                                
+\smallskip
+
+\textit{\underline{Solution}:  Examine target3.c . strncpy copies sizeof(buf)+8 bytes, so we can overwrite pointer p and integer a. The goal is to overwrite the return address with the starting address of shellcode, same as in target2. Given the assignment *p=a , we just need to overwrite a with the starting address of the shellcode (\%ebp-0x810 found by examining the assembler code for vulnerable as in target2) and p with the address that the return address is stored at(\%ebp+4).}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{sol3.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./target3 \$(python sol3.py)}
+
+\subsection*{target4: Beyond strings}
+\label{sec:target4}
+
+This target takes as its command-line argument the name of a data file it will read.  The file format is a 32-bit count followed by that many 32-bit integers.  Create a data file that causes the provided shellcode to execute and opens a root shell.
+
+\smallskip
+
+\textit{\underline{Solution}: The 32-bit count will determine how much memory is allocated. With alloca() the newly allocated block is placed on top of stack by adjusting the stack pointer and the return value is a pointer to the beginning of the allocated space.  There no check for stack overflow (but a segmentation fault is caused when illegal memory space is accessed). So, we can allocate as much space as we want. By allocating space equal to the whole memory(count=0xFFFFFFFF), the start of the allocated memory will be the address of buf. Thus, we can overwrite all the local variables, the previous base pointer and then the return address.   \\
+The process of finding the address of buf is:
+}
+%\vspace{-11pt}
+\begin{enumerate}
+\item \textit{\texttt{python sol4.py > tmp; gdb --args ./target4 tmp}}
+\item \textit{\texttt{b read\_file}}
+\item \textit{\texttt{run}}
+\item \textit{Examine target4.c . Notice that the buf pointer is the last local variable that is defined, so at the current breakpoint the stack pointer should point to this variable}
+\item \textit{Do \texttt{info reg \$esp} to get the value of the stack pointer (0xbffe9950)}
+
+\end{enumerate}
+
+\paragraph{What to submit}
+Create a Python program named \texttt{sol4.py} that outputs the contents of a data file to be read by the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{python sol4.py > tmp; ./target4 tmp}
+
+\subsection*{target5: Bypassing DEP } 
+\label{sec:target5}
+
+This program resembles \texttt{target2}, but it has been compiled with data execution prevention (DEP) enabled.  DEP means that the processor will refuse to execute instructions stored on the stack.  You can overflow the stack and modify values like the return address, but you can't jump to any shellcode you inject.  You need to find another way to run the command \texttt{/bin/sh} and open a root shell.
+
+\smallskip
+
+\textit{\underline{Solution}: We need to overwrite the return address of the vulnerable function with the address of a system call. The input to the system call should be "/bin/sh" so as to open a root shell. The system call will take as argument the string that the top of the stack points at. Thus, we need to place "/bin/sh" somewhere in the stack and then put its address at the top of the stack. \\
+Specific steps:
+}
+%\vspace{-11pt}
+\begin{enumerate}
+\item \textit{\texttt{gdb -{}-args ./target5 \$(python sol5.py)}}
+\item \textit{\texttt{disas vulnerable}}
+\item \textit{lea  -0x12(\%ebp),\%eax instruction shows that buff begins 18 bytes away from the base pointer(\%ebp).}   
+\item \textit{So in order to reach the return address from the beginning of the buf we need to write with arbitrary value (18+4) bytes. The extra 4 overwrite the previous stack pointer. }
+\item \textit{We need to find now the system call address to overwrite the return address}
+\item \textit{\texttt{disas greetings}}
+\item \textit{The address of the system call is 0x08048eed}
+\item \textit{After overwriting the address of the system call we need to write to the stack the address of the string "/bin/sh" (top of the stack after returning) . We will place the string in address \%ebp+12. (4 bytes for the prev frame pointer, 4 for return address, 4 for its address)}
+\end{enumerate}
+
+
+
+\paragraph{What to submit}
+Create a Python program named \texttt{sol5.py} that prints a line to be used as the command-line argument to the target.  Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./target5 \$(python sol5.py)}
+
+\medskip
+
+For this target, it's acceptable if the program segfaults after the root shell is closed.
+
+\subsection*{target6: Variable stack position }
+\label{sec:target6}
+
+When we constructed the previous targets, we ensured that the stack would be in the same position every time the vulnerable function was called, but this is often not the case in real targets.  In fact, a defense called ASLR (address-space layout randomization) makes buffer overflows harder to exploit by changing the position of the stack and other memory areas on each execution.  This target resembles \texttt{target2}, but the stack position is randomly offset by 0x10--0x110 bytes each time it runs.  You need to construct an input that always opens a root shell despite this randomization.
+
+
+\smallskip
+
+\textit{\underline{Solution}: The high level idea is that we are not sure where the overflow buffer starts, and so in order to avoid a segmentation fault we will fill the overflow buffer with NOPs and put the shellcode somewhere in the middle. If the return address points anywhere in the string of NOPs then the NOPs will get executed until our shellcode is reached. \\ 
+Specific points:
+}
+%\vspace{-11pt}
+\begin{enumerate}
+\item \textit{We will debug the program once and find the address of the overflow buffer (buf) for this run (let's call it buf\_addr).}
+\item \textit{The address of the buf for every run will always be within the range [buf\_addr-0x100,buf\_addr+0x100].}
+\item \textit{The distance between the start of the buf and the \%ebp is always constant though}
+\item \textit{From the assembler code of vulnerable we look for instruction lea and find that buf is 0x408 bytes away from \%ebp and thus 0x40c from the return address.}
+\item \textit{The NOP instruction is one byte long and translates to 0x90 in machine code}
+\item \textit{Fill overflow buffer with NOPs and put the shellcode somewhere in the middle taking into account the offset range(0x100)}
+\end{enumerate}
+
+
+\paragraph{What to submit}
+Create a Python program named \texttt{sol6.py} that prints a line to be used as
+the command-line argument to the target. \textbf{Your solution must not cause the program to print out any error messages}. Test your program with the command line:
+
+\smallskip
+
+\quad\texttt{./target6 \$(python sol6.py)}
+
+
+\newpage
+
+\section*{Submission Checklist}
+
+Upload to this \href{https://dropbox.cs.princeton.edu/COS432_F2016/HW2}{link} the following files: 
+
+\begin{itemize}
+
+\item \texttt{partners.txt} \ \ [One netid on each line]
+
+\item \texttt{cookie} \ \ [Generated by \texttt{setcookie} based on your netid.]
+
+\item \texttt{sol0.py}
+
+\item \texttt{sol1.py}
+
+\item \texttt{sol2.py}
+
+\item \texttt{sol3.py}
+
+\item \texttt{sol4.py}
+
+\item \texttt{sol5.py}
+
+\item \texttt{sol6.py}
+
+\item \texttt{README}
+
+\end{itemize}
+
+
+\medskip
+
+The README file should include a small explanation of your approach for every target.
+
+
+\medskip
+Your files can make use of standard Python libraries and the provided
+\texttt{shellcode.py}, but they must be otherwise self-contained. Do not submit any additional files. Be sure to test that your solutions work correctly in the provided VM without installing any additional packages.
+
+
+\end{document}
+
+
+
+
+ 
