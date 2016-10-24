@@ -1,0 +1,42 @@
+\newpage
+\section{PRFs and PRGs}
+
+\prob{30} Answer the following questions about PRFs and PRGs.
+
+\begin{enumerate}
+    \item Let $f$ be a function that takes a secret key of length
+      $\kappa$ and a message and outputs a result 
+        with the same length $\kappa$. Show that if $\kappa$ is small
+        (\eg, $\kappa = 10$), $f$ is not a PRF. 
+
+%        (Idea: We can construct an efficient Mallory that distinguish it with a truly random function by doing
+%        brute force. The time complexity is simply $O(2^\kappa)$ --- approximately $1000$.)
+
+    \item Let $f$ be any secure PRF defined on secret keys of length $\kappa$ and any message length. 
+        How can a Mallory distinguish $f$ with a truly random function
+        if we allow a Mallory to run even exponential number of steps (also make
+        exponential number of queries to $f(\cdot)$)?
+
+%        (Idea: just simply check whether the given function $g = f_k$ for some $k$. It is important to notice
+%        the definition of secure PRF is actually based on computational hardness.)
+
+    \item Let $f$ be a secure PRF. Let $g$ be $g_k(x) = f_k(x)||f_k(f_k(x))$. Is $g$ a PRF? 
+    Show your result with an informal proof. 
+
+%        (Idea: $g_k(x) = f_k(x)||f_k(f_k(x))$ and $g_k(f_k(x)) = f_k(f_k(x))||f^3_k(x)$.)
+
+%    \item Assume $f$ is a secure PRF where $f$ takes a secret key of length $n$ and a message $x$, 
+%            the output is also of length $n$. 
+%        Let suppose, given a message $x$, $g_x$ outputs:
+%            \begin{equation*}
+%            f_{x}(0^{n^2}), f_{(x + 1)\bmod 2^n}(0^{n^2}), \cdots, f_{(x + i) \bmod 2^n}(0^{n^2}), \cdots
+%            \end{equation*}
+%        Is it a secure PRG? Prove your result. 
+
+%        (Idea: we can simply check $g_{0^n}$ and $g_{0^{n-1}1}$. The $i$-th position 
+%        in $g_{0^{n-1}1}$ will be the same
+%        with the $(i + n)$-th position in $g_{0^n}$. But for a truly random generator, the probability is 
+%        negligible.)
+
+\end{enumerate}
+\eprob

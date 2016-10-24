@@ -1,0 +1,77 @@
+\section{Domain Name System}
+
+\prob{8}  Consider the  DNS  topology  in the  figure  below
+{\bf each DNS  zone is indicated with  a dashed line}. There  is only
+one DNS server per each zone, and  it happens to have the same name as
+the  highest  node  in  that  zone:  Princeton.EDU,  CS.Princeton.EDU,
+Harvard.EDU, Yale.EDU, CS.Yale.EDU, and root-servers.net. 
+
+\begin{center}
+  \includegraphics[width=0.5\linewidth]{figures/dns-topology.png}
+\end{center}
+
+For  each of  the queries  below, list in order  all the  DNS servers
+queried  during the  name  resolution. Assume  there  is no  caching
+performed at any level of the hierarchy.
+
+(a)~A  user  on   {\bf
+  john.cs.harvard.edu} launches the query:
+
+\centerline{\tt dig einstein.physics.princeton.edu}
+\vspace{-5mm}
+~\ansbelow
+\vspace{1.25in}
+
+(b)~A user on {\bf einstein.physics.princeton.edu} launches the query:
+
+\centerline{\tt dig dan.cs.yale.edu}
+\vspace{-5mm}
+~\ansbelow
+\vspace{1.25in}
+
+
+\eprob
+
+\pagebreak
+
+\prob{12} Consider the partial output of the dig command given below:
+\begin{verbatim}
+; <<>> DiG 9.9.4-RedHat-9.9.4-18.el7_1.3 <<>> 
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47902
+
+;; ANSWER SECTION:
+harvard.edu.		1306	IN	MX	100 b-00171101.pphosted.com.
+harvard.edu.		1630	IN	MX	100 a-00171101.pphosted.com.
+
+;; AUTHORITY SECTION:
+harvard.edu.		172100	IN	NS	ext-1.harvard.edu.
+
+;; ADDITIONAL SECTION:
+a-00171101.pphosted.com.        1313    IN	A	67.231.148.27
+b-00171101.pphosted.com.        1797    IN	A	67.231.156.27
+ext-1.harvard.edu.            172756    IN	A	128.103.200.35
+
+;; Query time: 1 msec
+;; SERVER: 128.112.136.10#53(128.112.136.10)
+;; WHEN: Mon Mar 07 12:49:47 EST 2016
+;; MSG SIZE  rcvd: 224
+\end{verbatim}
+
+(a)~List the IP address(es) of the name server(s) of harvard.edu.
+~\ansbelow
+\vspace{1in}
+
+
+(b)~List the IP address(es) of the mail server(s) of harvard.edu.
+~\ansbelow
+\vspace{1in}
+
+
+(c)~For how  many seconds are the  entries for the address  records of
+the mail and name servers valid?
+~\ansbelow
+\vspace{1.15in}
+
+
+\eprob

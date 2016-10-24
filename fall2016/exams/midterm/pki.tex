@@ -1,0 +1,59 @@
+\newpage
+\section{Public Key Infrastructure}
+
+You've recently purchased a Mest smart webcam for your
+dorm room that decides to communicate with a cloud-hosted server at {\tt
+  mest.com}. The webcam also has a client certificate that is known
+to the {\tt mest.com} server. 
+
+Suppose that the webcam periodically takes a photograph, then encrypts
+and signs the photograph before uploading it to the Mest cloud server.
+
+\prob{30}
+In a rush to production, Mest ships the webcam with the list of
+the roughly 200 trusted root certificate authorities (CAs) that are in the
+Firefox browser.
+
+\begin{enumerate}
+\item Explain why shipping the webcam with a list of so many root
+  CAs might not be necessary in the case of a device like a webcam.
+\item One of the root CAs happens to be from an organization,
+  In-The-Clear Rootin' (ITCR), which happens to be controlled by a
+  foreign nation-state actor.  Can ITCR mount an attack on
+  confidentiality, integrity, or both?  If so, describe the attack. If
+  not, explain why not.
+\item Mest decides to revoke ITCR's root CA from all of its deployed
+  webcams with a signed, secure software update to the webcam's
+  firmware, which it sends to each camera over the Internet. IS the
+  software update itself vulnerable to an attack from ITCR? Why or why
+  not? 
+\end{enumerate}
+\eprob
+
+\newpage
+\prob{20} Your dorm room was robbed, but fortunately, you've caught the
+perpetrator on one of the photos from your Mest camera, and the camera
+uploaded the photo to {\tt mest.com}! \footnote{Suppose the
+photo also includes necessary metadata, like a timestamp.}.
+
+You log into the {\tt mest.com} the photo to the campus police.  
+
+Before going after the perpetrator, though, they want to make sure that your
+photo is authentic, and actually came from the camera in your dorm
+room. 
+
+\begin{enumerate}
+\item When you visit {\tt mest.com} on your browser, you notice that
+  {\tt mest.com} is using a self-signed 
+  certificate for its website. In the certificate, you notice that the
+  name of the organization is ``Mest, Inc.''. Can you be certain that
+  you're visiting the website of the organization that manufactured
+  your webcam?  Why or why not?
+\item Explain how the camera's {\em client certificate}---and
+  an associated protocol---could link the photo to the camera in your
+  dorm room. Be sure to list {\em everything that the certificate would
+    need to contain} to help the police verify that the photo came from
+  your camera.
+\end{enumerate}
+\eprob
+
