@@ -59,6 +59,7 @@ parties can always exchange messages securely? If so, explain why. If
 not, describe a possible attack. \eprob
 \vspace*{0.5in}
 
+%   \textit{Answer:} No. MITM attack is possible. With DH you don’t know who’s on the other end, could be Mallory
 
 \prob{20} Alice now wants to send encrypted messages to Bob using AES.
 The two parties do not share any secret key, so Alice first needs to 
@@ -69,7 +70,14 @@ sent $c_k = k^3$ mod $N$ to Bob.
 \begin {enumerate} 
 \item Can an eavesdropper who intercepts this message learn
 the AES key? Explain why or why not.  
-\item In a vulnerability exists, propose a way to fix the problem.
+
+%  \textit{Answer:}Since Bob's public exponent is very small and the AES key is only 128 bit long, $c_k$ will always be less than $N$ and hence the eavesdropper can easily recover $k$ by taking the cube root of $c_k$. 
+
+\item If a vulnerability exists, propose a way to fix the problem.
+
+%  \textit{Answer:} The best fix is to add padding and then do OAEP encoding. (Half points for padding only) 
+% Another possible fix could be to increase Bob's public exponent size and perhaps lower the size of $N$ (Requires changing the public key, thus not so practical : half points for this answer).\\
+
 \end{enumerate}
 \eprob
 \vspace*{1.5in}
