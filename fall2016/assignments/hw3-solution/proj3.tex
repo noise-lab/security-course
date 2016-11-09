@@ -4,8 +4,8 @@
 \newcommand{\settitle}{Project 3: Web Security Pitfalls}
 \newcommand{\course}{COS432/ELE432}
 \newcommand{\coursename}{Information Security}
-\newcommand{\duedate}{Friday, November 18}
-\newcommand{\checkpointduedate}{Friday, November 11}
+\newcommand{\duedate}{Wednesday, November 23}
+\newcommand{\checkpointduedate}{Friday, November 18}
 \newcommand{\duetime}{12:00pm}
 \newcommand{\distdate}{November 7, 2016}
 \newcommand{\semester}{Fall 2016}
@@ -67,7 +67,7 @@
 {
 \setlength{\parindent}{0pt}
 
-This project is split into two parts, with the first checkpoint due on {\bf \checkpointduedate} at {\bf \duetime} and the second checkpoint due on {\bf \duedate} at {\bf \duetime}. We strongly recommend that you get started {\bf early}. 
+This project is split into two parts, with the first checkpoint due on {\bf \checkpointduedate} at {\bf 11:59pm} and the second checkpoint due on {\bf \duedate} at {\bf \duetime}. We strongly recommend that you get started {\bf early}. 
 \medskip
 
 This is a group project; you SHOULD work in \textbf{teams of \numberingroup} and if you are in teams of two, you MUST submit one project per team.  Please find a partner as soon as possible.  If have trouble forming a team, post to Piazza's partner search forum.
@@ -341,7 +341,7 @@ Your next task is to demonstrate CSRF vulnerabilities against the login form, an
 
 \subsubsection{Token validation}
 \label{sec:csrf_tok}
-For this target, the server uses token validation mechanism. The server sets a cookie named \texttt{csrf\_token} to a random 16-byte value and also include this value as a hidden field in the login form.  When the form is submitted, the server verifies that the client's cookie matches the value in the form.  You are allowed to exploit the XSS vulnerability to accomplish your goal.\\
+For this target, the server uses token validation mechanism. The server sets a cookie named \texttt{csrf\_token} to a random 16-byte value and also include this value as a hidden field in the login form.  When the form is submitted, the server verifies that the client's cookie matches the value in the form.  You are allowed to exploit the XSS vulnerability to accomplish your goal (You may refer to ``Framework Code'' on the last page).\\
 Note: Your solution MUST NOT make infinite POST requests.\\
 
 {Target: \url{\bungledomain/?csrfdefense=1\&xssdefense=0}}\\

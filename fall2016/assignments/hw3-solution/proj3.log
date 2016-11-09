@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  7 NOV 2016 16:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  8 NOV 2016 21:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -906,28 +906,28 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 164--183
+Underfull \hbox (badness 10000) in paragraph at lines 164--181
 
  []
 
 
-Overfull \hbox (5.6027pt too wide) in paragraph at lines 189--193
+Overfull \hbox (5.6027pt too wide) in paragraph at lines 187--191
 [][]$\T1/lmtt/m/n/12 https : / / www . owasp . org / index . php / Cross-[]Site
  _ Request _ Forgery _ (CSRF ) _Prevention _
  []
 
 
-Overfull \hbox (30.42023pt too wide) in paragraph at lines 189--193
+Overfull \hbox (30.42023pt too wide) in paragraph at lines 187--191
 [][]$\T1/lmtt/m/n/12 https : / / www . owasp . org / index . php / XSS _ (Cross
  _ Site _ Scripting ) _Prevention _ Cheat _ Sheet$[][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--193
+Underfull \hbox (badness 10000) in paragraph at lines 187--191
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 201.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 199.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -937,95 +937,95 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 205.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 203.
  [3] [4]
-Overfull \hbox (28.66017pt too wide) in paragraph at lines 275--275
+Overfull \hbox (28.66017pt too wide) in paragraph at lines 273--273
 []    \T1/lmtt/m/n/10.95 $sql_s = "SELECT * FROM users WHERE username='$usernam
 e' and password='$password'";[] 
  []
 
 
-Overfull \hbox (28.66017pt too wide) in paragraph at lines 296--296
+Overfull \hbox (28.66017pt too wide) in paragraph at lines 294--294
 []    \T1/lmtt/m/n/10.95 $sql_s = "SELECT * FROM users WHERE username='$usernam
 e' and password='$password'";[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--301
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 
  []
 
 [5]
-Overfull \hbox (28.66017pt too wide) in paragraph at lines 317--317
+Overfull \hbox (28.66017pt too wide) in paragraph at lines 315--315
 []    \T1/lmtt/m/n/10.95 $sql_s = "SELECT * FROM users WHERE username='$usernam
 e' and passwordhash='$hash'";[] 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 340--341
+Underfull \hbox (badness 10000) in paragraph at lines 338--339
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--348
+Underfull \hbox (badness 10000) in paragraph at lines 344--346
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 349--350
+Underfull \hbox (badness 10000) in paragraph at lines 347--348
 
  []
 
 [7]
-Overfull \hbox (10.3949pt too wide) in paragraph at lines 399--402
+Overfull \hbox (10.3949pt too wide) in paragraph at lines 397--400
 \T1/lmtt/m/n/12 http://127.0.0.1:31337/stolen?event=login&user=<username>&pass=
 <password> 
  []
 
 
-Overfull \hbox (10.3949pt too wide) in paragraph at lines 405--408
+Overfull \hbox (10.3949pt too wide) in paragraph at lines 403--406
 \T1/lmtt/m/n/12 http://127.0.0.1:31337/stolen?event=nav&user=<username>&url=<en
 coded_url> 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 417--419
+Underfull \hbox (badness 10000) in paragraph at lines 415--417
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--433
+Underfull \hbox (badness 10000) in paragraph at lines 430--431
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--452
+Underfull \hbox (badness 10000) in paragraph at lines 449--450
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 472--473
+Underfull \hbox (badness 10000) in paragraph at lines 470--471
 
  []
 
 [10]
-Overfull \hbox (28.0853pt too wide) in paragraph at lines 541--541
+Overfull \hbox (28.0853pt too wide) in paragraph at lines 539--539
 []\T1/lmtt/m/n/10.95 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2
 .0.3/jquery.min.js"></script>[] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 543.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 541.
 [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 543.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 541.
  (./proj3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 543.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 543.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 543.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 541.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 541.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 541.
  ) 
 Here is how much of TeX's memory you used:
  16580 strings out of 493089
  288262 string characters out of 6134842
- 395153 words of memory out of 5000000
+ 395162 words of memory out of 5000000
  19717 multiletter control sequences out of 15000+600000
  49569 words of font info for 146 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1040,10 +1040,10 @@ m/lmtt12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmtti10.
 pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/
 local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on proj3.pdf (11 pages, 192253 bytes).
+Output written on proj3.pdf (11 pages, 192392 bytes).
 PDF statistics:
- 208 PDF objects out of 1000 (max. 8388607)
- 184 compressed objects within 2 object streams
+ 207 PDF objects out of 1000 (max. 8388607)
+ 183 compressed objects within 2 object streams
  52 named destinations out of 1000 (max. 500000)
  26113 words of extra memory for PDF output out of 29859 (max. 10000000)
 
