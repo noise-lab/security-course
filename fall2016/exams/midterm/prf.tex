@@ -9,34 +9,35 @@
         with the same length $\kappa$. Show that if $\kappa$ is small
         (\eg, $\kappa = 10$), $f$ is not a PRF. 
 
-%        (Idea: We can construct an efficient Mallory that distinguish it with a truly random function by doing
-%        brute force. The time complexity is simply $O(2^\kappa)$ --- approximately $1000$.)
+	\sols{  
+	\textit{Answer}: : We can construct an efficient Mallory that distinguish it from a truly random function by doing
+        brute force.  By given an oracle $h(\cdot)$, we can simply get all the outputs of this function $h$. If this function 
+        matches $f_k$ for some key $k$, then we guess  $f$ is a pseudo random function. Otherwise it is a truly random function. 
+        We will have an overwhelming probability to succeed (which is greater than $3/4$, but you are not required to analyze it). 
+        The time complexity is simply $O(2^\kappa)$ --- approximately $1000$.
+	}
 
     \item Let $f$ be any secure PRF defined on secret keys of length $\kappa$ and any message length. 
         How can a Mallory distinguish $f$ with a truly random function
         if we allow a Mallory to run even exponential number of steps (also make
         exponential number of queries to $f(\cdot)$)?
 
-%        (Idea: just simply check whether the given function $g = f_k$ for some $k$. It is important to notice
-%        the definition of secure PRF is actually based on computational hardness.)
+	\sols{
+	\textit{Answer}: We use the similar way to distinguish a pseudo random function from a truly random function. 
+        By given an oracle $h(\cdot)$, we can simply get all the outputs of this function $h$. If this function 
+        matches $f_k$ for some key $k$, then we guess  $f$ is a pseudo random function. Otherwise it is a truly random function. 
+        The observation  is that \# of possible pseudo random functions is $\Theta(2^\kappa)$ (the key length is $\kappa$) but 
+        	\# of possible truly random functions is $\Theta(2^{2^{\kappa}})$. Since exponential running time is allowed, we find a 
+	mallory to distinguish them.
+	}
 
     \item Let $f$ be a secure PRF. Let $g$ be $g_k(x) = f_k(x)||f_k(f_k(x))$. Is $g$ a PRF? 
     Show your result with an informal proof. 
 
-%        (Idea: $g_k(x) = f_k(x)||f_k(f_k(x))$ and $g_k(f_k(x)) = f_k(f_k(x))||f^3_k(x)$.)
-
-%    \item Assume $f$ is a secure PRF where $f$ takes a secret key of length $n$ and a message $x$, 
-%            the output is also of length $n$. 
-%        Let suppose, given a message $x$, $g_x$ outputs:
-%            \begin{equation*}
-%            f_{x}(0^{n^2}), f_{(x + 1)\bmod 2^n}(0^{n^2}), \cdots, f_{(x + i) \bmod 2^n}(0^{n^2}), \cdots
-%            \end{equation*}
-%        Is it a secure PRG? Prove your result. 
-
-%        (Idea: we can simply check $g_{0^n}$ and $g_{0^{n-1}1}$. The $i$-th position 
-%        in $g_{0^{n-1}1}$ will be the same
-%        with the $(i + n)$-th position in $g_{0^n}$. But for a truly random generator, the probability is 
-%        negligible.)
+	\sols{
+	\textit{Answer}: : $g_k(x) = f_k(x)||f_k(f_k(x)) = L || R$ and $g_k(L) = g_k(f_k(x)) = f_k(f_k(x))||f^3_k(x) = L' || R'$. We find that $L' = R$. But for a truly 
+        	random function, it holds with negligible probability.
+	}
 
 \end{enumerate}
 \eprob
