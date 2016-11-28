@@ -48,26 +48,39 @@ Provide concise answers to the following questions.
 \newcommand{\fileportscan}{\ref*{sec:cp1.1}.\ref*{itm:portscan}.txt}
 
 \begin{enumerate}
-  \item \hypertarget{cp1macip}{Multiple hosts sitting at the local network are sending packets.
-	What are their MAC and IP addresses? (\arabic{pts-hosts} points)} \label{itm:macip}
+  \item \hypertarget{cp1macip}{Identify all the hosts on the local network. (\arabic{pts-hosts} points)} \label{itm:macip}
 
-  \item \hypertarget{cp1ftp}{The trace shows that at least one of the clients makes HTTPS connections to sites other than Facebook.
-	Pick one of these connections and answer the following questions.
-	Your answers should include references by number to corresponding Wireshark frames. (\arabic{pts-ftp} points)} \label{itm:ftp}
-	
-    \begin{enumerate}[label=(\alph*),nosep]
-      \item What is the domain name of the site the client is connecting to?
-      \item Is there any way the HTTPS server can protect against the leak of information in (a),
-			namely the domain name of the site the client was connecting to?
-			\item During the TLS handshake, the client provides a list of supported cipher suites.
-			List the cipher suites and name the crypto algorithms used for each.
-			\item Based on what you have been taught and any other information you can find,
-			are any of these cipher suites worrisome from a security or privacy perspective? Why?
-			\item What cipher suite does the server choose for the connection?
+    \begin{enumerate}[label=\alph*),nosep]
+      \item What are their IP addresses?
+      \item What are their MAC addresses? Assume that each IP address is mapped to one MAC address.
     \end{enumerate}
+
+    \textbf{What to submit:} Submit
+      a) \texttt{\hyperlink{ipformat}{\fileip}} that contains the IP addresses and\\
+      b) \texttt{\hyperlink{macformat}{\filemac}} that contains the MAC addresses.
+      Write one address per line.
+
+  \item \hypertarget{cp1tcp}{How many unique TCP conversations, also known as TCP sessions, are there? (\arabic{pts-tcp} points)} \label{itm:tcp}
+
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{tcpformat}{\filetcp}} that contains the number of unique TCP conversations.
+      Write the number only.
+
+  \item \hypertarget{cp1gw}{What is the IP address of the gateway? (\arabic{pts-gw} points)} \label{itm:gw}
+
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{gwformat}{\filegw}} that contains the IP address of the gateway.
+  \item \hypertarget{cp1ftp}{Retrieve and submit the content of the files downloaded from the FTP servers. (\arabic{pts-ftp} points)} \label{itm:ftp}
+
+    \textbf{What to submit:} Submit
+      a) \texttt{\hyperlink{activeformat}{\fileactive}} that contains the content of the file downloaded from the \textit{active} FTP server
+      and b) \texttt{\hyperlink{passiveformat}{\filepassive}} that contains the content of the file downloaded from the \textit{passive} FTP server.
 
   \item \hypertarget{cp1portscan}{One of the hosts performed port scanning, a technique used to find network hosts that have services listening on one or more target ports.\\
   What is the IP address of the port scanner? (\arabic{pts-portscan} points)} \label{itm:portscan}
+
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{portscanformat}{\fileportscan}} that contains the IP address of the port scanner.
 
 \end{enumerate}
 
@@ -95,37 +108,46 @@ Provide concise answers to the following questions.
 \begin{enumerate}
   \item \hypertarget{cp1year}{In what year was this traffic captured? (\arabic{pts-year} points)} \label{itm:year}
 
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{yearformat}{\fileyear}} that contains the year. Write the number only.
+
   \item \hypertarget{cp1domain}{What is the hostname (or Fully Qualified Domain Name) of the server that the client connected to? (\arabic{pts-domain} points)} \label{itm:domain}
+
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{domainformat}{\filedomain}} that contains the hostname of the website.
 
   \item \hypertarget{cp1cslist}{During TLS handshakes, the client(s) provided a list of supported cipher suites.\\
   List the supported cipher suites from one of the clients. (\arabic{pts-cslist} points)} \label{itm:cslist}
 
-    %\textbf{What to submit:} Submit
-      %\texttt{\hyperlink{cslistformat}{\filecslist}} that contains the list of the supported cipher suites.
-      %Write one cipher suite per line.
-      %The name and hex Cipher ID of each cipher suite MUST be as shown in Wireshark.
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{cslistformat}{\filecslist}} that contains the list of the supported cipher suites.
+      Write one cipher suite per line.
+      The name and hex Cipher ID of each cipher suite MUST be as shown in Wireshark.
 
   \item \hypertarget{cp1servercs}{Which cipher suite did the server choose for the connection? (\arabic{pts-servercs} points)} \label{itm:servercs}
 
-    %\textbf{What to submit:} Submit
-      %\texttt{\hyperlink{servercsformat}{\fileservercs}} that contains the cipher suite chosen by the server.
-      %The name and hex Cipher ID of the cipher suite MUST be as shown in Wireshark.
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{servercsformat}{\fileservercs}} that contains the cipher suite chosen by the server.
+      The name and hex Cipher ID of the cipher suite MUST be as shown in Wireshark.
 
   \item \hypertarget{cp1name}{A user of the client searched a person's name on the website.\\
   What is the first name of this person? (\arabic{pts-name} points)} \label{itm:name}
 
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{nameformat}{\filename}} that contains only the first name of the person searched on the website.
+
   \item \hypertarget{cp1msg}{The user sent a message to the person found in the previous question.\\
   What is the \textit{body} of the message? (\arabic{pts-msg} points)} \label{itm:msg}
 
-    %\textbf{What to submit:} Submit
-      %\texttt{\hyperlink{msgformat}{\filemsg}} that contains the \textit{body} of the message.
-      %The message should be 112 characters long, including whitespaces.
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{msgformat}{\filemsg}} that contains the \textit{body} of the message.
+      The message should be 112 characters long, including whitespaces.
 
   \item \hypertarget{cp1cookie}{Export and submit the user's cookie used in sending the message. (\arabic{pts-cookie} points)} \label{itm:cookie}
 
-    %\textbf{What to submit:} Submit
-      %\texttt{\hyperlink{cookieformat}{\filecookie}} that contains the user's cookie.
-      %Your answer should include only the content, not the ``Cookie: '' prefix.
+    \textbf{What to submit:} Submit
+      \texttt{\hyperlink{cookieformat}{\filecookie}} that contains the user's cookie.
+      Your answer should include only the content, not the ``Cookie: '' prefix.
 
 \end{enumerate}
 

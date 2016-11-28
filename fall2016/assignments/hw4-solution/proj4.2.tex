@@ -12,180 +12,180 @@
     \value{pts-wep}+\value{pts-wifiip}+\value{pts-protocol}+\value{pts-cred}+\value{pts-secret}+\value{pts-jailtime}
 }
 \newcounter{pts-cp2.2} \setcounter{pts-cp2.2}{40}
-\setcounter{pts-cp2}{\value{pts-cp2.1}+\value{pts-cp2.2}}
+\setcounter{pts-cp2}{\value{pts-cp2.1}}%+\value{pts-cp2.2}}
 
 \section{Checkpoint 2 (\arabic{pts-cp2} points)}
 \label{sec:cp2}
-
-\subsection{Network Attacks (\arabic{pts-cp2.1} points)}
-\label{sec:cp2.1}
-\newcommand{\filewep}{\ref*{sec:cp2.1}.\ref*{itm:wep}.txt}
-\newcommand{\filewifiip}{\ref*{sec:cp2.1}.\ref*{itm:wifiip}.txt}
-\newcommand{\fileprotocol}{\ref*{sec:cp2.1}.\ref*{itm:protocol}.txt}
-\newcommand{\filecred}{\ref*{sec:cp2.1}.\ref*{itm:cred}.txt}
-\newcommand{\filesecret}{\ref*{sec:cp2.1}.\ref*{itm:secret}.txt}
-\newcommand{\filejailtime}{\ref*{sec:cp2.1}.\ref*{itm:jailtime}.txt}
-
-In this part of the project, you will experiment with network attacks by:
-
-\begin{itemize}[nosep]
-  \item cracking password for a WiFi network protected with WEP (Wired Equivalent Privacy),\\a security protocol designed for WiFi networks
-  \item decrypting HTTPS connections
-  \item recovering a simulated victim's credentials
-\end{itemize}
-
-\medskip
-
-At Siebel Center Room 1129 (CS460/ECE419 Lab), you will find a WEP-encrypted WiFi network named \texttt{cs461sp16}.
-We've created this network specifically for you to attack, and you have permission to do so.
-There is also one or more clients wirelessly connected to this network that makes connections to a HTTPS server, also wirelessly connected, every few seconds.
-
-\medskip
-
-Your goal is to find the credentials (username and password) used to log in to the website and retrieve a secret message.
-
-\medskip
-
-You SHOULD use suggested tools to complete the tasks.
-If you need to use anything else, you MUST ask a TA for permission.
-
-\medskip
-
-If you run into issues due to having incompatible wireless adapter, you MAY rent a USB wireless adapter during TA's office hours.
-Rent period is 24 hours.
-If returning early or during weekends, please arrange a meeting with a TA by sending an email to \staffemail.
-
-\hypertarget{cp2setup}{\subsubsection*{Setup}}
-\begin{itemize}
-  \item \textbf{For Macbook (OS X) Users}\\
-  We \textbf{STRONGLY recommend} you to find a partner who has a non-Apple laptop, as you will definitely run into issues with getting the built-in wireless card work with the Aircrack-ng Suite.
-  If you choose to use OS X to do this assignment, you have following two options, which may or may not work:
-  \begin{itemize}[nosep]
-    \item Use the built-in AirPort Utility on OS X
-      \begin{itemize}[nosep]
-        \item You can use AirPort Utility, in place of Airmon-ng and Airodump-ng (tools included in the Aircrack-ng Suite), to capture packets in monitor mode.
-        \item Limitation: AirPort Utility does not let you specify the wireless network you are interested in capturing. You may have to wait for hours, or even days depending on the volume of wireless traffic in the area, to capture enough packets to successfully crack the network key.
-      \end{itemize}
-    \item Use Kali Linux Live and USB wireless adapter
-      \begin{itemize}[nosep]
-        \item As it is difficult to find stable wireless card drivers for Linux running on Apple devices, you will have to use a USB wireless adapter that is compatible with the Aircrack-ng Suite.
-        \item Limitation: We have a very limited number of USB wireless adapters available for rent.
-      \end{itemize}
-  \end{itemize}
-
-\pagebreak
-
-  \item \textbf{For Others, Use Kali Linux Live (on your own machine only)}\\
-  We \textbf{STRONGLY recommend} using Kali Linux Live booted from a USB drive.
-  Kali Linux (\url{https://www.kali.org}) is a Linux distribution designed for penetration testing.
-  It is pre-installed with a lot of penetration-testing programs, including Wireshark, Aircrack-ng Suite, and nmap.
-  \begin{itemize}[nosep]
-    \item Use the most recent 32 bit version of Kali Linux:\\
-    \url{http://cdimage.kali.org/kali-2016.1/kali-linux-2016.1-i386.iso}
-    \item To create a Kali Live USB drive, follow this tutorial:\\
-    \url{http://docs.kali.org/downloading/kali-linux-live-usb-install}
-    \item To preserve data on the Kali Live USB drive, follow this tutorial:\\
-    \url{http://docs.kali.org/downloading/kali-linux-live-usb-persistence}
-  \end{itemize}
-  \textbf{Warning}: DO NOT use this drive on school computers, such as EWS or any other lab machines.
-
-  \item \textbf{Do Not Use VMs}\\
-  We \textbf{DO NOT recommend} using virtual machines.
-  Your built-in wireless card will not work with Aircrack-ng in virtual machines.
-  If you choose this option, we cannot help you with troubleshooting.
-
-\end{itemize}
-
-\pagebreak
-
-\subsubsection*{WEP cracking}
-First, you will need to crack the WEP encryption key for the network using Aircrack-ng Suite (\url{http://www.aircrack-ng.org}).
-
-\smallskip
-
-Aircrack-ng website provides many helpful tutorials (e.g. \url{http://www.aircrack-ng.org/doku.php?id=simple\_wep\_crack}).
-You SHOULD go through the tutorials to understand the purpose of each tool and learn how to use them.\\
-As you will learn from the tutorial, WEP cracking process usually involves performing attacks to generate traffic so that data can be collected faster.
-For this project, you MUST NOT use those attacks as they will disrupt the network.\\
-We've made sure that there's sufficient traffic generated on the network to allow successful WEP cracking within a reasonable amount of time (< 1 hour).
-If the process is taking too long, please notify a TA.
-
-\textbf{Note:} You SHOULD save the network trace from this part for later use.
-
-\begin{enumerate}
-  \item \hypertarget{cp2wep}{What is the WEP key for the network? (\arabic{pts-wep} points)} \label{itm:wep}
-
-    \textbf{What to submit:} Submit
-      \texttt{\hyperlink{wepformat}{\filewep}} that contains the WEP key in \textit{ASCII characters}.
-\end{enumerate}
-
-\subsubsection*{Network analysis}
-Once you've cracked the WEP key, examine the network trace from the previous part using Wireshark.
-You will first need to decrypt the 802.11 (wireless) traffic.
-Wireshark can do this if you provide the correct WEP encryption key.\\
-You may also join the network to gather more information.
-In addition to examining the network traffic, consider using nmap (\url{https://nmap.org}), a powerful tool for probing remote hosts.
-Determine the IP addresses of the client(s) and server and any services (below port 4096) running on these machines.
-
-\textbf{Note:} Other students (and yourself) on the network are not considered as clients.
-
-\begin{enumerate}[resume]
-  \item \hypertarget{cp2wifiip}{What are the IP addresses of the server and client(s) on the network? (\arabic{pts-wifiip} points)} \label{itm:wifiip}
-
-    \textbf{What to submit:} Submit
-      \texttt{\hyperlink{wifiipformat}{\filewifiip}} that contains the IP addresses.
-      Write one address per line.
-
-  \item \hypertarget{cp2protocol}{What services does the server provide? (\arabic{pts-protocol} points)} \label{itm:protocol}
-
-    \textbf{What to submit:} Submit
-      \texttt{\hyperlink{protocolformat}{\fileprotocol}} that contains application layer protocols (in standard acronyms) used by the services.
-      Write one protocol per line.
-
-\end{enumerate}
-
-\pagebreak
-
-\subsubsection*{Attacks}
-In order to discover the client's username and password, you will need to decrypt the HTTPS traffic.
-Wireshark can do this for TLS connections that do not use forward secrecy, if you provide the server's private key.
-Username and password will expire after 1 hour from when the packet was generated.
-You may also want read up on the HTTP Basic Authentication method, which is specified in RFC~2617.
-
-\textbf{Note:} We strongly recommend using 32 bit version of Wireshark for this part. Bugs within 64 bit version may prevent you from completing the task.
-
-\begin{enumerate}[resume]
-  \item \hypertarget{cp2cred}{What are the username and password that the client used to log in to the website?\\
-  You may find multiple pairs; pick any one of them. (\arabic{pts-cred} points)} \label{itm:cred}
-
-    \textbf{What to submit:} Submit
-      \texttt{\hyperlink{credformat}{\filecred}} that contains the username in first line and password in second.
-      You MUST submit only one pair.
-
-  \item \hypertarget{cp2secret}{What is the secret message displayed on the webpage after login?\\
-  Each login attempt generates a different secret message; pick any one of them. (\arabic{pts-secret} points)} \label{itm:secret}
-
-    \textbf{What to submit:} Submit
-      \texttt{\hyperlink{secretformat}{\filesecret}} that contains the secret message.
-      When obtaining the message, you MUST use the same credentials you submit for the previous question.
-      You MUST submit only one.
-
-  \item \hypertarget{cp2jailtime}{What is the maximum number of years in jail that you could face under 18~USC~\S~2511 for intercepting traffic on an encrypted WiFi network without permission? (\arabic{pts-jailtime} points)} \label{itm:jailtime}
-
-    \textbf{What to submit:} Submit
-      \texttt{\hyperlink{jailtimeformat}{\filejailtime}} that contains the maximum number of years in jail.
-      Write the number only.
-
-\end{enumerate}
-
-\newpage
+%
+%\subsection{Network Attacks (\arabic{pts-cp2.1} points)}
+%\label{sec:cp2.1}
+%\newcommand{\filewep}{\ref*{sec:cp2.1}.\ref*{itm:wep}.txt}
+%\newcommand{\filewifiip}{\ref*{sec:cp2.1}.\ref*{itm:wifiip}.txt}
+%\newcommand{\fileprotocol}{\ref*{sec:cp2.1}.\ref*{itm:protocol}.txt}
+%\newcommand{\filecred}{\ref*{sec:cp2.1}.\ref*{itm:cred}.txt}
+%\newcommand{\filesecret}{\ref*{sec:cp2.1}.\ref*{itm:secret}.txt}
+%\newcommand{\filejailtime}{\ref*{sec:cp2.1}.\ref*{itm:jailtime}.txt}
+%
+%In this part of the project, you will experiment with network attacks by:
+%
+%\begin{itemize}[nosep]
+  %\item cracking password for a WiFi network protected with WEP (Wired Equivalent Privacy),\\a security protocol designed for WiFi networks
+  %\item decrypting HTTPS connections
+  %\item recovering a simulated victim's credentials
+%\end{itemize}
+%
+%\medskip
+%
+%At Siebel Center Room 1129 (CS460/ECE419 Lab), you will find a WEP-encrypted WiFi network named \texttt{cs461sp16}.
+%We've created this network specifically for you to attack, and you have permission to do so.
+%There is also one or more clients wirelessly connected to this network that makes connections to a HTTPS server, also wirelessly connected, every few seconds.
+%
+%\medskip
+%
+%Your goal is to find the credentials (username and password) used to log in to the website and retrieve a secret message.
+%
+%\medskip
+%
+%You SHOULD use suggested tools to complete the tasks.
+%If you need to use anything else, you MUST ask a TA for permission.
+%
+%\medskip
+%
+%If you run into issues due to having incompatible wireless adapter, you MAY rent a USB wireless adapter during TA's office hours.
+%Rent period is 24 hours.
+%If returning early or during weekends, please arrange a meeting with a TA by sending an email to \staffemail.
+%
+%\hypertarget{cp2setup}{\subsubsection*{Setup}}
+%\begin{itemize}
+  %\item \textbf{For Macbook (OS X) Users}\\
+  %We \textbf{STRONGLY recommend} you to find a partner who has a non-Apple laptop, as you will definitely run into issues with getting the built-in wireless card work with the Aircrack-ng Suite.
+  %If you choose to use OS X to do this assignment, you have following two options, which may or may not work:
+  %\begin{itemize}[nosep]
+    %\item Use the built-in AirPort Utility on OS X
+      %\begin{itemize}[nosep]
+        %\item You can use AirPort Utility, in place of Airmon-ng and Airodump-ng (tools included in the Aircrack-ng Suite), to capture packets in monitor mode.
+        %\item Limitation: AirPort Utility does not let you specify the wireless network you are interested in capturing. You may have to wait for hours, or even days depending on the volume of wireless traffic in the area, to capture enough packets to successfully crack the network key.
+      %\end{itemize}
+    %\item Use Kali Linux Live and USB wireless adapter
+      %\begin{itemize}[nosep]
+        %\item As it is difficult to find stable wireless card drivers for Linux running on Apple devices, you will have to use a USB wireless adapter that is compatible with the Aircrack-ng Suite.
+        %\item Limitation: We have a very limited number of USB wireless adapters available for rent.
+      %\end{itemize}
+  %\end{itemize}
+%
+%\pagebreak
+%
+  %\item \textbf{For Others, Use Kali Linux Live (on your own machine only)}\\
+  %We \textbf{STRONGLY recommend} using Kali Linux Live booted from a USB drive.
+  %Kali Linux (\url{https://www.kali.org}) is a Linux distribution designed for penetration testing.
+  %It is pre-installed with a lot of penetration-testing programs, including Wireshark, Aircrack-ng Suite, and nmap.
+  %\begin{itemize}[nosep]
+    %\item Use the most recent 32 bit version of Kali Linux:\\
+    %\url{http://cdimage.kali.org/kali-2016.1/kali-linux-2016.1-i386.iso}
+    %\item To create a Kali Live USB drive, follow this tutorial:\\
+    %\url{http://docs.kali.org/downloading/kali-linux-live-usb-install}
+    %\item To preserve data on the Kali Live USB drive, follow this tutorial:\\
+    %\url{http://docs.kali.org/downloading/kali-linux-live-usb-persistence}
+  %\end{itemize}
+  %\textbf{Warning}: DO NOT use this drive on school computers, such as EWS or any other lab machines.
+%
+  %\item \textbf{Do Not Use VMs}\\
+  %We \textbf{DO NOT recommend} using virtual machines.
+  %Your built-in wireless card will not work with Aircrack-ng in virtual machines.
+  %If you choose this option, we cannot help you with troubleshooting.
+%
+%\end{itemize}
+%
+%\pagebreak
+%
+%\subsubsection*{WEP cracking}
+%First, you will need to crack the WEP encryption key for the network using Aircrack-ng Suite (\url{http://www.aircrack-ng.org}).
+%
+%\smallskip
+%
+%Aircrack-ng website provides many helpful tutorials (e.g. \url{http://www.aircrack-ng.org/doku.php?id=simple\_wep\_crack}).
+%You SHOULD go through the tutorials to understand the purpose of each tool and learn how to use them.\\
+%As you will learn from the tutorial, WEP cracking process usually involves performing attacks to generate traffic so that data can be collected faster.
+%For this project, you MUST NOT use those attacks as they will disrupt the network.\\
+%We've made sure that there's sufficient traffic generated on the network to allow successful WEP cracking within a reasonable amount of time (< 1 hour).
+%If the process is taking too long, please notify a TA.
+%
+%\textbf{Note:} You SHOULD save the network trace from this part for later use.
+%
+%\begin{enumerate}
+  %\item \hypertarget{cp2wep}{What is the WEP key for the network? (\arabic{pts-wep} points)} \label{itm:wep}
+%
+    %\textbf{What to submit:} Submit
+      %\texttt{\hyperlink{wepformat}{\filewep}} that contains the WEP key in \textit{ASCII characters}.
+%\end{enumerate}
+%
+%\subsubsection*{Network analysis}
+%Once you've cracked the WEP key, examine the network trace from the previous part using Wireshark.
+%You will first need to decrypt the 802.11 (wireless) traffic.
+%Wireshark can do this if you provide the correct WEP encryption key.\\
+%You may also join the network to gather more information.
+%In addition to examining the network traffic, consider using nmap (\url{https://nmap.org}), a powerful tool for probing remote hosts.
+%Determine the IP addresses of the client(s) and server and any services (below port 4096) running on these machines.
+%
+%\textbf{Note:} Other students (and yourself) on the network are not considered as clients.
+%
+%\begin{enumerate}[resume]
+  %\item \hypertarget{cp2wifiip}{What are the IP addresses of the server and client(s) on the network? (\arabic{pts-wifiip} points)} \label{itm:wifiip}
+%
+    %\textbf{What to submit:} Submit
+      %\texttt{\hyperlink{wifiipformat}{\filewifiip}} that contains the IP addresses.
+      %Write one address per line.
+%
+  %\item \hypertarget{cp2protocol}{What services does the server provide? (\arabic{pts-protocol} points)} \label{itm:protocol}
+%
+    %\textbf{What to submit:} Submit
+      %\texttt{\hyperlink{protocolformat}{\fileprotocol}} that contains application layer protocols (in standard acronyms) used by the services.
+      %Write one protocol per line.
+%
+%\end{enumerate}
+%
+%\pagebreak
+%
+%\subsubsection*{Attacks}
+%In order to discover the client's username and password, you will need to decrypt the HTTPS traffic.
+%Wireshark can do this for TLS connections that do not use forward secrecy, if you provide the server's private key.
+%Username and password will expire after 1 hour from when the packet was generated.
+%You may also want read up on the HTTP Basic Authentication method, which is specified in RFC~2617.
+%
+%\textbf{Note:} We strongly recommend using 32 bit version of Wireshark for this part. Bugs within 64 bit version may prevent you from completing the task.
+%
+%\begin{enumerate}[resume]
+  %\item \hypertarget{cp2cred}{What are the username and password that the client used to log in to the website?\\
+  %You may find multiple pairs; pick any one of them. (\arabic{pts-cred} points)} \label{itm:cred}
+%
+    %\textbf{What to submit:} Submit
+      %\texttt{\hyperlink{credformat}{\filecred}} that contains the username in first line and password in second.
+      %You MUST submit only one pair.
+%
+  %\item \hypertarget{cp2secret}{What is the secret message displayed on the webpage after login?\\
+  %Each login attempt generates a different secret message; pick any one of them. (\arabic{pts-secret} points)} \label{itm:secret}
+%
+    %\textbf{What to submit:} Submit
+      %\texttt{\hyperlink{secretformat}{\filesecret}} that contains the secret message.
+      %When obtaining the message, you MUST use the same credentials you submit for the previous question.
+      %You MUST submit only one.
+%
+  %\item \hypertarget{cp2jailtime}{What is the maximum number of years in jail that you could face under 18~USC~\S~2511 for intercepting traffic on an encrypted WiFi network without permission? (\arabic{pts-jailtime} points)} \label{itm:jailtime}
+%
+    %\textbf{What to submit:} Submit
+      %\texttt{\hyperlink{jailtimeformat}{\filejailtime}} that contains the maximum number of years in jail.
+      %Write the number only.
+%
+%\end{enumerate}
+%
+%\newpage
 
 \subsection{Anomaly Detection (\arabic{pts-cp2.2} points)}
 \label{sec:cp2.2}
 \newcommand{\fileanomaly}{\ref*{sec:cp2.2}.py}
 
-In \ref{sec:cp1.1}, you manually explored a network trace and detected a port scanning activity.
-Now, you will programmatically analyze trace data to detect such activity.
+%In \ref{sec:cp1.1}, you manually explored a network trace and detected a port scanning activity.
+In this part, you will programmatically analyze trace data to detect port scanning activity.
 
 \medskip
 
@@ -262,95 +262,95 @@ We will grade your detector using a variety of different PCAP files.
 
 \newpage
 
-\section*{Checkpoint 2: Submission Checklist}
-\label{sec:cp2checklist}
+%\section*{Checkpoint 2: Submission Checklist}
+%\label{sec:cp2checklist}
+%
+%Inside your mp4 SVN repository, you will have auto-generated files named as below.\\
+%Make sure that your answers for all tasks up to this point are submitted in the following files by \textbf{\duedate} at \textbf{\duetime}.
+%
+%\subsection*{SVN Repository}
+%\nolinkurl{\svnrepo}
+%
+%\subsection*{Team Members}
+%\texttt{partners.txt} : a text file containing NETIDs of both members, one NETID per line.\\
+%Place the NETID of the student making the submission in the first line.
+%\vspace{-12pt}
+%\hypertarget{cp2partners}{}
+%\subsubsection*{example content of \texttt{partners.txt}}
+%\begin{mdframed}
+%\begin{Verbatim}
+%your_netid
+%partner_netid
+%\end{Verbatim}
+%\end{mdframed}
 
-Inside your mp4 SVN repository, you will have auto-generated files named as below.\\
-Make sure that your answers for all tasks up to this point are submitted in the following files by \textbf{\duedate} at \textbf{\duetime}.
+%\subsection*{Solution Format}
+%
+%\hypertarget{wepformat}{}
+%\subsubsection*{example content of \texttt{\hyperlink{cp2wep}{\filewep}}}
+%\begin{mdframed}
+%\begin{Verbatim}
+%cs46!
+%\end{Verbatim}
+%\end{mdframed}
+%
+%\hypertarget{wifiipformat}{}
+%\subsubsection*{example content of \texttt{\hyperlink{cp2wifiip}{\filewifiip}}}
+%\begin{mdframed}
+%\begin{Verbatim}
+%1.2.3.4
+%127.0.0.1
+%\end{Verbatim}
+%\end{mdframed}
 
-\subsection*{SVN Repository}
-\nolinkurl{\svnrepo}
-
-\subsection*{Team Members}
-\texttt{partners.txt} : a text file containing NETIDs of both members, one NETID per line.\\
-Place the NETID of the student making the submission in the first line.
-\vspace{-12pt}
-\hypertarget{cp2partners}{}
-\subsubsection*{example content of \texttt{partners.txt}}
-\begin{mdframed}
-\begin{Verbatim}
-your_netid
-partner_netid
-\end{Verbatim}
-\end{mdframed}
-
-\subsection*{Solution Format}
-
-\hypertarget{wepformat}{}
-\subsubsection*{example content of \texttt{\hyperlink{cp2wep}{\filewep}}}
-\begin{mdframed}
-\begin{Verbatim}
-cs46!
-\end{Verbatim}
-\end{mdframed}
-
-\hypertarget{wifiipformat}{}
-\subsubsection*{example content of \texttt{\hyperlink{cp2wifiip}{\filewifiip}}}
-\begin{mdframed}
-\begin{Verbatim}
-1.2.3.4
-127.0.0.1
-\end{Verbatim}
-\end{mdframed}
-
-\hypertarget{protocolformat}{}
-\subsubsection*{example content of \texttt{\hyperlink{cp2protocol}{\fileprotocol}}}
-\begin{mdframed}
-\begin{Verbatim}
-ftp
-telnet
-smtp
-pop3
-\end{Verbatim}
-\end{mdframed}
-
-\hypertarget{credformat}{}
-\subsubsection*{example content of \texttt{\hyperlink{cp2cred}{\filecred}}}
-\begin{mdframed}
-\begin{Verbatim}
-username1
-p@ssw0rd123
-\end{Verbatim}
-\end{mdframed}
-
-\pagebreak
-
-\hypertarget{secretformat}{}
-\subsubsection*{example content of \texttt{\hyperlink{cp2secret}{\filesecret}}}
-\begin{mdframed}
-\begin{Verbatim}
-1suPerSECretMesSageNKJn23kjsdjnK+Lskvnlksdf10dm23/sdfinvkwer2ThisShouldBe
-InASingleLine23+4/
-\end{Verbatim}
-\end{mdframed}
-
-\hypertarget{jailtimeformat}{}
-\subsubsection*{example content of \texttt{\hyperlink{cp2jailtime}{\filejailtime}}}
-\begin{mdframed}
-\begin{Verbatim}
-10
-\end{Verbatim}
-\end{mdframed}
-
-\subsection*{List of files that must be submitted for Checkpoint 2}
-
-\begin{itemize}
-\item \texttt{\hyperlink{cp2partners}{partners.txt}}
-\item \texttt{\hyperlink{cp2wep}{\filewep}}
-\item \texttt{\hyperlink{cp2wifiip}{\filewifiip}}
-\item \texttt{\hyperlink{cp2protocol}{\fileprotocol}}
-\item \texttt{\hyperlink{cp2cred}{\filecred}}
-\item \texttt{\hyperlink{cp2secret}{\filesecret}}
-\item \texttt{\hyperlink{cp2jailtime}{\filejailtime}}
-\item \texttt{\hyperlink{cp2anomaly}{\fileanomaly}}
-\end{itemize}
+%\hypertarget{protocolformat}{}
+%\subsubsection*{example content of \texttt{\hyperlink{cp2protocol}{\fileprotocol}}}
+%\begin{mdframed}
+%\begin{Verbatim}
+%ftp
+%telnet
+%smtp
+%pop3
+%\end{Verbatim}
+%\end{mdframed}
+%
+%\hypertarget{credformat}{}
+%\subsubsection*{example content of \texttt{\hyperlink{cp2cred}{\filecred}}}
+%\begin{mdframed}
+%\begin{Verbatim}
+%username1
+%p@ssw0rd123
+%\end{Verbatim}
+%\end{mdframed}
+%
+%\pagebreak
+%
+%\hypertarget{secretformat}{}
+%\subsubsection*{example content of \texttt{\hyperlink{cp2secret}{\filesecret}}}
+%\begin{mdframed}
+%\begin{Verbatim}
+%1suPerSECretMesSageNKJn23kjsdjnK+Lskvnlksdf10dm23/sdfinvkwer2ThisShouldBe
+%InASingleLine23+4/
+%\end{Verbatim}
+%\end{mdframed}
+%
+%\hypertarget{jailtimeformat}{}
+%\subsubsection*{example content of \texttt{\hyperlink{cp2jailtime}{\filejailtime}}}
+%\begin{mdframed}
+%\begin{Verbatim}
+%10
+%\end{Verbatim}
+%\end{mdframed}
+%
+%\subsection*{List of files that must be submitted for Checkpoint 2}
+%
+%\begin{itemize}
+%\item \texttt{\hyperlink{cp2partners}{partners.txt}}
+%\item \texttt{\hyperlink{cp2wep}{\filewep}}
+%\item \texttt{\hyperlink{cp2wifiip}{\filewifiip}}
+%\item \texttt{\hyperlink{cp2protocol}{\fileprotocol}}
+%\item \texttt{\hyperlink{cp2cred}{\filecred}}
+%\item \texttt{\hyperlink{cp2secret}{\filesecret}}
+%\item \texttt{\hyperlink{cp2jailtime}{\filejailtime}}
+%\item \texttt{\hyperlink{cp2anomaly}{\fileanomaly}}
+%\end{itemize}
