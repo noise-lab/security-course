@@ -17,10 +17,18 @@ apt-get update
 apt-get purge lxc-docker
 apt-cache policy docker-engine
 
+# verify repo
+read -n1 -r -p "verify the output, and press spacebar to continue..." key
+
+if [ "$key" != '' ]; then
+    # Anything else pressed, do whatever else.
+    echo "aborting..."
+    exit 1
+fi
+
 # prereq
 apt-get update
-apt-get install -y linux-image-extra-$(uname -r)
-apt-get install -y apparmor
+apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
 
 # install docker
 apt-get update

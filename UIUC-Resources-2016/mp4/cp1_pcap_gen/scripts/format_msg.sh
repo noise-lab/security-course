@@ -1,7 +1,7 @@
 #!/bin/bash
 # check arguments
 if [ "$#" -ne 2 ]; then
-  echo "usage: ./edit_msg.sh {original_text} {output}"
+  echo "usage: ./format_msg.sh {original_text} {output}"
   exit 1
 fi
 

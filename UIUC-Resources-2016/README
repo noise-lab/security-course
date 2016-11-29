@@ -1,0 +1,12 @@
+NOTES from SP16:
+PROBLEMS STUDENTS HAD:
+
+PROBLEMS TAS HAD:
+0. School routers have been upgraded, and it seems the configurations have changed. Make sure the router is configured to broadcast properly.
+
+SUGGESTED CHANGES TO DOCUMENT:
+0. More questions on TLS handshake (e.g. pre-master key)
+1. Make checkpoint2 harder
+  - CA chain
+  - Do Wireshark analysis on portscan pcap before implementing detection program
+  - Require multi-threaded detection

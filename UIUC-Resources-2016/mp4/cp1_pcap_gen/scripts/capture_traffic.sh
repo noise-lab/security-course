@@ -11,6 +11,8 @@ if [ "$#" -ne 5 ]; then
   exit 1
 fi
 
+echo $1
+echo $2
 SUBNET="10.$1.$2"
 GW_IP="${SUBNET}.1"
 MSG_ACTIVE="$3"
@@ -92,7 +94,7 @@ docker rm $(docker ps -aq) 2>&1 > /dev/null
 docker network rm "tempnet" 2>&1 > /dev/null
 
 # printout answers in json
-printf '{"mac":["%s","%s","%s","%s","%s","%s"], "ip":["%s","%s","%s","%s","%s","%s"], "gw":"%s", "active":"%s", "passive":"%s", "portscan":"%s",' \
+printf '"mac":["%s","%s","%s","%s","%s","%s"], "ip":["%s","%s","%s","%s","%s","%s"], "gw":"%s", "active":"%s", "passive":"%s", "portscan":"%s",' \
   "${GW_MAC}" "${MAC1}" "${MAC2}" "${MAC3}" "${MAC4}" "${MAC5}" \
   "${GW_IP}" "${IP1}" "${IP2}" "${IP3}" "${IP4}" "${IP5}" \
   "${GW_IP}" \

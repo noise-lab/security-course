@@ -1,0 +1,10 @@
+0	lbl-internal.20041004-1326.port006.dump.anon.pcap
+1	lbl-internal.20041215-1443.port009.dump.anon.pcap
+2	4507-MG_CC_E_230908_00001_20080923124650.pcap
+3	lbl-internal.20050107-0456.port025.dump.anon.pcap
+4	lbl-internal.20050106-1124.port018.dump.anon.pcap
+5	lbl-internal.20041215-0008.port011.dump.anon.pcap
+6	lbl-internal.20041004-1418.port011.dump.anon.pcap
+7	lbl-internal.20041215-2045.port014.dump.anon.pcap
+8	lbl-internal.20050107-1626.port004.dump.anon.pcap
+9	lbl-internal.20041004-1509.port021.dump.anon.pcap

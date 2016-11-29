@@ -1,3 +1,5 @@
 # example content
-# username1
-# p@ssw0rd123
+# ftp
+# telnet
+# smtp
+# pop3

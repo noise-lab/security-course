@@ -7,7 +7,7 @@ fi
 
 # check arguments
 if [ "$#" -ne 1 ]; then
-    echo "usage: ./common_setup.sh {username}"
+    echo "usage: sudo ./update_pubkey.sh {username}"
     exit 1
 fi
 

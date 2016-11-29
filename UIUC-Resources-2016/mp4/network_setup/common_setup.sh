@@ -31,9 +31,9 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 
 # sshd config
-cp ./ssh/sshd_config /etc/ssh/sshd_config
-chown root /etc/ssh/sshd_config
-chmod 644 /etc/ssh/sshd_config
+cp ./ssh/sshd_config /etc/sshd_config
+chown root /etc/sshd_config
+chmod 644 /etc/sshd_config
 
 # install coffeescript
 npm install -g coffee-script

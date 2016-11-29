@@ -1,3 +1,5 @@
+[revised 10/15/2016 by Simon Kim]
+
 Setup instructions (for OS X El Capitan):
     * server runs ./website/app.coffee to host webpages that students can access
     * client(s) runs ./website/client.coffee to continuously send randomly-generated login credentials to a https page
@@ -26,16 +28,15 @@ Change directory to 'network_setup'
     * system reboot at the end
     * sets hostname
     * sets vim stuff
-    * add authorized public keys to .ssh/authorized_keys
+    * copy pubkeys (from svn) to .ssh/authorized_keys
         * public keys of the TAs who wish to remote access
         * maybe public keys of the other server/client machine
         * to generate keys:
             * ex) ssh-keygen -b 1024 -t rsa -f id_rsa -P ""
             * github ex) ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-        * permissions:
-            chmod go-w ~/
-            chmod 700 ~/.ssh
-            chmod 600 ~/.ssh/authorized_keys
+        * if new key manually added
+            * please update svn copy as well
+            * run svn up on other machines, then manually run update_pubkey.sh
     * disable password authentication on SSH server
         * /etc/ssh/sshd_config should have followings
             * UsePAM yes
@@ -53,12 +54,10 @@ Change directory to 'server'
         * sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /private/etc/apache2/server.key -out /private/etc/apache2/server.crt
     * starts apache2
         * sudo apachectl start
-    * copies SP16 apache config and index.html
+    * copies FA16 apache config and index.html
         * ./server/apache2/httpd.conf
             * line 52: Listen {wifi_ip}:443
-            * uncomment line 89 (socache_shmcb_module), line 143 (ssl_module), line 516 (httpd-ssl.conf)
-        * /etc/apache2/extra/httpd-ssl.conf
-            * line 36: specify wifi ip
+            * uncomment line 88 (socache_shmcb_module), line 142 (ssl_module), line 515 (httpd-ssl.conf)
         * ./server/apache2/extra/httpd-ssl.conf
             * line 36: Listen {wifi_ip}:443
             * line 53: SSLCipherSuite AES128-SHA (something that doesn't provide forward secrecy)
@@ -72,16 +71,16 @@ Change directory to 'server'
     * install vsftpd
         * brew install vsftpd
 9. [server only] Run sudo ./vsftp_setup.sh to configure ftp. The script does the followings:
-    * copies SP16 conf files
+    * copies FA16 conf files
     * sets rootdir to Public
     * copies server private key to Public
     * adds to launchd
-    * conf file from SP16 at ./server/vsftp/
+    * conf file from FA16 at ./server/vsftp/
 10. [server only] Run sudo ./dhcp_setup.sh to configure dhcp. The script does the followings:
     * copies ./dhcp/bootpd.plist to /etc/bootpd.plist
     * copies ./dhcp/bootptab to /etc/bootptab
     * edit bootpd.plist accordingly
-    * conf files from SP16 at ./server/dhcp/
+    * conf files from FA16 at ./server/dhcp/
     * for more details: http://krypted.com/mac-os-x/running-dhcp-on-mountain-lion-server/
 11. [server & clients] Connect to the WEP wireless network
     * set static ip for server
@@ -96,9 +95,7 @@ Change directory to 'website'
     * update ./website/views/layout.hbs
         * line 15: change the port if necessary
     * client.coffee
-        * line 25: change '/secret' to existing https page
-        * SP16 used /secret/index.html), which redirects to the correct http page hosted by app.coffee (http://server:9000/secret)
-        * change line 36 to control the frequency
+        * change line 31 to control the frequency
     * static/css (not important)
         * if you want to make the pages look more elegant
 

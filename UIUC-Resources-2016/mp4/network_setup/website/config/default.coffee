@@ -1,6 +1,6 @@
 module.exports =
   server:
-    port: 3879
+    port: 2798
   algos:
     hmac: 'SHA256'
     message: 'aes256'
@@ -9,6 +9,6 @@ module.exports =
     password: 'power overwhelming black sheep wall'
     expires: 60
   location:
-    host: '10.20.16.64'
+    host: '10.20.16.111'
     port: 443
     scheme: 'https'

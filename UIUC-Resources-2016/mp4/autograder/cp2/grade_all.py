@@ -30,7 +30,7 @@ def grade_student(svndir, student, solutiondir):
             partner = name
             break
     header = "MP4 Checkpoint 2 Grade Report for {}\n".format(student)
-    (message, score, total, message_list) = grade_mp4cp2part1(svndir, solutiondir + "/cp2_sol.json", student)
+    (message, score, total, message_list) = grade_mp4cp2part1(svndir, solutiondir, student)
     message += "\n"
     (message, score, total) = tuple(map(operator.add, (message, score, total),
                                         grade_mp4cp2part2(svndir, solutiondir + "/cp2_pcap")))
@@ -58,7 +58,6 @@ def manage_partners(grades):
             continue
         if score > partner_score:
             print "Score conflict: {}: {}; {}: {}".format(name, student["score"], partner_name, partner_score)
-            student["score"] = partner_score
             del grades[name]
             continue
         else:
@@ -100,15 +99,16 @@ def main():
             student_time = datetime.now().strftime("%Y%m%d_%H%M%S")
             (message, score, total, partner, ignore, message_list) = grade_student(svndir, student, solutiondir)
 
-            # dict used for later partner scoring
-            grades[student] = {"score": score, "partner": partner, "ignore": ignore}
-
             # write student report
             student_report = "{}_mp4cp2grades_{}.txt".format(student, str(student_time))
+            with open(svndir + "/" + student_report, "w", 0) as s:
+                s.write(message)
+            print "\tTotal: {} / {}".format(score, total)
+
+            # dict used for later partner scoring
+            grades[student] = {"score": score, "partner": partner, "ignore": ignore, "report": student_report}
+
             try:
-                with open(svndir + "/" + student_report, "w", 0) as s:
-                    s.write(message)
-                print "\tTotal: {} / {}".format(score, total)
                 svnadd = ["svn", "add", svndir + "/" + student_report]
                 subprocess.call(svnadd)
             except OSError:
@@ -127,6 +127,15 @@ def main():
             partner_name = value["partner"]
             if partner_name is not None:
                 gr.write(partner_name + "," + str(value["score"]) + "\n")
+                report = value["report"]
+                student_report = svn_basedir + "/" + name + "/mp4/" + report
+                partner_report = svn_basedir + "/" + partner_name + "/mp4/" + report
+                try:
+                    svncp = ["svn", "cp", student_report, partner_report]
+                    subprocess.call(svncp)
+                except OSError:
+                    print "\tfailed to svn cp student grade report"
+                    pass
     svnadd = ["svn", "add", grade_report]
     try:
         subprocess.call(svnadd)

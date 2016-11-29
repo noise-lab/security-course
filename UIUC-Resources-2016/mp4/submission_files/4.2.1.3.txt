@@ -1,5 +1,2 @@
 # example content
-# ftp
-# telnet
-# smtp
-# pop3
+# 1.2.3.4

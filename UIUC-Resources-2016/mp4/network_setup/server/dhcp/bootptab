@@ -1,5 +1,6 @@
 %%
-# hostname      hwtype  hwaddr              ipaddr          bootfile
-simonsk-mbp     1       7c:d1:c3:85:cc:b6   10.20.16.200
-jason-work      1       ac:29:3a:eb:74:d0   10.20.16.198
-hello-world     1       ac:29:3a:eb:14:04   10.20.16.65
+# hostname  hwtype  hwaddr              ipaddr          bootfile
+simonsk-mbp 1       7c:d1:c3:85:cc:b6   10.20.16.200
+TIMS-5547   1       ac:29:3a:eb:74:d0   10.20.16.32
+mac-53tug1  1       ac:29:3a:eb:14:04   10.20.16.120
+10.20.16.55 1       00:18:39:57:6d:f0   10.20.16.55

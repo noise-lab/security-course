@@ -1,18 +1,29 @@
 Network
-    ssid      : cs461sp16
+    ssid      : cs461fa16
     ch        : 6
     bssid     : 9e:09:01:11:3c:d7
-    wep(ascii): vEry5ecUrepW!
-    wep(hex)  : 76457279356563557265705721
+    wep(ascii): MPdueP0ckyd4y
+    wep(hex)  : 4d506475655030636b79643479
+
+Test Network
+    router ip : 10.20.16.55
+    router id : admin
+    router pw : goldJo<e31!
+    mac(wifi) : 00:18:39:57:6d:f0
+    ssid      : cs461testnet
+    ch        : 6
+    bssid     : 00:18:39:57:6d:f2
+    wep(ascii): MPdueP0ckyd4y
+    wep(hex)  : 4d506475655030636b79643479
 
 Client1 (#1)
     s/n       : C07Q5547G1HV
     mac(eth)  : 38:c9:86:00:53:09
     addr      : siebl-1129-cs461-01.cs.illinois.edu
     mac(wifi) : ac:29:3a:eb:74:d0
-    hostname  : jason-work
-    ip        : 10.20.16.198
-    user      : ece422-staff
+    hostname  : TIMS-5547
+    ip        : 10.20.16.32
+    user      : staff
     pw        : goldJo<e31!
 
 Client2 (#2)
@@ -20,8 +31,8 @@ Client2 (#2)
     mac(eth)  : 38:c9:86:00:40:4a
     addr      : siebl-1129-cs461-02.cs.illinois.edu
     mac(wifi) : ac:29:3a:eb:14:04
-    hostname  : hello-world
-    ip        : 10.20.16.65
+    hostname  : mac-53tug1
+    ip        : 10.20.16.120
     user      : ece422-staff
     pw        : goldJo<e31!
 
@@ -30,7 +41,7 @@ Server (#3)
     mac(eth)  : 38:c9:86:0d:8b:e1
     addr      : siebl-1129-cs461-03.cs.illinois.edu
     mac(wifi) : 04:69:f8:de:6c:17 
-    hostname  : Precious
-    ip        : 10.20.16.64
-    user      : cs461-staff
+    hostname  : anonymous
+    ip        : 10.20.16.111
+    user      : staff
     pw        : goldJo<e31!

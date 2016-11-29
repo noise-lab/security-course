@@ -23,7 +23,9 @@ if [ ! -f "$3" ]; then
   exit 1
 fi
 WORKING_DIR="${PWD}"
-SOL="${WORKING_DIR}/cp1_sol_temp.json"
+TEMP_SOL="${WORKING_DIR}/cp1_sol_temp.json"
+SOL_DIR="${WORKING_DIR}/../solutions"
+SOL="${SOL_DIR}/cp1_sol.json"
 LOCAL_SVN="$1"
 ROSTER_FILE="$2"
 MAX_ROSTER=$(cat ${ROSTER_FILE} | wc -l)
@@ -47,7 +49,7 @@ printf '{"%s":{"%s":"%s", "%s":"%s", "%s":"%s", "%s":["%s","%s","%s","%s","%s","
   "server-ciphersuite" "TLS_RSA_WITH_RC4_128_SHA (0x0005)" \
   "name" "zakir" \
   "cookie" "c_user=100004451022564; datr=ME9yUFtsro9IZo9Bsvx-mEM1; fr=09xG7bUTaV3Praqud.AWUl8VnwVMipiKyhdelnR_ylYXM.BQck9L.mh.AWUmDU8q; lu=Rhm1BbpziSYpwQr9lOfxnanw; xs=61%3ATYLvVr8P4xXmMw%3A0%3A1349668683; sub=3; p=68; wd=1366x643; presence=EM349671297EuserFA21B04451022564A2EstateFDsb2F0Et2F_5b_5dElm2FnullEuct2F1349668084BEtrFA2loadA2EtwF3252494709EatF1349671297352G349671297463CEchFDp_5f1B04451022564F1CC; act=1349671298743%2F4%3A2; _e_0Cjb_4=%5B%220Cjb%22%2C1349671298744%2C%22act%22%2C1349671298743%2C4%2C%22message_body%22%2C%22click%22%2C%22click%22%2C%22-%22%2C%22r%22%2C%22%2Fzakirbpd%3Fref%3Dts%26fref%3Dts%22%2C%7B%22ft%22%3A%7B%7D%2C%22gt%22%3A%7B%7D%7D%2C581%2C393%2C0%2C981%2C16%5D" \
-  > "${SOL}"
+  > "${TEMP_SOL}"
 
 while read NETID
 do
@@ -63,17 +65,19 @@ do
   echo "-- generating 4.1.1.pcap"
   MSG_ACTIVE=$(sed -n "${PCAP1_MSG_ACTIVE[${COUNT}]}p" "${MSG_FILE}")
   MSG_PASSIVE=$(sed -n "${PCAP1_MSG_PASSIVE[${COUNT}]}p" "${MSG_FILE}")
-  SOL_PCAP1=$(${WORKING_DIR}/scripts/capture_traffic.sh "${PCAP1_SUBNET1[${COUNT}]}" "${PCAP1_SUBNET2[${COUNT}]}" "${MSG_ACTIVE}" "${MSG_PASSIVE}" "${OUTPUT_DIR}" | grep '{"mac":\[')
-  echo "\"${NETID}\":${SOL_PCAP1}" >> "${SOL}"
+  SOL_PCAP1=$(${WORKING_DIR}/scripts/capture_traffic.sh "${PCAP1_SUBNET1[${COUNT}]}" "${PCAP1_SUBNET2[${COUNT}]}" "${MSG_ACTIVE}" "${MSG_PASSIVE}" "${OUTPUT_DIR}" | grep '"mac":\[')
+  echo "\"${NETID}\":{${SOL_PCAP1}" >> "${TEMP_SOL}"
 
   # generate pcap2
   echo "-- generating 4.1.2.pcap"
   MSG=$(sed -n "${PCAP2_MSG[${COUNT}]}p" "${MSG_FILE}")
+  MSG=${MSG// /%20}
   LENGTH=112
-  PAD=$(printf '%0.1s' "!"{1..112})
+  PAD=$(printf '%0.1s' "~"{1..112})
   PADDED_MSG=$(printf '%s%*.*s' "${MSG}" 0 $((LENGTH-${#MSG})) "$PAD" | tr -d '\r')
-  echo "\"msg\":\"${PADDED_MSG}\"}," >> "${SOL}"
-  MSG=$(xxd -c 112 -l 112 -p <<< "${PADDED_MSG}")
+  echo ${PADDED_MSG}
+  echo "\"msg\":\"${PADDED_MSG}\"}," >> "${TEMP_SOL}"
+  MSG=$(xxd -c ${LENGTH} -l ${LENGTH} -p <<< "${PADDED_MSG}")
   ${WORKING_DIR}/scripts/mod_pcap2.sh "${MSG}" "scripts/4.1.2.pcap" "${OUTPUT_DIR}"
 
   chmod 777 ${OUTPUT_DIR}
@@ -82,7 +86,10 @@ do
   (( COUNT += 1 ))
 done <${ROSTER_FILE}
 
-sed -i '$ s/.$/}/' "${SOL}"
-python -m json.tool "${SOL}" > "${WORKING_DIR}/../sol/cp1_sol.json"
-rm ${SOL}
+sed -i '$ s/.$/}/' "${TEMP_SOL}"
+if [ ! -d "${SOL_DIR}" ]; then
+  mkdir ${SOL_DIR}
+fi
+python -m json.tool "${TEMP_SOL}" > "${SOL}"
+rm ${TEMP_SOL}
 rm ${MSG_FILE}
