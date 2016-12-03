@@ -10,6 +10,7 @@
 \usepackage{pseudocode}
 \usepackage{array}
 \usepackage{psfrag}
+\usepackage{color}
 \pagestyle{fancy}
 
 \setlength{\topmargin}{.2in}
@@ -36,10 +37,10 @@
 \renewcommand{\labelenumi}{{\bf\Alph{enumi}.}}
 
 \newcommand{\setversion}[1]{\def\version{#1}}
-\setversion{quiz}
+\setversion{answers}
 
 \ifthenelse{\equal{\version}{answers}}{
-    \newcommand{\sols}[1]{#1}
+    \newcommand{\sols}[1]{{\color{blue} #1}}
 } {
     \newcommand{\sols}[1]{}
 }
