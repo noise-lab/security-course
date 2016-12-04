@@ -1,0 +1,66 @@
+\section{Buffer Overflows and Code Injection}
+
+The following questions concern buffer overflows and code injection. 
+(Note: Each sub-problem can be answered with a short phrase/explanation. If
+you are writing a paragraph or explaining a complicated design, you're
+probably spending too much time.
+
+\prob{10}
+Recall the {\tt strcpy()} function: 
+\\( {\tt char *strcpy(char *dest, const char *src)}: The strcpy() function copies
+the string pointed to by src, including the terminating null byte, to the buffer pointed to by dest.)
+
+Why is {\tt strcpy()} vulnerable to a buffer overflow attack? What extra
+argument is needed to secure it against buffer overflows?
+
+\sols{
+The buffer size is not determined for strcpy so that the adversary can easily create a buffer overflow and overwrite important areas such as return addresses.
+}
+\eprob
+\vspace*{0.5in}
+
+\prob{10}
+Pushing to the stack and running user-provided shellcode in Assignment
+2 was one example of a code injection attack; a SQL injection attack is another
+type of code injection attack. 
+{\em In general, what is the vulnerability that code injection attacks typically
+exploit? (One sentence/phrase.)} 
+
+\sols{
+The user input is interpreted as code not as data.
+}
+\eprob
+\vspace*{0.5in}
+
+\prob{10} What is one protection mechanism to prevent code injection attacks (buffer
+overflows or SQL injection)?
+
+\sols{
+Data Execution Prevention (DEP). DEP marks areas of memory as either executable
+or non-executable (read/write) so that data is not interpreted as code in memory.  
+}
+\eprob
+\vspace*{0.5in}
+
+\if 0
+\prob{10} Let's assume now that a protection mechanism against code injection
+attacks is in place. Assuming that the attacker can overwrite the stack, is it
+possible for the attacker to gain control of the system (\eg, by opening a root
+shell).
+
+\sols{
+Still vulnerable to code reuse attacks. Redirect the control flow to code that has the desired functionality and it's already there in the code segment. Since the attacker controls the stack, she can define the arguments for the used functions.
+}
+\eprob
+
+\item Mention and briefly explain a defense that makes any stack smashing attack
+harder.
+
+\sols{
+  ASLR                                                                                                                                                  
+}
+\eprob
+\fi
+
+
+

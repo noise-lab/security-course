@@ -1,0 +1,79 @@
+\newpage
+\section{Network Firewalls}
+
+You are hired as the new network security advisor of Legitimate
+Software Inc, a company that distributes decent software products. 
+
+Currently, Legitimate Software products can be downloaded from the company
+home page LSI.com, which is hosted on a HTTP web server within the company.
+Programmers of Legitimate Software regularly update their products, and upload
+the new software patches from company workstations to the web server.
+
+\prob{20}
+The company tech lead asks you to set up a firewall between company
+machines (including the web server and workstations used by programmers) and
+the external Internet, only allowing connections originating from a internal
+host. 
+\begin{enumerate}
+\item List two different attacks (malicious activities) this firewall could
+prevent. 
+\item Describe a {\em legitimate} use of the company's
+network that this firewall setup would also prevent.
+\end{enumerate}
+
+\sols{
+  Attacks that could be prevented: Listing all hosts on the company's network (via ping); Logging onto the workstations using stolen passwords; Connecting to company databases from the Internet; 
+  Legitimate uses that are also prevented: Download products from company's website from the Internet; Working from home (access workstations from the Internet, with correct credentials);
+}
+\eprob
+
+\newpage
+\prob{20} The tech lead asks you to fix the company's firewall configuration
+to address the
+shortcoming from
+the previous question. Create a firewall
+{\bf (A)~topology}; and {\bf (B) policies} that satisfy the following requirements:
+
+\begin{itemize}
+\item Customers
+can visit the company's web site to download new software through HTTP (port
+80), from anywhere on earth. 
+\item Programmers in the company can upload files to
+the web server through SSH (port 22), only when they are using the company
+workstations. 
+\item No network connections can be made to the company
+workstations, unless the connection originate from one of the workstations. 
+\item
+Programmers can access the Internet (\eg, visit http://stackoverflow.com) on
+their workstations. (Hint: divide the machines to multiple groups and set up
+multiple firewalls in between.)
+\end{itemize}
+{\em Hint:} You will need more than one firewall. It will likely be faster to
+write down your answer as a {\em picture} that shows the Internet, the company
+web server, and the rest of the company network, as well as where you would
+place firewalls and what policies should exist on each of them.
+
+\sols{
+  Internet <-> (||firewall1||) <-> web server <-> (||firewall2||) <-> workstations
+  firewall1 minimum policies: drop connections from Internet, unless their destination is web server port 80
+  firewall2 minimum policies: drop all connections from outside. drop connections from inside, except HTTP traffic to stackoverflow.com and SSH traffic to the web server
+}
+\eprob
+
+
+\if 0
+\prob{10} The network security of Legitimate Software is greatly enhanced by your
+new firewall policy. However, a smart hacker managed to break into the
+web server and replaced the software patches with his own malware. 
+
+How would you prevent the illegitimate patches to be applied to Legitimate
+products already installed on users' computers? You can assume that before the
+attack, everything on users' computers are authentic, Legitimate products.
+({\em Hint:} recall what you have learned about digital signatures and public
+key infrastructures.)
+
+\sols{
+  All Legitimate products should only accept patches with digital signatures (certificates) created with company's private key (assume that this private key is not compromised). There's two possible authentication schemes: ship the software with company's public key, or register company's key with well know Certificate Authority.
+}
+\eprob
+\fi

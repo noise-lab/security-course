@@ -1,0 +1,99 @@
+\newpage
+\section{Web Security}
+
+Much of this problem should be familiar from Assignments 2 and 3. The
+code snippets should also be familiar, but be careful, as there are a few small
+changes.
+
+\prob{10}
+What is a CSRF attack? Explain the purpose of token validation that you learned
+from the assignment.
+
+\sols{
+    These are the easiest questions. I think the homework for this part is either easy or related to XSS attack. So I just come up a question about definitions. 
+}
+\eprob
+\vspace*{0.5in}
+
+\prob{10} Consider a web server that is running the following PHP code to authenticate
+users:
+{\footnotesize
+\begin{verbatim}
+if (isset($_POST[’username’]) and isset($_POST[’password’])) {
+    $username = $_POST[’username’];
+    $password = $_POST[’password’];
+    $sql_s = "SELECT * FROM users WHERE password='$password' and username='$username'";
+    $rs = mysql_query($sql_s);
+    if (mysql_num_rows($rs) > 0) {
+        echo "Login successful!";
+    } else {
+        echo "Incorrect username or password";
+    }
+}
+\end{verbatim}
+}
+Write an input pair (username, password) that bypasses authentication procedures
+and logs in as a user named `admin'. Briefly explain your answer. (Hint: `and' has
+a higher precedence than `or')
+\eprob
+
+\sols{
+	username = admin; password = ' or ''='; It is almost the same as the homework but I simply change the order of username and password. 
+}
+
+\if 0
+\prob{10} Consider a web server that uses the following PHP code to authenticate 
+users:
+{\footnotesize
+\begin{verbatim}
+if (isset($_POST[’username’]) and isset($_POST[’password’])) {
+    $username = $_POST[’username’];
+    $password = md5($_POST[’password’], false);
+    $sql_s = "SELECT * FROM users WHERE username=’$username’ and pw=’$password’";
+    $rs = mysql_query($sql_s);
+    if (mysql_num_rows($rs) > 0) {
+        echo "Login successful!";
+    } else {
+        echo "Incorrect username or password";
+    }
+}
+\end{verbatim}
+}
+
+Note that this code uses {\tt false} as the second parameter of the {\tt
+md5()} function, which cases the function to return the hash as a $32$-character
+hexadecimal number in string. {\bf Is this code secure against any SQL
+injection?} (Yes or no.) If so, explain why. If not, provide an input pair
+(username, password) that bypasses authentication procedures by logging in as
+a user named `admin'. In addition, suggest a solution to fix this code and
+protect against any SQL injection if you think this code is vulnerable. (Hint:
+\#, -- are two possible comment characters in MySQL)
+
+\sols{
+	The answer is NO. Let username = admin';\#  and password be an empty string. Prepared statement or escaping username (and password). 
+}
+\eprob
+
+\prob{10}  Recall that for the XSS attack assignment, you were asked to
+demonstrate XSS attacks against Bungle’s search box, which does not properly
+filter search terms before echoing them to the results page. Your goal was to
+construct a URL that, if loaded in the victim’s browser, correctly executes
+the payload which required persistence as one of the requirements.
+
+Provide a step-by-step explanation of how how you made your payload persist
+when a user logged into Bungle with his account. (You are not required to
+explain how to deal with the backward/forward buttons.) {\em Your answer should
+be no longer than about five steps; one short phrase for each step is sufficient.}
+
+\sols{
+	\begin{itemize}
+	\item  remove original functionality of login button
+	\item  bind login button with a new onclick event handler
+	\item  read user input using jQuery/javascript function from username and userpass fields\\
+	\item  using \$.ajax or other equivalent function to submit a POST request\\
+	\item  reload the page by calling function equivalent to proxy() from framework code
+\end{itemize}
+}
+
+\eprob
+\fi
