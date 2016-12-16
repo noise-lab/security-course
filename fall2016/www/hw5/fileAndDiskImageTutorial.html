@@ -1,0 +1,56 @@
+<html>
+<head>
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+
+</head>
+<body>
+<!-- Thanks to Anna for pointing out that I forgot to actually update this page -->
+
+<center><img src="images/framedbits.png"></center>
+
+
+<h4>The low level picture of a hard disk</h4>
+
+
+<p>At the very lowest level, you can think of a hard drive as a device that contains a long string of bits. For example, a 4 gibibyte hard drive is just a sequence of 34359738368 bits, each of which can be either a zero or a one. When you store an image file on your computer, that image is encoded inside of that long string of bits. Other information about the image file must be stored on the drive as well, including the size of the file, the name of the file, who is allowed to access the file, and where the file is actually stored (e.g. what subset of the string of bits represents the file). All of this meta-information is stored as a subset of that same long string of bits.
+
+<center><img src = "images/annotatedBits2.png"></center>
+
+For example, in the image above, the red bits represent "other information" about a file of interest. The blue bits represent the actual content. The yellow bits are bits on the hard drive that are unrelated to the file. In this case, the file is split across two sections of the hard drive. When the first chunk of the file runs out, there is a pointer at the end of the chunk (the second red bit sequence) that tells the operating system where to find the rest.
+
+<h4>The high level nested-folders abstraction of a hard disk</h4>
+
+<center><img src = "images/directories.png"></center>
+
+<p>By contrast, the familiar abstraction of the file system on your computer is one of nested folders. At the lowest level, this abstraction fails in a number of ways. For example, a single file is often stored in several chunks throughout a hard drive. The beginning and end of each file chunk must be specifically recorded (i.e. unlike in a real folder full of paper files, you can't just look for the edge of a piece of paper to see where the page ends, since the entire contents of the hard disk are all just a big long string of bits). 
+
+<p>For the purposes of this assignment, the most important situation where this abstraction breaks down is when you delete a file from your computer. In the case of a physical file, you'd remove the paper from the file and put it in the trash (or in the shredder if you really wanted to be careful). By contrast, when you delete a file on your computer, the file is not actually overwritten, but rather the location of the file is forgotten from the inital metadata, and that part of the drive marked as safe to overwrite. It's the equivalent of stamping a physical piece of paper with "OK TO THROW AWAY." Doing this is clearly a bad way to hide evidence of a crime you may have committed. 
+
+<p>The protocol which bridges the gap between the low level disk and the nested folders abstraction is known as a <a href="http://en.wikipedia.org/wiki/File_system">file system</a>. You don't need to know anything specific about file systems for this assignment, other than the fact that there are many (e.g. FAT32, NTFS, ext2, ext3, HFS Plus). As an example, you can imagine a variant of my made up red/blue/yellow file system where all of the chunk information is stored at the beginning of the drive, instead of having the next-chunk pointer right next to the chunks of data.
+
+<h4>Disk image files</h4>
+
+<p>A disk image file (such as forensics_release.vdi) represents the literal sequence of 1s and 0s that appears on the physical hard drive. The simplest possible disk image format is the RAW format, where each bit in the image corresponds to exactly 1 bit on the drive (e.g. a RAW disk image of a 4 gigabyte drive would be stored on your computer as a file of size 34359738368 bits). By contrast, the forensics_release.vdi file we provide is a disk image in VDI format. VDI is an open source format used by the VirtualBox tool. One difference between VDI and RAW format is that a VDI image file may represent a drive of a larger size than itself (e.g. a 1 GB VDI file can represent a 4 GB drive) by not explicitly representing unused space. There are many more differences, all of which are beyond the scope of this project (see <a href="https://forums.virtualbox.org/viewtopic.php?t=8046">this link</a> for more if you're curious).
+
+<p>VDI and RAW images are useful for different purposes. VDI files can be booted directly by VirtualBox (so you can virtually start up Nefarious's machine). RAW images are uncompressed and are easier to browse (via grep or other tools), mount, or otherwise explore using standard Linux tools (because Linux natively speaks the very simply language of RAW files). It is also possible to do directly mount VDI files by using special purpose VDI tools.
+
+<h4>Partitions</h4>
+
+<p>One minor caveat is that a single disk can contain multiple discrete file systems of completely different types. This is handy, for example, if you want to install multiple operating systems on a single drive. In this case, the drive is said to be "partitioned." Information about the partitions on a drive are stored on a special "partition table" that is independent of the file systems. One can think of the partition table as a sort of meta-meta-information. For more information, see <a href="http://en.wikipedia.org/wiki/Disk_partitioning">disk partitioning</a>.
+
+<h4>Mounting file systems</h4>
+
+<p>When your computer starts up, your operating system loads itself from the hard drive using the familiar and convenient abstraction of nested folders. It first checks to see which file system is being used (NTFS, ext2, etc.) by a partition, and interprets the bits on the drive using the appropriate rules defined by the file system. This process of setting up the nested folders abstraction is known as "mounting." Different operating systems are capable of mounting different file systems. Windows, for example, is very comfortable with NTFS and FAT32. Mac OS X is good at HFS Plus and FAT32, but for some reason does not know how to handle the standard Linux filesystems ext2 and ext3. 
+
+<h4>Mounting file systems from raw disk image files</h4>
+
+<p>Some operating systems natively support mounting of raw disk image files. Linux is one such operating system, and it is largely for this reason that we suggest that you use Linux. 
+
+<p>To mount a file system from a raw disk image using the Linux <i>mount</i> command, you need to know the byte number on which the file system starts as well as the file system type. Conveniently, these pieces of information are stored in the partition table, which can be accessed using the Linux <i>sfdisk</i> or <i>fdisk</i> commands. See <a href="http://linux.die.net/man/8/sfdisk">this page</a> for documentation on listing partitions. For hints on how to mount drives, see the part of <a href="http://darkdust.net/writings/diskimagesminihowto">this page</a> under the heading "the clean way." Instead of providing a device name (e.g. <tt>/dev/sda</tt>), you can instead provide the name of a raw disk image (which you can create from our file using the <tt>VBoxManage clonehd</tt> command that comes with VirtualBox).
+
+<hr>
+
+<br><font size=-2>Copyright 2012, Josh Hug.</font>
+
+</body>
+</html>

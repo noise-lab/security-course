@@ -1,0 +1,38 @@
+body { margin-left: 20px; margin-right: 40px; margin-top: 20px; background-color: #ffffff; }
+pre  { font-family: "courier new", courier, mono; font-size: 14px; background-color:#dddddd; padding: 10px 15px 10px 15px; }
+code { font-family: "courier new", courier, mono; font-size: 14px; }
+tt   { font-family: "courier new", courier, mono; font-size: 14px; }
+
+hr {width:800px;}
+
+th { font-size: 14px; background-color: #555555; color:#ffffff; }
+td { font-size: 14px; margin-top: 20px;}
+
+.bl { border-bottom: solid 8px black; }
+
+ol li        { list-style: decimal;     }
+ol ol li     { list-style: lower-alpha; }
+ol ol ol li  { list-style: lower-roman; }
+
+ul li          { list-style: disc;    }
+ul ul li       { list-style: circle;  }
+ul ul ul li    { list-style: square;  }
+ul ul ul ul li { list-style: disc;    }
+
+a         { text-decoration: none; }
+a:active  { color: green; }
+a:hover   { color: red; text-decoration: underline;  }
+
+
+div.outercontainer{
+	margin-top:10px;
+	text-align:center;
+	width:800px
+}
+
+div.innercontainer{
+	margin-left:auto;
+	margin-right:auto;
+	text-align:left;
+	width:800px;
+}

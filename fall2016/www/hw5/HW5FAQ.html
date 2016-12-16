@@ -1,0 +1,28 @@
+
+<!-- saved from url=(0079)https://www.cs.princeton.edu/courses/archive/fall15/cos432/homework/hw8FAQ.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+	HW8 FAQ</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="chrome-extension://pkehgijcmpdhfbdbbnkijodmdjhbjlgp/skin/socialwidgets.css"></head>
+<body>
+<p><b>sudo is telling me I'm not allowed to do something. How do I get sudo to work?</b> You may need to edit the list of users allowed to acquire super user privileges. See <a href="http://www.pendrivelinux.com/how-to-add-a-user-to-the-sudoers-list/">this page</a> for a detailed description of how to add yourself to this list.
+
+</p><p><b>I can't get my virtual folder to mount in VirtualBox.</b> Make sure that you've created a dummy folder on the <i>guest</i>, and that you're giving the virtual box folder name, followed by the dummy folder name. You should NOT be entering a path that has anything to do with the <i>host</i> OS.
+
+</p><p><b>fdisk, sfdisk, mount, or some other tool cannot be found but I think it's installed.</b> Use "sudo fdisk" instead. If you don't have the privileges, Debian will act just like the tool is not installed.
+
+</p><p><b>Can I get an example of how to convert a VDI file to a RAW file using VBoxManage?</b> Sure! <tt>VBoxManage clonehd diskImage.vdi  -format raw diskImage.raw</tt> will convert diskImage.vdi to raw format and store this in diskImage.raw. Make sure you have 4 gigabytes of space free. Also, make sure you're calling VBoxManage from your <i>host</i> OS (i.e. NOT Debian).
+
+</p><p><b>I made a backup copy of a VDI and VirtualBox is complaining about files with duplicate UUIDs.</b> VirtualBox doesn't like the idea of there being multiple VDI files with the same unique identifier (UUID), and it's really good at catching you at this. You can change the UUID with the sethduuid command. As an example: <tt>VBoxManage internalcommands sethduuid diskCopy.vdi</tt>. This won't affect the file in any way that will affect your forensic analysis.
+
+</p><p><b>When I try to mount a partition from a raw image of a drive using the built in mount command, it's giving me a very vague error that ends with "try dmesg | tail" for more info.</b> Use "dmesg | tail" for more info.
+
+</p><p><b>When I try dmesg | tail, I get <tt>recovery required on readonly filesystem</tt> and <tt>write access unavailable, cannot proceed</tt>.</b> It's ok to mount the drive with write privileges for recovery purposes. As soon as the drive is successfully mounted, we recommend that you umount the drive (using <tt>sudo umount</tt>) and then remount again in a read only fashion. Make sure to note that you've altered the raw image when answering the questions in your report.
+
+</p><hr>
+
+<br><font size="-2">Copyright 2012, Josh Hug.</font>
+
+
+</body></html>
