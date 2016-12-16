@@ -1,0 +1,96 @@
+HW8 Standard Hints
+==================
+
+Students are allowed to request 3 total hints from you during the assignment.
+To help get them started, questions about 1 to 3 do not count towards the 3
+hint limit.
+
+When answering students you should largely stick to the hints below. This helps
+keeps things fair between groups / TAs.
+
+===============================================================================
+===============================================================================
+
+*** Questions 1 - 3 ***
+
+The first three questions are just to help them get started. There are no standardized hints, and 
+we will help them on a case by case basis depending on what problems they're having. Remember 
+that help on 1­3 does not count toward the 3 allowed hints. 
+
+===============================================================================
+===============================================================================
+ 
+*** Questions 4 - 8 ***
+ 
+4. Do you have any evidence that the suspect had an accomplice who was physically present 
+on the night of the crime?
+ 
+Try looking for chat logs. Perhaps you can leverage your knowledge of the suspect's login 
+information. 
+
+-------------------------------------------------------------------------------
+
+5. Were there any suspicious­looking encrypted files on the machine? If so, please attach 
+their contents and a brief description of how you obtained the contents. 
+ 
+Often, people set weak passwords. We'd recommend trying to crack the password using a 
+reduced key space. Consider running these tools on a fresh disk image. 
+
+-------------------------------------------------------------------------------
+ 
+6. What evidence do you have that the suspect owned or was researching weapons of the kind 
+involved in the murder? Please attach the specific evidence and a brief explanation. 
+ 
+People often use online search engines to do research, and web browsers often store the search 
+history. 
+
+-------------------------------------------------------------------------------
+ 
+7. Did the suspect try to delete any files before his arrest? Please attach the name(s) of the 
+file(s) and any indications of their contents that you can find. (Hint: We will be impressed 
+enough to give extra credit if you manage to recover the original contents of a particular 
+incriminating file, but we do not expect you to do so.) 
+ 
+A few useful tools here may include scalpel, extundelete and ext3grep. 
+
+-------------------------------------------------------------------------------
+ 
+8. Is there anything else suspicious about the machine? 
+ 
+Are there any suspicious tools on the machine?
+
+===============================================================================
+===============================================================================
+
+*** Remote Access Questions ***
+
+Note that these hints also count toward the 3 hint limit.
+
+-------------------------------------------------------------------------------
+
+1. Who owns this machine, according to the files on it? 
+
+A good starting point for identifying the owner is to look at the name of the home directory. 
+
+-------------------------------------------------------------------------------
+
+2. What does its purpose appear to be? (hint: what network service is running?) 
+
+Try using the linux ‘top’ command. 
+
+-------------------------------------------------------------------------------
+
+3. Was the suspect granted access to the machine, or was it compromised?  If the suspect 
+was granted access, when? If it was compromised, when and how was it compromised? 
+
+If the remote machine was compromised, there may be history on the local machine showing 
+unusual access patterns. The server too may store history of unusual login attempts. 
+
+-------------------------------------------------------------------------------
+
+4. In either case, it appears as though the suspect has abused his access to the machine. 
+How? 
+
+Check for stored history on the remote machine of actions that look suspicious. 
+
+
