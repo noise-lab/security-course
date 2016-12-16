@@ -1,0 +1,237 @@
+=======================================================================
+RUBRIC FOR COS432 HW8: Forensics
+=======================================================================
+
+Total points:84/80
+
+First 8 questions                                           - 68 points     
+Recovering evil plan                                        - 4 points
+Remote Server Questions                                     - 12 points
+
+-----------------------------------------------------------------------
+1) Booting the suspect's machine is a bad idea in general because it 
+might do nasty things unless a secret command is entered. This specific
+machine boots a Puppy Linux install unless the GRUB menu is used to 
+boot the "real" Ubuntu install. The Puppy Linux install tweets the 
+machine's IP address to the @innocuous_news Twitter account and then 
+writes zeros to the hard drive, presumably in an attempt to warn the
+accomplice of the investigation and then interfere with the 
+investigation.
+
+Total: 8 points
+Breakdown: 
+4 points for identifying the autodelete process
+2 points for identifying that the theft detection mechanism results from
+  the machine booting a different OS (i.e. puppy linux) in GRUB
+2 points for identifying the twitter behavior 
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+2) On the main partition, the suspect uses Xubuntu 9.04. ["Ubuntu" or 
+"Ubuntu Linux" is good enough.] with ext3 file system.
+
+On the boot partition, the suspect installed Puppy Linux 4.31 ["Puppy" 
+or "Puppy Linux" is good enough.] with an ext2 file system
+
+Total: 8 points
+Breakdown:
+2 points for Xubuntu 9.04 (or one of the good enough answers)
+2 points for ext3 on the main partition
+1 point for Puppy Linux 4.31 on the boot partition(or one of the good 
+  enough answers)
+1 point for ext2 on the boot partition
+2 points for including how they retrieved this information. This may
+  be from a Linux command or from a tool like Autopsy. The basic 
+  question to answer when awarding these points is, "Did they include
+  enough information to allow me to replicate the results".
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+3) nefarious
+Total: 8 points
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+4) There is a log of an incriminating-looking IRC chat in ~/irclogs on
+irc.freenode.net between "nefarious" and "accomplice" to the effect
+that "accomplice" will be the getaway driver from the "Dow"
+building]. Log attached.
+Total: 8 points
+Breakdown:
+5 points for identifying the conversation
+3 points for including the log as evidence. This can be included as a 
+separate file or the contents can be copied and pasted in the report.
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+5) passwords.zip contains password[1,2,3,4,5].txt but is protected with 
+a ZIP password (soelite). The contents are
+password1.txt: “enigma”
+password2.txt: “love”
+password3.txt: “supersecret”
+password4.txt: “KERMIT”
+password5.txt: “eeMeisei700x”
+They need to crack this by brute force, very good guessing, or it is
+also okay if they recover the contents by looking at the bash history.
+
+Total: 12 points
+Breakdown:
+4 points for identifying passwords.zip
+2 points for correctly describing the structure of the files in
+  passwords.zip. To clarify, if they just list all 5 passwords, but they
+  fail to note that the zip file contained five text files, they will 
+  lose these points as they have not fully described the content of the 
+  encrypted files
+4 points for recovering all 5 passwords
+2 points for including their methodology. This may be as simple as we 
+  found the bash history, or it may be that they used a password cracker.
+  If they used a password cracker, to get these points, they must give
+  details on how they cracked it (e.g. dictionary attack, brute force 
+  of alphanumeric up to x characters, etc..). They do not have to give
+  the full linux commands that they ran
+
+Other partial credit for 5:
+4 points if they were unable to retrieve the passwords, but they instead 
+used a password cracker to obtain nefarious and root password.
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+6) Browser history files contain remnants of research on Nerf guns
+(despite history being cleared), including the following pages:
+-nerf gun pages on hasbro.com
+-nerf gun pages on amazon.com
+- noticing that one of the toy guns was added to the cart on Amazon
+-nerf gun pages on ebay.com 
+-google searches for best nerf guns
+-eHow article on choosing best nerf gun
+-wiki.answers.com page on choosing best nerf gun
+-This video of how to modify a nerf gun: 
+ http://www.metacafe.com/watch/766831/easy_nerf_gun_hack/
+-an article on popularmechanics.com on the most powerful nerf gun ever
+-A DoubleClick cookie with incriminating keywords
+ (such as NERF, Toys, Guns, Hack, Mod, Modify, Simple, Easy, Foam, Darts, 
+ Shoot, Firepower, Controversial, Weapons, and Hacking).
+
+
+Of the 10 options above, they should mention at least 4 of them. For 
+everything except Google Searches and the point that they added to nerf 
+gun to the cart on amazon, they should attach a URL for full credit. If 
+they find evidence that doesn't fall into the above categories, then
+post on piazza.
+
+Total: 8 points
+Breakdown: 
+2 points each for 4 of the points in the above categories
+
+Partial Credit:
+If they identified the websites but did not provide URLs, take only 2 
+points off maximum. (So, for example, identifying 4 would get 6/8, 
+identifying 3 would get 4/8 etc.)
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+7) Deleted file evil_plan.bmp seems to be a deranged plan to shoot
+Hapless Victim in the back.
+
+Total: 8 points
+Cases:
+6/8 points if they just say "evil_plan.bmp"
+8/8 points if they say evil_plan.bmp and also provide the thumbnail file
+    (located at /home/nefarious/.thumbnails/normal)
+9/8 points if they say evil_plan.bmp and provide an undeleted version 
+     of evil_plan.bmp that is scrambled but still clearly visible and
+     they DO NOT give enough details of the commands used to allow you 
+     to replicate the file recovery. 
+10/8 points if they say evil_plan.bmp and provide an undeleted version 
+     of evil_plan.bmp that is scrambled but still clearly visible and
+     they give enough details of the commands used to allow you to
+     replicate the file recovery.
+10/8 points if they say evil_plan.bmp and provide a fully intact copy of 
+     evil_plan.bmp  and they DO NOT give enough details of the commands 
+     used to  allow you to replicate the file recovery.
+12/8 points if they say evil_plan.bmp and provide a fully intact copy of 
+     evil_plan.bmp  and they give enough details of the commands used to 
+     allow you to replicate the file recovery.
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+8) Contains several hacker tools including the Metasploit framework and 
+   Hydra (brute-force cracker).
+
+Total: 8 points 
+Breakdown:[cap at 8/8 points]: 
+4 points for Hydra 
+4 points for Metasploit
+4 points for booting the hidden Assignment 9 disk image
+
+=======================================================================
+Remote Server Questions--12 points
+=======================================================================
+1) The machine is owned by Dr. Academic Researcher (Academic Researcher 
+is good enough)
+
+Total: 3 points
+
+Partial Credit:
+1 point for 'academic'
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+2) It's a web server or "hosts a website"
+Total: 3 points
+Breakdown:
+1 point for identifying it as a webserver
+2 points for explaining how they reached this conclusion. Possible 
+  answers include running the linux command 'top' and seeing apache2 or
+  running 'lsof' and seeing apache2
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+3) The machine was compromised, and there is evidence of this both  on 
+Nefarious’s computer as well as on the server itself. On Nefarious’s 
+computer, in the recovered bash_history, there was evidence that 
+Nefarious was running hydra on the root user’s password. On the remote 
+machine, the system logs for login attempts, /var/log/auth.log, shows 
+that there were many failed login attempts from Nefarious’ IP address.
+As for when it was compromised ,from Nov 24 23:25:11 to Nov 25 9:45:08
+there are continual failed connection attempts from the suspects 
+computer, until a password is finally accepted at Nov 25 09:45:09.
+
+Total:3 points
+Breakdown:
+1 point for correctly getting the time of compromise (ideally this 
+  should be Nov 25 09:45:09, but allow some leeway).
+1 point for the evidence in /var/log/auth.log
+1 point for correctly stating that Nefarious used Hydra to get in 
+  (they must specifically mention Hydra).
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+4)The .bash_history of the root user(located in /root/.bash_history on 
+the remote machine) shows that the user was editing the webpage:
+ “vi /var/www/index.html” The new contents of index.html  are:
+
+<html><body><h1>Academic Researcher</h1>
+<p>Dr. Academic Researcher is a loser who knows nothing about computer
+ security. <!--The duck flies at midnight! --></p>
+</body></html>
+
+If they identify that the website was defaced without mentioning the
+ bash history, this is OK.
+
+If they managed to recover the original index.html file, post on Piazza.
+
+Total: 3 points
+
+=======================================================================
+General Deductions
+=======================================================================
+Preliminary Tasks
+-----------------------------------------------------------------------
+-4: Not sending an email with the answers to 1 through 4. See pinned 
+    Piazza post for list that keeps track of this.
+-1: Not sending groups by the appropriate date. See pinned Piazza post 
+    for list that keeps track of this. 
+-----------------------------------------------------------------------
+-4 Student fails to include any discussion about how they minimized 
+   changes to disk or how specific commands that they ran altered the
+   disk and why those changes are unlikely to meaningfully affect the
+   evidence
+-2 Student includes some discussion about how they minimized 
+   changes to disk or how specific commands that they ran altered the
+   disk and why those changes are unlikely to meaningfully affect the
+   evidence. However, the discussion was insufficient as they made 
+   some changes to the disk that were not justified.
