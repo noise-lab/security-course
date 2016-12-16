@@ -1,0 +1,260 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Edward W. Felten">
+
+   <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+
+   <title>Assignment 8</title>
+</head>
+<body>
+
+<div class = "innercontainer">
+
+<center>
+<a href="fileAndDiskImageTutorial.html" align="center">File System and Disk Image Tutorial</a> |
+<a href="hw8FAQ.html">FAQ</a> 
+</center>
+
+<h2>Assignment 8: Forensics.</h2>
+<h3>Due Saturday, December 19 at 7:00 PM</h3>
+
+This is a group
+assignment and we recommend you to stay in the same group you had in
+past assignments. We'll assume that your groups are the same as
+before, but if there are any changes you should post on Piazza to let us know.
+
+<h4>The Backstory</h4>
+
+<p>Years ago, in the snowy Midwestern wastes of Ann Arbor Michigan, a young man's life
+ was cut short far too soon. A town favorite and campus darling,
+Hapless Victim, was killed while working in the CS building sometime between
+midnight and 6 AM on November 26, 2009. Officers recovered a projectile
+known as a "nerf blaster dart" which appeared, inexplicably, to have been 
+the cause of death.
+
+<p>Investigating officers had their first big break when they received an email tip 
+on the 27th from an individual under the pseudonym of
+"Cecco Beppe". Responding to this tip and other circumstantial evidence, officers arrested their only
+suspect, Nefarious Criminal, and seized his computer. Unfortunately,
+an overzealous junior investigator encrypted the drive image without keeping
+track of the encryption key, and the equipment was returned to Nefarious
+before the mistake was realized. Now, after three years of brute force
+guessing, the drive has finally been unencrypted.
+
+<p>On this assignment, you will conduct a forensic investigation of
+Nefarious's hard drive and document any evidence relating to the murder of
+Hapless Victim. 
+
+<h4>The Disk Image</h4>
+
+The image is available as a
+<a href="https://www.cs.princeton.edu/courses/archive/fall15/cos432/homework/forensics_releaseCB.vdi">3.35
+gigabyte download</a>; SHA1 Hash:
+50405838f1f105e0d1dc748b547d773dcbd1b1df ('sha1sum -b filename' on
+Linux)). 
+</p>
+<h4>Tasks and deliverables</h4>
+<p>
+The deliverables for this project are your answers to the eight numbered
+questions listed below.  Your 
+answers should be complete but concise.  None of the questions should require
+more than one or two paragraphs to answer.
+</p><p>
+For each prompt (all of them!), explain the investigatory methods you used and the evidence
+that supports your conclusion. <b>Your answers should be thorough enough that
+another investigator with basic Linux knowledge would be able to 
+replicate your results. Explicitly give any particularly tricky commands or sequences of commands,
+along with a short explanation (i.e. if you got stuck on it, explicitly include it). 
+</b> Note that while we do want
+key details, we do not want a full transcript of the commands you took to complete your 
+investigation.
+
+<p>Submit your answers in HTML or PDF format, 
+in a file called index.html or homework8.pdf.  You may include recovered 
+files in your submission. If you submit such files, your report should clearly 
+indicate which of these files are relevant to each response.
+</p><p>
+As you investigate, be on the lookout for evidence of any other machines
+or network services that the suspect may have used.  These may contain 
+important evidence and raise further questions you'll need to investigate.  
+Be sure to contact your supervisor (i.e., your assigned TA)
+<i>before</i> attempting
+to access any such machines or accounts.  Again, start early; management
+has been known to take up to 24 hours to respond on weekdays and longer
+on weekends, although we try to respond promptly.
+</p>
+<ol>
+<li>Try booting the suspect's machine and using it normally [to do this,
+	you should create a new virtual machine -- don't use your Kali machine].  What 
+<i>specific</i> behaviors of this machine make this a bad idea?  
+<li>What operating system and file system does the suspect use?  Be careful and specific; e.g.,
+say "Windows 2000" instead of just "Windows."; "FAT32" instead of just "FAT." (No attachment necessary.)
+<li>What is the username of the account typically used by the suspect?
+(No attachment necessary.)
+<li>Do you have any evidence that the suspect had an accomplice who was
+physically present on the night of the crime?
+<br><b>After completing this step, please send a brief email to your assigned TA 
+containing your answers to 1 thorugh 4, as well as a very short
+description of how you obtained this information. This email will be worth
+4 points of your grade. There is no particular due date, though we recommend
+you do this sooner rather than later.</b>
+<li>Were there any suspicious-looking encrypted files on the machine?  If so,
+please attach their contents and a brief description of how you obtained the
+contents.
+<li>What evidence do you have that the suspect owned or was researching 
+weapons of the kind involved in the murder?  Please attach the specific
+evidence and a brief explanation.
+<li>Did the suspect try to delete any files before his arrest?  Please attach
+the name(s) of the file(s) and any indications of their contents that you
+can find.  (Hint: We will be impressed enough to give extra credit if you 
+manage to recover the <i>original</i> contents of a particular incriminating
+file, but we do not expect you to do so.)
+<li>Is there anything else suspicious about the machine?
+</ol>
+
+Unlike physical data (fingerprints, weapons, etc.), digital data can be
+theoretically examined WITHOUT modification. You should do your best to
+avoid changing the disk image whenever possible. Despite the theoretical
+possibility of avoiding any changes to the disk image, it is very
+difficult to completely avoid modifications to the disk (at least using standard
+Linux tools).
+
+<p>For each piece of evidence that you collect, you should list the changes
+that were made to the original disk image in pursuit of that evidence. You should
+specifically mention why those changes were unlikely to meaningfully affect that piece
+of evidence.
+
+<h4>Submitting</h4>
+<p>
+You should write up your answers to the above questions as you have
+for previous assignments. Include these answers as well as any files
+from the image which you wish to use as exhibits to support those
+answers and submit them as a zip file named submit8.zip <a
+    href="https://dropbox.cs.princeton.edu/COS432_F2016/HW8">here</a>.
+
+<h4>Getting Started / Officially Supported Working Environment</h4>
+
+<p>There exists a vast library of security tools that might be helpful for this assignment. The best ones tend to be open source, community developed tools. It is probably not a surprise that these tools are usually developed and deployed in Linux. 
+
+<p>We will officially support students who are working in <b>Kali Linux</b>. We will also probably be able to help with other standard flavors of Linux. You are welcome to work in ANY environment, but be warned, we will not provide assistance with installing tools in other operating systems. 
+
+<p>If you aren't already running Linux, we recommend that you download VirtualBox and install Kali Linux. VirtualBox is also a rather useful tool for this assignment. 
+
+<p>Begin by downloading and installing <a href="https://www.virtualbox.org/wiki/Downloads">Virtual Box</a> for your host operating system.
+
+<p>Next you can download a <a href="https://www.offensive-security.com/kali-linux-vmware-arm-image-download/">Kali Linux 64 bit VBox</a>. This is a prebuilt VirtualBox image which you can directly import into VirtualBox. It should be setup and ready to go with username <em>root</em> and password <em>toor</em>.
+
+<h4>Hints and resources</h4>
+
+For those of you with a weaker operating systems background, please see the <a href="fileAndDiskImageTutorial.html">file system and disk image tutorial</a>.
+
+<p>
+Here is an incomplete list
+of non-obvious things you may want to try:
+<ul>
+<li>Convert the VDI disk image to raw format for appropriate tasks (e.g. mounting any file
+systems that may be present inside the image file, grepping for data inside the disk
+image). The <i>VBoxManage clonehd</i> that is installed with VirtualBox can perform
+this conversion. The VDI format is handy for interfacing with VirtualBox. RAW format is
+generally better for low level tools like mount, grep, or other hex editors you may
+be running on your <i>host</i> operating system.
+<li>Mount the file system(s) present in the disk image. Linux is capable of natively
+mounting file systems from inside raw disk image files. See the <a href="fileAndDiskImageTutorial.html">file system and disk image tutorial</a> for more on mounting drives.
+<li>Examine the system logs.
+<li>Look for cached files that are automatically created by various installed applications.
+<li>Check for deleted or encrypted files.
+<li>Search the drive image itself (e.g., using grep -a or strings) for strings
+that may indicate relevance to your investigation.  
+</ul>
+</p><p>
+Kali Linux is a distribution of Linux which ships with a large number of Computer Security related tools. This includes many pieces of software related to computer forensics. It will be very useful to explore how these tools can help you.
+Some additional resources that <i>may</i> help you are listed below. You may not
+need any particular tool listed below, and there are a huge number of useful tools that you can
+use that are not on the list below.
+<ul>
+<li><a href="http://darkdust.net/writings/diskimagesminihowto">darkdust.net/writings/diskimagesminihow</a> gives an
+example of how to find and mount Linux partitions under the section labeled
+"the clean way".
+<li>John the Ripper (http://www.openwall.com/john/) is the canonical Unix
+password cracker.  Cain and Abel (http://oxid.it/cain.html) and Hydra
+(http://www.thc.org/thc-hydra/) are two other well-known general-purpose
+password crackers, frackzip (http://oldhome.schmorp.de/marc/fcrackzip.html) is
+a ZIP password cracker, and pdfcrack 
+(http://sourceforge.net/projects/pdfcrack/) is a PDF password cracker.
+John, fcrackzip, ext3grep, f2undel, and pdfcrack are conveniently available in the Ubuntu 
+package repositories (i.e. installable by apt-get) and may be available for 
+other Linux distros as well. Note that the available version of John the Ripper
+is significantly out of date and may not work for your purposes (install from source
+if you have problems).
+<p>When using a password cracker, it is wise to make sure that the password is
+not susceptible to a dictionary attack and does not use a restricted 
+character set (e.g., lowercase letters, letters only, letters and numbers
+only) before spending time on a full brute-force crack.  It is also 
+a good idea to create a dummy file with an easy password first to make sure you are
+using the tool correctly.
+<li>"Deleted files recovery howto" 
+(http://e2undel.sourceforge.net/recovery-howto.html) explains how to recover
+deleted files on the ext2 filesystem using <tt>e2undel</tt> and 
+<tt>debugfs</tt>.  http://www.xs4all.nl/~carlo17/howto/undelete_ext3.html
+explains how to attempt to recover deletes files on the ext3 filesystem.
+<li>A general working knowledge of Linux is probably helpful for this 
+project as well.  If you don't have this yet, you will definitely need to spend a little
+time Googling and/or experimenting to get up to speed.  If possible,
+try to ensure that at least someone in your group is comfortable with Linux.
+We will try to answer Linux questions on Piazza.
+</ul>
+</p>
+
+<h4>Policies and mechanics</h4>
+
+<h5>Ethics</h5>
+
+In this project you will be investigating the use of computers as part of
+an entirely fictitious crime scenario.  You may access Web pages and other
+obviously-public computer services in a read-only fashion, but <i>you must
+not attempt to log into any computers or accounts over which you do not
+already have sole control</i>, even if you recover authentication credentials
+for those accounts from your analysis.  If you think that doing so is 
+necessary (hint, hint), you must first email the teaching assistants.
+
+<h5>Collaboration</h5>
+
+As usual, you may not collaborate outside your group.   The number of 
+pieces of evidence you find, the techniques you try, how successful those
+techniques are, the general process you follow, etc., are considered
+part of your solution and must not be shared between groups.
+
+<h5>If you get stuck</h5>
+
+<p>
+Given the nature of the assignment and its strict collaboration policy, we
+recognize the need for some hints.  We have developed standard hints for each
+question we have asked in the assignment; if your group gets stuck, you may
+email your assigned TA with the names of your group members, the
+question for which you would like a hint, and the progress you have made
+thus far on that question.   Each group may receive up to three hints in
+total, and we will enforce a one-hour delay between hints for each group.
+</p><p>
+Requesting access to a remote machine does not count as a hint request, nor
+does asking for help with the first three questions, which are intended to
+help you get started.
+</p><p>
+We will respond to hint requests in a best-effort, first-come first-served
+fashion.  In particular, you will not necessarily receive a hint before the
+homework deadline if you request one within 24 hours of the deadline.  Start
+early!
+</p>
+
+
+<hr>
+
+</div>
+
+<br><font size=-2>Copyright 2012, J. Alex Halderman and Edward W. Felten (with moderate revision by Josh Hug).</font>
+
+</body>
+
+</html>
+
