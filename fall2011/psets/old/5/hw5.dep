@@ -1,0 +1,2 @@
+hw5.dep: Makefile  hw5.tex
+hw5.aux:  hw5.tex

@@ -1,0 +1,728 @@
+\documentclass[11pt]{article}
+\usepackage{graphics,epsfig,amsmath,amssymb}
+\usepackage{epsf}
+\usepackage{boxedminipage}
+\usepackage{fullpage}
+\usepackage{fancyheadings}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{ifthen}
+%\usepackage{pseudocode}
+\usepackage{psfrag}
+\usepackage{url}
+\pagestyle{fancy}
+
+\setlength{\topmargin}{.2in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.15in}
+\setlength{\footskip}{0.1in}
+
+\newcounter{pctr}
+\stepcounter{pctr}
+
+\newcounter{partctr}
+
+\newcommand{\ie}{{\em i.e.}}
+\newcommand{\eg}{{\em e.g.}}
+
+\newcommand{\ch}{\item {\bf True~~/~~False~~}}
+\newcommand{\tfnote}{\probnote{Circle True or False for each choice.}}
+\newcommand{\allapply}{\probnote{Circle ALL that apply}}
+\newcommand{\bestanswer}{\probnote{Circle the BEST answer}}
+\newcommand{\ansbelow}{\probnote{Answer legibly in the space below.}}
+
+\renewcommand{\thesection}{{\bf\Roman{section}}}
+\renewcommand{\theenumi}{{\bf\Alph{enumi}.}}
+\renewcommand{\labelenumi}{{\bf\Alph{enumi}.}}
+
+\newcommand{\setversion}[1]{\def\version{#1}}
+
+\setversion{answers}
+\ifthenelse{\equal{\version}{answers}}{
+    \newcommand{\sols}[1]{#1}
+} {
+    \newcommand{\sols}[1]{}
+}
+
+
+\newcounter{answer}
+\newenvironment{answer}[1][\relax]{\refstepcounter{answer}\begin{list}%
+ {}{\leftmargin 0pt\rightmargin 0pt\labelsep 3pt\parsep 0pt%
+ \setlength{\listparindent}{\parindent}}
+    \item {\bf Answer \theanswer #1}\
+    }{\hspace*{\fill}$\blacksquare$\end{list}} 
+
+% uses these macros to delimit problems
+\newcommand\prob[1]%
+  {\begin{itemize}\item[]%
+   \vspace{.2in}{\bf\thepctr. ~[#1~ points]:}\stepcounter{pctr}}
+\newcommand\eprob{\end{itemize}}
+\newcommand\probnote[1]%
+  {\\\begin{tabular}{cr} \hspace{3in} & {\bf (#1)} \\ \end{tabular}}
+
+% headers/footers
+\lhead[\fancyplain{}{\bf Page \thepage ~of \pageref{lastpage}}]%
+      {CS 6262 Spring 2009, Quiz 2}
+\lfoot[{\bf Initials: }]%
+      {{\bf Initials: }}
+\rhead[CS 6262 Spring 2009, Quiz 2]%
+      {\fancyplain{}{\bf Page \thepage ~of \pageref{lastpage}}}
+\cfoot{}
+
+% Compact itemize and enumerate.  Note that they use the same counters and
+% symbols as the usual itemize and enumerate environments.
+\def\compactify{\itemsep=0pt \topsep=0pt \partopsep=0pt \parsep=0pt}
+\let\latexusecounter=\usecounter
+\newenvironment{CompactItemize}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{itemize}}
+  {\end{itemize}\let\usecounter=\latexusecounter}
+\newenvironment{CompactEnumerate}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{enumerate}}
+  {\end{enumerate}\let\usecounter=\latexusecounter}
+
+\begin{document}
+
+%\setlength{\headrulewidth}{0in}
+\setlength{\headsep}{.3in}
+
+
+\cfoot{}
+\pagestyle{empty}
+
+\vspace*{-0.2in}
+\begin{center}
+\begin{tabular}{lr}
+\resizebox{1in}{!}{\includegraphics{GT}}
+&
+\parbox{4in}{
+    {\Large\it College of Computing} \\ \\
+    {\LARGE\sf Georgia Institute of Technology} 
+}
+%
+\end{tabular}
+\end{center}
+
+\begin{center}
+{\Large{\bf CS 6262: Network Security: Spring 2009} \\
+ \vspace{.15in} \Huge{\bf Quiz II}} 
+\vspace{.2in}
+
+% this is the box on the first page with overall quiz information
+\begin{boxedminipage}[h]{6in}
+There are \underline{12 questions} and
+  \underline{\pageref{lastpage} pages} in this quiz booklet (including
+  this page).  Answer each question according to the instructions given.
+  You have {\bf 85 minutes} to answer the questions.
+
+%\vspace{.1in} The last page is an easy question.  {\em Rip this
+%page off of your exam for five bonus points.}  Turn it in anonymously if
+%you like.
+
+
+\vspace{.1in} 
+If you find a question ambiguous, write down any
+assumptions you make.  {\bf Be neat and legible.}  If I can't
+understand your answer, I can't give you credit!  There are three pretty
+challenging questions (clearly marked); you may want to look through the
+whole quiz and save those for last.
+
+\vspace{.1in} 
+Use the empty sides of this booklet if you need scratch space.  You
+may also use them for answers, although you shouldn't need to.  {\em If you
+do use the blank sides for answers, make sure to clearly say so!}
+
+\vspace{.1in} 
+{\bf Note well: Write your name in the space below AND your initials at the bottom of each
+page of this booklet.}
+
+\begin{center}{\bf THIS IS AN ``OPEN NOTES, OPEN PAPERS'' QUIZ.\\
+LAPTOPS ARE ALLOWS, BUT NETWORKING IS NOT. \\
+NO ENCRYPTED WIRELESS TRAFFIC. \\
+MAKE SURE YOU'VE READ ALL THE INSTRUCTIONS ABOVE!}
+\end{center}
+{\bf Initial here to indicate that (1)~you've read the instructions and (2)~
+you agree to abide by the Georgia Tech Honor Code: }
+
+\vspace{0in} The last page has easy bonus questions, which you can
+answer outside of the allotted time.  Rip the last page off of your
+quiz for some bonus points and turn it in (anonymously if you like).  You
+won't get the points if you don't tear off the page (this is to
+make certain you've read this far!).
+
+\end{boxedminipage}
+\end{center}
+\vspace*{0.25in}
+\begin{center}
+{\it Do not write in the boxes below}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline \hline
+{\bf 1-5 (xx/20)}& {\bf 6-10 (xx/28)}& {\bf 11-12 (xx/14)} &{\bf Bonus (3/3)} & {\bf Total
+  (xx/65)}  \\ \hline 
+ & & & & \\ 
+ & & & &\\ \hline \hline
+\end{tabular}
+\end{center}
+\vspace{-.2in}
+{\bf\Large{Name:}}
+
+\newpage
+\pagestyle{fancy}
+\section{Warmup}
+
+
+
+\prob{4} Which of the following is true about a WEP-encrypted wireless channel?
+\allapply
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Without knowing or recovering the WEP key, an attacker can send
+  arbitrary messages on the wireless channel.
+\item WEP's use of a CRC checksum makes it more vulnerable to replay attacks.
+\item WEP's reuse of initialization vectors makes it more vulnerable to
+  known plaintext attacks.
+\item Without knowing or recovering the WEP key, an attacker can
+  masquerade as any other sender on the wireless channel.
+\item None of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is:  (A), (C), (D).
+\end{answer}
+}
+
+\prob{4} Which of the following is true about DNS cache poisoning?
+\allapply
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item A cache poisoning attack requires the attacker to correctly guess
+  the transaction ID for the DNS query.
+\item The Kaminsky DNS cache poisoning attack allows an attacker to
+  poison the records for an arbitrary second-level domain in the local
+  resolver's cache.
+\item Setting shorter TTL values on NS records and A records on valid DNS
+  responses makes it more difficult for an attacker to mount a cache
+  poisoning attack.
+\item Randomizing the source port of the DNS queries from the local
+  resolver makes it more difficult for an attacker to mount a cache
+  poisoning attack.
+\item None of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (A), (B), (D).
+\end{answer}
+}
+
+\prob{4} To maximize the likelihood of being able to mount a
+  man-in-the-middle attack against some IP prefix $130.207.0.0/16$ using
+  BGP route hijacking, which of the following route announcements should
+  the attacker announce?
+\allapply
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Two route announcements for $130.207.0.0/17$ and $130.207.0.128/17$.
+\item One route announcement for $130.207.0.0/16$.
+\item One route announcement for $130.207.0.0/15$.
+\item One route announcement for $0.0.0.0$.
+\item None of these will ever be effective.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (A).  
+\end{answer}
+}
+
+\prob{4} Which of the following is true about various traffic monitoring
+techniques? 
+\allapply 
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Flow monitoring technology such as Cisco NetFlow provides
+  sufficient statistics about traffic flows to detect a traffic flooding 
+  attack.
+\item SNMP counters on routers are typically sufficient to detect a
+  traffic flooding attack.
+\item SNMP counters on routers count packets per flow.
+\item A attack flood of small packets could cause the router to generate
+  more traffic as a result of flow reports than the attack itself.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (A), (B), (D).
+\end{answer}
+}
+
+\prob{4} Which of the following is true about cross-site scripting (XSS)
+attacks? 
+\allapply
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item All XSS attacks can be prevented by disabling Javascript.
+\item All XSS attacks can be prevented by never echoing user input back
+  to the browser in a script.
+\item An XSS attack might trick a client browser into divulging a user's
+  authentication token to a third-party site.
+\item A user might fall victim to an XSS attack simply by visiting a
+  page, without ever even clicking on a link or entering data into a
+  form.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (B), (C), (D).
+\end{answer}
+}
+
+
+
+\newpage
+\section{Potpourri}
+
+
+\prob{4} In S-BGP, route attestations from AS A to AS B include a
+signature for the AS path that includes B.  For example, if AS A wishes
+to announce a route with AS path {\tt X Y Z} to AS B, the route
+announcement will include an attestation for the path {\tt X Y Z A B}.
+
+Why does the route attestation need to include B?  Describe in detail
+some attack that is possible if the route attestation did not include B.
+~\ansbelow
+\vspace{1.25in}
+\eprob
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+An attacker could omit some ASes from the AS path by dropping some of
+the other route attestations.  It could also insert additional ASes on
+the AS path between A and B.
+\end{answer}
+}
+
+\prob{4}   George Burdell observes:
+``Since sending spam requires the spammer to complete a three-way
+handshake with the receiving mail server, we can simply maintain a list
+of known bad IP addresses and automatically reject any mail received
+from those IP addresses.''
+\begin{enumerate}
+\item Does completion of a three-way handshake imply that the source IP
+  address for the TCP connection is not forged?  Why or why not?
+\item Give two reasons why IP addresses in George's list might become
+  stale. 
+\end{enumerate}
+~\ansbelow
+\vspace{1.25in}
+\eprob
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+Completion of a three-way handshake does not imply that the source IP
+address is not forged (\ie, the source address could still be forged).
+For example, in class, we discussed a BGP route hijacking attack whereby
+an attacker hijacks a BGP route for some prefix and steals IP addresses
+contained within that IP prefix.  In such a case, an attacker could
+complete a three-way handshake from a stolen IP address.
+\end{answer}
+}
+
+\newpage
+\prob{6} Recall from lecture that {\em fast flux DNS} is a common
+technique for hosting scam infrastructure on a botnet.
+\begin{enumerate}
+\item Explain the difference between single flux and double flux.
+\item Fast-flux domains have been observed to return DNS A records
+for IP addresses across many more distinct $/24$ subnets than legitimate
+domains.  Why might this be the case?  
+\item Studies have observed that IP addresses in scam hosting
+  infrastructure may change roles over time.  Why might an IP address
+  that was a spammer suddenly switch to a different role, such as
+  hosting authoritative DNS?
+\end{enumerate}
+~\ansbelow
+\vspace{1.25in}
+\eprob
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+A single-flux network changes the DNS {\tt A} record mappings to allow
+an attacker to re-map the IP address where a DNS name is hosted.
+Typically, single-flux is implemented with a bullet-proof DNS hosting
+service to host the authoritative nameservers.  A double-flux network,
+on the other hand, typically uses bots/zombies themselves to implement
+the changing DNS record mappings.  So, the authoritative nameservers
+themselves would be hosted on a botnet, and double-flux would remap the
+NS records (and possibly the IP addresses of the NS records).
+
+An IP address that was a spammer might suddenly switch to a different
+role if it showed up on a blacklist.  For example, even if a spamming IP
+address is listed on a spam blacklist like SpamHaus, it might still be
+used for other purposes (\eg, hosting the authoritative nameserver for a
+scam domain).
+\end{answer}
+}
+
+
+\prob{6} Recall that in Problem Set~2, you implemented a fast
+exponentiation method.  Suppose that you wanted to compute $3^{2051}$
+using this method. (Usually such an operation is part of modular
+exponentiation, but please ignore the operation of taking a modulus for
+this problem.)   
+\begin{enumerate}
+\item How many multiplications would you need to perform
+this computation? (Feel free to show your work.)
+\item Public-key cryptography methods such as RSA rely on modular
+  exponentiation with large exponents.  Describe an attack that would be
+  possible on RSA if encryption were performed with a small exponent.
+\end{enumerate}
+  ~\ansbelow
+\vspace{1.25in}
+\eprob
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+An answer of $\lg(2048) + 3 = 14$ receives most credit (2 points).
+Answers that recognize that some of the computations in the initial fast
+exponentiation could be cached and re-used to reduce this further
+receive full credit.
+
+There are a few small exponent attacks on RSA, but here is one: \\
+\url{http://www.usna.edu/Users/math/wdj/book/node45.html}. 
+\end{answer}
+}
+
+
+\newpage
+\prob{8} Suppose a Web server on a network you are operating has
+suddenly come under a massive flooding-based denial-of-service attack
+$2^{20}$ distinct IP addresses.  Each IP address is sending a packet
+stream of 1024-byte packets at a rate of 2 packets per second.  In other
+words, you are seeing low-rate streams from a very large number of
+attackers.
+\begin{enumerate}
+\item What is the overall traffic rate of the attack, in gigabits per second?
+\item You would like to enumerate all IP addresses in this attack.
+  However, the only monitoring capability you have is flow
+  monitoring, which generates a flow records based on a sampled packet
+  stream, which samples each packet with sampling probability of
+  $1/1000$.  Suppose traffic flows all arrive roughly uniformly, and
+  that you observe traffic for 30 minutes.  
+
+  How many distinct IP addresses are you likely to capture?  About how
+  long might you have to wait to capture about 95\% of all of the IP
+  addresses in the attack? (Hint: If you know about ``coupon collector''
+  problem from your discrete math classes, that idea might help you
+  here.)
+\item Give one reason why filtering traffic from all of these IP
+  addresses might be difficult in practice.
+\end{enumerate}
+~\ansbelow
+\vspace{1.25in}
+\eprob
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+The overall traffic rate is $2^{20+10+3+1}$ = $16$ gigabits per second.
+
+The second part can basically be solved by applying the coupon collector
+idea.  The first IP address will be captured in the first packet with
+probability $1$.  The second unique IP address will be captured with
+probability $(n-1)/n$, where $n=2^{20}$, so the expected time to capture
+the second IP address is $n/(n-1)$.  The expected time to capture the
+third packet is $n/(n-2)$, and so on.  So, an acceptable way of
+formulating this answer would have been as follows:
+\[
+\sum_{i=0}^{0.95n} \frac{n}{n-1}
+\]
+
+One reason that filtering traffic from these IP addresses may be
+difficult in practice is that each individual IP address may require a
+separate filtering rule.  In these cases, the number of filtering rules
+could quickly exhaust a router's resources.
+\end{answer}
+}
+
+
+\newpage
+\section{Design Question: Covert Channels}
+
+After finishing CS~6262, George Burdell decides that it is time to
+travel to faraway lands.  Because George plans to visit lands where
+access to various sites on the Internet might be filtered, he decides to
+set up a system to ensure that he is able to continue to make voice over
+IP calls back to his parents in the United States.
+
+George's first design is to set up a proxy that his voice client can
+connect to while he is traveling.  ``All of my outbound calls will be
+encrypted and routed through my proxy in Atlanta.''  George writes the
+following function to encrypt each packet:
+
+\begin{small}
+\begin{verbatim}
+// initialization vector
+char init[] = "imcovert";
+
+// randomization
+srand(0);
+
+void* encrypt(char *plain, char *cipher, int len, char *key) {
+
+  // copy initialization vector into IV
+  strcpy(IV, init, 8);
+
+  for (i=0; i < len; i+=8) {
+
+     // produce 64-bit cipher block
+     rc4.encrypt(plain[i], cipher[i], IV);
+
+    // Update IV
+    IV = (int)IV & (rand() % 255);
+  }
+}
+
+void *sendPacket(char *buf, int socket) {
+
+   // send ciphertext, plus initial IV in the clear
+   sprintf(buf, "%s%s", init, buf);
+   send(fd, buf);
+}
+\end{verbatim}
+\end{small}
+
+\newpage
+\prob{6} Eve Dropper says that, even if the channel between his client
+and the proxy is encrypted with a symmetric key known only to him and
+the proxy, a censor may still be able to determine when George is
+calling the same person repeatedly, even without knowing the key.
+Is she right?  Why or why not?
+\eprob
+~\ansbelow
+\vspace*{1.5in}
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+She is correct.  The encryption proceeds with the same initialization
+vector each time a new message is initiated, so this re-use of IVs could
+result in a known plaintext attack.
+\end{answer}
+}
+
+
+\prob{8} George decides that instead of relying on an encrypted channel,
+he will embed the packets for his voice calls into a stream of TCP
+traffic to a proxy, which will then extract the data from the TCP
+stream and send it to the destination.  
+
+George decides to use the last two bits of the TCP timestamp as a covert
+channel, and to delay the sending time of each packet in the stream by
+up to 3 seconds to achieve the correct lower two bits.
+
+\begin{enumerate}
+\item George designs his system to send voice traffic {\em in the covert
+  channel} at about 64 kilobits per second.  Given that each packet in
+  the visible traffic stream can send two bits, and assuming that each
+  packet in the cover traffic is 1500 bytes, what must the average rate
+  of the visible traffic stream be, in kilobytes per second?
+\item George notes that this traffic stream is rather high, and might
+  not be entirely deniable (not to mention that it might not even be
+  possible to send at such a high rate while on his travels).  He
+  figures that if he sends 64-byte packets in his TCP stream, he could
+  achieve a much higher rate for his covert channel.  What is the
+  problem with this approach?
+\item {\em Open-ended.} George thinks that he can introduce TCP sequence
+  number gaps to send additional bits in his channel.  Can you suggest a
+  way?
+\end{enumerate}
+
+\eprob
+~\probnote{Answer on the back.}
+\vspace*{1.5in}
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+At 2 bits of cover per packet, George will need to send $2^{16}/2 =
+2^{15}$ packets per second to generate enough cover traffic.  At 1500
+bytes per packet, this is approximately $4.8 \times 10^4$ kilobytes per
+second. 
+
+64-byte packets may not be deniable cover traffic.
+
+Various options here include artificially injecting losses, forcing
+retransmissions, etc. (various answers are acceptable).
+\end{answer}
+}
+
+
+
+\label{lastpage}
+\end{document}
+
+
+%% \newpage
+%% \prob{4}
+%% \vspace{1.25in}
+
+%% \eprob
+
+%% \sols{
+%% \vspace{-1.25in}
+%% \begin{answer}
+%% \end{answer}
+%% }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+\section{Design Question: Web Authentication}
+
+George Burdell needs some help designing a Web authentication system for
+his new e-Commerce Web site.  He decides to allow his Web site to use
+more sophisticated client authentication schemes.  In this problem, you
+will evaluate various client authentication mechanisms.
+
+\prob{6} George's first idea is to give a client a
+sequence-number-based session identifier when it successfully
+authenticates, as follows:
+
+\begin{verbatim}
+// secret, not exposed outside of program
+unsigned long globalSessionID = 34215;
+
+void success() {
+ char redirectURL[256];
+ if (authenticated[user]==1) {
+   sprintf(redirectURL, "http://burdellbooks.com/%s&sid=%lu", path,
+                                globalSessionID) ; 
+   /* redirect user to redirectURL */
+  ...
+  }
+}
+\end{verbatim}
+\noindent
+assume that {\tt authenticated[user]} becomes 1 after a user
+successfully logs in.
+
+\begin{enumerate}
+\item Explain how the above scheme is vulnerable to a brute-force
+  guessing attack.  Explain how you might change how the session
+  identifier is generated to defend against a brute-force attack.
+\item Explain how the above scheme is vulnerable to a replay attack.
+  Extend the design of the session identifier to defend against replay
+  attacks. 
+\end{enumerate}
+\eprob
+
+\sols{
+%\vspace{-1.25in}
+\begin{answer}
+With a small enough session ID, an attacker could simply try all
+possible session IDs until a guess successfully retrieved the content.
+One could protect against such a brute-force attack by making the
+session ID a larger value.
+
+The scheme is vulnerably to a replay attack because once a user
+discovers a working session ID, that same URL can be used repeatedly to
+avoid having to log in ever again.  Any other user that discovers the
+session ID can also replay the session ID to gain access.  To protect
+against this attack, the scheme could set the session ID based on the
+user (or the user's IP address) and also change the session ID over time.
+\end{answer}
+}
+
+
+\newpage
+\prob{8} George decides instead to place an HTTP cookie on the client
+that is applies the {\tt crypt()} function, as follows:
+\begin{verbatim}
+char* genCookie(char *username) {
+  char input[20];
+  char cookie[13];
+
+  sprintf(input, "%s%s", username, "secret");
+  sprintf(cookie, "%s", crypt(input, "CS"));
+  return cookie;
+}
+\end{verbatim}
+\begin{enumerate}
+\item How is the above code vulnerable to a buffer overflow?
+\item Note that {\tt crypt()} truncates inputs that are longer than
+  eight characters.  Explain how you might use a chosen plaintext attack
+  to mint authenticators for long usernames.
+\item {\em Hard.} Suppose that, as an attacker, you did not know the
+  server secret salt ``secret'', but that you could use the server as an
+  oracle to produce cookies for arbitrary usernames.  Devise an attack
+  to recover the secret.  (There are both exponential and linear time
+  attacks.  Full credit for the linear-time attack.)
+\end{enumerate}
+
+\sols{
+%\vspace{-1.25in}
+\begin{answer}
+The above code is vulnerable to a buffer overflow attack because the
+code does not perform any bounds checking on the input string
+``username''.  If ``username'' is longer than 20 characters, the space
+allocated for this input on the stack could be overflown.
+
+Because {\tt crypt} truncates the input, all usernames that are eight
+characters or longer will have exactly the same cookie.
+
+The polynomial time attack on this sheme that will recover the key is to
+perform a chosen plaintext attack with varying lengths of usernames.  A
+username that is seven characters long will then produce a ciphertext
+based on that username plus the first character of the secret, ``s''.
+This takes only 128 guesses to recover (assuming printable ASCII
+characters for passwords; longer if unprintable characters are
+allowed).  Once ``s'' is known, then the same attack can be mounted
+using a username that is six characters long and the first character of
+the secret, ``s''.  Repeated chosen ciphertext attacks can thus recover
+the username in polynomial time.
+\end{answer}
+}
+
+
+\eprob
+
+\newpage
+\section{Bonus: Anonymous Course Feedback}
+
+{\bf This page is anonymous.}  Rip this off from your exam, and turn it
+in separately if you like.  You'll get five points for simply ripping
+off the last page of the exam, but I'd prefer if you fill it out and
+hand it in in a separate stack.
+\vspace{.5in}
+
+What are the things you like most about the course so far?  Anything is
+fair game here (topics, course structure, board technique, etc.).
+\vspace{1.5in}
+
+
+What are the things you like least about the course so far?  Again,
+anything is fair game.
+\vspace{1in}
+
+
+What topics would you like to see covered?
+\vspace{1in}
+

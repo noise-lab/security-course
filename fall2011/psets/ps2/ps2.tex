@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{6829hw}
+\input{macros.tex}
+
+\begin{document}
+
+\newcounter{listcount}
+\newcounter{sublistcount}
+
+\handout{H2}{September 1, 2011}{Instructor: Prof. Nick Feamster}
+{College of Computing, Georgia Tech}{Problem Set 2: Software Vulnerabilities}
+
+This problem set has three questions, each with several parts.  Answer
+them as clearly and concisely as possible.  You may discuss ideas with
+others in the class, but your solutions and presentation must be your
+own.  Do not look at anyone else's solutions or copy them from
+anywhere. (Please refer to the Georgia Tech honor code, posted on the
+course Web site).
+
+Turn in your writeup and talk on {\bf September 15, 2011} by 11:59pm.
+{\em Please upload your solutions to T-Square.  Other forms of
+  submission will not be accepted!}  We will be providing more
+information about how to turn in your assignment as the due date
+approaches.
+
+
+\begin{enumerate}
+\item {\bf 15 points} Pfleger and Pfleeger, Section 1.11, Exercise 14.
+\item {\bf 15 points} Pfleeger and Pfleeger, Section 1.11, Exercise 20.
+\item {\bf 20 points} The Ware report from 1970 emphasizes defenses for
+  physical attacks and leakage points. In many of today’s computing
+  systems, however, physical attacks are relatively uncommon compared
+  with other kinds of attacks.
+  \begin{itemize}
+    \item Give three distinct reasons, with appropriate justiﬁcations,
+      why this is so. 
+    \item In the Checkoway {\em et al.} paper on automotive security,
+      the authors point out that it is possible to compromise the
+      automotive system even without physical access to the car itself.
+      From the paper identify at least one flaw of each type that
+      creates a vulnerability: (1)~design; (2)~implementation; (3)~process
+  \end{itemize}
+\item {\bf 20 points} Discuss Ken Thompson's {\em Reflections on
+  Trusting Trust} article in the context of Java applets.  What, if
+  anything, would need to be changed?  What about byte-code verifiers,
+  interpreted languages, disassemblers, etc. might you have to consider? 
+\item {\bf 30 points} 
+
+print\_display.c:
+
+\begin{verbatim}
+#include <stdlib.h>
+#include <stdio.h>
+
+int main(){
+  char display[512];
+
+  strcpy(display, getenv("DISPLAY"));
+  printf("Your display environment variable is %s\n", display);
+
+  return(0);
+
+}
+\end{verbatim}
+
+The system administrator accidentally set the suid (set user id) bit on
+this program, which is owned by root and lives in /usr/bin.
+
+\begin{itemize}
+\item Describe the vulnerability present in this program.
+\item Write a program to exploit this vulnerability and obtain the root
+  shell.  Be clear and concise.  If you use a language other than C or
+  Perl, please be extra clear.
+\item Argue/demonstrate that your exploit works.
+\item Rewrite print\_display.c to be safe.
+\end{itemize}
+
+\end{enumerate}
+
+
+\end{document}

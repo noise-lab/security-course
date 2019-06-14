@@ -1,0 +1,2 @@
+hw3.dep: Makefile  hw3.tex
+hw3.aux:  hw3.tex

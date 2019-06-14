@@ -1,0 +1,45 @@
+OTHER TOPICS:
+- Electronic and Internet voting
+- Web security
+- End user security
+- Tiger teams
+- Hard drive security
+
+- workplace surveillance
+- Windows for Warships
+- e-voting
+- scada systems
+- air traffic control
+- military
+- social engg
+- traditional voting
+- financial sector
+- supply chain
+- windows
+- unix, linux, os x
+- internet shopping
+- rfid
+- sony rootkit, sears spyware
+- user-centric security
+
+- Stuxnet
+
+
+
+
+Group 2: RFID
+Group 8: Internet commerce
+
+
+
+
+
+1. Stuxnet
+2. Electronic voting
+3. SCADA
+4. Kaminsky DNS attack
+5. Sony rootkit 
+6. Firesheep
+7. Social networking privacy
+8. Cellular device jailbreaks
+9. Enigma and the Bombe

@@ -1,0 +1,90 @@
+\documentclass[letterpaper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{fullpage}
+
+\title{}
+\date{}
+
+\begin{document}
+\thispagestyle{empty}
+
+\section*{CS 4235 / CS 8803IIS Homework 3}
+
+\noindent {\bf Assigned:} 28 February 2011
+
+\noindent {\bf Due:} 9 March 2011, 5:00pm Atlanta time. Students submitting solutions after that time but by 5:00pm Atlanta time on 11 March will have their scores scaled by 0.8. No solutions will be accepted after 5:00pm on 11 March.
+
+\noindent {\bf Teaming:} Work individually.
+
+\bigskip\noindent
+Solutions should be typewritten and submitted as a PDF file on T-Square. Be sure to include your name and GTID number on your submission. Scores will be posted on T-Square.
+
+\bigskip\noindent
+Although you may use outside sources for information, you:
+\begin{itemize}
+\item {\bf must not} copy-and-paste text or figures from those sources, and
+\item {\bf must} cite the sources. A citation should provide sufficient information for myself or anyone else to find the source that you used.
+\end{itemize}
+You do not need to cite the textbook or any course materials. If you are unsure whether or not you are using outside material appropriately, please ask me rather than guessing.
+
+This homework has one written part worth 190 points. Please solve the following problems.
+
+\subsection*{Written exercises}
+
+\begin{enumerate}
+
+\item From Chapter 2:
+\begin{enumerate}
+\item (10 points) \#32.
+\item (5 points) \#34.
+\end{enumerate}
+
+\item From Chapter 3:
+\begin{enumerate}
+\item (10 points) \#4.
+\item (10 points) \#14.
+\item (15 points) \#15.
+\end{enumerate}
+
+\item From Chapter 7:
+\begin{enumerate}
+\item (5 points) \#19.
+\item (10 points) \#27.
+\item (15 points) \#29 (list at least three).
+\item (10 points) \#38.
+\item (10 points) \#40.
+\item (10 points) \#64.
+\end{enumerate}
+
+\item (20 points) Explain how an attacker could convert each of the following into a covert channel:
+\begin{enumerate}
+\item Spam email
+\item Non-spam email
+\item Images in Facebook
+\item The directory of temporary files on a system
+\end{enumerate}
+
+\item (20 points) An RSA key modulus must be large to prevent an attacker from computing the private key. Suppose Alice publishes a public key of $\langle 23, 18721 \rangle$. What is Alice's private key? Explain how you determined your answer.
+
+\item (30 points) Even strong cryptosystems will fail when improperly used. Let Alice communicate with Bob using RSA. Bob publishes a public key $\langle e, n \rangle$ where $n$ is large and cannot be easily factored. Alice converts each character in her message into a number as follows:
+\begin{displaymath}
+A \to 0, B \to 1, \cdots, Z \to 25
+\end{displaymath}
+She then encrypts each character using Bob's public key and transmits the sequence of encrypted characters to Bob over a public channel.
+\begin{enumerate}
+\item Suppose Trudy observes the encrypted traffic. Explain how she can easily recover the plaintext message even without knowledge of Bob's private key.
+\item Let Bob's public key be $\langle 65537, 633716677687 \rangle$. Decrypt the message
+\begin{eqnarray*}
+&&233693858096\quad 193958983283\quad 432441959920\quad 609908539402\\ &&504368733985\quad 49228377800\quad 611329886849\quad 606386987048\\
+&&1\quad 163738436281\quad 284245269089\quad 462695579160\quad 17328906363\\
+&&191328218008\quad 284245269089\quad 119466115470.
+\end{eqnarray*}
+Give the decrypted message and explain how you performed the decryption. (Hint: There are at least three different ways to answer this question. A short computer program might be helpful.)
+\end{enumerate}
+
+\item (10 points) A protocol for efficient, secure data transmission across a network needs to both encrypt and compress data. Should the protocol encrypt-then-compress, or compress-then-encrypt? Justify your response.
+
+\end{enumerate}
+
+\end{document}

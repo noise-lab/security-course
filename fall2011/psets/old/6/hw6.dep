@@ -1,0 +1,2 @@
+hw6.dep: Makefile  hw6.tex
+hw6.aux:  hw6.tex

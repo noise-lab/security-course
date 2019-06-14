@@ -1,0 +1,162 @@
+CNN.com: Facing A World Crisis
+William LeFebvre, CNN Internet Technologies
+
+Abstract:
+In the span of 15 minutes the demand for our site increased by an
+order of magnitude.  On September 11, with only 85% availability,
+we still served over 132 million pages, nearly equaling our site's
+all-time high.  On September 12, we shattered any previous site
+records with 304 million page views.  This talk will tell the
+story of CNN.com and the team that met the unbelievable user demand.
+
+
+Tom Limoncelli opened the talk with:
+
+  Are you okay?  Are you okay?  Are you okay?
+
+This was a common question that I asked that day while I tried to
+locate friends on September 11.  Later, the question became:
+
+  Where were you on 9/11?
+
+Bill Lefebvre is a longtime USENIX and SAGE member and tutorial
+speaker.  He is a Technology Fellow at CNN Internet Technologies.
+
+---
+
+Who are we?  CNN.com (Turner Broadcasting)
+- 50 web sites (CNN.com, cartoon network, etc)
+- 200 servers
+
+Network Bandwidth (on 9/11)
+- 2 OC-12 1,244 Mbps
+- 7 OC-3  1,085 Mbps
+- Total   2,329 Mbps
+
+Hardware
+- Standard web server: Sun 420R 4x4 (4 CPU, 4GB RAM)
+- CNN.com normally used a 15 server pool
+- Load balancers front-end all web services
+
+Typical Loads
+            Peak     Total        Total
+   Date    Hits/min  Hits/min   Page Views
+- 9/11/00     220K     148M        11.8M    One year prior
+- 11/8/00   1,217K     722M       139.4M    Day after Election Day
+- 9/10/01     156K     104M        14.4M    Day before
+
+  11/8/00 was the record page views to date
+
+Managing Unexpected Loads
+- swing servers (move servers from one web service to another)
+- add additional servers
+- reduce page complexity (remove advertisements, pictures, text)
+
+Reducing Page Complexity
+- Three page styles (standard, split, ultra light)
+  - Standard
+  - Split (half page with link to more info)
+  - Untra light (minimal information, with links for more info)
+
+On the morning of Sept 11, there were 10 servers providing CNN.com.
+
+Loads on 9/11-12
+            Peak     Total        Total
+   Date    Hits/min  Hits/min   Page Views
+- 9/10/01     156K     104M        14.4M    Day before
+- 9/11/01   1,110K     411M       132.4M    Day of
+- 9/12/01     948K     797M       304.8M    Day after
+
+On 9/11, the peak demand was estimated at 1.8M hits per minute, or
+20 times normal.
+
+Timeline                           Hits/minute
+-  8:46  AAL 11 hits Tower 1           84K
+-  8:50                                87K
+-  8:55                               129K    Page request rate doubled
+-  8:56  First web page was published         every seven minutes
+-  9:00                               229K
+-  9:01  First 911 page was sent (to admin team)
+-  9:03  UAL 175 hits Tower 2
+-  9:03  Server swings begin
+-  9:05  Server congestion collapse begins (system monitoring lost)
+-  9:11  Second 911 page was sent (to admin team) [phone bridge]
+-  9:15  Switch to split web page
+-  9:17  NYC airports closed
+-  9:27  Third 911 page was sent (to admin team) [new phone bridge]
+-  9:40  US Airspace closed
+-  9:42  18 servers providing CNN.com (at least)
+-  9:43  AAL 77 hits the Pentagon
+-  9:47  Switch to minimal web page
+- 10:05  Tower 2 collapses
+- 10:10  UAL 93 crashes in PA
+- 10:28  Tower 1 collapses
+- 10:30  24 servers providing CNN.com
+- 11:00  44 servers providing CNN.com
+- 11:15  Network ports shut down, effectively taking CNN.com down
+- 11:30  HTML service restored, no images served
+- 12:25  System Monitoring restored
+- 13:00  52 servers providing CNN.com
+- 13:30  Images restored
+- 14:21  2 servers moved back to Cartoon network (kids sent home from
+         school)
+- 14:55  Published light page
+- 16:15                             1,110K
+
+Challenges
+- rapid traffic growth (doubling every 7 minutes)
+- senior staff travelling (3) (Bill was working from home that day)
+- Conference call is required to reduce page
+- no local phone bridges available
+- external bridge was in NYC and became unavailable
+- cascading failures - can't get out of without a site restart
+
+Reduced Page
+- request was made late
+- 22K split page was not enough reduction
+- light page was 1247 bytes of text, logo, one image
+  - lowest ever amount of text
+
+- Server Rate limiting might have helped server overload
+- stripped configuration - turned off everything, did site restart
+
+Surprises
+- network congestion from broadcasts
+- Hit max sessions on web servers, had to increase session limit
+
+Aftermath
+- volatility worse than ever before
+- automate swing process (on todo list for a year)
+- faster page reduction
+- network redesign
+- increased WAN bandwidth (if the servers could have handled the load,
+  the WAN link would have been saturated)
+- Standing phone bridge reservation
+- review crisis procedures
+
+Why Do You Care?
+- problem is rate of change in traffic
+- Can't happen to you?
+  - apoa.org, nbaa.org
+    Pilot web sites swamped when US airspace closed
+  - election.dos.state.fl.us
+    Florida election results overwhelmed day after election
+  - firestone.com
+    Tire recall
+  - jeffco.k12.co.us
+    Columbine
+  - aceshardware.com & slashdot effect
+    New, improved web site announced on slashdot, site was down within
+    15 minutes because of traffic
+
+Expect the unexpected
+
+Contingency Plans
+- Formalize
+- write them
+- rehearse them
+- review and update them
+
+US Airspace was shut down quickly because the plan to do so had been
+in place for 40 years and reviewed every year.  Even though no one
+thought it would ever happen, they were prepared.

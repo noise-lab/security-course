@@ -1,0 +1,495 @@
+\documentclass[11pt]{article}
+\usepackage{graphics,epsfig,amsmath,amssymb}
+\usepackage{epsf}
+\usepackage{boxedminipage}
+\usepackage{fullpage}
+\usepackage{fancyheadings}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{pseudocode}
+\usepackage{psfrag}
+\pagestyle{fancy}
+
+\setlength{\topmargin}{.2in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.15in}
+\setlength{\footskip}{0.1in}
+
+\newcounter{pctr}
+\stepcounter{pctr}
+
+\newcounter{partctr}
+
+\newcommand{\ie}{{\em i.e.}}
+\newcommand{\eg}{{\em e.g.}}
+
+\newcommand{\ch}{\item {\bf True~~/~~False~~}}
+\newcommand{\tfnote}{\probnote{Circle True or False for each choice.}}
+\newcommand{\allapply}{\probnote{Circle ALL that apply}}
+\newcommand{\bestanswer}{\probnote{Circle the BEST answer}}
+\newcommand{\ansbelow}{\probnote{Answer legibly in the space below.}}
+
+\renewcommand{\thesection}{{\bf\Roman{section}}}
+\renewcommand{\theenumi}{{\bf\Alph{enumi}.}}
+\renewcommand{\labelenumi}{{\bf\Alph{enumi}.}}
+
+\newcommand{\setversion}[1]{\def\version{#1}}
+\setversion{quiz}
+
+\ifthenelse{\equal{\version}{answers}}{
+    \newcommand{\sols}[1]{#1}
+} {
+    \newcommand{\sols}[1]{}
+}
+
+
+\newcounter{answer}
+\newenvironment{answer}[1][\relax]{\refstepcounter{answer}\begin{list}%
+ {}{\leftmargin 0pt\rightmargin 0pt\labelsep 3pt\parsep 0pt%
+ \setlength{\listparindent}{\parindent}}
+    \item {\bf Answer \theanswer #1}\
+    }{\hspace*{\fill}$\blacksquare$\end{list}} 
+
+
+
+% uses these macros to delimit problems
+\newcommand\prob[1]%
+  {\begin{itemize}\item[]%
+   \vspace{.2in}{\bf\thepctr. ~[#1~ points]:}\stepcounter{pctr}}
+\newcommand\eprob{\end{itemize}}
+\newcommand\probnote[1]%
+  {\\\begin{tabular}{cr} \hspace{3in} & {\bf (#1)} \\ \end{tabular}}
+
+% headers/footers
+\lhead[\fancyplain{}{\bf Page \thepage ~of \pageref{lastpage}}]%
+      {CS 4235 Fall 2011, Quiz 2}
+\lfoot[{\bf Initials: }]%
+      {{\bf Initials: }}
+\rhead[CS 4235 Fall 2011, Quiz 2]%
+      {\fancyplain{}{\bf Page \thepage ~of \pageref{lastpage}}}
+\cfoot{}
+\setlength{\headrulewidth}{0in}
+\setlength{\headsep}{.3in}
+
+ % Compact itemize and enumerate.  Note that they use the same counters and
+% symbols as the usual itemize and enumerate environments.
+\def\compactify{\itemsep=0pt \topsep=0pt \partopsep=0pt \parsep=0pt}
+\let\latexusecounter=\usecounter
+\newenvironment{CompactItemize}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{itemize}}
+  {\end{itemize}\let\usecounter=\latexusecounter}
+\newenvironment{CompactEnumerate}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{enumerate}}
+  {\end{enumerate}\let\usecounter=\latexusecounter}
+
+\begin{document}
+\cfoot{}
+\pagestyle{empty}
+\begin{center}
+\begin{tabular}{lr}
+\resizebox{1in}{!}{\includegraphics{GT}}
+&
+\parbox{4in}{
+    {\Large\it College of Computing} \\ \\
+    {\LARGE\sf Georgia Institute of Technology} 
+}
+%
+\end{tabular}
+\end{center}
+
+\begin{center}
+{\Large{\bf CS 4235: Computer Security: Fall 2011} \\
+ \vspace{.15in} \Huge{\bf Quiz II}} 
+\vspace{.2in}
+
+% this is the box on the first page with overall quiz information
+\begin{boxedminipage}[h]{6in}
+There are \underline{13 questions} and
+  \underline{\pageref{lastpage} pages} in this quiz booklet (including
+  this page).  Answer each question according to the instructions given.
+  You have {\bf 85 minutes} to answer the questions.
+
+%\vspace{.1in} The last page is an easy, optional set of questions.  {\em
+%  Rip this page off of your exam for five bonus points.}  Turn it in
+%anonymously.
+
+
+\vspace{.1in} 
+If you find a question ambiguous, write down any
+assumptions you make.  {\bf Be neat and legible.}  If I can't
+understand your answer, I can't give you credit!  
+%There are three pretty
+%challenging questions (clearly marked); you may want to look through the
+%whole quiz and save those for last.
+
+\vspace{.1in} 
+Use the empty sides of this booklet if you need scratch space.  You
+may also use them for answers, although you shouldn't need to.  {\em If you
+do use the blank sides for answers, make sure to clearly say so!}
+
+\vspace{.1in} 
+{\bf Note well: Write your name in the space below AND your initials at the bottom of each
+page of this booklet.}
+
+\begin{center}{\bf THIS IS AN ``CLOSED BOOK, CLOSED NOTES'' QUIZ.\\
+NO BOOKS, NO NOTES, NO OTHER MATERIALS, NO PHONES, NO COMPUTERS, NO
+LAPTOPS, NO PDAS.\\ 
+%NO ENCRYPTED WIRELESS TRAFFIC. \\
+MAKE SURE YOU'VE READ ALL THE INSTRUCTIONS ABOVE!}
+\end{center}
+{\em Initial here to indicate that (1)~you've read the instructions and (2)~
+you agree to abide by the Georgia Tech Honor Code: }
+
+
+
+\if 0
+\vspace{.05in} The last page has easy bonus questions, {\em which you can
+answer outside of the allotted time}.  Rip the last page off of your
+quiz for five bonus points.  Turn it in anonymously if you like (feel
+free to fill it out after the quiz and give it to a TA, or take it with you).  You
+won't get the five points if you don't tear off the page (this is to
+make certain you've read this far ;).
+\fi 
+
+\end{boxedminipage}
+\end{center}
+\vspace*{0.15in}
+\begin{center}
+{\it Do not write in the boxes below}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline \hline
+{\bf 1-5 (xx/20)}& {\bf 6-10 (xx/30)}& {\bf 11-13 (xx/10)} & {\bf Total
+  (xx/60)}  \\ \hline 
+ & & &  \\ 
+ & & & \\ \hline \hline
+\end{tabular}
+\end{center}
+
+\vspace{.1in}
+{\bf\Large{Name:}}
+
+\newpage
+\pagestyle{fancy}
+
+\section{Warmup}
+
+
+
+\prob{4} 
+Which of the following are true of different types of ciphers?
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item The security of the one-time pad depends on the hardness of factoring.
+\item The security of Diffie-Hellman Key Exchange depends on the
+  hardness of the discrete log problem.
+\item The security of the RSA cryptosystem depends on the hardness of
+  factoring.
+\item In the RSA cryptosystem, signing is mathematically equivalent to decryption.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (B), (C).
+\end{answer}
+}
+
+\prob{4} 
+Which of the following are true about port scans, such as the one you
+ran on Problem Set 4?  Assume that the port scanning tool only sends TCP
+``SYN'' packets, as the {\tt nmap} tool you used does.
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item A port scanning tool can be used to discover the version of a Web server that
+  a host is running.
+\item A port scanning tool can be used to discover the version of an
+  operating system that a host is running.
+\item A host can protect itself against port scanning by simply not
+  responding to any of the port scanning tool's TCP SYN probes on any port.
+\item Port scanning can be used to determine what services are running
+  on a particular host.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (A), (B), (D)
+\end{answer}
+}
+
+\prob{4} 
+Which of the following is true about cryptographic hashes?
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Cryptographic hash functions are designed to be collision-resistant to prevent message forgery.
+\item If two parties have previously agreed on a secret key,
+  a cryptographic hash function can be used to generate message signatures.
+\item If two parties have previously agreed on a secret key,
+  cryptographic hash functions can be used to encrypt messages.
+\item Cryptographic hashes are sometimes used to generate ``digests'' of
+  public keys that are easier to recognize than the public key itself.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (A), (C), (D).
+\end{answer}
+}
+
+
+
+\prob{4} 
+Which of the following are true about various cryptanalysis attacks?
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item An attacker who knows that a given application protocol (e.g.,
+  HTTP) starts with the same protocol messages could perform a known
+  plaintext attack on the ciphertext.
+\item A successful known plaintext attack can result in recovery of both
+  the full plaintext of the message and they key that was used to
+  encrypt the message.
+\item A brute force attack on an encryption algorithm becomes
+  exponentially more difficult as the size of the key increases.
+\item Generating a collision becomes exponentially more difficult as the
+  number of bits in the hash increases.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is (A), (B), (C).
+\end{answer}
+}
+
+
+\prob{4} 
+Which if the following are true about cross-site scripting (XSS) attacks?
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item An attacker can use an XSS attack to steal a victim's Web cookies
+  for another Web site.
+\item A user can defend against XSS attacks by preventing the browser
+  from executing any scripts.
+\item A Web site can defend against an XSS attack by ensuring that the
+  input to a script does not itself contain any code.
+\item An attacker could launch an XSS attack by posting a comment on a
+  message board.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (E).
+\end{answer}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section{Potpourri}
+
+\prob{6} Suppose that you have a hash function that takes input
+and randomly generates a 16-bit value.  What is the probability of
+collision if the hash value takes 10 inputs?
+{\em Show your work.}~\ansbelow
+\vspace{2.75in}
+\eprob
+
+\sols{
+\vspace{-2.75in}
+\begin{answer}
+\end{answer}
+}
+
+\prob{6} Explain the purpose of Diffie-Hellman key exchange. Show a
+diagram of exchanges that demonstrates that Diffie-Hellman is vulnerable
+to a man-in-the-middle attack.  Use $A$ for Alice's secret, $B$ for
+Bob's secret, and $M$ for Mallory's secret.  Also use $g$ as the base
+for exponentiation, and $p$ as the modulus.  (So, Alice starts by
+sending Bob $g^A \mod p$, but this is intercepted by Mallory.)  What does
+the attacker know after mounting this attack?  ~\ansbelow
+
+\vspace*{0.5in}
+{\bf Alice}  \hspace*{2in} {\bf Mallory}  \hspace*{2in} {\bf Bob} 
+
+\vspace{1.25in}
+\eprob
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+\end{answer}
+}
+\newpage
+
+\pagebreak
+\prob{6} Define {\em perfect security}, and explain why a one-time pad
+generates perfect security.  Explain why re-using a one-time pad can
+introduce weaknesses in the security of the one-time pad.
+\vspace{1.75in}
+\eprob
+
+\sols{
+\vspace{-1.25in}
+\begin{answer}
+\end{answer}
+}
+
+
+\prob{6}  Given the password ``security'' for the PlayFair cipher, fill
+in the matrix below to generate the PlayFair matrix.  What is the
+resulting cipher for the word ``quiz''?  Explain why the PlayFair cipher
+is more secure against statistical attacks than a standard substitution
+cipher, like the Caesar cipher.
+~\ansbelow 
+
+\begin{center}
+\renewcommand{\tabcolsep}{1cm}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{|c|c|c|c|c|}
+\hline  
+& & & & \\ \hline 
+& & & & \\ \hline 
+& & & & \\ \hline 
+& & & & \\ \hline  
+& & & & \\ \hline 
+\end{tabular}
+\end{center}
+\eprob
+~\ansbelow
+
+\sols{
+\begin{answer}
+\end{answer}
+}
+
+\newpage
+\prob{6} Suppose an attacker is running a Web server that runs a script
+that takes user and password input from a form and retrieves the
+information for that user, as follows:
+
+\begin{verbatim}
+set ok = execute( "SELECT * FROM Users
+	   WHERE user=' "  &  form(“user”)  & " ' 
+           AND   pwd=' " & form(“pwd”) & “ '” );
+if not ok.EOF   
+           login success  
+else  fail;
+\end{verbatim}
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Write down input to the ``user'' part of the form that would
+  cause the database to reveal every row of the table (i.e., information
+  for all users).
+\item Write down input to the ``user'' part of the form to cause the
+  entire user table to be deleted.
+\end{list}
+\eprob
+~\ansbelow
+
+
+\newpage
+\section{Onion Routing}
+
+George Burdell learned about Onion Routing in class and has installed
+Tor on his laptop, to try to prevent the Georgia Tech network
+administrators from eavesdropping on his Web surfing activity.  George
+is surprised to find out that Web surfing with Tor is incredibly slow,
+and asks you whether you know why.
+
+
+\prob{3} Explain how onion routing works in the space below.  Suppose
+you have a message, $M$, that you wish to send to a user Alice.  Write
+down the onion encryption for $M$ to send the message to Alice, first
+via node $A$, then via node $B$, and finally via an ``exit node'' $C$.
+Use the notation $\{M,Y\}_X$ to indicate that a message $M$ that should
+be sent next to node $Y$ is encrypted with the public key for node $X$.
+{\em Your answer should have multiple nested encryptions.}  
+\ansbelow \eprob
+\vspace*{2in}
+\sols{
+}
+
+George is disappointed that Tor requires so many nested encryptions and
+suggests instead that the message only be encrypted for user Alice,
+rather than for each hop.  ``Reducing the number of encryptions would
+make the system much faster, since each node would not need to decrypt a
+layer of the message.''
+
+\prob{3} 
+Explain to George what properties of Tor would be lost if each hop of
+the Tor path were not encrypted.
+\ansbelow \eprob
+\vspace*{1.25in}
+
+\newpage
+\prob{4} George observes that if the entry and exit nodes of a Tor path
+are located within the same Internet service provider, there is some
+likelihood that that Internet service provider could mount an attack to
+link the sender and receiver of a message: ``If an ISP can see both the
+traffic entering and exiting Tor, it might be able to determine which
+traffic was destined to which receiver.''  Is he right?  If he is right,
+how would you fix the vulnerability?  If he is wrong, why is he wrong?
+\ansbelow \eprob
+\vspace*{1.25in}
+
+
+\newpage
+\section{Bonus: Anonymous Course Feedback}
+
+{\bf This page is anonymous.}  Rip this off from your exam, and turn it
+in separately if you like.  You'll get five points for simply ripping
+off the last page of the exam, but I'd prefer if you fill it out and
+hand it in in a separate stack.
+\vspace{.5in}
+
+
+
+What were the things you liked most about the course?  Anything is
+fair game here (topics, course structure, board technique, etc.).
+\vspace{1.5in}
+
+
+What are the things you liked least about the course?  Again,
+anything is fair game.
+\vspace{1in}
+
+
+If you could change one thing about the course in a future offering,
+what would it be?
+\vspace{1in}
+
+
+If you could keep one thing about the course in a future offering,
+what would it be?
+\vspace{1in}
+
+
+\label{lastpage}
+\end{document}
+

@@ -1,0 +1,148 @@
+PS 1 Solutions (CS 6262; Spring 2009)
+-------------------------------------
+
+Q.1:
+
+  1. Unix crypt(3) uses DES on the lowest 7 bits of the first 8 characters
+  of the password to construct the DES key. This key is used to encrypt
+  a fixed plaintext to obtain the crypted value of the password. Newer
+  versions of crypt use more characters of the password as well as a
+  different algorithm (e.g., MD5).
+
+  2. Simple program:
+
+  /* cc -o test test.c -lcrypt */
+  #define _XOPEN_SOURCE
+  #include <stdio.h>
+  #include <unistd.h>
+  #include <string.h>
+
+  int main()
+  {
+    char a[30], b[30];
+    strncpy(a, crypt("security", "AB"), 30);
+    strncpy(b, crypt("netsecurity", "AB"), 30);
+    printf("%s, %s\n", a, b);
+
+    return 0;
+  }
+
+  Observations: 
+   - No more than the first 8 characters are used.
+   - Some people may have got the same answer for both calls of crypt.
+     This is because crypt() returns a pointer to a static string that
+     is overwritten on each call. You should copy the first call's
+     answer to a separate buffer before invoking crypt a second time.
+
+  3. A salt is used to perturb the DES algorithm (either as part of the
+     Initializaton Vector, or to apply a function on the
+     password/plaintext).  Using even a 12-bit salt increases the number
+     of possible ciphertexts for a given plaintext to 4096, greatly
+     increasing the complexity of precomputed-hash attacks. Standard
+     DES-baed crypt() accepts a 12-bit salt.
+
+Q.2:
+
+  1. The password cracked will be 'vd7373', which is 'cs6262'
+  right-shifted on the keyboard by one character. The right-shift rule
+  on John's single mode would have done this crack (":[RL]Q"). 
+
+  2. The password cracked will be '1georgia' (for user 'mysql'). The
+  default wordlist would have contained this word. The rule applied was 
+  ">2!?Al^1", which prefixes pure-alphabetic words with '1'.
+
+  3. The password is 'lantaat' (for user 'guest), which is a rotated
+  version of 'atlanta'. There already exist a set of rules in
+  john.conf's Single rulelist to crack such passwords:
+  (?a[lc][{}]
+  (?a[lc]}}
+  (?a[lc]{{
+  These rules merely had to be copied to the [List.Rules:Wordlist] 
+  section. You would also need a longer wordlist; the standard
+  '/usr/share/dict/words' on Linux machines will work for these cracks.
+
+  4. The leetspeak password is '1nf1d3l' for the user 'test'. Again,
+  there are rules in the Single section of john.conf to crack such
+  passwords. You are required to copy them to the Wordlist section with
+  a small addition: the existing rules do not substitute '1' for i; you
+  would have needed to add this rule. A rule that should have worked is
+  "l/asa4/ese3/lsl1/isi1/oso0/sss$[:c]"
+
+  5. The password for this part is 'zirocn' (user: 'root'), which is
+  'zircon' -- a dictionary word -- with two adjacent characters swapped.
+  There is no simple existing rule in john to do just this. There may be
+  multiple solutions; one easy way is to add the following piece of
+  code to the distribution's 'rules.c' (within the switch statement
+  around line 278):
+
+  case 'Z':
+  POSITION
+  out = in;
+  if (pos < strlen(in)-1) {
+    int tmp = out[pos];
+    out[pos] = out[pos+1];
+    out[pos+1] = tmp;
+  }
+  break;
+
+  This code adds a new rule called 'Z', which takes as argument a
+  position in the supplied password and creates a new password that has
+  the characters at position and position+1 swapped. An example
+  application of this rule which would crack the above password: 
+  "<8Z[0-6]Q" -- if the password is less than 8 characters, for each of
+  the characters 0 through 6, try a password that has two adjacent
+  characters swapped.
+
+
+Q.3
+
+  1. One easy way to do this part is to keep one structure for each TCP
+  connection (i.e., the 5-tuple comprising source_ip, source_port,
+  destination_ip, destionation port, and protocol). For each connection,
+  keep a queue of outstanding GET requests, and match them
+  with responses from the server. Once you have a matching
+  request/response pair, you can write the file out to disk or print the
+  headers (according to command line options).
+
+  We will grade your program based both on functionality and ease of
+  use. Readable formatting of output and arranging various files into
+  appropriate file/directory structures also counts towards ease of use. 
+
+  2. This problem has a number of solutions, but encryption / tunneling
+  isn't what we are looking for. Encryption isn't a solution: for
+  encryption to work, there must be a secret known only to both parties,
+  and the encryption protocol must be supported by both ends.
+
+  Another way to view this problem would be as a censorship issue.
+  Assume that the client is sitting behind a censor that reassembles
+  strings across packets to look for certain keywords, but the client
+  wishes to visit a website (say) that has the censored keyword as part
+  of its URL. 
+
+  The earliest pieces of work on this class of attacks were introduced
+  by T. Ptacek and T. Newsham in "Insertion, Evasion and Denial of
+  Service: Eluding Network Intrusion Detection", Secure Networks Inc.,
+  January 1998. Two attacks that are described in this report:
+
+    - Use the fact that there is at least one hop between the IDS and
+    the server. Craft the string "password" into one-character packets,
+    and insert some packets between the one of the characters of
+    "password" that are accepted by the reassembler but not by the
+    server. You could do this by setting the IP TTL just low enough to
+    pass through the IDS but not be accepted by the server (or dropped
+    by routers before it reaches the server). 
+
+    - Use the fact that TCP at the server performs reassembly/reordering
+    of out-of-order packets. So, set sequence numbers correctly on all
+    packets, but send them out-of-order. Because the reassmbler will
+    typically will simply use a sliding-window match on strings (it will
+    not have enough resources to perform reordering for every TCP
+    connection that passes through it), the string will pass through it
+    without triggering alarms. 
+
+  There are newer classes of attacks as well, for e.g., see 
+  "Detecting Evasion Attacks at High Speeds without Reassembly", George
+  Varghese, J. Andrew Fingerhut, Flavio Bonomi, SIGCOMM 2006.
+
+
+

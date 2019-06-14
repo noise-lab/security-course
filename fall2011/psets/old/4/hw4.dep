@@ -1,0 +1,2 @@
+hw4.dep: Makefile  hw4.tex
+hw4.aux:  hw4.tex

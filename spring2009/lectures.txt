@@ -1,0 +1,207 @@
+# This file defines the lectures for the class.  The syllabus is
+# automatically generated from this file.
+
+# Date:  [Lecture type]
+#        blank:  normal lecture
+#        noclass [explanation text]
+#        exam    [exam name]
+# I:  Instructor   (overrides the global INSTRUCTOR)
+# T:  Title
+# S:  slides ref (looks in lectures/<name>.{ppt,pdf,ps,html}
+# V:  Video list (links to coursecast)
+# R:  Readings (copied verbatim)
+# N:  Notes (copied verbatim)
+# A:  Topic Area (generates a heading)
+# RB: BibTeX ref::URL
+
+CLASS: 'CS 6262: Network Security'
+CLASS_SHORT: CS6262
+SUMMARY: CS 6262
+YEAR:  2009
+TERM:  Spring
+INSTRUCTOR:  Nick Feamster
+LOCATION:  LS&T 1205
+START_TIME: '16:35'
+END_TIME: '17:55'
+READINGBASE:  http://www.gtnoise.net/classes/cs6262/spring_2009/papers
+ALTERNATE: week
+HEADSPAN: 5
+SHOW_LECNUM: yes
+SHOW_INSTRUCTOR: no
+HIGHLIGHT_DUE: yes
+
+LECTURES:
+
+- 1/5:
+        T: 'Course Overview and Introduction'
+        RB: Thompson1984::thompson-trust.pdf
+        S: L1
+
+- 1/7:
+        T: 'Computer Security Overview'
+        R: Chapter 1
+        S: L2
+
+- 'Primitives'
+
+- 1/12:
+        T: 'Introduction to Cryptography'
+        R: Chapter 2
+        S: L3
+
+- 1/14:
+        T: 'Secret Key Crypotgraphy'
+        R: Chapters 3-4
+        S: L4
+
+- 1/19:
+        type: noclass
+        T: 'School Holiday'
+
+- 1/21:
+        T: 'Hashes and Message Digests'
+        S: L5
+
+- 1/26:
+        T: 'Public Key Cryptography'
+        R: Chapter 6
+        S: L6
+
+
+- 'Management'
+
+- 1/28:
+        type: noclass
+        T: 'Problem Set Office Hours'
+  
+- 2/2:
+        T: 'Key Distribution, Management, Self-Certification'
+        RB: Mazieres1999::mazieres-sfs.pdf
+        S: L7
+
+- 2/4:
+        T: 'Authentication'
+        R: Chapters 9, 10, 12.2
+        S: L8
+
+- 2/9:
+        T: 'Secure Fault Localization <i>(Sharon Goldberg)</i>'
+        RB: Goldberg2008-1::goldberg-sfl.pdf Goldberg2008-2::goldberg-euro.pdf
+        N: '<a href="http://www.princeton.edu/~goldbe/Probing.pdf">Slides</a>'
+
+- 2/11:
+        T: 'Taint Analysis'
+        RB: Denning1976::denning-lattice.pdf Yin2007::yin-panorama.pdf
+        S: L10
+
+
+- 'System Security'
+
+- 2/16:
+        T: 'Access Control and Secure System Design'
+        RB: Saltzer1975::saltzer-protection.pdf
+        S: L11
+
+
+- 2/18:
+        T: 'Cryptography and System Security'
+        RB: Anderson1993::anderson-wcf.pdf
+        S: L12
+
+- 2/23:
+        T: 'Malware and Worms'
+        RB: 0wn::staniford-own.pdf
+        S: L13
+
+- 2/25:
+        T: 'Buffer Overflows and Common Vulnerabilities'
+        RB: Cowan1998::cowan-stackguard.pdf
+        S: L14
+
+- 3/2:
+         type: noclass
+         T: 'Quiz Review'
+
+#        T: 'Secure Operating Systems'
+#        RB: Zeldovich2006::zeldovich-histar.pdf
+#        S: L16
+
+
+- 3/4:
+        type: exam
+        T: 'Quiz 1'
+        N: '<a href="http://www.gtnoise.net/classes/cs6262/spring_2009/quizzes/quiz1-sols.pdf">Solutions</a>'
+
+
+- 'Network Security'
+
+
+- 3/9:
+        T: 'Routing Security'
+        R: '<a href="http://blog.wired.com/27bstroke6/2008/08/how-to-intercep.html">Kapela BGP Attack</a>'
+        S: L15
+
+- 3/11:
+        T: 'IP-Layer Security'
+        R: Chapters 17 and 18<br />
+        RB: Andersen2008::andersen-aip.pdf
+        S: L16
+
+
+- 3/16:
+        type: noclass
+        T: 'Spring Break'
+
+- 3/18:
+        type: noclass
+        T: 'Spring Break'
+
+- 3/23:
+        T: 'Naming Security'
+        R: '<a
+        href="http://www.unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html">Kaminsky
+        DNS Hack</a><br /><a href="http://www.ripe.net/ripe/meetings/ripe-52/presentations/ripe52-plenary-dnsamp.pdf">Amplification</a>'
+        S: L17
+
+
+- 3/25:
+        T: 'Botnets: Attacks and Defenses'
+        S: L18
+
+- 3/30:
+        T: 'Monitoring and Intrusion Detection'
+        RB: Paxson1998::paxson-bro.pdf
+        S: L19
+
+- 4/1:
+        T: 'Unwanted Traffic: Denial of Service and Spam'
+        S: L20
+
+
+- 4/6:
+        T: 'Wireless Security'
+
+- 'Application Security'
+
+- 4/8:
+        T: 'Anonymity and Privacy'
+        RB: Dingledine2004::dingledine-tor.pdf<br/>Mazieres1998::mazieres-nym.pdf
+        S: L22
+
+- 4/13:
+        T: 'Web Security'
+        R: 'Chapter 19<br />'
+        N: '<a href="http://crypto.stanford.edu/cs155/papers/CSS.pdf">CSS Explained</a>'
+        RB: Provos2007::provos-ghost.pdf
+        S: L23
+
+- 4/15: 
+        T: 'Wrap Up/Future Directions'
+
+- 4/20:
+        T: 'Presentations'
+        R: 
+
+- 4/22:
+        type: exam
+        T: 'Quiz 2'

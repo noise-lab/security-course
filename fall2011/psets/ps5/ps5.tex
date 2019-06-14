@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{6829hw}
+\input{macros.tex}
+
+\begin{document}
+
+\newcounter{listcount}
+\newcounter{sublistcount}
+
+
+\handout{PS5}{December 6, 2011}{Instructor: Prof. Nick Feamster}
+{College of Computing, Georgia Tech}{Problem Set 5: Cryptography and Anonymity}
+
+This problem set has three {\bf optional} questions, each with several
+parts (plus a fourth fun activity).  Answer them as clearly and
+concisely as possible.  You may discuss ideas with others in the class,
+but your solutions and presentation must be your own.  Do not look at
+anyone else's solutions or copy them from anywhere. (Please refer to the
+Georgia Tech honor code, posted on the course Web site).
+
+Turn in your writeup {\bf December 14, 2011} by 11:59pm.
+{\em Please upload your solutions to T-Square.  Other forms of
+  submission will not be accepted!}  We will be providing more
+information about how to turn in your assignment as the due date
+approaches.
+
+\begin{enumerate}
+\item {\bf Crypto Hacks (25 Points).} Alice and Bob are good friends.
+  To save time, they agree to simply find one good pair of primes, $p$
+  and $q$ and therefore use the same public modulus, $n = pq$.  To save
+  confusion over who signed which message, they select different
+  exponents $e_a$ and $e_b$.  Show that, in this system, it's possible
+  to decrypt a message $M$ sent to both of them if $\gcd(e_a, e_b) =
+  1$.  That is, given, 
+\begin{eqnarray*}
+C_a &=& M^{e_a} (mod n) \\
+C_b &=& M^{e_b} (mod n) 
+\end{eqnarray*}
+an adversary can compute $M$.
+
+\item {\bf Internet Transparency (40 Points).}  Various projects are now
+  trying to monitor the availability of various Web sites, informations
+  and services.  Two such systems are Herdict
+  (\url{http://herdict.org/}), and Google's Transparency Report
+  (\url{http://google.com/transparencyreport/traffic/}.  Herdict relies
+  on manual reports of downtime and unavailability, whereas Google's
+  transparency report uses anomalies in traffic volumes to discover
+  reachability problems from various regions for a particular service.
+\begin{itemize}
+\item {\bf 10 points.} What are the possible sources of inaccuracy of
+  each approach? How would you verify the accuracy of information
+  reported from  each of these systems?
+\item {\bf 30 points.} Design and build a simple system that takes reports from
+  the Herdict Web site and automatically measures their reachability
+  properties from a variety of different locations.  For this purpose,
+  you may need access to a set of distributed servers.  The PlanetLab
+  testbed (\url{http://planet-lab.org/}) is a good resource for this.  I
+  can provide you an account if you need one.
+\end{itemize}
+
+\item {\bf Anonymity (35 Points).} Download and install Tor.  
+\begin{itemize}
+\item {\bf (15 Points).} Identify the locations of the various entry and
+  exit nodes that you can use in Tor.  What is the distribution of entry
+  and exit nodes across Internet service providers and countries?
+  Provide a table of the top 10 countries and ISPs (autonomous systems)
+  that host Tor entry and exit nodes.
+\item {\bf (20 Points).} The Tor Metrics page has some interesting
+  examples of statistics of Tor usage in different countries during
+  times when countries attempted to block Tor.  For example, see
+  \url{http://goo.gl/6Pcfn} for an example of when Iran blocked Tor.
+  Find at least two other examples of cases where Tor appears to have
+  been blocked in a country.  {\em Include a graph from the Tor metrics
+    page and a description of what you think is going on.}  How would
+  you have stopped these events?
+\end{itemize}
+
+\end{enumerate}
+
+
+\end{document}

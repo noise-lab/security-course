@@ -1,0 +1,116 @@
+\documentclass[letterpaper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{alltt}
+%\usepackage{fullpage}
+%\usepackage{times}
+
+\title{}
+\date{}
+
+\begin{document}
+\thispagestyle{empty}
+
+\section*{CS 4235 / CS 8803IIS Homework 4}
+
+\noindent {\bf Assigned:} 9 March 2011
+
+\noindent {\bf Due:} 16 March 2011, 5:00pm Atlanta time. Students submitting solutions after that time but by 5:00pm Atlanta time on 18 March will have their scores scaled by 0.8. No solutions will be accepted after 5:00pm on 18 March.
+
+\noindent {\bf Teaming:} Work individually.
+
+\bigskip\noindent
+Solutions should be typewritten and submitted as a PDF file on T-Square. Be sure to include your name and GTID number on your submission. Scores will be posted on T-Square.
+
+\bigskip\noindent
+Although you may use outside sources for information, you:
+\begin{itemize}
+\item {\bf must not} copy-and-paste text or figures from those sources, and
+\item {\bf must} cite the sources. A citation should provide sufficient information for myself or anyone else to find the source that you used.
+\end{itemize}
+You do not need to cite the textbook or any course materials. If you are unsure whether or not you are using outside material appropriately, please ask me rather than guessing.
+
+This homework has one written part worth 100 points. Please solve the following problems.
+
+\subsection*{Written exercises}
+
+\begin{enumerate}
+
+\item (20 points)
+Intrusion detection systems (IDSes) may generate false positives, or alerts when no attack is underway, and have false negatives, or missed attacks. The rate of false positives and negatives is the ratio of errors per some number of events. For an IDS, we can measure counts of the following:
+\begin{itemize}
+\item $A_T$: True alerts (attacks that were detected).
+\item $A_F$: False alerts (no attack underway, but the IDS generated a false positive).
+\item $N_T$: True negatives (no attack underway, no alert).
+\item $N_F$: False negatives (attack underway, but the IDS missed it and failed to alert).
+\end{itemize}
+Answer the following:
+\begin{enumerate}
+\item Use these four symbols to give a mathematical formula for the false positive rate. Explain the rationale behind your formula.
+\item Use the symbols to give a formula for the false negative rate. Explain your rationale.
+\end{enumerate}
+
+\item (40 points)
+A group of photography enthusiasts have created a website called {\em Cameras In Action}. Their php-enabled web server (http://cia.us) hosts a file (/ops.php) with the following PHP code:
+\begin{alltt}
+<? 
+$mysql = mysql_connect("localhost", "admin", "myvoiceismypassword");
+mysql_select_db("cia", $mysql);
+
+/* Set a cookie \& add a user if they don't exist. */
+if ($_COOKIE[`name'] == `') \{
+  setcookie(`name', $name, time()+86400); // one day
+  setcookie(`address', $address, time()+86400);
+  setcookie(`uid', $uid, time()+86400);
+  $q1 = "INSERT INTO who (`uid', `name') VALUES ($uid, `$name'); 
+         INSERT INTO where (`uid', `address') VALUES ($uid, `$address')";
+  mysql_query($q1, $mysql);
+\}
+
+/* Print the user's name as supplied from input. */
+echo "Hello ".$name;
+
+/* Print the user's name as extracted from the database. */
+$q2 = "SELECT name FROM who WHERE uid=$uid";
+$result = mysql_query($q2, $mysql);
+if (mysql_num_rows($result) > 0) \{
+  while ($row = mysql_fetch_row($result)) \{
+    for ($i = 0; $i < count($row); $i++) \{
+      echo $row[i];
+    \}
+  \}
+\}
+?>
+\end{alltt}
+A browser will request the page via GET requests of the form:
+\begin{quote}
+{\tt GET http://cia.us/ops.php?name=AAA\&address=BBB\&uid=\#\#\#}
+\end{quote}
+The php server communicates with a MySQL database. The database {\tt cia} contains two tables called {\tt who} and {\tt where}. Each table has two columns. The table {\tt who} has a column {\tt uid} containing a numeric user ID, and a column {\tt name} containing the string name of the photographer having that user ID. The table {\tt where} has a column {\tt uid} of the same numeric IDs, and a column {\tt address} containing the address of the photographer with each user ID.
+
+\newpage
+Answer the following questions:
+\begin{enumerate}
+\item Write a value for {\tt\$name} that will cause the server to delete the entire table {\tt who}.
+\item Write a value for {\tt\$uid} that will cause the server to return the entire list of user IDs and names stored in the table {\tt who}.
+\item Write a value for {\tt\$uid} that will cause the server to return all photographers' names and addresses.
+\item A competitor, {\em Features, Shorts, and B-movies}, believes that motion pictures will reign supreme over still photography and has created their own site (http://fsb.ru). The FSB wants to acquire the identities of the CIA's photographers. Write a value for {\tt\$name} that will cause the name and address of the user loading the page to be sent to http://fsb.ru.
+\item Explain how the CIA should alter the code of ops.php to prevent each of these attacks.
+\end{enumerate}
+
+\item (20 points)
+To help detect attacks, system administrators may record an audit log of the network traffic passing to and from their enterprise's network. 
+\begin{enumerate}
+\item Suppose that the log records only network headers listing source and destination IP addresses and ports. How could this audit log compromise the privacy of computer users in the enterprise?
+\item Suppose that the log additionally records packet payloads. What additional privacy problems might arise?
+\end{enumerate}
+
+\item (20 points) The Wright et al.\ reading demonstrates that eavesdroppers can extract useful information from encrypted network traffic flows even without the ability to break the cryptography.
+\begin{enumerate}
+\item Their work was done in the context of Voice-over-IP. Suggest another scenario other than voice communication in which a network eavesdropper gains knowledge about the possible content of an encrypted traffic flow without crypto attacks.
+\item What features does your scenario share with the VoIP scenario? How does this lead to information disclosure? Suggest a possible change to the network communication to complicate the eavesdropping attack.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

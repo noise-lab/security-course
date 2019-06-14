@@ -1,0 +1,2 @@
+hw2.dep: Makefile  hw2.tex
+hw2.aux:  hw2.tex

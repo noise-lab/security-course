@@ -1,0 +1,160 @@
+\documentclass[11pt]{article}
+
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{color}
+\usepackage{6829hw}
+\input{macros.tex}
+
+\begin{document}
+
+\newcounter{listcount}
+\newcounter{sublistcount}
+
+
+\handout{PS1}{January 16, 2009}{Instructor: Prof. Nick Feamster}
+{College of Computing, Georgia Tech}{Problem Set 1: Passwords and Packets}
+
+This problem set has three questions, each with several parts.  Answer
+them as clearly and concisely as possible.  You may discuss ideas with
+others in the class, but your solutions and presentation must be your
+own.  Do not look at anyone else's solutions or copy them from
+anywhere. (Please refer to the Georgia Tech honor code, posted on the
+course Web site).
+
+Turn in your solutions in on {\bf January 31, 2009} by 11:59 p.m. -0500,
+to the grader.
+
+\section{Warm Up}
+
+\begin{enumerate}
+\item Examine the source code or man page for {\tt crypt}.  How does
+  this program take a plaintext password and generate the ciphertext
+  that we see in {\tt /etc/password}, or {\tt /etc/shadow}?  What cipher
+  is used to generate the cipher from the plaintext?
+%
+\item Using {\tt crypt(3)} on a UNIX machine, generate the
+  ciphertext for {\tt security} and {\tt netsecurity}.  What do you
+  observe?  Why?
+\item {\tt passwd} typically uses something called a ``salt'' to
+  generate the password for each user.  Why?
+\end{enumerate}
+
+\section{Password Cracking}
+
+For this problem, you will need to install John the Ripper:
+\url{http://www.openwall.com/john/}. 
+
+Consider the following password file generated with {\tt crypt(3)}:
+
+\begin{verbatim}
+root:IWpIzqD0jR1.c:100:100:Charlie Root:/home/root:/bin/sh
+cs6262:UNzrFi5aYL9DU:101:101:CS6262:/home/cs6262:/bin/sh
+mysql:WqCBVG36lcuAc:102:102:MySQL:/home/mysql:/bin/sh
+guest:FTQinpjr.VRM.:103:103:Guest:/home/guest:/bin/sh
+test:LF2c9qM5l6X7Q:104:104:Testing:/home/test:/bin/sh
+\end{verbatim}
+
+You can obtain this password file from \\
+\url{http://www.gtnoise.net/classes/cs6262/spring_2009/psets/ps1/6262.pw}. 
+
+\begin{enumerate}
+\item Run the default mode of John; one of these passwords will be
+  cracked.  Which one?  Why (which rule of John was applied)?
+
+\item Now, try the ``wordlist'' mode of John.  Which password is cracked
+  now?  Which rule of John was applied?  ({\em Hint:} John's default
+  wordlist is quite small by default.  You may have to augment this
+  wordlist with one of your own.
+
+\item One of the users has a pw that is a rotated version of a
+dictionary word. Modify John's rule list to incorporate this feature.
+Which password does this now reveal?  Please include the source for your
+modifications to the rule list.
+
+%% For this, they'll have to read john's rule syntax. It's easy enough if
+%% they look through the default config file. There's a rule in the
+%% single-cracking mode (without wordlists) that tries precisely this,
+%% but because the single mode does not use dictionary words, it cant do
+%% the crack. All they need to do is to find the appropriate rule and
+%% copy it to another section of the config file.
+
+\item One user is predisposed to using leetspeak (4 for a/A, 1 for i/I
+and l, 3 for e/E). His password is also a dictionary word. Modify
+john.conf to incorporate this feature.  Which password is revealed?
+
+%% Again, the rule exists in john.conf's single-crack section, and all
+%% they need to do is copy it to the wordlist section. The key here is
+%% that they can't blindly copy the existing leetspeak rules; the
+%% existing rules don't have a substitution for '1' for 'i'. So they'll
+%% have to change it a little bit.
+
+\item One user likes to swap two adjacent characters of a dictionary
+word. Can you modify john.conf to do this using existing syntax? If not,
+how can you incorporate this feature?  What is the password that is
+revealed?
+
+%% So, from looking at the rule syntax, this is not possible straight off
+%% the bat. There're a few ways to do this. One is to read in the
+%% wordlist and generate all possible combinations from a given wordlist
+%% (e.g., for 'toy', there'd now be 'toy', 'oty', and 'tyo'). But the
+%% much easier alternative is to add a new rule to john by changing the
+%% source. I just figured this out myself, and it took just 7 lines to
+%% add the rule. Pretty easy, but gives people practice of reading others
+%% code and finding where to add stuff. We can probably add a "Hint: you
+%% can also edit the source code" if it seems too challenging.
+
+%% This should take someone about 3-4 hours starting from scratch. The
+%% key would, of course, be to read the john docs and such.
+\end{enumerate}
+
+\section{TCP Stream Reassembly}
+
+\begin{enumerate}
+\item Write a program to reassemble an HTTP session. Your program should
+display for each HTTP session the request and response between the
+client and the server.  It should also output the reassembled HTML
+response as a file.  A test trace is available here: \\
+\url{http://www.gtnoise.net/classes/cs6262/spring_2009/psets/ps1/6262.pcap.bz2}.  
+{\em We will grade with a different trace.}
+
+Your program should produce the reassembled HTML: the TCP payload data,
+without the headers.  Your reassembled stream should display properly
+when opened in a browser like Firefox.  Here are the steps we will use
+for grading:
+
+\begin{itemize}
+\item We will run the code you turn in against our test trace.
+\item We will attempt to open the reassembled stream in Firefox.
+\end{itemize}
+
+{\em Hint:} you can get the source code of the tcpdump and modify it to
+record the payload of TCP packets of HTTP sessions. 
+
+\item Suppose that a TCP stream reassembler has been installed as part
+  of a firewall, $n$ hops upstream from a server that it is trying to
+  pretect.  Suppose also that your TCP stream reassembler can reassemble
+  a telnet stream and is looking for the password ``{\tt password}'' in
+  an incoming TCP stream.  
+
+\setcounter{listcount}{0}
+\begin{list}{(\alph{listcount})}{\usecounter{listcount}}
+\item Explain how you might construct a TCP stream that transmits the
+  entire stream {\tt password} to the server but prevents the
+  reassembler from raising an alarm.  Note that an improved TCP stream
+  reassembler would be able to reassemble strings across packets.  ({\em
+  Hint:} Think about how you might get a packet to reach the reassembler
+  but not the server.)
+\item {\bf Extra credit. } Write a program that implements your
+  exploit.  
+\end{list}
+
+\end{enumerate}
+
+Please turn in your code to this assignment to the grader, Priyank Raj,
+by email.  Your code should include a README describing everything we
+need to do to compile and run your code.
+
+
+\end{document}

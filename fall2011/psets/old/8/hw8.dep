@@ -1,0 +1,2 @@
+hw8.dep: Makefile  hw8.tex
+hw8.aux:  hw8.tex

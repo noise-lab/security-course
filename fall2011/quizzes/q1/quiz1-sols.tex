@@ -1,0 +1,518 @@
+\documentclass[11pt]{article}
+\usepackage{graphics,epsfig,amsmath,amssymb}
+\usepackage{epsf}
+\usepackage{boxedminipage}
+\usepackage{fullpage}
+\usepackage{fancyheadings}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{pseudocode}
+\usepackage{psfrag}
+\pagestyle{fancy}
+
+\setlength{\topmargin}{.2in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.15in}
+\setlength{\footskip}{0.1in}
+
+\newcounter{pctr}
+\stepcounter{pctr}
+
+\newcounter{partctr}
+
+\newcommand{\ie}{{\em i.e.}}
+\newcommand{\eg}{{\em e.g.}}
+
+\newcommand{\ch}{\item {\bf True~~/~~False~~}}
+\newcommand{\tfnote}{\probnote{Circle True or False for each choice.}}
+\newcommand{\allapply}{\probnote{Circle ALL that apply}}
+\newcommand{\bestanswer}{\probnote{Circle the BEST answer}}
+\newcommand{\ansbelow}{\probnote{Answer legibly in the space below.}}
+
+\renewcommand{\thesection}{{\bf\Roman{section}}}
+\renewcommand{\theenumi}{{\bf\Alph{enumi}.}}
+\renewcommand{\labelenumi}{{\bf\Alph{enumi}.}}
+
+\newcommand{\setversion}[1]{\def\version{#1}}
+\setversion{answers}
+
+\ifthenelse{\equal{\version}{answers}}{
+    \newcommand{\sols}[1]{#1}
+} {
+    \newcommand{\sols}[1]{}
+}
+
+
+\newcounter{answer}
+\newenvironment{answer}[1][\relax]{\refstepcounter{answer}\begin{list}%
+ {}{\leftmargin 0pt\rightmargin 0pt\labelsep 3pt\parsep 0pt%
+ \setlength{\listparindent}{\parindent}}
+    \item {\bf Answer \theanswer #1}\
+    }{\hspace*{\fill}$\blacksquare$\end{list}} 
+
+
+
+% uses these macros to delimit problems
+\newcommand\prob[1]%
+  {\begin{itemize}\item[]%
+   \vspace{.2in}{\bf\thepctr. ~[#1~ points]:}\stepcounter{pctr}}
+\newcommand\eprob{\end{itemize}}
+\newcommand\probnote[1]%
+  {\\\begin{tabular}{cr} \hspace{3in} & {\bf (#1)} \\ \end{tabular}}
+
+% headers/footers
+\lhead[\fancyplain{}{\bf Page \thepage ~of \pageref{lastpage}}]%
+      {CS 4235 Fall 2011, Quiz 1}
+\lfoot[{\bf Initials: }]%
+      {{\bf Initials: }}
+\rhead[CS 4235 Fall 2011, Quiz 1]%
+      {\fancyplain{}{\bf Page \thepage ~of \pageref{lastpage}}}
+\cfoot{}
+\setlength{\headrulewidth}{0in}
+\setlength{\headsep}{.3in}
+
+ % Compact itemize and enumerate.  Note that they use the same counters and
+% symbols as the usual itemize and enumerate environments.
+\def\compactify{\itemsep=0pt \topsep=0pt \partopsep=0pt \parsep=0pt}
+\let\latexusecounter=\usecounter
+\newenvironment{CompactItemize}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{itemize}}
+  {\end{itemize}\let\usecounter=\latexusecounter}
+\newenvironment{CompactEnumerate}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{enumerate}}
+  {\end{enumerate}\let\usecounter=\latexusecounter}
+
+\begin{document}
+\cfoot{}
+\pagestyle{empty}
+\begin{center}
+\begin{tabular}{lr}
+\resizebox{1in}{!}{\includegraphics{GT}}
+&
+\parbox{4in}{
+    {\Large\it College of Computing} \\ \\
+    {\LARGE\sf Georgia Institute of Technology} 
+}
+%
+\end{tabular}
+\end{center}
+
+\begin{center}
+{\Large{\bf CS 4235: Computer Security: Fall 2011} \\
+ \vspace{.15in} \Huge{\bf Quiz I}} 
+\vspace{.2in}
+
+% this is the box on the first page with overall quiz information
+\begin{boxedminipage}[h]{6in}
+There are \underline{12 questions} and
+  \underline{\pageref{lastpage} pages} in this quiz booklet (including
+  this page).  Answer each question according to the instructions given.
+  You have {\bf 85 minutes} to answer the questions.
+
+\vspace{.1in} The last page is an easy, optional set of questions.  {\em
+  Rip this page off of your exam for five bonus points.}  Turn it in
+anonymously.
+
+
+\vspace{.1in} 
+If you find a question ambiguous, write down any
+assumptions you make.  {\bf Be neat and legible.}  If I can't
+understand your answer, I can't give you credit!  
+%There are three pretty
+%challenging questions (clearly marked); you may want to look through the
+%whole quiz and save those for last.
+
+\vspace{.1in} 
+Use the empty sides of this booklet if you need scratch space.  You
+may also use them for answers, although you shouldn't need to.  {\em If you
+do use the blank sides for answers, make sure to clearly say so!}
+
+\vspace{.1in} 
+{\bf Note well: Write your name in the space below AND your initials at the bottom of each
+page of this booklet.}
+
+\begin{center}{\bf THIS IS AN ``CLOSED BOOK, CLOSED NOTES'' QUIZ.\\
+NO BOOKS, NO NOTES, NO OTHER MATERIALS, NO PHONES, NO COMPUTERS, NO
+LAPTOPS, NO PDAS.\\ 
+%NO ENCRYPTED WIRELESS TRAFFIC. \\
+MAKE SURE YOU'VE READ ALL THE INSTRUCTIONS ABOVE!}
+\end{center}
+{\em Initial here to indicate that (1)~you've read the instructions and (2)~
+you agree to abide by the Georgia Tech Honor Code: }
+
+
+
+\if 0
+\vspace{.05in} The last page has easy bonus questions, {\em which you can
+answer outside of the allotted time}.  Rip the last page off of your
+quiz for five bonus points.  Turn it in anonymously if you like (feel
+free to fill it out after the quiz and give it to a TA, or take it with you).  You
+won't get the five points if you don't tear off the page (this is to
+make certain you've read this far ;).
+\fi 
+
+\end{boxedminipage}
+\end{center}
+\vspace*{0.15in}
+\begin{center}
+{\it Do not write in the boxes below}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline \hline
+{\bf 1-5 (xx/20)}& {\bf 6-10 (xx/27)}& {\bf 11-13 (xx/9)} &{\bf Bonus (xx+5/14)} & {\bf Total
+  (xx/70)}  \\ \hline 
+ & & & & \\ 
+ & & & &\\ \hline \hline
+\end{tabular}
+\end{center}
+
+\vspace{.1in}
+{\bf\Large{Name:}}
+
+\newpage
+\pagestyle{fancy}
+
+\section{Warmup}
+
+
+
+\prob{4} 
+Which of the following are true about the attack described in Ken
+Thompson's {\em Reflections on Trusting Trust}? 
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item The hacked compiler can insert arbitrary code into every program
+  it compiles.
+\item The attack is only possible for compiled languages like C, but
+  would not be possible for interpreted languages like Perl or Python.
+\item Inspecting the source code of the hacked compiler could reveal
+  that the compiler was hacked.
+\item Inspecting the binary of the compiler could reveal that the binary
+  was not the same as the ``benign'' compiler.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (D)
+\end{answer}
+}
+
+\prob{4} 
+Which of the following are true about buffer overflows? 
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Replacing {\tt strcpy} and other memory-related
+  functions with the corresponding functions that perform bounds
+  checking (\eg, {\tt strncpy}) would eliminate all buffer overflow 
+  vulnerabilities. 
+\item An operating system that allocates memory ``up'' on the stack
+  instead of ``down'' can eliminate all buffer overflow vulnerabilities.
+\item A successful buffer overflow requires exact knowledge of where the
+  return pointer is stored in memory on the stack.
+\item Buffer overflows require knowledge of the underlying processor
+  architecture. 
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (A), (B), (D)
+\end{answer}
+}
+
+\prob{4} 
+From the Denning paper on data security, which of the following are an
+example of inference control?
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Upon receiving an incorrect password for an existing username, a Web server
+  returns ``incorrect username or password''.
+\item A database limits the number of queries that a user can issue in a
+  given time period.
+\item A database only returns queries for a small group of authorized users.
+\item An operating system prevents data from a secure database from
+  being transferred to the Web server process.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (A).
+\end{answer}
+}
+
+
+
+\prob{4} 
+Which of the following can allow a worm to spread more quickly?
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Scanning IP addresses in the same subnet as a machine that is
+  already compromised.
+\item Scanning for multiple vulnerabilities at once.
+\item Scanning a list of target IP addresses in a random order from each
+  compromised host.
+\item Scanning for vulnerable hosts before launching the worm in the
+  first place.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is {\em all of the above} (E).
+\end{answer}
+}
+
+
+\prob{4} 
+What techniques did security experts use to deconstruct/reverse engineer the
+Stuxnet malware?
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Running the code in a controlled environment and observing its
+  behavior.
+\item Decompiling the code and studying the data structures in the
+  software.
+\item Running a ``honeypot'' to discover the geographic locations of
+  compromised hosts.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (B), (C).
+\end{answer}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section{Potpourri}
+
+\prob{6} Define the following four terms: threat, vulnerability,
+exploit, and attack.  Explain, in the context of Stuxnet, an example of
+each.~\ansbelow
+\eprob
+
+\sols{
+\begin{answer}
+{\em Vulnerability:} A weakness in the security system that might be
+exploited to cause harm.  Example: Software vulnerabilities in the
+Windows operating system (and other) that allowed the virus to
+spread. {\em Threat:} A set of circumstances that has the potential to
+cause loss or harm.  Example: The fact that the centrifuges were
+controllable from software.  {\em Attack:} An active attempt to exploit
+a vulnerability.  Example: An attempt to destroy the centrifuges using
+the software controller.  {\em Exploit:} A tool for mounting a
+successful attack.  Example: The Stuxnet worm itself.
+\end{answer}
+}
+
+\prob{5}  What is the difference between static analysis and dynamic
+analysis?  Explain the relationship of security testing to decidability
+and explain why static analysis could never detect all security
+problems.
+~\ansbelow 
+\eprob
+
+\sols{
+\begin{answer}
+Static analysis attempts to analyze source code {\em without executing
+  it} in an attempt to reveal vulnerabilities.  Dynamic analysis
+actually runs the code in an attempt to uncover vulnerabilities.
+Decidability involves answering questions about the behavior about an
+algorithm or software program (e.g., will a program terminate).  
+Determining whether a piece of source code will terminate is 
+undecidable; for this reason, static analysis also cannot uncover all
+potential security problems: because static analysis cannot determine
+whether a program will terminate, it cannot determine whether a
+particular software execution path will lead to a code segment that will
+perform some undesirable behavior (e.g., will the program do X before
+terminating?).
+\end{answer}
+}
+\newpage
+
+\pagebreak
+\prob{4} Suppose that you were using ``backscatter'' attack traffic to
+try to estimate the size of a denial of service attack.  You are
+monitoring backscatter traffic from a /8 IP address space, which is
+$1/256$ of all Inernet address space, and you see 1,000 TCP
+``backscatter'' packet every second.  How many packets per second is the
+denial of service attack? 
+\eprob
+
+\sols{
+\begin{answer}
+256,000 packets per second.
+\end{answer}
+}
+
+
+\prob{5} Define privilege escalation.  Give an example of an attack
+involving privilege escalation in an automotive system (it is alright if
+your attack is hypothetical; it need not be one that was actually
+documented in the paper).  \ansbelow \eprob
+
+\sols{
+\begin{answer}
+Privilege escalation occurs when an attacker compromises a system and
+then uses the initial compromise as a ``stepping stone'' to gain access
+to a system with a higher privilege level.  One hypothetical attack on
+an automotive system would be compromising the car's wireless network,
+and then eavesdropping on communications on that network to dicover
+credentials that would allow the attacker to start the car (I am not
+sure the paper itself had any privilege escalation attacks).
+\end{answer}
+}
+
+
+
+\newpage
+\section{Design Question: Botnets}
+
+Emma Lerovads attended CS~4235 and has decided she can make millions
+selling the CS~4235 lecture notes.  From the lecture on botnets, she
+remembers that botnets can be used to send large quantities of spam.
+She also remembers the how permutation scanning was used to share work
+across a large number of bots for vulnerability scanning and wants to
+apply the same idea to the work of launching the spam campaign.
+
+\prob{3}
+From the paper {\em How to Own the Internet in Your Spare Time},
+describe the process of permutation scanning and explain how it speeds
+up the process of finding vulnerable hosts.
+\ansbelow
+\eprob
+\sols{
+\begin{answer}
+Permutation scanning takes the ``hit list'' of IP addresses that a host
+should scan and randomly permutes the list so that different infected
+hosts end up scanning different, random regions of IP address space.
+This process accelerates the process of finding vulnerable hosts, since
+each newly infected host can scan a relatively non-overlapping set of
+vulnerable IP addresses (as opposed to not permuting the list, which
+would result in every newly infected host scanning the hosts in the same
+order. 
+\end{answer}
+}
+
+Emma wants different bots to send email to a unique set of recipients,
+so she must somehow divide the labor across bots.  To perform this load
+balancing, Emma decides to distribute the entire mailing list to each
+bot and run the following code on each bot to control which bot sends
+email to which victim: 
+
+\begin{center}
+\begin{minipage}{4.5in}
+\begin{pseudocode}[display]{}{}
+\PROCEDURE{SendEmail}{}
+\COMMENT{runs at each {\it node}}\\
+\COMMENT{randomly permute order of email addresses in the mailing list} \\
+  ~~Permute(mailingList); \\ \\
+
+  ~~\mbox{foreach}~(emailAddress) \in mailingList: \\ 
+
+  ~~~~\COMMENT{send the email to emailAddress}\\
+  ~~~~sendMessage(emailAddress);\\
+\ENDPROCEDURE
+\end{pseudocode}
+\end{minipage}
+\end{center}
+
+Emma notices that the above code isn't really doing exactly what she
+wants: although the recipients of her emails are getting the email
+quickly, the recipients are getting duplicate emails from each bot,
+because each bot is still sending email to every single email address in
+the list.  She realizes that, instead of sending one mailing list to all
+of the bots, she should use what she learned about botnet
+command-and-control in class to distribute the workload.  She re-designs
+her bot so that it simply takes the {\tt sendMessage(emailAddress)}
+command from a centralized controller.
+
+\prob{2}
+Describe one advantage and one disadvantage of using a single
+centralized controller to send the email commands to each bot. 
+\ansbelow
+\eprob
+\sols{
+\begin{answer}
+Distributing botnet command-and-control provides an additional amount of
+stealth (\ie, because a single contact point can give rise to a large,
+anomalous traffic spike), and it also allows the botnet to potentially
+be more resilient by avoiding a single point of failure.  On the other
+hand, distributing the control can make the botnet more difficult to
+control, since no one entity controls the botnet; additionally, 
+\end{answer}
+}
+
+\prob{6}
+Describe how you would go about enumerating all of the IP
+addresses in the botnet for (1)~a botnet where each bot executes the
+code above; (2)~a botnet where each bot takes commands from a
+centralized controller. 
+\ansbelow
+\eprob
+\sols{
+\begin{answer}
+This question is a bit mis-forumated, as the answer is the same in both
+cases: an appropriate method for enumerating the members of a botnet
+might be to set up a spam trap domain to see what IP addresses attempt
+to send the domain spam (i.e., a spam honeypot).  Because every member
+of the botnet has the complete list of email addresses to spam, every IP
+address will eventually attempt to send email to the spam trap,
+presuming the trap is for a domain that is on the botnet's ``hit list''.
+(Any reasonably sensible answer will get full credit for this question.)
+\end{answer}
+}
+
+
+\newpage
+\section{Bonus: Anonymous Course Feedback}
+
+{\bf This page is anonymous.}  Rip this off from your exam, and turn it
+in separately if you like.  You'll get five points for simply ripping
+off the last page of the exam, but I'd prefer if you fill it out and
+hand it in in a separate stack.
+\vspace{.5in}
+
+What are the things you like most about the course so far?  Anything is
+fair game here (topics, course structure, board technique, etc.).
+\vspace{1.5in}
+
+
+What are the things you like least about the course so far?  Again,
+anything is fair game.
+\vspace{1in}
+
+
+What topics would you like to see covered?
+\vspace{1in}
+
+
+
+\label{lastpage}
+\end{document}

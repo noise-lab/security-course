@@ -1,0 +1,178 @@
+# This file defines the lectures for the class.  The syllabus is
+# automatically generated from this file.
+
+# Date:  [Lecture type]
+#        blank:  normal lecture
+#        noclass [explanation text]
+#        exam    [exam name]
+# I:  Instructor   (overrides the global INSTRUCTOR)
+# T:  Title
+# S:  slides ref (looks in lectures/<name>.{ppt,pdf,ps,html}
+# V:  Video list (links to coursecast)
+# R:  Readings (copied verbatim)
+# N:  Notes (copied verbatim)
+# A:  Topic Area (generates a heading)
+# RB: BibTeX ref::URL
+
+CLASS: 'CS 4235: Internetworking Architectures and Protocols'
+CLASS_SHORT: CS4235
+SUMMARY: CS 4235
+YEAR:  2011
+TERM:  Fall
+INSTRUCTOR:  Nick Feamster
+LOCATION:  Klaus 2447
+START_TIME: '16:35'
+END_TIME: '17:55'
+READINGBASE:  http://gtnoise.net/papers/library
+ALTERNATE: week
+HEADSPAN: 5
+SHOW_LECNUM: yes
+SHOW_INSTRUCTOR: no
+HIGHLIGHT_DUE: yes
+
+LECTURES:
+
+- 'Introduction and Overview'
+
+- 8/23:
+        T: 'Security in Computing'
+        R: '1.1-1.3'
+        RB: Ware::ware-secure.pdf Checkoway::checkoway-autosec.pdf
+
+- 8/25:
+        T: 'Attacks and Defenses'
+        R: '1.4-1.5; 1.9-1.10'
+        RB: Denning::denning-data.pdf
+        N: '<a href="http://www.theatlantic.com/magazine/archive/2004/09/inside-al-qaeda-rsquo-s-hard-drive/3428/">Al Qaeda</a>'
+
+- 'Software Security'
+
+- 8/30: 
+        T: 'Software Flaws and Vulnerabilities'
+        N: '<a href="http://insecure.org/stf/smashstack.html">Stack Smashing</a>'
+        RB: Thompson::thompson-trust.pdf
+        R: '3-3.2'
+        RB: Thompson::thompson-trust.pdf
+
+- 9/1:
+        T: 'Worms and Viruses'
+        R: '3.3'
+
+- 9/6:
+        T: 'Malicious Code'
+        R: '3.4-3.5'
+
+- 'Network Security'
+
+- 9/8:
+        T: 'Spam and Phishing'
+        RB: Karger::karger-multics.pdf
+
+- 9/13:
+        T: 'Botnets'
+
+
+- 'Case Study Presentations'
+
+- 9/15:
+        T: 'Groups: Censorship, Spam'
+
+
+- 9/20:
+        type: noclass
+        T: 'No Class'
+        N: 'Problem Set 1 Due'
+
+- 9/22:
+        T: 'Groups: Mobile, Neutrality, Web'
+
+- 9/27:
+        T: 'Groups: Cellular, DNS, Smart Grid'
+
+- 9/29:
+        T: 'Groups: Blackhat SEO, Social'
+
+
+- 'Network Security'
+
+- 10/4:
+        T: 'Network Security and Threats'
+        R: '7.1-7.2'
+
+- 10/6:
+        T: 'Network Defense'
+        R: '7.3'
+
+- 10/11:
+        type: exam
+        T: 'Quiz 1'
+
+- 10/13:
+        T: 'Firewalls and Intrusion Detection'
+        R: '7.4-7.5'
+
+- 10/18: 
+        type: noclass
+        T: 'Fall Recess'
+
+
+- 10/20:
+        T: 'MITM, Public Key Infrastructures'
+        R: '4.1-4.2'
+
+- 'Secure Systems'
+
+- 10/25:
+        T: 'Memory Protection and Access Control'
+        R: '4.3-4.6'
+
+- 10/27:        
+        T: 'Secure Operating Systems'
+        R: '5.1-5.6'
+
+- 11/1:
+        T: 'Web Security'
+
+- 'Privacy and Anonymity'
+
+- 11/3:
+        T: 'Privacy'
+
+
+- 11/8: 
+        T: 'Anonymity'
+
+- 11/10: 
+        T: 'Censorship'
+
+- 'Cryptography' 
+
+- 11/15: 
+        T: 'Elementary/Symmetric Key Crypto'
+        R: '2.1-2.4'
+
+- 11/17:
+        T: 'Modern/Public Key Crypto'
+        R: '2.5-2.8'
+
+- 11/22:
+        T: 'Cryptographic Hashes'
+
+- 11/24:
+        type: noclass 
+        T: 'Thanksgiving'
+
+- 11/29:
+      T: 'Network Security/Quiz Review'
+
+- 12/1: 
+      type: exam
+      T: 'Quiz 2'
+      
+- 12/6: 
+      type: presentations
+      T: Project Presentations
+
+- 12/8:
+      type: presentations
+      T: Project Presentations

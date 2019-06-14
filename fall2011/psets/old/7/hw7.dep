@@ -1,0 +1,2 @@
+hw7.dep: Makefile  hw7.tex
+hw7.aux:  hw7.tex

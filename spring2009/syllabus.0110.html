@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en">
+
+<head>
+<title>Syllabus</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body id="syllabus">
+<div id="syllint">
+<h1>CS 7260: Internetworking Architectures and Protocols</h1>
+
+
+<div id="objectives">
+  <h2>Objectives<a name="Objectives"></a></h2>
+
+  <p>
+  This project-based course will explore research topics in
+  computer networking, prmarily at the IP layer and above.  You will
+  gain exposure to burgeoning areas of computer networking and learn how
+  to use the tools commonly used for networking research today.  
+  </p>
+
+</div>
+
+
+<div id="textbooks">
+  <h2>Textbooks<a name="Textbooks"></a></h2>
+
+  <p>You will be expected to read 2-3 papers a week. (<a href="readinglist.html">Reading List</a>).<br />
+
+  There are no required textbooks for the course.  </p>
+
+</div>
+
+<div id="honor">
+<h2>Academic Honesty</h2>
+<p>
+Students are expected to abide by the Georgia Tech Honor Code. Honest
+and ethical behavior is expected at all times. All incidents of
+suspected dishonesty will be reported to and handled by the office of
+student affairs. You are to do all assignments yourself, unless
+explicitly told otherwise. You may discuss the assignments with your
+classmates, but you may not copy any solution (or part of a solution)
+from a classmate.
+</p>
+</div>
+
+
+<div id="pregrade"> <div id="Prerequisites"> 
+<h2>Prerequisites</h2>
+<p> This class is appropriate for graduate students with
+previous background in networking.  Although it is listed as an official
+prerequisite, <a
+href="http://www.cc.gatech.edu/fac/Mostafa.Ammar/6250/">CS 6250</a> will
+be helpful, but is not  
+required.  Some familiarity with both network programming and
+scripting languages (<i>e.g.</i>, Perl, Ruby) will be helpful.  </p>
+</div>
+
+<div id="Grading">
+<h2>Grading</h2>
+<p>
+Grading will be based on three problem sets, two quizzes, and a
+semester-long project with a presentation and writeup.  Participation
+will count for "fudge factors".
+</p>
+<ul>
+<li>20% Problem Sets</li>
+<li>30% Quizzes</li>
+<li>50% Project</li>
+</ul>
+</div>
+</div>
+
+<div id="Schedule">
+  <h2>Schedule<a name="Schedule"></a></h2>
+  <p>Papers will not be handed out in class.  <b>Please print the readings
+  and read them before class.</b><br />
+  <i>Please note that this schedule is tentative and subject to change throughout the course of the term.</i></p>
+
+<table>
+  <tr>
+   <th>Lecture</th>
+   <th>Date</th>
+   <th>Topics</th>
+   <th>Notes/Resources</th>
+   <th>Preparation</th>
+ </tr>
+
+<tr class="lecture alt">
+ <td>1</td>
+ <td>Mon 01/08</td>
+ <td>Course Overview and Introduction <br />
+[<a href="lectures/L1.pdf">pdf</a>] [<a href="lectures/L1.ppt">ppt</a>]  </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/darpa-internet.pdf">Design</a>  </td>
+</tr>
+<tr class="lechead">
+ <td class="lechead" colspan="5">Internet Essentials: Naming, Addressing, and Routing</td>
+</tr>
+<tr class="lecture alt">
+ <td>2</td>
+ <td>Wed 01/10</td>
+ <td>Names and Addresses: Hierarchical and Flat <br />
+[<a href="lectures/L2.pdf">pdf</a>] [<a href="lectures/L2.ppt">ppt</a>]  </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/dns-ton2002.pdf">DNS</a>  </td>
+</tr>
+<tr class="noclass">
+ <td></td>
+ <td>Mon 01/15</td>
+ <td>School Holiday <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="lecture">
+ <td>3</td>
+ <td>Wed 01/17</td>
+ <td>Intradomain Topology and Routing <br />
+ </td>
+ <td><a href="psets/ps1/ps1.pdf">PS1</a> Assigned</td>
+ <td>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>4</td>
+ <td>Mon 01/22</td>
+ <td>Interdomain Routing <br />
+ </td>
+ <td class="due">Project Groups Due</td>
+ <td> <a href="http://www.cs.princeton.edu/%7Ejrex/papers/sigmetrics00.pdf">GR</a>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>5</td>
+ <td>Wed 01/24</td>
+ <td>Router Design: Technologies and Trends <br />
+ </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/50gb.pdf">50GB</a>  </td>
+</tr>
+<tr class="lecture">
+ <td>6</td>
+ <td>Mon 01/29</td>
+ <td>Multihoming and Multipath Routing <br />
+ </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/deflections.pdf">Deflections</a>  </td>
+</tr>
+<tr class="lechead">
+ <td class="lechead" colspan="5">Network Measurement and Operations</td>
+</tr>
+<tr class="lecture">
+ <td>7</td>
+ <td>Wed 01/31</td>
+ <td>Measurement Testbeds and Tools <br />
+ </td>
+ <td><a href="http://www.planet-lab.org/">PlanetLab</a>, <a href="http://www.emulab.net/">EmuLab</a></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/pl-nsdi04.pdf">PlanetLab</a> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/p010-bavier.pdf">VINI</a>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>8</td>
+ <td>Mon 02/05</td>
+ <td>Measurement Techniques, Strategies, and Pitfalls <br />
+ </td>
+ <td class="due"><a href="psets/ps2/ps2.pdf">PS2</a> Assigned<br />PS1 Due</td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/meas-strategies-imc04.pdf">Paxson:Measurement</a> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/paxson-routing.pdf">Paxson:Routing</a>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>9</td>
+ <td>Wed 02/07</td>
+ <td>Evaluation Strategies: Simulation, Emulation, etc. <br />
+ </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/floyd-ton01.pdf">Difficulties</a>  </td>
+</tr>
+<tr class="lecture">
+ <td>10</td>
+ <td>Mon 02/12</td>
+ <td>Traffic Monitoring and Estimation <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="lecture">
+ <td>11</td>
+ <td>Wed 02/14</td>
+ <td>Traffic Engineering <br />
+ </td>
+ <td>Optimization</td>
+ <td>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>12</td>
+ <td>Mon 02/19</td>
+ <td>Troubleshooting and Fault Detection <br />
+ </td>
+ <td></td>
+ <td> <a href="http://www.usenix.org/events/nsdi05/tech/feamster.html">rcc</a>  </td>
+</tr>
+<tr class="lechead">
+ <td class="lechead" colspan="5">Abstracting the Network</td>
+</tr>
+<tr class="lecture alt">
+ <td>13</td>
+ <td>Wed 02/21</td>
+ <td>Content Overlays and Content Distribution <br />
+ </td>
+ <td class="due">Game Theory<br />PS2 Due</td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/chord.pdf">Chord</a> <a href="http://www.theregister.co.uk/2004/12/18/bittorrent_measurements_analysis/">BitTorrent</a>  </td>
+</tr>
+<tr class="lecture">
+ <td>14</td>
+ <td>Mon 02/26</td>
+ <td>Routing Overlays <br />
+ </td>
+ <td></td>
+ <td> <a href="http://nms.lcs.mit.edu/papers/ron-sosp2001.pdf">RON</a>  </td>
+</tr>
+<tr class="lecture">
+ <td>15</td>
+ <td>Wed 02/28</td>
+ <td>Network Virtualization <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>16</td>
+ <td>Mon 03/05</td>
+ <td>Coding and Quality-of-Service <br />
+ </td>
+ <td>Network Coding</td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/df.pdf">DF</a>  </td>
+</tr>
+<tr class="exam">
+ <td></td>
+ <td>Wed 03/07</td>
+ <td>Quiz 1 <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="lechead">
+ <td class="lechead" colspan="5">Network Security and Unwanted Traffic</td>
+</tr>
+<tr class="lecture">
+ <td>17</td>
+ <td>Mon 03/12</td>
+ <td>Worms and Botnets <br />
+ </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/cdc.pdf">Own</a>  </td>
+</tr>
+<tr class="lecture">
+ <td>18</td>
+ <td>Wed 03/14</td>
+ <td>"Applications": DoS, Spam, Phishing, and Click Fraud <br />
+ </td>
+ <td><a href="http://www.mailavenger.org/">MailAvenger</a></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/p396-ramachandran.pdf">Spam</a>  </td>
+</tr>
+<tr class="noclass">
+ <td></td>
+ <td>Mon 03/19</td>
+ <td>Spring Break <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="noclass">
+ <td></td>
+ <td>Wed 03/21</td>
+ <td>Spring Break <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="presentations">
+ <td></td>
+ <td>Mon 03/26</td>
+ <td>Project Progress Mini-Presentations <br />
+ </td>
+ <td class="due">Interim Report Due</td>
+ <td>  </td>
+</tr>
+<tr class="lecture">
+ <td>19</td>
+ <td>Wed 03/28</td>
+ <td>Routing Security <br />
+ </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/sbgp.pdf">S-BGP</a> <a href="http://www.potaroo.net/ispcol/2005-03/route-sec-2-ispcol.pdf">Huston:BGPSec</a>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>20</td>
+ <td>Mon 04/02</td>
+ <td>Network Monitoring and Anomaly Detection <br />
+ </td>
+ <td>Machine Learning</td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/odflows-sigm04.pdf">PCA</a>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>21</td>
+ <td>Wed 04/04</td>
+ <td>Strategies for Reducing Unwanted Traffic <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="lechead">
+ <td class="lechead" colspan="5">Wireless Networking</td>
+</tr>
+<tr class="lecture">
+ <td>22</td>
+ <td>Mon 04/09</td>
+ <td>Wireless: Routing Metrics and Protocols <br />
+ </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/etx.pdf">ETX</a>  </td>
+</tr>
+<tr class="lecture">
+ <td>23</td>
+ <td>Wed 04/11</td>
+ <td>Wireless: MAC Layer <br />
+ </td>
+ <td></td>
+ <td> <a href="http://www.cc.gatech.edu/classes/AY2007/cs7260_spring/papers/exor.pdf">EXOR</a>  </td>
+</tr>
+<tr class="exam">
+ <td></td>
+ <td>Mon 04/16</td>
+ <td>Quiz 2 <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="lecture alt">
+ <td>24</td>
+ <td>Wed 04/18</td>
+ <td>Summary and New Directions <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="presentations">
+ <td></td>
+ <td>Mon 04/23</td>
+ <td>Project Presentations <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="presentations">
+ <td></td>
+ <td>Wed 04/25</td>
+ <td>Project Presentations <br />
+ </td>
+ <td></td>
+ <td>  </td>
+</tr>
+<tr class="presentations">
+ <td></td>
+ <td>Fri 04/27</td>
+ <td><b>Project Writeups Due</b> <br />
+ </td>
+ <td class="due">Due 5pm EST</td>
+ <td>  </td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="footnote">
+  <a href=".">Home</a>
+  <a href="readinglist.html">Reading</a>
+  <a href="syllabus.html">Syllabus</a>
+  <a href="http://validator.w3.org/check?uri=referer">validate</a>
+</p>
+
+</body>
+
+</html>

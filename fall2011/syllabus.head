@@ -1,0 +1,89 @@
+<!DOCTYPE html 
+ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en">
+
+<head>
+<title>CS 4235 Syllabus</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body id="syllabus">
+<div id="syllint">
+<h1>CS 4235: Introduction to Information Security</h1>
+
+
+<div id="objectives">
+  <h2>Objectives<a name="Objectives"></a></h2>
+
+  <p>
+    You will
+  gain exposure to burgeoning areas of information security and learn how
+  to use the tools commonly used for information security today.  
+  </p>
+
+</div>
+
+
+<div id="textbooks">
+  <h2>Textbooks<a name="Textbooks"></a></h2>
+
+  <p>
+The required textbook for the course is: <i>Security in Computing</i>, which is available at <a href="http://www.amazon.com/Security-Computing-4th-Charles-Pfleeger/dp/0132390779">Amazon</a>, among other places.<br/>
+
+Additionally, you will be expected to read about one paper a week, on average. (<a href="readinglist.html">Reading List</a>).<br />
+    </p>
+
+</div>
+
+<div id="honor">
+<h2>Academic Honesty</h2>
+<p>
+Students are expected to abide by the Georgia Tech Honor Code. Honest
+and ethical behavior is expected at all times. All incidents of
+suspected dishonesty will be reported to and handled by the office of
+student affairs. You are to do all assignments yourself, unless
+explicitly told otherwise. You may discuss the assignments with your
+classmates, but you may not copy any solution (or part of a solution)
+from a classmate.
+</p>
+</div>
+
+
+<div id="pregrade"> <div id="Prerequisites"> 
+<h2>Prerequisites</h2>
+<p>  Some familiarity with both network
+programming, programming in C, and scripting languages (<i>e.g.</i>, Perl, Ruby) will be 
+helpful.  </p>
+</div>
+
+<div id="Grading">
+<h2>Grading</h2>
+<p>
+Grading will be based on three problem sets, two quizzes, and a
+semester-long project with a presentation and writeup.  Participation
+will count for "fudge factors".
+</p>
+<ul>
+<li>50% Problem Sets (including case study)</li>
+<li>30% Quizzes</li>
+<li>20% Project</li>
+</ul>
+</div>
+</div>
+
+<div id="Schedule">
+  <h2>Schedule<a name="Schedule"></a></h2>
+  <p>Papers will not be handed out in class.  <b>Please print the readings
+  and read them before class.</b><br />
+  <i>Please note that this schedule is tentative and subject to change throughout the course of the term.</i></p>
+
+<table>
+  <tr>
+   <th>Lecture</th>
+   <th>Date</th>
+   <th>Topics</th>
+   <th>Notes/Resources</th>
+   <th>Preparation</th>
+ </tr>
+

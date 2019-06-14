@@ -1,0 +1,119 @@
+<!DOCTYPE html 
+ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>Syllabus</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body id="syllabus">
+<div id="syllint">
+<h1>CS 6262: Network Security</h1>
+
+
+<div id="objectives">
+  <h2>Objectives and Overview<a name="Objectives"></a></h2>
+
+  <p> This course takes a holistic approach to topics in computer
+  networking; we will cover many aspects of networking in greater
+  depth.  You will:
+  <ul><li>
+  gain exposure to practical and operational areas of
+  computer network security.</li>
+  <li> gain experience with both programming,
+  hands-on experimentation and protocol analysis</li>
+</ul>
+</p>
+
+
+</div>
+
+
+<div id="textbooks">
+  <h2>Textbooks<a name="Textbooks"></a></h2>
+
+  <p>The required textbook for this course is Charlie Kaufman, Radia
+Perlman and Mike Speciner, <em><a
+href="http://www.amazon.com/Network-Security-Private-Communication-Public/dp/0130614661">Network
+Security: Private Communication in a Public World, 2nd
+Edition</a></em>, Prentice Hall, 2002. ISBN 0-13-046019-2. </p>
+
+<p> You will be expected to prepare with the assigned readings, which
+will be from the required textbook, plus additional supplemental
+readings from industry rags and research papers.</p>
+
+  <p>
+  Although we will rely
+  primarily on this textbook for basic readings, we will supplement this
+  reading with various outside readings (articles, research papers,
+  etc.).  Some material covered comes from the following textbooks:
+	<ul>
+        <li> Ross Anderson, <em><a href="http://www.amazon.com/Security-Engineering-Building-Dependable-Distributed/dp/product-description/0471389226">Security Engineering: A Guide to Building Dependable Distributed Systems</a></em></li>
+        <li> William Stallings, <a href="http://www.amazon.com/Network-Security-Essentials-Applications-Standards/dp/0132380331/ref=sr_1_1?ie=UTF8&s=books&qid=1231019293&sr=1-1"><em>Network Security Essentials: Applications and Standards</em></a>, Prentice-Hall, 2000. ISBN 0-13-016093-8.</li>
+	<li> Michael Howard and David LeBlanc, Writing Secure Code, Microsoft Press, 2002. ISBN 0-7356-1588-8.  </li>
+	</ul>
+  </p>
+
+
+<p>
+<b>Some material will only be covered in lectures.  You are responsible for this material as well.</b> </p>
+
+</div>
+
+<div id="honor">
+<h2>Academic Honesty</h2>
+<p>
+Students are expected to abide by the Georgia Tech Honor Code. Honest
+and ethical behavior is expected at all times. All incidents of
+suspected dishonesty will be reported to and handled by the office of
+student affairs. You are to do all assignments yourself, unless
+explicitly told otherwise. You may discuss the assignments with your
+classmates, but you may not copy any solution (or part of a solution)
+from a classmate.
+</p>
+</div>
+
+
+<div id="pregrade"> <div id="Prerequisites"> 
+<h2>Prerequisites</h2>
+
+<p> This class is appropriate for undergraduate or graduate students
+with previous background in network security. <i>CS 4235 is a suggested
+prerequisite.</i> Some familiarity with both network programming and
+scripting languages (<i>e.g.</i>, Perl, Ruby) may be helpful.  </p>
+
+</div>
+
+<div id="Grading">
+<h2>Grading</h2>
+<p>
+Grading will be based on problem sets, programming assignments, quizzes, and a
+semester-long project with a presentation and writeup.  Participation
+will count for "fudge factors".
+</p>
+<ul>
+<li>30% Problem Sets</li>
+<li>35% Final Project <br /></li>
+<li>30% 2 Quizzes</li>
+<li>5% Participation</li>
+</ul>
+</div>
+</div>
+
+<div id="Schedule">
+  <h2>Schedule<a name="Schedule"></a></h2>
+  <p>Readings will not be handed out in class.  <b>Please print the readings
+  and read them before class.</b><br />
+  <i>Please note that this schedule is tentative and subject to change throughout the course of the term.</i></p>
+
+<table>
+  <tr>
+   <th>Lecture</th>
+   <th>Date</th>
+   <th>Topics</th>
+   <th>Notes/Resources</th>
+   <th>Preparation</th>
+ </tr>
+

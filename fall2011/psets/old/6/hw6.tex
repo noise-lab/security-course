@@ -1,0 +1,81 @@
+\documentclass[letterpaper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{alltt}
+%\usepackage{fullpage}
+%\usepackage{times}
+
+\title{}
+\date{}
+
+\begin{document}
+\thispagestyle{empty}
+
+\section*{CS 4235 / CS 8803IIS Homework 6}
+
+\noindent {\bf Assigned:} 30 March 2011
+
+\noindent {\bf Due:} 8 April 2011, 5:00pm Atlanta time. Students submitting solutions after that time but by 5:00pm Atlanta time on 11 April will have their scores scaled by 0.8. No solutions will be accepted after 5:00pm on 11 April.
+
+\noindent {\bf Teaming:} Work individually.
+
+\bigskip\noindent
+Solutions should be typewritten and submitted as a PDF file on T-Square. Be sure to include your name and GTID number on your submission. Scores will be posted on T-Square.
+
+\bigskip\noindent
+Although you may use outside sources for information, you:
+\begin{itemize}
+\item {\bf must not} copy-and-paste text or figures from those sources, and
+\item {\bf must} cite the sources. A citation should provide sufficient information for myself or anyone else to find the source that you used.
+\end{itemize}
+You do not need to cite the textbook or any course materials. If you are unsure whether or not you are using outside material appropriately, please ask me rather than guessing.
+
+This homework has one written part worth 205 points. Please solve the following problems.
+
+\subsection*{Written exercises}
+
+\begin{enumerate}
+
+\item From Chapter 10:
+\begin{enumerate}
+\item (20 points) \#1.
+\item (15 points) \#3.
+\end{enumerate}
+
+\item From Chapter 4:
+\begin{enumerate}
+\item (10 points) \#4.
+\item (15 points) \#11.
+\item (20 points) \#14.
+\item (15 points) \#19.
+\item (15 points) \#20.
+\item (10 points) \#25.
+\item (10 points) \#26.
+\item (15 points) \#27.
+\end{enumerate}
+
+\item (10 points) Most access control in commercial operating systems is implemented using per-object access control lists, but other designs still have their uses. Give a real-world example of a capability-based access control system.
+
+\item (20 points) A common OS-level security protection makes application program code execute-only and program data read/write-only.
+\begin{enumerate}
+\item Why are these access control protections useful? Explain the types of attacks that these protections defend against.
+\item Is this protection always suitable? Can we impose these access control restrictions on every application? Explain your answer.
+\item Operating systems provide system calls, like {\tt mprotect}, that allow applications to change the permissions on their memory pages. Explain why this does or does not defeat the security of the memory page access control restrictions.
+\end{enumerate}
+
+\item (30 points) Suppose testing an individual password for correctness requires 3 seconds.
+\begin{enumerate}
+\item If passwords are three uppercase alphabetic characters long and an attacker can try one password at a time, how much time on average would an attacker require to determine a particular password?
+\item If passwords are six symbols long and each symbol is any of uppercase characters, lowercase
+characters, and numerals, then how much time on average would an attacker require to determine a
+particular password?
+\item Suppose an English dictionary contains 50,000 words. If an attacker knows that a user's password is an English word followed by two digits, how much time on average is needed to determine the password?
+\item If an attacker knows that a user's password is a phrase made of two words from the dictionary, how much time on average is needed to determine the password?
+\item Desktop processors are now multicore. Explain how multicore processors improve an attacker's ability to determine a user's password.
+\item How could an attacker utilize a botnet to efficiently determine a user's password?
+\item How could an operating system detect an attacker attempting to find a password via brute force search?
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
