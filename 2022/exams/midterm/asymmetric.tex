@@ -1,0 +1,58 @@
+\newpage
+\section{Asymmetric Cryptography}
+
+\prob{10} {What is one disadvantage of asymmetric compared to symmetric cryptography?}\eprob
+\vspace*{0.5in}
+
+\sols{\textit{Answer:} Asymmetric cryptography is more computationally expensive than symmetric cryptography.}
+
+\prob{30}
+Alice wants to send a message \textit{M} to Bob. Assume Alice and Bob
+have securely distributed their public keys $P_A$ and $P_B$ to
+each other. Private keys of Alice and Bob are $S_A$ and $S_B$
+respectively. Design messages that Alice must send to meet the security
+requirement below.
+
+Notation: 
+\begin{itemize}
+\item $\{x\}_y$ (x is encrypted using key y) 
+\item $A \xrightarrow{x} B$ (A sending x to B)
+\end{itemize}
+
+Example:
+\begin{itemize}
+\item $A \xrightarrow{\{M\}{S_A}} B$ The message
+  \textit{M} is encrypted with Alice's private
+  key $S_A$. The encrypted message is sent to Bob.
+\end{itemize}
+
+\begin{enumerate}
+
+\item Using public key cryptography, design a message that enables Bob to
+verify the message source, Alice, and preserves only integrity.
+
+\sols{\textit{Answer:} $A \xrightarrow{\{M\}_{S\_A}} B$} 
+
+\item Using public key cryptography, design a message that protects only the
+confidentiality of the message sent from Alice to Bob.
+
+\sols{\textit{Answer:} $A \xrightarrow{\{M\}_{P\_B}} B$}
+
+\item Using public key cryptography, design a message that enables Bob to
+verify the message source, Alice, and when both integrity and
+confidentiality are protected.
+
+\sols{\textit{Answer:} $A \xrightarrow{\{\{M\}_{P\_B}\}_{S\_A}\}} B$}
+
+\end{enumerate}
+\eprob
+
+
+
+
+%\item {Client Alice, now, wants to send to Bob multiple messages. Assume that
+%Alice has the public key of Bob \textit{P\_B}. The private key of Bob is
+%\textit{S\_B}. Describe how the two parties can establish a secure connection.
+%Does Diffie-Hellman key exchange assures a secure connection between two
+%parties?}
+

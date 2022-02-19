@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+\usepackage{graphics,epsfig,amsmath,amssymb}
+\usepackage{epsf}
+\usepackage{boxedminipage}
+\usepackage{fullpage}
+\usepackage{fancyheadings}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{pseudocode}
+\usepackage{array}
+\usepackage{psfrag}
+\usepackage{color}
+\pagestyle{fancy}
+
+\setlength{\topmargin}{.2in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{.15in}
+\setlength{\footskip}{0.1in}
+
+\newcounter{pctr}
+\stepcounter{pctr}
+
+\newcounter{partctr}
+
+\newcommand{\ie}{{\em i.e.}}
+\newcommand{\eg}{{\em e.g.}}
+
+\newcommand{\ch}{\item {\bf True~~/~~False~~}}
+\newcommand{\tfnote}{\probnote{Circle True or False for each choice.}}
+\newcommand{\allapply}{\probnote{Circle ALL that apply}}
+\newcommand{\bestanswer}{\probnote{Circle the BEST answer}}
+\newcommand{\ansbelow}{\probnote{Answer legibly in the space below.}}
+
+\renewcommand{\thesection}{{\bf\Roman{section}}}
+\renewcommand{\theenumi}{{\bf\Alph{enumi}.}}
+\renewcommand{\labelenumi}{{\bf\Alph{enumi}.}}
+
+\newcommand{\setversion}[1]{\def\version{#1}}
+\setversion{answers}
+
+\ifthenelse{\equal{\version}{answers}}{
+    \newcommand{\sols}[1]{{\color{blue} #1}}
+} {
+    \newcommand{\sols}[1]{}
+}
+
+
+\newcounter{answer}
+\newenvironment{answer}[1][\relax]{\refstepcounter{answer}\begin{list}%
+ {}{\leftmargin 0pt\rightmargin 0pt\labelsep 3pt\parsep 0pt%
+ \setlength{\listparindent}{\parindent}}
+    \item {\bf Answer \theanswer #1}\
+    }{\hspace*{\fill}$\blacksquare$\end{list}} 
+
+
+
+% uses these macros to delimit problems
+\newcommand\prob[1]%
+  {\begin{itemize}\item[]%
+   \vspace{.2in}{\bf\thepctr. ~[#1~ points]:}\stepcounter{pctr}}
+\newcommand\eprob{\end{itemize}}
+\newcommand\probnote[1]%
+  {\\\begin{tabular}{cr} \hspace{3in} & {\bf (#1)} \\ \end{tabular}}
+
+% headers/footers
+\lhead[\fancyplain{}{\bf Page \thepage ~of \pageref{lastpage}}]%
+      {CAPP 30350 Winter 2022, Midterm}
+\lfoot[{\bf Initials: }]%
+      {{\bf Initials: }}
+\rhead[CAPP 30350 Winter 2022, Midterm]%
+      {\fancyplain{}{\bf Page \thepage ~of \pageref{lastpage}}}
+\cfoot{}
+\setlength{\headrulewidth}{0in}
+\setlength{\headsep}{.3in}
+
+ % Compact itemize and enumerate.  Note that they use the same counters and
+% symbols as the usual itemize and enumerate environments.
+\def\compactify{\itemsep=0pt \topsep=0pt \partopsep=0pt \parsep=0pt}
+\let\latexusecounter=\usecounter
+\newenvironment{CompactItemize}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{itemize}}
+  {\end{itemize}\let\usecounter=\latexusecounter}
+\newenvironment{CompactEnumerate}
+  {\def\usecounter{\compactify\latexusecounter}
+   \begin{enumerate}}
+  {\end{enumerate}\let\usecounter=\latexusecounter}
+
+\begin{document}
+\cfoot{}
+\pagestyle{empty}
+\begin{center}
+\begin{tabular}{lr}
+\resizebox{2.5in}{!}{\includegraphics{chicago}}
+&
+\parbox{4in}{
+\vspace*{-0.2in}
+   {\Large\sf Department of Computer Science} \\ 
+}
+%
+\end{tabular}
+\end{center}
+
+\begin{center}
+{\LARGE{\bf Midterm}} \\
+\vspace{.15in}
+{\Large{\bf CAPP 30350: Security, Privacy, and Consumer Protection: Winter 2022}} \\
+\vspace{.2in}
+
+% this is the box on the first page with overall quiz information
+\begin{boxedminipage}[h]{6in}
+  There are \underline{10 questions} and \underline{\pageref{lastpage}
+    pages} in this quiz booklet (including this page). {\bf There are
+    200 total points.}  Answer each question according to the
+  instructions given.  You have {\bf 80 minutes} to answer the
+  questions.
+
+\vspace{.1in} 
+If you find a question ambiguous, write down any
+assumptions you make.  {\bf Be neat and legible.}  If we can't
+understand your answer, we can't give you credit!  
+%There are three pretty
+%challenging questions (clearly marked); you may want to look through the
+%whole quiz and save those for last.
+
+\vspace{.1in} 
+Use the empty sides of this booklet if you need scratch space.  You
+may also use them for answers, although you shouldn't need to.  {\em If you
+do use the blank sides for answers, make sure to clearly say so!}
+
+\vspace{.1in} 
+{\bf Note: Write your name in the space below AND your initials at the bottom of each
+page of this booklet.}
+
+\begin{center}{\bf THIS IS AN ``OPEN NOTES'' QUIZ.\\
+MAKE SURE YOU'VE READ ALL THE INSTRUCTIONS ABOVE!}
+\end{center}
+{\em Initial here to indicate that you've read the instructions:} \\ 
+\vspace{0.5in}
+\\
+
+
+\if 0
+\vspace{.05in} 
+The last page has a course questionnaire, {\em which you can
+answer outside of the allotted time}.  Rip the last page off of your
+quiz for five bonus points.  Turn it in anonymously if you like (feel
+free to fill it out after the quiz and give it to a TA, or take it with
+you).  
+You
+won't get the five points if you don't tear off the page (this is to
+make certain you've read this far ;).
+\fi 
+
+\end{boxedminipage}
+\end{center}
+\vspace*{0.05in}
+\begin{center}
+{\it Do not write in the boxes below}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline \hline
+{\bf 1-2 (xx/40)} & {\bf 3 (xx/30)} & {\bf 4-6 (xx/60)} & {\bf 7-8
+  (xx/40)} & {\bf 9-10 (xx/50)} & {\bf Total
+  (xx/200)}  \\ \hline 
+& & & & & \\ 
+& & & & & \\ \hline \hline
+\end{tabular}
+\end{center}
+
+\vspace{.1in}
+{\bf\Large{Name:}}
+
+\newpage
+\pagestyle{fancy}
+
+\input{warmup}
+\input{prf}
+\input{symmetric}
+\input{asymmetric}
+\input{pki}
+
+
+\label{lastpage}
+\end{document}

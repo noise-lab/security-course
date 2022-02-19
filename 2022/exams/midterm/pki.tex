@@ -1,0 +1,89 @@
+\newpage
+\section{Public Key Infrastructure}
+
+You've recently purchased a Mest smart webcam for your
+dorm room that decides to communicate with a cloud-hosted server at {\tt
+  mest.com}. The webcam also has a client certificate that is known
+to the {\tt mest.com} server. 
+
+Suppose that the webcam periodically takes a photograph, then encrypts
+and signs the photograph before uploading it to the Mest cloud server.
+
+\prob{30}
+In a rush to production, Mest ships the webcam with the list of
+the roughly 200 trusted root certificate authorities (CAs) that are in the
+Firefox browser.
+
+\begin{enumerate}
+\item Explain why shipping the webcam with a list of so many root
+  CAs might not be necessary in the case of a device like a webcam.
+
+\sols{{\em Answer:} Because the device is likely to need to speak to only a few
+Internet destinations (as opposed to arbitrary websites), it is reasonable to assume
+that those small number of destinations could be signed by a single CA that is trusted
+by the manufacturer.}
+
+\item One of the root CAs happens to be from an organization,
+  In-The-Clear Rootin' (ITCR), which happens to be controlled by a
+  foreign nation-state actor.  Can ITCR mount an attack on
+  confidentiality, integrity, or both?  If so, describe the attack. If
+  not, explain why not.
+
+\sols{{\em Answer:} ITCR can mount an attack on both confidentiality and integrity
+via a man-in-the-middle (MITM) attack. Specifically, ITCR can sign a certificate
+for the domain of the manufacturer, and the client would trust the signatures corresponding
+to this public/private key pair because it was signed by a root CA.}
+
+\item Mest decides to revoke ITCR's root CA from all of its deployed
+  webcams with a signed, secure software update to the webcam's
+  firmware, which it sends to each camera over the Internet. IS the
+  software update itself vulnerable to an attack from ITCR? Why or why
+  not? 
+
+\sols{{\em Answer:} The software update itself is vulnerable to attack, just as
+any other message would be. There's no guarantee that the integrity of the message
+itself is preserved, due to the possibilty of a MITM attack on the update itself.}
+
+\end{enumerate}
+\eprob
+
+\newpage
+\prob{20} Your dorm room was robbed, but fortunately, you've caught the
+perpetrator on one of the photos from your Mest camera, and the camera
+uploaded the photo to {\tt mest.com}! \footnote{Suppose the
+photo also includes necessary metadata, like a timestamp.}.
+
+You log into the {\tt mest.com} the photo to the campus police.  
+
+Before going after the perpetrator, though, they want to make sure that your
+photo is authentic, and actually came from the camera in your dorm
+room. 
+
+\begin{enumerate}
+\item When you visit {\tt mest.com} on your browser, you notice that
+  {\tt mest.com} is using a self-signed 
+  certificate for its website. In the certificate, you notice that the
+  name of the organization is ``Mest, Inc.''. Can you be certain that
+  you're visiting the website of the organization that manufactured
+  your webcam?  Why or why not?
+
+\sols{{\em Answer:} You cannot be certain. A self-signed certificate is simply signed
+by the organization of the site that you are trying to visit (in this case, Mest).
+But, any attacker could simply generate a rogue certificate for Mest, sign it themselves,
+and present that to a client. That scenario is indistinguishable from a legitimate
+Mest site/certificate.}
+
+\item Explain how the camera's {\em client certificate}---and
+  an associated protocol---could link the photo to the camera in your
+  dorm room. Be sure to list {\em everything that the certificate would
+    need to contain} to help the police verify that the photo came from
+  your camera.
+
+\sols{{em Answer:} The basic idea here would be to have a certificate that is associated
+with the client's hardware (\eg, serial number), that is signed by the manufacturer
+and thus could later be checked and tied directly to the camera. We accepted many
+variations of this idea here.}
+
+\end{enumerate}
+\eprob
+

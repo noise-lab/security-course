@@ -1,0 +1,66 @@
+\section{Ethics}
+
+On Friday, October 21, 2016, a major denial of service attack was
+mounted using Internet of Things (IoT) devices which were infected by
+malware based on their reliance of default passwords. The botnet that
+infected these vulnerable devices was called the ``Mirai'' botnet, and
+mounted denial of service attacks against Twitter, Github, Reddit, and
+many other Internet sites.
+
+Troubled by this turn of events, over the weekend, Alyssa P. Hacker took a break from
+COS~432 studying to develop a 
+piece of software that:
+\begin{enumerate}
+\item[1.] Scans the Internet for all IoT devices that are vulnerable to the
+  Mirai botnet by attempting to log into each of the vulnerable devices; and
+\item[2.] If the software succeeds in logging into the vulnerable device, it
+  changes the password to the camera's hardware address (the hardware
+  address is something that the owner of the camera could easily
+  discover but, after the vulnerability is closed, would be relatively
+  more difficult for remote attackers to discover).
+\end{enumerate}
+
+\prob{10} Explain why we need ethical reasoning guidelines such as those
+from the Belmont Report, as opposed to simply encoding an ethical rule
+or law that permits or prevents deploying this type of software.
+\eprob
+
+\sols{\textit{Answer:} Technology is evolving much more rapidly than rules can
+be codified. For example, the Common Rule, governing Institutional Review
+Boards at universities, dates to 1981. With ethical guidelines and principles,
+we can continue to reason about ethics in the face of new and unforseen
+technologies and advancements.}
+
+\newpage
+\prob{30} Alyssa is considering whether to deploy her code to patch the
+Internet-wide vulnerability.  Reason about the ethics of deploying Alyssa's
+patch in terms of each of the following:
+\begin{enumerate}
+\item Respect for persons
+\item Beneficence
+\item Justice
+\end{enumerate}
+\eprob
+
+\sols{
+\textit{Answer:}
+	\begin{itemize}
+		\itemsep=-1pt
+		\item Respect for persons: Some discussion of informed consent would have been
+		the most straightforward way to address this question. One way to ensure that
+		humans agree to participate in an activity or experiment is to directly ask them.
+		\item Beneficience: This factor involves a consideration of whether risks outweigh
+		benefits. A discussion of some of the risks of the activity (e.g., inadvertently
+		bricking the devices, causing reboots at inconvenient times) also could relate
+		to respect for persons, but beneficence would need to explicitly consider whether
+		these risks are outweighed by the benefits of securing the devices.
+		\item Justice: This principle involves determining whether the parties that bear
+		the risks associated with the activity are the same as those who reap the benefits.
+		Determining the ``right'' answer here is not straightforward, since it requires
+		reasoning about who might reap the benefits of the activity. On the one hand it
+		might be others who might become victims of a DoS attack; on the other, the users
+		themselves might also be beneficiaries of the improved network hygiene, as well
+		(no rogue devices consuming bandwidth on their network, for example). The key
+		point of the discussion here was to discuss equitable distribution of risks.
+	\end{itemize}
+}
