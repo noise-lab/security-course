@@ -37,7 +37,7 @@
 \renewcommand{\labelenumi}{{\bf\Alph{enumi}.}}
 
 \newcommand{\setversion}[1]{\def\version{#1}}
-\setversion{answers}
+\setversion{exam}
 
 \ifthenelse{\equal{\version}{answers}}{
     \newcommand{\sols}[1]{{\color{blue} #1}}
@@ -162,9 +162,9 @@ make certain you've read this far ;).
 
 \begin{center}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|} \hline \hline
-{\bf 1-2 (xx/40)} & {\bf 3 (xx/30)} & {\bf 4-6 (xx/60)} & {\bf 7-8
-  (xx/40)} & {\bf 9-10 (xx/50)} & {\bf Total
-  (xx/200)}  \\ \hline 
+{\bf 1-2 (xx/40)} & {\bf 3-4 (xx/50)} & {\bf 5 (xx/20)} & {\bf 6-7
+  (xx/10)} & {\bf 8 (xx/20)} & {\bf Total
+  (xx/140)}  \\ \hline 
 & & & & & \\ 
 & & & & & \\ \hline \hline
 \end{tabular}
@@ -177,10 +177,12 @@ make certain you've read this far ;).
 \pagestyle{fancy}
 
 \input{warmup}
-\input{prf}
-\input{symmetric}
-\input{asymmetric}
+%\input{symmetric}
+%\input{asymmetric}
 \input{pki}
+\input{dns}
+\input{web}
+\input{legal}
 
 
 \label{lastpage}

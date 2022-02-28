@@ -1,0 +1,53 @@
+\pagebreak
+\section{Web Security}
+
+\prob{4} 
+Which of the following are true about cross-site scripting (XSS) attacks?
+\allapply
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item An attacker can use an XSS attack to steal a victim's Web cookies
+  for another Web site.
+\item A user can defend against XSS attacks by preventing the browser
+  from executing any scripts.
+\item A Web site can defend against an XSS attack by ensuring that the
+  input to a script does not itself contain any code.
+\item An attacker could launch an XSS attack by posting a comment on a
+  message board.
+\item All of the above.
+\end{list}
+\eprob
+
+\sols{
+\begin{answer}
+The answer is: (E).
+\end{answer}
+}
+
+\prob{6} Suppose an attacker is running a Web server that runs a script
+that takes user and password input from a form and retrieves the
+information for that user, as follows:
+
+\begin{verbatim}
+set ok = execute( "SELECT * FROM Users
+	   WHERE user=' "  &  form(“user”)  & " ' 
+           AND   pwd=' " & form(“pwd”) & “ '” );
+if not ok.EOF   
+           login success  
+else  fail;
+\end{verbatim}
+
+\setcounter{partctr}{0}
+\begin{list}{\bf\Alph{partctr}.}{\usecounter{partctr}}
+\item Write down input to the ``user'' part of the form that would
+  cause the database to reveal every row of the table (i.e., information
+  for all users).
+\item Write down input to the ``user'' part of the form to cause the
+  entire user table to be deleted.
+\end{list}
+\eprob
+~\ansbelow
+
+
+
