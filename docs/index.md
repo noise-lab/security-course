@@ -34,14 +34,14 @@ Box, with links on the course Canvas page.
 | 1       | Overview                               |                                             |
 | 2       | Ethics                                 |                                             |
 | 3       | Cryptography/PKI                       |                                             |
-| 4       | Systems Security                       | [Lab 1](assignments/pki.md) Cryptography    |
+| 4       | Systems Security                       | [Lab 1](assignments/pki.md): Cryptography   |
 | 5       | Denial of Service Attacks              |                                             |
 | 6       | DNS Security and Privacy               | [Lab 2](assignments/api.md): Authentication |
 | 7       | Web Security                           |                                             |
 | 8       | Malware, Spyware, Ransomware, Botnets  |                                             |
 | 9       | Vulnerability Discovery and Disclosure |                                             |
 | 10      | Election Security                      |                                             |
-| 11      | Data Collection and Surveillance       | [Lab 3](assignents/privacy.md): Privacy     |
+| 11      | Data Collection and Surveillance       | [Lab 3](assignments/privacy.md): Privacy    |
 | 12      | Web and Device Tracking                |                                             |
 | 13      | Privacy Laws and Regulations           |                                             |
 | 14      | Digital Equity/Digital Divide          | [Lab 4](assignments/web.md): Web Security   |
