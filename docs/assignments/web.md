@@ -1,10 +1,12 @@
-**Introduction**
+## Web Security
+
+### Introduction
 
 In this assignment, we provide an insecure website, and your job is to
 attack it by exploiting two common classes of vulnerabilities: SQL
 injection and cross-site request forgery (CSRF). 
 
-**Target Website**
+### Target Website
 
 A startup named **BUNGLE!** is about to launch its first product --- a
 web search engine --- but their investors are nervous about security
@@ -13,8 +15,7 @@ or two about web security, so the investors have hired you to perform a
 security evaluation before it goes live.
 
 **BUNGLE!** is available for you to test at
-[https://capp30350.cs.uchicago.edu/](https://capp30350.cs.uchicago.edu/){target="_blank"
-rel="noopener"}
+[https://capp30350.cs.uchicago.edu/](https://capp30350.cs.uchicago.edu/)
 
 The site is written in Python using the [Bottle web
 framework](https://bottlepy.org/). Although Bottle has built-in
@@ -61,10 +62,10 @@ replies to five main URLs:
 Note: The password is neither sent nor stored securely; however, none of
 the attacks you implement should depend on this behavior. You should
 choose a password that other groups will not guess, but never use an
-important password to test an insecure site (in general, you shouldn\'t
+important password to test an insecure site (in general, you shouldn't
 reuse any passwords)!
 
-**Guidelines**
+### Guidelines
 
 **Browser**: We suggest you use Firefox and take advantage of its web
 developer tools. Different browser versions have slight variations in

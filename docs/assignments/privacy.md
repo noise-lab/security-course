@@ -1,3 +1,5 @@
+## Internet Privacy
+
 The goal of this assignment is to understand how your web activity can
 be tracked using your DNS queries. To do so, you will visit a website of
 your choice and log all DNS queries made by your browser. Try to pick a
@@ -6,7 +8,9 @@ visited in a while. Please answer the following questions in your
 write-up. For simplicity, assume that all caches are empty and you are
 browsing on the UChicago network. 
 
-\(1\) Capture the DNS queries made by your browser when loading this
+### Tasks
+
+1. Capture the DNS queries made by your browser when loading this
 website. You can do this either with a tool like wireshark. Please
 include your results in the form of a pcap that contains *only* the DNS
 queries (you can filter for DNS queries in Wireshark). Based on your
@@ -24,9 +28,8 @@ data:
     companies knowing this information (concerns may differ by
     company!).
 
-\(2\) Now [enable encrypted DNS in your
-browser](https://developers.cloudflare.com/1.1.1.1/encrypted-dns/dns-over-https/encrypted-dns-browsers){.inline_disabled
-target="_blank" rel="noopener"} and repeat the above exercise.
+2. Now [enable encrypted DNS in your browser](https://developers.cloudflare.com/1.1.1.1/encrypted-dns/dns-over-https/encrypted-dns-browsers)
+and repeat the above exercise.
 
 -   Who can see that you\'ve visited the website based on encrypted DNS
     queries?
@@ -35,7 +38,6 @@ target="_blank" rel="noopener"} and repeat the above exercise.
     companies might not be able to, yet some *new* companies may have
     now gained some visibility into your browsing.
 
-Possible Hint: If you\'d like, install
-[Warp,](https://1.1.1.1/){.inline_disabled target="_blank"
-rel="noopener"} a DNS tool from Cloudflare. It may be more
+Hint: If you\'d like, install [Warp,](https://1.1.1.1/)
+a DNS tool from Cloudflare. It may be more
 comprehensible than the Wireshark output. 
