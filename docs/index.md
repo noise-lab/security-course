@@ -29,22 +29,22 @@ meeting.
 **Course videos:** All videos for the course are currently available on
 Box, with links on the course Canvas page.
 
-| Lecture | Topic                                  | Preparation                            |
-|---------|----------------------------------------|----------------------------------------|
-| 1       | Overview                               |                                        |
-| 2       | Ethics                                 |                                        |
-| 3       | Cryptography/PKI                       |                                        |
-| 4       | Systems Security                       | Lab 1: Cryptography                    |
-| 5       | Denial of Service Attacks              |                                        |
-| 6       | DNS Security and Privacy               | Lab 2: Internet Security and Privacy   |
-| 7       | Web Security                           |                                        |
-| 8       | Malware, Spyware, Ransomware, Botnets  |                                        |
-| 9       | Vulnerability Discovery and Disclosure |                                        |
-| 10      | Election Security                      |                                        |
-| 11      | Data Collection and Surveillance       | Lab 3: Network Monitoring and Tracking |
-| 12      | Web and Device Tracking                |                                        |
-| 13      | Privacy Laws and Regulations           |                                        |
-| 14      | Digital Equity/Digital Divide          | Lab 4: Internet Equity                 |
-| 15      | Net Neutrality and Content Moderation  |                                        |
-| 16      | Anonymity and (Anti)-Censorship        |                                        |
-| 17      | AI Fairness and Accountability         | Lab 5: AI Fairness                     |
+| Lecture | Topic                                  | Preparation                                 |
+|---------|----------------------------------------|---------------------------------------------|
+| 1       | Overview                               |                                             |
+| 2       | Ethics                                 |                                             |
+| 3       | Cryptography/PKI                       |                                             |
+| 4       | Systems Security                       | [Lab 1](assignments/pki.md) Cryptography    |
+| 5       | Denial of Service Attacks              |                                             |
+| 6       | DNS Security and Privacy               | [Lab 2](assignments/api.md): Authentication |
+| 7       | Web Security                           |                                             |
+| 8       | Malware, Spyware, Ransomware, Botnets  |                                             |
+| 9       | Vulnerability Discovery and Disclosure |                                             |
+| 10      | Election Security                      |                                             |
+| 11      | Data Collection and Surveillance       | [Lab 3](assignents/privacy.md): Privacy     |
+| 12      | Web and Device Tracking                |                                             |
+| 13      | Privacy Laws and Regulations           |                                             |
+| 14      | Digital Equity/Digital Divide          | [Lab 4](assignments/web.md): Web Security   |
+| 15      | Net Neutrality and Content Moderation  |                                             |
+| 16      | Anonymity and (Anti)-Censorship        |                                             |
+| 17      | AI Fairness and Accountability         |                                             |
