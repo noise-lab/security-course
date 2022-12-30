@@ -23,18 +23,15 @@ More detailed information is available in the [syllabus](syllabus.md).
 ## Schedule
 
 **Readings:** Readings are from: Please read the posted material and
-watch the corresponding videos for that day before coming to the class
+(if applicable) watch the corresponding videos for that day before coming to the class
 meeting.
-
-**Course videos:** All videos for the course are currently available on
-Box, with links on the course Canvas page.
 
 | Lecture | Topic                                  | Preparation                                 |
 |---------|----------------------------------------|---------------------------------------------|
 | 1       | Overview                               |                                             |
 | 2       | Ethics                                 |                                             |
 | 3       | Cryptography/PKI                       |                                             |
-| 4       | Systems Security                       | [Lab 1](assignments/pki.md): Cryptography   |
+| 4       | Systems Security                       | [Lab 1](assignments/pki.md): PKI            |
 | 5       | Denial of Service Attacks              |                                             |
 | 6       | DNS Security and Privacy               | [Lab 2](assignments/api.md): Authentication |
 | 7       | Web Security                           |                                             |
