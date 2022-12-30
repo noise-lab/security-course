@@ -22,7 +22,7 @@ More detailed information is available in the [syllabus](syllabus.md).
 
 ## Schedule
 
-**Readings:** Readings are from: Please read the posted material and
+**Readings:** Please read the posted material and
 (if applicable) watch the corresponding videos for that day before coming to the class
 meeting.
 
