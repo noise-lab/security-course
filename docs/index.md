@@ -26,22 +26,22 @@ More detailed information is available in the [syllabus](syllabus.md).
 (if applicable) watch the corresponding videos for that day before coming to the class
 meeting.
 
-| Lecture | Topic                                  | Reading                                            | Labs                                        |
-|---------|----------------------------------------|----------------------------------------------------|---------------------------------------------|
-| 1       | Overview                               | [Overview](readings/01-why-cryptosystems-fail.pdf) |                                             |
-| 2       | Ethics                                 | [Bit-by-Bit](readings/02-bit-by-bit.pdf)           |                                             |
-| 3       | Cryptography/PKI                       | [PKI](readings/03-bellovin-pki.pdf)                |                                             |
-| 4       | Systems Security                       | Access                                             | [Lab 1](assignments/pki.md): PKI            |
-| 5       | Denial of Service Attacks              | [Cannon](readings/05-paxson-cannon.pdf)            |                                             |
-| 6       | DNS Security and Privacy               | [Kaminsky](readings/06-kaminsky.pdf)               | [Lab 2](assignments/api.md): Authentication |
-| 7       | Web Security                           | OWASP                                              |                                             |
-| 8       | Malware, Spyware, Ransomware, Botnets  | [Roundup](readings/08-cooke-botnets.pdf)           |                                             |
-| 9       | Vulnerability Discovery and Disclosure | TBD                                                |                                             |
-| 10      | Election Security                      | TBD                                                |                                             |
-| 11      | Data Collection and Surveillance       | TBD                                                | [Lab 3](assignments/privacy.md): Privacy    |
-| 12      | Web and Device Tracking                | TBD                                                |                                             |
-| 13      | Privacy Laws and Regulations           | TBD                                                |                                             |
-| 14      | Digital Equity/Digital Divide          | TBD                                                | [Lab 4](assignments/web.md): Web Security   |
-| 15      | Net Neutrality and Content Moderation  | Netflix                                            |                                             |
-| 16      | Anonymity and (Anti)-Censorship        | Feamster                                           |                                             |
-| 17      | AI Fairness and Accountability         | Mitchell                                           |                                             |
+| Lecture | Topic                                  | Reading                                                                                    | Labs                                        |
+|---------|----------------------------------------|--------------------------------------------------------------------------------------------|---------------------------------------------|
+| 1       | Overview                               | [Fail](readings/01-why-cryptosystems-fail.pdf) [Trust](readings/01-trusting-trust.pdf)     |                                             |
+| 2       | Ethics                                 | [Bit-by-Bit](readings/02-bit-by-bit.pdf)                                                   |                                             |
+| 3       | Key Management                         | [PKI](readings/03-bellovin-pki.pdf)                                                        |                                             |
+| 4       | Systems Security                       | Access                                                                                     | [Lab 1](assignments/pki.md): PKI            |
+| 5       | Denial of Service Attacks              | [Cannon](readings/05-paxson-cannon.pdf)                                                    |                                             |
+| 6       | DNS Security and Privacy               | [Kaminsky](readings/06-kaminsky.pdf)                                                       | [Lab 2](assignments/api.md): Authentication |
+| 7       | Web Security                           | OWASP                                                                                      |                                             |
+| 8       | Malware, Spyware, Ransomware, Botnets  | [Roundup](readings/08-cooke-botnets.pdf)                                                   |                                             |
+| 9       | Vulnerability Discovery and Disclosure | TBD                                                                                        |                                             |
+| 10      | Election Security                      | TBD                                                                                        |                                             |
+| 11      | Data Collection and Surveillance       | TBD                                                                                        | [Lab 3](assignments/privacy.md): Privacy    |
+| 12      | Web and Device Tracking                | TBD                                                                                        |                                             |
+| 13      | Privacy Laws and Regulations           | TBD                                                                                        |                                             |
+| 14      | Digital Equity/Digital Divide          | TBD                                                                                        | [Lab 4](assignments/web.md): Web Security   |
+| 15      | Net Neutrality and Content Moderation  | Netflix                                                                                    |                                             |
+| 16      | Anonymity and (Anti)-Censorship        | Feamster                                                                                   |                                             |
+| 17      | AI Fairness and Accountability         | Mitchell                                                                                   |                                             |
