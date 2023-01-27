@@ -7,8 +7,7 @@ questions. 
 
 ### Tasks
 
-1. **Host a local web server**
-
+1. **Host a local web server**.  
 There are many services for this. If you\'ve done this before, you\'re free to
 use the service/software that you\'re comfortable with. If you\'re feeling
 adventurous, try setting up an [nginx](https://www.nginx.com/) or
@@ -17,8 +16,7 @@ and professional settings. Another option is to use Python's [HTTP server
 class](https://docs.python.org/3/library/http.server.html)
 
 
-2. **Identify why HTTP is not secure**
-
+2. **Identify why HTTP is not secure**.  
 (spoiler: it is unencrypted). In your write-up, explain how an
 eavesdropper can \"sniff\" web traffic between a client and HTTP server
 to see what is being communicated (including which resources are being
@@ -29,11 +27,9 @@ and a local client**. **Feel free to include screenshots from Wireshark
 in your explanation. 
 
 3. **Create a self-signed certificate and upgrade your web server to
-HTTPS**
-
+HTTPS**.  
 (a) Why can\'t you obtain an SSL certificate for your local web
 server from a certificate authority? 
-
 Generate an SSL certificate for your web server, add the certificate to
 your list of locally trusted roots, and restart the web server with the
 certificate. All communications with your server should now be secured.
