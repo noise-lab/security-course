@@ -7,6 +7,7 @@ Union has done with the GDPR (and some states in the United States have also
 done).
 
 **Format**
+
 Information about the [debate format](format.md).
 
 **Questions**
