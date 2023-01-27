@@ -23,4 +23,4 @@ Information about the [debate format](format.md).
 * [GDPR Background](https://gdpr.eu/what-is-gdpr/)
 * [CCPA](https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CIV&division=3.&title=1.81.5.&part=4.&chapter=&article)
 * [CCRA](https://vig.cdn.sos.ca.gov/2020/general/pdf/topl-prop24.pdf)
-* [CCPA vs. GDPR](https://www.privacylaws.com/privacy-laws/compare/california-consumer-privacy-act-vs-general-data-prtection-regulation-gdpr/)
+* [CCPA vs. GDPR](https://www.okta.com/uk/blog/2021/04/ccpa-vs-gdpr/)
