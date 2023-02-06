@@ -36,7 +36,7 @@ meeting.
 | 6       | DNS Security and Privacy               | [Kaminsky](readings/06-kaminsky.pdf)                                                       | [Lab 2](assignments/api.md): Authentication |
 | 7       | Web Security                           | OWASP                                                                                      |                                             |
 | 8       | Malware, Spyware, Ransomware, Botnets  | [Roundup](readings/08-cooke-botnets.pdf)                                                   |                                             |
-| 9       | Vulnerability Discovery and Disclosure | TBD                                                                                        |                                             |
+| 9       | Vulnerability Discovery and Disclosure | [Legal Risks](https://dl.acm.org/doi/pdf/10.1145/3133956.3134047)                          |                                             |
 | 10      | Election Security                      | TBD                                                                                        |                                             |
 | 11      | Data Collection and Surveillance       | TBD                                                                                        | [Lab 3](assignments/privacy.md): Privacy    |
 | 12      | Web and Device Tracking                | TBD                                                                                        |                                             |
