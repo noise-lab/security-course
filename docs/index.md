@@ -37,10 +37,10 @@ meeting.
 | 7       | Web Security                           | OWASP                                                                                      |                                             |
 | 8       | Malware, Spyware, Ransomware, Botnets  | [Roundup](readings/08-cooke-botnets.pdf)                                                   |                                             |
 | 9       | Vulnerability Discovery and Disclosure | [Legal Risks](https://dl.acm.org/doi/pdf/10.1145/3133956.3134047)                          |                                             |
-| 10      | Election Security                      | TBD                                                                                        |                                             |
-| 11      | Data Collection and Surveillance       | TBD                                                                                        | [Lab 3](assignments/privacy.md): Privacy    |
-| 12      | Web and Device Tracking                | TBD                                                                                        |                                             |
-| 13      | Privacy Laws and Regulations           | TBD                                                                                        |                                             |
+| 10      | Data Collection and Surveillance       | [Warren](https://www.nosue.org/app/download/7239721244/4HarvLRev193,+Right+to+Privacy.pdf) | [Lab 3](assignments/privacy.md): Privacy    |
+| 11      | Web and Device Tracking                | [Englehardt](https://dl.acm.org/doi/pdf/10.1145/2976749.2978313)                           |                                             |
+| 12      | Privacy Laws and Regulations           | TBD                                                                                        |                                             |
+| 13      | Election Security                      | TBD                                                                                        |                                             |
 | 14      | Digital Equity/Digital Divide          | TBD                                                                                        | [Lab 4](assignments/web.md): Web Security   |
 | 15      | Net Neutrality and Content Moderation  | Netflix                                                                                    |                                             |
 | 16      | Anonymity and (Anti)-Censorship        | Feamster                                                                                   |                                             |
