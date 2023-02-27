@@ -41,7 +41,7 @@ meeting.
 | 11      | Web and Device Tracking                | [Englehardt](https://dl.acm.org/doi/pdf/10.1145/2976749.2978313)                           |                                             |
 | 12      | Privacy Laws and Regulations           | TBD                                                                                        |                                             |
 | 13      | Election Security                      | TBD                                                                                        |                                             |
-| 14      | Digital Equity/Digital Divide          | TBD                                                                                        | [Lab 4](assignments/web.md): Web Security   |
+| 14      | Digital Equity/Digital Divide          | TBD                                                                                        | [Lab 4](assignments/access.md): Internet Equity |
 | 15      | Net Neutrality and Content Moderation  | Netflix                                                                                    |                                             |
 | 16      | Anonymity and (Anti)-Censorship        | Feamster                                                                                   |                                             |
 | 17      | AI Fairness and Accountability         | Mitchell                                                                                   |                                             |
