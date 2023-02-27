@@ -9,7 +9,7 @@ data does and does not tell you about the state of Internet access in the
 United States.
 
 You can read a bit about the sampling method and data collection technique
-[https://www.fcc.gov/reports-research/reports/broadband-progress-reports/2016-broadband-progress-report://www.fcc.gov/reports-research/reports/measuring-broadband-america/measuring-fixed-broadband-twelfth-report](here).
+[here](https://www.fcc.gov/reports-research/reports/measuring-broadband-america/measuring-fixed-broadband-twelfth-report).
 
 
 ## Part 1: Understanding the Data
@@ -48,7 +48,7 @@ data is available in a variety of formats, including CSV, JSON, and XML.
 1.  Download the latest data from the FCC website.  The data is available in a
     variety of formats, including CSV, JSON, and XML.  For this assignment,
     we will use the CSV format.  The data is available at
-    [https://www.fcc.gov/oet/mba/raw-data-releases](https://www.fcc.gov/oet/mba/raw-data-releases).
+    [here](https://www.fcc.gov/oet/mba/raw-data-releases).
 
 2.  The data contains a variety of tests including the following:
    
@@ -102,6 +102,6 @@ now, with federal BEAD funding due to states based on the ability to express
    problem of under-sampled geographies?
 
 The following
-[https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4179787](paper) might
+[paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4179787) might
 provide some guidance on how to approach this question, with some initial food
 for thought.
