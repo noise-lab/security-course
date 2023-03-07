@@ -24,7 +24,7 @@ You can read a bit about the sampling method and data collection technique
    not be represented at all. This is a common problem with Internet
 
    a. What types of questions can be answered with this type of sample?
-   b. What types of questions cannot be answered with this type of sample?:w
+   b. What types of questions cannot be answered with this type of sample?
    
 2. **Metrics.** The FCC report includes a number of metrics, including
    download speed, upload speed, and latency. There is also a web browsing
