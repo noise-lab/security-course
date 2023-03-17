@@ -37,7 +37,7 @@ meeting.
 | 7       | Web Security                           | [Same Origin](readings/07-same-origin.pdf)                                             |                                                 |
 | 8       | Botnets                                | [Roundup](readings/08-cooke-botnets.pdf)                                               |                                                 |
 | 9       | Vulnerability Disclosure | [Legal Risks](readings/09-vulnerability.pdf)                                           |                                                 |
-| 10      | Data Collection and Surveillance       |                                                                                        | [Lab 3](assignments/privacy.md): Privacy        |
+| 10      | Data Collection and Surveillance       | [Solove](readings/10-privacy.pdf)                                                                                       | [Lab 3](assignments/privacy.md): Privacy        |
 | 11      | Web and Device Tracking                | [Englehardt](readings/11-tracking.pdf)                                                 |                                                 |
 | 12      | Privacy Laws and Regulations           | [Warren](readings/12-warren.pdf)                                                       |                                                 |
 | 13      | Election Security                      | [Voting](readings/13-voting.pdf)                                                       |                                                 |
