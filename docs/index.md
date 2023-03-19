@@ -26,10 +26,10 @@ More detailed information is available in the [syllabus](syllabus.md).
 (if applicable) watch the corresponding videos for that day before coming to the class
 meeting.
 
-| Lecture | Topic                                  | Reading                                                                                | Labs                                            |
+| Lecture | Topic                                  | Reading                                                                                | Assignments |
 |---------|----------------------------------------|----------------------------------------------------------------------------------------|-------------------------------------------------|
 | 1       | Overview                               | [Fail](readings/01-why-cryptosystems-fail.pdf) [Trust](readings/01-trusting-trust.pdf) |                                                 |
-| 2       | Ethics                                 | [Bit-by-Bit](readings/02-bit-by-bit.pdf)                                               |                                                 |
+| 2       | Ethics                                 | [Bit-by-Bit](readings/02-bit-by-bit.pdf)                                               | [Data Breach](debates/data-breach.md)                                                |
 | 3       | Key Management                         | [PKI](readings/03-bellovin-pki.pdf)                                                    |                                                 |
 | 4       | Modern Authentication                  | [Access](readings/04-oauth.pdf)                                                                                 | [Lab 1](assignments/pki.md): PKI                |
 | 5       | Denial of Service Attacks              | [Cannon](readings/05-paxson-cannon.pdf)                                                |                                                 |
