@@ -2,9 +2,9 @@
 
 ### Resolution
 
-*Companies should be held liable for damages incurred from data breaches
+**Companies should be held liable for damages incurred from data breaches
 if there was a known vulnerability in the software used by the company
-that led to the breach.*
+that led to the breach.**
 
 The debate will be "Oxford Style" and follow [this format](format.md).
 
@@ -30,5 +30,5 @@ debate:
 
 **Readings**
 
--   [[List of data breaches](https://en.wikipedia.org/wiki/List_of_data_breaches)
--   [[FTC Equifax Settlement Announce and Details](https://www.ftc.gov/enforcement/cases-proceedings/refunds/equifax-data-breach-settlement)
+-   [List of data breaches](https://en.wikipedia.org/wiki/List_of_data_breaches)
+-   [FTC Equifax Settlement Announce and Details](https://www.ftc.gov/enforcement/cases-proceedings/refunds/equifax-data-breach-settlement)
