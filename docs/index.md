@@ -36,10 +36,10 @@ meeting.
 | 6       | DNS Security and Privacy              | [Kaminsky](readings/06-kaminsky.pdf)                                                   | Debate: [Backdoors](debates/backdoors.md)           |
 | 7       | Web Security                          | [Same Origin](readings/07-same-origin.pdf)                                             |                                                     |
 | 8       | Botnets                               | [Roundup](readings/08-cooke-botnets.pdf)                                               | Lab: [Authentication](assignments/api.md)           |
-| 9       | Vulnerability Disclosure              | [Legal Risks](readings/09-vulnerability.pdf)                                           |                                                     |
-| 10      | Data Collection and Surveillance      | [Solove](readings/10-privacy.pdf)                                                      | Debate: [CFAA](debates/cfaa.md)                     |
-| 11      | Web and Device Tracking               | [Englehardt](readings/11-tracking.pdf)                                                 |                                                     |
-| 12      | Privacy Laws and Regulations          | [Warren](readings/12-warren.pdf)                                                       | Lab: [Privacy](assignments/privacy.md)              |
+| 9       | Data Collection and Surveillance      | [Solove](readings/09-privacy.pdf)                                                       |                                                     |
+| 10      | Web and Device Tracking               | [Englehardt](readings/10-tracking.pdf)                                                 | Debate: [CFAA](debates/cfaa.md)                     |
+| 11      | Privacy Laws and Regulations          | [Warren](readings/11-warren.pdf)                                                       |                                                     |
+| 12      | Vulnerability Disclosure              | [Legal Risks](readings/12-vulnerability.pdf)                                           | Lab: [Privacy](assignments/privacy.md)              |
 | 13      | Election Security                     | [Voting](readings/13-voting.pdf)                                                       |                                                     |
 | 14      | Digital Equity/Digital Divide         | [Equity](readings/14-equity.pdf)                                                       | Debate: [Omnibus](debates/omnibus.md)               |
 | 15      | Net Neutrality and Content Moderation | [Interconnection](readings/15-interconnection.pdf)                                     |                                                     |
