@@ -41,8 +41,8 @@ meeting.
 | 11      | Privacy Laws and Regulations          | [Warren](readings/11-warren.pdf)                                                       |                                                     |
 | 12      | Vulnerability Disclosure              | [Legal Risks](readings/12-vulnerability.pdf)                                           | Lab: [Privacy](assignments/privacy.md)              |
 | 13      | Election Security                     | [Voting](readings/13-voting.pdf)                                                       |                                                     |
-| 14      | Digital Equity/Digital Divide         | [Equity](readings/14-equity.pdf)                                                       | Debate: [Omnibus](debates/omnibus.md)               |
-| 15      | Net Neutrality and Content Moderation | [Interconnection](readings/15-interconnection.pdf)                                     |                                                     |
-| 16      | Anonymity and (Anti)-Censorship       | [Roberts](readings/16-censorship.pdf)                                                  | Lab: [Internet Equity](assignments/access.md)       |
+| 14      | Internet Equity/Digital Divide         | [Equity](readings/14-equity.pdf)                                                       | Debate: [Omnibus](debates/omnibus.md)               |
+| 15      | Net Neutrality                        | [Interconnection](readings/15-interconnection.pdf)                                     |                                                     |
+| 16      | Censorship and Content Moderation     | [Roberts](readings/16-censorship.pdf)                                                  | Lab: [Internet Equity](assignments/access.md)       |
 | 17      | AI Fairness and Accountability        | [Mitchell](readings/17-ml-fairness.pdf)                                                |                                                     |
 | 18      | Hot Topics in Consumer Protection     | Current Events                                                                         | Debate: [Net Neutrality](debates/net-neutrality.md) |
