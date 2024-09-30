@@ -20,6 +20,9 @@ and recommendations.
 
 More detailed information is available in the [syllabus](syllabus.md).
 
+Information about the agenda for each class meeting is available in the
+[agenda](agenda.md).
+
 ## Schedule
 
 **Readings:** Please read the posted material and
@@ -34,13 +37,13 @@ meeting.
 | 4       | Modern Authentication            | [Access](readings/04-oauth.pdf)                                                        | Lab: [PKI](assignments/pki.md)                |
 | 5       | Denial of Service Attacks        | [Cannon](readings/05-paxson-cannon.pdf)                                                |                                               |
 | 6       | DNS Security and Privacy         | [Kaminsky](readings/06-kaminsky.pdf)                                                   | Debate: [Backdoors](debates/backdoors.md)     |
-| 7       | Web Security                     | [Same Origin](readings/07-same-origin.pdf)                                             |                                               |
+| 7       | Web Security and Privacy         | [Same Origin](readings/07-same-origin.pdf)                                             |                                               |
 | 8       | Large-Scale Attacks              | [Roundup](readings/08-cooke-botnets.pdf)                                               | Lab: [Authentication](assignments/api.md)     |
 | 9       | Data Collection and Surveillance | [Solove](readings/09-privacy.pdf)                                                      |                                               |
 | 10      | Web and Device Tracking          | [Englehardt](readings/10-tracking.pdf)                                                 | Debate: [Omnibus](debates/omnibus.md)         |
 | 11      | Privacy Law and Regulations      | [Warren](readings/11-warren.pdf)                                                       |                                               |
 | 12      | Automated Compliance Checking    | [CPRA]                                                                                 | Lab: [Privacy](assignments/privacy.md)        |
-| 13      | Softeware and Content Copyright  | [Copyright]                                                                            |                                               |
+| 13      | Software and Content Copyright   | [Copyright]                                                                            |                                               |
 | 14      | Content Moderation               | [Moderation]                                                                           | Debate: [Moderation](debates/moderation.md)   |
 | 15      | Censorship                       | [Roberts](readings/16-censorship.pdf)                                                  |                                               |
 | 16      | AI Fairness                      | [Mitchell](readings/17-ml-fairness.pdf)                                                | Lab: [Internet Equity](assignments/access.md) |
