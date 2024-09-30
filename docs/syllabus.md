@@ -2,9 +2,9 @@
 
 The course will have several components:
 
-1.  **Lectures:** The class has two lectures per week, covering the
-    topics covered on the [course schedule](schedule.html). Attendance
-    is expected in lecture.
+1.  **Lectures:** The class meets once per week, covering the
+    topics covered on the [course schedule](schedule.html), approximately two
+    topics per meeting. Attendance is expected in lecture.
 2.  **Debates:** We will reserve the class meeting time on Fridays for
     policy debates around the topics covered on the schedule. The
     frequency of these will depend on course enrollment levels but will
