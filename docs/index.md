@@ -26,23 +26,31 @@ More detailed information is available in the [syllabus](syllabus.md).
 (if applicable) watch the corresponding videos for that day before coming to the class
 meeting.
 
-| Lecture | Topic                                 | Reading                                                                                | Assignments                                         |
-|---------|---------------------------------------|----------------------------------------------------------------------------------------|-----------------------------------------------------|
-| 1       | Overview                              | [Fail](readings/01-why-cryptosystems-fail.pdf) [Trust](readings/01-trusting-trust.pdf) |                                                     |
-| 2       | Ethics                                | [Bit-by-Bit](readings/02-bit-by-bit.pdf)                                               | Debate: [Data Breach](debates/data-breach.md)       |
-| 3       | Key Management                        | [PKI](readings/03-bellovin-pki.pdf)                                                    |                                                     |
-| 4       | Modern Authentication                 | [Access](readings/04-oauth.pdf)                                                        | Lab: [PKI](assignments/pki.md)                      |
-| 5       | Denial of Service Attacks             | [Cannon](readings/05-paxson-cannon.pdf)                                                |                                                     |
-| 6       | DNS Security and Privacy              | [Kaminsky](readings/06-kaminsky.pdf)                                                   | Debate: [Backdoors](debates/backdoors.md)           |
-| 7       | Web Security                          | [Same Origin](readings/07-same-origin.pdf)                                             |                                                     |
-| 8       | Botnets                               | [Roundup](readings/08-cooke-botnets.pdf)                                               | Lab: [Authentication](assignments/api.md)           |
-| 9       | Data Collection and Surveillance      | [Solove](readings/09-privacy.pdf)                                                       |                                                     |
-| 10      | Web and Device Tracking               | [Englehardt](readings/10-tracking.pdf)                                                 | Debate: [CFAA](debates/cfaa.md)                     |
-| 11      | Privacy Laws and Regulations          | [Warren](readings/11-warren.pdf)                                                       |                                                     |
-| 12      | Vulnerability Disclosure              | [Legal Risks](readings/12-vulnerability.pdf)                                           | Lab: [Privacy](assignments/privacy.md)              |
-| 13      | Election Security                     | [Voting](readings/13-voting.pdf)                                                       |                                                     |
-| 14      | Internet Equity/Digital Divide         | [Equity](readings/14-equity.pdf)                                                       | Debate: [Omnibus](debates/omnibus.md)               |
-| 15      | Net Neutrality                        | [Interconnection](readings/15-interconnection.pdf)                                     |                                                     |
-| 16      | Censorship and Content Moderation     | [Roberts](readings/16-censorship.pdf)                                                  | Lab: [Internet Equity](assignments/access.md)       |
-| 17      | AI Fairness and Accountability        | [Mitchell](readings/17-ml-fairness.pdf)                                                |                                                     |
-| 18      | Hot Topics in Consumer Protection     | Current Events                                                                         | Debate: [Net Neutrality](debates/net-neutrality.md) |
+| Lecture | Topic                            | Reading                                                                                | Assignments                                   |
+|---------|----------------------------------|----------------------------------------------------------------------------------------|-----------------------------------------------|
+| 1       | Overview                         | [Fail](readings/01-why-cryptosystems-fail.pdf) [Trust](readings/01-trusting-trust.pdf) |                                               |
+| 2       | Ethics                           | [Bit-by-Bit](readings/02-bit-by-bit.pdf)                                               | Debate: [Data Breach](debates/data-breach.md) |
+| 3       | Key Management                   | [PKI](readings/03-bellovin-pki.pdf)                                                    |                                               |
+| 4       | Modern Authentication            | [Access](readings/04-oauth.pdf)                                                        | Lab: [PKI](assignments/pki.md)                |
+| 5       | Denial of Service Attacks        | [Cannon](readings/05-paxson-cannon.pdf)                                                |                                               |
+| 6       | DNS Security and Privacy         | [Kaminsky](readings/06-kaminsky.pdf)                                                   | Debate: [Backdoors](debates/backdoors.md)     |
+| 7       | Web Security                     | [Same Origin](readings/07-same-origin.pdf)                                             |                                               |
+| 8       | Large-Scale Attacks              | [Roundup](readings/08-cooke-botnets.pdf)                                               | Lab: [Authentication](assignments/api.md)     |
+| 9       | Data Collection and Surveillance | [Solove](readings/09-privacy.pdf)                                                      |                                               |
+| 10      | Web and Device Tracking          | [Englehardt](readings/10-tracking.pdf)                                                 | Debate: [Omnibus](debates/omnibus.md)         |
+| 11      | Privacy Law and Regulations      | [Warren](readings/11-warren.pdf)                                                       |                                               |
+| 12      | Automated Compliance Checking    | [CPRA]                                                                                 | Lab: [Privacy](assignments/privacy.md)        |
+| 13      | Softeware and Content Copyright  | [Copyright]                                                                            |                                               |
+| 14      | Content Moderation               | [Moderation]                                                                           | Debate: [Moderation](debates/moderation.md)   |
+| 15      | Censorship                       | [Roberts](readings/16-censorship.pdf)                                                  |                                               |
+| 16      | AI Fairness                      | [Mitchell](readings/17-ml-fairness.pdf)                                                | Lab: [Internet Equity](assignments/access.md) |
+| 17      | AI Accountability                | [Accountability]                                                                       |                                               |
+| 18      | Internet Equity/Digital Divide   | [Equity](readings/14-equity.pdf)                                                       | Debate: [AI](debates/accountability.md)       |
+
+## Bonus Topics
+
+| Lecture | Topic                    | Reading                                            | Assignments                            |
+|---------|--------------------------|----------------------------------------------------|----------------------------------------|
+| 12      | Vulnerability Disclosure | [Legal Risks](readings/12-vulnerability.pdf)       | Lab: [Privacy](assignments/privacy.md) |
+| 13      | Election Security        | [Voting](readings/13-voting.pdf)                   |                                        |
+| 15      | Net Neutrality           | [Interconnection](readings/15-interconnection.pdf) |                                        |
