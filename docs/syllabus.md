@@ -5,7 +5,7 @@ The course will have several components:
 1.  **Lectures:** The class meets once per week, covering the
     topics covered on the [course schedule](schedule.html), approximately two
     topics per meeting. Attendance is expected in lecture.
-2.  **Debates:** We will reserve the class meeting time on Fridays for
+2.  **Debates:** We will reserve some of the class meeting time for
     policy debates around the topics covered on the schedule. The
     frequency of these will depend on course enrollment levels but will
     occur no more frequently than weekly.
@@ -14,21 +14,28 @@ The course will have several components:
 
 **Prerequisites:**
 
+There are no official pre-requisites for the course, and you are welcome to
+take the course with the permission of the instructor. Some basic knowledge of
+computer science, computer systems, and programming will be very helpful, as a
+couple of the assignments involve programming in lauguages like Python and
+Javascript. (Knowledge of Javascript is not assumed for the course!)
+
+The courses below are not required but may be helpful background.
+
 - CMSC 15400
 - CAPP 30121: Computer Science with Applications I
 - CAPP 30122: Computer Science with Applications II
-- CAPP 30270: Linear Algebra with Applications
 
 ## Grading
 
 Grading is based on:
 
-- **Lab Assignments (50%).** The course will have a sequence of lab
+- **Lab Assignments (40%).** The course will have a sequence of lab
   assignments, as outlined on the [schedule](schedule.html). Due dates
   and instructions for turning in assignments will be posted on Canvas.
 - **Midterm and Final Exam (30%).** The class will have a midterm exam
   and a final exam.
-- **Debate (15%).** You will participate in one debate during the term,
+- **Debate (25%).** You will participate in one debate during the term,
   on a topic related to security, privacy, and consumer protection. You
   will be graded according to your preparation and participation in this
   activity.

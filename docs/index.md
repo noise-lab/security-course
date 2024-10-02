@@ -36,9 +36,9 @@ meeting.
 | 3       | Key Management                   | [PKI](readings/03-bellovin-pki.pdf)                                                    | Lab: [PKI](assignments/pki.md)                |
 | 4       | Modern Authentication            | [Access](readings/04-oauth.pdf)                                                        | Debate: [Data Breach](debates/data-breach.md) |
 | 5       | Denial of Service Attacks        | [Cannon](readings/05-paxson-cannon.pdf)                                                |                                               |
-| 6       | DNS Security and Privacy         | [Kaminsky](readings/06-kaminsky.pdf)                                                   | Debate: [Backdoors](debates/backdoors.md)     |
-| 7       | Web Security and Privacy         | [Same Origin](readings/07-same-origin.pdf)                                             | Lab: [Authentication](assignments/api.md)     |
-| 8       | Large-Scale Attacks              | [Roundup](readings/08-cooke-botnets.pdf)                                               | Debate: [CFAA](debates/cfaa.md)               |
+| 6       | Large-Scale Attacks              | [Roundup](readings/08-cooke-botnets.pdf)                                               | Debate: [Backdoors](debates/backdoors.md)     |
+| 7       | DNS Security and Privacy         | [Kaminsky](readings/06-kaminsky.pdf)                                                   | Lab: [Authentication](assignments/api.md)     |
+| 8       | Web Security and Privacy         | [Same Origin](readings/07-same-origin.pdf)                                             | Debate: [CFAA](debates/cfaa.md)               |
 | 9       | Data Collection and Surveillance | [Solove](readings/09-privacy.pdf)                                                      |                                               |
 | 10      | Web and Device Tracking          | [Englehardt](readings/10-tracking.pdf)                                                 | Debate: [Omnibus](debates/omnibus.md)         |
 | 11      | Privacy Law and Regulations      | [Warren](readings/11-warren.pdf)                                                       | Lab: [Privacy](assignments/privacy.md)        |
