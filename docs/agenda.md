@@ -28,4 +28,5 @@
   * Assignment: Public Key Infrastructure
   * PKI Overview
   * Modern Authentication: OAuth
-
+* Not Covered: DMCA, SDMI Challenge Case Study, etc. (to be continued in later
+  lectures)
