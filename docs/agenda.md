@@ -21,12 +21,15 @@
 
 * Lecture Coverage: Ethics
 * Reading Discussion: Bit-by-Bit
-  * How do the ethical considerations in this paper apply to the development and deployment of AI systems?
-  * What are the implications of the ethical considerations in this paper for the design of privacy-preserving systems?
+   * How do the ethical considerations in this paper apply to the development and deployment of AI systems?
+   * What are the implications of the ethical considerations in this paper for the design of privacy-preserving systems?
+   * Not Covered: DMCA, SDMI Challenge Case Study, etc. (to be continued in later
+     lectures)
 * Debate: Data Breaches
 * Authentication
   * Assignment: Public Key Infrastructure
   * PKI Overview
   * Modern Authentication: OAuth
-* Not Covered: DMCA, SDMI Challenge Case Study, etc. (to be continued in later
-  lectures)
+  * Topics NOT covered: symmetric key crypto, legacy cryptosystems, the number
+    theory of RSA/public key crypto, etc.
+
