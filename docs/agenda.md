@@ -25,6 +25,7 @@
    * What are the implications of the ethical considerations in this paper for the design of privacy-preserving systems?
    * Not Covered: DMCA, SDMI Challenge Case Study, etc. (to be continued in later
      lectures)
+   * Possible Midterm Question: Example of Ethical Issue, Apply Ethical Framework
 * Debate: Data Breaches
 * Authentication
   * Assignment: Public Key Infrastructure
@@ -33,3 +34,25 @@
   * Topics NOT covered: symmetric key crypto, legacy cryptosystems, the number
     theory of RSA/public key crypto, etc.
 
+
+### Meeting 3
+
+* Lecture Coverage: Denial of Service
+* Typical Characteristics of DoS Attacks
+  * Asymmetry
+  * Difficulty of Attribution (IP Spoofing)
+  * Difficulty of Distinguishing Legitimate from Attack Traffic
+* Case Study: Mirai Botnet
+  * DNS basics
+  * Difficulty of mitigation, attribution
+* Common defenses
+  * Rate limiting 
+  * Captchas
+* Possible Midterm Question: Example Recent DoS Attack, Analyze
+  characteristics, propose mitigations
+* Not covered: Technical details of TCP SYN Flood attacks, TCP handshake, TCP
+  SYN cookies, etc. Details of defending against TCP-based attacks.
+* Debate: Encryption Backdoors
+* More Denial of Service/Botnets
+  * DNS Amplification
+  * Traffic Injection (Great Cannon)
