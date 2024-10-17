@@ -56,3 +56,5 @@
 * More Denial of Service/Botnets
   * DNS Amplification
   * Traffic Injection (Great Cannon)
+* Possible Midterm Topic: Present a reflection attack, analyze, ask about
+  possible defenses.
