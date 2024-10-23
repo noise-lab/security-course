@@ -58,3 +58,24 @@
   * Traffic Injection (Great Cannon)
 * Possible Midterm Topic: Present a reflection attack, analyze, ask about
   possible defenses.
+
+### Meeting 
+
+* Lecture Coverage: DNS Security and Privacy
+   * Background on DNS
+   * Security Risks
+     * DNS Cache Poisoning
+   * Privacy Risks
+     * Domain privacy
+     * Website fingerprinting  
+   * Defenses
+     * DNS-over-TLS
+     * DNSSEC
+     * DNS-over-HTTPS
+* Debate: CFAA
+* Lecture Coverage: Web Security and Privacy
+   * Web Architecture 
+   * Same-Origin Policy
+   * Cross-Origin Resource Sharing
+   * Cross-Site Scripting, Cross-Site Request Forgery
+   * Website Fingerprinting
