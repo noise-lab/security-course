@@ -59,7 +59,7 @@
 * Possible Midterm Topic: Present a reflection attack, analyze, ask about
   possible defenses.
 
-### Meeting 
+### Meeting 4
 
 * Lecture Coverage: DNS Security and Privacy
    * Background on DNS
@@ -79,3 +79,21 @@
    * Cross-Origin Resource Sharing
    * Cross-Site Scripting, Cross-Site Request Forgery
    * Website Fingerprinting
+
+# Meeting 5
+
+* Debate: Privacy Omnibus
+* Lecture Coverage
+   * Web Tracking
+     * Third-Party Web Trackers
+     * How tracking works
+     * Tracking defenses (plugins, etc.)
+     * Legal issues?
+   * Browser Fingerprinting
+     * How it works
+       * "Canvas Fingerprinting"
+     * Defenses
+* Possible Midterm Topic: Given a diagram/scenario, explain/draw how a tracking
+  system works, and how it could be defended against.
+* NOT Covered This Year: 09-Surveillance.ppt topics, in particular, third-party metadata
+  inference, etc. (skipped entirely this year)
