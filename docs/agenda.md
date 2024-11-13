@@ -105,12 +105,18 @@
 # Meeting 7
 
 * Debate: Copyright
+* Software Copyright and Fair Use
+   * Fair Use Principles
+     * Purpose and Character of the Use
+     * Nature of the Copyrighted Work
+     * Amount and Substantiality of the Portion Used
+     * Effect of the Use on the Market
+   * Reverse Engineering for Interoperability  
 * CPRA Compliance and Automated Compliance Checking
-* CPRA
-  * Overview
-  * Key Provisions
-  * Automated Compliance Checking
-    * Overview
-    * Challenges
-    * Approaches
+   * Requirements for Opt-Out Links
+   * Spillover Effect
+   * CPRA
+     * Overview
+     * Key Provisions
+     * Automated Compliance Checking
 * Debate: Content Moderation
