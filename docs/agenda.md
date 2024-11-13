@@ -112,6 +112,9 @@
      * Amount and Substantiality of the Portion Used
      * Effect of the Use on the Market
    * Reverse Engineering for Interoperability  
+   * Possible Midterm Topic: Given a scenario, analyze whether a particular use
+     of copyrighted material is likely to be considered fair use. Consider
+     recent software copyright cases (Google v. Oracle, Splunk v. Cribl, etc.)
 * CPRA Compliance and Automated Compliance Checking
    * Requirements for Opt-Out Links
    * Spillover Effect
