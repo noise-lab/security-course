@@ -43,7 +43,7 @@ meeting.
 | 10      | Web and Device Tracking          | [Englehardt](readings/10-tracking.pdf)                                                 | Debate: [Omnibus](debates/omnibus.md)         |
 | 11      | Privacy Law and Regulations      | [Warren](readings/11-warren.pdf)                                                       | Lab: [Privacy](assignments/privacy.md)        |
 | 12      | Automated Compliance Checking    | [CPRA](readings/12-cpra.pdf)                                                           | Debate: [Copyright](debates/copyright.md)     |
-| 13      | Software and Content Copyright   | [Copyright]                                                                            |                                               |
+| 13      | Software and Content Copyright   | [Copyright](readings/13-copyright.pdf)                                                                            |                                               |
 | 14      | Content Moderation               | [Moderation](readings/14-moderation.pdf)                                                                           | Debate: [Moderation](debates/moderation.md)   |
 | 15      | Censorship                       | [Roberts](readings/16-censorship.pdf)                                                  | Lab: [Internet Equity](assignments/access.md) |
 | 16      | AI Fairness                      | [Mitchell](readings/17-ml-fairness.pdf)                                                | Debate: [Censorship](debates/censorship.md)   |

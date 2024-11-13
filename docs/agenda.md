@@ -97,3 +97,20 @@
   system works, and how it could be defended against.
 * NOT Covered This Year: 09-Surveillance.ppt topics, in particular, third-party metadata
   inference, etc. (skipped entirely this year)
+
+# Meeting 6 
+
+* In-Class Midterm
+
+# Meeting 7
+
+* Debate: Copyright
+* CPRA Compliance and Automated Compliance Checking
+* CPRA
+  * Overview
+  * Key Provisions
+  * Automated Compliance Checking
+    * Overview
+    * Challenges
+    * Approaches
+* Debate: Content Moderation
