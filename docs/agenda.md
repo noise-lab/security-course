@@ -114,7 +114,8 @@
    * Reverse Engineering for Interoperability (Sega v. Accolade, Google v. Oracle)  
    * Possible Midterm Topic: Given a scenario, analyze whether a particular use
      of copyrighted material is likely to be considered fair use. Consider
-     recent software copyright cases (Google v. Oracle, Splunk v. Cribl, etc.)
+     recent software copyright cases (Google v. Oracle, Splunk v. Cribl,
+     etc.). Or, a hypothetical scenario (involving AI?)
 * CPRA Compliance and Automated Compliance Checking
    * Requirements for Opt-Out Links
    * Spillover Effect
