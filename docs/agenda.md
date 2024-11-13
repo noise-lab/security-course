@@ -107,11 +107,11 @@
 * Debate: Copyright
 * Software Copyright and Fair Use
    * Fair Use Principles
-     * Purpose and Character of the Use
-     * Nature of the Copyrighted Work
-     * Amount and Substantiality of the Portion Used
-     * Effect of the Use on the Market
-   * Reverse Engineering for Interoperability  
+     * Purpose and Character of the Use (Is the use "transformative"?)
+     * Nature of the Copyrighted Work (Factual vs. Creative)
+     * Amount and Substantiality of the Portion Used (How much was used?)
+     * Effect of the Use on the Market (Does it compete with the original?)
+   * Reverse Engineering for Interoperability (Sega v. Accolade, Google v. Oracle)  
    * Possible Midterm Topic: Given a scenario, analyze whether a particular use
      of copyrighted material is likely to be considered fair use. Consider
      recent software copyright cases (Google v. Oracle, Splunk v. Cribl, etc.)
