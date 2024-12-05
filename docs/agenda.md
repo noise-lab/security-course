@@ -124,3 +124,16 @@
      * Key Provisions
      * Automated Compliance Checking
 * Debate: Content Moderation
+
+# Meeting 8
+
+* Internet Censorship
+   * Censorship in China
+   * The Great Firewall
+* Why filtering may not be as effective at censorship as other techniques
+* Backlash effects of censorship (installation of VPNs)
+* Virtual Private Networks: How they work, the kinds of protections that they
+  do or do not provide
+* Possible Midterm Topic: Give examples of censorship by fear, friction, and
+  flooding. Analyze the effectiveness of each.
+* Debate: Censorship
