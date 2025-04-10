@@ -38,7 +38,7 @@ meeting.
 | 4                     | Modern Authentication               | [Certificate Chains](activities/cert.md) | [Access](readings/oauth.pdf)                                                      |                                               |
 | *Internet Security*   |                                     |                                          |                                                                                   |                                               |
 | 5                     | Denial of Service and Botnets       | [Backdoors](debates/backdoors.md)        | [Cannon](readings/paxson-cannon.pdf), [Roundup](readings/cooke-botnets.pdf)       |                                               |
-| 6                     | Routing Security                    |                                          | [BGPSEC](readings/bgp-security.pdf)                                               |                                               |
+| 6                     | Routing Security                    | [BGP](activities/bgp.md)                 | [BGPSEC](readings/bgp-security.pdf)                                               |                                               |
 | 7                     | Web Security                        | [CFAA](debates/cfaa.md)                  | [Same Origin](readings/same-origin.pdf)                                           |                                               |
 | 8                     | DNS Security                        | [DNS](activities/dns.md)                 | [Kaminsky](readings/kaminsky.pdf)                                                 | Lab: [Authentication](assignments/api.md)     |
 | *Internet Privacy*    |                                     |                                          |                                                                                   |                                               |
@@ -49,12 +49,12 @@ meeting.
 | 12                    | Broadband Internet Infrastructure   | [Broadband](activities/broadband.md)     | [Access](readings/internet-access.pdf)                                            |                                               |
 | 13                    | Automated Compliance Enforcement    | [Copyright](debates/copyright.md)        | [CPRA](readings/cpra.pdf)                                                         |                                               |
 | 14                    | Copyright and Intellectual Property | [Copyright](activities/copyright.md)     | [Copyright](readings/copyright.pdf)                                               |                                               |
-| *AI*                  |                                     |                                          |                                                                                   |                                               |
+| *AI and Consumers*    |                                     |                                          |                                                                                   |                                               |
 | 15                    | AI and Copyright                    | [Moderation](debates/moderation.md)      | [Fairness](readings/ml-fairness.pdf)                                              |                                               |
 | 16                    | AI and Privacy                      | [LLM](activities/llm.md)                 | [LLM Disclosure](readings/llm-disclosure.pdf)                                     |                                               |
-| *Online Speech*       |                                     |                                          |                                                                                   |                                               |
+| *Online Discourse*    |                                     |                                          |                                                                                   |                                               |
 | 17                    | Internet Censorship                 | [Censorship](debates/censorship.md)      | [Censored](readings/censorship.pdf)                                               | Lab: [Internet Access](assignments/access.md) |
-| 18                    | Content Moderation                  |                                          | [Moderation](readings/moderation.pdf)                                             |                                               |
+| 18                    | Content Moderation                  | [Moderation](activities/moderation.md)   | [Moderation](readings/moderation.pdf)                                             |                                               |
 
 ## Bonus Topics
 
@@ -62,5 +62,5 @@ meeting.
 |---------|--------------------------|-------------------------------------------------|------------------------------------------|
 | X       | Election Security        | [Voting](readings/voting.pdf)                   |                                          |
 | X       | Net Neutrality           | [Interconnection](readings/interconnection.pdf) |                                          |
-| X       | AI Accountability        | [Accountability](readings/accountability.pdf)   | Debate: [AI](debates/accountability.md)  |
+| X       | AI and Accountability    | [Accountability](readings/accountability.pdf)   | Debate: [AI](debates/accountability.md)  |
 | X       | Vulnerability Disclosure | [Disclosure](readings/vulnerability.pdf)                                                 | |                                               |
