@@ -22,7 +22,7 @@ data:
 -   Beyond DNS queries, name all other entities that know you\'ve
     visited the website. Present your findings by grouping your domain
     names into companies (e.g., the company \"Google\" has many domain
-    names). Explain how these companies may have visited the website.
+    names). Explain how these companies may have seen that you have visited the website.
 
 -   What different types of concerns might you have about the above
     companies knowing this information (concerns may differ by
