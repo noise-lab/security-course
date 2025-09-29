@@ -28,7 +28,12 @@ The courses below are not required but may be helpful background.
 
 ## Grading
 
-Grading is based on:
+| Component | Weight |
+|-----------|--------|
+| Midterm and Final Exam | 40% |
+| Debate | 35% |
+| Lab Assignments | 20% |
+| Participation and In-Class Quizzes | 5% |
 
 - **Lab Assignments (20%).** The course will have a sequence of lab
   assignments, as outlined on the [schedule](schedule.html). Due dates
