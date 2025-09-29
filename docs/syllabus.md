@@ -28,14 +28,27 @@ The courses below are not required but may be helpful background.
 
 ## Grading
 
-Grading is based on:
+| Component | Weight |
+|-----------|--------|
+| Midterm and Final Exam | 40% |
+| Debate | 35% |
+| Lab Assignments | 20% |
+| Participation and In-Class Quizzes | 5% |
 
-- **Lab Assignments (40%).** The course will have a sequence of lab
+- **Lab Assignments (20%).** The course will have a sequence of lab
   assignments, as outlined on the [schedule](schedule.html). Due dates
   and instructions for turning in assignments will be posted on Canvas.
-- **Midterm and Final Exam (30%).** The class will have a midterm exam
+  **Important:** Lab assignments will be graded primarily for completion.
+  While we encourage the use of AI tools to assist with assignment completion
+  (with proper acknowledgment and explanation of your prompting approach),
+  the key learning objective is understanding the underlying concepts. We
+  reserve the right to test your understanding of assignment topics through
+  various means including pop quizzes in class, oral examinations, midterm/
+  final exams, or other assessment methods to ensure you have grasped the
+  fundamental concepts.
+- **Midterm and Final Exam (40%).** The class will have a midterm exam
   and a final exam.
-- **Debate (25%).** You will participate in one debate during the term,
+- **Debate (35%).** You will participate in one debate during the term,
   on a topic related to security, privacy, and consumer protection. You
   will be graded according to your preparation and participation in this
   activity.

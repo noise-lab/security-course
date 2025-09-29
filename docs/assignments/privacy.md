@@ -5,8 +5,8 @@ be tracked using your DNS queries. To do so, you will visit a website of
 your choice and log all DNS queries made by your browser. Try to pick a
 popular website (nytimes, facebook, reddit, etc) that you have not
 visited in a while. Please answer the following questions in your
-write-up. For simplicity, assume that all caches are empty and you are
-browsing on the UChicago network. 
+write-up. For simplicity, assume that all browser caches are empty. You 
+can also clear your browser cache manually.
 
 ### Tasks
 
@@ -22,7 +22,7 @@ data:
 -   Beyond DNS queries, name all other entities that know you\'ve
     visited the website. Present your findings by grouping your domain
     names into companies (e.g., the company \"Google\" has many domain
-    names). Explain how these companies may have visited the website.
+    names). Explain how these companies may have seen that you have visited the website.
 
 -   What different types of concerns might you have about the above
     companies knowing this information (concerns may differ by
