@@ -30,12 +30,20 @@ The courses below are not required but may be helpful background.
 
 Grading is based on:
 
-- **Lab Assignments (40%).** The course will have a sequence of lab
+- **Lab Assignments (20%).** The course will have a sequence of lab
   assignments, as outlined on the [schedule](schedule.html). Due dates
   and instructions for turning in assignments will be posted on Canvas.
-- **Midterm and Final Exam (30%).** The class will have a midterm exam
+  **Important:** Lab assignments will be graded primarily for completion.
+  While we encourage the use of AI tools to assist with assignment completion
+  (with proper acknowledgment and explanation of your prompting approach),
+  the key learning objective is understanding the underlying concepts. We
+  reserve the right to test your understanding of assignment topics through
+  various means including pop quizzes in class, oral examinations, midterm/
+  final exams, or other assessment methods to ensure you have grasped the
+  fundamental concepts.
+- **Midterm and Final Exam (40%).** The class will have a midterm exam
   and a final exam.
-- **Debate (25%).** You will participate in one debate during the term,
+- **Debate (35%).** You will participate in one debate during the term,
   on a topic related to security, privacy, and consumer protection. You
   will be graded according to your preparation and participation in this
   activity.
@@ -111,6 +119,27 @@ severity of the offense, you risk being dismissed altogether from the course.
 No collaboration is permitted on quizzes or exams. All work submitted for the
 project must properly cite ideas and work that are not those of the students
 in the group.
+
+## Use of AI Tools and Large Language Models
+
+I acknowledge and even expect that you will use large language models (LLMs)
+and other AI tools for assistance in completing assignments. This is perfectly
+acceptable and encouraged. However, you are expected to understand the output
+these tools generate.
+
+AI-assisted coding improves efficiency, but only if you understand its outputs.
+Just as I would not be able to evaluate an LLM-produced essay in philosophy if
+I didn't understand the subject matter, these tools do you no good if you cannot
+understand, evaluate, improve, debug, and iterate on their output.
+
+Therefore, you are allowed to use AI tools to help automate anything you are
+confident that you understand well enough to implement manually yourself. This
+approach best simulates the real world, where you will inevitably need to know
+how to use these tools well and to your advantage, but you will ultimately be
+responsible for understanding the software and code that you produce.
+
+When using AI tools, please acknowledge their use in your submissions and be
+prepared to explain and defend any code or solutions you submit.
 
 ## Kindness, Respect, and Free Expression
 
