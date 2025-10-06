@@ -56,6 +56,11 @@ The courses below are not required but may be helpful background.
   to know the instructor and TAs, show up to office hours, and generally
   interact with the class as much as possible! There may be periodic
   in-class quizzes to check attention and participation.
+  - **Optional Reading Responses.** Students may optionally submit
+    reading responses on any of the assigned readings. These responses
+    help me identify topics that would benefit from additional coverage
+    or attention in class. Submitting thoughtful reading responses can
+    count toward your participation grade.
 
 ## Late Policy
 
