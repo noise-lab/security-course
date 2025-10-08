@@ -19,20 +19,87 @@
 
 ### Meeting 2
 
-* Lecture Coverage: Ethics
-* Reading Discussion: Bit-by-Bit
-   * How do the ethical considerations in this paper apply to the development and deployment of AI systems?
-   * What are the implications of the ethical considerations in this paper for the design of privacy-preserving systems?
-   * Not Covered: DMCA, SDMI Challenge Case Study, etc. (to be continued in later
-     lectures)
-   * Possible Midterm Question: Example of Ethical Issue, Apply Ethical Framework
+* Lecture Coverage: Key Management and Public Key Infrastructure
+  * **Encryption Fundamentals**
+    * Threat models and adversary capabilities
+    * Encryption algorithms (encryption function E)
+    * Properties: Correctness and Security
+    * Security definition: Indistinguishability (one-bit perfect security intuition)
+  * **Symmetric Key Cryptography**
+    * Key exchange problem
+    * Shared keys between Alice and Bob
+    * Scalability challenges
+    * Use in practice: Fast encryption/decryption for bulk data transfer
+  * **Diffie-Hellman Key Exchange**
+    * Public key exchange without prior shared secret
+    * Based on discrete logarithm problem (hardness assumption)
+    * Modular exponentiation basics
+    * How Alice and Bob derive shared secret from public exchange
+    * NOT covered: Mathematical proofs, number theory details, computing discrete logs
+  * **Public Key (Asymmetric) Cryptography**
+    * Key pairs: Public key and private key
+    * Different keys for encryption vs. decryption
+    * Public key can't be derived from private key (hardness assumption)
+    * RSA algorithm (mentioned, not detailed)
+  * **Two Use Cases for Public Key Cryptography**
+    * **Confidentiality**: Encrypt with public key, decrypt with private key
+    * **Integrity/Authentication**: Sign with private key, verify with public key
+    * Digital signatures for message integrity
+    * Examples: Software updates, OS patches (Apple example)
+  * **Certificates and Trust**
+    * Problem: How to know a public key belongs to a specific entity
+    * Certificates bind entities to public keys
+    * Self-signed certificates vs. CA-signed certificates
+    * **Certificate Chains** (Hands-on Activity)
+      * Inspecting certificate chains in browser (Firefox example)
+      * Walking up the certificate hierarchy
+      * Example chain: course website → Let's Encrypt → ISRG Root X1
+      * Root certificates in operating systems and browsers
+      * Trust anchor: Where does trust ultimately stop?
+  * **Certificate Validation Levels**
+    * **Domain Validation (DV)**: Proves control over domain (Let's Encrypt example)
+      * How it works: Placing specific content on website as proof
+    * **Extended Validation (EV)**: Proves legal entity identity (Bank of America example)
+      * Additional verification requirements
+      * Visual indicators in browsers
+  * **Security Case Studies**
+    * DigiNotar breach (2011): Compromised CA issuing fake Google certificates
+    * China Internet Network Information Center (CNNIC) root certificate controversy
+    * Gogo inflight internet issuing fake certificates (2015)
+    * Bad SSL website for testing certificate validation
+  * **TLS/HTTPS in Practice**
+    * Wireshark packet capture demo
+    * TLS handshake: Certificate exchange, key exchange, session establishment
+    * Session keys for symmetric encryption after handshake
+    * TLS 1.2 vs TLS 1.3 (Encrypted SNI for privacy)
+    * Information leakage in unencrypted handshake (SNI)
+  * **Key Concepts Students Should Understand** (NOT Math Details)
+    * Why key exchange protocols are important
+    * Threat models and adversary capabilities
+    * Difference between symmetric and asymmetric cryptography
+    * What certificates do (bind identity to public key)
+    * Certificate chains and roots of trust
+    * Domain validation vs. extended validation
+    * Confidentiality vs. Integrity as security properties
+    * Where trust ultimately resides (OS, browser, certificate authorities)
+  * **Topics NOT Covered in Detail**
+    * Number theory and mathematical proofs
+    * Computing discrete logarithms or factoring
+    * RSA algorithm details
+    * Specific cipher implementations
+    * Legacy cryptosystems
+* Assignment 1: Public Key Infrastructure and Certificates
+  * Generate self-signed certificate
+  * Set up web server with HTTPS
+  * Capture and analyze TLS handshake with Wireshark
+  * Examine certificate chains
+  * Due: Two weeks from Friday (Feb 9, 2024)
+* Hands-on Activity: Certificate Chain Inspection
+  * Students inspect certificate chains in their own browsers
+  * Trace certificates to root CAs in operating system
+  * Understand trust hierarchy in practice
 * Debate: Data Breaches
-* Authentication
-  * Assignment: Public Key Infrastructure
-  * PKI Overview
-  * Modern Authentication: OAuth
-  * Topics NOT covered: symmetric key crypto, legacy cryptosystems, the number
-    theory of RSA/public key crypto, etc.
+* Modern Authentication: OAuth (Topic deferred to next week due to time)
 
 
 ### Meeting 3
