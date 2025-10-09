@@ -1,14 +1,14 @@
 ## Privacy Omnibus
 
-**Resolution**
+### Resolution
 
-The United States should adopt a federal omnibus privacy law as the European
-Union has done with the GDPR (and some states in the United States have also
-done).
+**The United States should adopt a federal omnibus privacy law as the European Union has done with the GDPR (and some states in the United States have also done).**
 
-**Format**
+The debate will be "Oxford Style" and follow [this format](format.md).
 
-Information about the [debate format](format.md).
+### Resources
+
+Here are some resources and questions to help guide and nuance the debate:
 
 **Questions**
 
@@ -18,9 +18,9 @@ Information about the [debate format](format.md).
 * What about the cost of compliance for small businesses and organizations?
 * What are the benefits to consumers? Drawbacks?
 
-**Resources**
+**Readings**
 
-* [GDPR Background](https://gdpr.eu/what-is-gdpr/)
-* [CCPA](https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CIV&division=3.&title=1.81.5.&part=4.&chapter=&article)
-* [CCRA](https://vig.cdn.sos.ca.gov/2020/general/pdf/topl-prop24.pdf)
-* [CCPA vs. GDPR](https://www.okta.com/uk/blog/2021/04/ccpa-vs-gdpr/)
+- [GDPR Background](https://gdpr.eu/what-is-gdpr/)
+- [CCPA](https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=CIV&division=3.&title=1.81.5.&part=4.&chapter=&article)
+- [CPRA](https://vig.cdn.sos.ca.gov/2020/general/pdf/topl-prop24.pdf)
+- [CCPA vs. GDPR](https://www.okta.com/uk/blog/2021/04/ccpa-vs-gdpr/)
