@@ -104,7 +104,95 @@
 
 ### Meeting 3
 
-* Lecture Coverage: Denial of Service
+* Lecture Coverage: Authentication and Access Control
+  * **Goals of Access Control**
+    * Protecting users from one another
+    * Protecting applications from each other
+    * Protecting systems on the network from other systems
+    * Allowing information to be shared across boundaries
+  * **Threat Models**
+    * Honest but curious adversary
+    * Insider attacks
+    * Financial motives and espionage
+  * **Authentication Basics**
+    * Identification vs. Authentication vs. Authorization
+    * **Three Modes of Authentication** (Important for midterm)
+      * Something you know (passwords)
+      * Something you have (keys, ID cards, UB keys, 2FA tokens)
+      * Something you are (biometrics: fingerprints, facial recognition, iris scans)
+  * **Operating System Access Control**
+    * Unix/Linux file permissions model
+    * File ownership: user and group
+    * Permission bits: read (r), write (w), execute (x)
+    * Three permission sets: owner, group, world
+    * Live demo: `ls -l`, file permissions, `whoami`, `groups`
+  * **Processes and Privileges**
+    * Processes run as users (`ps` command)
+    * Operating system mediates access based on process user privileges
+    * Example: PowerPoint process running as user accessing files
+  * **Special Users and Privilege Escalation**
+    * Root/superuser (ultimate privileges)
+    * `sudo` command (super user do)
+    * Principle of least privilege
+      * Definition: Only grant minimum privileges needed to perform a task
+      * Example: Web servers running as limited users (not root)
+      * Example: OAuth scope limiting permissions
+    * Privilege escalation attacks
+      * Definition: Vulnerability allowing process to gain higher privileges
+  * **Web Server Security Model**
+    * Historical: Web servers ran as root (security risk)
+    * Modern: Web servers run as limited users (e.g., "nobody", "www-data")
+    * World-readable files for public access
+  * **Logging and Auditing**
+    * Tracking who has accessed what
+    * Forensics after breaches or unauthorized access
+* Lecture Coverage: OAuth (Modern Authentication and Authorization)
+  * **Problems with Credential Sharing**
+    * Sharing passwords with third-party apps (insecure)
+    * Example: Banking apps requesting username/password
+    * No delegation, just impersonation
+    * Hard to revoke access
+    * Poor auditability
+  * **OAuth Solution**
+    * Access delegation without credential sharing
+    * Framework (not protocol): doesn't specify cryptography or token format
+    * Common implementation: JSON Web Tokens (JWT)
+  * **OAuth Roles**
+    * Resource owner: User who owns the protected data
+    * Client: Third-party application requesting access
+    * Authorization server: Issues tokens (e.g., GitHub)
+    * Resource server: Hosts protected resources
+  * **OAuth Flow** (Live demo: Slack + GitHub integration)
+    * Step 1: Client requests authorization from resource owner
+    * Step 2: Resource owner logs in and approves request
+    * Step 3: Resource owner grants authorization code to client
+    * Step 4: Client presents authorization code to authorization server
+    * Step 5: Authorization server issues access token
+    * Step 6: Client uses access token to access resource server
+  * **Access Token Scoping**
+    * Tokens encode specific permissions (scope)
+    * Examples: read-only, issues access, repository access
+    * Principle of least privilege applies to token scope
+    * Live demo: GitHub personal access token creation
+  * **Key Concepts**
+    * Authorization grant: Temporary code proving user consent
+    * Access token: Credential representing delegated permissions
+    * Scope: Set of permissions associated with token
+    * Token expiration and revocation
+  * **Possible Midterm Questions**
+    * Three modes of authentication (know, have, are) - examples
+    * Given a scenario (e.g., Slack + GitHub), identify OAuth roles
+    * Unix file permissions interpretation
+    * Principle of least privilege examples
+    * OAuth flow steps
+* Assignment 2 Preview: Build OAuth Application
+  * Write third-party app using OAuth
+  * Choose any service with OAuth API
+  * Examples: Google Calendar, Nest thermostat, GitHub
+  * Must use OAuth for authentication/authorization
+  * Due: ~2 weeks (not yet officially assigned)
+* Debate: Encryption Backdoors
+* Lecture Coverage: Denial of Service (To be continued)
 * Typical Characteristics of DoS Attacks
   * Asymmetry
   * Difficulty of Attribution (IP Spoofing)
@@ -113,13 +201,12 @@
   * DNS basics
   * Difficulty of mitigation, attribution
 * Common defenses
-  * Rate limiting 
+  * Rate limiting
   * Captchas
 * Possible Midterm Question: Example Recent DoS Attack, Analyze
   characteristics, propose mitigations
 * Not covered: Technical details of TCP SYN Flood attacks, TCP handshake, TCP
   SYN cookies, etc. Details of defending against TCP-based attacks.
-* Debate: Encryption Backdoors
 * More Denial of Service/Botnets
   * DNS Amplification
   * Traffic Injection (Great Cannon)
