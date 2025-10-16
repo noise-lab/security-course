@@ -192,26 +192,125 @@
   * Must use OAuth for authentication/authorization
   * Due: ~2 weeks (not yet officially assigned)
 * Debate: Encryption Backdoors
-* Lecture Coverage: Denial of Service (To be continued)
-* Typical Characteristics of DoS Attacks
-  * Asymmetry
-  * Difficulty of Attribution (IP Spoofing)
-  * Difficulty of Distinguishing Legitimate from Attack Traffic
-* Case Study: Mirai Botnet
-  * DNS basics
-  * Difficulty of mitigation, attribution
-* Common defenses
-  * Rate limiting
-  * Captchas
-* Possible Midterm Question: Example Recent DoS Attack, Analyze
-  characteristics, propose mitigations
-* Not covered: Technical details of TCP SYN Flood attacks, TCP handshake, TCP
-  SYN cookies, etc. Details of defending against TCP-based attacks.
-* More Denial of Service/Botnets
-  * DNS Amplification
-  * Traffic Injection (Great Cannon)
-* Possible Midterm Topic: Present a reflection attack, analyze, ask about
-  possible defenses.
+* Lecture Coverage: Denial of Service Attacks and Botnets
+  * **Theme Shift**: From System Security to Internet Security
+  * **Definition of DoS Attacks**
+    * Attempt to exhaust limited resources in a system
+    * Network-based attacks
+    * Goal: Deny service to legitimate users
+  * **Types of Limited Resources that can be Exhausted**
+    * **Network resources**: Bandwidth/capacity (e.g., 1 Gbps link saturation)
+    * **Transport/Connection resources**: Maximum simultaneous connections
+    * **Server resources**: CPU, memory, processing (e.g., TLS handshake computation)
+  * **Common Targets**
+    * Web servers (most common)
+    * File servers
+    * Authentication services (e.g., Duo two-factor authentication)
+    * Update servers
+    * Domain Name System (DNS) servers
+    * Network infrastructure devices (less common, harder to attack)
+  * **Three Common Characteristics of DoS Attacks** (Important for midterm)
+    * **1. Asymmetry**
+      * Attacker's cost << Victim's cost
+      * Examples:
+        * Single packet triggers server to allocate memory/state
+        * Small hello message forces server to generate keys (old TLS)
+        * Small query generates large response (amplification)
+      * Amplification: Small input generates large output
+      * Botnets: Many compromised machines send small amounts, victim sees large aggregate
+    * **2. Difficulty of Distinguishing Legitimate from Attack Traffic**
+      * Attack traffic looks like normal requests
+      * Hard to filter without blocking legitimate users
+      * Example: Botnet traffic from many different sources
+      * Can't simply block one IP address or subnet
+    * **3. Difficulty of Attribution**
+      * IP address spoofing common
+      * Attacker doesn't care about receiving response
+      * Makes it harder to trace attack source
+      * Forged source addresses in packets
+  * **Case Study: Mirai Botnet Attack on Dyn (October 2016)**
+    * Major outages: Twitter, Netflix, Spotify, Reddit, and many others
+    * Target: Dyn (DNS infrastructure provider, not the end services)
+    * Attack vector: DNS servers hosting domain resolution for major sites
+    * Key insight: Attack DNS infrastructure to take down multiple services at once
+    * **Botnet Composition**
+      * Mirai malware targeting IoT devices (smart cameras, home devices)
+      * Estimated 100,000 compromised endpoints (relatively small for botnets)
+      * "Army of vulnerable gadgets"
+    * **Why Effective Despite Small Size**
+      * Application-level attack (server resource exhaustion)
+      * Not purely bandwidth exhaustion
+      * Targeted DNS query processing capacity
+      * Relatively low total traffic volume
+    * **Death Spiral Effect**
+      * Attack traffic overloads DNS servers
+      * Legitimate users can't resolve domains
+      * Applications retry automatically (by design for resilience)
+      * Legitimate retries amplify the attack
+      * "Storm of legitimate retry activity"
+      * Impossible to distinguish attack from legitimate retries
+    * **Attribution Challenges**
+      * Attack and legitimate traffic from millions of IPs
+      * Can't filter by source
+      * Attack traffic looks like normal DNS queries
+    * **Lessons**
+      * Critical infrastructure dependencies create cascading failures
+      * Easier to attack infrastructure than individual services
+      * Legitimate traffic patterns can amplify attacks
+  * **DNS Reflection and Amplification Attack**
+    * **How it Works**
+      * Attacker sends small DNS query to open DNS resolver
+      * Query has spoofed source IP (victim's address)
+      * DNS server generates large response
+      * Large response sent to victim (not attacker)
+      * Amplification factor: 60x to 3,000x possible
+    * **Key Techniques**
+      * Reflection: Bounce traffic off third party (DNS server)
+      * Amplification: Small query → large response
+      * IP spoofing: Victim receives response they never requested
+    * **Why Effective**
+      * Satisfies asymmetry: Attacker sends small queries, victim receives large responses
+      * Satisfies IP spoofing: Source address forged
+      * Attacker doesn't do the work; DNS server generates traffic
+      * Can use many DNS servers simultaneously (distributed)
+    * **Partial Distinguishability**
+      * Victim receives responses without sending requests
+      * Could be detected/filtered
+    * **Defense: Stateful Firewall**
+      * Track outgoing DNS queries
+      * Drop incoming responses that don't match outgoing queries
+      * **New Vulnerability Introduced**
+        * Firewall must maintain state (memory)
+        * State storage = limited resource
+        * Attacker can exhaust firewall memory
+        * Attack vector: Send spoofed queries through firewall
+        * Firewall remembers queries, runs out of memory, crashes
+      * **Defense Against Firewall Attack**
+        * Ingress filtering: Check if packet source matches expected direction
+        * Drop packets claiming to be from inside network but arriving from outside
+    * **Open Resolvers**
+      * Definition: DNS servers that answer queries from anyone
+      * Examples: Google (8.8.8.8), Cloudflare (1.1.1.1)
+      * Vulnerability: Can be used for reflection attacks
+      * Historical problem: Many insecure open resolvers
+      * Misaligned incentives: Secure your server to protect others
+  * **Key Security Principles Illustrated**
+    * Any defense requiring state introduces new attack surface
+    * Stateful systems = limited memory = potential DoS target
+    * Tradeoff: Security features vs. new vulnerabilities
+    * Always ask: "Have I introduced new vulnerabilities?"
+  * **Possible Midterm Questions**
+    * Analyze recent DoS attack, identify characteristics, propose mitigations
+    * Given a reflection attack diagram, explain how it works
+    * Propose defenses for specific attack scenarios
+    * Identify new vulnerabilities introduced by defenses
+    * Example: "How would you attack the stateful firewall? What traffic would you send?"
+* Topics NOT Covered in Detail
+  * TCP SYN Flood attacks
+  * TCP handshake details
+  * TCP SYN cookies
+  * Technical details of TCP-based attacks
+  * Traffic injection attacks (Great Cannon)
 
 ### Meeting 4
 
