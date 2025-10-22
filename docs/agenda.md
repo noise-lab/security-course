@@ -314,20 +314,142 @@
 
 ### Meeting 4
 
+* **Administrative Updates**
+  * Midterm scheduled for Week 6 (two weeks out)
+  * Midterm will be generated using LLM (Claude) based on:
+    * Previous three midterms (available in GitHub docs/midterm directory)
+    * Agenda file tracking topics covered
+    * Manual editing for quality and accuracy
+  * Prompt will be shared for students to generate practice exams
+  * Exam designed for 45-60 minutes, but no time limit enforced
+  * Students can stay as long as needed (accommodations available)
+  * Structure similar to past years: sections on public infrastructure, web security, ethics, etc.
+  * Goal: Not adversarial, want students to succeed and learn
+* Lecture Coverage: Internet Routing Security
+  * **Three Categories of Internet Infrastructure Security**
+    * Security of internet routing infrastructure (BGP)
+    * Security of naming infrastructure (DNS)
+    * Security of the web
+  * **Internet Routing Background**
+    * **Purpose**: Distributed system that tells routers where to send traffic
+    * **Internet = "Inter-network"**: Network of networks
+    * **Autonomous System (AS)**: Independently operated network
+      * Examples: University of Chicago network, Google network, Netflix network
+    * **Border Gateway Protocol (BGP)**: Protocol that connects autonomous systems
+      * Border routers on edges of autonomous systems use BGP to exchange routing information
+    * **Routing Analogy**: Like Google Maps for traffic
+      * Instead of full directions, internet routing works in chunks
+      * Example: Get directions to Wisconsin border, then ask again at next network
+      * Each autonomous system only knows how to get to its boundaries
+  * **Security Problems in Internet Routing**
+    * **Lack of Security in BGP**: No security when initially deployed
+    * **Fundamental Problem**: Routers believe whatever neighboring networks tell them
+    * **Two Types of Incidents**
+      * **Route Leak** (Accidental): Misconfiguration causes bad routing information to spread
+      * **Route Hijack** (Intentional): Deliberate advertising of incorrect routing information
+    * **Case Study: 1997 Virginia ISP Outage**
+      * Small ISP in Virginia misconfigured router
+      * Accidentally advertised routes to entire internet
+      * Information propagated to Sprint (large ISP)
+      * All traffic routed to small Virginia ISP, which couldn't handle load
+      * Major outage lasting over 2 hours
+    * **Case Study: China Telecom Hijacking (2010)**
+      * China Telecom advertised 50,000+ IP prefixes from hundreds of countries
+      * Traffic between US providers (AT&T, Verizon) routed through China
+      * Unexpected routing path with poor performance
+      * Security concern: Traffic routed through potentially adversarial country
+  * **How BGP Hijacking Works**
+    * **Autonomous System Path (AS Path)**: List of networks to traverse
+      * Example legitimate path: Verizon → Level 3 → Verizon Wireless
+    * **Hijacking Mechanism**
+      * Attacker advertises same IP prefix with shorter AS path
+      * BGP selects routes based on shortest AS path (fewest ASes)
+        * Note: This is illogical (like choosing interstate route by number of states, not miles)
+      * Networks prefer "shorter" route, sending traffic to attacker
+    * **Example Attack**
+      * Legitimate path: 4 autonomous systems
+      * China Telecom advertises same prefix with 3 autonomous systems (lie)
+      * Networks choose China Telecom route (appears shorter)
+      * Traffic flows through China Telecom instead of legitimate path
+  * **Two Security Problems to Solve**
+    * **1. Origin Authentication**
+      * **Problem**: How to verify which AS is allowed to advertise a specific IP prefix?
+      * Like verifying Toronto is in Ontario, not Kentucky
+      * **Solution: Resource Public Key Infrastructure (RPKI)**
+        * Certificates bind IP prefixes to autonomous systems
+        * Similar to web PKI binding domains to entities
+        * Certificate contains:
+          * AS number (e.g., 22394)
+          * IP prefix (e.g., 66.174.161.0/24)
+          * Public key for that AS
+        * Certificates signed by Internet registries (e.g., ARIN - American Registry for Internet Numbers)
+      * **How Origin Authentication Works**
+        * Originating AS signs routing message with its private key
+        * Message contains: IP prefix + originating AS number
+        * Receiving router:
+          1. Verifies signature using AS's public key (from RPKI certificate)
+          2. Checks certificate to confirm AS is authorized to advertise that prefix
+        * Prevents unauthorized AS from claiming ownership of IP prefix
+      * **Deployment Status**: Actually deployed (took over a decade)
+      * **Incentive Alignment**: Networks want to protect their own routes from hijacking
+    * **2. Path Authentication**
+      * **Problem**: How to verify the AS path hasn't been modified?
+      * Prevents attackers from shortening or changing the path
+      * **Path Shortening Attack Example**
+        * Legitimate path: AS100 → AS6167 → AS22394 → Verizon Wireless
+        * Attacker (AS100) removes AS6167 from path
+        * Advertises shorter path: AS100 → AS22394 → Verizon Wireless
+        * Attracts more traffic for surveillance/interception
+      * **Solution: Route Attestations with Signatures**
+        * Each AS signs not just the current message, but also:
+          * The AS path so far
+          * The AS number it's sending the message TO (critical detail)
+        * Example: AS6167 signs message containing:
+          * Path: 6167 → 22394
+          * Recipient: AS100 (or Level 3, etc.)
+        * Prevents path shortening because signature includes destination AS
+        * Each AS passes along chain of signed attestations
+      * **Deployment Status**: NOT deployed after 30 years
+      * **Why Not Deployed: Misaligned Incentives**
+        * Requires ALL autonomous systems to participate
+        * Network must upgrade routers (expensive: Cisco equipment, complexity, etc.)
+        * Cost/effort to protect OTHER networks, not yourself
+        * Classic coordination problem / prisoner's dilemma / tragedy of the commons
+        * If any AS doesn't deploy, protection fails for everyone
+        * Article assigned: "Why is it taking so long to secure internet routing?"
+  * **Key Technical Concepts** (Pedagogical emphasis)
+    * Real-world application of public key infrastructure
+    * Understanding what signatures guarantee
+    * Man-in-the-middle attacks (AS100 acting as intermediary mangling messages)
+    * What must be signed to prevent specific attacks
+    * Thinking critically about security guarantees
+  * **Possible Midterm Questions**
+    * **Understanding public key infrastructure in routing context** (tests PKI knowledge)
+    * **How signatures prevent path shortening attacks** (critical thinking about what to sign)
+    * **Difference between origin authentication and path authentication**
+    * **Why path authentication is simpler than origin authentication** (similar to base case in induction)
+    * **Game theory of deployment** (coordination game, prisoner's dilemma, tragedy of commons)
+    * Path shortening attack is a good topic to understand for testing knowledge of signatures
+    * Understanding this example helps with any secure system using PKI
+  * **Topics NOT Covered in Detail**
+    * Technical BGP protocol details other than IP prefixes and AS paths
+    * Complete technical specification of route advertisements
+    * Why some AS numbers repeat in paths
+    * Specific standards names (S-BGP vs BGPsec naming)
+* Debate: CFAA
 * Lecture Coverage: DNS Security and Privacy
    * Background on DNS
    * Security Risks
      * DNS Cache Poisoning
    * Privacy Risks
      * Domain privacy
-     * Website fingerprinting  
+     * Website fingerprinting
    * Defenses
      * DNS-over-TLS
      * DNSSEC
      * DNS-over-HTTPS
-* Debate: CFAA
 * Lecture Coverage: Web Security and Privacy
-   * Web Architecture 
+   * Web Architecture
    * Same-Origin Policy
    * Cross-Origin Resource Sharing
    * Cross-Site Scripting, Cross-Site Request Forgery
