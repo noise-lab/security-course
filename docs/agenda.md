@@ -427,8 +427,7 @@
     * **Understanding public key infrastructure in routing context** (tests PKI knowledge)
     * **How signatures prevent path shortening attacks** (critical thinking about what to sign)
     * **Difference between origin authentication and path authentication**
-    * **Why path authentication is simpler than origin authentication** (similar to base case in induction)
-    * **Game theory of deployment** (coordination game, prisoner's dilemma, tragedy of commons)
+    * **Why origin authentication is simpler than path authentication** (similar to base case in induction)
     * Path shortening attack is a good topic to understand for testing knowledge of signatures
     * Understanding this example helps with any secure system using PKI
   * **Topics NOT Covered in Detail**
