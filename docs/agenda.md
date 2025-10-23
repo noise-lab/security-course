@@ -572,6 +572,7 @@
 * **Topics to Cover from Last Time**
   * Apple Private Relay
   * Session key that is exchanged in ODNS
+  * RPKI bootstrapping question: How do you reach RPKI servers without validated BGP routes? (Answer: Use static routes, IGP routes, or deploy validators inside your network to avoid circular dependency)
 * Debate: Privacy Omnibus
 * Lecture Coverage
    * Web Tracking
