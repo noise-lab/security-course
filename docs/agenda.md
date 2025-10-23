@@ -437,22 +437,135 @@
     * Specific standards names (S-BGP vs BGPsec naming)
 * Debate: CFAA
 * Lecture Coverage: DNS Security and Privacy
-   * Background on DNS
-   * Security Risks
-     * DNS Cache Poisoning
-   * Privacy Risks
-     * Domain privacy
-     * Website fingerprinting
-   * Defenses
-     * DNS-over-TLS
-     * DNSSEC
-     * DNS-over-HTTPS
-* Lecture Coverage: Web Security and Privacy
-   * Web Architecture
-   * Same-Origin Policy
-   * Cross-Origin Resource Sharing
-   * Cross-Site Scripting, Cross-Site Request Forgery
-   * Website Fingerprinting
+  * **DNS Background and Review**
+    * **Primary Purpose**: Translate human-readable names (e.g., uchicago.edu) to IP addresses
+    * **Hierarchical System**
+      * Stub resolver: On local machine, launches DNS queries
+      * Local recursive resolver: On campus/network, caches commonly looked up domains
+      * Root servers → Top-Level Domain (TLD) servers → Authoritative name servers
+    * **DNS Resolution Process** (Slide 5)
+      1. Stub resolver sends query to local recursive resolver
+      2. If not cached, recursive resolver queries root server
+      3. Root refers to TLD server (e.g., .com)
+      4. TLD refers to authoritative name server for domain (e.g., foo.com)
+      5. Authoritative name server returns answer
+      6. Local recursive resolver caches result and returns to client
+    * **Referrals**: Each level refers query to next level down the hierarchy
+    * **Why Caching Matters**: Typical webpage requires hundreds of DNS lookups (scripts, trackers, images, etc.)
+  * **DNS Security: Integrity and DNSSEC**
+    * **Security Problem**: Until ~7-8 years ago, DNS had no signatures or encryption
+    * **Threat**: Malicious resolver could lie about DNS records
+    * **Solution: DNSSEC (DNS Security Extensions)**
+      * Uses public key infrastructure with signatures
+      * Each level signs messages with its private key
+    * **DNSSEC Public Key Hierarchy**
+      * Authoritative name server signs DNS response with its private key
+      * Name server's public key certificate is signed by TLD server
+      * TLD server's public key certificate is signed by root server
+      * Root is the trust anchor (installed in resolver software)
+      * Similar structure to web PKI and RPKI for BGP
+    * **How to Trust the Root?**
+      * Root public key installed in resolver software
+      * Trust whoever you got the software from
+      * "Trusting Trust" problem again - chain of trust must stop somewhere
+    * **Focus on Concepts, Not Protocol Details**
+      * Understand the hierarchy and how signatures work
+      * Use DNSSEC as test of understanding public key infrastructure
+      * Won't be quizzed on specific DNSSEC record types or protocol mechanics
+  * **DNS Privacy: Confidentiality Concerns**
+    * **Problem 1: Eavesdropping**
+      * DNS queries sent in the clear (unencrypted)
+      * Any eavesdropper on path can see queries
+    * **Problem 2: Local Resolver Surveillance**
+      * Local recursive resolver sees both:
+        * Your identity (IP address)
+        * What you're looking up (domain names)
+      * Do you trust your university/ISP with all your DNS queries?
+    * **Privacy Leakage from DNS Metadata** ("It's just metadata" - antenna should go up!)
+      * **Websites you visit**: Direct correlation to DNS lookups
+      * **Devices you own**: IoT devices make specific lookups (Nest, Echo, thermostats)
+      * **Activity patterns**: DNS lookups indicate browsing activity
+      * **Website Fingerprinting**
+        * Each webpage loads unique set of objects (hundreds of DNS lookups)
+        * Different pages on same site have different lookup patterns
+        * Machine learning can classify specific pages visited based on DNS fingerprint
+        * Even without seeing content, can infer what page you're viewing
+  * **DNS-over-HTTPS (DoH)**
+    * **Mozilla's 2018 Solution**
+      * Browser does DNS lookups instead of passing to OS stub resolver
+      * Encrypts DNS queries using HTTPS (already built into browsers)
+      * Sends encrypted queries to resolver over HTTPS
+    * **How It Works**
+      * DNS query embedded in HTTPS request
+      * Protects against eavesdropping on query/response
+      * Encrypted channel from browser to resolver
+    * **Default Deployment**
+      * Firefox: Cloudflare as default resolver partner
+      * Chrome: Google Public DNS as default resolver
+      * Now enabled by default (users may not even get warning)
+      * Can be configured in browser settings: Security → Secure DNS
+    * **The Trust Trade-off**
+      * **Before DoH**: Local ISP/university sees queries (unencrypted on path)
+      * **After DoH**: Cloudflare or Google sees ALL your queries (encrypted on path)
+      * Solves eavesdropping problem but centralizes trust
+      * Changed who you trust, not whether you trust someone
+    * **User Awareness Problem**
+      * Most users don't know DoH exists or is enabled
+      * Research by Ranya (student in class) on user understanding and interface design
+    * **Centralization Concerns**
+      * All DNS queries going to small number of providers (Cloudflare, Google)
+      * Single point of failure (relates to AWS outage discussion)
+      * DNS denial of service attack on these providers would be catastrophic
+  * **Oblivious DNS-over-HTTPS (ODoH)**
+    * **Goal**: Decouple DNS query content from client IP address
+    * **Core Problem with DoH**: Resolver sees both identity AND queries
+    * **ODoH Solution**: Split information between two servers
+      * **Recursive resolver**: Sees client IP address but NOT query content
+      * **ODoH authoritative server**: Sees query content but NOT client IP address
+      * Neither server has both pieces of information
+    * **How ODoH Works** ("Add a layer of indirection")
+      1. Stub encrypts query with public key of ODoH authoritative server
+      2. Appends fake TLD suffix (.odns) in the clear
+      3. Sends to recursive resolver (can't decrypt query)
+      4. Recursive resolver sees fake TLD, generates referral to ODoH authoritative
+      5. ODoH authoritative decrypts query, resolves it normally
+      6. Response encrypted and returned through chain
+      7. ODoH authoritative acts as "masking proxy"
+    * **Encryption Detail**: Query encrypted with ODoH server's public key (NOT recursive's key)
+    * **Invented by Professor's Research Group**
+      * Presented at IETF DNS Privacy working group
+      * Initially opposed by Cloudflare (Nick Sullivan: "horrible, too much latency, too complex")
+      * Later implemented by Cloudflare as "Oblivious DoH"
+      * Lesson: Strong opposition often indicates threatening/valuable idea
+    * **Centralization Research Story**
+      * 2021 paper: ~25% of top 10,000 websites hosted only on Amazon
+      * Paper warned about single point of failure
+      * Initially rejected by reviewers as bad methodology
+      * AWS outage (Monday) validated the concerns
+      * Lesson: If you have a good idea, run with it; if people get angry, keep running
+  * **Key Technical Concepts** (Pedagogical emphasis)
+    * Understanding DNS hierarchy and resolution process
+    * Public key infrastructure applied to DNS (DNSSEC)
+    * Chain of trust and roots of trust
+    * Privacy vs. security (confidentiality vs. integrity)
+    * Metadata privacy concerns
+    * Trade-offs in trust models (who do you trust?)
+    * Centralization risks in Internet infrastructure
+  * **Possible Midterm Questions**
+    * **DNS resolution process** (walk through the steps)
+    * **DNSSEC public key hierarchy** (who signs what, similar to web PKI and RPKI)
+    * **What DNSSEC protects against** (integrity, not confidentiality)
+    * **DNS privacy concerns** (what can be learned from DNS metadata)
+    * **Website fingerprinting** (how it works at high level)
+    * **DoH trust model** (who sees what before vs. after)
+    * **ODoH architecture** (how it splits information between servers)
+    * **Centralization concerns** (risks of all queries going to few providers)
+  * **Topics NOT Covered in Detail**
+    * DNSSEC record types and protocol specifications
+    * Kaminsky DNS cache poisoning attack mechanics
+    * DNS-over-TLS (DoT) vs DNS-over-HTTPS (DoH) technical differences
+    * Machine learning techniques for website fingerprinting
+    * Specific IETF standards documents
 
 # Meeting 5
 
