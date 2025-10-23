@@ -569,6 +569,9 @@
 
 # Meeting 5
 
+* **Topics to Cover from Last Time**
+  * Apple Private Relay
+  * Session key that is exchanged in ODNS
 * Debate: Privacy Omnibus
 * Lecture Coverage
    * Web Tracking
