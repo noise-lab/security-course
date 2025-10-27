@@ -27,10 +27,15 @@ explaining an access control scheme much easier. 
 complicated. It can be as simple as posting a tweet or getting a list of
 a specific user's followers. 
 
-3. **Proof that your app works**. You can submit anything from a JSON
+3. **Proof that your app works**. You can submit anything from a JSON
 returned from the API to a screen recording of your app in action.
 Again, this does not need to be anything complex but it should be clear
 that your app functions as outlined in the description. 
 
-Please submit everyone in a zip file. You're free to submit any code
-you used for your app!
+4. **Your name and CNET ID**.
+
+You're also free to submit any code you used for your app!
+
+To submit, add everything you'd like to include to your repo, commit 
+the changes, and push to github. Please do not push a compressed
+version (i.e. a zip file) of your submission. 
