@@ -569,25 +569,321 @@
 
 # Meeting 5
 
-* **Topics to Cover from Last Time**
-  * Apple Private Relay
-  * Session key that is exchanged in ODNS
-  * RPKI bootstrapping question: How do you reach RPKI servers without validated BGP routes? (Answer: Use static routes, IGP routes, or deploy validators inside your network to avoid circular dependency)
-* Debate: Privacy Omnibus
-* Lecture Coverage
-   * Web Tracking
-     * Third-Party Web Trackers
-     * How tracking works
-     * Tracking defenses (plugins, etc.)
-     * Legal issues?
-   * Browser Fingerprinting
-     * How it works
-       * "Canvas Fingerprinting"
-     * Defenses
-* Possible Midterm Topic: Given a diagram/scenario, explain/draw how a tracking
-  system works, and how it could be defended against.
-* NOT Covered This Year: 09-Surveillance.ppt topics, in particular, third-party metadata
-  inference, etc. (skipped entirely this year)
+* **Administrative Updates**
+  * **Midterm Scheduled for Week 6 (Meeting 6)**
+    * Past midterm examples available in GitHub docs/midterm directory
+    * Midterm will be generated using Claude (LLM) based on:
+      * Agenda file (complete record of topics covered)
+      * Past three midterms
+      * Manual editing for images, quality control
+    * Prompt will be shared with students
+      * Students can generate unlimited practice exams using same prompt
+      * Provides clear description of format, topics, point distribution
+    * **Philosophy**: No surprises, testing understanding not speed
+      * Not a timed race - take as long as needed
+      * Focus on understanding concepts
+      * Preparation/studying is most valuable part
+    * Structure similar to past years
+  * **Assignment Submission Clarification**
+    * Push to GitHub repository (private repos now)
+    * Commits have timestamps - full record available
+    * No need for separate zip files or Canvas uploads
+* **Lecture Coverage: Web Security**
+  * **SQL Injection Attacks**
+    * **Core Problem**: Code expects data, gets code instead (recurring theme in web security)
+    * **Classic Example**: xkcd "Little Bobby Tables" comic
+      * Student name: `Robert'); DROP TABLE students;--`
+      * Web form expects name (data)
+      * Instead receives SQL command (code)
+      * Code executes with privileges of web application
+    * **How It Works**
+      * Web form input inserted into SQL query
+      * Example: `SELECT * FROM students WHERE name='[USER_INPUT]'`
+      * Malicious input: `Robert'; DROP TABLE students;--`
+      * Result: Two commands executed (query + destructive command)
+      * Single quote breaks out of data context
+      * Semicolon starts new SQL command
+    * **Why Dangerous**
+      * Attacker executes code with web application's database privileges
+      * Can delete data, read sensitive information, modify records
+      * Access control bypassed
+    * **Defenses**
+      * **Sanitize/Escape Control Characters**
+        * Remove or escape special characters (quotes, semicolons)
+        * Why some forms don't allow special characters in input
+      * **Parameterized Types/Prepared Statements**
+        * Declare types on data (e.g., password type)
+        * Tell database: "treat this as data, never execute"
+        * Type casting to prevent code execution
+      * **Input Validation**
+        * Restrict allowed characters (alphanumeric only for names)
+        * Prevent special SQL characters from being submitted
+    * **For Midterm**: May give code snippet and ask to write injection attack or identify vulnerable variable
+  * **Same Origin Policy (SOP)**
+    * **Purpose**: Browser security model preventing cross-site data theft
+    * **Definition of Origin**
+      * Protocol + Hostname + Port (e.g., https://amazon.com:443)
+      * Typically just hostname in practice (HTTPS/443 standard)
+    * **Core Principle**: JavaScript/code can freely interact with same origin, but NOT read data from different origins
+    * **Key Question**: "What origin is my script running under?"
+      * Critical for understanding what's allowed vs blocked
+    * **Four Key Takeaways**
+      * **1. SOP prevents cross-site data reading**
+        * Facebook script cannot read Gmail data
+        * Browser checks origin before allowing data access
+      * **2. Loading vs Reading (Important Distinction)**
+        * Third party CAN cause browser to load cross-origin resources
+        * Third party CANNOT read the data that was loaded
+        * Example: Cross-origin images can be displayed but pixel data cannot be read
+      * **3. Scripts take origin of embedding page**
+        * Script loaded from google.com but embedded in facebook.com
+        * Script runs under facebook.com origin (NOT google.com)
+        * Allows loading libraries (jQuery, Bootstrap) from CDNs
+        * jQuery from Google CDN can't send data to Google
+      * **4. iframes maintain their own origin**
+        * iframe acts as separate page with separate origin
+        * Parent page cannot read iframe content (and vice versa)
+        * Example: Gmail inbox embedded in Facebook page
+          * Gmail iframe keeps its own origin
+          * Facebook cannot read Gmail iframe content
+    * **Examples Covered**
+      * Simple case: gmail.com script reading gmail.com data (allowed)
+      * Blocked case: facebook.com script trying to fetch gmail.com data (blocked by browser)
+      * Images: facebook.com can display image from third party, but cannot read pixel data
+      * Script tags: Can load cross-origin scripts, but script runs under embedding page's origin
+  * **Cross-Site Scripting (XSS) Attacks**
+    * **How Same Origin Policy Gets Bypassed**
+      * SOP still in effect, but attack tricks the browser
+      * Gets malicious code to run in trusted origin (first party)
+    * **Attack Mechanism**
+      * Web form expects data (e.g., user name)
+      * Attacker injects script tag instead: `<script>malicious code</script>`
+      * Vulnerable code echoes input back into HTML without sanitization
+      * Example PHP: `echo "Hello " . $_GET['name'];`
+      * Browser renders attacker's script as part of trusted page
+    * **Why Dangerous**
+      * Malicious script runs with origin of vulnerable site (e.g., Gmail)
+      * Can steal cookies, session tokens, authentication credentials
+      * Can perform actions as the user
+      * Can exfiltrate private data
+    * **Progression Example**
+      * Harmless: User types "Robert" → Page displays "Hello Robert"
+      * Formatting: User types `<b>Robert</b>` → Page displays "Hello **Robert**" (bold)
+      * Attack: User types `<script>steal_cookies()</script>` → Malicious script executes
+    * **Two Types of XSS**
+      * **Reflected XSS**: Attack happens in real-time
+        * Victim clicks malicious link
+        * Link contains script in URL parameters
+        * Vulnerable site reflects script back immediately
+        * Example: Evil site embeds iframe with malicious URL to Gmail
+      * **Stored XSS**: Attack persists on server
+        * Attacker posts script in comment field, forum post, etc.
+        * Script stored in database
+        * Every visitor loads page → script executes
+        * Common on old WordPress sites with vulnerable comment sections
+    * **Attack Flow (Reflected XSS)**
+      1. Attacker creates malicious page (evil.com)
+      2. Page contains iframe with URL: `gmail.com/?user=<script>malicious</script>`
+      3. Victim visits evil.com
+      4. Browser makes request to Gmail with script in parameter
+      5. Gmail echoes back the parameter without sanitization
+      6. Script executes in Gmail's origin
+      7. Script can now access Gmail data and send to attacker
+    * **Key Insight**: Browser has no way to know script was injected
+      * Sees HTML from Gmail containing script tag
+      * Executes it normally under Gmail's origin
+      * SOP doesn't break - attack works around it by polluting trusted origin
+    * **Defenses**
+      * **Content Security Policy (CSP)**
+        * Browser configuration to block inline scripts
+        * Only execute scripts from same origin
+        * Block `eval()` and inline script tags
+        * Trade-off: May break legitimate site functionality
+      * **Input Sanitization/Escaping**
+        * Treat all input as data, never code
+        * Escape HTML special characters (`<`, `>`, quotes)
+        * Remove script tags from input
+        * Modern frameworks (Python web frameworks) do this automatically
+      * **No-Script Browser Plugins**
+        * Block all JavaScript execution
+        * Breaks most modern websites (heavy client-side JavaScript usage)
+        * Extreme but effective defense
+    * **Relationship to SQL Injection**: Same fundamental problem - data vs code
+  * **Cross-Site Request Forgery (CSRF)**
+    * **Different Goal**: Not about reading data, about executing unwanted actions
+    * **Attack Mechanism**
+      * User logged into trusted site (e.g., bank)
+      * Visits malicious site or clicks malicious link
+      * Malicious site causes browser to make request to trusted site
+      * Trusted site sees authenticated session, executes request
+    * **Example Scenarios**
+      * Bank transfer initiated by malicious link
+      * Social media post made without user consent
+      * Settings changed on user account
+    * **Live Demo: Search History Pollution**
+      * Initial state: Search "shoes" → only shoes in history
+      * Macy's appears on page 2 of results
+      * Visit evil.com (innocent-looking muffin website)
+      * Evil site makes cross-site requests to search engine
+      * Searches for: Macy's shoes, other terms
+      * Pollutes search history without user knowledge
+      * Search "shoes" again → Macy's now on front page
+        * Search engine optimizing based on fake history
+    * **Why It Works**
+      * Browser sends cookies automatically with requests
+      * Third party CAN cause browser to make requests (allowed by SOP)
+      * Server can't distinguish legitimate from forged requests
+      * No authentication that request came from user's actual click
+    * **Defenses**
+      * **CSRF Tokens**
+        * Server generates unique token for each session/action
+        * Token embedded in legitimate forms
+        * Server validates token with each request
+        * Attacker doesn't know token, can't forge valid request
+      * **Authenticate Each Action**
+        * Don't rely solely on session cookies
+        * Require token that proves request came from legitimate user flow
+        * Example: Banking requires multiple clicks + SMS verification
+          * Each step has associated token
+          * Multi-step process with verification
+    * **Key Insight**: Request didn't come from legitimate click stream through website
+* **Lecture Coverage: Web Privacy and Tracking**
+  * **Third-Party Tracking Overview**
+    * **Definition**: Any site other than the one you're visiting (first party)
+    * **Characteristics**
+      * Typically invisible to users
+      * Examples: BlueKai, LiveRamp, Google Analytics, Facebook Pixel
+      * Most users never heard of these companies
+    * **How It Works**
+      * Third-party scripts/images loaded on multiple first-party sites
+      * Same third party on many different sites
+      * Example: BlueKai on both Amazon and Walmart
+      * Third party can correlate visits across all sites where embedded
+    * **Live Demos**
+      * Browser inspection showing multiple domains loaded
+      * Disconnect plugin visualization
+        * Graph showing trackers as hubs
+        * Each spoke = website visited
+        * Hub sees all connected sites
+      * Amazon example: BlueKai, IMDB, multiple trackers loaded
+      * News sites: Particularly heavy with trackers (4+ advertising domains)
+    * **Common Third-Party Trackers**
+      * **Advertising**: media.net, geoedge, LiveRamp
+      * **Analytics**: Google Analytics (on ~50% of websites)
+      * **Social**: Facebook Connect/Meta Pixel, Twitter/X button
+      * **Tag Managers**: Google Tag Manager
+      * **Other**: DoubleClick, AdSense
+    * **Prevalence Statistics** (study from ~2017, likely higher now)
+      * Google Analytics: ~50% of page loads
+      * 75% of first-party websites include some Google tracker
+      * Facebook trackers: Also on majority of sites
+      * Consolidation: Small number of companies (Google, Meta) see most web activity
+    * **Social Sharing Buttons as Trackers**
+      * Twitter/X share button on page → Twitter sees you visited
+      * Facebook like button → Facebook sees you visited
+      * Don't have to click button - just loading it tracks you
+  * **First-Party Tracking with Third-Party Code**
+    * **Different Model**: Third-party code runs in first-party origin
+    * **How It Works**
+      * First party (e.g., Reverb) embeds advertiser's code on their site
+      * Code runs under first-party origin (no SOP restriction)
+      * Code can see everything: shopping cart, clicks, form inputs
+      * Data sent to advertising company
+    * **Real-World Example**
+      * Put item in cart on Reverb
+      * Later see ad for same item on Instagram
+      * Advertising company saw cart contents, shared with Instagram
+    * **Legal Implications**
+      * First party liable for what embedded code collects
+      * Privacy regulations (GDPR, CCPA, etc.) apply
+      * Risk: Embedded code collecting PII without first party knowing
+      * Class action lawsuits when code collects sensitive data (e.g., SSN)
+      * First parties must audit third-party code carefully
+    * **Business Model**
+      * Advertising company likely gets commission on conversions
+      * Re-marketing based on shopping cart/browsing behavior
+  * **Cookie-Based Tracking**
+    * **How Cookies Enable Cross-Site Tracking**
+      * Visit Amazon → BlueKai sets cookie in browser
+      * Visit Walmart → Browser sends same BlueKai cookie back
+      * BlueKai: "Same browser, can correlate visits"
+      * Builds profile of browsing history
+    * **Cookie Mechanics**
+      * Server sends `Set-Cookie` header
+      * Browser stores cookie
+      * Browser automatically sends cookie back to same domain
+      * Third-party cookies sent to third party across multiple first-party sites
+    * **Live Demo Attempts**
+      * Tried to show cookies in browser inspector
+      * Modern browsers (Firefox) blocking cross-site cookies by default
+      * Safari also blocking
+      * Protection now standard in browsers
+    * **Browser Protections**
+      * Cross-site cookie blocking (now default in Firefox, Safari)
+      * Settings: "Block cross-site cookies"
+      * Prevents third party from setting/reading cookies across sites
+    * **Cookie Deletion**
+      * Common advice: "Delete your cookies"
+      * Good practice periodically
+      * But NOT sufficient (see fingerprinting below)
+  * **Browser Fingerprinting**
+    * **Problem**: Even with cookies deleted, still trackable
+    * **Concept**: Browser configuration uniquely identifies device
+    * **Fingerprinting Attributes**
+      * Browser type and version
+      * Operating system
+      * Screen size and resolution
+      * Installed fonts
+      * Installed plugins/extensions
+      * Graphics card (affects rendering)
+      * Language preferences
+      * Canvas fingerprinting (how browser renders graphics)
+      * Timezone
+      * Many other attributes
+    * **How JavaScript Accesses This**
+      * JavaScript can query browser properties
+      * BlueKai script can read fonts, screen size, browser version, etc.
+      * Combine attributes → unique fingerprint
+    * **Cover Your Tracks Exercise**
+      * Website: coveryourtracks.eff.org (Electronic Frontier Foundation)
+      * Students run test on their browsers
+      * Shows uniqueness of browser fingerprint
+      * Identifies which attributes are rare/unique
+      * Example results:
+        * Canvas hash: 1 in 250 (fairly unique)
+        * Screen resolution: 1 in 250
+        * Combined: Even more unique
+    * **Live Demo Results**
+      * Professor's Firefox: Some attributes common, some unique
+      * Combination makes browser identifiable
+      * Even with privacy protections enabled, still somewhat fingerprintable
+    * **Key Insight for Midterm**
+      * **Q**: Is deleting cookies sufficient to prevent tracking?
+      * **A**: No, because of browser fingerprinting
+      * Devices can be uniquely identified without cookies
+    * **Defenses**
+      * Use common browser configurations (don't customize)
+      * Disable JavaScript (breaks most sites)
+      * Use Tor Browser (designed to be non-unique)
+      * Privacy-focused browsers with anti-fingerprinting
+      * Trade-off: Privacy vs functionality
+* **Topics Mentioned But Not Covered in Detail**
+  * TLS details beyond what was covered in PKI lecture (slides in deck but not tested)
+  * Device fingerprinting beyond browser (deferred, overlaps with browser fingerprinting)
+* **Possible Midterm Topics**
+  * SQL injection: Given code, write attack or identify vulnerable variable
+  * SQL injection defenses: Explain how to prevent
+  * Same origin policy: What's allowed vs blocked in various scenarios
+  * XSS: Explain attack flow, identify vulnerable code
+  * CSRF: Explain attack, describe token-based defense
+  * Third-party tracking: Explain how tracker sees visits across multiple sites
+  * Cookie-based tracking: How it works across sites
+  * Browser fingerprinting: Why deleting cookies is insufficient
+  * Given diagram/scenario: Explain how tracking works and defenses
+* **Debate Topic**: Privacy Omnibus (mentioned but details not in transcript)
+* **Break**: Taken around 6:20 PM
+* **Topics After Break** (not in this transcript portion)
+  * Device privacy (mentioned as next topic, details not provided)
 
 # Meeting 6 
 
