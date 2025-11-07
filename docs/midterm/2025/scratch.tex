@@ -1,0 +1,72 @@
+% Removed sections to reduce exam from 94 to 76 points
+% These can be restored or swapped back if desired
+
+\section*{Cryptography Failures}
+
+\prob{3}
+According to Anderson's "Why Cryptosystems Fail," what is the most common cause of cryptographic system failures?\\
+\correctanswercircle{Poor implementation and key management} \\
+\answercircle{Weak cryptographic algorithms}\\
+\answercircle{Insufficient key lengths}\\
+\answercircle{Hardware failures}\\
+\answercircle{Social engineering attacks}
+\eprob
+
+\prob{4}
+Which of the following are examples of implementation failures that can compromise cryptographic systems? (Select all that apply.)\\
+\correctanswercircle{Using weak random number generators for key generation}\\
+\correctanswercircle{Storing encryption keys in plaintext on the same system}\\
+\correctanswercircle{Reusing the same key for multiple purposes}\\
+\answercircle{Using AES-256 instead of AES-128}\\
+\correctanswercircle{Failing to validate certificates properly in TLS connections}
+\eprob
+
+% Total: 7 points
+
+\section*{Routing Security}
+
+\prob{3}
+What is the primary security vulnerability in the Border Gateway Protocol (BGP)?\\
+\correctanswercircle{BGP routers trust route announcements without cryptographic verification} \\
+\answercircle{BGP uses weak encryption algorithms}\\
+\answercircle{BGP doesn't support IPv6}\\
+\answercircle{BGP has insufficient bandwidth capacity}\\
+\eprob
+
+\prob{4}
+Which of the following are potential consequences of BGP hijacking attacks? (Select all that apply.)\\
+\correctanswercircle{Traffic can be redirected through attacker-controlled infrastructure}\\
+\correctanswercircle{Attackers can perform man-in-the-middle attacks on intercepted traffic}\\
+\correctanswercircle{Legitimate networks can become unreachable}\\
+\answercircle{BGP routing tables can be permanently corrupted}\\
+\correctanswercircle{Attackers can analyze patterns of network traffic}
+\eprob
+
+\pagebreak
+\prob{4}
+Explain how RPKI (Resource Public Key Infrastructure) helps improve BGP security and what limitations it still has.\\
+\answerbox{2.5}{
+    RPKI helps improve BGP security by providing cryptographic verification of route origins. It allows network operators to create signed Route Origin Authorizations (ROAs) that specify which autonomous systems are authorized to announce specific IP prefixes. This prevents some forms of BGP hijacking by enabling routers to validate route announcements. However, RPKI has limitations including incomplete deployment, the fact that it only validates origins (not the full path), and it doesn't prevent attacks by authorized ASes or compromised ROA keys.
+}
+\eprob
+
+% Total: 11 points
+
+% Additional removed questions:
+
+\prob{3}
+In OAuth 2.0, what is the primary purpose of the authorization server?\\
+\correctanswercircle{To verify the identity of the resource owner and issue access tokens} \\
+\answercircle{To store and serve the protected resources}\\
+\answercircle{To authenticate the client application}\\
+\answercircle{To encrypt all communication between parties}\\
+\eprob
+
+\prob{3}
+According to Anderson's "Why Cryptosystems Fail," what is the most common cause of cryptographic system failures?\\
+\correctanswercircle{Poor implementation and key management} \\
+\answercircle{Weak cryptographic algorithms}\\
+\answercircle{Insufficient key lengths}\\
+\answercircle{Hardware failures}\\
+\answercircle{Management issues}
+\eprob

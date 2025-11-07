@@ -1,0 +1,19 @@
+TODO: Add reflected XSS diagram as reflected-xss.png
+
+Reference diagrams:
+- https://www.researchgate.net/figure/A-Typical-Scenario-of-Reflected-Cross-site-Scripting-Attack_fig1_268195367
+- https://www.researchgate.net/figure/The-process-of-reflected-XSS-Attack_fig2_338000205
+- https://portswigger.net/web-security/cross-site-scripting/reflected (has examples)
+
+Diagram should show:
+1. Attacker crafts malicious URL with <script> tag
+2. Attacker sends URL to victim (email/social media)
+3. Victim clicks link, sends HTTP request to vulnerable server
+4. Vulnerable server reflects the script back in HTTP response ← ANSWER: Circle this part
+5. Victim's browser executes the script
+6. Script sends cookies to attacker's server
+
+Based on the slide XML, slides 28-30 show XSS examples with:
+- HTTP GET requests with user input
+- Server reflecting the input back in HTTP responses
+- Shows flow between browser (user) and server

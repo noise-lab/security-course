@@ -1,0 +1,232 @@
+\vspace*{-0.1in}
+\section*{Ethics}
+
+\prob{4} According to the Menlo Report, which of the following ethical principles should guide cybersecurity research? (Select all that apply.)\\
+\correctanswercircle{Respect for Persons} \\
+\correctanswercircle{Beneficence}\\
+\correctanswercircle{Justice}\\
+\answercircle{Respect for Property}\\
+\correctanswercircle{Respect for Law and Public Interest}
+\eprob
+
+\begin{center}
+\framebox[0.9\linewidth]{
+\parbox{0.8\linewidth}{
+    {\bf Case Study:}
+    A cybersecurity researcher discovers a critical vulnerability in a widely-used 
+    IoT device that could allow attackers to gain unauthorized access to users' 
+    home networks. The researcher wants to publish their findings to raise awareness 
+    and encourage the manufacturer to fix the issue. However, the manufacturer argues 
+    that public disclosure could put millions of users at risk before a patch is 
+    available, and threatens legal action under the Computer Fraud and Abuse Act 
+    (CFAA). The researcher must decide whether to publish immediately, delay 
+    publication to allow for coordinated disclosure, or not publish at all.
+}
+    }
+\end{center}
+
+\prob{3} Use the principle of {\em beneficence} to present an argument {\bf in favor} of immediate publication.\\
+\answerbox{2.5}{
+Immediate publication would serve the greater good by alerting users to the vulnerability so they can take protective measures (such as disabling the device or isolating it from their network). This transparency maximizes benefits by empowering users to protect themselves and creates public pressure on the manufacturer to develop a fix quickly, potentially preventing widespread exploitation.
+}
+\eprob
+
+\newpage
+\prob{4} Use the principle of {\em justice} to present an argument {\bf against} immediate publication.\\
+\answerbox{2.0}{
+Immediate publication could unfairly distribute harm, as technically sophisticated users may be able to protect themselves while less technical users remain vulnerable. This creates an unequal distribution of risk where those with fewer resources or technical knowledge bear a disproportionate burden of potential harm from the disclosed vulnerability.
+}
+\eprob
+
+\prob{3} A security researcher wants to study password reuse patterns by analyzing data from previous data breaches. The researcher plans to use this data to develop better password policies and security recommendations. However, the data contains plaintext passwords and personal information of millions of users who never consented to having their information used for research purposes. Which ethical principle is most directly violated by using this data without user consent?\\
+\answercircle{Justice}\\
+\answercircle{Beneficence}\\
+\answercircle{Respect for Law and Public Interest}\\
+\correctanswercircle{Respect for Persons} \\
+\answercircle{None of the above}
+\eprob
+
+
+\vspace*{-0.1in}
+\section*{Foundations}
+
+\prob{3} In Thompson's "Reflections on Trusting Trust," what is the main lesson about trust in computing systems?\\
+\answercircle{Compilers always produce trustworthy output}\\
+\answercircle{Source code inspection is sufficient to verify system security}\\
+\correctanswercircle{You cannot fully trust code that you did not completely create yourself}\\
+\answercircle{Open source software is inherently more trustworthy}\\
+\answercircle{Backdoors in compilers are easy to detect through code review}
+\eprob
+
+\prob{4} According to Anderson's "Why Cryptosystems Fail," which of the following are examples of how cryptosystems fail due to people and operational issues rather than cryptographic weaknesses? (Select all that apply.)\\
+\correctanswercircle{ATM fraudsters exploiting weaknesses in how PIN verification is implemented}\\
+\correctanswercircle{Bank employees being bribed or coerced to compromise security}\\
+\answercircle{Mathematical weaknesses in encryption algorithms}\\
+\correctanswercircle{Poor key management and storage practices}\\
+\correctanswercircle{Failure to properly audit and monitor system access}
+\eprob
+
+\newpage
+\section*{Public Key Infrastructure}
+
+\prob{4} Which of the following statements correctly describes the role of a Certificate Authority (CA) in Public Key Infrastructure (PKI)? (Select all that apply.)\\
+\correctanswercircle{A CA issues digital certificates that bind public keys to identities}\\
+\answercircle{A CA encrypts all communication between clients and servers}\\
+\correctanswercircle{A CA verifies the identity of entities before issuing certificates}\\
+\answercircle{A CA stores the private keys of all entities in the PKI}\\
+\correctanswercircle{If a CA's private key is compromised, all certificates issued by that CA become untrustworthy}
+\eprob
+
+\prob{4} In Assignment 1, you captured HTTP and HTTPS traffic with Wireshark. Describe what specific differences you observed in the packet traces between HTTP and HTTPS traffic, and explain why self-signed certificates generate browser warnings.\\
+\answerbox{2.0}{
+In Wireshark, HTTP traffic showed plaintext content including request URLs, headers, and response bodies that could be read directly. HTTPS/TLS traffic showed encrypted application data that appeared as unreadable ciphertext after the TLS handshake completed. Self-signed certificates generate browser warnings because they are not signed by a trusted Certificate Authority (CA). Browsers maintain a list of trusted root CAs, and will only accept certificates signed by those CAs without warnings. Self-signed certificates act as their own CA, which is not in the browser's trusted list.
+}
+\eprob
+
+\prob{3} Explain what happens when a Certificate Authority (CA) is compromised and how this affects the security of the entire PKI system.\\
+\answerbox{1.75}{
+When a CA is compromised, attackers gain access to the CA's private key, which allows them to issue fraudulent certificates for any domain or entity. This means attackers can impersonate legitimate websites, conduct man-in-the-middle attacks, and intercept encrypted communications. The compromise affects the entire PKI system because all certificates issued by that CA become potentially untrustworthy, requiring certificate revocation and potentially browser updates to remove the compromised CA from trusted root stores.
+}
+\eprob
+
+\vspace*{-0.1in}
+\section*{Authentication}
+
+\prob{4}
+OAuth 2.0 allows users to grant third-party applications access to their resources without sharing their passwords.  \yesnoyes
+\eprob
+\prob{3}
+Explain why or why not.\\
+\answerbox{1.25}{
+Yes. OAuth 2.0 is specifically designed to allow users to authorize third-party applications to access their resources (like files, profile information, etc.) without sharing their actual passwords. Instead, the authorization server issues access tokens to the third-party application after the user grants permission. This way, the user's password remains secure and is never exposed to the third-party application.
+}
+\eprob
+
+\newpage
+\prob{4}
+Which of the following are security benefits of using OAuth 2.0 instead of sharing passwords directly? (Select all that apply.)\\
+\correctanswercircle{Users don't need to share their passwords with third-party applications}\\
+\correctanswercircle{Access tokens can be limited in scope and expire automatically}\\
+\correctanswercircle{Users can revoke access to third-party applications without changing their password}\\
+\answercircle{OAuth 2.0 provides stronger encryption than traditional password authentication}\\
+\correctanswercircle{Applications only receive the minimum permissions needed to function}
+\eprob
+
+\prob{3} What is a potential security risk of OAuth 2.0 implementations?\\
+\correctanswercircle{Improperly configured scopes could grant excessive permissions}\\
+\answercircle{OAuth 2.0 transmits passwords in plaintext}\\
+\answercircle{Access tokens are permanently valid}\\
+\answercircle{OAuth 2.0 doesn't support HTTPS}\\
+\eprob
+
+\vspace*{-0.1in}
+\section*{Denial of Service and Botnets}
+
+\prob{4} Which of the following characteristics make DNS particularly suitable for amplification attacks? (Select all that apply.)\\
+\correctanswercircle{DNS responses are typically much larger than DNS queries} \\
+\correctanswercircle{DNS servers will respond to queries with spoofed source IP addresses} \\
+\correctanswercircle{DNS operates over UDP, which doesn't require connection establishment} \\
+\answercircle{DNS queries always require authentication} \\
+\eprob
+
+\prob{4} Which of the following are typical characteristics that make denial of service attacks difficult to defend against? (Select all that apply.)\\
+\correctanswercircle{Attack traffic is often difficult to distinguish from legitimate traffic}\\
+\correctanswercircle{Attacks often involve asymmetry where small requests generate large responses}\\
+\correctanswercircle{IP address spoofing makes attribution difficult}\\
+\answercircle{Attacks always target a single specific port}\\
+\correctanswercircle{Attackers can use reflection to hide the true source of the attack}
+\eprob
+
+\section*{Web Security}
+
+\prob{4} Which of the following best describes the Same-Origin Policy in web browsers?\\
+\correctanswercircle{Scripts can only access resources from the same protocol, domain, and port}\\
+\answercircle{All websites must use the same security certificates}\\
+\answercircle{Cookies are shared between all websites on the same domain}\\
+\answercircle{HTTPS connections are required for all cross-domain requests}\\
+\eprob
+
+\vspace*{-0.25in}
+\prob{4} The diagram below shows a {\bf reflected XSS} attack. Fill in the blank box to show the malicious payload.\\
+\vspace*{-0.2in}
+\begin{center}
+\ifthenelse{\equal{\version}{solution}}{%
+\includegraphics[width=0.65\textwidth]{reflected-xss-solution.png}%
+}{%
+\includegraphics[width=0.65\textwidth]{reflected-xss.png}%
+}
+\end{center}
+\eprob
+\vspace*{-0.15in}
+
+\prob{3} Which of the following are effective defenses against Cross-Site Scripting (XSS) attacks? (Select all that apply.)\\
+\correctanswercircle{Input validation and sanitization to remove or encode dangerous characters}\\
+\correctanswercircle{Content Security Policy (CSP) headers to restrict script execution}\\
+\correctanswercircle{Output encoding when displaying user-generated content}\\
+\answercircle{Using HTTPS instead of HTTP}\\
+\eprob
+
+\vspace*{-0.1in}
+\section*{Web Tracking}
+\vspace*{-0.15in}
+
+\prob{4} The diagram below shows third-party tracking. Fill in the boxes to show: (1) What code nytimes.com includes to trigger the browser to contact the tracker (2) The HTTP request to the tracking server.\\
+\vspace*{-0.25in}
+\begin{center}
+\ifthenelse{\equal{\version}{solution}}{%
+\includegraphics[width=0.65\textwidth]{tracking-solution.png}%
+}{%
+\includegraphics[width=0.65\textwidth]{tracking.png}%
+}
+\end{center}
+\eprob
+
+\newpage
+\prob{3} Which of the following techniques can be used for browser fingerprinting to track users even after they delete cookies? (Select all that apply.)\\
+\correctanswercircle{Canvas fingerprinting using HTML5 canvas rendering}\\
+\correctanswercircle{Collecting browser and system information like screen resolution and installed fonts}\\
+\correctanswercircle{Measuring timing differences in JavaScript execution}\\
+\answercircle{Setting persistent cookies with long expiration dates}\\
+\correctanswercircle{Checking installed browser plugins and extensions}
+\eprob
+
+\vspace*{-0.1in}
+\section*{DNS Security}
+\vspace*{-0.15in}
+
+\prob{3}
+What was the primary vulnerability exploited in the Kaminsky DNS cache poisoning attack?\\
+\correctanswercircle{Predictable transaction IDs and source ports in DNS queries} \\
+\answercircle{Unencrypted DNS communication}\\
+\answercircle{Weak authentication in DNS servers}\\
+\answercircle{Buffer overflows in DNS parsing code}\\
+\eprob
+
+\prob{3} Explain what privacy risks exist when DNS queries are sent unencrypted, and what information can be observed by network intermediaries.\\
+\answerbox{1.25}{
+Unencrypted DNS queries reveal the domain names a user is visiting to anyone who can observe network traffic, including ISPs, WiFi operators, and other network intermediaries. This allows observers to build detailed profiles of browsing behavior, track which websites users visit, and potentially use this information for surveillance, censorship, or targeted advertising. Even though the full URL path is not visible, domain names alone reveal significant information about user activities and interests.
+}
+\eprob
+
+\vspace*{-0.2in}
+\prob{3} What security or privacy problem does DNSSEC solve?\\
+\answerbox{1.25}{
+DNSSEC provides authentication and integrity for DNS responses through cryptographic signatures, protecting against DNS cache poisoning attacks and man-in-the-middle attacks that could forge or tamper with DNS responses. It ensures that the DNS response actually came from the authoritative DNS server and hasn't been modified in transit. However, DNSSEC does not provide privacy/confidentiality - DNS queries and responses are still sent in plaintext and can be observed by network intermediaries.
+}
+\eprob
+
+\prob{2}
+When DNS-over-HTTPS is enabled, network administrators can still monitor DNS queries by inspecting traffic at the local DNS resolver. \yesnono
+\eprob
+
+\section*{Feedback}
+\vspace*{-0.25in}
+\prob{1}
+Interest (1=Boring!; 10=Amazing!): \shortanswerbox{0.5}{8}
+Difficulty (1=Too easy; 10=Too hard): \shortanswerbox{0.5}{6}
+\eprob
+\prob{1}
+1. One thing you liked about the course so far. 2. One suggestion for
+improvement:\\
+\answerbox{0.7}{Good mix of technical and policy topics. More hands-on labs would be helpful.}
+\eprob
