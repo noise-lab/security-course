@@ -891,26 +891,54 @@
 
 # Meeting 7
 
-* Debate: Copyright
-* Software Copyright and Fair Use
-   * Fair Use Principles
-     * Purpose and Character of the Use (Is the use "transformative"?)
-     * Nature of the Copyrighted Work (Factual vs. Creative)
-     * Amount and Substantiality of the Portion Used (How much was used?)
-     * Effect of the Use on the Market (Does it compete with the original?)
-   * Reverse Engineering for Interoperability (Sega v. Accolade, Google v. Oracle)  
-   * Possible Midterm Topic: Given a scenario, analyze whether a particular use
-     of copyrighted material is likely to be considered fair use. Consider
-     recent software copyright cases (Google v. Oracle, Splunk v. Cribl,
-     etc.). Or, a hypothetical scenario (involving AI?)
-* CPRA Compliance and Automated Compliance Checking
-   * Requirements for Opt-Out Links
-   * Spillover Effect
-   * CPRA
-     * Overview
-     * Key Provisions
-     * Automated Compliance Checking
-* Debate: Content Moderation
+* **Administrative Updates**
+  * **Midterm 1 Results**: Grades returned quickly, scores were high
+  * **Regrade Policy**: Actual mistakes fixed immediately; discretionary requests will trigger re-reading entire exam
+  * **Assignment Policy**: Using LLMs allowed but must acknowledge use and understand submissions
+  * **Midterm 2 Preview (Week 9)**
+    * Topics: Privacy law (emphasis), compliance enforcement, copyright, AI and privacy, content moderation (light), assignments
+    * More assignment questions than Midterm 1
+    * Not cumulative (except possibly Assignment 1)
+  * **Course Schedule**: Topic 12 (Broadband Infrastructure) removed
+* **Lecture Coverage: Privacy Law and Regulation**
+  * **Historical Context**
+    * Warren & Brandeis (1890): "The Right to Privacy" - response to photography and gossip journalism
+    * Pattern: Privacy law reactive to new technology
+  * **Computerized Records (1970s)**: Five new privacy threats from mainframe computers
+  * **Fair Information Practice Principles (FIPPs) - 1973**
+    * Source: HEW report "Records, Computers, and the Rights of Citizens"
+    * Foundation for most privacy law worldwide
+    * Five principles: (1) No secret record-keeping, (2) Right to know what's collected and how used, (3) Prevent secondary use without consent, (4) Right to correct records, (5) Reasonable security precautions
+  * **Re-examining FIPPs**: Old model assumes static data in databases; modern reality involves queries, ML, probabilistic inference
+  * **Personally Identifiable Information (PII)**
+    * "Surprisingly difficult to define"
+    * Clear examples: SSN, name, address
+    * Gray area: Zip code, IP address
+    * Key insight: "Any information that distinguishes one person from another can be used for re-identifying data"
+    * Re-identification attacks: AOL search data, Netflix Prize (Arvind Narayanan), Massachusetts health records (Latanya Sweeney)
+  * **US Privacy Law: Sectoral/Patchwork Approach**
+    * No comprehensive federal law
+    * Laws driven by: who has data, specific harms, data-sharing initiatives
+    * Examples: Privacy Act (1974), FCRA (1970), FERPA (1974), Video Privacy Protection Act (1988), Driver's Privacy Protection Act (1994), HIPAA (1996), GLBA (1999), COPPA (1998), GINA (2008)
+    * **HIPAA Gap**: Doesn't cover fitness apps, period trackers, mental health apps, 23andMe
+    * **Breach Notification**: California 2003 first; now all 50 states have laws
+    * **Compliance**: Companies typically apply strictest state law to everyone
+  * **FTC - De Facto Privacy Regulator**
+    * Primary tool: Section 5 FTC Act ("unfair or deceptive practices")
+    * Recent cases: Amazon Prime (settlement), BetterHelp ($7.8M, 2023), GoodRx ($1.5M, 2023), Uber (2017), Facebook ($5B, 2019)
+    * Pattern: Cases settle, rarely go to trial
+  * **Privacy Principles**
+    * Notice, Appropriate Uses, Individual Choice (opt-in vs opt-out), Access and Correction, Security, Minimization
+    * Notice and consent model challenges: policies unreadable, implementation diverges from policy
+  * **GDPR (European Union)**
+    * Omnibus law with extraterritorial reach
+    * Applies to any company offering services to EU residents
+    * Requirements: consent (opt-in), right to be forgotten, cross-border transfer restrictions, DPIA
+    * Enforcement: Major fines (Meta €1.2B 2023, Amazon €746M 2021, Google €90M+ 2021)
+    * Debate: Protects privacy or strengthens incumbents? Compliance expensive for small companies
+* **Key Concepts for Midterm 2**
+  * FIPPs (five principles), PII challenges, sectoral vs omnibus laws, FTC Section 5, opt-in vs opt-out, GDPR scope, breach notification, minimization
+* **Debate: Content Moderation** (may appear on Midterm 2)
 
 # Meeting 8
 
