@@ -90,7 +90,7 @@ Your submission should include:
    - Over-blocking analysis and appeal process research
    - Policy recommendations
 
-4. **Your name and CNET ID**
+4. **Your name**
 
 You're encouraged to use AI tools to help with coding and analysis, but you must understand and be able to explain all aspects of your implementation.
 

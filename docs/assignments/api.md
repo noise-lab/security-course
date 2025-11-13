@@ -32,7 +32,7 @@ returned from the API to a screen recording of your app in action.
 Again, this does not need to be anything complex but it should be clear
 that your app functions as outlined in the description. 
 
-4. **Your name and CNET ID**.
+4. **Your name**.
 
 You're also free to submit any code you used for your app!
 
