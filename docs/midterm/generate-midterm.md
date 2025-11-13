@@ -51,9 +51,9 @@ The midterm should cover material from **Meetings 1-5** according to the course 
 - Use `\includegraphics[width=0.65\textwidth]{filename.png}` for diagrams
 - Use conditional rendering for student vs. solution versions:
   ```latex
-  \ifthenelse{\equal{\version}{solution}}{%
+  \ifthenelse{\equal{\version}{solution}}{% raw %}{%{% endraw %}
   \includegraphics[width=0.65\textwidth]{diagram-solution.png}%
-  }{%
+  }{% raw %}{%{% endraw %}
   \includegraphics[width=0.65\textwidth]{diagram.png}%
   }
   ```
