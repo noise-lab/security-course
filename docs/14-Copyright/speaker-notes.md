@@ -1,0 +1,1012 @@
+# Speaker Notes: Copyright and Fair Use
+
+## Opening Hook (before title slide)
+
+**Choose one of these hooks to open the lecture:**
+
+**Hook 1 - The Billion Dollar Question:**
+"In 2010, Oracle sued Google for $9 billion. Google had copied 11,500 lines of code—less than 1% of the Java API. Eleven years and four different court decisions later, the Supreme Court finally ruled. Who won? And what does this have to do with the AI tools you're using every day? That's what we're exploring today."
+
+**Hook 2 - The YouTube Dilemma:**
+"Imagine you spent 50 hours making a video essay analyzing your favorite film. You include a 2-minute clip to illustrate your point—classic fair use, right? YouTube's algorithm flags it instantly. The studio claims your video. Your monetization is gone. You can appeal, but the studio reviews your appeal. See the problem? Today we're talking about copyright in the age of automation."
+
+**Hook 3 - The NASA Paradox:**
+"In 2021, NASA live-streamed the Mars rover landing—one of humanity's greatest achievements. Within hours, their own video was flagged for copyright infringement on YouTube. How is that possible? Welcome to copyright enforcement in the 21st century, where algorithms make millions of decisions every day, and not all of them make sense."
+
+**Hook 4 - The API Wars:**
+"What if I told you that the alphabet arrangement on your keyboard—QWERTY—could be copyrighted, and anyone who made a keyboard would have to pay royalties? Sound absurd? That's essentially what Oracle argued in their case against Google. The Supreme Court disagreed, but it took 11 years to settle. Today we'll learn why this case matters for everything from software to AI."
+
+## Slide 1: Title Slide
+- Welcome students
+- Bridge from previous lecture on AI privacy
+- Today's focus: legal framework of copyright and fair use
+- Use one of the hooks above to grab attention
+
+## Slide 2: Today's Agenda
+- Overview of topics
+- Emphasize connection between copyright law and technology/AI
+
+## Slide 3: What is Copyright?
+
+**Key points to emphasize:**
+- Copyright is a constitutional mandate (Article I, Section 8)
+- Balance between incentivizing creators and public benefit
+- Software as copyrightable since Computer Software Copyright Act of 1980
+
+**Discussion prompt:** "What happens if copyright protection is too strong? Too weak?"
+
+**Links:**
+- U.S. Copyright Office basics: [U.S. Copyright Office basics](https://www.copyright.gov/what-is-copyright/)
+- Computer Software Copyright Act: [Computer Software Copyright Act](https://en.wikipedia.org/wiki/Computer_Software_Copyright_Act)
+
+## Slide 4: Copyright Protections
+
+**Explain each exclusive right:**
+- Reproduction: making copies (physical or digital)
+- Distribution: sharing, selling, lending
+- Derivative works: translations, adaptations, sequels
+- Public performance: live or recorded performances
+- Public display: showing the work publicly
+
+**Note:** These rights can be licensed separately (important for entertainment industry)
+
+**Example:** When you buy a movie on iTunes, you get a license to watch it, but you don't get the right to make copies or show it publicly
+
+**Links:**
+- Copyright Act Section 106: [Copyright Act Section 106](https://www.copyright.gov/title17/92chap1.html#106)
+- Copyright basics video: [Copyright basics video](https://www.youtube.com/watch?v=Tamoj84j64I)
+
+## Slide 5: The Fair Use Doctrine
+
+**Historical context:**
+- Common law doctrine codified in Copyright Act of 1976 (17 U.S.C. § 107)
+- Recognized that some uses serve public interest
+- Enables freedom of expression and innovation
+
+**Emphasize:** Fair use is determined case-by-case, no bright-line rules
+
+**Case examples to mention:**
+- Campbell v. Acuff-Rose (2 Live Crew parody) - fair use
+- Harper & Row v. Nation Enterprises (memoir excerpt in magazine) - NOT fair use
+
+**Links:**
+- Fair Use Index (case database): [Fair Use Index (case database)](https://www.copyright.gov/fair-use/)
+- Stanford Fair Use resources: [Stanford Fair Use resources](https://fairuse.stanford.edu/)
+
+## Slide 6: The Four-Factor Fair Use Test
+
+**Introduce 17 U.S.C. § 107**
+
+Read the statute language if time permits:
+> "In determining whether the use made of a work in any particular case is a fair use the factors to be considered shall include—
+> (1) the purpose and character of the use...
+> (2) the nature of the copyrighted work;
+> (3) the amount and substantiality of the portion used...
+> (4) the effect of the use upon the potential market..."
+
+**Important:** Courts must consider ALL factors; no single factor is determinative
+
+## Slide 7: Factor 1 - Purpose and Character
+
+**Transformativeness - key concept:**
+- Introduced in Campbell v. Acuff-Rose (1994)
+- Justice Souter: "the goal of copyright, to promote science and the arts, is generally furthered by the creation of transformative works"
+- Has become THE most important consideration
+
+**Examples:**
+- Transformative: Search engine thumbnails (Kelly v. Arriba Soft)
+- Transformative: Google Books snippets (Authors Guild v. Google)
+- Not transformative: Copying software for same purpose
+
+**Links:**
+- Campbell v. Acuff-Rose decision: [Campbell v. Acuff-Rose decision](https://supreme.justia.com/cases/federal/us/510/569/)
+- Authors Guild v. Google: [Authors Guild v. Google](https://law.justia.com/cases/federal/appellate-courts/ca2/13-4829/13-4829-2015-10-16.html)
+
+## Slide 8: Factor 2 - Nature of the Work
+
+**Explain the creative/factual spectrum:**
+- Highly creative (strong protection): novels, music, films
+- Factual (weaker protection): news reports, databases
+- Functional (weakest protection): software, instructions
+
+**Why it matters:**
+- Copyright protects expression, not facts/ideas
+- Functional works are closer to unprotectable ideas
+- Published works have weaker claim (already disclosed to public)
+
+**Example:** Copying phone book listings was NOT infringement (Feist v. Rural) because facts aren't copyrightable
+
+## Slide 9: Factor 3 - Amount and Substantiality
+
+**Quantitative vs. qualitative:**
+- Quantitative: percentage of work copied
+- Qualitative: importance of copied portion (the "heart" of the work)
+
+**Examples:**
+- Harper & Row: 300 words from 200,000-word book, but it was the "heart" (NOT fair use)
+- Perfect 10 v. Amazon: Entire thumbnails copied (fair use because transformative)
+
+**Key insight:** Sometimes copying the whole work is necessary for transformative purpose
+
+## Slide 10: Factor 4 - Effect on Market Value
+
+**Market harm analysis:**
+- Does the use substitute for purchasing the original?
+- Does it harm the market for derivative works?
+- Would widespread similar use cause substantial harm?
+
+**Important:** Not just current harm, but potential future markets
+
+**Example:** Sony v. Universal (Betamax case): Time-shifting didn't harm market (fair use)
+
+**Links:**
+- Sony Corp. v. Universal City Studios: [Sony Corp. v. Universal City Studios](https://supreme.justia.com/cases/federal/us/464/417/)
+
+## Slide 11: Case Study - Google v. Oracle
+
+**Background for students:**
+- Java: popular programming language created by Sun Microsystems (1995)
+- Android: Google's mobile OS (2007), became dominant smartphone platform
+- Oracle acquired Sun and Java in 2010, then sued Google in 2010
+
+**Why this case matters:**
+- Settled fundamental questions about software copyright
+- Directly relevant to AI training data debate
+- Shows how fair use doctrine adapts to new technologies
+
+**Timeline:**
+- 2010: Oracle sues Google
+- 2012: APIs not copyrightable (Alsup decision)
+- 2014: Federal Circuit reverses (APIs ARE copyrightable)
+- 2016: Jury finds fair use
+- 2018: Federal Circuit reverses again (NOT fair use)
+- 2021: Supreme Court rules FOR Google on fair use grounds
+
+**Links:**
+- Supreme Court decision: [Supreme Court decision](https://www.supremecourt.gov/opinions/20pdf/18-956_d18f.pdf)
+- SCOTUSblog case page: [SCOTUSblog case page](https://www.scotusblog.com/case-files/cases/google-llc-v-oracle-america-inc/)
+- Ars Technica analysis: [Ars Technica analysis](https://arstechnica.com/tech-policy/2021/04/google-wins-supreme-court-case-against-oracle-saves-billions/)
+
+## Slide 12: What's an API?
+
+**For non-technical students:**
+- API = like a menu at a restaurant
+- Declaring code = menu listings (what you can order)
+- Implementing code = the recipes (how dishes are made)
+
+**Technical explanation:**
+- API defines how software components interact
+- Declaring code: names, parameters, return types
+- Implementing code: the actual algorithm
+
+**Demo opportunity:** Show simple API example on screen
+```java
+// DECLARING CODE (what Google copied)
+public static int max(int a, int b)
+
+// IMPLEMENTING CODE (what Google wrote themselves)
+public static int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+```
+
+**Key point:** Google wrote ALL implementing code (millions of lines), only copied declaring code (11,500 lines) for compatibility
+
+## Slide 13: The Legal Journey
+
+**Emphasize the procedural oddity:**
+- Case bounced between courts 4 times over 11 years
+- District court (Judge Alsup, experienced programmer) sided with Google twice
+- Federal Circuit (different judges) sided with Oracle twice
+- Supreme Court finally resolved it
+
+**Copyrightability vs. fair use:**
+- Supreme Court ASSUMED APIs were copyrightable (didn't decide)
+- Focused entirely on fair use
+- Practical effect: even if copyrightable, Google's use was permitted
+
+**Quote from Justice Breyer (concurrence):**
+> "Oracle's computer code is copyrightable. But I should not have to answer that question. The answer is immaterial to whether this copying is permissible under fair use."
+
+## Slide 14: Factor 1 - Supreme Court Analysis
+
+**Transformativeness was decisive:**
+- Justice Breyer's majority opinion emphasized this heavily
+- Google didn't just copy Java to compete with Java
+- Created entirely new platform (smartphones) with new purpose
+
+**Key quote:**
+> "Google's use of the Sun Java API was a transformative use... Google reimplemented a user interface, taking only what was needed to allow users to put their accrued talents to work in a new and transformative program."
+
+**Analogy used in briefs:** Like QWERTY keyboard layout - functional arrangement that promotes compatibility
+
+**Discussion:** Would it be fair use if Google just made a Java clone for desktops?
+
+## Slide 15: Factor 2 - Supreme Court Analysis
+
+**Functional nature of declaring code:**
+- APIs are tools for programmers to use
+- Like organizing system or filing cabinet
+- More functional than creative
+
+**Court's analogy:** Like the Dewey Decimal System - creative arrangement but functional purpose
+
+**Oracle's counterargument (rejected):**
+- Sun's engineers made creative choices in API design
+- Could have organized differently
+- Still entitled to copyright protection
+
+**Court's response:** Creativity doesn't override functional purpose
+
+## Slide 16: Factor 3 - Supreme Court Analysis
+
+**Numbers:**
+- 11,500 lines copied (declaring code)
+- 2.86 million total lines in Java API
+- Only 0.4% copied
+- BUT Google wrote millions of lines of implementing code
+
+**Why Google needed to copy:**
+- Java programmers already knew the declaring code
+- Reusing it allowed programmers to transfer skills
+- Promoted developer adoption of Android
+- Alternative would be to create new API (developers learn from scratch)
+
+**Key principle:** Amount must be evaluated in context of transformative purpose
+
+## Slide 17: Factor 4 - Supreme Court Analysis
+
+**Market harm evaluation:**
+- Oracle and Google served different markets
+- Oracle focused on servers and desktops
+- Google entered smartphone market Oracle hadn't pursued
+- No evidence Android harmed Java's existing markets
+
+**Oracle's licensing argument:**
+- Oracle wanted Google to pay licensing fee
+- Court rejected this: "We have held that 'copyright holders may not preempt exploitation of transformative markets'"
+
+**Court's policy consideration:** Concern about blocking transformative uses and innovation
+
+## Slide 18: Why This Case Matters
+
+**For software industry:**
+- Enables interoperability
+- Protects reverse engineering for compatibility
+- Allows new platforms to build on existing standards
+- Developer ecosystem can transfer skills
+
+**Broader implications:**
+- Shows fair use doctrine is flexible and adaptable
+- Transformative use is a powerful defense
+- Public interest and innovation matter in fair use analysis
+
+**Concerns:**
+- Some worry it weakens copyright protection for software
+- Others celebrate it as protecting innovation
+- Dissent (Alito, Thomas) argued it undermines copyright incentives
+
+**Links:**
+- EFF analysis: https://www.eff.org/deeplinks/2021/04/victory-fair-use-supreme-court-reverses-federal-circuit-oracle-v-google
+- Dissenting opinion analysis: [Supreme Court decision](https://www.supremecourt.gov/opinions/20pdf/18-956_d18f.pdf) (starting page 53)
+
+## Slide 19: Copyright Detection
+
+**Transition to practical application:**
+- From legal theory to enforcement
+- Modern platforms face massive scale
+- YouTube: 500 hours uploaded per minute
+- Manual review impossible
+
+**Demo opportunity:** Show YouTube Content ID interface (screenshots or live if possible)
+
+**Links:**
+- YouTube Content ID explainer: https://support.google.com/youtube/answer/2797370
+- How Content ID works video: https://www.youtube.com/watch?v=9g2U12SsRns
+
+## Slide 20: How Content ID Works
+
+**Technical details:**
+- Audio fingerprinting: Creates hash based on audio characteristics
+- Video fingerprinting: Perceptual hashing of frames
+- Database: Over 100 million reference files
+- Matching: Checks every upload against database
+
+**Statistics:**
+- 98% of copyright claims made through Content ID (not DMCA)
+- Over $2 billion paid to rights holders annually
+
+**Benefits:**
+- Scale: can process millions of uploads
+- Speed: near-instant detection
+- Flexibility: rights holders choose action (block, monetize, track)
+
+**Links:**
+- How YouTube's Content ID System Works: https://www.plagiarismtoday.com/2019/10/01/how-youtubes-content-id-system-works/
+
+## Slide 21: The Over-Blocking Problem
+
+**Real examples to discuss:**
+- Film critics can't include clips (commentary should be fair use)
+- Music teachers flagged for playing public domain pieces
+- Parodies blocked despite clear fair use
+- News clips removed
+
+**Why algorithms fail:**
+- Can't evaluate transformativeness
+- Can't understand context
+- Can't assess purpose
+- No "common sense" judgment
+
+**Quote from EFF:**
+> "Automated copyright filters are censorship machines that leverage the vast imbalance of power between giant platforms and their users."
+
+**Links:**
+- EFF on copyright filters: https://www.eff.org/issues/intellectual-property/copyright-filters
+- Article 17 concerns in EU: https://www.eff.org/deeplinks/2021/06/europes-new-copyright-directive-threatening-free-speech
+
+## Slide 22: The Appeals Process
+
+**Walk through YouTube's system:**
+1. Content ID match → video monetized by claimant or blocked
+2. Creator disputes → claimant has 30 days to respond
+3. Claimant can release claim or reject dispute
+4. If rejected, creator can appeal
+5. Claimant can file DMCA or release
+6. DMCA → creator can counter-notify → 10-14 days to restore or lawsuit
+
+**Problems:**
+- Claimant acts as judge in own case
+- Slow (can take months)
+- Creator loses revenue during dispute
+- Power imbalance: 3 copyright strikes = channel deletion
+- Chilling effect: creators avoid legitimate fair use to prevent disputes
+
+**Alternative systems:**
+- Facebook Rights Manager: similar process
+- Twitch: automated muting of VODs
+- TikTok: blocks before posting
+
+## Slide 23: False Positives in the Wild
+
+**Case studies to share:**
+
+1. **NASA Mars landing (2021):**
+   - NASA's own Mars rover landing flagged
+   - Turned out: news outlets used NASA footage, then claimed copyright
+   - NASA: public domain federal government work
+
+2. **Birds singing copyrighted music:**
+   - Rumor, but illustrates the absurdity concerns
+
+3. **Musicians flagged for own work:**
+   - Common issue when distribution rights split among labels
+
+4. **Public domain classical music:**
+   - Recordings of public domain compositions flagged
+   - Rights in the performance recording vs. composition itself
+
+5. **Video game streamers:**
+   - In-game music triggers claims
+   - Game publishers often have to intervene
+
+**Links:**
+- Vice article on false positives: https://www.vice.com/en/article/youtubes-copyright-system-isnt-broken-the-world-is/
+- NASA Mars landing incident: https://www.theverge.com/2021/2/22/22295938/nasa-perseverance-mars-landing-youtube-copyright
+
+## Slide 24: The Fair Use Dilemma
+
+**Rights holder perspective (get students to articulate):**
+- Billions in lost revenue from piracy
+- Can't manually review millions of videos
+- Need automation to protect rights
+- Licensing is a legitimate business model
+
+**Creator perspective:**
+- Fair use is a legal right, not a privilege
+- Algorithms don't understand fair use
+- Dispute process favors rights holders
+- Chills legitimate expression
+
+**Question for class:** Can both be right? Is there a solution?
+
+## Slide 25: Balancing Copyright and Innovation
+
+**Historical examples of balance concerns:**
+- Printing press: threatened scribes, but enabled mass literacy
+- Piano rolls: challenged sheet music publishers, led to compulsory licensing
+- VCR: movie studios sued (Sony v. Universal), but time-shifting deemed fair use
+- MP3/Napster: led to iTunes and streaming services
+
+**Copyright's evolution:**
+- Originally 14 years (1790)
+- Now life + 70 years
+- More protections, longer terms over time
+- Question: Has the balance shifted too far?
+
+**Links:**
+- Copyright term extension debate: https://en.wikipedia.org/wiki/Copyright_Term_Extension_Act
+- "Free Culture" by Lawrence Lessig: http://www.free-culture.cc/
+
+## Slide 26: Technical Solutions?
+
+**Possible improvements (discuss with class):**
+- Fair use pre-filters (detect short clips, commentary, education tags)
+- Context-aware AI (analyze purpose, not just matching)
+- Confidence scores (show why content flagged)
+- Whitelist legitimate creators
+- Grace periods before monetization/blocking
+
+**Limitations:**
+- Fair use requires human judgment
+- Context is everything
+- No algorithm can perfectly assess "transformativeness"
+- Risk of gaming the system
+
+**Example:** YouTube's manual claim review team (but not scalable)
+
+## Slide 27: Policy Solutions?
+
+**Reform proposals:**
+
+1. **Mandatory human review before blocking:**
+   - Pro: Protects fair use
+   - Con: Expensive, slow
+
+2. **Penalty for false claims:**
+   - Pro: Deters abuse
+   - Con: May deter legitimate claims
+
+3. **Neutral arbitration:**
+   - Pro: Fair process
+   - Con: Who pays?
+
+4. **Safe harbors for commentary/education:**
+   - Pro: Clear rules
+   - Con: Hard to define boundaries
+
+**DMCA 512 reform:**
+- Current law favors takedown
+- Counter-notice process slow
+- Repeat infringer provisions harsh
+
+**Links:**
+- DMCA Section 512: https://www.copyright.gov/title17/92chap5.html#512
+- EFF DMCA reform proposals: https://www.eff.org/issues/dmca
+
+## Slide 28: Activity - Fair Use Analysis
+
+**Facilitation notes:**
+- Give students 2 minutes to think individually
+- Pair up for 3 minutes discussion
+- Take 3-4 volunteers to share analysis
+
+**Expected answers:**
+
+1. **Purpose/character:** Highly transformative (criticism/commentary), educational. **Favors fair use.**
+
+2. **Nature of work:** Creative (film), but published. **Neutral or slightly against fair use.**
+
+3. **Amount used:** 2 minutes from ~90-120 minute film (~1-2%). Substantiality depends on which scene. **Likely favors fair use if not the "heart."**
+
+4. **Market effect:** Unlikely to substitute for watching the movie. May actually help market (advertising effect). **Favors fair use.**
+
+**Conclusion:** Likely fair use, especially if truly critical/analytical
+
+**Follow-up:** "Would Content ID block this? Probably yes - can't evaluate transformativeness."
+
+## Slide 29: Copyright and AI - Preview
+
+**Set up next lecture:**
+- Google v. Oracle involved copying code for compatibility
+- AI training involves copying for pattern learning
+- Is it analogous? Or different?
+
+**Key questions to preview:**
+1. Is AI training transformative?
+2. Does memorization/reproduction matter?
+3. What about commercial use?
+4. Does it harm authors' markets?
+
+**Recent lawsuits:**
+- New York Times v. OpenAI (December 2023)
+- Authors Guild v. OpenAI (multiple authors)
+- Getty Images v. Stability AI (images)
+- Music publishers v. Anthropic (lyrics)
+
+**Links:**
+- NYT v. OpenAI complaint: https://nytimes.com/2023/12/27/business/media/new-york-times-open-ai-microsoft-lawsuit.html
+- Authors Guild lawsuit: https://www.theguardian.com/books/2023/sep/20/authors-guild-openai-lawsuit-copyright-infringement
+
+## Slide 30: Key Takeaways
+
+**Reinforce main points:**
+- Copyright serves a constitutional purpose (progress)
+- Fair use is essential for free expression and innovation
+- Four-factor test provides flexible framework
+- Google v. Oracle shows transformative use is powerful defense
+- Automation struggles with fair use's context-dependency
+- Balance is essential but hard to achieve
+
+## Slide 31: Questions for Discussion
+
+**Facilitation:**
+- Pick 2-3 questions based on time
+- Small group discussions (3-4 students)
+- Or full class discussion if group is small
+
+**Question 1:** Platform liability
+- Current law: platforms not liable if they follow DMCA takedown process
+- Should they be responsible for what users upload?
+- Would stricter liability kill platforms or just make them more careful?
+
+**Question 2:** Better systems
+- Can we design systems that respect fair use?
+- Should there be human review requirements?
+- Who should bear the cost?
+
+**Question 3:** Google v. Oracle and AI
+- We'll cover this next lecture, but preview the debate
+- Is AI training like API copying (functional, transformative)?
+- Or is it different (verbatim reproduction, market harm)?
+
+**Question 4:** Human judgment role
+- Fair use requires balancing and context
+- Can this ever be fully automated?
+- What's the right mix of automation and human review?
+
+## Slide 32: Next Lecture Preview
+
+**Bridge to AI and Copyright:**
+- Today: fair use framework, Google v. Oracle
+- Next time: Apply framework to AI training
+- Read assigned cases before class
+- Think about whether AI training feels like fair use to you
+
+## Slide 33: Thank You
+
+- Remind about assignment (Copyright Detection Systems)
+- Office hours availability
+- Questions welcome
+
+---
+
+## Additional Resources for Instructor
+
+### Demonstrations/Activities
+
+**Demo 1: Content ID Walkthrough**
+- If you have a YouTube channel, show the Content ID interface
+- Upload a test video with copyrighted music
+- Show how quickly it's detected
+- Walk through dispute process (without actually disputing)
+
+**Demo 2: Fair Use Evaluation**
+- Show 3-5 short video clips
+- Students vote: fair use or not?
+- Discuss why reasonable people disagree
+- Highlight why automation is hard
+
+**Demo 3: API Visualization**
+- Show simple code example
+- Highlight declaring vs. implementing code
+- Explain what Google copied vs. wrote
+
+**Activity: Copyright Debate**
+- Divide class: Team Rights Holder vs. Team Creator
+- Debate whether automated copyright detection helps or harms creators
+- Can be formal debate or informal discussion
+
+### Case Studies to Reference
+
+1. **Sony v. Universal (Betamax, 1984):**
+   - Movie studios sued Sony over VCRs
+   - Claimed home recording was copyright infringement
+   - Supreme Court: Time-shifting is fair use
+   - Result: Home video market exploded
+   - Link: [Sony Corp. v. Universal City Studios](https://supreme.justia.com/cases/federal/us/464/417/)
+
+2. **Campbell v. Acuff-Rose (2 Live Crew, 1994):**
+   - 2 Live Crew parodied "Oh, Pretty Woman"
+   - Supreme Court: Parody can be fair use
+   - Introduced "transformativeness" as central to Factor 1
+   - Link: [Campbell v. Acuff-Rose decision](https://supreme.justia.com/cases/federal/us/510/569/)
+
+3. **Authors Guild v. Google (Google Books, 2015):**
+   - Google scanned millions of books for search
+   - Showed "snippets" in results
+   - Court: Highly transformative, fair use
+   - Relevant to AI training debate
+   - Link: [Authors Guild v. Google](https://law.justia.com/cases/federal/appellate-courts/ca2/13-4829/13-4829-2015-10-16.html)
+
+4. **Perfect 10 v. Amazon (thumbnails, 2007):**
+   - Google Image Search displayed thumbnail images
+   - Court: Transformative (search vs. aesthetic), fair use
+   - Even though entire image copied
+   - Link: https://law.justia.com/cases/federal/appellate-courts/ca9/06-55405/06-55405-2007-12-03.html
+
+### News Articles
+
+- **The Verge - Google v. Oracle:** [The Verge - Google v. Oracle](https://www.theverge.com/2021/4/5/22358833/google-oracle-supreme-court-fair-use-copyright-api-java)
+- **Ars Technica - Content ID problems:** [Ars Technica - Content ID problems](https://arstechnica.com/tech-policy/2020/09/youtube-copyright-strikes-have-become-a-tool-for-fraud-and-abuse/)
+- **EFF - Copyright filters:** [EFF - Copyright filters](https://www.eff.org/deeplinks/2019/03/eus-parliament-signs-off-disastrous-internet-law-what-happens-next)
+- **Wired - AI copyright battles:** [Wired - AI copyright battles](https://www.wired.com/story/generative-ai-copyright-law/)
+
+### Academic Papers
+
+1. **Pamela Samuelson, "Google Book Search and the Future of Books in Cyberspace" (2011)**
+   - Analysis of Google Books case
+   - Fair use and innovation
+
+2. **Matthew Sag, "Copyright and Copy-Reliant Technology" (2009)**
+   - Discusses technologies that copy but serve different purposes
+   - Relevant to Google v. Oracle and AI
+
+3. **Barton Beebe, "An Empirical Study of U.S. Copyright Fair Use Opinions" (2008)**
+   - Statistical analysis of fair use cases
+   - Factor 1 (transformativeness) most predictive
+
+### Videos
+
+- **LegalEagle on Google v. Oracle:** [LegalEagle on Google v. Oracle](https://www.youtube.com/watch?v=aY4YTEy58QQ)
+- **Tom Scott on copyright filters:** [Tom Scott on copyright filters](https://www.youtube.com/watch?v=1Jwo5qc78QU)
+- **Computerphile on APIs:** [Computerphile on APIs](https://www.youtube.com/watch?v=BxV14h0kFs0)
+
+### Policy Documents
+
+- **Copyright Office Fair Use Index:** [Fair Use Index (case database)](https://www.copyright.gov/fair-use/)
+- **DMCA Section 512:** [DMCA Section 512](https://www.copyright.gov/title17/92chap5.html#512)
+- **EU Copyright Directive (Article 17):** [EU Copyright Directive (Article 17)](https://eur-lex.europa.eu/eli/dir/2019/790/oj)
+
+---
+
+## Timing Guide (75-minute class)
+
+- Title/Intro: 2 min
+- Slides 2-4 (Copyright basics): 8 min
+- Slides 5-10 (Fair use four factors): 15 min
+- Slides 11-18 (Google v. Oracle): 18 min
+- Slides 19-23 (Copyright detection): 10 min
+- Slides 24-27 (Balancing/solutions): 8 min
+- Activity (slide 28): 7 min
+- Slides 29-30 (AI preview, takeaways): 4 min
+- Discussion questions: 8 min
+- Closing: 2 min
+
+**Buffer: 13 minutes for questions, extended discussion, or demos**
+
+---
+
+## Common Student Questions
+
+**Q: "Can I use copyrighted music in my YouTube video if I credit the artist?"**
+A: No. Credit doesn't equal permission. You need a license or fair use defense. Background music in personal videos is typically NOT fair use (not transformative).
+
+**Q: "What about Creative Commons?"**
+A: CC is a licensing system, not a copyright exception. CC-BY, CC-BY-SA, etc. grant specific permissions. Always check the license terms.
+
+**Q: "If I change 10% of the work, is it fair use?"**
+A: No "10% rule" exists. Fair use depends on four factors, especially transformativeness. Changing small amounts usually doesn't make it transformative.
+
+**Q: "Why did Google win but Napster lost?"**
+A: Napster enabled verbatim copying for same purpose (listening to music). Not transformative. Google created new purpose (smartphone platform). Transformativeness matters.
+
+**Q: "Can AI-generated content be copyrighted?"**
+A: Current Copyright Office position: No, requires human authorship. AI as tool (like Photoshop) is OK. But pure AI output not copyrightable. We'll discuss more in AI-Copyright lecture.
+
+**Q: "What about memes? Are they fair use?"**
+A: Usually yes (transformative, commentary), but depends. Most rights holders don't sue over memes (bad PR, not worth it). But technically, some memes might not be fair use.
+
+---
+
+## Talking Points for All Linked Resources
+
+### Copyright Basics
+
+**[U.S. Copyright Office basics](https://www.copyright.gov/what-is-copyright/)**
+- **What it covers:** Official government explanation of copyright law
+- **Key sections to reference:**
+    - What can be copyrighted (and what can't)
+    - Duration of copyright protection
+    - How to register a copyright
+    - Fair use explanation
+- **Teaching use:** Authoritative source for basic definitions
+
+**[Computer Software Copyright Act](https://en.wikipedia.org/wiki/Computer_Software_Copyright_Act)**
+- **What it is:** 1980 amendment making software copyrightable
+- **Before 1980:** Unclear if software could be copyrighted
+- **Key provision:** Classified computer programs as "literary works"
+- **Impact:** Foundation for modern software industry and licensing
+
+### Case Law Resources
+
+**[Copyright Act Section 106](https://www.copyright.gov/title17/92chap1.html#106)**
+- **What it contains:** The six exclusive rights of copyright holders
+- **Why it matters:** Legal foundation for all copyright claims
+- **Key rights listed:**
+    1. Reproduction
+    2. Derivative works
+    3. Distribution
+    4. Public performance
+    5. Public display
+    6. Digital audio transmission (added later)
+- **Teaching point:** All copyright infringement involves violating one or more of these
+
+**[Copyright basics video](https://www.youtube.com/watch?v=Tamoj84j64I)**
+- **What it covers:** Crash Course video on copyright fundamentals
+- **Length:** ~12 minutes
+- **Useful for:** Visual learners, pre-class assignment
+- **Covers:** History, fair use, public domain, Creative Commons
+
+### Fair Use Resources
+
+**[Fair Use Index (case database)](https://www.copyright.gov/fair-use/)**
+- **What it is:** Searchable database of fair use cases from Copyright Office
+- **How to use:** Search by factor (1-4), type of work, or case outcome
+- **Teaching use:** Find real examples to illustrate different fair use scenarios
+- **Note:** Shows that fair use is highly fact-specific
+
+**[Stanford Fair Use resources](https://fairuse.stanford.edu/)**
+- **What it contains:** Comprehensive fair use information
+- **Key sections:**
+    - Fair use checklist
+    - Summaries of important cases
+    - Fair use myths
+    - Permission guidelines
+- **Strength:** Plain-language explanations for non-lawyers
+
+### Major Copyright Cases
+
+**[Campbell v. Acuff-Rose decision](https://supreme.justia.com/cases/federal/us/510/569/)**
+- **The case:** 2 Live Crew's parody of "Oh, Pretty Woman"
+- **Year:** 1994
+- **Holding:** Commercial parody can be fair use
+- **Key contribution:** Established "transformativeness" as central to Factor 1
+- **Quote to use:** "The goal of copyright... is generally furthered by the creation of transformative works"
+- **Impact:** Made Factor 1 the most important factor in modern fair use analysis
+
+**[Authors Guild v. Google](https://law.justia.com/cases/federal/appellate-courts/ca2/13-4829/13-4829-2015-10-16.html)**
+- **The case:** Google scanned 20+ million books for Google Books
+- **Year:** 2015 (2nd Circuit)
+- **Holding:** Highly transformative, fair use
+- **Key reasoning:**
+    - Search function is transformative (not reading books)
+    - Snippets don't substitute for books
+    - Benefits scholarship and research
+- **Relevance to AI:** Often cited by AI companies as precedent
+
+**[Sony Corp. v. Universal City Studios](https://supreme.justia.com/cases/federal/us/464/417/)**
+- **The case:** Movie studios sued Sony over VCR (Betamax)
+- **Year:** 1984
+- **Holding:** Time-shifting TV shows for personal viewing is fair use
+- **Impact:** Established "substantial noninfringing uses" test
+- **Historical note:** Studios predicted VCRs would destroy movie industry; instead created huge home video market
+
+**[Perfect 10 v. Amazon](https://law.justia.com/cases/federal/appellate-courts/ca9/06-55405/06-55405-2007-12-03.html)**
+- **The case:** Google Image Search thumbnail images
+- **Year:** 2007
+- **Holding:** Thumbnails are fair use
+- **Key reasoning:**
+    - Highly transformative (search/navigation vs. aesthetic enjoyment)
+    - Even though entire image copied, it's low-res
+    - Different purpose from original
+- **Relevance:** Shows entire work can be copied if sufficiently transformative
+
+### Google v. Oracle Resources
+
+**[Supreme Court decision](https://www.supremecourt.gov/opinions/20pdf/18-956_d18f.pdf)**
+- **Full citation:** Google LLC v. Oracle America, Inc., 593 U.S. ___ (2021)
+- **Page count:** 63 pages (majority + dissent)
+- **Vote:** 6-2 (Breyer wrote majority; Alito and Thomas dissented; Barrett recused)
+- **Key sections:**
+    - Pages 1-35: Majority opinion (fair use analysis)
+    - Pages 53-63: Dissent (argues it weakens copyright)
+- **Quote for class:** "Google's copying of the API was a fair use of that material as a matter of law"
+
+**[SCOTUSblog case page](https://www.scotusblog.com/case-files/cases/google-llc-v-oracle-america-inc/)**
+- **What it contains:** Case timeline, oral argument audio, analysis
+- **Useful sections:**
+    - Oral argument transcript (shows justices' concerns)
+    - Amicus briefs (who supported each side)
+    - Post-decision analysis
+- **Teaching point:** Show how many organizations filed briefs (tech industry vs. content industry)
+
+**[Ars Technica analysis](https://arstechnica.com/tech-policy/2021/04/google-wins-supreme-court-case-against-oracle-saves-billions/)**
+- **What it covers:** Plain-language explanation of the decision
+- **Why useful:** More accessible than reading the full opinion
+- **Key points covered:**
+    - Why it took 11 years
+    - What APIs are (with examples)
+    - Why it matters for software development
+    - Implications for AI
+
+**[EFF analysis](https://www.eff.org/deeplinks/2021/04/victory-fair-use-supreme-court-reverses-federal-circuit-oracle-v-google)**
+- **Perspective:** Electronic Frontier Foundation (digital rights advocacy)
+- **Why they cared:** Feared Oracle win would hurt interoperability
+- **Key arguments EFF made:** APIs are functional, blocking use harms innovation
+- **Quote to use:** "This decision is a win for developers, computer users, and the public"
+
+### Content ID and Copyright Detection
+
+**[YouTube Content ID explainer](https://support.google.com/youtube/answer/2797370)**
+- **What it covers:** How Content ID works from YouTube's perspective
+- **Key info:**
+    - Who can use it (rights holders with exclusive rights)
+    - How claims work
+    - What actions rights holders can take
+    - Policy on disputes
+- **Stats from Google:**
+    - 98% of copyright claims through Content ID, not DMCA
+    - $2 billion+ paid to rights holders annually
+
+**[How Content ID works video](https://www.youtube.com/watch?v=9g2U12SsRns)**
+- **What it shows:** YouTube's official video on Content ID
+- **Length:** ~5 minutes
+- **Useful for:** Visual explanation of fingerprinting
+- **Covers:** Reference files, matching, claim actions
+
+**[How YouTube's Content ID System Works](https://www.plagiarismtoday.com/2019/10/01/how-youtubes-content-id-system-works/)**
+- **What it covers:** Third-party analysis of Content ID
+- **More critical perspective than YouTube's own docs
+- **Key points:**
+    - Accuracy issues
+    - False positive problems
+    - Power imbalance between claimants and creators
+- **Stats:** Over 100 million reference files in database
+
+### Over-Blocking and Problems
+
+**[EFF on copyright filters](https://www.eff.org/issues/intellectual-property/copyright-filters)**
+- **EFF's position:** Filters are "censorship machines"
+- **Concerns raised:**
+    - Can't evaluate fair use
+    - Err on side of takedown
+    - Chill legitimate speech
+    - Give too much power to rights holders
+- **Examples:** Legitimate content wrongly removed
+
+**[Article 17 concerns in EU](https://www.eff.org/deeplinks/2021/06/europes-new-copyright-directive-threatening-free-speech)**
+- **What Article 17 does:** Requires platforms to filter uploads for copyright
+- **Why it's controversial:**
+    - Requires "upload filters" for platforms
+    - May block parody, criticism, other fair use
+    - Platforms over-remove to avoid liability
+- **Status:** EU members implementing as of 2021-2024
+
+**[Vice article on false positives](https://www.vice.com/en/article/youtubes-copyright-system-isnt-broken-the-world-is/)**
+- **Perspective:** Argues system reflects legal imbalance, not technical failure
+- **Key argument:** Problem isn't YouTube, it's copyright law itself
+- **Examples discussed:**
+    - Legitimate uses flagged
+    - Power imbalance inherent in DMCA
+- **Provocative take:** Good for class discussion
+
+**[NASA Mars landing incident](https://www.theverge.com/2021/2/22/22295938/nasa-perseverance-mars-landing-youtube-copyright)**
+- **What happened:** NASA's own Mars rover landing flagged on YouTube
+- **The irony:** Government work is public domain
+- **Cause:** News outlets used NASA footage, then claimed copyright on their broadcasts
+- **Resolution:** NASA had to intervene to get it resolved
+- **Teaching point:** Shows automation can't understand public domain
+
+### Historical Context
+
+**[Copyright term extension debate](https://en.wikipedia.org/wiki/Copyright_Term_Extension_Act)**
+- **What it is:** 1998 law extending copyright by 20 years
+- **Nickname:** "Mickey Mouse Protection Act"
+- **Before:** Life + 50 years
+- **After:** Life + 70 years
+- **Controversy:**
+    - Benefits corporations over public domain
+    - Blocks cultural works from entering public domain
+    - Influenced by Disney lobbying
+- **Impact:** Public domain frozen from 1998-2019
+
+**["Free Culture" by Lawrence Lessig](http://www.free-culture.cc/)**
+- **What it is:** Book arguing copyright has gone too far
+- **Available:** Free online (practices what it preaches)
+- **Key arguments:**
+    - Copyright was meant to be limited
+    - Now it's effectively perpetual
+    - Stifles creativity and innovation
+- **Author:** Lawrence Lessig, founded Creative Commons
+
+### DMCA and Reform
+
+**[DMCA Section 512](https://www.copyright.gov/title17/92chap5.html#512)**
+- **What it is:** Safe harbor provisions for online platforms
+- **How it works:**
+1. Rights holder sends takedown notice
+2. Platform removes content
+3. User can file counter-notice
+4. If no lawsuit in 10-14 days, content restored
+- **Platform immunity:** Not liable if they follow process
+- **Problem:** Heavily favors takedown over fair use
+
+**[EFF DMCA reform proposals](https://www.eff.org/issues/dmca)**
+- **What EFF wants changed:**
+    - Penalties for false/abusive takedowns
+    - Faster counter-notice process
+    - Fee-shifting for bad faith claims
+    - Protection for security research
+    - Exemptions for accessibility
+- **Why it matters:** DMCA is 25+ years old, needs updating for modern internet
+
+### Broader News Coverage
+
+**[The Verge - Google v. Oracle](https://www.theverge.com/2021/4/5/22358833/google-oracle-supreme-court-fair-use-copyright-api-java)**
+- **Coverage:** Accessible summary of decision and implications
+- **Why useful:** Plain language for non-technical audience
+- **Quote to use:** "One of the most important copyright cases in a generation"
+
+**[Ars Technica - Content ID problems](https://arstechnica.com/tech-policy/2020/09/youtube-copyright-strikes-have-become-a-tool-for-fraud-and-abuse/)**
+- **What it covers:** How Content ID is weaponized for fraud
+- **Examples:**
+    - Fake copyright claims to extort creators
+    - Competitors filing false claims
+    - Bots filing automated false claims
+- **YouTube's response:** Trying to combat abuse, but hard at scale
+
+**[EFF - Copyright filters](https://www.eff.org/deeplinks/2019/03/eus-parliament-signs-off-disastrous-internet-law-what-happens-next)**
+- **Topic:** EU Copyright Directive (Article 13/17)
+- **EFF's position:** Will harm free expression online
+- **Concerns:**
+    - Mandatory upload filters
+    - "Link tax" for news snippets
+    - Benefits large platforms over small ones
+
+**[Wired - AI copyright battles](https://www.wired.com/story/generative-ai-copyright-law/)**
+- **What it covers:** Overview of AI copyright issues
+- **Usefulness:** Bridge between Google v. Oracle and AI training
+- **Key points:**
+    - Artists and authors suing AI companies
+    - Fair use questions
+    - Potential solutions
+
+### Video Resources
+
+**[LegalEagle on Google v. Oracle](https://www.youtube.com/watch?v=aY4YTEy58QQ)**
+- **Creator:** Real lawyer explaining legal cases
+- **Length:** ~20 minutes
+- **Useful for:** Students who prefer video to reading cases
+- **Covers:** Background, legal issues, implications
+- **Style:** Accessible but legally accurate
+
+**[Tom Scott on copyright filters](https://www.youtube.com/watch?v=1Jwo5qc78QU)**
+- **Topic:** Why copyright filters are impossible to make fairly
+- **Length:** ~7 minutes
+- **Key argument:** Fair use requires human judgment, algorithms can't do it
+- **Good for:** In-class viewing, very accessible
+
+**[Computerphile on APIs](https://www.youtube.com/watch?v=BxV14h0kFs0)**
+- **Topic:** What APIs are and how they work
+- **Useful for:** Students who don't understand technical side of Google v. Oracle
+- **Length:** ~10 minutes
+- **Style:** Computer science prof explains on whiteboard
+
+### EU Copyright Law
+
+**[EU Copyright Directive (Article 17)](https://eur-lex.europa.eu/eli/dir/2019/790/oj)**
+- **Official name:** Directive on Copyright in the Digital Single Market
+- **Passed:** 2019
+- **Key articles:**
+    - Article 15: "Link tax" for news publishers
+    - Article 17: Platform liability for user uploads
+- **Implementation:** EU members had until 2021 to implement
+- **Controversy:** Massive protests from internet freedom advocates
+
+### NYT and Authors Guild Lawsuits (Preview for Next Lecture)
+
+**[NYT v. OpenAI complaint](https://nytimes.com/2023/12/27/business/media/new-york-times-open-ai-microsoft-lawsuit.html)**
+- **Filed:** December 27, 2023
+- **Significance:** First major news org to sue AI company
+- **Claims:** Training infringement + output infringement
+- **Damages sought:** Billions (statutory + actual)
+- **Teaching point:** Preview of how Google v. Oracle framework applies to AI
+
+**[Authors Guild lawsuit](https://www.theguardian.com/books/2023/sep/20/authors-guild-openai-lawsuit-copyright-infringement)**
+- **Filed:** September 2023 (before NYT)
+- **Plaintiffs:** John Grisham, George R.R. Martin, Jodi Picoult, others
+- **Dataset:** Books3 (200K books from pirate sites)
+- **Significance:** Represents individual creators vs. tech giants
+- **Teaching bridge:** "Next lecture, we'll see if fair use applies to AI"
+

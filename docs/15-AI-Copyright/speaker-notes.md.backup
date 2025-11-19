@@ -1,0 +1,1337 @@
+# Speaker Notes: AI and Copyright
+
+## Opening Hook (before title slide)
+
+**Choose one of these hooks to open the lecture:**
+
+**Hook 1 - The $9 Billion Question Redux:**
+"Last class, we talked about Oracle suing Google for $9 billion over 11,500 lines of code. Today, we're talking about lawsuits over billions of copyrighted works—not thousands of lines, but entire books, news articles, artwork, and songs. The New York Times is suing OpenAI. Authors Guild, Getty Images, music publishers—everyone's suing everyone. The question is the same as Google v. Oracle, but the stakes are higher: Is this fair use? Your generation will decide."
+
+**Hook 2 - The Invisible Library:**
+"There's a dataset called Books3. It contains nearly 200,000 books—bestsellers, textbooks, novels. Harry Potter, Game of Thrones, your favorite authors. It was scraped from pirate sites. And it was used to train GPT-3, the model behind ChatGPT. Is that legal? Is it ethical? Should it matter that the AI 'learned' from these books rather than copying them? That's what we're figuring out today."
+
+**Hook 3 - Your Creative Work:**
+"If you've ever posted art online, written a blog post, shared code on GitHub, or published anything on the open web—congratulations, there's a decent chance it's been used to train an AI model. Without your permission. Without payment. Should that be allowed? The courts are deciding right now, and the answer will determine the future of both AI and creative work."
+
+**Hook 4 - The Memorization Problem:**
+"Here's a fun experiment: ask ChatGPT for the first paragraph of a New York Times article. It might refuse now, but a year ago, it would sometimes reproduce it word-for-word. OpenAI says it 'learned' from the article, it didn't copy it. But if it can spit it back out verbatim, is there really a difference? Today we're diving into the legal and ethical mess that is AI copyright."
+
+## Slide 1: Title Slide
+- Welcome back
+- This lecture synthesizes the previous two
+- Apply copyright law framework to AI training
+- Contentious, evolving area of law
+- Use one of the hooks above to grab attention
+
+## Slide 2: Today's Agenda
+- Overview of topics
+- Note: This is a LONG lecture with lots of content
+- Feel free to adjust timing based on class engagement
+
+## Slide 3: Recap
+
+**Bridge from previous lectures:**
+- Lecture 13: How AI systems work, privacy risks, memorization
+- Lecture 14: Copyright basics, fair use, Google v. Oracle
+- Today: Put them together
+
+**Ask students:**
+- "Based on what we learned about Google v. Oracle, do you think AI training is fair use?"
+- Get a quick show of hands (yes/no/unsure)
+- Revisit at end of class to see if opinions changed
+
+## Slide 4: How AI Models Learn
+
+**For non-technical students:**
+- Traditional programming: explicit rules
+- Machine learning: learn from examples
+- LLMs: learn statistical patterns from massive text datasets
+
+**Analogy:**
+- Traditional: Like a recipe book (exact instructions)
+- ML: Like learning to cook by tasting many dishes
+
+**Key concept:** The training process involves *copying* massive amounts of data
+
+## Slide 5: What Data Are AI Models Trained On?
+
+**Emphasize the scope:**
+- Not just a few examples
+- Millions to billions of copyrighted works
+- Often without explicit permission
+
+**Common Crawl:**
+- Web scraping nonprofit
+- 250+ billion web pages
+- Anyone can download and use
+- Includes copyrighted news, blogs, creative writing
+
+**Books datasets:**
+- Books3 (based on Bibliotik, a pirate library)
+- Google Books
+- Library Genesis
+- ~200,000+ books
+
+**Code:**
+- GitHub (all public repositories)
+- Stack Overflow
+- Open source and proprietary code
+
+**Images:**
+- LAION (5.85 billion images scraped from web)
+- Includes copyrighted art, photos, illustrations
+
+**Links:**
+- Common Crawl: https://commoncrawl.org/
+- Books3 controversy: https://www.theverge.com/2023/9/20/23882140/authors-guild-openai-lawsuit-copyright-infringement-books3
+- LAION dataset: https://laion.ai/
+
+## Slide 6: The Scale of Copying
+
+**Magnitude comparison:**
+- Google v. Oracle: 11,500 lines of code
+- GPT-3 training: 300 billion words (≈ 1.5 million books)
+- Stable Diffusion: 5.85 billion images
+
+**Discussion point:**
+- Does scale matter for fair use?
+- Is there a threshold where "transformative use" becomes "massive infringement"?
+- Or is the principle the same regardless of scale?
+
+**Note:** Books3 was taken offline in 2023 after publicity from lawsuits, but models already trained on it remain
+
+## Slide 7: Is This Different From Google v. Oracle?
+
+**Use this slide to structure comparison:**
+
+**Similarities (AI companies will emphasize):**
+- Both involve copying for different technological purpose
+- Both enable new capabilities
+- Both serve different markets
+- Both claimed transformative
+
+**Differences (creators will emphasize):**
+- Scale vastly larger
+- Can reproduce training data (memorization)
+- Purpose less clearly "functional"
+- Market substitution more direct
+
+**Discussion question:** Which similarities/differences are most important for fair use analysis?
+
+## Slide 8: NYT v. OpenAI
+
+**Background:**
+- NYT one of few publishers who hadn't licensed to OpenAI
+- NYT produces premium journalism (paywalled)
+- Filed December 27, 2023
+- Seeking billions in damages
+
+**Significance:**
+- First major news publisher to sue
+- Well-resourced plaintiff with strong legal team
+- High public profile
+- Could set precedent for other publishers
+
+**Links:**
+- Complaint (full text): https://nytimes.com/2023/12/27/business/media/new-york-times-open-ai-microsoft-lawsuit.html
+- Analysis: https://www.theverge.com/2023/12/27/24016212/new-york-times-openai-microsoft-lawsuit-copyright-infringement
+
+## Slide 9: NYT's Evidence
+
+**The complaint included screenshots:**
+- ChatGPT reproducing NYT articles nearly verbatim
+- Required specific prompting techniques
+- Examples from recent and archived articles
+- Showed ChatGPT could bypass paywall
+
+**NYT's theory:**
+- Training is infringement (wholesale copying)
+- Output is also infringement (derivative works)
+- Both commercial and market-substituting
+
+**Demo opportunity (if you have ChatGPT access):**
+- Try to get ChatGPT to reproduce news articles (note: OpenAI has likely patched)
+- Show how models now refuse or decline
+
+**Important context:**
+- OpenAI has since signed licensing deals with:
+  - Associated Press (AP)
+  - Axel Springer (Politico, Business Insider)
+  - Financial Times
+  - Others
+- NYT refused to license
+
+## Slide 10: OpenAI's Response
+
+**Motion to dismiss (filed in February 2024):**
+- Argued fair use permits training
+- Outputs are original, not copied
+- "Regurgitation" is rare bug, not design
+- NYT "hacked" prompts to induce regurgitation
+
+**Key arguments:**
+- Training doesn't create infringing copies in model weights
+- Fair use protects intermediate copying for transformative purpose
+- Analogous to Google Books (held fair use)
+- Public interest in AI innovation
+
+**Criticism of NYT:**
+- Cherry-picked examples
+- Used adversarial prompting
+- Ignored that model usually doesn't regurgitate
+- Seeking to control derivative market retroactively
+
+**Status (as of late 2024):**
+- Case ongoing in Southern District of New York
+- Discovery phase
+- No ruling on motion to dismiss yet
+
+**Links:**
+- OpenAI's motion to dismiss: https://www.documentcloud.org/documents/24428038-openai-motion-to-dismiss-new-york-times-lawsuit
+- Analysis: https://www.theverge.com/2024/2/26/24084368/openai-new-york-times-lawsuit-fair-use-copyright
+
+## Slide 11: The Authors Guild Lawsuits
+
+**Authors Guild background:**
+- Professional organization for writers
+- Previously sued Google over Google Books (lost on fair use)
+- Now suing over AI training
+
+**Notable plaintiffs:**
+- John Grisham (legal thrillers)
+- George R.R. Martin (Game of Thrones)
+- Jodi Picoult (bestselling novelist)
+- Jonathan Franzen (literary fiction)
+- Others
+
+**Why this matters:**
+- Represents creators vs. tech companies
+- Books are highly creative (Factor 2 against fair use)
+- Authors can show economic harm to book sales
+
+**Three separate lawsuits:**
+1. Authors Guild v. OpenAI (September 2023)
+2. Kadrey v. Meta (July 2023) - re: LLaMA model
+3. Silverman v. OpenAI (July 2023) - comedian/author Sarah Silverman
+
+**Links:**
+- Authors Guild lawsuit: https://authorsguild.org/news/authors-guild-sues-openai-for-systematic-copyright-infringement/
+- List of author plaintiffs: https://www.theguardian.com/books/2023/sep/20/authors-guild-openai-lawsuit-copyright-infringement
+
+## Slide 12: Authors' Arguments
+
+**Core theory:**
+- Books are highly creative (strong copyright)
+- Training copies entire books without permission
+- Models can summarize books (market substitution)
+- Harms both direct sales and licensing opportunities
+
+**Books3 as "smoking gun":**
+- Dataset known to be from Bibliotik (pirate site)
+- Researchers documented Books3 in model training papers
+- "Training on pirated books proves infringement intent"
+
+**Economic harm:**
+- Why buy a $30 novel if AI can summarize for free?
+- Lost advance/royalty income
+- Devalues writing as profession
+
+**Emotional/moral argument:**
+- "AI companies are strip-mining human creativity"
+- Lifetime of work reduced to training data
+- No consent, no compensation
+
+**Quote from Jonathan Franzen:**
+> "It's a washing machine that washes together all the texts and reduces them to a few archetypal narratives, and spits out a narrative on command. It's against the whole spirit of writing and reading."
+
+## Slide 13: Getty Images v. Stability AI
+
+**Getty background:**
+- Major stock photo company
+- 135+ million images in library
+- Licensing is their business model
+
+**Claim:**
+- Stable Diffusion trained on 12 million Getty images
+- Some generated images included Getty watermark (!)
+- Competes with Getty's licensing
+- Violates terms of service (no scraping)
+
+**The watermark evidence:**
+- Generated images with garbled "Getty Images" watermark
+- Suggests training data included watermarked images
+- Direct evidence of copying from Getty
+
+**Parallel lawsuits:**
+- US lawsuit (Delaware)
+- UK lawsuit (High Court)
+- Different legal frameworks (UK has different copyright law)
+
+**Significance for visual creators:**
+- Illustrators, photographers, designers concerned
+- Stock photo industry threatened
+- Different from text (visual reproduction more obvious)
+
+**Links:**
+- Getty complaint: https://newsroom.gettyimages.com/en/getty-images/getty-images-statement
+- Watermark examples: https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion
+
+## Slide 14: Music Publishers v. Anthropic
+
+**The Claude lawsuit:**
+- Anthropic is the company that created me (Claude)!
+- Filed October 2023
+- Concord, Universal, ABKCO (major publishers)
+
+**Claims:**
+- Claude trained on copyrighted song lyrics
+- Can reproduce lyrics when prompted
+- 500+ songs identified
+
+**Examples from complaint:**
+- "Sweet Caroline" (Neil Diamond)
+- "American Pie" (Don McLean)
+- "Gimme Shelter" (Rolling Stones)
+- Many others
+
+**Why lyrics specifically:**
+- Lyrics are short, highly creative
+- Easy to demonstrate reproduction
+- Clear commercial value
+- Licensing market already exists (Genius, LyricFind)
+
+**Anthropic's position:**
+- Training is fair use
+- Output of lyrics is rare
+- Have since implemented filters
+- Lyrics have de minimis contribution to model
+
+**Status:** Ongoing litigation
+
+**Personal note for class:**
+- I (Claude) now refuse to reproduce copyrighted lyrics
+- Try asking me for lyrics — I'll decline
+- This is partly due to this lawsuit
+
+**Links:**
+- Lawsuit details: https://www.theverge.com/2023/10/18/23923085/anthropic-ai-claude-copyright-lawsuit-music-publishers
+
+## Slide 15: Fair Use Factor 1 - Purpose and Character
+
+**This is the battleground factor**
+
+**AI companies' transformative use argument:**
+- Training doesn't reproduce, it learns patterns
+- Like studying art to learn technique
+- Output is new and original
+- Different purpose than reading/viewing originals
+- Enables new creative tools
+
+**Creators' counter:**
+- Training is commercial (billion-dollar companies)
+- Output serves SAME purpose (reading, viewing, using)
+- Not commentary, criticism, or parody
+- Supersedes originals
+
+**Key legal question:**
+- Is the *purpose of the copying* what matters? (training/learning)
+- Or is the *purpose of the output* what matters? (substitution)
+
+**Comparison cases:**
+- Google Books: transformative (search, not reading)
+- Google v. Oracle: transformative (different platform)
+- Campbell v. Acuff-Rose: transformative (parody)
+- Harper & Row: NOT transformative (same purpose)
+
+## Slide 16: Is AI Training Transformative? The Debate
+
+**Framing the debate:**
+
+**Google v. Oracle analogy (AI companies):**
+- Both copy for functional purpose
+- Both enable new technological capabilities
+- Both serve different markets
+- Transformativeness about process, not output
+
+**Counter (creators):**
+- Oracle APIs were functional, not creative
+- Google didn't output Java code
+- AI outputs ARE the creative works themselves
+- Market overlap is direct
+
+**Google Books analogy (AI companies):**
+- Google copied millions of books
+- Court held it was fair use
+- Transformative because enabled search, not reading
+- AI similarly transforms books into queryable knowledge
+
+**Counter (creators):**
+- Google Books showed only snippets
+- Couldn't reconstruct full books
+- AI can generate full outputs
+- Substitutes for originals
+
+**Ask class:** Which analogy is stronger?
+
+## Slide 17: Fair Use Factor 2 - Nature of Work
+
+**This factor is complicated for AI**
+
+**Problem:** Training data includes many different types of works
+
+**More factual → favors fair use:**
+- Wikipedia articles
+- News reports
+- Scientific papers
+- Databases
+
+**More creative → disfavors fair use:**
+- Novels
+- Poetry
+- Original artwork
+- Music compositions
+
+**Mixed works:**
+- News articles (factual content, creative expression)
+- Textbooks (factual information, creative explanation)
+- Code (functional but can be creative)
+
+**Likely outcome:**
+- Factor 2 analysis will vary by work type
+- May lead to different fair use conclusions for different training data
+- Hard to have blanket rule
+
+## Slide 18: Fair Use Factor 3 - Amount Used
+
+**The reality: entire works copied**
+
+**AI companies' justification:**
+- Need complete works for effective training
+- Can't train on excerpts
+- Each individual work contributes minutely to model
+- Like Perfect 10 v. Amazon (entire thumbnails)
+
+**Why entire works are claimed necessary:**
+- Statistical learning requires comprehensive patterns
+- Cherry-picking would bias model
+- Model learns from context and relationships
+
+**Creators' response:**
+- Amount factor weighs against fair use
+- No effort to minimize copying
+- Could use public domain instead
+- Could license
+
+**Legal precedent:**
+- Sometimes copying entire work is fair use (thumbnails, search)
+- But usually disfavors fair use
+- Context matters: why was entire work necessary?
+
+**Key question:** Is wholesale copying necessary for transformative purpose?
+
+## Slide 19: Fair Use Factor 4 - Market Effect
+
+**Most contentious factor**
+
+**Market substitution arguments:**
+
+**For books:**
+- Why buy novel if AI summarizes?
+- Why read news if AI synthesizes?
+- Actual NYT evidence: people asking ChatGPT for article content
+
+**For art:**
+- Why commission artist if AI generates?
+- Stock photo industry threatened
+- Freelance illustrators losing work
+
+**For code:**
+- GitHub Copilot generates code
+- Reduces need for Stack Overflow
+- May reduce demand for some programming work
+
+**AI companies' response:**
+- Different markets (tools vs. content)
+- May increase demand (exposure effect)
+- Most people using AI weren't going to buy/license anyway
+- Like cameras didn't kill portrait painting
+
+## Slide 20: The Licensing Market Debate
+
+**This is crucial**
+
+**Creators' argument:**
+- Licensing to AI is a valuable market
+- Copyright gives right to control this derivative use
+- Evidence: OpenAI NOW pays publishers (AP, FT, Axel Springer)
+- Payment proves market value
+
+**AI companies' argument:**
+- Market didn't exist when training occurred
+- Can't retroactively create harm
+- Campbell case: "copyright holders may not preempt exploitation of transformative markets"
+- Fact that some license doesn't prove others must
+
+**Oracle parallel:**
+- Oracle claimed Google should have licensed Java
+- Supreme Court rejected this
+- Fair use creates transformative markets that copyright doesn't control
+
+**Counter to Oracle parallel:**
+- Oracle couldn't show actual market harm
+- Here, creators CAN show harm (surveys, economic analysis)
+- Google v. Oracle was 6-2 decision (not unanimous)
+
+**Open question:** When does a "potential market" deserve protection?
+
+## Slide 21: The Memorization Problem
+
+**This is AI companies' biggest vulnerability**
+
+**What is memorization:**
+- Model reproduces training data verbatim
+- Not every time, but can be elicited
+- More common for data seen repeatedly
+- Contradicts "just learning patterns" defense
+
+**Why it happens:**
+- Models compress training data
+- Rare/unique phrases more likely memorized
+- Repeated content reinforced
+- Larger models memorize more
+
+**Legal significance:**
+- Undermines transformative use argument
+- Shows model is storing, not just learning
+- When memorized content output, direct market substitution
+- Could be separate infringement (output, not just training)
+
+**Research:**
+- Carlini et al. extracted memorized training data from GPT
+- Could reconstruct personal info, copyrighted text
+- Scalability: more powerful prompting = more extraction
+
+**Links:**
+- Carlini et al. (2021): https://arxiv.org/abs/2012.07805
+- Carlini et al. (2023): https://arxiv.org/abs/2211.09110
+
+## Slide 22: How Much Memorization Happens?
+
+**Quantifying the problem:**
+
+**Research findings:**
+- 0.01% - 1% of training data may be extractable
+- Sounds small, but at scale is billions of words
+- Depends on model size, training approach, data duplication
+
+**Legal question:**
+- Is ANY memorization fatal to fair use?
+- Or is de minimis memorization acceptable?
+- What if it's rare but reproducible?
+
+**AI company responses:**
+- Working to reduce memorization
+- Deduplication of training data
+- Alignment to refuse regurgitation
+- Claim it's unintentional "bug"
+
+**Creators' response:**
+- Even small percentage is massive scale
+- "Unintentional" doesn't excuse infringement
+- Shows models do copy, not just learn
+
+**Comparison:**
+- Google Books designed NOT to show full content
+- AI models CAN show full content (even if rarely)
+
+## Slide 23: Arguments FOR Fair Use
+
+**Steel-man the AI companies' position:**
+
+1. **Transformative purpose**
+   - Training is statistical analysis
+   - Purpose is learning patterns, not reproduction
+   - Outputs are original works
+   - Analogous to human learning
+
+2. **Promotes progress**
+   - AI advances science and arts (constitutional goal)
+   - Benefits society broadly
+   - Medical, scientific, educational applications
+   - Blocking AI would harm innovation
+
+3. **No meaningful market substitution**
+   - Different use case (tools vs. content)
+   - Users aren't substituting AI for specific books/articles
+   - May create new demand for originals
+
+4. **Intermediate copying precedent**
+   - Google Books, thumbnails held fair use
+   - Copying as intermediate step for transformative purpose
+
+## Slide 24: Arguments AGAINST Fair Use
+
+**Steel-man the creators' position:**
+
+1. **Commercial exploitation**
+   - Multi-billion dollar companies (OpenAI, Google, Meta)
+   - Selling products based on others' work
+   - Profit without permission or payment
+
+2. **Not truly transformative**
+   - Outputs serve SAME function as originals
+   - AI-generated text competes with writers
+   - AI-generated art competes with artists
+   - Direct market overlap
+
+3. **Unprecedented scale**
+   - Billions of works copied
+   - Goes beyond any previous fair use case
+   - Entire creative economy's output
+
+4. **Demonstrable market harm**
+   - Survey evidence of substitution
+   - Artists report lost commissions
+   - Licensing revenues lost
+
+## Slide 25: Arguments AGAINST Fair Use (cont'd)
+
+5. **Lack of consent and control**
+   - Creators never agreed
+   - Can't opt out retroactively
+   - Violates creative autonomy
+
+6. **Laundering pirated content**
+   - Books3 from pirate libraries
+   - Acknowledging illegal sources
+   - Using infringement to justify infringement
+
+7. **Alternatives existed**
+   - Public domain data available
+   - Licensing was possible
+   - Chose not to because expensive
+   - Convenience doesn't justify infringement
+
+**Discussion:** Which side is more persuasive?
+
+## Slide 26: The "Human Learning" Analogy
+
+**AI companies' analogy:**
+- "Artists learn by studying other artists"
+- "Writers read books to learn to write"
+- "AI learns the same way"
+- "Copyright doesn't prevent learning"
+
+**Deconstruct this analogy:**
+
+**1. Scale:**
+- Human: reads hundreds/thousands of works
+- AI: trained on billions of works
+- One AI can flood market with infinite outputs
+
+**2. Purpose:**
+- Human: personal growth, expression
+- AI: commercial product
+
+**3. Memory:**
+- Human: can't perfectly recall
+- AI: can reproduce verbatim (memorization)
+
+**4. Copyright law:**
+- Human reading: covered by first sale doctrine (bought the book)
+- AI training: copying for commercial database
+
+**5. Market effect:**
+- One human: limited output
+- AI: unlimited, instantaneous, zero marginal cost
+
+**Discussion question:** Does the analogy hold up? Or is it fundamentally flawed?
+
+**Alternative view:**
+- Maybe the analogy IS apt
+- Copyright law DOES permit learning
+- Outputs, not training, should be evaluated
+
+## Slide 27: International Perspectives - EU
+
+**EU AI Act (adopted 2024):**
+- Comprehensive AI regulation
+- Transparency requirements
+- Training data disclosure
+- Opt-out mechanisms
+
+**Copyright obligations:**
+- Must provide "sufficiently detailed summary" of training data
+- Rights holders can reserve rights (opt-out)
+- Enforcement through national authorities
+
+**EU Copyright Directive Article 4 (2019):**
+- Text and Data Mining exception
+- Research purposes: broad exception
+- Commercial purposes: narrower, subject to opt-out
+
+**Enforcement actions:**
+- Italy's data protection authority investigating OpenAI
+- Potential GDPR + copyright violations
+- Could result in fines or operational restrictions
+
+**Links:**
+- EU AI Act: https://artificialintelligenceact.eu/
+- Copyright Directive: https://eur-lex.europa.eu/eli/dir/2019/790/oj
+
+## Slide 28: International Perspectives - UK
+
+**UK's attempted reform (2022):**
+- Proposed broad TDM exception for AI
+- Would allow training without permission
+- Goal: boost UK AI competitiveness
+
+**Pushback:**
+- Creative industries opposed
+- Musicians, authors, artists lobbied
+- Government paused reforms (2023)
+
+**Current UK law:**
+- Existing TDM exception: non-commercial research only
+- Commercial AI training likely requires licensing
+- Government promoting voluntary licensing frameworks
+
+**Practical effect:**
+- Legal uncertainty in UK
+- Some AI companies may relocate operations
+- Contrast with EU (more restrictive) and Japan (more permissive)
+
+**Links:**
+- UK consultation: https://www.gov.uk/government/consultations/artificial-intelligence-and-intellectual-property-copyright-and-patents
+- Industry response: https://www.theguardian.com/technology/2022/jun/28/uk-plans-to-let-ai-firms-use-copyright-material-without-permission
+
+## Slide 29: International Perspectives - Japan
+
+**Japan's permissive approach:**
+- Copyright Act Article 30-4 (2018 amendment)
+- Broad exception for "information analysis"
+- Allows copying for machine learning
+- Applies even for commercial use
+
+**Rationale:**
+- Promote AI innovation
+- Maintain competitiveness
+- Intermediate copying for different purpose
+- Outputs still regulated if substantially similar
+
+**Effect:**
+- Many AI companies have Japanese operations
+- Stable Diffusion developed by Stability AI (UK) with Japanese engineers
+- Legal safe harbor for training
+
+**Critique:**
+- Doesn't protect creators
+- Race to the bottom?
+- May harm Japanese creative industries
+
+**Comparison:**
+- Japan: permissive (innovation focus)
+- EU: restrictive (creator protection focus)
+- US: uncertain (courts deciding)
+
+**Links:**
+- Japan copyright law analysis: https://www.lexology.com/library/detail.aspx?g=8a0f5c5e-7b7e-4f0f-9f0e-1e5c5f5e5f5e
+
+## Slide 30: Policy Solutions - Opt-In vs. Opt-Out
+
+**The consent debate:**
+
+**Opt-out (AI companies prefer):**
+- Default: data can be used
+- Creators actively opt-out if desired
+- Maximizes data availability
+- Precedent: robots.txt for web crawling
+
+**Opt-in (creators prefer):**
+- Default: data cannot be used
+- Explicit permission required
+- Respects creator autonomy
+- Precedent: normal copyright (all rights reserved)
+
+**Technical implementation:**
+- Robots.txt extensions (proposed)
+- Metadata tags
+- Watermarking
+- Do Not Train registries
+
+**Compromise proposals:**
+- Opt-out for existing works
+- Opt-in for future works
+- Different rules for commercial vs. research
+
+**Challenges:**
+- Retroactivity problem (already trained)
+- Enforcement difficulty
+- Global coordination needed
+
+## Slide 31: Policy Solutions - Licensing Frameworks
+
+**Collective licensing:**
+- Model: ASCAP/BMI for music
+- Organizations negotiate on behalf of creators
+- Blanket licenses to AI companies
+- Revenue distributed to members
+
+**Voluntary licensing:**
+- AI companies pay publishers/platforms
+- Examples:
+  - OpenAI + Associated Press
+  - OpenAI + Axel Springer
+  - OpenAI + Financial Times
+  - Google + News publishers
+
+**Compulsory licensing:**
+- Government-mandated terms
+- AI companies must pay but can't be blocked
+- Similar to music mechanical licenses
+- Rates set by Copyright Royalty Board
+
+**Challenges:**
+1. **Valuation:** How much is each work worth?
+2. **Attribution:** Which works contributed to which outputs?
+3. **Distribution:** How to divide payments fairly?
+4. **Non-commercial research:** Should it be exempt?
+5. **Enforcement:** Who monitors compliance?
+
+## Slide 32: Policy Solutions - Technical Measures
+
+**Watermarking:**
+- Imperceptible marks embedded in content
+- AI training could detect and respect
+- Could enable automated opt-out
+- Proposed in EU AI Act
+
+**Challenges:**
+- Retroactivity (existing content not watermarked)
+- Stripping watermarks (technical arms race)
+- Standardization needed
+
+**Model documentation:**
+- "Nutrition labels" for AI models
+- Disclose training data sources
+- Enable rights holders to identify use
+- Precedent: Model Cards (Mitchell et al.)
+
+**Differential privacy:**
+- Technical methods to prevent memorization
+- Adds noise during training
+- Reduces verbatim reproduction
+- May reduce model quality
+
+**Links:**
+- Model Cards paper: https://arxiv.org/abs/1810.03993
+- Differential privacy in ML: https://arxiv.org/abs/1607.00133
+
+## Slide 33: Innovation vs. Compensation Dilemma
+
+**The core tension:**
+
+**Innovation side:**
+- Requiring permission would slow progress
+- Licensing costs prohibitive (billions of works)
+- Smaller companies couldn't compete
+- Public loses benefits of AI
+
+**Compensation side:**
+- Innovation shouldn't exploit creators
+- Tech industry pattern: "move fast, break things"
+- Copyright exists to incentivize creation
+- Fairness: AI companies profit, creators don't
+
+**Both can be true simultaneously:**
+- AI IS valuable for society
+- Creators ARE being harmed
+- Need solution that addresses both
+
+**Historical parallels:**
+- VCR: movie industry opposed, but time-shifting held fair use
+- Music streaming: opposed, now licensed model (Spotify, etc.)
+- Google Books: opposed, held fair use
+
+**Question:** Will AI follow VCR model (fair use) or streaming model (licensing)?
+
+## Slide 34: What Do Courts Do When Law Is Unclear?
+
+**Judicial constraints:**
+- Must apply existing law, not make policy
+- Interpret Congressional intent from statutes
+- Consider precedent (stare decisis)
+- Weigh public interest
+
+**Fair use is inherently fact-specific:**
+- No bright-line rules
+- Case-by-case analysis
+- Reasonable judges can disagree
+
+**Possible outcomes:**
+1. **Fair use applies:** AI companies win
+2. **Fair use doesn't apply:** Creators win damages
+3. **Mixed:** Fair use for some uses/data, not others
+4. **Defer to Congress:** Call for legislation
+
+**Prediction:**
+- Different district courts will rule differently
+- Circuit split likely
+- Supreme Court eventually (years away)
+
+**Complication:**
+- Technology evolving faster than courts
+- By the time Supreme Court rules, technology may have changed
+
+## Slide 35: What Might Congress Do?
+
+**Possible legislative approaches:**
+
+1. **Pro-AI bill:**
+   - Explicit TDM exception for AI training
+   - Preempt state laws
+   - Safe harbor for training
+
+2. **Pro-creator bill:**
+   - Require opt-in consent
+   - Create new licensing rights
+   - Statutory damages for infringement
+
+3. **Compromise bill:**
+   - TDM exception with opt-out
+   - Transparency requirements
+   - Revenue sharing mechanism
+
+4. **Sector-specific:**
+   - Different rules for research vs. commercial
+   - Different rules for different types of works
+
+**Political dynamics:**
+- Tech industry: major lobbying power
+- Creative industries: sympathetic stories
+- Bipartisan interest in AI leadership
+- Bipartisan interest in protecting creators
+
+**Reality check:**
+- Congress is slow
+- Copyright reform is contentious
+- Last major update: 1998 (DMCA)
+- Courts will decide before Congress acts
+
+## Slide 36: Activity - Fair Use Evaluation
+
+**Scenario:** Book summary generator trained on 50,000 novels
+
+**Facilitation:**
+- Give students 2 minutes individual
+- Pair discussion 3 minutes
+- Class share 3-4 volunteers
+
+**Expected analysis:**
+
+**Factor 1 - Purpose/Character:**
+- Commercial use (disfavors)
+- Is summarization transformative? (debatable)
+- Not commentary/criticism (disfavors)
+- New purpose vs. same purpose? (students may disagree)
+
+**Factor 2 - Nature:**
+- Novels are highly creative (disfavors fair use)
+- Published works (neutral)
+
+**Factor 3 - Amount:**
+- Entire books copied (disfavors fair use)
+- Necessary for comprehensive summaries? (maybe)
+
+**Factor 4 - Market:**
+- Direct substitution potential (disfavors)
+- Why buy book if AI summarizes? (harm)
+- Lost licensing market (harm)
+
+**Likely conclusion:** Probably NOT fair use
+- Multiple factors against
+- Hard to show transformativeness
+- Clear market harm
+
+**Comparison to ChatGPT:**
+- ChatGPT does MORE than summaries (more transformative?)
+- But also trained on more works (greater scale?)
+
+**Teaching point:** Apply same analysis to actual AI models
+
+## Slide 37: Predictions
+
+**Short term (1-2 years):**
+- More lawsuits filed (expect music, video, software)
+- Some settlements with NDAs (won't set precedent)
+- First district court rulings (likely split)
+- AI companies adopt licensing for new training
+- Continued voluntary deals with publishers
+
+**Medium term (3-5 years):**
+- Circuit court appeals
+- Possible circuit split (different regions, different outcomes)
+- Congressional hearings (no legislation yet)
+- Industry standards emerge (watermarking, opt-out tools)
+- Some creators adopt, others sue
+
+**Long term (5+ years):**
+- Supreme Court case (if circuit split)
+- Definitive fair use ruling
+- Possible Congressional action
+- Licensing markets mature
+- Next-generation issues (AI outputs, synthetic data)
+
+**Caveat:** Technology moves fast; predictions uncertain
+
+## Slide 38: Who Benefits from AI?
+
+**Current distribution:**
+- **AI companies:** Billions in revenue, market value
+- **Users:** Access to powerful free/cheap tools
+- **Creators:** Uncertain; possibly harmed
+
+**Ideal distribution:**
+- **AI companies:** Clear legal rules, can innovate
+- **Users:** Continued access to AI tools
+- **Creators:** Compensation for contribution, retain control
+
+**Questions for discussion:**
+1. How do we distribute AI's economic value fairly?
+2. What incentives do we want for future human creativity?
+3. How do we ensure broad public access to AI?
+4. Can we have innovation AND creator protection?
+
+**Economic perspective:**
+- AI creates massive value (trillions predicted)
+- Training data essential input
+- Should creators share in value? How much?
+
+## Slide 39: Ethical Considerations Beyond Law
+
+**Even if legally permitted, is it ethical?**
+
+**Arguments it's unethical:**
+- Taking without asking
+- Harming livelihoods
+- Profiting from others' labor
+- Power imbalance (Big Tech vs. individual creators)
+
+**Arguments it's ethical:**
+- Progress benefits society
+- Copyright isn't moral entitlement
+- Learning from others is normal
+- Creators also build on the past
+
+**Deontological vs. Consequentialist:**
+- Deontological: Process matters (consent, autonomy)
+- Consequentialist: Outcomes matter (societal benefit)
+
+**Discussion:**
+- "If AI training were clearly legal, would it still be wrong?"
+- "If AI training benefits society but harms individuals, what should we do?"
+
+**No easy answers:** These are value judgments about:
+- Property rights
+- Labor and compensation
+- Innovation and progress
+- Fairness and consent
+
+## Slide 40: Key Takeaways
+
+**Summarize main points:**
+
+1. Unprecedented scale of copying
+2. Fair use uncertain (good arguments both sides)
+3. Memorization is problematic for AI companies
+4. Multiple lawsuits underway (NYT, Authors Guild, Getty, etc.)
+5. International approaches vary widely
+6. Policy solutions exist but involve tradeoffs
+7. Need to balance innovation and compensation
+
+**Emphasize:**
+- This is UNSETTLED law
+- Reasonable people disagree
+- Courts will decide over next few years
+- Your generation will live with the outcome
+
+## Slide 41: Questions for Discussion
+
+**Facilitation:**
+- Choose 2-3 questions based on time
+- Small groups or full class discussion
+- Encourage students to justify their positions
+
+**Question 1:** Should AI training be fair use?
+- Elicit reasoning (which factors matter most?)
+- No wrong answer, but need support
+
+**Question 2:** How would you apply four factors?
+- Push students to be specific
+- Compare to Google v. Oracle
+
+**Question 3:** Human learning analogy
+- Strengths and weaknesses
+- Is the law based on this analogy, or is it different?
+
+**Question 4:** Commercial vs. non-profit
+- Should OpenAI and academic research be treated differently?
+- How would you draw the line?
+
+**Question 5:** Compensation
+- If creators should be paid, how?
+- Licensing? Statutory fees? Revenue sharing?
+- What's feasible?
+
+## Slide 42: Looking Forward - Open Questions
+
+**Tee up future issues:**
+
+**AI output copyrightability:**
+- Can AI-generated works be copyrighted?
+- Current Copyright Office: No (requires human authorship)
+- What about AI-assisted works?
+
+**Liability for infringing outputs:**
+- If AI generates infringing content, who's liable?
+- User? AI company? Both?
+- Contributory infringement?
+
+**Open-source models:**
+- Different analysis for non-commercial models?
+- LLaMA, Stable Diffusion released openly
+- Harder to regulate
+
+**Synthetic training data:**
+- AI-to-AI learning
+- If AI trained on AI outputs, does copyright apply?
+- Recursive copyright issues
+
+**These issues will be YOUR generation's challenges**
+
+## Slide 43: Practical Implications for You
+
+**As creators:**
+- Assume your public work may be in training data
+- Consider opt-out tools:
+  - Glaze (for artists) - adversarial noise
+  - Nightshade (data poisoning)
+  - robots.txt extensions
+- Monitor how AI is used in your field
+- Participate in policy debates
+
+**As AI users:**
+- Legal uncertainty around commercial use
+- Be cautious with AI-generated content for business
+- Consider attribution and transparency
+- Ethical considerations beyond legal
+
+**As future policymakers/lawyers/technologists:**
+- This will be a defining issue of your careers
+- Law, ethics, technology intersect
+- Your decisions will shape the future
+
+**Links:**
+- Glaze project: https://glaze.cs.uchicago.edu/
+- Nightshade: https://nightshade.cs.uchicago.edu/
+
+## Slide 44: Thank You
+
+- Recap all three lectures (AI-Privacy, Copyright, AI-Copyright)
+- Encourage continued engagement with these issues
+- Office hours for further discussion
+- Assignment reminder
+
+---
+
+## Additional Resources for Instructor
+
+### Live Demonstrations
+
+**Demo 1: Trying to Get ChatGPT to Reproduce Training Data**
+- Ask for copyrighted text (NYT article, song lyrics, book passage)
+- Show how model refuses or provides generic response
+- Explain this is post-lawsuit mitigation
+- Discuss: Does refusal prove guilt or responsible design?
+
+**Demo 2: AI Art Generation**
+- Use Midjourney or DALL-E
+- Generate image "in the style of [famous artist]"
+- Discuss: Is this copyright infringement? Derivative work?
+- Compare to human artist studying and emulating styles
+
+**Demo 3: Code Generation**
+- GitHub Copilot generating code
+- Show how it can produce code similar to training data
+- Discuss: Different analysis for functional works?
+
+### Case Studies
+
+**1. Sarah Silverman's Lawsuit (Silverman v. OpenAI)**
+- Comedian and author
+- ChatGPT could summarize her memoir "The Bedwetter"
+- Claimed model must have been trained on book
+- Class action lawsuit
+- Motion to dismiss some claims granted (2024)
+- Links: https://www.theverge.com/2023/7/9/23788741/sarah-silverman-openai-meta-lawsuit-copyright-infringement
+
+**2. Getty Watermark Incident**
+- Viral images of AI-generated photos with garbled "Getty Images" watermark
+- Smoking gun evidence of training data source
+- Raised questions about other training data
+- Links: https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion
+
+**3. Artists' Opt-Out Tools**
+- Spawning.ai's "Have I Been Trained" database
+- Lets artists check if their work is in LAION dataset
+- Opt-out request system
+- Glaze and Nightshade (UChicago projects) for adversarial protection
+- Links: https://haveibeentrained.com/
+
+**4. GitHub Copilot Lawsuit**
+- Programmers sued Microsoft, GitHub, OpenAI (2022)
+- Trained on public GitHub code
+- Can reproduce code with restrictive licenses
+- Raises attribution and license compliance issues
+- Links: https://githubcopilotlitigation.com/
+
+### News Articles and Analysis
+
+**Legal Analysis:**
+- Stanford Law Review: "Generative AI Has an Intellectual Property Problem" - https://law.stanford.edu/2023/02/17/generative-ai-ip-problem/
+- Columbia Law Review: "Fair Learning" - https://columbialawreview.org/content/fair-learning/
+- Berkeley Technology Law Journal: "Copyright's Framing Problem"
+
+**News Coverage:**
+- The Verge AI section (comprehensive ongoing coverage): https://www.theverge.com/ai-artificial-intelligence
+- Ars Technica copyright tag: https://arstechnica.com/tag/copyright/
+- NYT lawsuit coverage: https://www.nytimes.com/2023/12/27/business/media/new-york-times-open-ai-microsoft-lawsuit.html
+- Authors Guild updates: https://authorsguild.org/
+
+**Creator Perspectives:**
+- "AI Platforms Scraped My Work Without Permission": https://www.wired.com/story/generative-ai-scraped-my-work/
+- Artists on AI: https://www.theverge.com/23980098/ai-artists-copyright-lawsuit-midjourney-stable-diffusion
+
+### Academic Papers
+
+**1. Pamela Samuelson, "Generative AI Meets Copyright" (2023)**
+- Comprehensive legal analysis
+- Fair use applied to AI training
+- Compares to past technologies
+
+**2. Mark Lemley & Bryan Casey, "Fair Learning" (2021)**
+- Argues AI training is fair use
+- Intermediate copying doctrine
+- Transformative use framework
+
+**3. Matthew Sag, "Copyright Safety for Generative AI" (2023)**
+- Risks and mitigation strategies
+- Memorization problem
+- Policy recommendations
+
+**4. Niva Elkin-Koren & Uri Hacohen, "The Algorithmic Black Box and Privacy Law" (2020)**
+- Relevant for understanding how training works
+- Privacy and copyright intersections
+
+### Videos
+
+**Legal Explainers:**
+- LegalEagle on NYT v. OpenAI: https://www.youtube.com/watch?v=[if-available]
+- Vox Explainer on AI copyright: https://www.youtube.com/watch?v=[if-available]
+
+**Technical Explainers:**
+- Computerphile on how AI training works: https://www.youtube.com/watch?v=aircAruvnKk
+- Two Minute Papers on diffusion models: https://www.youtube.com/user/keeroyz
+
+**Creator Perspectives:**
+- Artists on AI art: Various TikTok and YouTube creators
+
+### Policy Documents
+
+**U.S. Copyright Office:**
+- "Copyright and Artificial Intelligence" reports: https://www.copyright.gov/ai/
+- Policy statements on AI-generated works: https://www.copyright.gov/docs/artificial-intelligence/
+
+**International:**
+- EU AI Act: https://artificialintelligenceact.eu/
+- UK consultation responses: https://www.gov.uk/government/consultations/artificial-intelligence-and-intellectual-property-copyright-and-patents
+
+---
+
+## Timing Guide (75-minute class)
+
+**Note:** This lecture has 61 slides, which is A LOT. You may need to:
+- Skip some slides (especially if class discussions run long)
+- Cover some slides quickly
+- Assign some as reading
+- Split into two sessions
+
+**Suggested timing:**
+- Intro + Recap (slides 1-3): 3 min
+- AI training background (slides 4-7): 7 min
+- Lawsuits (slides 8-14): 12 min
+- Fair use analysis (slides 15-22): 18 min
+- Arguments (slides 23-26): 10 min
+- International (slides 27-29): 6 min
+- Policy solutions (slides 30-32): 6 min
+- Activity (slide 36): 7 min
+- Predictions + ethics (slides 37-39): 6 min
+- Takeaways + discussion (slides 40-41): 8 min
+- Closing (slides 42-44): 2 min
+
+**Total: 85 minutes (10 minutes over)**
+
+**Suggestions to trim:**
+- Combine some lawsuit slides (cover 2-3 quickly)
+- Shorten international section (pick 1-2 countries)
+- Skip some policy solutions slides
+- Reduce discussion time
+
+**Or:** Split into two lectures
+- Lecture A: Background + Lawsuits + Fair Use (slides 1-22)
+- Lecture B: Arguments + Policy + Future (slides 23-44)
+
+---
+
+## Common Student Questions
+
+**Q: "Can I use AI to help write my papers?"**
+A: Check your school's academic integrity policy. Using AI for ideas/outlining is usually OK; having AI write the paper usually isn't. When in doubt, ask your professor.
+
+**Q: "If I generate an AI image, do I own the copyright?"**
+A: Currently, U.S. Copyright Office says no automatic copyright (lacks human authorship). BUT if you significantly modify/select/arrange, you might have copyright in those contributions. Legal area is unsettled.
+
+**Q: "Should I put 'AI-generated' on my resume/portfolio?"**
+A: Transparency is generally good, especially as norms are still forming. Some fields care more than others.
+
+**Q: "Will AI replace [writers/artists/programmers]?"**
+A: Unlikely to fully replace, but will change the nature of work. Some tasks will be automated, others will require human creativity/judgment. Similar to how photography didn't replace painting.
+
+**Q: "Is it ethical to use AI trained on copyrighted data?"**
+A: Reasonable people disagree. Consider: Are you displacing human creators? Are you transparent? What's your purpose? No easy answer.
+
+**Q: "What if I train my own AI model on data I collected?"**
+A: Still need to respect copyright. Collecting data doesn't give you permission to copy copyrighted works unless you have a license or fair use defense.
+
+**Q: "Why don't AI companies just use public domain?"**
+A: Not enough high-quality public domain data. Most books/art/writing from last 70+ years is copyrighted. Would significantly limit model capabilities.
+
+**Q: "Can I detect if text was AI-generated?"**
+A: Detection tools exist but are imperfect (false positives and negatives). Zerogpt, GPTZero, etc. As AI improves, detection gets harder.
+
+---
+
+## Debate Topic Ideas
+
+**Formal debate topic:**
+"Resolved: Training large language models on copyrighted data without permission is fair use."
+
+**Alternative topics:**
+- "Resolved: Congress should pass legislation explicitly allowing AI training on copyrighted works."
+- "Resolved: The benefits of generative AI to society outweigh the harms to creators."
+- "Resolved: AI companies should be required to obtain opt-in consent before training on creative works."
+
+**Debate format:**
+- Pro side: AI companies, researchers, innovation advocates
+- Con side: Creators, publishers, copyright advocates
+- Encourage students to argue both sides (builds analytical skills)
