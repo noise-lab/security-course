@@ -942,13 +942,168 @@
 
 # Meeting 8
 
-* Internet Censorship
-   * Censorship in China
-   * The Great Firewall
-* Why filtering may not be as effective at censorship as other techniques
-* Backlash effects of censorship (installation of VPNs)
-* Virtual Private Networks: How they work, the kinds of protections that they
-  do or do not provide
-* Possible Midterm Topic: Give examples of censorship by fear, friction, and
-  flooding. Analyze the effectiveness of each.
-* Debate: Censorship
+* **Lecture Coverage: Automated Compliance Enforcement with Privacy Laws**
+  * **Research Context**
+    * Work by Von (PhD student/TA) - world expert on this topic
+    * Two studies: (1) CCPA compliance measurement, (2) Dark patterns in privacy opt-out
+  * **California Consumer Privacy Act (CCPA)**
+    * Enacted ~6 years ago (2018)
+    * Privacy rights for consumers including right to opt out of sale of personal information
+    * **Who is subject**: For-profit entities doing business in California with:
+      * Gross revenues > $25 million, OR
+      * Buying/selling PI of 50,000+ California consumers, OR
+      * At least half of revenue from sale of personal data
+  * **California Privacy Rights Act (CPRA)**
+    * Amendment to CCPA, went into effect ~3 years later (2023)
+    * Added provisions including prohibition of dark patterns in consent
+  * **CCPA Requirements (2020-2023)**
+    * Must have link with specific wording: "Do Not Sell My Personal Information"
+    * Must appear in header or footer of webpage
+    * Specific words required
+  * **CPRA Requirements (Post-2023)**
+    * Three alternatives for compliance:
+      * Link with text "Do Not Sell or Share"
+      * Link with text "Limit the Use of My Sensitive Personal Information"
+      * Link with text "My Privacy Choices" + specific icon
+    * Alternative: "Frictionless opt-out" via Global Privacy Control (GPC)
+  * **Global Privacy Control (GPC)**
+    * Browser setting that sends opt-out signal to websites
+    * Implemented in Firefox, Chrome, and other browsers
+    * Most users don't realize they're using it
+    * Websites can comply by implementing GPC support
+    * Increasingly common over past couple years
+* **Study 1: Measuring Website Compliance with CCPA/CPRA**
+  * **Research Questions**
+    * How did websites respond to opt-out requirements over time?
+    * What fraction remain in compliance vs non-compliance?
+    * Spillover effect: Do non-California residents benefit? (Brussels/California effect)
+    * Who's complying and who's not, and why?
+  * **Spillover/California/Brussels Effect**
+    * Phenomenon where laws in one jurisdiction benefit users in others
+    * California/EU laws may cause companies to implement protections for everyone
+    * Companies may find it too difficult to determine user location
+    * Simpler to implement one policy for all users
+    * Ongoing question in law and policy
+  * **Study Methodology**
+    * Examined websites from multiple states: California, Virginia, Colorado, Utah, Illinois
+    * Virginia, Colorado, Utah enacted privacy laws in 2023
+    * Study started mid-2022 - allowed before/after comparison
+    * Illinois has no privacy law - control group for spillover analysis
+    * Over 1,000 websites measured over time
+  * **Automated Compliance Challenges**
+    * **Problem 1**: Link may appear in page source but not visible on page
+      * JavaScript logic determines whether to display
+      * Can't rely on scraping page source alone
+      * Must render page to verify visibility
+    * **Problem 2**: Link visible on rendered page but not in source
+      * Dynamic loading makes it difficult to detect
+      * Reasons unclear from source alone
+    * **Solution**: Both scrape source AND render page
+    * **Detection challenges**: False positives and false negatives in automated detection
+  * **Key Findings**
+    * **Compliance over time**: Number of sites with opt-out link increased over time
+      * Pronounced increase around January 2023 (CPRA enforcement)
+    * **Compliance rates**: ~45% of sites had opt-out link
+    * **Non-compliance issues**:
+      * Text present but not in correct location (header/footer)
+      * "Privacy choices" text without required icon
+      * Wording doesn't match statute requirements exactly
+    * **Spillover evidence**: Illinois websites showed similar opt-out link presence as states with privacy laws
+      * Suggests California effect is real
+      * Companies implementing for everyone, not just California
+    * **GPC adoption**: Smaller fraction used GPC signals
+      * Some sites used both opt-out link and GPC
+      * Difficult to verify GPC actually works - based on privacy policy claims
+      * Statute requires mentioning GPC in privacy policy if implemented
+    * **Non-compliance among covered entities**: ~30% of websites subject to CCPA still don't implement opt-out link
+    * **Reasons for non-compliance**:
+      * 43 sites don't actually sell personal information (technically compliant)
+      * Some don't mention CCPA or opt-out rights at all
+      * Some mention opt-out methods in privacy policy (may be compliant)
+      * Various errors and implementation issues
+  * **Limitations**
+    * Presence of opt-out link ≠ link is functional
+    * Presence ≠ easy to use
+    * No verification that opt-out actually prevents data sale
+* **Study 2: Dark Patterns in Privacy Opt-Out Processes**
+  * **Motivation**: Beyond link presence, examine actual opt-out process difficulty
+  * **Dark Patterns Definition**: Deceptive user interfaces designed to trick users
+    * Examples throughout various contexts (not just privacy)
+    * FTC case: Amazon Prime subscription dark patterns (settled ~1 month ago)
+      * Alleged millions of users tricked into subscribing
+      * Example: "Do you want item in 2 days or 3 weeks?" → Clicking "2 days" subscribes to Prime
+  * **Study Overview**
+    * Large-scale measurement of opt-out processes
+    * Tested whether opt-out requests actually succeed
+    * Analyzed difficulty and user experience
+  * **Key Findings - Success Rates**
+    * Nearly 1/3 of attempted opt-out requests failed to complete
+    * Process varies widely: some sites require just clicks, others require phone calls, mail, extensive paperwork
+    * Some sites request additional personal information to opt out (e.g., driver's license)
+  * **Opt-Out Control Methods**
+    * **Browser-based opt-out**: Pop-up interface (often via OneTrust)
+    * **Form-based opt-out**: Fill out form with personal information
+    * **Hybrid**: Both methods available
+    * **Third-party implementation**: Many sites use OneTrust or similar services
+      * Sites pay these companies to maintain compliance
+      * Paradoxically, many sites using these services still out of compliance
+  * **Metrics Measured**
+    * **Number of clicks required**: Ranged from 1 to 14 clicks
+    * **Personal information requested**: Address, phone number, etc. required to opt out
+    * **Dark patterns present**: Categorized by type
+  * **Dark Pattern Categories** (IMPORTANT FOR MIDTERM)
+    * **1. Obstruction**
+      * Definition: Barriers or hurdles making it difficult to complete task
+      * Examples:
+        * **CAPTCHA required** to access privacy portal
+        * **Mutually exclusive choices**: Can opt out of sale OR sharing, but not both
+        * **Asymmetry**: 1 click to opt in, 2 clicks to opt out
+          * Provisions in statutes now require symmetry
+        * **Identity verification failure**: Request denied if verification not completed within 48 hours
+    * **2. Interface Interference**
+      * Definition: Manipulation of interface to make discovery difficult
+      * Example: Hidden hyperlink on "this form" (hard to see it's clickable)
+    * **3. Misdirection**
+      * Definition: Instructions confusing or not mentioned
+      * Example - **Confusing choices**:
+        * Toggle switch unclear whether enabling means opting out or opting in for sale
+        * Conflicting text: "opt out of sale" with button labeled "allow sale"
+  * **Dark Pattern Prevalence**
+    * Most sites have at least one dark pattern
+    * Some sites have multiple dark patterns
+    * Most common: Obstruction, information overload, unclear request receipt
+    * More dark patterns in form-based opt-out than browser-based
+  * **Third-Party Compliance Services (OneTrust)**
+    * Many sites outsource compliance to companies like OneTrust
+    * Sites using OneTrust still frequently out of compliance
+    * Reasons unclear - possible explanations:
+      * Deployment without configuration
+      * Lack of testing
+      * Corner cases not handled
+      * Misunderstanding of statute requirements
+      * Willful disregard vs simple oversight - difficult to determine
+    * No litigation yet specifically on dark patterns in privacy opt-out
+  * **Enforcement Challenges - Automated Compliance**
+    * Some dark patterns clearly violate statute provisions:
+      * "Require minimal steps" - violated by 14-click process
+      * "Single option" - violated by mutually exclusive choices
+      * "Easy to understand" - violated by confusing toggle switches
+      * "Symmetry in choice" - violated by asymmetric opt-in/opt-out
+      * "Avoid manipulative design" - violated by various dark patterns
+    * Other issues ambiguous:
+      * CAPTCHAs not mentioned in statute (may have legitimate security purpose)
+      * Unclear request receipt not explicitly prohibited
+      * Toggle switches not specifically addressed
+    * Difficult to automate enforcement decisions
+* **Connection to Earlier Concepts**
+  * **Informed Consent** (from Lecture 1)
+    * Is consent meaningful if obtained through deception?
+    * Dark patterns undermine informed consent
+    * Respect for persons and autonomy require genuine choice
+    * Law and ethics overlap on this issue
+* **Break and Debate**
+  * 10-minute break taken around 1 hour into class
+  * **Debate Topic: AI Accountability**
+* **Topics After Debate** (to be covered)
+  * Copyright and privacy as it pertains to AI
+  * AI-related topics
