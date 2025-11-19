@@ -19,8 +19,11 @@
 ## Slide 1: Title Slide
 - Welcome students
 - This lecture focuses on privacy risks specific to LLM-based systems
-- Draw from recent research published at CHI 2024
+- Draws primarily from Zhang et al. (2024) "'It's a Fair Game', or Is It? Examining How Users Navigate Disclosure Risks and Benefits When Using LLM-Based Conversational Agents" published at CHI 2024
 - Use one of the hooks above to grab attention before diving into content
+
+**Primary Research Source:**
+Zhang, Z., Jia, M., Lee, H. P., Yao, B., Das, S., Lerner, A., Wang, D., & Li, T. (2024). "It's a Fair Game", or Is It? Examining How Users Navigate Disclosure Risks and Benefits When Using LLM-Based Conversational Agents. In *Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems*. DOI: 10.1145/3613904.3642385
 
 ## Slide 2: Today's Agenda
 - Overview of what we'll cover
@@ -107,7 +110,8 @@
 **Activity idea**: Role-play a conversation showing progressive disclosure
 
 ## Slide 15: Case Study: The Therapy Use Case
-- Real quotes from research participants
+- Real quotes from research participants in Zhang et al. (2024) CHI study
+- Participants P8, P10, P13, P15, P16, P19 used ChatGPT as "pen pal" or therapist
 - Highly sensitive mental health information shared
 - Question: Should LLMs be used for therapy?
 
@@ -116,10 +120,10 @@
 - [AI therapy apps](https://www.washingtonpost.com/technology/2023/01/19/chatgpt-ai-therapy/)
 
 ## Slide 16: User Mental Models: How Do People Think LLMs Work?
-- Based on mental model drawings from user study
-- Model A: completely opaque ("magic")
-- Model B: thinks it's search-based
-- Model C: understands ML basics
+- Based on mental model analysis from Zhang et al. (2024) CHI study with 19 participants
+- Model A: completely opaque ("magic") - 4 participants
+- Model B: thinks it's search-based ("super searcher") - 8 participants
+- Model C: understands ML basics ("stochastic parrot") - 6 participants
 
 **Activity**: Ask students to draw their mental model (2 min)
 
@@ -129,9 +133,10 @@
 - Many users had Model D - dangerous misconception
 
 ## Slide 18: User Awareness: The Opt-Out Problem
-- Research finding: 84% unaware of opt-out
-- Even among technical users
+- Research finding from Zhang et al. (2024): 14 out of 19 participants were unaware of opt-out (all but P11, P14, P16, P17, P18)
+- Even among technical users, awareness was low
 - Lack of transparency from providers
+- Dark patterns impeded adoption even after learning about controls
 
 ## Slide 19: Dark Patterns in Privacy Controls
 - Show actual ChatGPT interface (screenshot or live demo)
@@ -285,7 +290,10 @@
 - "Resolved: The privacy risks of LLMs outweigh their benefits"
 
 ### Relevant Academic Papers
-1. Zhang et al. (2024) "It's a Fair Game, or Is It?" - CHI (primary reading)
+1. **Zhang, Z., Jia, M., Lee, H. P., Yao, B., Das, S., Lerner, A., Wang, D., & Li, T. (2024).** "'It's a Fair Game', or Is It? Examining How Users Navigate Disclosure Risks and Benefits When Using LLM-Based Conversational Agents." In *Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems*. DOI: 10.1145/3613904.3642385 - **PRIMARY READING FOR SLIDES 15-19**
+   - Available on arXiv: https://arxiv.org/abs/2309.11653
+   - Study methodology: Analyzed real ChatGPT conversations + interviewed 19 users
+   - Key findings: 14/19 unaware of opt-out, flawed mental models, dark patterns
 2. Carlini et al. (2021) "Extracting Training Data from Large Language Models"
 3. Carlini et al. (2023) "Quantifying Memorization Across Neural Language Models"
 4. Brown et al. (2022) "What Does it Mean for a Language Model to Preserve Privacy?"

@@ -200,7 +200,7 @@ Multiple users reported using ChatGPT for:
 - Mental health advice
 - Relationship problems
 
-**Quote from study participant:**
+**Quote from study participant (Zhang et al., CHI 2024):**
 > "I love sharing personal life details with ChatGPT due to the positive feedback it gave."
 
 **Privacy risk:** Highly sensitive personal information shared with a system that may memorize and leak it
@@ -209,17 +209,17 @@ Multiple users reported using ChatGPT for:
 
 # User Mental Models: How Do People Think LLMs Work?
 
-Research identified three main mental models:
+Research identified three main mental models **(Zhang et al., CHI 2024)**:
 
-**Model A: "ChatGPT is magic"**
+**Model A: "ChatGPT is magic"** (4 participants)
 - Black box understanding
 - No clear idea how it works
 
-**Model B: "ChatGPT is a super searcher"**
+**Model B: "ChatGPT is a super searcher"** (8 participants)
 - Thinks it searches the internet/databases
 - Believes responses come from keyword matching
 
-**Model C: "ChatGPT is a stochastic parrot"**
+**Model C: "ChatGPT is a stochastic parrot"** (6 participants)
 - Understanding of ML models
 - Knows it generates text probabilistically
 
@@ -236,18 +236,20 @@ Research identified three main mental models:
 - Some think model is personalized to them (incorrect)
 - Some understand it's a global model
 
-**Key finding:** Most users had Models A or D—limited understanding of actual privacy risks
+**Key finding (Zhang et al., CHI 2024):** Most users had Models A or D—limited understanding of actual privacy risks
 
 ---
 
 # User Awareness: The Opt-Out Problem
 
-**Research finding:** Most users (16/19) were unaware that:
+**Research finding (Zhang et al., CHI 2024):** Most users (14/19) were unaware that:
 - Their conversations are used for training by default
 - They can opt out of training data use
 - How to find the opt-out controls
 
 **After learning about it:** Many wanted to opt out but faced obstacles
+
+**Citation:** Zhang et al. (2024) "'It's a Fair Game', or Is It?"
 
 ---
 
