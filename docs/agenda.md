@@ -946,20 +946,20 @@
   * **Research Context**
     * Two studies: (1) CCPA compliance measurement, (2) Dark patterns in privacy opt-out
   * **California Consumer Privacy Act (CCPA)**
-    * Enacted ~6 years ago (2018)
+    * Signed into law June 2018, went into effect January 1, 2020
     * Privacy rights for consumers including right to opt out of sale of personal information
     * **Who is subject**: For-profit entities doing business in California with:
       * Gross revenues > $25 million, OR
       * Buying/selling PI of 50,000+ California consumers, OR
       * At least half of revenue from sale of personal data
   * **California Privacy Rights Act (CPRA)**
-    * Amendment to CCPA, went into effect ~3 years later (2023)
-    * Added provisions including prohibition of dark patterns in consent
-  * **CCPA Requirements (2020-2023)**
+    * Passed November 2020 (Proposition 24), went into effect January 1, 2023
+    * Amendment to CCPA, added provisions including prohibition of dark patterns in consent
+  * **CCPA Requirements (Before CPRA, 2020-2023)**
     * Must have link with specific wording: "Do Not Sell My Personal Information"
     * Must appear in header or footer of webpage
     * Specific words required
-  * **CPRA Requirements (Post-2023)**
+  * **CPRA Requirements (January 2023 onward)**
     * Three alternatives for compliance:
       * Link with text "Do Not Sell or Share"
       * Link with text "Limit the Use of My Sensitive Personal Information"
