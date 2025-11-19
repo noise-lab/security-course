@@ -944,7 +944,6 @@
 
 * **Lecture Coverage: Automated Compliance Enforcement with Privacy Laws**
   * **Research Context**
-    * Work by Von (PhD student/TA) - world expert on this topic
     * Two studies: (1) CCPA compliance measurement, (2) Dark patterns in privacy opt-out
   * **California Consumer Privacy Act (CCPA)**
     * Enacted ~6 years ago (2018)
