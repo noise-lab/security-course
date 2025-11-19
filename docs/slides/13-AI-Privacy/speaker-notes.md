@@ -43,6 +43,9 @@ Zhang, Z., Jia, M., Lee, H. P., Yao, B., Das, S., Lerner, A., Wang, D., & Li, T.
 - Contrast with traditional software where data flows are clearer
 - LLMs blur the line between "using" and "sharing" data
 
+**Advanced concept from Wang et al. (2025)**:
+Beyond explicit data sharing, LLMs can perform "implicit inference"—deducing sensitive information like age, location, socioeconomic status, and health conditions from conversational context alone, even when users avoid direct PII disclosure
+
 ## Slide 5: Two Main Types of Privacy Risks
 - Traditional risks: similar to any cloud service
 - AI-specific: unique to how LLMs work
@@ -157,6 +160,15 @@ Zhang, Z., Jia, M., Lee, H. P., Yao, B., Das, S., Lerner, A., Wang, D., & Li, T.
 - Some avoid entirely (opportunity cost)
 - Most use manual sanitization (tedious, error-prone)
 
+**Additional insight from Wang et al. (2025) "Beyond PII":**
+Users also employ implicit mitigation strategies:
+- **Abstraction/vagueness**: Providing limited details or speaking in generalities
+- **False information insertion**: Deliberately introducing misleading details
+- **Context avoidance**: Refraining from topics that might enable inference
+- **Terminology shifts**: Using indirect language instead of direct terms
+
+**Key finding**: Even when users avoid explicit PII, LLMs can still infer demographics, preferences, and personal circumstances from conversational context
+
 **Discussion**: "What strategies do you use?"
 
 ## Slide 22: The Problem: Is It Really a "Fair Game"?
@@ -188,6 +200,12 @@ Zhang, Z., Jia, M., Lee, H. P., Yao, B., Das, S., Lerner, A., Wang, D., & Li, T.
 ## Slide 27: Design Implications (cont'd)
 - Specific technical solutions
 - Some already exist, need adoption
+
+**Additional design consideration from Wang et al. (2025)**:
+Systems need to address not just explicit PII protection but also implicit inference risks:
+- **Inference detection tools**: Alert users when their inputs may enable demographic/personal profiling
+- **Query reformulation**: Suggest alternative phrasings that achieve same goal with less inference risk
+- **Inference boundaries**: Clear disclosure of what the model can/cannot infer from context
 
 **Research Links:**
 - [Privacy-preserving ML](https://www.microsoft.com/en-us/research/project/privacy-preserving-machine-learning/)
@@ -294,9 +312,14 @@ Zhang, Z., Jia, M., Lee, H. P., Yao, B., Das, S., Lerner, A., Wang, D., & Li, T.
    - Available on arXiv: https://arxiv.org/abs/2309.11653
    - Study methodology: Analyzed real ChatGPT conversations + interviewed 19 users
    - Key findings: 14/19 unaware of opt-out, flawed mental models, dark patterns
-2. Carlini et al. (2021) "Extracting Training Data from Large Language Models"
-3. Carlini et al. (2023) "Quantifying Memorization Across Neural Language Models"
-4. Brown et al. (2022) "What Does it Mean for a Language Model to Preserve Privacy?"
+2. **Wang, S., Peddinti, S. T., Taft, N., & Feamster, N. (2025).** "Beyond PII: How Users Attempt to Estimate and Mitigate Implicit LLM Inference." arXiv:2509.12152 - **SUPPLEMENTARY READING ON IMPLICIT INFERENCE**
+   - Focus: Implicit inference risks beyond explicit PII disclosure
+   - Key insight: LLMs can infer demographics, preferences, personal circumstances from context
+   - User strategies: Abstraction, false information, context avoidance, terminology shifts
+   - Finding: Users recognize inference risks but lack effective mitigation approaches
+3. Carlini et al. (2021) "Extracting Training Data from Large Language Models"
+4. Carlini et al. (2023) "Quantifying Memorization Across Neural Language Models"
+5. Brown et al. (2022) "What Does it Mean for a Language Model to Preserve Privacy?"
 
 ### News Articles (Regularly Updated)
 - [The Verge AI coverage](https://www.theverge.com/ai-artificial-intelligence)
