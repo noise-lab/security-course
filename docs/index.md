@@ -62,5 +62,5 @@ meeting.
 |---------|--------------------------|---------------------------------------------------|-----------------------------------------|
 | X       | Election Security        | [Voting](readings/voting.pdf)                   |                                         |
 | X       | Net Neutrality           | [Interconnection](readings/interconnection.pdf) |                                         |
-| X       | AI and Accountability    | [Accountability](readings/accountability.pdf)   | Debate: [AI](debates/accountability.md) |
+| X       | AI and Accountability    |                                                 | Debate: [AI](debates/accountability.md) |
 | X       | Vulnerability Disclosure | [Disclosure](readings/vulnerability.pdf)        |                                         |

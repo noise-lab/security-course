@@ -3,7 +3,7 @@
 The course will have several components:
 
 1.  **Lectures:** The class meets once per week, covering the
-    topics covered on the [course schedule](schedule.html), approximately two
+    topics covered on the [course schedule](index.html), approximately two
     topics per meeting. Attendance is expected in lecture.
 2.  **Debates:** We will reserve some of the class meeting time for
     policy debates around the topics covered on the schedule. The
@@ -36,7 +36,7 @@ The courses below are not required but may be helpful background.
 | Participation and In-Class Quizzes | 5% |
 
 - **Lab Assignments (20%).** The course will have a sequence of lab
-  assignments, as outlined on the [schedule](schedule.html). Due dates
+  assignments, as outlined on the [schedule](index.html). Due dates
   and instructions for turning in assignments will be posted on Canvas.
   **Important:** Lab assignments will be graded primarily for completion.
   While we encourage the use of AI tools to assist with assignment completion
