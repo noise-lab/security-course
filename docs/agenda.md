@@ -1103,6 +1103,161 @@
 * **Break and Debate**
   * 10-minute break taken around 1 hour into class
   * **Debate Topic: AI Accountability**
-* **Topics After Debate** (to be covered)
-  * Copyright and privacy as it pertains to AI
-  * AI-related topics
+* **Lecture Coverage: AI and Privacy**
+  * **Two Types of Privacy Risks** (Summary)
+    * **Traditional privacy risks**: Data breaches, unauthorized access, use and sale of data, human reviewers seeing your data
+    * **AI-specific privacy risks**:
+      * **Memorization**: Training data can be encoded and extracted
+      * **Human-like interactions**: Encourages disclosure through conversational interface
+  * **What Data Users Share with LLMs**
+    * ShareGPT dataset study examined real ChatGPT conversations
+    * Users share extensive personal information
+    * Wide range of sensitive data disclosed
+  * **Interdependent Privacy Problem**
+    * Users don't just share their own information
+    * Examples:
+      * Pasting emails from colleagues to draft responses
+      * Uploading spreadsheets with client information
+      * Sharing family information, therapy discussions
+      * Academic work (reading responses, unpublished research)
+    * Privacy decisions affect others, not just yourself
+  * **Memorization and Prompt Injection Attacks**
+    * **Memorization risk**: Data stored by provider can be encoded in model weights
+    * Older GPT versions leaked personal information
+    * **Prompt injection attacks**: Trick model into revealing sensitive information
+    * Models improving but memorization remains a risk
+    * Data flow: User input → Stored by provider → Used for training → Memorized → Extracted by others via prompts
+  * **Anthropomorphization and Human-Like Interactions**
+    * Users develop sense of trust and intimacy with conversational AI
+    * Example: Person in Japan married their LLM
+    * **Progressive disclosure**: AI asks "can you tell me more?" → User becomes increasingly comfortable sharing
+    * Positive feedback reinforces disclosure behavior
+    * Quote from user study: "I love sharing my life details, it gives positive feedback"
+  * **Mental Models and User Attitudes**
+    * Users have different mental models of how LLMs work
+    * "It's a fair game" attitude - accepting privacy-convenience tradeoff
+    * Similar to Google services: Free in exchange for data/ads
+  * **Dark Patterns in LLM Interfaces** (IMPORTANT FOR MIDTERM)
+    * **Potential midterm question**: Show LLM interface, identify dark pattern type
+    * Example: "Do you want me to remember your chats for improved context?"
+      * Framing: Sounds like better results, not data collection
+      * Could be deception, obstruction, or confusing interface
+    * Very "wild west" currently - little regulation
+  * **User Strategies for Navigating Privacy Risks**
+    * **Strategy 1: Accept the risks** - "It's a fair game"
+      * Privacy-convenience tradeoff (like Google services)
+      * Many consider LLMs indispensable despite risks
+    * **Strategy 2: Avoid certain uses**
+      * Don't use for financial advice with real numbers
+      * Don't share work data due to company policies
+      * Skip medical queries with real symptoms
+    * **Strategy 3: Rewrite prompts to reduce inference**
+      * Make gender, race, location, income less clear
+      * Ask questions in ways that reveal less personal information
+      * Related to "Beyond PII" research on implicit inference
+* **Lecture Coverage: Copyright Law and Fair Use**
+  * **Administrative Note**: Midterm 2 in Week 9 (not Week 8)
+    * Covers material from Week 6 onward
+    * Topics: Privacy law, compliance enforcement, copyright, AI and privacy
+    * Debate topics fair game
+    * Assignments 2 and 3 covered (not Assignment 1 - already tested)
+    * One double-sided sheet allowed as study guide
+  * **Copyright Basics in US**
+    * **What copyright protects**: Original expression
+      * Literary works
+      * **Software code** (since 1980) - increasingly relevant as AI generates code
+    * **What CANNOT be copyrighted**:
+      * Facts
+      * Concepts
+      * Ideas
+      * Systems
+      * Only expression can be copyrighted
+    * **Example**: Code is considered expression of implementation
+  * **Rights Holders Retain**
+    * Ability to make copies
+    * Ability to sell or share
+    * Control over adaptations/derivatives
+    * Public performance rights (e.g., cover songs at open mic)
+    * Public display rights
+  * **Copyright Infringement**
+    * Any unauthorized use carries damages
+    * **Scale matters**: Internet enables massive infringement
+      * Example: Record companies vs ISPs - millions of works
+      * Jury verdicts in billions of dollars
+  * **Fair Use Doctrine - Affirmative Defense** (CRITICAL FOR MIDTERM)
+    * **Definition**: Legal defense allowing limited use of copyrighted material without permission
+    * **Examples of fair use**:
+      * Running software (makes a copy) - covered by licensing
+      * Showing article/reading in class for educational purposes
+      * Photocopying excerpts (not entire books) for teaching
+    * **Four Tests for Fair Use** (MUST KNOW FOR MIDTERM)
+      * **1. Purpose and Character of Use**
+        * **Key concept: TRANSFORMATIVE use** (very important in current AI cases)
+        * Why are you making a copy?
+        * Copying to sell on street ≠ Creating new art
+        * **Music examples**:
+          * Just copying/playing a song: NOT transformative
+          * Sampling (Biz Markie, Beastie Boys): Transformative - created something new
+        * **LLM context**: Courts increasingly ruling AI use is transformative
+          * Not just regurgitating romance novel from training data
+          * Using it to create something new
+        * Does it supersede the original?
+          * Sampling a song doesn't replace original
+      * **2. Nature of the Copyrighted Work**
+        * What type of work is it? Music? News article? Code?
+        * Is it sampling vs verbatim copying?
+        * Verbatim copying tends NOT to be fair use
+      * **3. Amount and Substantiality**
+        * How much of the work was used?
+        * (Not extensively covered in this lecture)
+      * **4. Effect on Market Value**
+        * Does use harm the market for the original?
+        * **Current AI litigation argument**: Authors suing Anthropic and Meta
+          * Claim: "You're putting me out of business"
+          * Artists can't sell paintings - AI generates art instantly
+          * Romance novelists can't sell - AI generates novels in seconds
+        * Used to argue against fair use defense
+        * Recent rulings focus more on transformative use than market effect
+  * **Fair Use and AI - Active Litigation**
+    * Current cases: Authors vs Anthropic, Meta, other AI companies
+    * Recent rulings from Northern District of California
+    * Focus on transformative use doctrine
+    * **Likely Supreme Court bound**: All these cases expected to reach Supreme Court
+  * **Google v. Oracle Case** (From Debates)
+    * Supreme Court ruled Google's use of Java API was fair use
+    * Relevant for understanding software copyright and fair use
+    * Review this case from debate materials
+  * **VERY LIKELY MIDTERM QUESTION FORMAT**:
+    * **"I would put real money on this"** (professor's exact words)
+    * Given case study: Claude/Midjourney/other AI used for something
+    * Task: Present argument FOR fair use defense (e.g., transformative use)
+    * OR: Present argument AGAINST fair use (e.g., market harm)
+    * Example: "Give me an argument in favor of fair use based on transformative use"
+    * Example: "Give me an argument against fair use based on market value"
+* **Possible Midterm 2 Topics** (Emphasized in Lectures)
+  * **From Dark Patterns Lecture**:
+    * Three types of dark patterns: Obstruction, Interface Interference, Misdirection
+    * Given interface example, identify which type of dark pattern
+    * Apply to privacy opt-out contexts
+  * **From AI Privacy Lecture**:
+    * Dark patterns in LLM interfaces (show interface, identify deception/obstruction/confusion)
+    * Two types of privacy risks (traditional vs AI-specific)
+    * Memorization and prompt injection concepts
+    * Interdependent privacy problem
+  * **From Copyright Lecture (HIGH PROBABILITY)**:
+    * **Four tests of fair use** - know all four
+    * **Transformative use** - definition and examples
+    * Given AI case study, argue FOR fair use defense
+    * Given AI case study, argue AGAINST fair use defense
+    * Effect on market value arguments
+    * What can/cannot be copyrighted
+  * **From Earlier Lectures**:
+    * CCPA/CPRA requirements and dates
+    * Spillover/California/Brussels effect
+    * GPC (Global Privacy Control)
+    * Automated compliance challenges
+    * OneTrust paradox
+  * **From Debates**:
+    * Content Moderation
+    * AI Accountability
+    * Google v. Oracle (fair use in software context)
