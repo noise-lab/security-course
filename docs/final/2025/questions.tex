@@ -1,0 +1,243 @@
+\vspace*{-0.1in}
+\section*{Privacy Law and Regulation}
+
+\prob{4} According to the Fair Information Practice Principles (FIPPs) from the 1973 HEW report, which of the following are among the five core principles? (Select all that apply.)\\
+\correctanswercircle{No secret record-keeping by organizations} \\
+\correctanswercircle{Right to know what data is collected and how it's used}\\
+\correctanswercircle{Prevention of secondary use without explicit consent}\\
+\answercircle{Mandatory encryption of all personal data}\\
+\correctanswercircle{Requirement for reasonable security precautions}
+\eprob
+
+\prob{3} What is a significant limitation of the FIPPs model when applied to modern data systems?\\
+\answercircle{FIPPs require too much computational power to implement}\\
+\correctanswercircle{FIPPs assume static databases and don't address queries, machine learning, and probabilistic inference}\\
+\answercircle{FIPPs only apply to government databases, not private companies}\\
+\answercircle{FIPPs mandate opt-in consent, which is too restrictive for modern services}\\
+\eprob
+
+\prob{4} Which of the following are characteristics of the US privacy law approach? (Select all that apply.)\\
+\correctanswercircle{Sectoral approach with laws specific to data holder types}\\
+\correctanswercircle{No comprehensive federal privacy statute}\\
+\answercircle{Single omnibus privacy law covering all sectors}\\
+\correctanswercircle{FTC acting as de facto privacy regulator through Section 5 of the FTC Act}\\
+\correctanswercircle{State-level breach notification laws in all 50 states}
+\eprob
+
+\prob{3} Explain why the notice and consent model has been criticized as insufficient for protecting user privacy in practice.\\
+\answerbox{1.5}{
+The notice and consent model has several significant limitations: privacy policies are often long, complex, and unreadable for most users; users rarely read policies before accepting them; implementation often diverges from what is stated in policies; and users have little meaningful choice when services are essential or have network effects. Additionally, the model assumes users can make informed decisions about future uses of their data, which is increasingly unrealistic with machine learning and secondary uses.
+}
+\eprob
+
+\vspace*{-0.1in}
+\section*{GDPR and International Privacy}
+
+\prob{3} Some critics argue that GDPR's complexity and compliance costs create competitive advantages for large incumbent companies like Google and Facebook. Explain one reason why GDPR might strengthen the market position of these incumbents.\\
+\answerbox{1.75}{
+GDPR's complex requirements and high compliance costs create barriers to entry that disproportionately affect smaller companies and startups. Large incumbents like Google and Facebook have the resources to hire compliance teams, implement sophisticated consent mechanisms, and navigate regulatory requirements. Additionally, users are more likely to grant consent to established platforms they already use and trust, making it harder for new entrants to compete. The compliance burden can also limit competition by making it expensive for small companies to handle user data at scale.
+}
+\eprob
+
+\prob{4} Which of the following are key requirements or provisions of GDPR? (Select all that apply.)\\
+\answercircle{Companies can collect any data as long as they notify users}\\
+\correctanswercircle{Consent must be opt-in only, not opt-out}\\
+\correctanswercircle{Right to be forgotten (data erasure)}\\
+\answercircle{Maximum fine of \$1 million for violations}\\
+\correctanswercircle{Restrictions on cross-border data transfers}
+\eprob
+
+\vspace*{-0.1in}
+\section*{CCPA/CPRA and Automated Compliance}
+
+\begin{center}
+\framebox[0.9\linewidth]{
+\parbox{0.8\linewidth}{
+    {\bf Example:}
+    A website's opt-out page requires users to complete a multi-step process: first
+    filling out a form with their full name, email address, phone number, and mailing
+    address, then completing a CAPTCHA, and finally waiting for an email confirmation
+    link that expires in 24 hours. The website claims this is needed to "verify identity
+    and process the request."
+}
+    }
+\end{center}
+
+\prob{4} What type of dark pattern does this example primarily represent?\\
+\answercircle{Confirm shaming}\\
+\correctanswercircle{Obstruction}\\
+\answercircle{Misdirection}\\
+\answercircle{Nagging}\\
+\eprob
+
+\prob{2} What is the Global Privacy Control (GPC) and how does it relate to CPRA compliance?\\
+\answerbox{1.5}{
+The Global Privacy Control (GPC) is a browser setting that automatically sends an opt-out signal to websites, indicating the user's preference not to have their personal information sold or shared. Under CPRA, websites must honor GPC signals as valid opt-out requests. GPC is implemented in browsers like Firefox and Chrome, though most users are unaware of this feature. It provides an automated alternative to manual opt-out processes.
+}
+\eprob
+
+\prob{3} Explain what the "spillover effect" (or "California effect") refers to in the context of privacy regulation compliance.\\
+\answerbox{1.25}{
+The spillover or California effect refers to the phenomenon where companies extend privacy protections beyond the jurisdictions where they are legally required. Research has shown that websites in states without privacy laws (like Illinois) adopted privacy protections similar to those required in California, suggesting that companies found it easier to implement privacy controls uniformly rather than maintaining different systems for different states. This demonstrates how strong state regulations can influence practices nationwide.
+}
+\eprob
+
+\prob{4} Studies of CCPA/CPRA compliance found that approximately 30\% of covered entities failed to implement an opt-out link or mechanism on their website. Which of the following are valid reasons for this? (Select all that apply.)\\
+\correctanswercircle{The sites don't actually sell data, so no opt-out link is required}\\
+\correctanswercircle{Implementation errors where links are hidden by JavaScript}\\
+\correctanswercircle{Opt-out functionality is in the privacy policy but not in a visible header/footer link}\\
+\answercircle{All covered entities intentionally violate the law}\\
+\correctanswercircle{Links are dynamically loaded and absent from HTML source}
+\eprob
+
+\vspace*{-0.1in}
+\section*{Dark Patterns}
+
+\prob{3} Explain why CPRA (California Privacy Rights Act) explicitly prohibits the use of dark patterns in the opt-out process.\\
+\answerbox{1.25}{
+CPRA prohibits dark patterns because they undermine the fundamental purpose of the opt-out right by manipulating or deceiving users into not exercising their privacy rights. Dark patterns make it difficult, confusing, or frustrating for users to opt out, which defeats the legislative intent of giving users meaningful control over their personal information. By banning dark patterns, CPRA aims to ensure that opt-out processes are straightforward and respect user autonomy.
+}
+\eprob
+
+\prob{4} Which of the following are examples of the "obstruction" category of dark patterns? (Select all that apply.)\\
+\correctanswercircle{Requiring CAPTCHA completion to access privacy portal}\\
+\correctanswercircle{Mutually exclusive choices like "opt out of sale OR sharing, but not both"}\\
+\correctanswercircle{Asymmetry where opting in takes 1 click but opting out takes 2 clicks}\\
+\answercircle{Using confusing language like "Allow sale" on an opt-out button}\\
+\correctanswercircle{Identity verification that fails if not completed within 48 hours}
+\eprob
+
+\begin{center}
+\framebox[0.9\linewidth]{
+\parbox{0.8\linewidth}{
+    {\bf Case Study:}
+    A website's privacy opt-out page displays a toggle switch with no text labels.
+    The switch is currently in the "off" position. Above the switch, text reads
+    "Manage your privacy preferences." It's unclear whether toggling the switch
+    to "on" will enable data selling or enable privacy protection. At the bottom
+    of the page, there is a hyperlink labeled "this form" that is difficult to
+    identify as clickable because it appears in the same color as regular text.
+}
+    }
+\end{center}
+
+\prob{2} Identify which category (or categories) of dark patterns are present in this case study and explain your reasoning.\\
+\answerbox{1.75}{
+This case contains both "misdirection" and "interface interference" dark patterns. Misdirection is present because the toggle switch has unclear/conflicting instructions—it's ambiguous whether toggling "on" opts out or opts in to data selling. Interface interference is present in the hidden hyperlink labeled "this form" which is hard to identify as clickable due to poor visual design. These patterns make it difficult for users to understand and complete the opt-out process.
+}
+\eprob
+
+\prob{3} Explain why the use of OneTrust or similar third-party compliance services does not guarantee actual compliance with privacy regulations.\\
+\answerbox{1.25}{
+While OneTrust and similar services provide compliance tools, simply deploying these services doesn't guarantee compliance. Companies may deploy the software without proper configuration, fail to test the implementation thoroughly, have corner cases that the default settings don't handle, or misunderstand the statute requirements. Research has shown that sites using OneTrust are frequently out of compliance, suggesting that the tools must be properly configured and tested rather than deployed as turnkey solutions.
+}
+\eprob
+
+\vspace*{-0.1in}
+\section*{AI and Privacy}
+
+\prob{4} Which of the following represent AI-specific privacy risks that {\bf differ from traditional} privacy risks? (Select all that apply.)\\
+\correctanswercircle{Model memorization of training data}\\
+\correctanswercircle{Human-like interactions encouraging progressive disclosure}\\
+\answercircle{Data breaches and unauthorized access}\\
+\correctanswercircle{Prompt injection attacks extracting sensitive information}\\
+\answercircle{Use or sale of data to third parties}
+\eprob
+
+\prob{3} What is the "interdependent privacy" problem in the context of LLM usage?\\
+\answercircle{LLMs require multiple users to verify their identities}\\
+\answercircle{Privacy settings must be configured by both the user and the LLM provider}\\
+\correctanswercircle{Users' privacy decisions affect others when they share information about colleagues, clients, or family}\\
+\answercircle{LLMs cannot function without sharing data across multiple servers}\\
+\eprob
+
+\prob{3} Explain how anthropomorphization of LLMs can lead to increased privacy risks for users.\\
+\answerbox{1.5}{
+Anthropomorphization occurs when users perceive LLMs as human-like conversational partners, which encourages trust and intimacy. This leads to progressive disclosure where users share increasingly sensitive information, especially when the LLM prompts with responses like "Tell me more?" The conversational interface and positive feedback create comfort that may cause users to share personal information they wouldn't share with a traditional software interface. This can lead to disclosure of sensitive personal, medical, financial, or professional information.
+}
+\eprob
+
+\begin{center}
+\framebox[0.9\linewidth]{
+\parbox{0.8\linewidth}{
+    {\bf Scenario:}
+    An LLM interface displays a prompt: "Do you want me to remember our chats
+    to provide better context and more personalized responses in future
+    conversations?" with buttons for "Yes, remember" and "No, don't remember."
+}
+    }
+\end{center}
+
+\prob{4} Analyze this interface design for potential dark patterns. Does it exhibit characteristics of obstruction, interface interference, or misdirection? Explain your answer.\\
+\answerbox{1.75}{
+This exhibits misdirection because the framing emphasizes the benefit to the user ("better context and more personalized responses") while downplaying or omitting information about data collection, storage, and potential privacy implications. The phrasing makes it sound like a helpful feature rather than a data collection decision. A more transparent approach would explicitly mention that chat history will be stored and potentially used for training, along with associated privacy implications.
+}
+\eprob
+
+\prob{4} Which of the following are strategies users employ to protect privacy when using LLMs? (Select all that apply.)\\
+\correctanswercircle{Accepting risks as a privacy-convenience tradeoff similar to other tech services}\\
+\correctanswercircle{Avoiding certain uses like financial data with real numbers}\\
+\correctanswercircle{Rewriting prompts to reduce identifiable information about gender, race, or location}\\
+\answercircle{Only using LLMs through VPNs to hide IP addresses}\\
+\correctanswercircle{Not using LLMs for work-related queries due to company policies}
+\eprob
+
+\vspace*{-0.1in}
+\section*{Copyright and Fair Use}
+
+\prob{4} Which of the following can be protected by copyright? (Select all that apply.)\\
+\answercircle{Mathematical formulas}\\
+\correctanswercircle{Literary works}\\
+\answercircle{Ideas and concepts}\\
+\correctanswercircle{Software code}\\
+\answercircle{Historical facts}
+\eprob
+
+\prob{4} By default, copyright grants the creator exclusive rights including making copies, distributing works, creating derivatives, and public performance. \yesnoyes
+\eprob
+
+\prob{4} According to fair use doctrine, which of the following are among the four factors courts consider when determining whether use of copyrighted material qualifies as fair use? (Select all that apply.)\\
+\answercircle{Whether the user obtained permission from the copyright holder}\\
+\correctanswercircle{Purpose and character of use (transformative use)}\\
+\correctanswercircle{Nature of the copyrighted work}\\
+\correctanswercircle{Amount and substantiality of portion used}\\
+\correctanswercircle{Effect on market value of the original work}
+\eprob
+
+
+\begin{center}
+\framebox[0.9\linewidth]{
+\parbox{0.8\linewidth}{
+    {\bf Case Study:}
+    An AI company trains a large language model (LLM) using millions of copyrighted
+    books, articles, and creative works without obtaining permission from or
+    compensating the authors. The company argues that this constitutes fair use.
+    Authors have filed lawsuits claiming copyright infringement, arguing that AI-generated
+    content competes with their work and threatens their livelihoods. The case is
+    expected to reach the Supreme Court.
+}
+    }
+\end{center}
+
+\prob{3} Using the "transformative use" test from fair use doctrine, construct an argument IN FAVOR of the AI company's fair use defense.\\
+\answerbox{1.75}{
+The AI company's use is transformative because the LLM doesn't merely reproduce or redistribute the original copyrighted works. Instead, it learns patterns, structures, and relationships from the training data to generate entirely new content. The model creates novel outputs that are fundamentally different from any individual training text. This is analogous to how sampling music can be transformative when creating something new. The AI's outputs don't supersede the originals—users seeking a specific book won't use an LLM as a substitute for reading that book.
+}
+\eprob
+
+\prob{3} Using the "effect on market value" test from fair use doctrine, construct an argument AGAINST the AI company's fair use defense.\\
+\answerbox{1.75}{
+The AI company's use harms the market for the original works because AI-generated content directly competes with human creators. Romance novelists, journalists, and other writers argue that instant AI generation damages their sales by providing a cheaper, faster alternative to hiring human writers. Artists claim AI-generated art replaces the market for their commissioned work. The business model of these AI companies is built on providing content that would otherwise be created by the copyright holders, effectively putting authors and creators out of business and destroying the commercial value of their work.
+}
+\eprob
+
+\section*{Feedback}
+\vspace*{-0.25in}
+\prob{1}
+Interest (1=Boring!; 10=Amazing!): \shortanswerbox{0.5}{8}
+Difficulty (1=Too easy; 10=Too hard): \shortanswerbox{0.5}{7}
+\eprob
+\prob{2}
+1. One topic you found most interesting this semester. 2. One suggestion for improvement:\\
+\answerbox{0.7}{The intersection of AI and privacy law was fascinating. More case studies would be helpful.}
+\eprob
