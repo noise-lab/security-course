@@ -36,8 +36,12 @@ The courses below are not required but may be helpful background.
 | Participation and In-Class Quizzes | 5% |
 
 - **Lab Assignments (20%).** The course will have a sequence of lab
-  assignments, as outlined on the [schedule](index.html). Due dates
-  and instructions for turning in assignments will be posted on Canvas.
+  assignments, as outlined on the [schedule](index.html). **All assignment
+  release dates and due dates are published on the schedule at the start of
+  the term, and we adhere to that schedule**, so you can plan your work from
+  day one. Each assignment includes an **up-front grading rubric** so you know
+  exactly how it will be evaluated. Instructions for turning in assignments
+  will be posted on Canvas.
   **Important:** Lab assignments will be graded primarily for completion.
   While we encourage the use of AI tools to assist with assignment completion
   (with proper acknowledgment and explanation of your prompting approach),
@@ -50,8 +54,10 @@ The courses below are not required but may be helpful background.
   and a final exam.
 - **Debate (35%).** You will participate in one debate during the term,
   on a topic related to security, privacy, and consumer protection. You
-  will be graded according to your preparation and participation in this
-  activity.
+  will be graded according to the [debate rubric](debates/format.md#grading)
+  covering preparation and research, argument quality, rebuttal and
+  responsiveness, use of evidence, and engagement — **not** on which side
+  "wins" (you may be assigned the harder position).
 - **Participation and In-Class Quizzes (5%).** Ask good questions, get
   to know the instructor and TAs, show up to office hours, and generally
   interact with the class as much as possible! There may be periodic
@@ -92,6 +98,24 @@ not count against your late period. Any other reasons for
 lateness—including but not limited to interviews, conferences, etc.—are
 *not* legitimate excuses and any resulting lateness will count against
 your grace period.
+
+## Communication and Response Times
+
+Slack is our primary channel for questions about the course and assignments.
+
+- **Post in the public course channel — it is your best bet for a fast answer.**
+  If you are wondering about something, someone else usually is too. We expect
+  students to help answer one another's questions: peer answers spread the load
+  and resolve common questions quickly, and the course staff monitors the public
+  channels and will step in as needed.
+- **We aim to respond to questions in the public channel within one business
+  day** (within 24 hours, not counting weekends and holidays). We will try to be
+  responsive but make no firm guarantee on turnaround.
+- **Direct messages carry no response-time expectation.** Reserve DMs for
+  personal matters (grades, accommodations, anything sensitive). If you want a
+  quick answer to a course or assignment question, post in the public channel
+  instead of sending a DM.
+- For anything urgent or sensitive, email the instructor directly.
 
 ## Reading and Videos
 
