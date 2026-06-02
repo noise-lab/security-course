@@ -1,0 +1,408 @@
+---
+title: "AI and Copyright"
+subtitle: "Security, Privacy, and Consumer Protection"
+author: "Nick Feamster · University of Chicago"
+date: last-modified
+---
+
+## From the Four Factors to the Training Set {.center}
+
+> Last time: copyright protects **expression**, and **fair use** is a four-factor
+> defense that turns on **transformativeness**.
+
+Today we point that exact framework at the input to every modern AI model:
+**billions of copyrighted works, copied without permission, to train a model.**
+
+::: {.notes}
+This deck is the sequel to 14-Copyright. Assume students know the idea/expression line,
+the four-factor test, and Google v. Oracle. Don't re-teach them — apply them. The single
+organizing question all day: is copying-to-train fair use, and does it matter how you got
+the data and what the model spits back out? Per agenda, the for/against AI case-study
+drill is a near-certain midterm item, so make them argue both sides.
+:::
+
+## A 2026 Vignette: The Law Is Splitting in Real Time {.smaller}
+
+::: {.vignette}
+In **2025–26** the first AI-training rulings landed — and they **disagree**.
+**Feb 11, 2025**, *Thomson Reuters v. Ross* (D. Del.): training a legal-research AI on
+Westlaw headnotes was **not** fair use. **June 23, 2025**, *Bartz v. Anthropic* (N.D.
+Cal.): training on books **is** "exceedingly transformative" — but pirating 7M+ books to
+build the library was **not**; Anthropic later settled for **~$1.5B** (~$3,000/work).
+Meanwhile *NYT v. OpenAI* survived dismissal and, as of early 2026, is fighting over
+**"regurgitation."**
+:::
+
+Same statute, opposite results — the **facts** (how acquired, how transformative, how
+much it competes) decide everything.
+
+::: {.notes}
+Three verified, dated facts. The teaching point: there is no "AI fair use rule" yet —
+outcomes diverge on the facts. Ross lost because its tool directly competed with Westlaw
+(non-transformative, commercial). Anthropic won on training but lost on piracy. NYT is
+still live. Don't claim the Supreme Court has ruled — it hasn't. This is the freshest
+hook; swap in any newer ruling at lecture time.
+:::
+
+## How Models "Learn": Copying Is Step Zero {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Traditional code**
+
+Explicit rules a human writes:
+"if input is X, output Y."
+:::
+::: {.column width="50%"}
+**Machine learning**
+
+1. **Copy** millions of examples
+2. Model finds statistical patterns
+3. Generate new outputs from patterns
+:::
+:::
+
+The legally load-bearing fact: **training requires making copies** of the data — full
+works, ingested into the pipeline. That copy is what plaintiffs sue over.
+
+::: {.notes}
+For non-CS students: traditional programming is a recipe; ML is learning to cook by
+tasting thousands of dishes. The point for this course is narrow and crucial — to learn
+the patterns, the system must first *reproduce* the works into the training pipeline.
+Whether that intermediate copy is fair use is the whole fight. Connect to the memorization
+risk introduced in the AI-Privacy lecture.
+:::
+
+## What Is in the Training Data? {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Text models** (GPT, Claude, Gemini)
+
+- Books — incl. **Books3** (~196k titles, scraped from a pirate library)
+- News, journalism, blogs
+- **Common Crawl** (billions of web pages)
+- Code repos, scientific papers
+:::
+::: {.column width="50%"}
+**Image / multimodal models**
+
+- **LAION-5B** (~5.85B image–text pairs)
+- Stock photos, artist portfolios
+- Social-media images
+:::
+:::
+
+The scale dwarfs prior cases: Oracle was **11,500 lines of code**; a frontier model
+trains on a meaningful fraction of the **entire public internet**.
+
+::: {.notes}
+Anchor scale against Oracle from last lecture: 11,500 lines vs. ~the whole web. Books3
+is the "smoking gun" plaintiffs lean on — it came from a pirate site (Bibliotik), so
+training on it bundles a piracy problem with the fair-use problem (exactly the Anthropic
+split). Note Books3 was pulled offline in 2023, but models trained on it persist.
+:::
+
+## Does Scale Change the Fair-Use Answer? {.smaller}
+
+Run the **four factors** against AI training (you already know the test):
+
+| Factor | AI companies say | Rights holders say |
+|---|---|---|
+| **1. Purpose** | Transformative — learn patterns, new tool | Commercial substitution, supersedes |
+| **2. Nature** | Lots of factual/functional data | Novels, art, lyrics = highly creative |
+| **3. Amount** | Whole work needed; tiny per-work effect | Wholesale copying, no licensing tried |
+| **4. Market** | Different market; may grow demand | Lost sales + lost **AI-licensing** market |
+
+**The crux:** does the *purpose of the copy* (training) control, or the *purpose of the
+output* (which may substitute)?
+
+::: {.notes}
+This is the slide to spend time on — it is the midterm drill in table form. Have them
+argue each cell both ways. Factor 1 is doing most of the work in the rulings (Anthropic,
+Meta leaned transformative; Ross leaned commercial-competition). Factor 4 is the authors'
+strongest card and the angle the Anthropic court flagged as potentially most persuasive:
+a model can *flood the market* with substitutes.
+:::
+
+## The Lawsuit Landscape {.smaller}
+
+| Case | Defendant | What's at stake |
+|---|---|---|
+| **NYT v. OpenAI** (Dec 2023) | OpenAI / Microsoft | News; verbatim **regurgitation**, paywall bypass |
+| **Authors Guild v. OpenAI** (Sep 2023) | OpenAI | Novels (Grisham, Martin, Picoult…) |
+| **Kadrey / Silverman v. Meta** | Meta (LLaMA) | Books3; **Meta won** training ruling (Jun 2025) |
+| **Bartz v. Anthropic** | Anthropic | Books; **split** ruling + ~$1.5B settlement |
+| **Getty v. Stability AI** (Feb 2023) | Stability AI | 12M images; **watermarks** in outputs |
+| **Thomson Reuters v. Ross** | Ross | Westlaw headnotes; **not** fair use |
+
+The plaintiffs span **every creative sector** — text, news, images, legal content.
+
+::: {.notes}
+Don't read the whole table — pick two contrasts. (1) Anthropic vs. Ross: same year, both
+N.D. Cal./D. Del., opposite outcomes, because Ross built a *direct competitor* to the
+source. (2) Getty's evidence is uniquely vivid: generated images carried a garbled "Getty
+Images" watermark — near-direct proof the training set was copied. The Meta and Anthropic
+training wins are district-court, not appellate; cases are consolidating and several will
+likely head up on appeal.
+:::
+
+## NYT v. OpenAI: The Regurgitation Fight {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**NYT's evidence**
+
+- ChatGPT reproduced article passages **near-verbatim**
+- Output paywalled content
+- Substitutes for a subscription
+:::
+::: {.column width="50%"}
+**OpenAI's defense**
+
+- Training is **transformative** fair use
+- Regurgitation is a rare **bug**, induced by adversarial prompts
+- Model weights aren't "copies"
+:::
+:::
+
+**Status (early 2026):** survived a motion to dismiss (Mar 2025); core infringement
+claims proceed. The live question is whether **memorization** defeats the fair-use story.
+
+::: {.notes}
+NYT was one of the few major publishers that *refused* to license to OpenAI — meanwhile
+OpenAI signed AP, Axel Springer, the FT. That refusal is why this is the marquee case.
+Judge Stein narrowed but did not dismiss. The reason this case matters more than the
+others: it foregrounds *output* memorization, which is the AI companies' biggest
+vulnerability (next slides). Demo idea: ask a current chatbot for a news passage and show
+it now refuses — that refusal is post-litigation mitigation, not innocence or guilt.
+:::
+
+## The Memorization Problem {.smaller}
+
+**Memorization** = the model can reproduce training data **verbatim**, not just learn
+from it.
+
+- More likely for **duplicated** or **rare/distinctive** text; **larger models**
+  memorize more (Carlini et al., extracting training data from LLMs)
+- Demonstrated across text, code, images, and song lyrics
+
+**Why it's legally lethal:**
+
+- Undercuts the **"we only learn patterns"** transformative-use claim
+- Looks like **storage + retrieval**, not abstraction
+- Verbatim output is **direct market substitution** — and a *separate* infringement
+
+::: {.notes}
+This is the through-line from the AI-Privacy lecture (memorization of training data) —
+now the same phenomenon is the copyright plaintiffs' best weapon. Contrast with Google
+Books, which was *designed* to never show the full text (snippets only); a generative
+model *can* emit full passages, even if rarely. The open legal question: is *any*
+memorization fatal, or is de minimis/adversarially-induced regurgitation excused? That is
+exactly what NYT v. OpenAI is testing.
+:::
+
+## The "AI Learns Like a Human" Analogy {.smaller}
+
+**AI companies:** "Artists study other artists; writers read to learn. AI does the same —
+copyright never barred *learning*."
+
+**The rebuttal, factor by factor:**
+
+::: {.columns}
+::: {.column width="50%"}
+- **Scale:** hundreds of books vs. **billions** of works
+- **Memory:** human imperfect recall vs. **verbatim** reproduction
+:::
+::: {.column width="50%"}
+- **Purpose:** personal growth vs. a **commercial product**
+- **Output:** one person's limited output vs. **infinite, zero-marginal-cost** generation
+:::
+:::
+
+**Discussion:** is the analogy persuasive — or does it paper over differences that the law
+should care about?
+
+::: {.notes}
+Great cold-call slide. Steel-man both sides. The strongest pro-analogy point: copyright
+genuinely does *not* protect ideas or the act of learning, only expression — so maybe the
+right thing to regulate is *outputs*, not training. The strongest anti point: a human who
+memorizes and re-sells a book *is* infringing; scale + verbatim memory makes AI more like
+that than like a reader. Tie back to the 2025 split: courts are increasingly distinguishing
+how-it-learned (often OK) from what-it-outputs (must show substantial similarity).
+:::
+
+## The Licensing-Market Question {.smaller}
+
+Factor 4's hardest sub-question: **is there a market for licensing to AI — and did the
+training destroy it?**
+
+::: {.columns}
+::: {.column width="50%"}
+**Rights holders**
+
+- A licensing market **exists**: OpenAI pays AP, Axel Springer, the FT, Reddit
+- Payment **proves** the value they took
+:::
+::: {.column width="50%"}
+**AI companies**
+
+- The market didn't exist *when training occurred*
+- Per *Campbell*, holders can't **preempt a transformative market**
+:::
+:::
+
+**The new front (2026):** courts increasingly ask plaintiffs to prove a **specific output
+is substantially similar** to their work — shifting the fight from *input* to *output*.
+
+::: {.notes}
+Campbell v. Acuff-Rose: "copyright holders may not preempt the exploitation of
+transformative markets." AI companies use this; rights holders counter that the flood of
+deals (AP, FT, Reddit, etc.) shows a real, takeable market. The 2026 doctrinal shift is
+worth flagging as the freshest analytic move: even where training is deemed fair use,
+plaintiffs may still win on *outputs* that mirror specific works. That is where the next
+wave of litigation is heading.
+:::
+
+## Who Owns the *Output*? {.smaller}
+
+Flip side of the same coin: if a human prompts an AI, **who is the author?**
+
+::: {.vignette}
+**U.S. Copyright Office report (Jan 29, 2025):** human authorship is a "bedrock" —
+**purely AI-generated output is not copyrightable**, and **prompts alone don't make you
+the author**. But human **selection, arrangement, and modification** of AI output *can*
+be protected, case-by-case. Existing law is "adequate" — no new statute needed.
+:::
+
+So: you can't copyright what the model made for you, but you *can* copyright the creative
+human work you wrap around it.
+
+::: {.notes}
+This is the ownership half of the lecture title and a common student question ("if I make
+an AI image, do I own it?"). Answer: not the raw output; possibly your creative additions.
+This is the same human-authorship line from the older Thaler "monkey selfie"-style
+reasoning, now formalized for generative AI. Tie it forward: this matters for whether
+AI-assisted student/portfolio work is protectable, and for downstream liability if an
+output infringes.
+:::
+
+## International Approaches Diverge {.smaller}
+
+| Jurisdiction | Stance on training |
+|---|---|
+| **Japan** | **Permissive** — Art. 30-4 (2018) allows copying for "information analysis," even commercial |
+| **United States** | **Uncertain** — courts deciding case-by-case; no statute |
+| **European Union** | **Restrictive-ish** — TDM exception **with opt-out** + AI Act training-data **transparency** |
+| **United Kingdom** | **In flux** — broad TDM-for-AI proposal stalled after creative-industry pushback |
+
+**Consequence:** jurisdiction shopping — where you train can change whether it's legal.
+
+::: {.notes}
+The spread is the lesson: Japan = innovation-first safe harbor; EU = transparency +
+rights-reservation (the AI Act requires a "sufficiently detailed summary" of training
+data and honors copyright opt-outs); UK keeps reversing course; US punts to courts. This
+fragmentation creates real forum/jurisdiction-shopping incentives and is why an "AI
+copyright" question is also an international-policy question. Keep specifics general where
+unsure rather than over-asserting dates.
+:::
+
+## Policy Levers on the Table {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Consent defaults**
+
+- **Opt-out** (AI cos.): default-yes, à la `robots.txt`
+- **Opt-in** (creators): default-no, explicit permission
+- Compromise: opt-out for old data, opt-in for new
+:::
+::: {.column width="50%"}
+**Compensation & tech**
+
+- **Collective licensing** (ASCAP/BMI model)
+- **Compulsory licensing** (set rates, can't block)
+- **Watermarking**, **data "nutrition labels"**, do-not-train registries
+:::
+:::
+
+Every option faces the same hard problems: **valuation, attribution, retroactivity,
+enforcement.**
+
+::: {.notes}
+The deep tension: requiring opt-in protects creators but may make frontier training
+infeasible at scale (and favors incumbents who can afford licenses); opt-out maximizes
+data but offloads the burden onto creators. Watermarking has a retroactivity problem
+(existing works aren't marked) and an arms-race problem (marks get stripped). Mention
+UChicago's own Glaze/Nightshade as creator-side technical self-defense — good local hook.
+:::
+
+## Activity: Argue the Case Both Ways {.smaller}
+
+**Scenario.** A startup trains an AI on **50,000 copyrighted novels** to build a
+"chapter-by-chapter summary generator," sold by subscription.
+
+**Your task — work the four factors, then take a side:**
+
+::: {.columns}
+::: {.column width="50%"}
+1. Purpose / character?
+2. Nature of the works?
+:::
+::: {.column width="50%"}
+3. Amount used?
+4. Market effect?
+:::
+:::
+
+**Pair-share, 5 min** — then I'll cold-call **one pair to argue fair use and one to argue
+infringement.**
+
+::: {.notes}
+This is the agenda's flagged midterm format — the professor "put real money" on a
+for/against AI fair-use case study. Expected reads: (1) commercial + arguably non-
+transformative (summaries serve the same informational purpose) — leans against; (2)
+novels are highly creative — against; (3) entire books — against; (4) summaries plausibly
+substitute for buying — against. Likely *not* fair use — a useful contrast to Anthropic,
+where the *training* was transformative but the summary-tool purpose here is closer to
+substitution (and to Ross's competing-product problem).
+:::
+
+## What Comes Next {.smaller}
+
+- **More splits, then appeals** — expect a circuit split and an eventual Supreme Court
+  case (years out)
+- **Output-side litigation** grows: prove a specific output is **substantially similar**
+- **Licensing markets mature** — more publisher/platform deals
+- **Open questions:** liability for infringing outputs (user vs. company?), open-source
+  models, training on **synthetic** (AI-generated) data
+
+::: {.notes}
+Keep predictions humble — tech outruns courts. The most important trend to leave students
+with is the input→output shift: even if training-as-fair-use solidifies, plaintiffs are
+pivoting to "your model produced *my* work." Liability allocation (is it the prompting
+user or the model provider who infringes?) is genuinely unsettled and is the next exam-
+ready frontier.
+:::
+
+## Key Takeaways
+
+1. AI training **copies copyrighted works at unprecedented scale** — the four-factor test
+   still governs
+2. **Transformativeness (Factor 1)** drives the wins; **market harm + memorization** drive
+   the losses
+3. **2025–26 rulings split:** Anthropic (training fair use), Ross (not), NYT (live)
+4. **How you got the data matters** as much as what you do with it (piracy ≠ fair use)
+5. **AI-only output isn't copyrightable** — human authorship is required
+6. Policy levers (opt-in/out, licensing, watermarks) all hit **valuation + enforcement**
+
+::: {.notes}
+Close on the same idea that opened: the law isn't new, the scale is. The four factors you
+drilled in 14-Copyright are exactly the tools courts are using. For the midterm: be ready
+to take an AI scenario and argue both fair use and infringement, citing specific factors
+and the 2025 cases by name.
+:::
+
+# Questions? {.center}
+
+The law is being written **right now** — and your generation will finish writing it.

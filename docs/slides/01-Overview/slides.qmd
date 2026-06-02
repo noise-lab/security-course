@@ -1,0 +1,167 @@
+---
+title: "Course Overview"
+subtitle: "Security, Privacy, and Consumer Protection"
+author: "Nick Feamster · University of Chicago"
+date: last-modified
+---
+
+## Why This Course Exists {.center}
+
+> There is a **dearth of technologists in public policy** arenas. Let's change that.
+
+This course sits at the intersection of **technical security/privacy** and the
+**legal, regulatory, and policy** systems that govern technology.
+
+::: {.notes}
+Open with the framing question: who in the room sees themselves working on policy,
+and who sees themselves building systems? The whole point is that you need both. Tell
+the BITAG / FTC testimony story briefly to make it concrete.
+:::
+
+## Who Am I?
+
+- **Prof. Nick Feamster** — computer networking & security
+- Research: applications of **ML** (anomaly detection, classification) and **public
+  policy** (broadband deployment, the digital divide)
+- Policy engagement: **BITAG**, testimony at the **FTC** and state legislatures,
+  comments to the **FCC / USPTO**
+
+::: {.notes}
+Keep this short — establish credibility, then move on. The students care more about
+what they'll get out of the course than my CV.
+:::
+
+## Learning Objectives
+
+By the end of the course you should be able to:
+
+- Explain core **security and privacy** concepts: cryptography; network, endpoint, and
+  data security; surveillance and tracking; attacks and defenses
+- Place those concepts in the context of **policy and regulation** — consumer privacy,
+  censorship, content moderation, data breaches, net neutrality, surveillance, and the
+  accountability of automated decision-making
+- **Translate** technical ideas into policy arguments and recommendations
+
+## Is This Course for You?
+
+- You're **comfortable programming** (or have a friend in class who is) — this is *not*
+  a programming-heavy course, but a couple of labs use Python/JavaScript
+- You have an interest in **tech policy**, or in building those skills
+- You want practice **communicating technical ideas** — in writing and out loud
+  (that's what the debates are for)
+
+## Where This Can Take You
+
+::: {.columns}
+::: {.column width="25%"}
+![](images/slide008_img005.png)
+:::
+::: {.column width="25%"}
+![](images/slide008_img006.png)
+:::
+::: {.column width="25%"}
+![](images/slide008_img007.png)
+:::
+::: {.column width="25%"}
+![](images/slide008_img008.png)
+:::
+:::
+
+People who work at this intersection: an **FCC Commissioner**, an **FTC CTO / U.S.
+Deputy CTO**, a **civil-society NGO CEO**, a **city data scientist**.
+
+::: {.notes}
+These are real role models who sit where tech meets policy. The point isn't the
+specific people — it's that "technologist who understands policy" is a career, not a
+hobby. (Image layout here is the template pattern for embedding curated figures.)
+:::
+
+## What We Actually Cover {.smaller}
+
+Roughly one theme per week, tracked in [`agenda.md`](../../agenda.md):
+
+::: {.columns}
+::: {.column width="50%"}
+- Trusting trust; why cryptosystems fail
+- Key management & PKI
+- Authentication & access control (OAuth)
+- Denial of service & botnets
+- Routing security (BGP/RPKI)
+- Web security; DNS security
+:::
+::: {.column width="50%"}
+- Web & device privacy; tracking
+- Privacy law & compliance
+- AI and privacy
+- Copyright, fair use, and AI
+- Content moderation
+- Censorship; broadband access
+:::
+:::
+
+::: {.notes}
+This slide is generated from what we *actually* covered last year (agenda.md), not the
+aspirational syllabus. If a topic gets cut for time, update agenda.md and this slide.
+:::
+
+## Course Components
+
+| Component | Weight |
+|---|---|
+| Midterm + Final | 40% |
+| **Debate** (one per term, ~4 people) | 35% |
+| Lab assignments | 20% |
+| Participation & quizzes | 5% |
+
+Labs are graded primarily for **thoughtful completion** — each now ships with an
+**up-front rubric**. AI tools are allowed *if you understand and can defend the output*.
+
+## A 2026 Vignette: Why This Is Timely {.smaller}
+
+::: {.vignette}
+In the last year alone: state **comprehensive privacy laws** kept multiplying past the
+California/Virginia/Colorado wave; the **EU AI Act** obligations began to bite;
+regulators sharpened scrutiny of **AI training data and copyright**; and **encrypted
+DNS / ECH** continued reshaping who can see your browsing. Almost every headline this
+term will map onto a lecture.
+:::
+
+**Thought question:** pick a tech-policy story from this *week's* news — which lecture
+does it belong to?
+
+::: {.notes}
+Swap this vignette for the freshest concrete example at the start of the term. The goal
+is to show the course is a lens on current events, not a static syllabus. Ask students
+to actually name a story; cold-call gently.
+:::
+
+## How a Typical Lecture Runs
+
+- **~50 min** core: a vignette tied to the reading → the key idea of the day → a
+  thought question + breakout → discussion
+- A **debate** occupies part of many meetings (Oxford style; graded on contribution,
+  not which side "wins")
+- Come having done the reading — there may be short **pop quizzes** for accountability
+
+::: {.notes}
+Set expectations about the three-hour block and the break. Students last year flagged
+the long single session — be explicit about pacing and the mid-class break.
+:::
+
+## Logistics
+
+- **Readings** posted to GitHub the week before; if it isn't posted, you're not
+  responsible for it
+- **Assignment dates** are published on the schedule on day one and we stick to them
+- **Questions:** post in the **public channel** (fastest answer; peers help too); DMs
+  have no response-time guarantee
+- Syllabus & schedule: the course website
+
+::: {.notes}
+These three bullets directly answer last year's feedback (release timing, Slack
+responsiveness). Point students at the syllabus section on communication.
+:::
+
+# Let's Get Started {.center}
+
+First theme: **trusting trust** — can you trust code you didn't write yourself?

@@ -13,3 +13,10 @@ docs/midterm/2024/exam.pdf
 # macOS
 .DS_Store
 **/.DS_Store
+
+# Quarto build artifacts
+docs/slides/.quarto/
+**/slides_files/
+docs/slides/**/_source-extract.md
+docs/slides/**/slides.html
+docs/slides/**/images/

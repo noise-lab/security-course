@@ -1,0 +1,27 @@
+# Shared Quarto config for all lecture decks.
+# Each lecture lives in NN-Name/slides.qmd and inherits these defaults.
+# Only slides.qmd files are treated as project inputs, so the legacy Marp
+# .md files (13/14/15, until reauthored) are ignored by `quarto render`.
+project:
+  title: "Security, Privacy, and Consumer Protection"
+  render:
+    - "**/slides.qmd"
+
+format:
+  revealjs:
+    theme: [default, theme.scss]
+    slide-number: c/t
+    slide-level: 2
+    incremental: false
+    width: 1280
+    height: 720
+    history: false
+    transition: fade
+    footer: "Security, Privacy & Consumer Protection · University of Chicago"
+    code-line-numbers: true
+    highlight-style: github
+    chalkboard: false
+    link-external-newwindow: true
+
+# Inline speaker notes use ::: {.notes} blocks; press 's' in the deck for
+# presenter view.

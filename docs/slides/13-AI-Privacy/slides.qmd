@@ -1,0 +1,355 @@
+---
+title: "AI and Privacy"
+subtitle: "Security, Privacy, and Consumer Protection"
+author: "Nick Feamster · University of Chicago"
+date: last-modified
+---
+
+## Why AI Privacy Is Different {.center}
+
+> We protect our data with VPNs and encrypted messaging — then paste our medical
+> symptoms and confidential emails into a chatbot.
+
+LLM-based assistants blur the line between **using** a tool and **disclosing**
+data to it. Today: what users share, where it goes, and why "it's a fair game"
+isn't quite right.
+
+::: {.notes}
+Open with a show of hands: who used an LLM assistant this week? Keep your hand up if
+you shared something personal — homework, a job search, a health or relationship
+question. Most hands stay up. That data does not disappear. The frame for today is the
+paradox: we are more privacy-careful than ever, and we overshare to chatbots anyway.
+:::
+
+## A 2026 Vignette: Your Chat Logs in Court {.smaller}
+
+::: {.vignette}
+In **May 2025**, a magistrate judge ordered OpenAI to **preserve all ChatGPT logs**
+— including conversations users had deleted — as evidence in *The New York Times v.
+OpenAI*. In **November 2025** the court ordered OpenAI to hand over **20 million
+de-identified chat logs** to the plaintiffs. Free, Plus, Pro, Team, and most API
+users were swept in; Enterprise and Edu were not.
+:::
+
+A copyright suit became a **privacy crisis**: "delete" no longer meant deleted, and
+control over your conversations shifted from you to a litigation hold.
+
+::: {.notes}
+This is the freshest, most concrete hook for the lecture. The teaching point: the
+privacy properties of a system you use are not set by its UI — they can be overridden
+by litigation, subpoena, or policy change you never see. Ask: did any of you assume
+"delete chat" actually deleted it? Source: OpenAI's public responses and court
+reporting, May and November 2025.
+:::
+
+## Two Kinds of Privacy Risk
+
+::: {.columns}
+::: {.column width="50%"}
+**Traditional (any cloud service)**
+
+- Data breaches and bugs
+- Unauthorized access
+- Use or sale of personal data
+- Human reviewers reading conversations
+- Legal holds and subpoenas
+:::
+::: {.column width="50%"}
+**AI-specific (how LLMs work)**
+
+- **Memorization** — training data can be extracted later
+- **Human-like interaction** — the interface itself encourages disclosure
+- **Implicit inference** — the model deduces what you never typed
+:::
+:::
+
+The two compound each other: the conversational interface draws out *more* data,
+which then flows into *all* the traditional risks.
+
+## What Do People Actually Share?
+
+Analyses of real conversations (e.g., the **ShareGPT** dataset) show users routinely
+paste:
+
+::: {.columns}
+::: {.column width="50%"}
+**Directly identifying**
+
+- Names, emails, phone numbers
+- Home and IP addresses
+- SSNs, passport numbers
+:::
+::: {.column width="50%"}
+**Sensitive but less obvious**
+
+- Medical symptoms and diagnoses
+- Income, debts, financial plans
+- Legal problems; case details
+- Religion, politics, relationships
+:::
+:::
+
+::: {.notes}
+Make it concrete: a job title + employer + city is often enough to re-identify someone
+even with no name attached. The point is not that any single field is catastrophic, but
+that the conversational format encourages dumping *combinations*.
+:::
+
+## The Interdependent Privacy Problem
+
+You don't only disclose your *own* data:
+
+- A colleague's **email** pasted in to draft a reply
+- A spreadsheet of **client records** for analysis
+- **Student work** uploaded by a teacher writing feedback
+- **Family and friends'** details in personal conversations
+
+**Key insight:** privacy here is **relational**, not individual — and there is no clean
+legal framework for disclosing someone *else's* data to a model.
+
+::: {.notes}
+Discussion prompt: if a coworker pasted your email into ChatGPT to draft a response to
+you, how would you feel? Did they have the right? This is genuinely unsettled — consent
+norms for third-party data in prompts barely exist.
+:::
+
+## AI-Specific Risk 1: Memorization
+
+- LLMs train on massive corpora and can **memorize** verbatim fragments
+- Carefully crafted prompts can **extract** that memorized text later
+- User conversations can themselves become **future training data**
+
+```
+You type sensitive data
+   → provider stores it
+   → it feeds model training
+   → the model memorizes a fragment
+   → another user's prompt extracts it
+```
+
+Carlini et al. demonstrated verbatim extraction from GPT-2 and, later, from
+production ChatGPT — including real names, addresses, and phone numbers.
+
+::: {.notes}
+Emphasize: once a fact is baked into model weights, removing it is hard — there is no
+clean "delete row." This is why the right-to-be-forgotten (GDPR) collides with how LLMs
+are built. Use a sanitized, public extraction example if demoing.
+:::
+
+## AI-Specific Risk 2: The Interface Itself
+
+The conversational format is *designed* to feel human — and that drives disclosure:
+
+- Users **anthropomorphize**: they treat the assistant as a friend or therapist
+- **Progressive disclosure:** "Can you tell me more?" → you reveal a little more →
+  positive, supportive reply → you reveal more still
+- Some people form genuine attachments (reports of users "marrying" their chatbot)
+
+> *"I love sharing personal life details with ChatGPT due to the positive feedback it
+> gave."* — study participant, Zhang et al., CHI 2024
+
+::: {.notes}
+This mirrors social-engineering tactics — except no one is intending to manipulate; the
+effect emerges from helpfulness plus a chat UI. The therapy use case is the sharpest
+example: deeply sensitive mental-health data going to a system with no HIPAA protection.
+:::
+
+## AI-Specific Risk 3: Implicit Inference {.smaller}
+
+Even when you *withhold* explicit PII, the model can **infer** it from context:
+age, gender, location, income, health, ethnicity.
+
+::: {.vignette}
+**Wang, Peddinti, Taft & Feamster (CHI 2026), "Beyond PII":** in a study of 240 U.S.
+participants, people could barely anticipate what a model could infer about them —
+**only slightly better than chance**. Their own attempts to rewrite text to block
+inference worked just **28%** of the time. Paraphrasing was the most popular strategy
+and the *least* effective; **abstraction and added ambiguity** worked better.
+:::
+
+So "just remove the names" is **not** enough — and people are bad at knowing what gives
+them away.
+
+::: {.notes}
+This is the newest result and reframes the whole lecture: the threat isn't only data you
+typed, it's data the model deduces. Sanitization tools and even users mostly fail.
+Connect to "Beyond PII" as the supplementary reading.
+:::
+
+## How Do Users *Think* LLMs Work? {.smaller}
+
+Mental models from interviews (Zhang et al., CHI 2024, n=19):
+
+| Model | Belief | Risk understanding |
+|---|---|---|
+| "It's magic" | Total black box | None |
+| "Super searcher" | Looks things up / matches keywords | Misses training risk |
+| "Stochastic parrot" | Generates text probabilistically | Closer to correct |
+| "Input = quality signal" | Data only rates answers | **Misses memorization** |
+| "Input = training data" | Inputs may be reused | Correct |
+
+Most users held the **search** or **quality-signal** models — i.e., they did **not**
+understand the memorization or training risk.
+
+::: {.notes}
+Quick activity: have students sketch their own mental model in 60 seconds, then poll. The
+punchline lands harder when they realize their model is one of the "wrong" ones. Flawed
+mental models are the core problem for informed consent.
+:::
+
+## The Opt-Out Problem and Dark Patterns
+
+- In the same study, **14 of 19** users didn't know conversations are used for training
+  by default — or that they could opt out
+- Controls are often **bundled**: turning off training also kills useful chat history
+- The real opt-out is sometimes **buried** in a separate FAQ form
+
+A typical prompt — *"Want me to remember your chats for better context?"* — frames
+**data collection as a feature**. Is that deception, obstruction, or just a confusing
+interface?
+
+::: {.notes}
+This is flagged as a likely midterm item: show an LLM settings screen, ask students to
+name the dark-pattern category (obstruction / interface interference / misdirection).
+Tie back to the dark-patterns and informed-consent material from earlier lectures.
+:::
+
+## How Users Cope With the Trade-off
+
+::: {.columns}
+::: {.column width="50%"}
+**1. Accept it** — "it's a fair game"; the assistant is now indispensable
+
+**2. Avoid** certain tasks — no real financial numbers, no work data, no real symptoms
+:::
+::: {.column width="50%"}
+**3. Sanitize** (most common) — censor or falsify names, redact pasted text, ask only
+in generalities
+
+**3b. Rewrite to reduce inference** — but recall: people are bad at this
+:::
+:::
+
+> *"If I don't provide the contents that contain my private things, ChatGPT won't
+> work."* — participant
+
+::: {.notes}
+Tension: the more you sanitize, the less useful the tool — and the inference research
+shows sanitization often fails anyway. Strategy 3b connects directly to "Beyond PII."
+:::
+
+## Is It Really a "Fair Game"?
+
+Users *believe* they're trading privacy for utility in an informed exchange. But:
+
+- **Erroneous mental models** → consent isn't truly informed
+- **Dark patterns** → meaningful choice is obstructed
+- **Memorization and inference** → risks users can't even perceive
+- **Resignation** → "my data's already out there anyway"
+
+**You can't weigh a risk you don't understand.** So the "game" isn't fair — it's
+**asymmetric**.
+
+::: {.notes}
+This is the thesis of the Zhang et al. paper and the analytical core of the lecture.
+Informed consent requires comprehension; the system design defeats comprehension. Echo
+the respect-for-persons / autonomy framing from Lecture 1.
+:::
+
+## What Should Change: Design
+
+::: {.columns}
+::: {.column width="50%"}
+**Transparency**
+
+- Plain-language data-use explanations
+- Visible, unbundled privacy controls
+- No dark patterns
+
+**User-facing tools**
+
+- PII detection and warnings
+- One-click sanitization
+- Granular, default-protective opt-out
+:::
+::: {.column width="50%"}
+**Beyond PII (inference)**
+
+- Alert when input enables profiling
+- Suggest lower-inference rephrasings
+- Disclose what the model can infer
+
+**Architecture**
+
+- On-device / local models for sensitive tasks
+- Differential privacy in training; federation
+:::
+:::
+
+Shift the burden from **privacy-by-configuration** to **privacy-by-design**.
+
+## What Should Change: Policy {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**The current patchwork**
+
+- **GDPR** applies to EU users (right-to-be-forgotten vs. memorization)
+- **CCPA/CPRA** in California
+- No comprehensive U.S. federal law; sectoral (HIPAA, FERPA)
+:::
+::: {.column width="50%"}
+**Moving targets**
+
+- **EU AI Act**: general-purpose AI transparency and training-data-summary
+  obligations took effect **2 Aug 2025**
+- FTC scrutiny of deceptive AI claims and data use
+:::
+:::
+
+Hard problems: global models vs. local law; deleting data already in weights; risks
+(inference) that **no existing statute names**.
+
+::: {.notes}
+The EU AI Act GPAI obligations (effective August 2025) are the concrete, dated policy
+update. Note the structural mismatch: privacy law assumes data sits in a database you can
+query and delete; LLMs encode it in weights. Connect to the FIPPs critique from the
+privacy-law lecture.
+:::
+
+## Discussion / Activity
+
+**Think–Pair–Share (10 min):**
+
+1. *Individually:* name a task you'd want an assistant for but **avoid** over privacy.
+2. *In pairs:* which specific risk worries you — breach, training, inference, or being
+   "found out"? What would make you comfortable?
+3. *Share out:* common themes.
+
+**Debate seeds:**
+
+- *Resolved:* providers must obtain **explicit opt-in** before training on user data.
+- Who owns the burden — **users** protecting themselves, or **design** protecting them?
+
+::: {.notes}
+Facilitation: timer per phase, circulate during pairs, take 3-4 shares, synthesize.
+Likely themes: financial data, work/school policy, medical info, fear of being caught
+using AI. The "found out" theme is a meta-privacy concern worth naming explicitly.
+:::
+
+## Key Takeaways
+
+1. LLMs carry **traditional and novel** privacy risks — and they compound.
+2. Users disclose **highly sensitive** data, often without realizing where it goes.
+3. The biggest novel risks — **memorization** and **implicit inference** — are the ones
+   users can least perceive.
+4. **Flawed mental models + dark patterns** undermine informed consent.
+5. "Fair game" is misleading; the exchange is **asymmetric**.
+6. Fixing it needs **design and policy** change, not just careful users.
+
+::: {.notes}
+Land the asymmetry thesis. Bridge to next lecture: the same training data that creates
+memorization risk is at the center of the copyright / fair-use fight — Authors v.
+Anthropic and Meta, and Google v. Oracle on transformative use. Reading: the copyright
+case materials.
+:::
