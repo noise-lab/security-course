@@ -9,3 +9,7 @@ docs/midterm/.claude/settings.local.json
 .idea/modules.xml
 .idea/misc.xml
 docs/midterm/2024/exam.pdf
+
+# macOS
+.DS_Store
+**/.DS_Store
