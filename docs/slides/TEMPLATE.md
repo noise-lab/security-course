@@ -90,17 +90,75 @@ NN-Name/
 ```
 # NN-Name — instructor notes
 ## Current-events updates made (point 2)
-- ...
+- <YEAR>: ... (date-stamp each refresh so the history is legible)
 ## Suggested missing coverage on broad themes (point 3)
 - ...
+## Next-year refresh notes
+- Hooks/figures with a shelf life (what will go stale and when)
+- Stronger alternative vignettes flagged but not yet used
 ## Curated images
 - which images were used / dropped and why
 ## Source
 - rebuilt from _source-extract.md (N slides) + agenda.md Meeting M
 ```
 
+The **Next-year refresh notes** section is the to-do list the annual refresh (below)
+reads first. Whenever you place a dated hook, jot what will age out and any stronger
+alternative you didn't use — future-you (or a future Claude run) starts there.
+
 ## Length guidance
 
 Lean. A rebuilt deck is typically **15–30 slides** even if the original had 70–150 —
 consolidate, cut redundancy, and keep one idea per slide. The old slide count is not a
 target.
+
+## Annual current-events refresh
+
+The decks are built to be **re-pointed at the present each year** without a rebuild.
+Run this at the start of each term. It is a *surgical refresh of time-sensitive
+content*, **not** a re-authoring — structure, pedagogy, and slide order stay put.
+
+**What to refresh (and only this):**
+
+- The **`.vignette`** hook(s) — swap any example that a new student would read as
+  "old news" for the freshest equivalent on the same teaching point.
+- **Dated facts and figures** — enforcement totals, fine amounts, adoption stats,
+  "~N states," version numbers, "as of <date>" phrasing, and any year literal.
+- **Broken or superseded links**, and case statuses that have moved (settled, appealed,
+  overturned, a law now in effect).
+
+**How (the loop):**
+
+1. Read the deck's `coverage-notes.md` **Next-year refresh notes** and
+   **Current-events updates made** first — that's the standing to-do list and tells you
+   what was deliberately left for this year.
+2. **Web-search to verify every change.** Replace a fact only with a more current,
+   *verified* one (primary source where possible). **Never fabricate** a case, date, or
+   figure; if you can't verify a fresher example, keep the existing one and note it.
+3. Keep the *teaching point* identical — change the illustration, not the argument. One
+   strong fresh hook beats three weak ones; don't pad.
+4. Re-stamp `coverage-notes.md`: add a dated bullet under **Current-events updates made**
+   for what you changed, and refresh **Next-year refresh notes** with the next things
+   likely to age out.
+5. `quarto render NN-Name/slides.qmd` and confirm it builds clean.
+
+**Scope guardrails:** don't add/remove slides, restructure, or chase the "missing
+coverage" suggestions during a refresh (those are a separate, deliberate editing pass).
+Touch only `slides.qmd` and `coverage-notes.md`. Leave `_quarto.yml`, `theme.scss`, and
+this file alone.
+
+### Reusable annual-refresh prompt
+
+Paste this to a fresh Claude session each year (edit the year and, optionally, scope to
+specific decks):
+
+> Refresh the current-events content of the lecture decks in `docs/slides/` for the
+> **<YEAR>** academic year, following the "Annual current-events refresh" section of
+> `docs/slides/TEMPLATE.md`. For each deck `NN-Name/`: read its `coverage-notes.md`
+> first; web-search to verify; update only the `.vignette` hooks, dated facts/figures,
+> and stale links/case statuses; keep structure and teaching points unchanged; re-stamp
+> `coverage-notes.md` with what changed and what's likely to go stale next; and
+> `quarto render` each deck to confirm it builds. Don't fabricate facts — if you can't
+> verify a fresher example, keep the current one and say so. Use one agent per deck and
+> parallelize. When done, give me a per-deck summary of what changed, and flag any deck
+> whose core example is now genuinely outdated and may warrant a deeper edit.
