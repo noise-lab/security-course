@@ -22,6 +22,16 @@ Additional requirements:
 
 The final exam covers material from **Meetings 7-8** according to the course agenda. Refer to `agenda.md` for the specific topics covered in these meetings.
 
+## Permitted Materials (required, verbatim, in `instructions.tex`)
+
+Every generated exam's `instructions.tex` **must** include this exact statement. It is
+the same on every exam (midterm and final) and is set in advance — do not paraphrase,
+soften, or change it:
+
+```latex
+\textbf{Permitted materials:} one 8.5x11-inch double-sided handwritten note sheet. No books, printouts, or other notes, and no electronic devices of any kind (including phones, laptops, tablets, smartwatches, and calculators).
+```
+
 ## Question Types and Distribution
 
 ### Multiple Choice (Select All That Apply)

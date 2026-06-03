@@ -51,7 +51,8 @@ The courses below are not required but may be helpful background.
   final exams, or other assessment methods to ensure you have grasped the
   fundamental concepts.
 - **Midterm and Final Exam (40%).** The class will have a midterm exam
-  and a final exam.
+  and a final exam. See the **[Exams](#exams)** section below for the
+  permitted-materials policy and practice materials.
 - **Debate (35%).** You will participate in one debate during the term,
   on a topic related to security, privacy, and consumer protection. You
   will be graded according to the [debate rubric](debates/format.md#grading)
@@ -67,6 +68,21 @@ The courses below are not required but may be helpful background.
     help me identify topics that would benefit from additional coverage
     or attention in class. Submitting thoughtful reading responses can
     count toward your participation grade.
+
+## Exams
+
+There is an in-class midterm and a final.
+
+**Permitted materials:** one 8.5x11-inch double-sided handwritten note sheet. No books, printouts, or other notes, and no electronic devices of any kind (including phones, laptops, tablets, smartwatches, and calculators).
+
+This policy is **identical for the midterm and the final**, is **printed on the exam
+itself**, and is **set in advance** — it will not be changed or announced differently
+at exam time. This section is the authoritative statement of what is permitted; if you
+are ever unsure, this is the rule.
+
+**Practice materials.** Past midterms and finals are linked from the
+[course homepage](index.md#exams) so the same study materials are available to everyone
+— you should not have to dig through the repository to find them.
 
 ## Late Policy
 

@@ -110,6 +110,17 @@ make clean     # Removes auxiliary files
 4. **Only include content covered in class** - don't ask about topics not discussed
 5. **Use diagram-based questions** - include at least 2 visual/diagram questions
 6. **Balance question types** - mix multiple choice, short answer, and diagrams
+7. **State the permitted-materials policy** in `instructions.tex`, verbatim (see below)
+
+## Permitted Materials (required, verbatim, in `instructions.tex`)
+
+Every generated exam's `instructions.tex` **must** include this exact statement. It is
+the same on every exam (midterm and final) and is set in advance — do not paraphrase,
+soften, or change it:
+
+```latex
+\textbf{Permitted materials:} one 8.5x11-inch double-sided handwritten note sheet. No books, printouts, or other notes, and no electronic devices of any kind (including phones, laptops, tablets, smartwatches, and calculators).
+```
 
 ## Point Distribution Guidelines
 

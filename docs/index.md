@@ -23,6 +23,22 @@ More detailed information is available in the [syllabus](syllabus.md).
 Information about the agenda for each class meeting is available in the
 [agenda](agenda.md).
 
+## Exams
+
+There is an in-class **midterm** and a **final**.
+
+**Permitted materials:** one 8.5x11-inch double-sided handwritten note sheet. No books, printouts, or other notes, and no electronic devices of any kind (including phones, laptops, tablets, smartwatches, and calculators).
+
+This policy is identical for both exams, is printed on the exam itself, and is set in
+advance — it will not change at exam time. See the [syllabus](syllabus.md#exams) for the
+authoritative statement.
+
+**Past exams (practice materials).** Posted so the same study materials are available
+to everyone:
+
+- Midterms: [2022](midterm/2022/exam.pdf), [2023](midterm/2023/exam.pdf), [2024](midterm/2024/exam.pdf), [2025](midterm/2025/exam.pdf)
+- Finals: [2023](final/2023/exam.pdf), [2024](final/2024/exam.pdf), [2025](final/2025/exam.pdf)
+
 ## Schedule
 
 **Readings:** Please read the posted material and
