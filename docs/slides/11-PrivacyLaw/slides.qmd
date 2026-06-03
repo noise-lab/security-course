@@ -20,7 +20,8 @@ instantaneous photography and gossip journalism — Warren was upset about
 newspapers covering his family's social events. Sound familiar? The whole
 lecture is organized around this reactive pattern: name the technology, name
 the harm, name the law that followed. Ask: what's the 2026 version of "gossip
-photography"?
+photography"? Primary source if you want to show it:
+[Warren & Brandeis, "The Right to Privacy" (1890)](https://www.cs.cornell.edu/~shmat/courses/cs5436/warren-brandeis.pdf).
 :::
 
 ## A 2026 Hook: The FTC Still Sets the Floor {.smaller}
@@ -506,4 +507,36 @@ stable equilibrium.
 Close by returning to the opening pattern: every item here is the law chasing a
 technology. The next meeting (automated compliance) asks whether we can measure
 and enforce these rules at web scale.
+:::
+
+# Resources & Live Demos {.center}
+
+Tools to pull up in class — most update in real time
+
+## Live Tools & Trackers {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Enforcement, live**
+
+- [GDPR Enforcement Tracker](https://www.enforcementtracker.com/) — every EU fine since 2018
+- [FTC Cases & Proceedings](https://www.ftc.gov/legal-library/browse/cases-proceedings)
+- [IAPP US State Privacy Tracker](https://iapp.org/resources/article/us-state-privacy-legislation-tracker/)
+:::
+::: {.column width="50%"}
+**See it on yourself**
+
+- [ToS;DR](https://tosdr.org/) — privacy policies, graded
+- [Have I Been Pwned](https://haveibeenpwned.com/) — breach lookup
+- [Privacy Badger](https://privacybadger.org/) — tracker blocking
+- [Download your Google data](https://support.google.com/accounts/answer/3024190) — GDPR access, live
+:::
+:::
+
+::: {.notes}
+Folded in from the prior speaker-notes file. Good cold-open or break filler: pull up the
+GDPR tracker and filter by Meta / Amazon / Google; run Have I Been Pwned on a volunteer's
+email; show ToS;DR on Instagram's policy. The full link catalog (FTC case URLs, Schrems,
+the EU–US Data Privacy Framework, Mozilla "Privacy Not Included: Cars") and the
+discussion prompts live in coverage-notes.md.
 :::

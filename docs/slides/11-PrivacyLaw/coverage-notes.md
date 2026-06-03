@@ -88,3 +88,42 @@ being placed on slides; dates and figures are exact.
 
 - Rebuilt from `_source-extract.md` (42 original slides) + `agenda.md` Meeting 7
   ("Privacy Law and Regulation"), consolidated to 26 slides.
+
+## Folded-in reference (from the prior speaker-notes files)
+
+Consolidated here from `11-PrivacyLaw-SpeakerNotes.md` and
+`11-PrivacyLaw-SlideBySlide.md` (now removed; their useful content lives here and in
+the new "Resources & Live Demos" slide). Verify dates/links before class — some predate
+2026.
+
+### Link catalog (open before class)
+
+- [GDPR Enforcement Tracker](https://www.enforcementtracker.com/) — live EU fines since May 2018
+- [FTC Cases & Proceedings](https://www.ftc.gov/legal-library/browse/cases-proceedings)
+- [IAPP US State Privacy Legislation Tracker](https://iapp.org/resources/article/us-state-privacy-legislation-tracker/)
+- [ToS;DR](https://tosdr.org/) · [Have I Been Pwned](https://haveibeenpwned.com/) · [Privacy Badger](https://privacybadger.org/)
+- [Download your Google data](https://support.google.com/accounts/answer/3024190) (GDPR access in action) · [Google EU privacy / RTBF transparency report](https://transparencyreport.google.com/eu-privacy/overview)
+- [EU–US Data Privacy Framework](https://www.dataprivacyframework.gov/)
+- FTC cases: [Equifax ($700M)](https://www.ftc.gov/equifax-data-breach) · [Facebook ($5B, 2019)](https://www.ftc.gov/news-events/news/press-releases/2019/07/ftc-imposes-5-billion-penalty-sweeping-new-privacy-restrictions-facebook) · [Uber (2017)](https://www.ftc.gov/news-events/news/press-releases/2017/08/uber-settles-ftc-allegations-it-made-deceptive-privacy-data-security-claims) · [BetterHelp ($7.8M)](https://www.ftc.gov/news-events/news/press-releases/2023/03/ftc-ban-betterhelp-revealing-consumers-data-including-sensitive-mental-health-information-facebook) · [GoodRx ($1.5M)](https://www.ftc.gov/news-events/news/press-releases/2023/02/ftc-enforcement-action-bar-goodrx-sharing-consumers-sensitive-health-info-advertising) · [Twitter 2FA (2022)](https://www.ftc.gov/news-events/news/press-releases/2022/05/ftc-charges-twitter-deceptively-using-account-security-data-sell-targeted-ads)
+- [Mozilla "Privacy Not Included: Cars"](https://foundation.mozilla.org/en/privacynotincluded/categories/cars/) (all 25 brands fail) · GM/OnStar selling driving data to insurers (2024)
+- [EDPB Guidelines on Connected Vehicles (2024)](https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-32024-processing-personal-data-context-connected_en)
+
+### Teaching beats worth keeping
+
+- **Appropriate/secondary use:** Target inferred a teen's pregnancy from purchase
+  patterns before her father knew — the canonical "appropriate use?" prompt.
+- **National Directory of New Hires:** data collected for employment, used for law
+  enforcement — clean secondary-use line-drawing example.
+- **Right to Access:** have students actually request their Google/Facebook data —
+  "you'll be shocked."
+- **Cookie-consent demo:** compare an EU site (banner, dark patterns) with the US
+  version (no banner) to make opt-in vs. opt-out visceral.
+
+### Questions to pose to class
+
+1. Should the U.S. adopt a GDPR-style comprehensive federal privacy law?
+2. Is notice-and-consent fundamentally broken?
+3. Should health/fitness-app data get the same protection as medical records?
+4. How do we balance data-driven innovation with privacy?
+5. Is privacy a fundamental human right or a consumer-protection issue?
+6. What about privacy after death (digital estate, social media)?
