@@ -39,6 +39,15 @@
   privacy-law/compliance lecture (auditing/enforcement), and the dark-patterns material
   (who bears the burden of contesting an automated decision).
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Mobley v. Workday
+- California ADS regulations
+- EU AI Act high-risk obligations
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide004_img001.png` (should-be → is → data bias-flow diagram — the spine of
   the lecture); `slide005_img002.png` (Google Translate Turkish→English gendered-pronoun

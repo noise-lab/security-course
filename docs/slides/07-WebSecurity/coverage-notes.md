@@ -47,6 +47,17 @@
   PKI deck (or here) that HTTPS protects the *channel* but does nothing about SQLi/XSS/
   CSRF, which live in the *application* — students conflate the two.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Headline vignette — FortiWeb SQL injection (CVE-2025-25257)
+- Stored-XSS still-current vignette (2026)
+- Modernized API examples
+- CSRF defenses modernized
+- Scoped TLS/SSL out
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide002_img001.png` (xkcd "Little Bobby Tables" — canonical SQLi teaching
   comic); `slide005_img003.png` (security-barrier diagram: two sites isolated in one

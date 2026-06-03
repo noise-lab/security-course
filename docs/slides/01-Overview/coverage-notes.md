@@ -18,6 +18,14 @@ Instructor-facing companion to `slides.qmd`. Not shown to students.
 - **Map of "what we actually covered" vs. the syllabus** — the new "What we actually
   cover" slide is generated from `agenda.md`; keep it in sync each term.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Replaced the static intro with a 2026 vignette tying the course to thi…
+- Reframed "career paths" as a speaker-note prompt rather than a slide o…
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - `images/` holds the extracted originals (headshots, logos, career-path photos).
 - None are required for the rebuilt deck; re-add selectively if you want the visual.

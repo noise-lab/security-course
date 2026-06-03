@@ -45,6 +45,15 @@
 - **Zero Trust / continuous authorization.** The token-replay breaches motivate
   "verify continuously, not once" — a natural modern bookend to least privilege.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Salesloft–Drift OAuth token breach (Aug 2025)
+- 2026 follow-ons
+- Passkeys / FIDO2 vignette
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 
 - **Used:** `slide012_img004.png` (`ls -l` permissions — matches the live demo);

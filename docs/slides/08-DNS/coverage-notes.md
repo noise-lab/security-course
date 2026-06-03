@@ -40,6 +40,16 @@
   deployment reality (still <40% validation globally) — i.e., why integrity tools
   exist but are underused.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Opening vignette — AWS us-east-1 outage (Oct 20, 2025)
+- ODoH now deployed (2026 vignette)
+- Protocol landscape refreshed
+- Kaminsky cache poisoning (2008)
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide006_img009.png` (IoT device DNS query table — memorable
   metadata-leak artifact); `slide007_img010.png` (Tor DNS adversary diagram);

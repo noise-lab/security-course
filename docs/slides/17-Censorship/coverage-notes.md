@@ -45,6 +45,17 @@
   source extract + domain knowledge; if censorship is taught as its own meeting, add a
   matching agenda section.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Fresh vignette (Access Now #KeepItOn, March 2026)
+- Blacklisting → whitelisting pivot (Iran, Russia)
+- Measurement tools modernized
+- Protocol updates
+- Generative-AI flooding
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide007_img005.png` (Roberts information pyramid — core teaching figure);
   `slide012_img015.png` (Google Transparency Egypt-2011 traffic plot — real data);

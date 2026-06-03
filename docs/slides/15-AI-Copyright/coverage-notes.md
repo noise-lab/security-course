@@ -45,6 +45,17 @@
   *works → copy into training pipeline → model weights → output → (possible) memorized
   reproduction* — with the infringement-exposure point marked at each arrow.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Replaced the stale "case ongoing as of late 2024" framing
+- Vignette hook (verified, dated)
+- Added the ownership half of the title
+- Added the 2026 doctrinal shift
+- Trimmed from 61 Marp slides to a lean ~17-slide Quarto deck
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - None. This deck is text-driven; the source has no `images/` folder, and the TEMPLATE
   says to describe a needed diagram in notes/coverage rather than invent one (see the

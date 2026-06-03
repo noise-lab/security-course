@@ -47,6 +47,14 @@
 - **Consent banners / dark patterns.** GDPR/CCPA cookie banners and the CPPA's work on
   deceptive consent UX connect this lecture to the compliance lectures.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Social-widget joint controllership (CJEU, 2024)
+- Manifest V3 caveat
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - USED: slide005_img003.png (NYT page with third-party requests boxed — concrete "one
   page, many trackers"); slide006_img005.png (Lightbeam tracker-graph — best abstraction

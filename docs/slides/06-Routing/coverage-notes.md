@@ -41,6 +41,15 @@
   Deck uses "BGPsec / S-BGP" once and otherwise says "path authentication" — if
   the instructor prefers, standardize on "BGPsec" (the deployed-spec name).
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Freshest hook (vignette, "What Attackers Can Do")
+- RPKI deployment numbers refreshed to 2025
+- New policy slide (FCC)
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide004_img002.png` (1997 CNET route-leak headline — anchors the
   accidental-leak case); `slide006_img004.png` (Renesys world map of networks

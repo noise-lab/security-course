@@ -42,6 +42,15 @@
 - **Hands-on element.** Have students run Ookla + an M-Lab/NDT test on their own link and
   reconcile the disagreement — operationalizes Lesson 2 and the sampling discussion.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Lead vignette (verified)
+- "What counts as broadband" slide (verified)
+- Policy-stakes slide
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide003_img001.png` (speed facets), `slide004_img002.png` (method-vs-method
   CDF), `slide007_img004.png` (Wi-Fi vs access-link bottleneck bubble plot),

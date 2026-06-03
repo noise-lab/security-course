@@ -42,6 +42,16 @@
 - **Appeals and due process / Oversight Board:** Meta's Oversight Board as a
   quasi-judicial experiment directly addresses the lopsided-appeals finding.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Opening vignette (DSA enforcement, dated)
+- Added Moody v. NetChoice (July 1, 2024)
+- Added an LLM-moderation slide
+- Modernized examples generally
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide029_img027.png` (annotation codebook — teaches the analytic lens),
   `slide013_img020.png` (OCMP-43 dataset metrics table), `slide036_img030.png` (legal

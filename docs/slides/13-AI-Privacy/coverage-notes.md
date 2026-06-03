@@ -47,6 +47,16 @@
   explained; a short "why these are hard (utility cost)" note would prevent them reading
   as magic fixes.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Primary vignette — *NYT v. OpenAI* preservation order (2025)
+- "Beyond PII" updated to its published form
+- EU AI Act GPAI obligations dated
+- Trimmed stale specifics
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 
 - None. This deck is text-driven (no `images/` folder in source). The one diagram — the

@@ -44,6 +44,17 @@
 - **Cost/economics of mitigation.** Who pays for scrubbing, and the resulting
   market concentration, is a consumer-protection and competition-policy question.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Added a `.vignette` hook built on Cloudflare's Q4 2025 DDoS threat rep…
+- Attributed it to the Aisuru / Kimwolf "TurboMirai" botnet — a Mirai
+- Noted the March 19, 2026 international law-enforcement takedown of the
+- Reframed the defenses section around autonomous scrubbing (the 31.4 Tb…
+- Kept SYN-flood / SYN-cookie / Great Cannon material but scoped it ligh…
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide003_img002.png` (NYT "army of vulnerable gadgets" Mirai story —
   strong headline for the Dyn case study); `slide004_img003.png` (US outage map from

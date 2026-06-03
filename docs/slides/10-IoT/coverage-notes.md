@@ -47,6 +47,15 @@
   getting security patches become permanent liabilities — a consumer-protection angle the
   course's framing invites.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Added a 2025–2026 ACR enforcement vignette
+- Reframed the old research-talk deck (146 slides) into a teaching arc
+- Kept the COPPA / YouTube $170M (Sept 2019) example
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 
 - **Used** (genuinely teaching-relevant):

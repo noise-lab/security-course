@@ -44,6 +44,17 @@
   with the actual $750–$150,000-per-work statutory range and why class certification (as in
   Bartz, ~500k works) creates existential exposure.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- New lead vignette: Bartz v. Anthropic (verified, dated)
+- Teaching thread surfaced
+- AI-training slide grounded in real rulings
+- Replaced the old "$2B annually / 98% of claims" Content-ID statistics
+- Softened the NASA Mars-landing example
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - No images used. This deck is text-driven; there is no images/ folder for it (per task).
   The two code blocks (declaring vs. implementing) and four tables (four-factor test,

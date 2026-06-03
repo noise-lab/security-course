@@ -42,6 +42,16 @@
   overseas (UOCAVA) voters; the unresolved tension between accessibility and the secret
   ballot.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- AI deepfake robocall (Jan 2024, NH primary)
+- 2024 paper-ballot adoption
+- Risk-limiting audits, 2024–2025
+- "Apocalypse that wasn't" nuance
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide005_img003.png` (Dewey Defeats Truman — motivates evidence-based
   elections); `slide012_img013.png` (Florida 2000 butterfly ballot — HAVA backstory);

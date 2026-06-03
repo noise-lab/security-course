@@ -38,6 +38,17 @@
 - **Privacy angle.** The 2015 Title II order also implied ISP **privacy** obligations
   (later undone by Congress via the CRA in 2017). Connects directly to the privacy-law deck.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Headline hook (vignette)
+- Loper Bright connection
+- State patchwork
+- History corrected to a clean timeline
+- International framing updated
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide011_img012.png` (M-Lab throughput-across-Cogent plot — the empirical core);
   `slide012_img013.png` (two-theories interconnection diagram); `slide003_img001.png`

@@ -42,6 +42,15 @@
   that now partially shield good-faith security research — the legal relief valve the
   Felten/Sklyarov era lacked.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Lead vignette (May 2026, verified)
+- Added a zero-day / exploit-market slide
+- Modernized the CFAA case law
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used `slide021_img023.png`** — Google VRP payout table; a genuine teaching artifact for
   bounty tiering and the zero-day-market economics.

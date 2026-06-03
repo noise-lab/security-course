@@ -49,6 +49,16 @@
   real-world rollout (Cloudflare default, browser support, and where it's blocked,
   e.g., some national firewalls) would make the "fixes relocate trust" point concrete.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- FISA Section 702 (freshest hook, in a `.vignette`)
+- Encryption backdoors (second `.vignette`)
+- FCC broadband-privacy framing updated
+- DNS privacy modernized
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide017_img009.png` (IP geolocated to a building — implicit-location
   teaching point); `slide029_img015.png` (call-graph degree distribution — explains

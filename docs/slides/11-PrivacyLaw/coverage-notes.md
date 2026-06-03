@@ -67,6 +67,17 @@ being placed on slides; dates and figures are exact.
   "subjective/objective harm" frame would give students vocabulary for *why*
   these laws exist, beyond the case-by-case anecdotes.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Opening vignette — Disney COPPA, $10M (court-approved Dec. 31, 2025)
+- TikTok GDPR fine — €530M (Irish DPC, May 2, 2025)
+- GDPR all-time record — Meta €1.2B (2023)
+- Kochava location-data action (order proposed 2026)
+- GoodRx ($1.5M, 2023) and BetterHelp ($7.8M, 2023)
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 
 - **Used:** `slide025_img013.png` — montage of real breach headlines (Equifax,

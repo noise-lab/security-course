@@ -40,6 +40,13 @@
 - **Worked Belmont/Menlo application** as a reusable rubric students can apply to their
   own lab and debate proposals, not just to historical cases.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Added a "The Law Is (Slowly) Catching Up" slide
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:** `slide002_img001.png` (Tuskegee photo — historical anchor);
   `slide011_img013.png` (Salganik frameworks→principles→rules diagram — the spine of the

@@ -46,6 +46,16 @@
 - **Secure-by-design / CISA pledge** as the modern, named counterpart to
   Anderson's vendor-obligations slide.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- xz-utils backdoor (CVE-2024-3094) as the headline vignette
+- npm "Shai-Hulud" worm (Sept 2025, recurring waves into spring 2026)
+- Equifax framed precisely
+- FTC Log4j warning (Jan 2022, CVE-2021-44228)
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 
 - **Used:** `slide002_img001.png` (xkcd 2347 "Dependency" — the modern

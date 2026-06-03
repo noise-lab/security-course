@@ -22,6 +22,14 @@
 - **OneTrust / consent-management platforms (CMPs).** The third-party-vendor irony deserves its own deeper treatment: how CMPs work, why deploying one doesn't equal compliance, and the IAB TCF analogue in the EU.
 - **Litigation update.** As of the original talk there was "no litigation on privacy-opt-out dark patterns." The 2026 settlements partially change this; revisit whether any case has squarely litigated a *dark pattern* (vs. failure to honor GPC).
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Feb 11, 2026
+- May 8, 2026
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - Used: `slide017_img023.png` (RQ1 stacked-bar trend), `slide022_img025.png` (RQ3 state-overlap table), `slide026_img028.png` (RQ4 coverage-category table), `slide057_img037.png` (CAPTCHA obstruction screenshot — strong teaching example), `slide062_img043.png` (dark-pattern → CCPA-principle mapping table). All are data plots / real screenshots that teach.
 - Dropped: title/logo images (slide001/031 author+logo), decorative data-flow art (slide002 ~1.6MB clip-art), tiny icon/badge PNGs (slide003/006/009/010/012/019/024 — pipeline icons and repeated state-map glyphs), verification-detail screenshots (slide014), and the control-method / personal-info screenshots (slide041/054) — redundant with the consolidated text. slide048 ("Please try that again") is a generic error toast that doesn't stand alone.

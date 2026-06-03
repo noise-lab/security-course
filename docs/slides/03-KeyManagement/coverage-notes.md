@@ -56,6 +56,18 @@
   signing as an example; could expand to code signing, signed software supply chains
   (Sigstore), and document signing to make the integrity use case less abstract.
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- CA/Browser Forum Ballot SC-081v3 (passed April 2025): 47-day cert lifetimes
+- Chrome distrust of Chunghwa Telecom + Netlock (Chrome 139, Aug 1, 2025)
+- DigiCert "Global Root CA" (G1) distrust, April 15, 2026
+- EV "green bar" is gone
+- TLS 1.3 + Encrypted SNI / ECH
+- De-emphasized legacy ciphers per agenda
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 
 Used:

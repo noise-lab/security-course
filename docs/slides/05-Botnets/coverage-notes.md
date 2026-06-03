@@ -47,6 +47,14 @@
   side: when DDoS is nation-state vs. criminal, and how takedowns now require
   multi-jurisdiction cooperation (the 2026 Aisuru action is a concrete hook).
 
+## Next-year refresh notes
+
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+
+- Aisuru/Kimwolf
+- March 2026 DoJ / District of Alaska
+- Flag any stronger alternative vignette you find but choose not to use yet.
+
 ## Curated images
 - **Used:**
   - `slide016_img003.png` — Code Red infected-hosts-over-time curve (shows
