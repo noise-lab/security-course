@@ -2,7 +2,6 @@
 title: "Authentication and Access Control"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## What Access Control Is For {.center}
@@ -124,10 +123,12 @@ The industry response is **passkeys** — public-key credentials (FIDO2 / WebAut
 to your device, so there's **no shared secret to steal or phish**.
 
 ::: {.vignette}
-By **World Passkey Day, May 2026**, the FIDO Alliance reported **passkeys in use across
-~48% of the top-100 websites** and surveys showing **~87% of enterprises deploying or
-piloting** them; **NIST SP 800-63-4** (finalized July 2025) formally blesses
-phishing-resistant authentication. Passwords aren't dead, but the default is shifting.
+On **World Passkey Day, May 7, 2026**, the FIDO Alliance reported an estimated
+**5 billion passkeys in use worldwide**, support across **~48% of the top-100 sites**,
+**75% of consumers** having enabled a passkey on at least one account, and **68% of
+organizations** deploying or piloting passkeys for employee sign-in. **NIST SP 800-63-4**
+(finalized **July 31, 2025**) requires verifiers to offer a phishing-resistant option at
+AAL2 and mandates it at AAL3. Passwords aren't dead, but the default is shifting.
 :::
 
 ::: {.notes}
@@ -423,12 +424,15 @@ weakness we flagged.
 
 ::: {.vignette}
 **August 2025 — the Salesloft–Drift breach.** Threat actor **UNC6395** stole **OAuth
-access tokens** from the Salesloft Drift app and *replayed* them to pull data from
-Salesforce instances at **700+ organizations** (Cloudflare, Google, Palo Alto Networks,
-Zscaler, and more) — **without ever tripping MFA**, because a valid bearer token needs
-no second factor. In **2026**, the same playbook hit Vercel via a compromised
-**Google Workspace OAuth token**, and phishing kits like **EvilTokens** harvested
-OAuth consent across hundreds of Microsoft 365 tenants.
+access + refresh tokens** from the Salesloft Drift chatbot integration and *replayed*
+them via the Salesforce API to exfiltrate data from **700+ organizations** (Cloudflare,
+Google, Palo Alto Networks, Zscaler, PagerDuty, Proofpoint, Tanium, and more) between
+Aug 9–17 — **without ever tripping MFA**, because a valid bearer token needs no second
+factor. **April 2026:** the same playbook hit **Vercel** via a compromised **Context.ai
+OAuth grant** into a Vercel engineer's Google Workspace, leading to stolen NPM/GitHub
+tokens and a **$2M ransom demand**. Meanwhile, AiTM phishing kits (**Tycoon 2FA**,
+**EvilProxy**, **EvilTokens**) sent **20M+ Microsoft-365-targeted messages per month**
+in 2026.
 :::
 
 The lesson of the whole lecture in one breach: **tokens are capabilities** — silent,

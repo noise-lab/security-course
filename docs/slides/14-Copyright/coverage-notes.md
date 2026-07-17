@@ -1,6 +1,16 @@
 # 14-Copyright — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh.** Extended the Anthropic vignette with the **May 14, 2026**
+  final fairness hearing (Judge Martínez-Olguín, N.D. Cal.), the **92.77% claims rate**,
+  and the **August 2026** estimated initial-payment window (verified via Publishing
+  Perspectives, Authors Alliance, Publishers Weekly, Authors Guild). Named the parallel
+  Meta ruling as **Kadrey v. Meta (June 25, 2025)** — Chhabria — and added his
+  **"market dilution"** framing as the direction future plaintiffs are being pushed
+  (verified via Goodwin, Jackson Walker, Skadden). Noted NYT v. OpenAI still in discovery
+  (no fair-use merits ruling yet). Speaker notes rewritten in compact table format (see
+  `speaker-notes.md`); dropped the per-URL glosses appendix in favor of per-slide
+  clickable citations.
 - **New lead vignette: Bartz v. Anthropic (verified, dated).** Judge William Alsup
   (N.D. Cal.) ruled **June 23, 2025** that training an LLM on books is "exceedingly
   transformative" / fair use, *but* that downloading 7M+ pirated books for a permanent
@@ -48,11 +58,19 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- New lead vignette: Bartz v. Anthropic (verified, dated)
-- Teaching thread surfaced
-- AI-training slide grounded in real rulings
-- Replaced the old "$2B annually / 98% of claims" Content-ID statistics
-- Softened the NASA Mars-landing example
+- **Anthropic vignette** — after final approval (expected 2026), swap in the entered
+  order + first-round payments (target date August 2026 or later). Track any appellate
+  activity from opt-outs; the 28-author non-class action (3:26-cv-04482 N.D. Cal.) and
+  the Kwon v. Anthropic follow-on are the ones to watch.
+- **NYT v. OpenAI** — should produce its first substantive fair-use ruling in 2026–27
+  (summary judgment briefing concluded April 2, 2026); watch for a merits decision and
+  swap it into the AI-training slide when it lands. The July 9, 2026 sanctions motion
+  may reshape the record.
+- **Kadrey v. Meta** — appellate posture likely by 2026–27; "market dilution" theory
+  will be tested in later cases (music publishers v. Anthropic, artists v. Stability).
+- **Content ID statistics** — currently qualitative to avoid staleness. If YouTube
+  publishes fresh 2026 figures worth citing (e.g., annual payouts to rights holders),
+  add them back.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

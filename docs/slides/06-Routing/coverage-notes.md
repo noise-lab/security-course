@@ -1,6 +1,26 @@
 # 06-Routing — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 annual refresh:**
+  - Restated the hijack `.vignette` with the primary-source detail from the
+    APRICOT 2026 / APNIC 61 SIG presentation (Martínez-Cagnazzo / Sanjaya):
+    July 9–12, 2025; three short attacks; forged identity documents + lookalike
+    domain used to convince a multinational transit provider; first detected
+    when an email silently vanished. Sources: APNIC Blog (2026-03-31), LACNIC
+    Blog, LAC Peering Forum 2026 slide deck.
+  - Refreshed RPKI numbers to mid-2026 figures: **~60% of IPv4 routes**
+    covered by ROAs (Qrator Q1 2026 stats), **~70% of traffic** to ROA-covered
+    prefixes (Kentik), and added the sharper deployment-lag number: **only
+    ~12.3% of ASes are fully ROV-protected** (RoVista / NANOG 90). This
+    strengthens the "coverage != enforcement" teaching point.
+  - Added the **status of the FCC NPRM**: comments closed August 2024, no
+    final rule as of mid-2026; proceeding still open (PS Docket 24-146). Added
+    the political-context caveat in speaker notes (2025 leadership change,
+    Title II reclassification vulnerability).
+  - Added the June 2026 **Reliance-Telegram BGP incident (India)** as a
+    candidate future vignette in Next-year notes but did NOT swap the
+    social-engineering case in — the latter better teaches the human-process
+    lesson which is unique to this deck.
 - **Freshest hook (vignette, "What Attackers Can Do"):** July 2025 APNIC/LACNIC
   case study — a BGP hijack achieved by **social-engineering an upstream
   provider** into provisioning BGP without verifying corporate identity or
@@ -45,9 +65,24 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Freshest hook (vignette, "What Attackers Can Do")
-- RPKI deployment numbers refreshed to 2025
-- New policy slide (FCC)
+- **July 2025 APNIC/LACNIC social-engineering vignette** — still the sharpest
+  hook as of 2026-07 (unique in that RPKI wasn't defeated, the human process
+  was). Swap only for another case where the *provisioning layer* is the
+  weakness, not for a plain RPKI-invalid hijack.
+- **Alternative vignette flagged but not used:** the **June 2026 Reliance vs.
+  Telegram** BGP incident (India) — Reliance's internal traffic-engineering
+  BGP policy for AS18101 leaked globally due to bad export filters; Telegram
+  CEO publicly accused Reliance of a hijack. Good for the "leak vs. hijack"
+  ambiguity discussion. Source: Medium/CyberBruhArmy write-up June 2026 and
+  general press coverage.
+- **RPKI coverage numbers** (~60% routes, ~70% traffic, ~12% ASes fully
+  enforcing) — update from NIST RPKI Monitor, Cloudflare Radar RPKI
+  sub-page, Kentik, RoVista annual figures.
+- **FCC NPRM status** — check whether a final rule or a formal withdrawal has
+  happened; the proceeding may have moved substantially by next term.
+- **RPKI ROV milestones** — Sparkle (Feb 2026), Bell Canada (Aug 2025),
+  Energotel (Oct 2025) all now filter invalids. Cite the next big Tier-1 or
+  major-content-network flip.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

@@ -2,6 +2,15 @@
 
 ## Current-events updates made (point 2)
 
+- **2026-07-16 refresh.** Extended the *NYT v. OpenAI* vignette with the **Jan 5, 2026**
+  District Judge Stein affirmance of the 20M-log production order, and the **July 9,
+  2026** sanctions motion by news plaintiffs alleging OpenAI concealed internal searches
+  of its training corpus (verified via TechCrunch, Bloomberg Law, Nat'l Law Review).
+  Softened the "Beyond PII" attribution from "CHI 2026" (unverified venue) to arXiv
+  2509.12152 (Sept 2025) — the paper is preprint status; verify CHI 2026 acceptance
+  before restating. Speaker notes converted to compact table format (see
+  `speaker-notes.md`); long-form appendix and per-URL glosses dropped in favor of
+  clickable per-slide citations.
 - **Primary vignette — *NYT v. OpenAI* preservation order (2025).** Replaced the dated
   2023 hooks (Samsung leak, Italy ban, March 2023 Redis bug) with the live story: in
   **May 2025** a magistrate judge ordered OpenAI to preserve *all* ChatGPT logs (incl.
@@ -51,10 +60,10 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Primary vignette — *NYT v. OpenAI* preservation order (2025)
-- "Beyond PII" updated to its published form
-- EU AI Act GPAI obligations dated
-- Trimmed stale specifics
+- **NYT v. OpenAI chat-log vignette** — likely will resolve or move to trial/appeal/settlement by 2027; check whether Stein's affirmance is challenged and whether the sanctions motion produces evasion findings that reframe the case.
+- **"Beyond PII"** — currently arXiv preprint (2509.12152); verify CHI 2026 acceptance/publication once program is public and restate venue if published.
+- **EU AI Act GPAI obligations dated** — the **2 Aug 2026** enforcement-power date is imminent; watch for the first Commission enforcement action and swap in as a live example.
+- Persistent "memory" defaults in ChatGPT/Claude/Gemini are worth a hook if a major consumer product changes the default (currently only implicit in the dark-pattern slide).
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

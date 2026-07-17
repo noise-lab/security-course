@@ -2,7 +2,6 @@
 title: "AI and Copyright"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## From the Four Factors to the Training Set {.center}
@@ -26,22 +25,26 @@ drill is a near-certain midterm item, so make them argue both sides.
 ::: {.vignette}
 In **2025–26** the first AI-training rulings landed — and they **disagree**.
 **Feb 11, 2025**, *Thomson Reuters v. Ross* (D. Del.): training a legal-research AI on
-Westlaw headnotes was **not** fair use. **June 23, 2025**, *Bartz v. Anthropic* (N.D.
-Cal.): training on books **is** "exceedingly transformative" — but pirating 7M+ books to
-build the library was **not**; Anthropic later settled for **~$1.5B** (~$3,000/work).
-Meanwhile *NYT v. OpenAI* survived dismissal and, as of early 2026, is fighting over
-**"regurgitation."**
+Westlaw headnotes was **not** fair use. **June 23–25, 2025**, *Bartz v. Anthropic* and
+*Kadrey v. Meta* (N.D. Cal.): training on books **is** "exceedingly transformative" — but
+Anthropic's pirating of 7M+ books to build a library was **not**. In **Sept 2025** Anthropic
+settled the piracy claims for **~$1.5B** (~$3,000 per work, ~500k works).
+Meanwhile *NYT v. OpenAI*: dismissal denied Mar 2025, and by **June 2026** NYT amended to
+add a dedicated-supercomputer theory against Microsoft; the first appellate ruling (Third
+Circuit, on Ross) was argued **June 11, 2026**.
 :::
 
 Same statute, opposite results — the **facts** (how acquired, how transformative, how
 much it competes) decide everything.
 
 ::: {.notes}
-Three verified, dated facts. The teaching point: there is no "AI fair use rule" yet —
+Four verified, dated facts. The teaching point: there is no "AI fair use rule" yet —
 outcomes diverge on the facts. Ross lost because its tool directly competed with Westlaw
-(non-transformative, commercial). Anthropic won on training but lost on piracy. NYT is
-still live. Don't claim the Supreme Court has ruled — it hasn't. This is the freshest
-hook; swap in any newer ruling at lecture time.
+(non-transformative, commercial). Anthropic and Meta both won on training but Anthropic
+lost on the piracy of shadow-library corpora and settled to cap statutory-damages exposure.
+NYT is still live and the Third Circuit is now poised for the first appellate word. Don't
+claim SCOTUS has ruled — it hasn't. This is the freshest hook; swap in any newer ruling
+at lecture time.
 :::
 
 ## How Models "Learn": Copying Is Step Zero {.smaller}
@@ -131,10 +134,11 @@ a model can *flood the market* with substitutes.
 |---|---|---|
 | **NYT v. OpenAI** (Dec 2023) | OpenAI / Microsoft | News; verbatim **regurgitation**, paywall bypass |
 | **Authors Guild v. OpenAI** (Sep 2023) | OpenAI | Novels (Grisham, Martin, Picoult…) |
-| **Kadrey / Silverman v. Meta** | Meta (LLaMA) | Books3; **Meta won** training ruling (Jun 2025) |
-| **Bartz v. Anthropic** | Anthropic | Books; **split** ruling + ~$1.5B settlement |
-| **Getty v. Stability AI** (Feb 2023) | Stability AI | 12M images; **watermarks** in outputs |
-| **Thomson Reuters v. Ross** | Ross | Westlaw headnotes; **not** fair use |
+| **Kadrey / Silverman v. Meta** | Meta (LLaMA) | Books; **Meta won** training ruling (Jun 25, 2025) |
+| **Bartz v. Anthropic** | Anthropic | Books; **split** ruling + **$1.5B** settlement (Sep 2025) |
+| **Andersen v. Stability / Midjourney** (Jan 2023) | Stability, Midjourney | Artists' class action; trial set **Sept 8, 2026** |
+| **Getty v. Stability AI (UK)** | Stability AI | Copyright claims **rejected** Nov 4, 2025; narrow trademark win |
+| **Thomson Reuters v. Ross** | Ross | Westlaw headnotes; **not** fair use (interlocutory appeal, 3d Cir.) |
 
 The plaintiffs span **every creative sector** — text, news, images, legal content.
 
@@ -166,8 +170,10 @@ likely head up on appeal.
 :::
 :::
 
-**Status (early 2026):** survived a motion to dismiss (Mar 2025); core infringement
-claims proceed. The live question is whether **memorization** defeats the fair-use story.
+**Status (mid-2026):** Judge Stein denied dismissal Mar 2025; discovery includes a
+**20M-log ChatGPT sample** (Jan 2026 order); in June 2026 NYT amended to add a
+"dedicated-supercomputer" theory against Microsoft. The live question is whether
+**memorization** defeats the fair-use story.
 
 ::: {.notes}
 NYT was one of the few major publishers that *refused* to license to OpenAI — meanwhile
@@ -370,9 +376,10 @@ substitution (and to Ross's competing-product problem).
 
 ## What Comes Next {.smaller}
 
-- **More splits, then appeals** — expect a circuit split and an eventual Supreme Court
-  case (years out)
+- **First appellate word imminent** — Third Circuit heard *Ross* on **June 11, 2026**;
+  a possible circuit split (SDNY vs. N.D. Cal.) sets up an eventual Supreme Court case
 - **Output-side litigation** grows: prove a specific output is **substantially similar**
+  (see Chhabria's "market dilution" dicta in *Kadrey*)
 - **Licensing markets mature** — more publisher/platform deals
 - **Open questions:** liability for infringing outputs (user vs. company?), open-source
   models, training on **synthetic** (AI-generated) data

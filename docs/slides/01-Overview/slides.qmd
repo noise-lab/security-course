@@ -2,7 +2,6 @@
 title: "Course Overview"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Why This Course Exists {.center}
@@ -119,11 +118,13 @@ Labs are graded primarily for **thoughtful completion** — each now ships with 
 ## A 2026 Vignette: Why This Is Timely {.smaller}
 
 ::: {.vignette}
-In the last year alone: state **comprehensive privacy laws** kept multiplying past the
-California/Virginia/Colorado wave; the **EU AI Act** obligations began to bite;
-regulators sharpened scrutiny of **AI training data and copyright**; and **encrypted
-DNS / ECH** continued reshaping who can see your browsing. Almost every headline this
-term will map onto a lecture.
+In the last year alone: **20 U.S. states** now have comprehensive privacy laws in
+effect (Indiana, Kentucky, and Rhode Island joined on Jan 1, 2026); the **EU AI Act's**
+enforcement powers over general-purpose AI providers switch on **August 2, 2026**
+(fines up to 3% of global turnover); Anthropic settled a class action on AI training
+data for **\$1.5 billion** (Sept 2025) while *NYT v. OpenAI* headed toward trial; and
+**Encrypted Client Hello** is now default-on in Chrome, Firefox, and Safari when DoH
+is enabled. Almost every headline this term will map onto a lecture.
 :::
 
 **Thought question:** pick a tech-policy story from this *week's* news — which lecture

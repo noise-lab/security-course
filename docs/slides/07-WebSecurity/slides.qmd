@@ -2,7 +2,6 @@
 title: "Web Security"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## The Question Behind Everything Today {.center}
@@ -26,12 +25,12 @@ make it "data must stay data."
 ::: {.vignette}
 In July 2025, **Fortinet FortiWeb** — a *web application firewall*, a product whose
 entire job is to block attacks like SQL injection — was found to contain an
-**unauthenticated SQL injection** flaw (**CVE-2025-25257**, CVSS 9.6). A crafted
-`Authorization` header let attackers inject SQL, write a file via MySQL's `INTO
-OUTFILE`, and achieve **remote code execution**. After watchTowr published a
-proof-of-concept on July 11, the Shadowserver Foundation tracked **dozens of
-compromised appliances within days**; CISA added it to the Known Exploited
-Vulnerabilities catalog with an August 8 patch deadline.
+**unauthenticated SQL injection** flaw (**CVE-2025-25257**, CVSS 9.6) in its
+Fabric Connector. A crafted `Authorization` header let attackers inject SQL,
+write a Python file via MySQL's `INTO OUTFILE`, and achieve **remote code
+execution**. After watchTowr published a proof-of-concept on July 11, the
+Shadowserver Foundation tracked **~85 compromised appliances by July 14**; CISA
+added it to the Known Exploited Vulnerabilities catalog on July 18, 2025.
 :::
 
 The lesson is not "buy a firewall." It is that **the data/code confusion is everywhere**
@@ -337,9 +336,10 @@ origin am I running under?" question: the injected script's origin is the victim
 :::
 
 ::: {.vignette}
-**2026, still everywhere:** stored XSS in **Palo Alto PAN-OS** (CVE-2026-0256, web
-interface) and a steady stream of WordPress-plugin XSS (e.g., CVE-2026-1923). XSS has
-sat on the OWASP Top 10 for two decades and isn't leaving.
+**2026, still everywhere:** stored XSS in **Palo Alto PAN-OS** web interface —
+CVE-2026-0256 (May) and CVE-2026-0266 (June), both stored XSS in a *firewall's*
+admin UI — and a steady stream of WordPress-plugin XSS (e.g., Social Rocket
+CVE-2026-1923). XSS has sat on the OWASP Top 10 for two decades and isn't leaving.
 :::
 
 ::: {.notes}

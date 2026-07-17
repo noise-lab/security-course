@@ -2,7 +2,6 @@
 title: "Web Privacy and Tracking"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## On the Internet, They Know You're a Dog {.center}
@@ -145,11 +144,13 @@ surveillance targets (Washington Post, 2013).
 - Same for embedded posts, login buttons, and comment widgets
 
 ::: {.vignette}
-**September 2024:** the EU's top court (CJEU), in *Meta v. Bundeskartellamt*
-and related rulings, held that combining off-Facebook data collected via the
-Like button and Pixel across the web requires a valid legal basis — reinforcing
-earlier holdings that a site embedding a social plugin can be a **joint
-controller** liable for the tracking it triggers.
+The **CJEU** long ago held (**Fashion ID**, C-40/17, 2019) that a site
+embedding the Facebook **Like** button is a **joint controller** for the data
+it triggers. Its follow-on **Meta v. Bundeskartellamt** (C-252/21, 2023) then
+knocked out most non-consent legal bases for combining off-platform data;
+Germany's Federal Cartel Office closed its Meta case in **October 2024** on
+that footing. Embedding a widget is not a free pass — the first party is on
+the hook for what the third-party code collects.
 :::
 
 ::: {.notes}
@@ -216,10 +217,12 @@ But two big caveats:
 
 ::: {.vignette}
 **April 2025:** Google reversed course and announced it will **not** deprecate
-third-party cookies in Chrome — no phase-out, no new consent prompt. By
-**October 2025** it began **retiring most of its Privacy Sandbox** replacement
-APIs after low adoption. The cookie the industry declared dead is, in the
-browser with the largest share, very much alive.
+third-party cookies in Chrome — no phase-out, no new consent prompt. On
+**October 17, 2025** it **shut down most of Privacy Sandbox** (Topics,
+Protected Audience, Attribution Reporting, IP Protection, Related Website
+Sets), citing low adoption. Roughly a year in, third-party cookies remain
+Chrome-default with **no timeline for removal** — the cookie the industry
+declared dead is, in the browser with the largest share, very much alive.
 :::
 
 ::: {.notes}
@@ -422,9 +425,13 @@ first-party-disguise their requests, the list must adapt.
 By far the most successful approach in practice. The exercise to pose: if
 trackers wanted to dodge these tools, what would they do (CNAME cloaking,
 first-party disguising, server-side tagging) — and in an arms race, who has the
-advantage? Note the recent wrinkle: Chrome's Manifest V3 limits the blocking
-APIs extensions like uBlock Origin rely on, which weakens content blockers in
-Chrome specifically.
+advantage? The recent wrinkle: Chrome **permanently disabled Manifest V2 in
+July 2025 (Chrome 138)** and is removing the last flag-based workarounds in
+**Chrome 151 (July 2026)**. The full uBlock Origin no longer runs on Chrome;
+users get "uBlock Origin Lite" (declarativeNetRequest, static rules, fewer
+filters) or must switch to Firefox or Brave. That the world's largest
+ad-network vendor also ships the world's largest browser is the whole
+conflict-of-interest teaching point.
 :::
 
 ## Opt-Out Signals: From "Do Not Track" to GPC
@@ -435,12 +442,13 @@ Chrome specifically.
   several state laws *require* businesses to honor it as a valid opt-out.
 
 ::: {.vignette}
-**September 2025:** the California Privacy Protection Agency and the Attorneys
-General of **California, Colorado, and Connecticut** launched a joint
-investigative sweep of businesses that **fail to honor GPC** opt-out signals.
-And from **January 1, 2026**, revised CCPA rules require businesses to confirm
-they have processed a GPC request. The opt-out header that failed as DNT now has
-legal teeth.
+**Enforcement is live.** A CA/CO/CT joint sweep of businesses ignoring GPC
+launched Sept 2025; revised CCPA rules **in force since Jan 1, 2026** require
+businesses to *confirm* a GPC opt-out was processed. **12 states** now require
+recognition of a universal opt-out signal (CA, CO, CT, DE, MD, MN, MT, NE, NH,
+NJ, OR, TX). California's **AB 566 "Opt Me Out" Act** (effective Jan 1, 2027)
+will force Chrome, Safari, and Edge to *ship* a GPC control. The header that
+failed as DNT now has legal teeth.
 :::
 
 ::: {.notes}

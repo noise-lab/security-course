@@ -1,11 +1,21 @@
 # 17-Censorship — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh (Access Now KeepItOn 2025 report, published Mar 31, 2026):**
+  reworked the vignette to add **Myanmar (95 shutdowns) surpassing India (65) for the
+  second year in a row**, **conflict as the leading trigger for the third year**
+  (125 shutdowns / 14 countries), and the **highest count since tracking began in
+  2016** framing. Kept the **313 / 52 countries / $19.7B** headline and the
+  **whitelisting pivot** (Iran/Russia). Attributed the economic-loss figure to
+  **Top10VPN/NetBlocks** (not Access Now — Access Now's report attributes it that way).
+  Added a speaker-note flag that the **United States** was one of several first-time
+  entrants in the 2025 dataset. Sources verified this session:
+  https://www.accessnow.org/internet-shutdowns-2025/ and the report PDF at
+  https://www.accessnow.org/wp-content/uploads/2026/03/KeepItOn-Internet-Shutdowns-2025-Annual-Report.pdf
 - **Fresh vignette (Access Now #KeepItOn, March 2026):** 2025 was the worst year on
   record for deliberate internet shutdowns — **313 shutdowns across 52 countries** (up
   from 304 in 2024 and 289 in 2023), with an estimated **$19.7B** in global economic
-  losses; **75 shutdowns in 33 countries** were still ongoing entering 2026. Verify
-  against the report PDF before class:
+  losses. Verify against the report PDF before class:
   https://www.accessnow.org/internet-shutdowns-2025/ and
   https://www.accessnow.org/wp-content/uploads/2026/03/KeepItOn-Internet-Shutdowns-2025-Annual-Report.pdf
 - **Blacklisting → whitelisting pivot (Iran, Russia):** added as the key conceptual
@@ -49,11 +59,19 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Fresh vignette (Access Now #KeepItOn, March 2026)
-- Blacklisting → whitelisting pivot (Iran, Russia)
-- Measurement tools modernized
-- Protocol updates
-- Generative-AI flooding
+- **Access Now KeepItOn 2026 annual report** (expected Feb–Mar 2027): check whether the
+  "highest since 2016" streak is broken, whether Myanmar retains #1, and whether the
+  US first-time-entrant status persists. Update headline numbers, country ranks, and
+  trigger mix. If Top10VPN's 2026 economic-loss estimate ships, update the $ figure.
+- **Whitelisting** (Iran / Russia): watch for concrete allow-list metrics — e.g., number
+  of approved services on RuNet / Iran NIN — that would strengthen the framing.
+- **GFW targeting anti-censorship protocols** (ECH, DoH, DoQ, QUIC): 2026–2027 will
+  bring new academic measurements (USENIX Security, NDSS). A citable "as of <date>"
+  fingerprint or block is a stronger anchor than the general claim.
+- **2026 Cloudflare / consolidation outages** as a democracy-side "chokepoint" hook
+  (see the sibling censorship-course 01-Overview deck).
+- **UK Online Safety Act / EU DSA age-verification enforcement**: pattern from 2025–2026
+  (Reddit £14.47M, Ofcom multi-fine cascade) will keep producing fresh vignettes.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

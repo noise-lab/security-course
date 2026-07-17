@@ -25,9 +25,14 @@ NN-Name/
   title: "Deck Title"
   subtitle: "Security, Privacy, and Consumer Protection"
   author: "Nick Feamster · University of Chicago"
-  date: last-modified
   ---
   ```
+- **Do not include a `date:` field.** Dates on rendered slides mislead
+  students about currency (`last-modified` shows the source file's modtime,
+  which is meaningless — a whitespace edit re-stamps it; static dates go
+  stale immediately). If a date is unavoidable, use `date: today` — never
+  a hardcoded date or `last-modified`. Dates in slide *content* (e.g.,
+  "Anthropic settlement, Sept 2025") are teaching facts and are fine.
 - The deck **must `quarto render` cleanly** (`quarto render NN-Name/slides.qmd`).
 
 ## Slide conventions

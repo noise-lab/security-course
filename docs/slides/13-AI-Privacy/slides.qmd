@@ -2,7 +2,6 @@
 title: "AI and Privacy"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Why AI Privacy Is Different {.center}
@@ -25,10 +24,12 @@ paradox: we are more privacy-careful than ever, and we overshare to chatbots any
 
 ::: {.vignette}
 In **May 2025**, a magistrate judge ordered OpenAI to **preserve all ChatGPT logs**
-— including conversations users had deleted — as evidence in *The New York Times v.
-OpenAI*. In **November 2025** the court ordered OpenAI to hand over **20 million
-de-identified chat logs** to the plaintiffs. Free, Plus, Pro, Team, and most API
-users were swept in; Enterprise and Edu were not.
+— including conversations users had deleted — as evidence in *NYT v. OpenAI*. In
+**November 2025** the magistrate ordered production of **20 million de-identified
+chat logs** to the plaintiffs; on **January 5, 2026** District Judge Sidney Stein
+**affirmed** the order. Free, Plus, Pro, Team, and most API users were swept in;
+Enterprise and Edu were not. In **July 2026** the news plaintiffs moved for
+sanctions, alleging OpenAI concealed internal searches of its training corpus.
 :::
 
 A copyright suit became a **privacy crisis**: "delete" no longer meant deleted, and
@@ -38,8 +39,8 @@ control over your conversations shifted from you to a litigation hold.
 This is the freshest, most concrete hook for the lecture. The teaching point: the
 privacy properties of a system you use are not set by its UI — they can be overridden
 by litigation, subpoena, or policy change you never see. Ask: did any of you assume
-"delete chat" actually deleted it? Source: OpenAI's public responses and court
-reporting, May and November 2025.
+"delete chat" actually deleted it? Sources: OpenAI's public responses; Judge Stein's
+Jan 5, 2026 affirmance; July 9, 2026 sanctions motion (TechCrunch, Bloomberg Law).
 :::
 
 ## Two Kinds of Privacy Risk
@@ -160,11 +161,12 @@ Even when you *withhold* explicit PII, the model can **infer** it from context:
 age, gender, location, income, health, ethnicity.
 
 ::: {.vignette}
-**Wang, Peddinti, Taft & Feamster (CHI 2026), "Beyond PII":** in a study of 240 U.S.
-participants, people could barely anticipate what a model could infer about them —
-**only slightly better than chance**. Their own attempts to rewrite text to block
-inference worked just **28%** of the time. Paraphrasing was the most popular strategy
-and the *least* effective; **abstraction and added ambiguity** worked better.
+**Wang, Peddinti, Taft & Feamster, "Beyond PII" (arXiv:2509.12152, Sept 2025):** in
+a survey of 240 U.S. participants, people could barely anticipate what a model could
+infer about them — **only slightly better than chance**. Their own attempts to
+rewrite text to block inference worked just **28%** of the time. Paraphrasing was
+the most popular strategy and the *least* effective; **abstraction and added
+ambiguity** worked better.
 :::
 
 So "just remove the names" is **not** enough — and people are bad at knowing what gives

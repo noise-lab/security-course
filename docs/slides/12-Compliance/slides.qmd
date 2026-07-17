@@ -2,7 +2,6 @@
 title: "Privacy Law in Practice: Compliance, Opt-Out, and Dark Patterns"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## From Law on the Books to Law in Action {.center}
@@ -131,12 +130,18 @@ imperfectly.
 
 ::: {.vignette}
 California is now enforcing the *practice*, not just the *paperwork*. On **Feb 11,
-2026**, AG Rob Bonta announced a **\$2.75M** settlement with **Disney** over failure
-to honor opt-out signals. On **May 8, 2026**, that record was eclipsed by a
-**\$12.75M** settlement with **General Motors** — the largest CCPA penalty to date —
-for selling drivers' location and behavior data to LexisNexis and Verisk without
-adequate notice or consent. These follow earlier actions against **Sephora**,
-**DoorDash**, and **Sling TV**.
+2026**, AG Rob Bonta announced a **\$2.75M** settlement with **Disney** for failing
+to honor opt-out preference signals (including **GPC**) across its streaming
+services
+([CA AG, Feb 11, 2026](https://oag.ca.gov/news/press-releases/california-wont-let-it-go-attorney-general-bonta-announces-275-million)).
+On **May 8, 2026**, that record was eclipsed by a **\$12.75M** settlement with
+**General Motors** — the largest CCPA penalty to date, and the first CCPA action
+built on **data minimization and purpose limitation** — for selling OnStar
+drivers' location and behavior data to LexisNexis and Verisk without notice or
+consent
+([CA AG, May 8, 2026](https://oag.ca.gov/news/press-releases/when-it-comes-data-privacy-consumers-must-be-driver%E2%80%99s-seat-attorney-general)).
+These follow earlier actions against **Healthline (\$1.55M, Jul 2025)**,
+**Sephora**, **DoorDash**, and **Sling TV**.
 :::
 
 Regulators are explicit: they care whether consumer choices **actually work**
@@ -389,6 +394,10 @@ edge case that makes automated enforcement hard.
 Some patterns **clearly violate** the statute (asymmetry breaks the required
 *symmetry in choice*; a 14-click flow breaks *minimal steps*). Others — **CAPTCHAs**,
 unclear receipts, ambiguous toggles — are **not addressed at all**.
+
+The **Disney 2026 settlement** ($2.75M) squarely litigated fragmented
+per-device/per-service opt-out flows as CCPA violations — the "may violate" column
+is starting to become "does violate."
 
 ::: {.notes}
 Walk one row from each bucket. "Symmetry in choice" and "minimal steps" are explicit

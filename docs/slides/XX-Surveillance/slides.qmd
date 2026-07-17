@@ -2,7 +2,6 @@
 title: "Data Collection and Surveillance"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## "It's Just Metadata" {.center}

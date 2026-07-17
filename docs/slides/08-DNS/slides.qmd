@@ -2,7 +2,6 @@
 title: "DNS Security and Privacy"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## When DNS Breaks, the Internet Breaks {.center}
@@ -310,11 +309,23 @@ DoH encrypts DNS — but funnels nearly all queries to a **handful of resolvers*
 - **Single point of failure** — recall the **AWS Oct 2025 outage**
 - Centralization is **not inevitable**: 100+ encrypted-DNS resolvers already exist
 
+::: {.vignette}
+**Centralization = a single takedown target.** In **Jan 2026** Italy's AGCOM fined
+**Cloudflare €14.2M** (1% of global revenue) for refusing to filter pirate domains
+on public **1.1.1.1**; Matthew Prince called it "DISGUSTING" and threatened to pull
+Italian infrastructure. In **March 2026** the **Paris Court of Appeal** rejected
+appeals from Google, Cloudflare, and Cisco and held that public DNS resolvers *can*
+be compelled to block sites. Cisco pulled OpenDNS out of France.
+:::
+
 ::: {.notes}
 Bring the opening vignette full circle. Encryption solved confidentiality on the
-wire but made the trust/availability problem worse by concentrating it. The
-2021 "25% of top sites on AWS" paper warned of exactly this; the 2025 outage
-proved it.
+wire but made the trust/availability problem worse by concentrating it, on two
+axes: availability (AWS Oct 2025) and coercion (Italy AGCOM Jan 2026, French
+appeals Mar 2026). Sources: TorrentFreak coverage, Cloudflare blog "Standing up
+for the open Internet." Note: same court, same term, upheld ISP-level DNS
+blocking too — the block moved *up* to the public resolvers precisely because
+users had escaped ISP resolution.
 :::
 
 # Re-Decentralizing Private DNS {.center}
@@ -360,9 +371,10 @@ property; this is the whole security argument.
 ::: {.vignette}
 Our group proposed Oblivious DNS at the **IETF DNS Privacy** working group; a
 Cloudflare engineer initially called it *"horrible, too much latency, too
-complex."* Cloudflare later shipped it as **Oblivious DoH (ODoH)**, and as of
-2026 it underpins **Apple's iCloud Private Relay** DNS. Strong opposition often
-marks a threatening — and valuable — idea.
+complex."* Cloudflare later shipped it as **Oblivious DoH (ODoH)**, standardized
+as **RFC 9230 (June 2022)**, and it now underpins **Apple's iCloud Private
+Relay** DNS on Cloudflare/Akamai/Fastly. Strong opposition often marks a
+threatening — and valuable — idea.
 :::
 
 ::: {.notes}

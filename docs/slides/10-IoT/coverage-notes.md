@@ -2,6 +2,20 @@
 
 ## Current-events updates made (point 2)
 
+- **2026-07-16 refresh.** Extended the ACR vignette to cite the **LG settlement
+  (May 11, 2026)** — same express-consent obligation as Samsung's, plus an
+  explicit no-transfer-to-CCP clause; Sony/Hisense/TCL cases still open. Added
+  **FTC Ring/Alexa (May 2023, $31M)** to the COPPA-slide speaker notes so the
+  policy anchor is not solely the 2019 YouTube $170M number: Ring $5.8M for
+  employee snooping on customer bedroom cameras; Alexa $25M for retaining
+  children's voice recordings in COPPA violation, with a prohibition on
+  training models with data users had asked to delete. Added an EU-side
+  regulatory horizon to the closing speaker notes: **CRA** (in force Dec 10,
+  2024; reporting from Sept 11, 2026; full obligations Dec 11, 2027; connected
+  toys are Class I) and **AI Act** as amended by the June 2026 "Digital Omnibus
+  on AI" (high-risk provisions for embedded systems now Aug 2, 2027 / Dec 2,
+  2027). Verified via Texas AG press release, The Record, Malwarebytes,
+  ftc.gov, digital-strategy.ec.europa.eu, and Bright Defense.
 - **Added a 2025–2026 ACR enforcement vignette** as the freshest hook. On
   **2025-12-15** Texas AG Ken Paxton sued five TV makers (Samsung, Sony, LG, Hisense,
   TCL) over Automatic Content Recognition; a court issued the first-ever TRO against a
@@ -51,9 +65,13 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Added a 2025–2026 ACR enforcement vignette
-- Reframed the old research-talk deck (146 slides) into a teaching arc
-- Kept the COPPA / YouTube $170M (Sept 2019) example
+- **ACR docket status.** Sony, Hisense, TCL cases were still open as of mid-2026; by next refresh check whether they settled or went to trial, plus any new state statutes beyond Kentucky's.
+- **EU CRA.** Reporting duties activate **Sept 11, 2026**; full obligations **Dec 11, 2027**. By next refresh, expect early enforcement examples worth naming.
+- **AI Act embedded-systems deadlines.** Aug 2, 2027 (embedded high-risk) / Dec 2, 2027 (stand-alone high-risk) after the June 2026 Digital Omnibus; verify no further postponements.
+- **U.S. Cyber Trust Mark rollout.** Currently voluntary — by next refresh, note whether any state or federal procurement mandate follows.
+- **FTC Ring/Alexa follow-through.** Refund distribution ran through 2024; consent-order compliance is the ongoing story; a fresh enforcement action would be a stronger anchor than the 2023 settlement.
+- **IoT Inspector.** Most recent visible academic outputs are 2024 (EuroS&P, PoPETs); if a 2026/2027 paper lands, cite it in the "50k devices" bullet.
+- **COPPA / YouTube $170M** — a 2019 anchor; still the largest COPPA case; monitor for a bigger one that would displace it.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

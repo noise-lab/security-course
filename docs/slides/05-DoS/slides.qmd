@@ -2,7 +2,6 @@
 title: "Denial of Service Attacks"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## From System Security to Internet Security {.center}
@@ -23,12 +22,13 @@ file or a site that's down on payday?
 
 ::: {.vignette}
 In its **Q4 2025 DDoS report (published Feb 2026)**, Cloudflare disclosed
-mitigating a **record 31.4 Tbps** attack — the largest ever made public. It lasted
-about **35 seconds** and was stopped autonomously. The source was the
-**Aisuru / Kimwolf "TurboMirai" botnet** — a Mirai descendant of **300,000+
-compromised IoT devices**, including Android TV / streaming boxes. On **March 19,
-2026**, international law enforcement announced a takedown of its
-command-and-control infrastructure.
+mitigating a **record 31.4 Tbps** attack in **November 2025** — the largest ever
+made public. It lasted about **35 seconds** and was stopped autonomously. The
+source was the **Aisuru / Kimwolf "TurboMirai" botnet** — a Mirai descendant of
+**1–4 million compromised IoT devices** (most of them off-brand Android TV /
+set-top boxes). On **March 19, 2026**, a U.S.-led international operation (DoJ,
+BKA Germany, Canadian authorities) seized C2 domains and servers behind Aisuru,
+Kimwolf, JackSkid, and Mossad — botnets covering **3M+ infected devices**.
 :::
 
 The playbook hasn't changed since **Mirai (2016)** — only the scale has: cheap,
@@ -37,10 +37,13 @@ insecure consumer devices, conscripted into a weapon.
 ::: {.notes}
 This is the freshest concrete example tying the whole lecture together. Note the
 through-line: Mirai's source code leaked in 2016, and Aisuru/Kimwolf is a direct
-descendant ("TurboMirai"). 31.4 Tbps vs. the ~1 Tbps Dyn attack — two orders of
-magnitude in a decade. The 35-second duration matters: modern attacks are short,
-sharp, and automated, so defenses must be too. Sources: Cloudflare Q4 2025 DDoS
-threat report; NETSCOUT ASERT; law-enforcement takedown March 2026.
+"TurboMirai" descendant. 31.4 Tbps vs. the ~1 Tbps Dyn attack — 30× in a
+decade. The 35-second duration matters: modern attacks are short, sharp, and
+automated, so defenses must be too. Aisuru also targeted KrebsOnSecurity (6.35
+Tbps, May 2025) — the same target Mirai took offline in 2016. Sources:
+Cloudflare Q4 2025 DDoS threat report; DoJ press release, Mar 19 2026; XLab /
+Lumen research. Coda: analysts warn scanning from new C2 infrastructure was
+already observed within weeks of the takedown — the botnet cycle continues.
 :::
 
 ## Denial of Service: What Is It?
@@ -344,7 +347,9 @@ Real defense is layered — no single mechanism is sufficient.
 - **Third-party scrubbing** services (Cloudflare, Akamai, etc.) absorb and clean
   traffic upstream
 
-Modern scrubbing is **autonomous** — the 31.4 Tbps attack was mitigated in seconds.
+Modern scrubbing is **autonomous** — the 31.4 Tbps attack (Nov 2025) was
+mitigated in seconds; Cloudflare reports averaging **~5,376 mitigations per
+hour** across 2025.
 
 ::: {.notes}
 This connects the historical defense list to the present-day vignette. Anycast is
@@ -361,9 +366,10 @@ weapon.
 
 ::: {.columns}
 ::: {.column width="55%"}
-- **March 2016:** GitHub pages run by GreatFire.org were flooded
+- **March 2015:** GreatFire.org (Mar 16) and GitHub pages hosting its
+  anti-censorship mirrors (Mar 26) were flooded
 - An **on-path** system (co-located with the Great Firewall) intercepted requests
-  to **Baidu** scripts and **injected JavaScript**
+  to **Baidu** analytics scripts and **injected JavaScript**
 - Innocent users worldwide unknowingly hammered the target
 :::
 ::: {.column width="45%"}
@@ -391,7 +397,8 @@ the world (TW, HK, US, MY...), which is what made attribution and filtering so h
 - Defenses must **restore symmetry without creating new state to exhaust**
 - Many fixes (ingress filtering, closing open resolvers) fail on **incentives**,
   not technology
-- The threat scales with **insecure consumer IoT** — Mirai (2016) → Aisuru (2025)
+- The threat scales with **insecure consumer IoT** — Mirai (2016, ~1 Tbps) →
+  Aisuru/Kimwolf (Nov 2025, 31.4 Tbps)
 
 ::: {.notes}
 Close by reconnecting to the vignette: same playbook, 30× the scale, because the

@@ -2,7 +2,6 @@
 title: "Internet Censorship"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## "The Net Interprets Censorship as Damage" {.center}
@@ -105,20 +104,27 @@ whole second half of the lecture.
 
 ::: {.vignette}
 **2025 was the worst year on record.** Access Now's #KeepItOn coalition documented
-**313 deliberate shutdowns across 52 countries** in 2025 — up from 304 in 2024 — with an
-estimated **\$19.7 billion** in global economic losses. As 2026 opened, **75 shutdowns in
-33 countries were still ongoing**, and Iran and Russia were pivoting from blacklisting to
-**whitelisting**: block the whole Internet by default, allow only government-approved
-"socially significant" services. (Access Now, March 2026.)
+**313 deliberate shutdowns across 52 countries** in 2025 — the highest since tracking
+began in 2016 — with an estimated **\$19.7 billion** in global economic losses
+(Top10VPN/NetBlocks). **Myanmar** led with **95 shutdowns**, surpassing **India (65)**
+for the second year in a row; **conflict** was the leading trigger for the third year
+running (125 shutdowns in 14 countries). Iran and Russia continue pivoting from
+blacklisting to **whitelisting** — block the whole Internet by default, allow only
+government-approved "socially significant" services. (Access Now, March 2026.)
 :::
 
 ::: {.notes}
 The vignette is the freshest hook — verify the numbers against the linked report before
-class. The whitelisting pivot is the important conceptual update: it inverts the default.
-Blacklisting is "everything allowed except X"; whitelisting is "everything blocked except
-X." Russia's "sovereign internet" / RuNet work and Iran's National Information Network
-are the canonical examples. Ask students why a state would prefer whitelisting despite
-the economic cost.
+class. Access Now's official 2025 annual report (Mar 31, 2026): 313 shutdowns across
+52 countries, Myanmar #1 (95), India #2 (65), conflict the leading trigger for the
+third year, 70 shutdowns coinciding with grave human-rights abuses in 21 countries.
+Economic-loss figure is Top10VPN/NetBlocks ($19.7B, with Russia alone at $11.9B). The
+whitelisting pivot is the key conceptual update: it inverts the default. Blacklisting is
+"everything allowed except X"; whitelisting is "everything blocked except X." Russia's
+"sovereign internet" / RuNet work and Iran's National Information Network are the
+canonical examples. First-time-ever shutdowns tracked in 2025 include the **United
+States** (Access Now flagged domestic incidents for the first time). Ask students why a
+state would prefer whitelisting despite the economic cost.
 :::
 
 ## Measuring Censorship

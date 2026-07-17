@@ -2,7 +2,6 @@
 title: "Net Neutrality"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## What "Net Neutrality" Actually Means {.center}

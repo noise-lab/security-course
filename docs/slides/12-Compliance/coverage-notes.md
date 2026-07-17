@@ -1,6 +1,18 @@
 # 12-Compliance — instructor notes
 
 ## Current-events updates made (point 2)
+
+- **2026-07-16 annual refresh.** (a) Rewrote the enforcement vignette with
+  **primary CA AG press-release links** for both the Feb 11, 2026 Disney and
+  May 8, 2026 GM settlements, called out the **GPC-honoring** angle explicitly
+  (Disney), and named **data minimization + purpose limitation** as the novel
+  CCPA theory (GM). (b) Added the earlier **Healthline $1.55M (Jul 1, 2025)**
+  settlement into the "prior actions" list — it was the previous CCPA record
+  before Disney, also opt-out-related, and shows an unbroken enforcement
+  sequence. (c) Amended the "Clear Violations vs. Loopholes" slide to note the
+  Disney settlement squarely litigated fragmented per-device/per-service
+  opt-out as a CCPA violation — the "may violate" column is starting to become
+  "does violate."
 - Added a 2026 enforcement vignette grounding the deck in real, dated cases (verified via web search):
   - **Feb 11, 2026** — California AG Rob Bonta announced a **$2.75M** CCPA settlement with **Disney** for failing to honor opt-out signals.
   - **May 8, 2026** — record **$12.75M** settlement with **General Motors** (largest CCPA penalty to date) for selling drivers' location/behavior data to LexisNexis and Verisk without adequate notice/consent; first CCPA action centered on data minimization + purpose limitation. Subject to court approval; GM also agreed to stop selling driving data to consumer reporting agencies for 5 years and delete retained data within 180 days absent express consent.
@@ -26,8 +38,29 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Feb 11, 2026
-- May 8, 2026
+- **Disney CA-AG settlement — Feb 11, 2026, $2.75M** (fragmented opt-out /
+  GPC not honored across streaming services). If a bigger settlement lands
+  focused on GPC specifically, swap.
+- **General Motors CA-AG settlement — May 8, 2026, $12.75M** (data
+  minimization + purpose limitation; OnStar → LexisNexis/Verisk sale). Watch
+  for the first CCPA action against another automaker on the same theory —
+  Ford/Toyota/Tesla telematics are the obvious next targets. Note the parallel
+  Jan 2026 FTC-GM settlement (no monetary penalty) as counterpoint.
+- **Healthline $1.55M (Jul 1, 2025)** — previous CCPA record; useful for the
+  "unbroken sequence" narrative.
+- The **"no litigation on dark patterns" claim** (originally from the paper)
+  is now partially obsolete; the amendment on the "Clear Violations vs.
+  Loopholes" slide keeps track. Watch for the first CPRA-based case that
+  explicitly cites the dark-patterns definition (11 CCR §§7004(a)–(c)).
+- Watch **CPPA enforcement**: it's begun issuing sizable fines on its own (the
+  IAPP notes a Feb 2026 CPPA action ~$2.75M against a streaming company; some
+  aggregators conflate it with the AG's Disney action — verify separately
+  before naming). If a distinct, sizable CPPA-only action emerges, add it.
+- **State-law count** (Study 1 five-state design is CA/VA/CO/UT + IL control).
+  20 states now have comprehensive laws (Jan 2026); revisit whether IL still
+  works as a control — [the Illinois PDPA](https://www.ilga.gov/legislation/BillStatus.asp?DocNum=3517&GAID=17) has been considered but not enacted as of Jul 2026.
+- Study 1 vantage-point measurement window is Jan–Jul 2023. If the same team
+  publishes a longitudinal follow-up (post-CPRA year 3+), swap the figure.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

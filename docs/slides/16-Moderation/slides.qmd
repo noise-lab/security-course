@@ -2,7 +2,6 @@
 title: "Content Moderation"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## What This Lecture Is About {.center}
@@ -24,20 +23,24 @@ topic; tell students it can show up on Midterm 2.
 ## A 2026 Hook: The DSA Bares Its Teeth {.smaller}
 
 ::: {.vignette}
-On **24 October 2025** the European Commission issued **preliminary findings** that
-**TikTok and Meta** breached the **Digital Services Act** — failing to give vetted
-researchers "adequate access" to public platform data. The DSA lets the Commission
-fine non-compliance up to **6% of global annual turnover**. Six months earlier (April
-2025) Meta was fined **€200M** under the companion **Digital Markets Act**.
+On **5 December 2025** the European Commission issued its **first DSA non-compliance
+decision**: a **€120M fine on X** (with Elon Musk **personally named**) over deceptive
+"blue checks," ad-transparency failures, and blocked researcher access. On **24 Oct
+2025** the Commission preliminarily found **TikTok and Meta** in breach for the same
+researcher-access problem; on **6 Feb 2026** it added preliminary findings that
+**TikTok's addictive design** violates Article 28. X sued the Commission at the
+**General Court on 16 Feb 2026** — the first legal challenge to a DSA fine.
 :::
 
 Europe now actively *audits* moderation. The US, as we'll see, mostly does not.
 
 ::: {.notes}
 The vignette makes the abstract concrete: regulators are no longer just writing rules,
-they are enforcing them with turnover-scaled fines. Note the irony — the DSA charge
-here is about *transparency and data access*, not specific takedowns. That foreshadows
-our study's punchline: we can't even reliably read what platforms claim to do.
+they are enforcing them with turnover-scaled fines and personal liability. Note the irony —
+the DSA charges here are about *transparency, ads, and design*, not specific takedowns.
+That foreshadows our study's punchline: we can't even reliably read what platforms claim
+to do. Also note the X fine is well below the 6%-of-turnover ceiling; Brussels is being
+graduated, not maximalist, on first shots.
 :::
 
 ## Online Content: Complex and at Scale {.smaller}
@@ -427,7 +430,9 @@ protects the *user's*. That asymmetry is the heart of the content-moderation deb
 ## Takeaways {.smaller}
 
 - In the US, **platforms — not government — write the rules** of online speech
-  (Section 230 + NetChoice); the EU is moving the opposite way (DSA enforcement, 2025)
+  (Section 230 + NetChoice); Meta ended third-party fact-checking (**Jan 2025**) and
+  moved to Community Notes. The EU is moving the opposite way (first **DSA fine**:
+  €120M on X, Dec 2025)
 - Justifications track the **depth of underlying law**: legal for copyright, "values"
   for hate speech / misinformation
 - Platforms explain moderation by **example, not definition** — flexible but opaque

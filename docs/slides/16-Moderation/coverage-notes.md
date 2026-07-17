@@ -1,6 +1,16 @@
 # 16-Moderation — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh (annual):** Upgraded the opening vignette from *preliminary
+  findings* (Oct 2025) to the **first DSA non-compliance decision**: **€120M fine on X**
+  issued **Dec 5, 2025**, with **Elon Musk personally named**. Also added the **Feb 6,
+  2026** preliminary findings that **TikTok's addictive design** violates DSA Article
+  28, and **X's Feb 16, 2026** legal challenge at the General Court — the first-ever
+  challenge to a DSA fine. Retained the Oct 24, 2025 TikTok/Meta preliminary
+  transparency findings but demoted them to secondary context (the X fine is stronger).
+  Also updated the takeaways slide to note **Meta ending third-party fact-checking**
+  (Jan 7, 2025 announcement; official US end-date **April 7, 2025**) as the concrete US
+  deregulatory move contrasting with EU enforcement.
 - **Opening vignette (DSA enforcement, dated):** EU Commission's **24 Oct 2025**
   preliminary findings that **TikTok and Meta** breached the Digital Services Act
   (inadequate researcher data access; fines up to 6% of global turnover), plus the
@@ -46,6 +56,16 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
+- **X v. Commission (General Court)** — first DSA-fine challenge, filed Feb 2026;
+  outcome will re-anchor the vignette in the next refresh.
+- **TikTok addictive-design case** — preliminary findings only as of Feb 2026; watch
+  for a full non-compliance decision.
+- **NetChoice remand rulings** — Florida district court declined dismissal May 22,
+  2025; new merits rulings from 11th/5th Circuits likely by 2027.
+- **Meta Community Notes global rollout / Oversight Board opinion** — worth a slide
+  once implementation stabilizes; still evolving as of mid-2026.
+- **Grok investigation and "nudification" apps** — Commission opened proceedings
+  Jan 2026; if it produces findings, a natural add to the LLM-moderation slide.
 - Opening vignette (DSA enforcement, dated)
 - Added Moody v. NetChoice (July 1, 2024)
 - Added an LLM-moderation slide

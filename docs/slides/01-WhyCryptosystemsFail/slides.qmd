@@ -2,7 +2,6 @@
 title: "Why Cryptosystems Fail"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Two Questions for the Term {.center}
@@ -75,14 +74,19 @@ caught by luck, days before reaching stable releases.
 :::
 
 This is Thompson's attack in the wild: the malice lived in the **build
-process**, the social engineering targeted **trust itself**.
+process**, the social engineering targeted **trust itself**. Attribution to
+"Jia Tan" is still unresolved as of mid-2026 — and backdoored versions were
+still found in **Debian Docker Hub images in August 2025**, more than a year
+after the patch.
 
 ::: {.notes}
 This is the freshest, most exact realization of "Reflections on Trusting
 Trust" ever seen in production. Emphasize: SBOMs and code review would have
 walked right past it because the artifact looked fine — the exploit was a
 trust problem, not an artifact problem. Connect to agenda question: how does
-this extend to AI-generated and AI-assisted code?
+this extend to AI-generated and AI-assisted code? Freund was a Microsoft
+principal engineer benchmarking PostgreSQL who noticed sshd was ~500ms
+slower than expected — pure operational luck.
 :::
 
 ## Supply Chain as a Trust Problem
@@ -90,17 +94,21 @@ this extend to AI-generated and AI-assisted code?
 The attack surface is the **trust we extend to maintainers and registries**,
 not just the code.
 
-- **npm "Shai-Hulud" worm** (Sept 2025, with further waves into spring 2026):
-  self-replicating malware that compromised maintainer accounts and
-  republished popular packages
+- **npm "Shai-Hulud" worm** — first outbreak Sept 2025 (500+ packages, credential
+  theft); **Shai-Hulud 2.0** (Dec 2025 / Jan 2026) added a destructive failsafe;
+  fresh waves in 2026 hit **TanStack, Mistral AI, UiPath** (May 11), the **AntV**
+  ecosystem (May 19), and **Red Hat's npm namespace** (~80K downloads/week, June 1);
+  the weaponized worm code was released publicly on **May 12, 2026**
 - Phishing one maintainer can poison **packages with billions of downloads**
-- Defenses (signing, SBOMs, SLSA) help — but a maintainer who *earns* trust,
-  then abuses it, defeats them
+- Defenses (signing, SBOMs, SLSA, npm trusted publishing) help — but a maintainer
+  who *earns* trust, then abuses it, defeats them
 
 ::: {.notes}
 Good debate seed (the agenda lists this paper for debate). Can we ever
 "solve" trusting trust, or only manage it? Reproducible builds and diverse
-double-compiling raise the bar but don't eliminate the regress.
+double-compiling raise the bar but don't eliminate the regress. Note the
+progression: preinstall execution now bypasses even test-based defenses;
+the Red Hat case shows the worm reaching official corporate namespaces.
 :::
 
 # Part 2: Why Cryptosystems Fail {.center}

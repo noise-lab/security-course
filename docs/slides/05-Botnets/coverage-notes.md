@@ -1,24 +1,31 @@
 # 05-Botnets — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh.** Sharpened the Aisuru vignette with verified specifics:
+  attack duration (35 seconds), the Dec 19, 2025 "Night Before Christmas" follow-on
+  at 200M+ HTTP requests/sec, and the March 19, 2026 DoJ operation's specific
+  jurisdiction (District of Alaska), international partners (Canada, Germany,
+  Netherlands, EUROPOL PowerOFF), and named private-sector assistance (Team Cymru,
+  Cloudflare, AWS, Google, Akamai). Added the May 20, 2026 arrest of alleged Kimwolf
+  operator "Dort"/Jacob Butler (23, Ottawa) — a concrete legal outcome.
+- Verified all pre-existing facts still hold: 31.4 Tbps in November 2025 (correct
+  month — Cloudflare disclosed publicly in late January 2026); Mirai-class origin;
+  ~3M infected devices at time of takedown (Kimwolf alone had conscripted 2M+
+  Android devices, mostly off-brand Android TVs — per XLab, Cloudflare, and DoJ).
 - Added a **2026 vignette** ("A 2026 Bookend: Mirai's Descendants") grounding the
-  lecture in verified, dated events:
+  lecture in verified, dated events (retained from prior refresh):
   - **Aisuru/Kimwolf** botnet — a Mirai-class IoT family (compromised Android TVs,
     home routers) — drove a **31.4 Tbps** DDoS mitigated by Cloudflare in
-    **November 2025**, the largest publicly disclosed attack to date (Cloudflare
-    Q4 2025 DDoS Threat Report).
+    **November 2025**, the largest publicly disclosed attack to date.
   - **March 2026 DoJ / District of Alaska** takedown of Aisuru, Kimwolf, JackSkid,
-    and Mossad — **3M+ infected devices**, coordinated with international partners
-    and major cloud/CDN providers.
+    and Mossad — **~3M infected devices**.
 - Framed the modern example as continuity with Dyn (2016): same default-credential,
-  unpatched-IoT economics, scaled from gigabits to tens of terabits. This keeps the
-  historical Mirai/Dyn case study but shows it is a living template, not history.
+  unpatched-IoT economics, scaled from gigabits to tens of terabits.
 - Reframed the whole deck around what was actually taught (agenda.md, Meeting on
   "Denial of Service Attacks and Botnets"): the **three DoS characteristics**,
   the **Mirai/Dyn** case, the **death-spiral**, and **DNS reflection/amplification**
   with the stateful-firewall-as-new-attack-surface principle. Cut the original
-  deck's long worm-by-worm catalog (Code Red I/v2/II, Storm internals, Conficker/
-  Mega-D/Zeus list) down to a single evolution arc.
+  deck's long worm-by-worm catalog down to a single evolution arc.
 
 ## Suggested missing coverage on broad themes (point 3)
 - **DDoS-for-hire / "booter" economy.** The lecture treats botnets as attacker-built;
@@ -51,9 +58,18 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Aisuru/Kimwolf
-- March 2026 DoJ / District of Alaska
-- Flag any stronger alternative vignette you find but choose not to use yet.
+- **31.4 Tbps record (Nov 2025)** — will be broken; the escalation curve went
+  5.6 Tbps (Oct 2024) → 7.3 Tbps (Jun 2025) → 15.72 Tbps (Oct 2025, Microsoft)
+  → 31.4 Tbps (Nov 2025) → higher, likely by mid-2026. Swap in the next record
+  and its botnet if verified.
+- **Aisuru/Kimwolf takedown** — the March 2026 DoJ action was a *disruption*, not
+  an eradication (per Team Cymru and Krebs). Watch for the botnets to resurface
+  under new C2 or a successor family — if so, that continuity IS the story.
+- **"Dort"/Butler arrest** — pending prosecution; refresh if convicted/dismissed.
+- **Alternative fresh hooks flagged but not used:** the Microsoft Tycoon 2FA
+  disruption + rebound (a cleaner "takedowns are whack-a-mole" case for the
+  Defenses slide); IPIDEA residential-proxy takedown (Google + Cloudflare) as a
+  cleaner illustration of "attack the criminal-market plumbing, not the bots."
 
 ## Curated images
 - **Used:**

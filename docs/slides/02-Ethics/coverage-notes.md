@@ -1,6 +1,16 @@
 # 02-Ethics — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh.** Zurich r/changemyview vignette re-verified as still the
+  freshest LLM-deception ethics case in the field (Retraction Watch 2025-04-29 confirms
+  the "formal warning + stricter review process" outcome; no comparable 2026 replacement
+  identified in web search). Refined the vignette to add the third fabricated persona
+  ("a Black person against BLM," per Science/AAAS reporting) and to flag the outcome
+  through 2026 (formal warning, non-publication, ethics-committee reforms). Also updated
+  the "Law Is (Slowly) Catching Up" slide to add the **2022 DOJ policy** formally
+  instructing federal prosecutors not to charge good-faith security research under the
+  CFAA (verified via ACS/EFF post-Van Buren analyses); added the point that contract,
+  copyright, and GDPR claims remain live risks Van Buren did not resolve.
 - **New primary vignette: University of Zurich AI bots on Reddit r/changemyview
   (April 2025).** Replaces Emotional Contagion as the *freshest* hook. ~1,700
   AI-generated comments under fabricated personas, four months, no consent, no
@@ -44,7 +54,18 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Added a "The Law Is (Slowly) Catching Up" slide
+- **Zurich r/changemyview vignette (April 2025).** Still the canonical case; watch for a
+  bigger, worse LLM-field-experiment scandal in 2026/2027 — the Frontiers "Three-Stage
+  Framework for AI HSR" (2026) and Columbia TC IRB's disclosure policy suggest the
+  space is actively producing new precedents. Also watch for a formal *retraction* or
+  university disciplinary outcome to add to the vignette.
+- **"Law Is (Slowly) Catching Up" slide.** DOJ 2022 policy is not itself dated but a
+  post-Van Buren circuit split (SCOTUS took *Fikre* / another CFAA case?) would
+  refresh it. Watch also for EU AI Act enforcement actions against research scraping
+  in 2026–2027.
+- **Hypocrite Commits (2021).** Still the canonical open-source deception case as of
+  2026; no fresher replacement identified. Flag if a similar 2025+ supply-chain
+  research incident (e.g., npm/PyPI academic experiments) surfaces.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

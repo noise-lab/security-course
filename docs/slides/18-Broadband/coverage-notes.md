@@ -1,6 +1,25 @@
 # 18-Broadband — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh:**
+  - **Lead vignette:** noted that **no federal ACP replacement has passed** as of
+    mid-2026, and the **state successor patchwork** now filling the gap:
+    **New Mexico LITAP** launched July 1, 2026 (up to $30/mo) and **California
+    LifeLine Home Broadband Pilot** launched January 2026 (up to $30/mo). Replaced the
+    "restructured in June 2025 / began releasing funds late 2025" wording with the
+    current NTIA Progress Dashboard status: **54 of 56 Final Proposals approved and
+    52 subgrant agreements signed** by mid-2026, first BEAD-funded household connected
+    in Nebraska.
+  - **"What counts as broadband":** added a bullet on the **Carr FCC's July 2025
+    NPRM** proposing to scrap adoption/affordability metrics from the Section 706
+    inquiry and roll back the 1 Gbps long-term goal (decision expected early 2026,
+    invoking *Loper Bright*). This connects the deck to the net-neutrality lecture's
+    administrative-law throughline.
+  - **Policy-stakes slide:** replaced the "26 states added $1.3B in 2025" line (now
+    dated) with the mid-2026 NTIA dashboard status and the NM/CA state successors.
+  - Sources verified this session: NTIA Progress Dashboard (accessed Jul 2026);
+    CRS IF12637; FCC Notice DOC-413059A1 (July 2025); NM LITAP announcement;
+    CA LifeLine Home Broadband Pilot launch materials.
 - **Lead vignette (verified):** The **Affordable Connectivity Program ended June 1, 2024**
   after Congress declined to refund it — ~$30/mo subsidy, ~23M enrolled households, an
   estimated ~5M lost home internet. Paired with the **$42.45B BEAD** program being
@@ -46,9 +65,22 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Lead vignette (verified)
-- "What counts as broadband" slide (verified)
-- Policy-stakes slide
+- **Section 706 outcome** (expected early 2026 → will be settled by 2027 refresh):
+  did the Carr FCC formally lower/narrow the benchmark? If yes, update the
+  "What counts as broadband" slide with the new rule and the political fight.
+- **BEAD construction phase (2026–2030):** by next refresh many states will be
+  mid-construction. Swap the "52 subgrant agreements signed" statistic for
+  something concrete on delivered service (households connected). NTIA's
+  Progress Dashboard is the primary source.
+- **Federal ACP successor:** if Congress passes any successor program (partial or
+  full), rewrite the affordability half of the vignette. Track: Broadband
+  Affordability Act family of bills.
+- **State ACP successors:** NM LITAP + CA LifeLine Home Broadband Pilot will have
+  adoption data by 2027; several more states (IL, CO, WA, MN) have legislation
+  pending — check for launch. NY/CT low-cost-plan mandates are a distinct model
+  worth calling out.
+- **Starlink / LEO in BEAD:** the tech-neutrality fight remains live; if a state
+  awards a substantial share to Starlink, that would be a strong 2027 example.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

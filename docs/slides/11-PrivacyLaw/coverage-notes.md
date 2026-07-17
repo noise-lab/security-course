@@ -5,6 +5,17 @@
 All facts below were web-verified (June 2026) against primary sources before
 being placed on slides; dates and figures are exact.
 
+- **2026-07-16 annual refresh.** (a) Sharpened the Kochava sentence with the
+  confirmed May 4, 2026 FTC settlement (ban on selling sensitive location data
+  without express consent) — primary link now points to the FTC press release.
+  (b) Refreshed the GDPR Enforcement vignette: cumulative fines updated to
+  **€7.1B through Jan. 2026** (DLA Piper Survey), TikTok link swapped from a
+  secondary aggregator to the **primary Irish DPC press release** (May 2, 2025),
+  and added the **CNIL €325M Google fine (Sept. 2025)** for Gmail ads + cookie
+  consent as a second, more recent illustration of the "GDPR has teeth" point.
+  (c) Updated the Takeaways line to name the three current enforcement anchors
+  (Disney COPPA, TikTok €530M, CNIL Google €325M).
+
 - **Opening vignette — Disney COPPA, $10M (court-approved Dec. 31, 2025).** Fresh
   hook for "FTC sets the floor / no federal law." Disney let children's data be
   collected through YouTube videos it failed to label "Made for Kids," violating
@@ -71,11 +82,32 @@ being placed on slides; dates and figures are exact.
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Opening vignette — Disney COPPA, $10M (court-approved Dec. 31, 2025)
-- TikTok GDPR fine — €530M (Irish DPC, May 2, 2025)
-- GDPR all-time record — Meta €1.2B (2023)
-- Kochava location-data action (order proposed 2026)
-- GoodRx ($1.5M, 2023) and BetterHelp ($7.8M, 2023)
+- Opening vignette — Disney COPPA, $10M (court-approved Dec. 31, 2025). If a
+  fresher COPPA action lands (post-COPPA-Rule-amendment enforcement), swap.
+- Kochava FTC settlement (May 4, 2026) — this will look dated by 2027; a fresher
+  data-broker action (or the next InMarket/Gravy/Mobilewalla-style ban) is a
+  ready substitute.
+- TikTok GDPR fine — €530M (Irish DPC, May 2, 2025). Watch the appeal / High
+  Court stay: if the fine is reduced or overturned, revise.
+- GDPR cumulative — **€7.1B through Jan. 2026** (DLA Piper). Update to the next
+  DLA Piper January survey figure each year.
+- CNIL Google €325M (Sept. 1, 2025). Great fresh anchor; keep unless CNIL issues
+  something larger (e.g., Free Mobile at €27M is smaller — not a swap).
+- GDPR all-time record — Meta €1.2B (2023). If a bigger single fine lands
+  (Meta's several Irish DPC cases keep escalating), swap.
+- GoodRx ($1.5M, 2023) and BetterHelp ($7.8M, 2023) on the HIPAA-gap slide.
+- **State law count — "~20 states, Indiana/Kentucky/Rhode Island effective
+  Jan. 1, 2026"**: expect 2–4 more enactments in 2026 (Alabama already passed
+  both chambers as of Apr 2026, awaits governor). Update the count and
+  effective-date list at each refresh.
+- Not yet used but strong: **Reddit £14.47M ICO fine (Feb 24, 2026)** for
+  children's-privacy failures (weak age assurance, missing DPIA). Ties children's
+  privacy + age assurance + UK data-protection regime; would fit the COPPA/kids
+  thread or a new "age-verification wave" slide.
+- **Texas $1.375B Google settlement (finalized Oct 31, 2025)** — biggest
+  single-state privacy settlement ever; ties biometric/geolocation, Texas's
+  aggressive AG enforcement, and the state-law patchwork's teeth. Consider
+  adding to the state-wave vignette next year.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

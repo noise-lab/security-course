@@ -1,6 +1,24 @@
 # 08-DNS — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh (annual):** Added a **centralization-as-takedown-target
+  vignette** to the "Architectural Crisis: Centralization" slide, anchored to
+  two verified 2026 events: (a) Italy's AGCOM fining Cloudflare €14.2M on Dec 29,
+  2025 / disclosed Jan 2026 for refusing to filter pirate domains on public
+  1.1.1.1 (1% of global revenue; Matthew Prince publicly refused; Cloudflare
+  appealed Mar 8, 2026), and (b) the Paris Court of Appeal (Mar 27, 2026, RG
+  24/09372) rejecting appeals from Google, Cloudflare, and Cisco and holding that
+  third-party DNS resolvers *can* be compelled to block domains under Article
+  L.333-10 (dynamic-blocking mechanism for sports rightsholders). Cisco pulled
+  OpenDNS out of France pending appeal. This complements the AWS-outage
+  availability-failure framing with a coercion-failure framing — same
+  centralization, two vectors. Also updated the ODoH vignette to cite RFC 9230
+  (June 2022) as the standardized form and to name the Apple Private Relay
+  egress operators (Cloudflare / Akamai / Fastly) more precisely. Sources
+  verified 2026-07-16: TorrentFreak (Italy €14M fine; French appeals ruling;
+  French January-2026 Champions League order); Cloudflare blog "Standing up for
+  the open Internet: why we appealed Italy's 'Piracy Shield' fine"; heise online;
+  RFC 9230 (Oblivious DoH); Apple iCloud Private Relay support page.
 - **Opening vignette — AWS us-east-1 outage (Oct 20, 2025).** Replaced generic
   "DNS matters" framing with the verified DynamoDB DNS-automation failure (latent
   race condition → empty/stale records → ~15h cascade across Fortnite, Snapchat,
@@ -44,10 +62,28 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Opening vignette — AWS us-east-1 outage (Oct 20, 2025)
-- ODoH now deployed (2026 vignette)
-- Protocol landscape refreshed
-- Kaminsky cache poisoning (2008)
+- Opening vignette — AWS us-east-1 outage (Oct 20, 2025). Still the freshest
+  cascading DNS-failure hook; check whether a 2026/2027 comparable-scale outage
+  has landed before swapping.
+- ODoH now deployed (2026 vignette). Watch for Chrome / Android to ship an ODoH
+  or IP-Protection default — a big enough shift to rewrite this slide.
+- Centralization-as-takedown-target vignette (Italy AGCOM 2026; Paris Court of
+  Appeal 2026). Cloudflare's appeal outcome is the next thing to check — if
+  the Italian court reverses AGCOM, the vignette flips shape. The French
+  ruling is likely to spread to other EU member states in 2026-2027.
+- Protocol landscape (DoT, DoH, DoQ, ODoH). If Google Public DNS or Cloudflare
+  ships **ECH-signaled DNS** or shifts defaults, revisit.
+- Kaminsky cache poisoning (2008). Historical anchor — timeless unless the
+  intro needs a shorter setup.
+- **Alternative vignettes flagged but not used (2026-07-16):** the Cloudflare
+  Nov 18, 2025 outage (post-mortem: `blog.cloudflare.com/18-november-2025-outage/`)
+  is another single-provider-brings-down-a-lot-of-the-web hook, but the AWS
+  DynamoDB DNS race condition is a *cleaner* DNS story (the failure was
+  literally in the naming layer). Also flagged: the Italy **KEEP** the fine
+  vs. the Paris court's rejection of "we're just a phone book" — the two
+  together are worth their own future slide on "public DNS resolver as
+  content-moderation intermediary." See the censorship-course DNS breakout
+  (`censorship-course/docs/breakouts/dns.md`) for the full current-events set.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

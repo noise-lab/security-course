@@ -2,7 +2,6 @@
 title: "Routing Security"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Three Pieces of Internet Infrastructure {.center}
@@ -140,12 +139,15 @@ to the censorship lecture later in the term.
   destination, nearly invisibly
 
 ::: {.vignette}
-**July 2025:** APNIC and LACNIC documented a hijack where the attacker didn't
-*break* RPKI at all — they **social-engineered an upstream provider** into
-provisioning BGP for them without verifying corporate identity or domain
-ownership. The bogus routes spread widely because **Route Origin Validation
-is still inconsistently deployed** and overly broad ROA `maxLength` values let
-more-specific hijacks look valid.
+**July 9–12, 2025:** APNIC and LACNIC documented three short hijacks (presented
+at APRICOT 2026 / APNIC 61) where the attacker didn't *break* RPKI at all —
+they **social-engineered a multinational upstream provider** with forged
+identity documents and a lookalike domain, and got a BGP session turned up for
+an unauthorized ASN. LACNIC address space was then re-originated from Asia;
+first detected because email to a user silently vanished. The bogus routes
+spread widely because **Route Origin Validation is still inconsistently
+deployed** and broad ROA `maxLength` values let more-specific hijacks look
+valid.
 :::
 
 ::: {.notes}
@@ -198,9 +200,11 @@ trust because it hands out the addresses in the first place.
 - It's a **local** decision: you can publish ROAs and turn on ROV without
   waiting for everyone else
 
-As of **2025, ~54% of routes** in the global table are covered by ROAs, and
-roughly **three-quarters of Internet traffic** heads to ROA-covered
-destinations (NIST / Kentik). It still took **over a decade**.
+As of **mid-2026, ~60% of IPv4 routes** in the global table are covered by
+ROAs (Qrator Q1 2026; NIST RPKI Monitor), and roughly **~70% of Internet
+traffic** heads to ROA-covered destinations (Kentik). It still took **over a
+decade** — and **only ~12% of ASes are "fully protected"** by ROV filtering
+(RoVista / NANOG 90).
 
 ::: {.notes}
 Contrast with path auth on the next slides. The deployment lesson: security
@@ -286,12 +290,15 @@ routing?" Good debate seed: should this be regulated into existence?
 
 If incentives won't deploy it voluntarily, maybe regulation will.
 
-In **June 2024** the FCC opened a proceeding (NPRM) requiring **retail
-broadband providers** to maintain **BGP security risk-management plans**:
+In **June 2024** the FCC opened a proceeding (NPRM, PS Docket 24-146) requiring
+**retail broadband providers** to maintain **BGP security risk-management
+plans**:
 
 - The **nine largest** providers file confidential plans plus periodic reports
 - A provider can be **excused** if it attests to ROAs covering **≥ 90%** of
   the routes it originates
+- Comments closed Aug 2024; **no final rule as of mid-2026** — the proceeding
+  is still open
 
 This is the **technical → policy translation** this course is about: a
 coordination failure met with a reporting mandate.
@@ -299,8 +306,12 @@ coordination failure met with a reporting mandate.
 ::: {.notes}
 Connects routing to the regulatory thread of the course. Note it targets the
 *deployable* part (ROAs / origin validation), not the hard path-auth problem —
-regulators went where the technology actually works. Good cold-call: is a
-reporting requirement the right tool, or too weak / too strong?
+regulators went where the technology actually works. Rosenworcel's public
+justification cited China Telecom's misrouting of US traffic "on at least six
+occasions." The 2025 change in FCC leadership plus the underlying Title II
+reclassification (which supplied the authority) puts the rule's future in
+question — a nice example of how regulatory action tracks political control.
+Cold-call: is a reporting requirement the right tool, or too weak / too strong?
 :::
 
 ## Bonus Defenses You'll See in the Wild {.smaller}
@@ -336,7 +347,8 @@ validating the contents.
 
 - BGP trusts whatever neighbors say → **leaks** and **hijacks**
 - **Origin auth (RPKI)** answers *"can this AS announce this prefix?"* —
-  deployable, self-protecting, ~half-deployed
+  deployable, self-protecting, ~60% of routes covered but only ~12% of ASes
+  fully enforce
 - **Path auth (BGPsec)** answers *"is the path real?"* — harder, and stuck on
   **incentives**, not crypto
 - Even perfect control-plane security doesn't secure the **data plane**

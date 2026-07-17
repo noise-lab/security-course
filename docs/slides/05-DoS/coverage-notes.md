@@ -1,6 +1,24 @@
 # 05-DoS — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 annual refresh:**
+  - Restated the `.vignette` with primary-source detail: attack was in
+    **November 2025** (Cloudflare Q4 2025 DDoS report, published Feb 2026),
+    peaked at **31.4 Tbps / 35 s**.
+  - Corrected botnet size to Cloudflare/XLab's current estimate of
+    **1–4 million infected hosts** (older "300,000+" figure was pre-2025 XLab
+    estimate; kept as historical anchor in speaker notes).
+  - Sharpened the March 19, 2026 takedown to name the four botnets seized
+    (Aisuru, Kimwolf, JackSkid, Mossad) and the international coalition (DoJ,
+    German BKA, Canadian authorities) — sources: DoJ press release; The Hacker
+    News; SecurityAffairs; Help Net Security.
+  - Added the Aisuru → KrebsOnSecurity (6.35 Tbps, May 2025) callback to the
+    notes, closing the Mirai (2016 attack on Krebs) → Aisuru loop.
+  - Added a "botnet cycle continues" coda to the vignette notes (per FastNetMon
+    / Flowtriq analysis of post-takedown rescanning).
+  - Fixed the **Great Cannon date** on the case-study slide: the GreatFire/
+    GitHub attack was **March 2015**, not 2016 (Krebs, Citizen Lab, Marczak
+    et al. USENIX FOCI '15).
 - Added a `.vignette` hook built on **Cloudflare's Q4 2025 DDoS threat report
   (published Feb 2026)**: a record **31.4 Tbps** attack, lasting ~35 s, mitigated
   autonomously. Verified via Cloudflare's blog, NETSCOUT ASERT, and trade press.
@@ -48,11 +66,19 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Added a `.vignette` hook built on Cloudflare's Q4 2025 DDoS threat rep…
-- Attributed it to the Aisuru / Kimwolf "TurboMirai" botnet — a Mirai
-- Noted the March 19, 2026 international law-enforcement takedown of the
-- Reframed the defenses section around autonomous scrubbing (the 31.4 Tb…
-- Kept SYN-flood / SYN-cookie / Great Cannon material but scoped it ligh…
+- **31.4 Tbps / Aisuru/Kimwolf record** — will be broken; check Cloudflare's
+  latest DDoS threat report and Netscout ASERT before the next term. Candidates
+  as of 2026-07: any AI-inference-target attack, or a new botnet family that
+  supplanted Aisuru post-takedown (already-observed rebuilding activity).
+- **March 19, 2026 takedown** — check DoJ press releases for follow-on
+  indictments (Canada/Germany named operators, expect prosecutions to develop).
+- **~5,376 mitigations/hour** and **Cloudflare's autonomous scrubbing frame** —
+  restate with next annual DDoS-report figures.
+- **Aisuru → KrebsOnSecurity 6.35 Tbps (May 2025)** callback — swap for the
+  freshest attack on a memorable target if one emerges.
+- **US Cyber Trust Mark / EU CRA / UK PSTI / CA SB-327** — these regulations
+  are moving through implementation phases; check for the first CRA
+  enforcement actions and any DoJ IoT-liability litigation.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

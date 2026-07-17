@@ -2,7 +2,6 @@
 title: "Key Management and Public Key Infrastructure"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Where We Are {.center}
@@ -315,13 +314,17 @@ cert for a site it shouldn't. Good debate fodder for the backdoor question later
 ::: {.vignette}
 The trust store is actively policed today. In **Chrome 139 (Aug 1, 2025)**, Google
 **distrusted Chunghwa Telecom and Netlock** root CAs, citing a "pattern of compliance
-failures." And on **April 15, 2026**, Chrome and Mozilla begin **distrusting the
-DigiCert "Global Root CA" (G1)**. Sites on those roots show "Your connection is not
-private."
+failures." On **April 15, 2026**, Chrome and Mozilla removed the **DigiCert "Global
+Root CA" (G1)** — not for compromise but because multi-purpose roots are being phased
+out for TLS. And in **early April 2026**, DigiCert itself was **socially engineered**:
+attackers phished a support analyst with a malicious `.scr` file, harvested EV
+code-signing initialization codes, and got **~60 certificates revoked** — some used to
+sign the *Zhong Stealer* malware.
 :::
 
 - Browser vendors — not governments — are the de facto regulators of the web's trust
-- A CA can be removed for **misbehavior** *or* for **failing to keep up** with rules
+- A CA can be removed for **misbehavior**, **failing to keep up** with rules, or —
+  as with DigiCert 2026 — **losing control of an issuance pipeline**
 
 ::: {.notes}
 Freshest hook in the deck, verified. The point for a policy class: enforcement of web
@@ -384,14 +387,17 @@ attacker who can block the check just wins. Which motivates the next slide.
 ## The 2026 Fix: Just Make Certs Short-Lived {.smaller}
 
 ::: {.vignette}
-In **April 2025**, the CA/Browser Forum unanimously passed **Ballot SC-081v3**, cutting
-the maximum TLS certificate lifetime from ~398 days toward **47 days**, phased in:
-**200 days (Mar 2026) → 100 days (Mar 2027) → 47 days (Mar 2029)**. Shorter-lived certs
-mean revocation matters less — a stolen cert expires on its own in weeks.
+In **April 2025**, the CA/Browser Forum unanimously passed **Ballot SC-081v3** (29–0,
+all four major browsers voting yes), cutting max TLS certificate lifetimes from ~398
+days toward **47 days**, phased in: **~200 days (in force since Mar 15, 2026)
+→ 100 days (Mar 2027) → 47 days (Mar 2029)**. DigiCert, Sectigo, and others already
+issue at the 199-day cap. Shorter-lived certs mean revocation matters less — a stolen
+cert expires on its own in weeks.
 :::
 
 - The trade-off: **automation becomes mandatory** (you can't renew by hand every 47
-  days) — ACME / Let's Encrypt-style issuance is the new normal
+  days) — ACME / Let's Encrypt-style issuance is the new normal, which concentrates
+  the web on a handful of ACME providers
 
 ::: {.notes}
 This is the elegant systems answer to broken revocation: don't fix revocation, shrink
@@ -407,11 +413,17 @@ concentration-of-power discussion.
 - **TLS 1.3** is faster and encrypts more of the handshake
 - **Privacy gap:** the **SNI** (the site name) was historically sent **in the clear** —
   **Encrypted SNI / ECH** closes that leak
+- **Post-quantum today:** Chrome ships **hybrid X25519+ML-KEM-768** key exchange by
+  default (since Chrome 131, Nov 2024); Cloudflare reports **~one-third** of human
+  HTTPS traffic already uses hybrid PQ handshakes
 
 ::: {.notes}
 This is the Wireshark demo from class: capture a handshake, find the certificate, watch
 the switch to symmetric keys. The SNI point is the bridge to the privacy half of the
 course — even with TLS, the *name* of the site you visit can leak. ECH is the fix.
+The PQ bullet answers the "harvest now, decrypt later" concern — D-H's discrete-log
+hardness assumption breaks against a quantum adversary, so the industry is already
+migrating. Hybrid means classical + PQ in the same handshake; safe if either survives.
 :::
 
 ## Policy Debate: Encryption Backdoors {.center}

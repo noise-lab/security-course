@@ -2,7 +2,6 @@
 title: "IoT and Smart-Home Privacy"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Why the Smart Home Is Hard {.center}
@@ -308,9 +307,12 @@ enforcement action.
 ::: {.notes}
 September 2019: FTC + NY AG settled with Google/YouTube for $170M over COPPA — collecting
 persistent identifiers from viewers of child-directed channels without parental consent.
-The TV study found the same pattern on streaming platforms. This is the bridge to the
-privacy-law lectures: a technical measurement finding maps directly onto a legal regime
-(COPPA) and a concrete penalty.
+The TV study found the same pattern on streaming platforms. Also cite the **FTC's May 2023
+Ring/Alexa settlements** (Amazon paid $31M total: $5.8M for Ring letting employees browse
+customer bedroom cameras; $25M for Alexa retaining children's voice recordings in
+violation of COPPA — Amazon barred from training models on data users deleted). This is
+the bridge to the privacy-law lectures: a technical measurement finding maps directly
+onto a legal regime (COPPA) and a concrete penalty.
 :::
 
 ## The Opt-Outs Don't Really Work
@@ -342,9 +344,10 @@ On **December 15, 2025**, Texas AG Ken Paxton sued **five TV makers** — Samsun
 Hisense, and TCL — over **Automatic Content Recognition (ACR)**: software that fingerprints
 *everything on screen* (the complaints allege screenshots as often as **every 500 ms**, and
 for one vendor "every sound and image every 10 ms") and sells the viewing data without
-clear consent. A court issued the **first-ever TRO against a TV maker** two days later, and
-on **February 26, 2026** **Samsung settled**, agreeing to require **express consent**.
-**Kentucky** has since become the first state to pass an ACR-specific consent law.
+clear consent. A court issued the **first-ever TRO against a TV maker** two days later.
+**Samsung settled Feb 26, 2026** (express consent, no fine); **LG settled May 11, 2026**
+with an added no-transfer-to-CCP clause. Sony, Hisense, and TCL are still fighting.
+**Kentucky** passed the first ACR-specific consent statute.
 :::
 
 This is the same finding the **2019** TV-crawler study made — now driving **state
@@ -382,7 +385,13 @@ in the lab) turn anecdotes into evidence — and evidence is what moves **regula
 Land the three threads: (1) the LAN must be treated as untrusted; (2) the tracking economy
 followed us from web → mobile → home → TV; (3) the contribution that lets you say anything
 policy-relevant is *measurement at scale*. Preview the privacy-law and consumer-protection
-lectures, where these findings become legal arguments.
+lectures, where these findings become legal arguments. Regulatory horizon worth naming:
+the **EU Cyber Resilience Act** (in force Dec 10, 2024; reporting duties from
+**Sept 11, 2026**; full obligations Dec 11, 2027) classes connected toys as Class I
+"important products with digital elements"; the **EU AI Act** brings AI-enabled toys under
+its high-risk regime (application dates now Aug 2, 2027 / Dec 2, 2027 after the June 2026
+"Digital Omnibus on AI"). U.S. side: the **U.S. Cyber Trust Mark** is a voluntary label,
+not a mandate.
 :::
 
 # Discussion {.center}

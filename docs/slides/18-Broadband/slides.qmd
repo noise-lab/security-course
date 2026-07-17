@@ -2,7 +2,6 @@
 title: "Broadband Access and the Digital Divide"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Why Broadband Belongs in This Course {.center}
@@ -23,10 +22,13 @@ and those designs have biases. That is the consumer-protection angle.
 ::: {.vignette}
 On **June 1, 2024** the **Affordable Connectivity Program** ended after Congress
 declined to refund it — pulling a ~**$30/month** subsidy from roughly **23 million**
-enrolled households; an estimated **5 million** lost home internet entirely. Meanwhile
-the **$42.45B BEAD** deployment program was **restructured in June 2025** and only began
-releasing funds to states in late 2025 — so the U.S. spent the affordability gap *up*
-while the buildout was still on paper.
+enrolled households; an estimated **5 million** lost home internet entirely. Two years
+later, **no federal replacement has passed** — only **Lifeline** ($9.25/mo) and a
+patchwork of **state successors** (NM LITAP, CA LifeLine Home Broadband Pilot, both
+launched 2026). Meanwhile the **$42.45B BEAD** deployment program was **restructured
+June 6, 2025**; by mid-2026 **52 of 56 states/territories** had signed subgrant
+agreements and the first BEAD-funded home was connected in Nebraska — so the U.S. spent
+the affordability gap *up* while the buildout is only now shovel-ready.
 :::
 
 **Thought question:** if you were the FCC, *what would you measure* to know whether
@@ -34,9 +36,14 @@ either program worked?
 
 ::: {.notes}
 This is the freshest hook. The pairing is the teaching point: a demand-side subsidy
-(ACP) and a supply-side buildout (BEAD) moving in opposite directions. Cold-call: what
-data would tell you if ACP mattered? Adoption rates, not just availability. That sets up
-the whole "measurement is hard and biased" arc.
+(ACP) and a supply-side buildout (BEAD) moving in opposite directions. Verified July
+2026: no federal ACP successor has passed Congress; NM LITAP launched July 1, 2026;
+CA LifeLine Home Broadband Pilot launched January 2026; both offer up to $30/mo. On
+the BEAD side, NTIA's Progress Dashboard shows 54 of 56 Final Proposals approved and
+52 subgrant agreements signed; Alabama, Mississippi, Massachusetts, Louisiana, and
+Nevada are among the states already awarding subgrants (all in Q1–Q2 2026). Cold-call:
+what data would tell you if ACP mattered? Adoption rates, not just availability. That
+sets up the whole "measurement is hard and biased" arc.
 :::
 
 ## Five Lessons for the Day {.smaller}
@@ -207,6 +214,9 @@ The definition is a **policy choice** with real money attached:
 
 - **2015:** FCC benchmark = **25/3 Mbps**
 - **2024:** raised to **100/20 Mbps** (a 4× jump)
+- **July 2025:** Carr FCC proposes to **scrap adoption/affordability** from the
+  Section 706 inquiry and roll back the **1 Gbps long-term goal** — decision expected
+  in **early 2026**
 - Still ~**22M Americans** lack 100/20 service
 - **Rural** access ~77% vs **urban** ~98%
 
@@ -223,7 +233,12 @@ decides who gets funded.
 ::: {.notes}
 This is the cleanest example of "a definition is a policy lever." The 2024 jump to
 100/20 instantly reclassified locations as unserved/underserved, changing who BEAD money
-can reach. Verified: FCC 2024 Section 706 report raised the benchmark to 100/20.
+can reach. Verified: FCC 2024 Section 706 report raised the benchmark to 100/20; the
+July 2025 Carr FCC NPRM proposes returning Section 706 to "plain language"
+(availability only, technology-neutral — a nod to *Loper Bright*), stripping
+affordability and adoption metrics and eliminating the 1 Gbps aspirational goal. That
+also reopens the satellite question: at 100/20, Starlink covers >99% of eligible
+locations, which reshapes BEAD's tech-neutrality fight.
 :::
 
 ## Bad Data: Garbage In, Garbage Out {.smaller}
@@ -379,13 +394,14 @@ about app behavior under real conditions, not peak Mbps.
 **Affordability (demand side)**
 
 - ACP ended **June 2024**; ~23M households, ~5M dropped off
-- Successor proposals and **Lifeline** ($9.25/mo) don't fill the gap
+- No federal successor as of **mid-2026**; **Lifeline** ($9.25/mo) alone
+- State fills: **NM LITAP** (Jul 2026), **CA LifeLine Home Broadband** (Jan 2026)
 :::
 ::: {.column width="50%"}
 **Deployment (supply side)**
 
 - **BEAD** $42.45B, restructured **June 2025**
-- 26 states added **$1.3B** of their own in 2025
+- By **mid-2026**: 54/56 Final Proposals approved, 52 subgrant agreements signed
 - Maps + benchmarks decide **who is eligible**
 :::
 :::

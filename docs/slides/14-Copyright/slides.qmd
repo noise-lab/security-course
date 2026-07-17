@@ -2,7 +2,6 @@
 title: "Copyright and Fair Use"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Why Copyright Is in This Course {.center}
@@ -27,17 +26,20 @@ certain midterm question (per agenda).
 On **June 23, 2025**, Judge William Alsup (N.D. Cal.) ruled in **Bartz v. Anthropic**
 that training an LLM on books is "**exceedingly transformative**" and therefore *fair
 use* — but that **downloading 7+ million pirated books** to build a permanent library
-was **not** fair use. In **September 2025**, Anthropic agreed to a **~$1.5 billion**
-settlement, reported as the largest copyright settlement in U.S. history.
+was **not** fair use. **September 2025:** Anthropic agreed to a **~$1.5 billion**
+settlement (~482k works, ~$3,000/work), the largest copyright settlement in U.S.
+history. **May 14, 2026:** final fairness hearing before Judge Martínez-Olguín;
+claims rate **92.77%**, initial payments estimated **August 2026**.
 :::
 
 Same doctrine, opposite outcomes — **how you acquire** the work matters as much as
 **what you do** with it.
 
 ::: {.notes}
-This is the freshest hook. Two load-bearing facts, both verified: (1) the split ruling
-— training transformative/fair use, pirated-acquisition not fair use; (2) the ~$1.5B
-settlement filed Sept 2025. Note the irony: Alsup is the same judge (and former
+Freshest hook. Two load-bearing facts, both verified: (1) the split ruling — training
+transformative/fair use, pirated-acquisition not fair use; (2) the ~$1.5B settlement
+filed Sept 2025 and cruising through its May 14, 2026 fairness hearing (per Publishers
+Weekly, Authors Alliance). Note the irony: Alsup is the same judge (and former
 programmer) who first ruled APIs uncopyrightable in Oracle. Don't overstate — the
 settlement resolved the piracy liability; the fair-use-for-training holding stands as
 district-court precedent, not yet Supreme Court law.
@@ -429,8 +431,10 @@ purpose?* — is now the **AI training** question.
 :::
 
 **2025 reality (Bartz v. Anthropic):** training on books = **fair use**; building a library
-from **pirated** copies = **not** fair use. Meta won a parallel fair-use ruling days later
-(June 2025). Expect the Supreme Court eventually.
+from **pirated** copies = **not** fair use. **Meta won a parallel fair-use ruling** two
+days later (Kadrey v. Meta, June 25, 2025) — but Judge Chhabria warned it was a
+narrow, fact-specific win and endorsed a **"market dilution"** theory of harm for future
+plaintiffs. *NYT v. OpenAI* is still in discovery; expect the Supreme Court eventually.
 
 ::: {.notes}
 This is the bridge to the AI-and-privacy/AI-copyright material and a near-certain midterm

@@ -2,7 +2,6 @@
 title: "Denial of Service and Botnets"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## From System Security to Internet Security {.center}
@@ -283,10 +282,14 @@ engineer at 3am?"
 
 ::: {.vignette}
 In **November 2025**, Cloudflare mitigated a **31.4 Tbps** DDoS attack — the
-largest ever publicly disclosed — from the **Aisuru/Kimwolf** botnet, a
-Mirai-class IoT family of compromised Android TVs and home routers. In **March
-2026**, the DoJ and international partners announced a takedown of Aisuru,
-Kimwolf, and two other botnets spanning **over 3 million infected devices**.
+largest ever publicly disclosed, lasting just **35 seconds** — from the
+**Aisuru/Kimwolf** botnet, a Mirai-class IoT family running on ~2M compromised
+off-brand **Android TVs** plus home routers, cameras, and DVRs. A "Night Before
+Christmas" follow-on campaign (Dec 19, 2025) issued **200M+ HTTP requests/sec**.
+On **March 19, 2026**, the DoJ (District of Alaska), FBI, EUROPOL, and Canadian
+and German partners announced a coordinated takedown of Aisuru, Kimwolf,
+JackSkid, and Mossad — **~3M infected devices**, with alleged Kimwolf operator
+"Dort" (Jacob Butler, 23, Ottawa) arrested May 20, 2026.
 :::
 
 A decade after Dyn, the playbook is unchanged — **cheap, unpatched IoT** — only
@@ -296,9 +299,10 @@ the scale has grown from gigabits to **tens of terabits**.
 Use this as the "current events" hook. The continuity is the lesson: Mirai wasn't
 a one-off, it was a template. Aisuru is Mirai-class, same default-credential and
 unpatched-device economics, now at 31.4 Tbps vs. Dyn's far smaller volumes. The
-2026 DoJ takedown shows the defensive response is now coordinated and
-international. Sources: Cloudflare Q4 2025 DDoS report; DoJ / District of Alaska
-press release, March 2026.
+March 2026 DoJ takedown shows the defensive response is now coordinated and
+international — Team Cymru, Cloudflare, AWS, Google, Akamai, and others assisted.
+Sources: Cloudflare 2025 Q4 DDoS Threat Report; DoJ/District of Alaska press
+release, March 19, 2026; Krebs on Security, March 2026.
 :::
 
 # Reflection and Amplification {.center}

@@ -2,7 +2,6 @@
 title: "Ethics in Security and Privacy Research"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Why Ethics in Lecture 2? {.center}
@@ -66,10 +65,12 @@ of thousands of trespasses. We'll come back to these in breakouts.
 **April 2025** — moderators of Reddit's **r/changemyview** revealed that researchers
 (later tied to the **University of Zurich**) had run **AI bots posing as humans** for
 four months — over **1,700 comments** under fabricated personas (a sexual-assault
-survivor, a trauma counselor) to test AI persuasion. **No consent, no community
-approval, undisclosed deception.** Reddit's chief legal officer sent **formal legal
-demands**; the team agreed **not to publish**, and the university's ethics board issued
-a warning.
+survivor, a trauma counselor, a "Black person against BLM") to test AI persuasion.
+**No consent, no community approval, undisclosed deception.** Reddit's chief legal
+officer sent **formal legal demands**; the team agreed **not to publish**, the
+university issued a **formal warning** to the lead researcher, and the ethics
+committee committed to a **"stricter review process"** going forward — still the
+canonical LLM-field-experiment ethics case as of 2026.
 :::
 
 Same playbook as Emotional Contagion — now with generative AI doing the manipulating.
@@ -312,12 +313,14 @@ There are now research-friendly carve-outs we'll discuss — but the baseline ri
 **Van Buren v. United States (2021):** the Supreme Court narrowed the CFAA, ruling that
 "exceeds authorized access" does *not* cover misusing data you're allowed to see.
 **hiQ v. LinkedIn (2022):** scraping **public** web data is generally not a CFAA
-violation. Together they give security and measurement researchers meaningfully more
-breathing room than they had a decade ago.
+violation. In **2022**, DOJ policy formally instructed federal prosecutors that
+**good-faith security research** should not be charged under the CFAA. As of 2026
+the "gates-up-or-down" test still controls.
 :::
 
 - The **DMCA §1201 security-research exemption** (renewed by the Copyright Office) now
-  shields good-faith vulnerability testing
+  shields good-faith vulnerability testing — but **contract, copyright, and GDPR**
+  claims remain live risks that Van Buren did not resolve
 
 ::: {.notes}
 These are the current-events updates to the old "you'll go to jail for scraping" slide.

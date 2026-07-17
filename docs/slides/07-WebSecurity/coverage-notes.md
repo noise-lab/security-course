@@ -1,6 +1,17 @@
 # 07-WebSecurity — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh (annual):** Tightened the FortiWeb (CVE-2025-25257) vignette
+  with the verified Shadowserver count (~85 compromised appliances by July 14, 2025)
+  and the exact CISA KEV add-date (2025-07-18) — dropped the "August 8 patch deadline"
+  which has aged into history. Added the fresher CVE-2026-0266 (June 10, 2026) PAN-OS
+  stored-XSS disclosure alongside CVE-2026-0256 (May 13, 2026) — same bug family in a
+  *firewall's* admin UI, keeps the "security product with the bug it's supposed to
+  block" theme current. Reviewed WordPress plugin XSS (Social Rocket CVE-2026-1923)
+  and confirmed still-current. Sources verified 2026-07-16: watchTowr Labs (FortiWeb
+  post-mortem); Shadowserver Foundation daily counts; CISA KEV catalog
+  (2025-07-18 addition); Palo Alto Networks security advisories CVE-2026-0256 and
+  CVE-2026-0266; Wordfence Intelligence Weekly.
 - **Headline vignette — FortiWeb SQL injection (CVE-2025-25257).** Replaced undated
   "SQL injection is dangerous" framing with a current, verified case: an unauthenticated
   SQLi in Fortinet's *web application firewall* (CVSS 9.6), public PoC from watchTowr on
@@ -51,11 +62,22 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Headline vignette — FortiWeb SQL injection (CVE-2025-25257)
-- Stored-XSS still-current vignette (2026)
-- Modernized API examples
-- CSRF defenses modernized
-- Scoped TLS/SSL out
+- Headline vignette — FortiWeb SQL injection (CVE-2025-25257). Look for a 2026 or 2027
+  KEV-listed **injection in a security product** that beats this one on freshness. If
+  none exists, the FortiWeb case is still on the OWASP-top-10 / KEV throughline and
+  can carry another year.
+- Stored-XSS vignette (PAN-OS CVE-2026-0256 / CVE-2026-0266; WordPress Social Rocket
+  CVE-2026-1923). Replace with the next PAN-OS or Fortinet management-UI stored-XSS
+  the vendor publishes — this cadence is roughly monthly.
+- Modernized API examples (React / Django auto-escape).
+- CSRF defenses — SameSite=Lax has been Chrome default since Aug 2020; check whether
+  a browser has changed the default to `Strict` before next year.
+- Scoped TLS/SSL out (still handled in the PKI deck).
+- **Alternative vignette flagged but not used (2026-07-16):** the **Polyfill.io
+  supply-chain attack** (June 2024, ~100k+ sites served malware via a legitimate
+  third-party CDN script) is a cleaner cross-origin/SOP-loophole hook than the
+  FortiWeb SQLi if the annual review ever wants a *different* angle — it hits the
+  "scripts take the embedding origin" slide precisely. See Sansec/Censys writeups.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

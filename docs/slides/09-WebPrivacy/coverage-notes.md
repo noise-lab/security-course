@@ -1,6 +1,21 @@
 # 09-WebPrivacy — instructor notes
 
 ## Current-events updates made (point 2)
+- **2026-07-16 refresh.** Tightened the Chrome-cookie vignette to specify the
+  Oct 17, 2025 Privacy Sandbox shutdown (Topics, Protected Audience, Attribution
+  Reporting, IP Protection, Related Website Sets) and note no removal timeline
+  ~1 year in. Expanded the GPC vignette to the current 12-state UOOM landscape
+  (CA, CO, CT, DE, MD, MN, MT, NE, NH, NJ, OR, TX) and added California's
+  **AB 566 "Opt Me Out" Act** (effective Jan 1, 2027) forcing browsers to ship
+  a GPC control. Rewrote the CJEU vignette to correctly cite **Fashion ID
+  (C-40/17, 2019)** as the actual Like-button joint-controllership holding and
+  **Meta v. Bundeskartellamt (C-252/21, 2023)** as the follow-on on legal
+  bases; Bundeskartellamt closed its Meta case in Oct 2024 on that footing.
+  Updated the Manifest V3 speaker note: Chrome permanently disabled MV2 in
+  July 2025 (Chrome 138); last flag workarounds removed by Chrome 151
+  (July 2026); users get uBlock Origin Lite (declarativeNetRequest, static
+  rules), Firefox, or Brave. Verified via Google Privacy Sandbox blog,
+  CPPA/OAG.CA.GOV, IAPP, Ofcom, and PCWorld/AdBlock Tester.
 - **Google's third-party-cookie reversal (April 2025) + Privacy Sandbox retirement
   (October 2025).** The original deck treated third-party cookies as the central,
   soon-to-be-deprecated mechanism. That framing is now wrong: in April 2025 Google
@@ -51,9 +66,11 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- Social-widget joint controllership (CJEU, 2024)
-- Manifest V3 caveat
-- Flag any stronger alternative vignette you find but choose not to use yet.
+- **Google Chrome cookie status.** Watch for any resumption of a phase-out plan, adoption of CHIPS/FedCM/Private State Tokens, or a new EC/UK CMA intervention on Chrome defaults. The "12 states" list will grow; refresh with the current count before Fall term.
+- **AB 566 "Opt Me Out" Act.** Takes effect **Jan 1, 2027**; by next refresh Chrome/Safari/Edge should have shipped a GPC control — verify shipment and coverage.
+- **Manifest V3 endgame.** Chrome 151 (July 2026) removes the last MV2 flags; by mid-2027 look for measurement studies on actual tracker-blocking effectiveness in Chrome-with-uBOL vs. Firefox-with-uBO (a PoPETs 2026 paper already exists).
+- **CJEU Fashion ID / Meta v Bundeskartellamt.** Stable historical anchors; refresh only if a newer CJEU ruling supersedes them (watch Meta pay-or-consent / DMA outcomes).
+- **Any smarter fresh vignette encountered but not used** — flag here rather than mid-slide.
 
 ## Curated images
 - USED: slide005_img003.png (NYT page with third-party requests boxed — concrete "one

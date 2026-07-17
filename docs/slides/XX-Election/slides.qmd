@@ -2,7 +2,6 @@
 title: "Election Security"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Why Elections Are a Security Problem {.center}

@@ -2,6 +2,20 @@
 
 ## Current-events updates made (point 2)
 
+- **2026-07-16 refresh:**
+  - Updated the xz-utils vignette with two verified additions: (a) attribution
+    to "Jia Tan" is still unresolved as of mid-2026 (Wikipedia, SentinelOne,
+    Akamai reporting); (b) Binarly's Aug 2025 finding that backdoored xz binaries
+    still lurk in Debian images on Docker Hub (persistent supply-chain hygiene
+    problem, not a closed case). Added an operational speaker-note detail: Freund
+    was a Microsoft principal engineer benchmarking PostgreSQL and noticed sshd
+    was ~500 ms slower than usual (NPR, Wikipedia).
+  - Refreshed the Shai-Hulud slide with the 2026 wave timeline: original Sept 2025
+    outbreak; Shai-Hulud 2.0 in Dec 2025 / early 2026 (destructive failsafe);
+    TanStack/Mistral AI/UiPath (May 11, 2026); AntV (May 19, 2026); **Red Hat**
+    npm namespace (~80K downloads/week, June 1, 2026); public release of the
+    weaponized worm code on May 12, 2026. Verified via Microsoft Security Blog,
+    Unit 42, CISA advisory, StepSecurity, Akamai, The Register.
 - **xz-utils backdoor (CVE-2024-3094) as the headline vignette.** Replaced the
   abstract Thompson framing with the most exact real-world realization of
   "Reflections on Trusting Trust": a contributor ("Jia Tan") spent 2+ years
@@ -48,12 +62,32 @@
 
 ## Next-year refresh notes
 
-Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
+Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items likely to age by next term:
 
-- xz-utils backdoor (CVE-2024-3094) as the headline vignette
-- npm "Shai-Hulud" worm (Sept 2025, recurring waves into spring 2026)
-- Equifax framed precisely
-- FTC Log4j warning (Jan 2022, CVE-2021-44228)
+- **xz-utils backdoor (CVE-2024-3094)** remains the freshest exact realization of
+  Thompson's argument. Refresh only if (a) formal attribution finally lands, or
+  (b) a comparable maintainer-trust exploit with equivalent CVSS 10.0 lands in
+  the intervening year. Docker Hub persistence note (Aug 2025) is now the
+  living example of "the incident isn't over."
+- **npm Shai-Hulud** — the 2026 wave list will keep growing (June 2026 Red Hat is
+  the current "big brand" anchor; July 2026 AsyncAPI/jscrambler are smaller but
+  show OIDC-provenance-abuse). Recount at term start; if a *different* worm
+  family displaces Shai-Hulud, swap.
+- **Equifax** — still the cleanest legal-liability worked example; the Struts
+  patch was March 7, 2017. Docket now in "wind-down phase" (2026); identity-
+  restoration services free until Jan 2029; 7 free credit reports/yr through 2026.
+- **FTC Log4j warning (Jan 2022, CVE-2021-44228)** — still the canonical
+  "reasonable security" statement. If a specific FTC enforcement action tied
+  explicitly to failure-to-patch lands in the coming year, swap that in for the
+  warning itself.
+- Alternative vignettes flagged but not used: **Salt Typhoon** PRC breach of US
+  telecom lawful-intercept systems (crypto-adjacent, spectacular scope); **UK
+  Post Office / Horizon** miscarriages of justice as a modern "Anderson-style"
+  human-factors-plus-legal-burden case; **CrowdStrike July 2024 outage**
+  (implementation-detail failure at global scale).
+- **CISA Secure by Design pledge** — as of mid-2026, ~367 signatories (up from 68
+  at May 2024 launch, 200+ by Aug 2025). Worth naming as the modern named
+  counterpart to Anderson's vendor-obligations slide.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

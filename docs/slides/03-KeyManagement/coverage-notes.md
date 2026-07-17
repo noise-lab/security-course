@@ -2,6 +2,22 @@
 
 ## Current-events updates made (point 2)
 
+- **2026-07-16 refresh.** Added the **DigiCert April 2026 support-portal compromise**
+  to the "2025–2026: Browsers Are Still Pulling CAs" vignette — attackers phished a
+  DigiCert support analyst with a `.scr` file, leveraged Okta FastPass persistence,
+  harvested EV code-signing initialization codes, and got 60 certificates revoked
+  (~27 linked to *Zhong Stealer* / APT-Q-27). Mozilla Bugzilla #2033170 is the primary
+  public record. Verified via cybersecuritynews.com, hackread.com, and airlockdigital.
+  Reinforces the DigiNotar teaching point with a *2026* CA-compromise example that
+  demonstrates the "any-of-hundreds" trust-store fragility is still live. Also updated
+  the SC-081v3 vignette to reflect that the 200-day cap is **already in force** (Mar
+  15, 2026) and that DigiCert/Sectigo are issuing at 199 days as of Feb 2026. Added a
+  new **hybrid X25519+ML-KEM-768** bullet on the TLS-in-Practice slide (Chrome default
+  since Chrome 131, Nov 2024; ~1/3 of Cloudflare human HTTPS traffic hybrid PQ per
+  their March 2025 stats). Verified DigiCert G1 distrust (April 15, 2026) and
+  Chunghwa/Netlock (Chrome 139, Aug 2025) as still current; refined the vignette to
+  note G1 is *phase-out*, not a compromise, distinguishing it from the DigiCert
+  incident on the same slide.
 - **CA/Browser Forum Ballot SC-081v3 (passed April 2025): 47-day cert lifetimes.**
   Added a dated `.vignette` on the revocation slide. Verified phase-in: max TLS lifetime
   drops from ~398 days to **200 days (Mar 15, 2026) → 100 days (Mar 15, 2027) → 47 days
@@ -60,12 +76,30 @@
 
 Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events refresh" (web-verify; swap only for something fresher and confirmed). Items placed in prior refreshes that will age:
 
-- CA/Browser Forum Ballot SC-081v3 (passed April 2025): 47-day cert lifetimes
-- Chrome distrust of Chunghwa Telecom + Netlock (Chrome 139, Aug 1, 2025)
-- DigiCert "Global Root CA" (G1) distrust, April 15, 2026
-- EV "green bar" is gone
-- TLS 1.3 + Encrypted SNI / ECH
-- De-emphasized legacy ciphers per agenda
+- **SC-081v3 phase-in:** the next milestone is **March 15, 2027 → 100-day certs**.
+  Update the vignette then. Watch Let's Encrypt's opt-in 45-day rollout (May 2026)
+  and the Feb 2028 default switch — both may become worth naming explicitly.
+- **DigiCert April 2026 compromise:** if a *cleaner* 2026/2027 CA-compromise story
+  emerges (e.g., a root actually breached, not just an EV code-signing pipeline),
+  swap it in. This is still a good example because it happened in the target teaching
+  year, but a true root-key compromise would be a stronger DigiNotar parallel.
+- **DigiCert G1 distrust (April 15, 2026):** now in the past — verify next year that
+  no residual outage/rollback story is worth adding. **DigiCert Multi-Purpose Root
+  Removal (July 1, 2026)** and **Chrome ClientAuth EKU deprecation (June 15, 2026)**
+  are on-deck as fresher root-store-governance vignettes if wanted.
+- **Chrome distrust of Chunghwa Telecom + Netlock (Chrome 139, Aug 1, 2025).** Watch
+  for a fresher CA distrust in 2026 (e.g., if a currently-warned CA is removed).
+- **EV "green bar" is gone.** Stable; skip unless a browser reintroduces some form of
+  identity indicator.
+- **TLS 1.3 + ECH.** ECH deployment %s were still climbing in 2026 — watch Cloudflare
+  Radar / Mozilla telemetry for a "default on" milestone that would strengthen the
+  bullet.
+- **Hybrid X25519+ML-KEM-768.** Update the Cloudflare "~1/3 of human HTTPS" stat next
+  year if newer numbers exist; NIST is expected to finalize ML-DSA/SLH-DSA guidance in
+  2026–2027 which would enable a "PQ signatures" bullet on the signing side.
+- **Post-quantum signatures / PQC in CAs.** Currently not covered; if a CA begins
+  issuing ML-DSA-signed intermediates it becomes worth one slide.
+- **De-emphasized legacy ciphers per agenda.** No change expected.
 - Flag any stronger alternative vignette you find but choose not to use yet.
 
 ## Curated images

@@ -2,7 +2,6 @@
 title: "Privacy Law"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Privacy Law Always Chases Technology {.center}
@@ -35,8 +34,10 @@ The U.S. *still* has **no comprehensive federal privacy law** — so a 1998
 children's statute plus the FTC's general authority do the work.
 :::
 
-Same year, the FTC moved against **Kochava** for selling precise location data
-(order proposed May 2026). Old statutes, new harms.
+On **May 4, 2026** the FTC settled its long-running case against **Kochava**,
+banning sale of *sensitive* location data (medical, religious, shelters, schools)
+without express consent ([FTC, May 2026](https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-ban-kochava-subsidiary-selling-sensitive-location-data-settle-charges-they-sold-location-data)).
+Old statutes, new harms.
 
 ::: {.notes}
 This is the freshest concrete anchor. Two teaching points: (1) the regulator
@@ -430,11 +431,13 @@ already under legal challenge).
 ## GDPR Enforcement Is Real {.smaller}
 
 ::: {.vignette}
-Through 2025, EU regulators have issued roughly **€7B+** in GDPR fines.
-**Meta** holds the all-time record at **€1.2B** (2023, unlawful EU–US transfers);
-the largest of **2025 was €530M against TikTok** (May 2025) for EU–China data
-flows
-([Irish DPC, May 2025](https://geneo.app/query-reports/gdpr-fines-2025-largest-cases)).
+Cumulative GDPR fines topped **€7.1B by Jan. 2026** (DLA Piper survey). **Meta** still
+holds the all-time record at **€1.2B** (2023, unlawful EU–US transfers). The
+largest of **2025 was €530M against TikTok**
+([Irish DPC, May 2, 2025](https://www.dataprotection.ie/en/news-media/latest-news/irish-data-protection-commission-fines-tiktok-eu530-million-and-orders-corrective-measures-following))
+for EU–China data flows. In **Sept. 2025 CNIL fined Google €325M** for Gmail-ad and
+cookie-consent violations
+([CNIL, Sept. 2025](https://www.cnil.fr/en/cookies-and-advertisements-inserted-between-emails-google-fined-325-million-euros-cnil)).
 :::
 
 Live tracker: [enforcementtracker.com](https://www.enforcementtracker.com/).
@@ -501,7 +504,7 @@ stable equilibrium.
 - Privacy law is **reactive** — FIPPs (1973) are still the DNA
 - **PII** and **notice-and-consent** are leaky models in an age of inference
 - The U.S. is **sectoral** (patchwork + FTC Section 5); the EU is **omnibus** (GDPR)
-- Enforcement is real and current: **Disney, TikTok, the state wave**
+- Enforcement is real and current: **Disney COPPA, TikTok €530M, CNIL Google €325M, the state wave**
 
 ::: {.notes}
 Close by returning to the opening pattern: every item here is the law chasing a

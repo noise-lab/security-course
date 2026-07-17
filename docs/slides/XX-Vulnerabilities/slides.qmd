@@ -2,7 +2,6 @@
 title: "Vulnerability Discovery and Disclosure"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
-date: last-modified
 ---
 
 ## Why Vulnerabilities Are Inevitable {.center}
