@@ -10,6 +10,11 @@ The course will have several components:
     frequency of these will depend on course enrollment levels but will
     occur no more frequently than weekly.
 
+Class meeting time is structured according to the appropriate agenda template:
+
+- [Fall term (3-hour on-campus meetings)](agenda-template.md)
+- [Summer term (2-hour Zoom meetings)](agenda-template-summer.md)
+
 ## Recommended Background
 
 **Prerequisites:**

@@ -16,26 +16,6 @@ also clear your browser cache manually (and flush the OS resolver cache).
 > still leaks over HTTPS even when DNS is encrypted. Read it alongside this
 > assignment.
 
-### Grading & Rubric (100 points)
-
-This rubric is shown up front so you know where to invest your effort. Labs are
-graded primarily for thoughtful completion; points reward *understanding*, not polish.
-
-| Component | Points | What earns full marks |
-|---|---|---|
-| **Setup & method** | 5 | You name the site you chose, confirm a cold cache, and describe how you captured (Wireshark `dns` filter, exported DNS-only pcap). |
-| **Unencrypted DNS capture (with pasted queries)** | 12 | You capture real DNS traffic loading the page and **paste the list of distinct queried hostnames** (`dns.qry.name`) as text; the `dns.pcap` is included. |
-| **Domain → company → first/third-party table (depth)** | 20 | You build a table mapping each distinct domain to its **owning company** and **first- vs third-party**, and report the **count of distinct domains** and **count of distinct companies** that saw a query. |
-| **Who can see your activity & concerns** | 18 | You identify who sees unencrypted DNS (ISP / resolver / anyone on-path), explain *how* each company gained visibility, and give concrete privacy concerns that **differ by company**. |
-| **Encrypted DNS repeat (with evidence)** | 12 | You enable DoH, repeat the load, and show the evidence (e.g., `dns` filter now shows nothing while 443/853 traffic to the resolver appears), and state who can see your activity now. |
-| **Privacy tradeoffs: ISP-vs-resolver trust, SNI, ECH (depth)** | 20 | You analyze the **trust shift** to the resolver operator, explain that the hostname still leaks via **TLS SNI** (and the destination **IP**), and identify **ECH** as the fix for the SNI leak. |
-| **Reflection & AI-verification** | 13 | You report what you *tried* (including dead ends), what surprised you in **your own** capture, and — if you used an LLM — at least one place you checked its claim against your data and what you found. |
-| **Extra credit: two-resolver or cross-site comparison** | +10 | You go deeper with a second comparison and paste the evidence. See the stretch task below. |
-
-Cite evidence by **pasted text** (the query-name list, the domain→company table) so a
-grader can check it without opening your pcap. The reflection must be grounded in *your*
-specific capture — generic prose that could describe anyone's run earns little credit.
-
 ### Tasks
 
 1. **Set up and capture (cold cache).**
@@ -149,7 +129,7 @@ the **list of distinct queried hostnames** and the **domain → company → part
 Screenshots are welcome but are corroboration, not a substitute for the pasted text.
 
 Your report **must contain these headings, in this order** (they map one-to-one to the
-rubric above):
+rubric below):
 
 ```
 # Internet Privacy Lab — <your name>
@@ -193,3 +173,22 @@ Also include:
   Displayed packets)
 
 Push the report and the capture to your private GitHub repository (do not push a zip file).
+
+### Grading & Rubric (100 points)
+
+Labs are graded primarily for thoughtful completion; points reward *understanding*, not polish.
+
+| Component | Points | What earns full marks |
+|---|---|---|
+| **Setup & method** | 5 | You name the site you chose, confirm a cold cache, and describe how you captured (Wireshark `dns` filter, exported DNS-only pcap). |
+| **Unencrypted DNS capture (with pasted queries)** | 12 | You capture real DNS traffic loading the page and **paste the list of distinct queried hostnames** (`dns.qry.name`) as text; the `dns.pcap` is included. |
+| **Domain → company → first/third-party table (depth)** | 20 | You build a table mapping each distinct domain to its **owning company** and **first- vs third-party**, and report the **count of distinct domains** and **count of distinct companies** that saw a query. |
+| **Who can see your activity & concerns** | 18 | You identify who sees unencrypted DNS (ISP / resolver / anyone on-path), explain *how* each company gained visibility, and give concrete privacy concerns that **differ by company**. |
+| **Encrypted DNS repeat (with evidence)** | 12 | You enable DoH, repeat the load, and show the evidence (e.g., `dns` filter now shows nothing while 443/853 traffic to the resolver appears), and state who can see your activity now. |
+| **Privacy tradeoffs: ISP-vs-resolver trust, SNI, ECH (depth)** | 20 | You analyze the **trust shift** to the resolver operator, explain that the hostname still leaks via **TLS SNI** (and the destination **IP**), and identify **ECH** as the fix for the SNI leak. |
+| **Reflection & AI-verification** | 13 | You report what you *tried* (including dead ends), what surprised you in **your own** capture, and — if you used an LLM — at least one place you checked its claim against your data and what you found. |
+| **Extra credit: two-resolver or cross-site comparison** | +10 | You go deeper with a second comparison and paste the evidence. See the stretch task above. |
+
+Cite evidence by **pasted text** (the query-name list, the domain→company table) so a
+grader can check it without opening your pcap. The reflection must be grounded in *your*
+specific capture — generic prose that could describe anyone's run earns little credit.

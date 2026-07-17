@@ -1,7 +1,7 @@
 # Auto-Grading Harness
 
 Each lab lives in its own folder under `assignments/<slug>/`, containing the
-student-facing `README.md` (instructions + up-front rubric) and a `grading-key.md`
+student-facing `README.md` (instructions, with the rubric at the end) and a `grading-key.md`
 used to grade submissions automatically with Claude. Each key encodes the rubric as an
 objective, text-checkable checklist that pairs with the `README.md` in the same folder.
 

@@ -8,23 +8,6 @@ Content moderation at scale is one of the most challenging problems facing onlin
 
 In this assignment, you will use **Anthropic's Claude content moderation framework** as your baseline implementation, then extend and evaluate it for real-world platform policies. Because you are literally building *on top of* an AI here, the interesting question is not "can the AI do it?" but "**where does the AI's judgment diverge from yours, why, and can the classifier be tricked?**"
 
-### Grading & Rubric (100 points)
-
-This rubric is shown up front so you know where to invest your effort. Labs are graded primarily for thoughtful completion; points reward *understanding*, not polish. Because your report is graded from its **text**, your numbers (the results table and the computed metrics) must appear *as text* in the report — not only in a notebook or a screenshot.
-
-| Component | Points | What earns full marks |
-|---|---|---|
-| **Implementation (both prompts)** | 12 | Working moderation function on the Claude API; both the **basic** and **chain-of-thought** prompts are pasted in full as text. |
-| **Platform policy + diverse dataset** | 13 | You name one platform, summarize its policy for 2–3 categories from its actual ToS, and build a 10–15 case set with clear violations, clear non-violations, **and** borderline cases. |
-| **Results table (per case, both approaches)** | 15 | A text table with one row per case: input summary, your human label, basic-prompt output, chain-of-thought output. |
-| **Metrics: accuracy + precision/recall/F1 (depth)** | 15 | You compute accuracy **and** precision, recall, and F1 for **both** approaches as numbers, show/define the confusion matrix, and explain why accuracy alone misleads on imbalanced data. |
-| **Prompt-injection / jailbreak robustness (depth)** | 15 | You craft adversarial inputs that try to bypass the moderation prompt, report per-attack whether the classifier held, and say which approach was more robust. |
-| **Policy analysis (performance, CoT comparison, cost, recommendations)** | 20 | The 2-page analysis covers performance, the CoT comparison, a cost-at-scale estimate, and concrete deployment recommendations. |
-| **Reflection & AI-verification** | 10 | You report what you *tried* (incl. dead ends), what surprised you in **your own** data, and at least one case where Claude's label diverged from yours plus **why**. |
-| **Extra credit: second model / adversarial-set sophistication** | +10 | Either compare a second model or a self-consistency/voting setup, **or** build an adversarial set that systematically defeats the basic prompt and test whether CoT resists it. See the stretch below. |
-
-Report **numbers, not adjectives**: "precision 0.71, recall 0.50" beats "fairly accurate." Ground every claim in *your* specific cases — generic prose that could describe anyone's run earns little credit.
-
 ### Required Reading
 
 Before starting the assignment, review these resources:
@@ -136,7 +119,7 @@ Either way, report the numbers and what you concluded. This requires real tinker
 
 Submit a single markdown report named **`moderation-report.md`**. **Because your report is graded from its text, paste the required evidence *as text* directly into the report** — both prompts, the results table, and the computed metrics (as numbers). Screenshots and notebooks are welcome as corroboration but are not a substitute for the pasted text and numbers.
 
-Your report **must contain these headings, in this order** (they map one-to-one to the rubric above):
+Your report **must contain these headings, in this order** (they map one-to-one to the rubric below):
 
 ```
 # Content Moderation Lab — <your name>
@@ -201,3 +184,20 @@ Push the report to your **private GitHub repository** (do not push a zip file). 
 - **Precision/recall/F1 refresher:** https://en.wikipedia.org/wiki/Precision_and_recall
 - **Prompt-injection background (OWASP LLM Top 10):** https://owasp.org/www-project-top-10-for-large-language-model-applications/
 - **Academic hate speech datasets:** Search for datasets on HuggingFace, Kaggle, or academic repositories.
+
+### Grading & Rubric (100 points)
+
+Labs are graded primarily for thoughtful completion; points reward *understanding*, not polish. Because your report is graded from its **text**, your numbers (the results table and the computed metrics) must appear *as text* in the report — not only in a notebook or a screenshot.
+
+| Component | Points | What earns full marks |
+|---|---|---|
+| **Implementation (both prompts)** | 12 | Working moderation function on the Claude API; both the **basic** and **chain-of-thought** prompts are pasted in full as text. |
+| **Platform policy + diverse dataset** | 13 | You name one platform, summarize its policy for 2–3 categories from its actual ToS, and build a 10–15 case set with clear violations, clear non-violations, **and** borderline cases. |
+| **Results table (per case, both approaches)** | 15 | A text table with one row per case: input summary, your human label, basic-prompt output, chain-of-thought output. |
+| **Metrics: accuracy + precision/recall/F1 (depth)** | 15 | You compute accuracy **and** precision, recall, and F1 for **both** approaches as numbers, show/define the confusion matrix, and explain why accuracy alone misleads on imbalanced data. |
+| **Prompt-injection / jailbreak robustness (depth)** | 15 | You craft adversarial inputs that try to bypass the moderation prompt, report per-attack whether the classifier held, and say which approach was more robust. |
+| **Policy analysis (performance, CoT comparison, cost, recommendations)** | 20 | The 2-page analysis covers performance, the CoT comparison, a cost-at-scale estimate, and concrete deployment recommendations. |
+| **Reflection & AI-verification** | 10 | You report what you *tried* (incl. dead ends), what surprised you in **your own** data, and at least one case where Claude's label diverged from yours plus **why**. |
+| **Extra credit: second model / adversarial-set sophistication** | +10 | Either compare a second model or a self-consistency/voting setup, **or** build an adversarial set that systematically defeats the basic prompt and test whether CoT resists it. See the stretch below. |
+
+Report **numbers, not adjectives**: "precision 0.71, recall 0.50" beats "fairly accurate." Ground every claim in *your* specific cases — generic prose that could describe anyone's run earns little credit.

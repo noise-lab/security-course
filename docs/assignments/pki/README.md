@@ -10,26 +10,6 @@ questions. 
 > following an HTTP stream, the TLS handshake records, and what metadata still
 > leaks over HTTPS. Read it alongside this assignment.
 
-### Grading & Rubric (100 points)
-
-This rubric is shown up front so you know where to invest your effort. Labs are
-graded primarily for thoughtful completion; points reward *understanding*, not polish.
-
-| Component | Points | What earns full marks |
-|---|---|---|
-| **Local web server + HTTP capture** | 10 | Server runs; you capture real HTTP traffic between client and server and include the pcap. |
-| **Why HTTP is insecure (with trace evidence)** | 18 | You explain eavesdropping *and* point to specific packets — the request line, headers, and body visible in your HTTP stream. |
-| **HTTPS upgrade (self-signed cert)** | 18 | Certificate generated, added to trusted roots, server restarted on HTTPS; HTTPS pcap included. You answer why a CA won't issue a cert for your local server. |
-| **HTTP vs. HTTPS trace comparison** | 14 | You contrast the two traces and show the payload is encrypted under TLS. |
-| **Wireshark interpretation (depth)** | 15 | You correctly identify the TCP handshake and the TLS handshake records (ClientHello / ServerHello / Certificate), citing packet numbers. |
-| **Metadata-leakage analysis (depth)** | 10 | You identify what an eavesdropper *still* learns over HTTPS (server IP, SNI, certificate, packet sizes/timing) and how that connects to DNS and ECH. |
-| **Reflection & AI-verification** | 15 | You report what you *tried* (including dead ends), what surprised you in **your own** capture, and — if you used an LLM — at least one place you checked its claim against the bytes and what you found. |
-| **Extra credit: decrypt your own TLS** | +10 | Using `SSLKEYLOGFILE`, decrypt your own HTTPS capture in Wireshark and paste the now-readable application data. See the stretch task below. |
-
-Cite packets by **number and field** so a grader can find your evidence. The reflection
-must be grounded in *your* specific capture — generic prose that could describe anyone's
-run earns little credit.
-
 ### Tasks
 
 1. **Host a local web server**.  
@@ -121,7 +101,7 @@ packet-detail panes). Screenshots are welcome but are corroboration, not a subst
 for the pasted text.
 
 Your report **must contain these headings, in this order** (they map one-to-one to the
-rubric above):
+rubric below):
 
 ```
 # PKI Lab — <your name>
@@ -166,3 +146,23 @@ Also include:
 
 Push the report and both captures to your private GitHub repository (do not push a
 zip file).
+
+### Grading & Rubric (100 points)
+
+Labs are graded primarily for thoughtful completion; points reward *understanding*,
+not polish.
+
+| Component | Points | What earns full marks |
+|---|---|---|
+| **Local web server + HTTP capture** | 10 | Server runs; you capture real HTTP traffic between client and server and include the pcap. |
+| **Why HTTP is insecure (with trace evidence)** | 18 | You explain eavesdropping *and* point to specific packets — the request line, headers, and body visible in your HTTP stream. |
+| **HTTPS upgrade (self-signed cert)** | 18 | Certificate generated, added to trusted roots, server restarted on HTTPS; HTTPS pcap included. You answer why a CA won't issue a cert for your local server. |
+| **HTTP vs. HTTPS trace comparison** | 14 | You contrast the two traces and show the payload is encrypted under TLS. |
+| **Wireshark interpretation (depth)** | 15 | You correctly identify the TCP handshake and the TLS handshake records (ClientHello / ServerHello / Certificate), citing packet numbers. |
+| **Metadata-leakage analysis (depth)** | 10 | You identify what an eavesdropper *still* learns over HTTPS (server IP, SNI, certificate, packet sizes/timing) and how that connects to DNS and ECH. |
+| **Reflection & AI-verification** | 15 | You report what you *tried* (including dead ends), what surprised you in **your own** capture, and — if you used an LLM — at least one place you checked its claim against the bytes and what you found. |
+| **Extra credit: decrypt your own TLS** | +10 | Using `SSLKEYLOGFILE`, decrypt your own HTTPS capture in Wireshark and paste the now-readable application data. See the stretch task above. |
+
+Cite packets by **number and field** so a grader can find your evidence. The reflection
+must be grounded in *your* specific capture — generic prose that could describe anyone's
+run earns little credit.

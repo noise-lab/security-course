@@ -23,6 +23,13 @@ More detailed information is available in the [syllabus](syllabus.md).
 Information about the agenda for each class meeting is available in the
 [agenda](agenda.md).
 
+## Class meeting agenda
+
+Class meetings follow one of two agenda templates depending on the term:
+
+- **[Fall term (3-hour on-campus meetings)](agenda-template.md)**
+- **[Summer term (2-hour Zoom meetings)](agenda-template-summer.md)**
+
 ## Exams
 
 There is an in-class **midterm** and a **final**.
@@ -45,7 +52,7 @@ to everyone:
 (if applicable) watch the corresponding videos for that day before coming to the class
 meeting.
 
-| Lecture               | Topic                               | In-Class Activity                                                                                         | Reading                                                                            | Assignments                                      |
+| #                     | Topic                               | In-Class Activity                                                                                         | Reading                                                                            | Assignments                                      |
 |-----------------------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------|
 | 1                     | Overview                            | ---                                                                                                       | [Fail](readings/why-cryptosystems-fail.pdf), [Trust](readings/trusting-trust.pdf) |                                                  |
 | 2                     | Ethics                              | [IRB](activities/ethics.md)                                                                               | [Bit-by-Bit](readings/bit-by-bit.pdf)                                              |                                                  |
@@ -74,7 +81,7 @@ meeting.
 
 ## Bonus Topics
 
-| Lecture | Topic                    | Reading                                         | Assignments                             |
+| #       | Topic                    | Reading                                         | Assignments                             |
 |---------|--------------------------|---------------------------------------------------|-----------------------------------------|
 | X       | Election Security        | [Voting](readings/voting.pdf)                   |                                         |
 | X       | Net Neutrality           | [Interconnection](readings/interconnection.pdf) |                                         |

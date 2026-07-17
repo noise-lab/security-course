@@ -24,26 +24,6 @@ In this assignment, you'll conduct hands-on experiments with copyrighted content
 - You may want to create a separate test account
 - Follow the platform's terms of service
 
-### Grading & Rubric (100 points)
-
-This rubric is shown up front so you know where to invest your effort. Labs are
-graded primarily for thoughtful completion; points reward *understanding*, not polish.
-
-| Component | Points | What earns full marks |
-|---|---|---|
-| **Platform policy analysis** | 14 | You document how your chosen platform detects, flags, and adjudicates copyright (automated matching, reporting, appeals/counter-notification, monetization, licensing programs) and note what you'll compare it against. |
-| **Fair-use experiments documented (table + outcomes)** | 18 | A per-upload **text table** records content uploaded, time-to-detection, outcome, and options presented for 2–3 experiments spanning the transformativeness spectrum. Screenshots corroborate but every claim is in text. |
-| **AI-generated content investigation** | 14 | For 2–3 AI pieces you record prompt, output, platform response, and ownership findings **verified against the actual ToS** (not an LLM summary). |
-| **Legal analysis (4 factors + case law + gap)** | 24 | You apply all four fair-use factors to *each* experiment, cite relevant case law, and analyze the gap between law, policy, and enforcement. |
-| **Detection mechanism (depth)** | 15 | You explain *mechanistically* how fingerprinting/content-matching works and use it to explain why your own experiments evaded or triggered detection. |
-| **Reflection & AI-verification** | 10 | You report what you *tried* (including dead ends), what surprised you in **your own** experiments, and — if you used an LLM — at least one ownership/ToS claim you checked against the source and what you found. |
-| **Evidence completeness (screenshots/links/timestamps)** | 5 | Appendix contains screenshots, links to uploaded content, and timestamps that corroborate the text. |
-| **Extra credit: cross-platform or detection-threshold experiment** | +10 | Run the same content across 2–3 platforms, OR vary one transformation to find the threshold where matching breaks — reported as a small table. See the stretch task below. |
-
-Tie every gradable claim to **your own uploads and outcomes**. Generic prose that could
-describe anyone's run earns little credit; the analysis must be grounded in *your*
-specific experiments.
-
 ### Tasks
 
 #### 1. Platform Copyright Policy Analysis
@@ -196,7 +176,7 @@ substitute for the text. Push the report and the screenshots folder to your **pr
 GitHub repository** (do not push a zip file).
 
 Your report **must contain these headings, in this order** (they map one-to-one to the
-rubric above):
+rubric below):
 
 ```
 # Copyright Lab — <your name>
@@ -253,3 +233,22 @@ This assignment involves creating and uploading content that may be flagged or r
 - Upload content that could get your account permanently banned
 
 When in doubt, ask the instructor.
+
+### Grading & Rubric (100 points)
+
+Labs are graded primarily for thoughtful completion; points reward *understanding*, not polish.
+
+| Component | Points | What earns full marks |
+|---|---|---|
+| **Platform policy analysis** | 14 | You document how your chosen platform detects, flags, and adjudicates copyright (automated matching, reporting, appeals/counter-notification, monetization, licensing programs) and note what you'll compare it against. |
+| **Fair-use experiments documented (table + outcomes)** | 18 | A per-upload **text table** records content uploaded, time-to-detection, outcome, and options presented for 2–3 experiments spanning the transformativeness spectrum. Screenshots corroborate but every claim is in text. |
+| **AI-generated content investigation** | 14 | For 2–3 AI pieces you record prompt, output, platform response, and ownership findings **verified against the actual ToS** (not an LLM summary). |
+| **Legal analysis (4 factors + case law + gap)** | 24 | You apply all four fair-use factors to *each* experiment, cite relevant case law, and analyze the gap between law, policy, and enforcement. |
+| **Detection mechanism (depth)** | 15 | You explain *mechanistically* how fingerprinting/content-matching works and use it to explain why your own experiments evaded or triggered detection. |
+| **Reflection & AI-verification** | 10 | You report what you *tried* (including dead ends), what surprised you in **your own** experiments, and — if you used an LLM — at least one ownership/ToS claim you checked against the source and what you found. |
+| **Evidence completeness (screenshots/links/timestamps)** | 5 | Appendix contains screenshots, links to uploaded content, and timestamps that corroborate the text. |
+| **Extra credit: cross-platform or detection-threshold experiment** | +10 | Run the same content across 2–3 platforms, OR vary one transformation to find the threshold where matching breaks — reported as a small table. See the stretch task above. |
+
+Tie every gradable claim to **your own uploads and outcomes**. Generic prose that could
+describe anyone's run earns little credit; the analysis must be grounded in *your*
+specific experiments.

@@ -12,31 +12,6 @@ when it leaks.
 > `Authorization: Bearer ...` header), and build a token-leak threat model.
 > The evidence is text you paste into your report.
 
-### Grading & Rubric (100 points)
-
-This rubric is shown up front so you know where to invest your effort. Labs are
-graded primarily for thoughtful completion; points reward *understanding*, not polish.
-
-| Component | Points | What earns full marks |
-|---|---|---|
-| **Access-control scheme** | 18 | You explain how *your chosen service* decides access — tokens/scopes/grant flow — accurately and in your own words. A diagram is encouraged. |
-| **The app + working proof** | 17 | You describe a working app (even a one-endpoint script) and paste a **real JSON/text response** from the API that proves it ran. |
-| **Auth-flow trace (depth)** | 22 | You identify the **grant type**, the **scopes** requested *and why*, **access vs. refresh** tokens, and **where the token travels** — and you paste a **redacted token-response JSON** plus one authorized request showing the `Authorization: Bearer ...` header. |
-| **Token-leak threat model (depth)** | 18 | You explain what an attacker can do with a leaked token *given your scopes*, and give concrete mitigations: minimal scopes, short expiry + rotation/refresh, rate limiting. |
-| **Reflection & AI-verification** | 15 | You report what you *tried* (including dead ends), what surprised you in **your own** flow, and — if you used an LLM — at least one place you checked its claim against the actual token/response and what you found. |
-| **Clarity, diagram, naming** | 10 | Report is named correctly, headings follow the skeleton, evidence is pasted as text, tokens are redacted, and (ideally) a diagram clarifies the scheme. |
-| **Extra credit: least-privilege or refresh demo** | +10 | You empirically demonstrate scopes or refresh — e.g., trigger a real **403 / insufficient-scope** error, or expire and refresh a token. See the stretch task. |
-
-Paste evidence **as text** so a grader can read it. Redact secrets (see below). The
-reflection must be grounded in *your* specific service and flow — generic prose that
-could describe anyone's run earns little credit.
-
-> **Redaction rule.** Never paste a live, valid secret. Replace the bulk of every
-> token, client secret, and code with `...` or `<REDACTED>`, leaving only enough
-> (e.g., the first few characters, the `token_type`, `expires_in`, `scope`) to make
-> the structure clear. A leaked token in your repo is itself a security incident —
-> and these labs go to a **private** repo for that reason.
-
 ### Tasks
 
 1. **Choose a service and get authenticated access.**
@@ -142,7 +117,7 @@ Screenshots are welcome but are corroboration, not a substitute for the pasted t
 You may also include your app code.
 
 Your report **must contain these headings, in this order** (they map one-to-one to the
-rubric above):
+rubric below):
 
 ```
 # Authentication / API Lab — <your name>
@@ -181,3 +156,27 @@ rubric above):
 
 Push the report (and any app code) to your **private** GitHub repository. **Do not push
 a zip file, and do not push live secrets** — redact all tokens, secrets, and codes.
+
+### Grading & Rubric (100 points)
+
+Labs are graded primarily for thoughtful completion; points reward *understanding*, not polish.
+
+| Component | Points | What earns full marks |
+|---|---|---|
+| **Access-control scheme** | 18 | You explain how *your chosen service* decides access — tokens/scopes/grant flow — accurately and in your own words. A diagram is encouraged. |
+| **The app + working proof** | 17 | You describe a working app (even a one-endpoint script) and paste a **real JSON/text response** from the API that proves it ran. |
+| **Auth-flow trace (depth)** | 22 | You identify the **grant type**, the **scopes** requested *and why*, **access vs. refresh** tokens, and **where the token travels** — and you paste a **redacted token-response JSON** plus one authorized request showing the `Authorization: Bearer ...` header. |
+| **Token-leak threat model (depth)** | 18 | You explain what an attacker can do with a leaked token *given your scopes*, and give concrete mitigations: minimal scopes, short expiry + rotation/refresh, rate limiting. |
+| **Reflection & AI-verification** | 15 | You report what you *tried* (including dead ends), what surprised you in **your own** flow, and — if you used an LLM — at least one place you checked its claim against the actual token/response and what you found. |
+| **Clarity, diagram, naming** | 10 | Report is named correctly, headings follow the skeleton, evidence is pasted as text, tokens are redacted, and (ideally) a diagram clarifies the scheme. |
+| **Extra credit: least-privilege or refresh demo** | +10 | You empirically demonstrate scopes or refresh — e.g., trigger a real **403 / insufficient-scope** error, or expire and refresh a token. See the stretch task. |
+
+Paste evidence **as text** so a grader can read it. Redact secrets (see below). The
+reflection must be grounded in *your* specific service and flow — generic prose that
+could describe anyone's run earns little credit.
+
+> **Redaction rule.** Never paste a live, valid secret. Replace the bulk of every
+> token, client secret, and code with `...` or `<REDACTED>`, leaving only enough
+> (e.g., the first few characters, the `token_type`, `expires_in`, `scope`) to make
+> the structure clear. A leaked token in your repo is itself a security incident —
+> and these labs go to a **private** repo for that reason.
