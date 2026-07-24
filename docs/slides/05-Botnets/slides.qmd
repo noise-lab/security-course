@@ -12,9 +12,16 @@ Today the threat model goes **network-scale**: thousands or millions of
 machines, working together, against a single target.
 
 ::: {.notes}
-This is the pivot in the course. Up to now the adversary attacked a host or a
-protocol. Now the adversary *owns* a fleet of hosts. Frame the day: how do you
-build a million-machine weapon, and what does it cost the victim?
+This is the pivot in the course, and the agenda flags it explicitly as the
+"theme shift: from system security to Internet security" in Meeting 3. Up to
+now the adversary attacked a host or a protocol. Now the adversary *owns* a
+fleet of hosts. Frame the day around one question: how do you build a
+million-machine weapon, and what does it cost the target? Cold-call opener:
+if you had a botnet of a hundred thousand home routers, what would you point
+it at first — and why? Push past "a specific website" to the leverage
+answer: infrastructure. The whole rest of the lecture is about that leverage.
+Pair with the Backdoors debate scheduled the same week — same tension, state
+capability versus consumer-device fragility.
 :::
 
 ## What Is a Denial-of-Service Attack?
@@ -29,9 +36,16 @@ What can be exhausted:
 - **Server compute**: CPU, memory (force expensive crypto, allocate state)
 
 ::: {.notes}
-The unifying idea: every system has a finite resource somewhere. The attacker's
-whole job is to find the cheapest resource to exhaust. Ask the room: what's the
-scarcest resource in a TLS handshake? (Server-side key generation.)
+The unifying idea: every system has a finite resource somewhere, and the
+attacker's whole job is to find the cheapest one to exhaust. The canonical
+taxonomy lives in RFC 4732 (Internet Denial-of-Service Considerations, 2006) —
+three resource classes: network bandwidth, connection state, and server
+compute. Cold-call: what is the scarcest resource in a TLS handshake? The
+server-side asymmetric key operation — RSA decrypt is about ten times more
+expensive than encrypt, which is why one attacker box can overwhelm ten web
+servers with a plain TLS renegotiation flood. This is the intuition students
+need before amplification and application-layer DoS: the "cost" that matters
+is CPU cycles and memory, not gigabits per second.
 :::
 
 ## Common Targets
@@ -43,8 +57,15 @@ scarcest resource in a TLS handshake? (Server-side key generation.)
 - File servers, network infrastructure (harder to reach)
 
 ::: {.notes}
-The DNS point foreshadows the Dyn case study. Attacking infrastructure is
-leverage: you don't attack Netflix, you attack what Netflix depends on.
+The DNS point foreshadows the Dyn case study — hold it in reserve. Attacking
+infrastructure is pure leverage: you do not attack Netflix, you attack what
+Netflix depends on. The authentication example is not hypothetical — a DoS
+against Duo, Okta, or a similar 2FA provider locks every downstream service
+out at once even though none of them were touched. Same shape as the update-
+server pattern: block the patch pipeline and the victims stay vulnerable to
+whatever comes next. Ask the room to name the highest-leverage dependency for
+their own workflow — most will land on either Google Auth, Cloudflare, or
+DNS. That is the shortlist attackers know too.
 :::
 
 ## Three Characteristics of Every DoS Attack {.smaller}
@@ -56,9 +77,15 @@ These three show up on the midterm — learn to spot them in any attack.
 3. **Hard to attribute** — source addresses are forged
 
 ::: {.notes}
-This is the analytical core of the lecture. Tell students: when you read about
-a new DoS attack, the exam question is "which of these three does it exploit,
-and how?" Everything else today is an instance of these three.
+This is the analytical core of the lecture and it is explicitly flagged as
+midterm material in the agenda. The reference is Mirkovic and Reiher's
+"Taxonomy of DDoS Attack and DDoS Defense Mechanisms" (SIGCOMM CCR, 2004),
+which is still the cleanest carve-up in the literature. Tell students: when
+you read about a new DoS attack, the exam question is "which of these three
+does it exploit, and how?" Everything else in today's deck — SYN floods, DNS
+amplification, Mirai, the Dyn death spiral, TLS DoS — is an instance of these
+three. Cold-call: pick a headline breach you know, and locate it on this
+list. If they cannot, they do not understand the attack yet.
 :::
 
 ## 1. Asymmetry
@@ -71,9 +98,16 @@ The attacker spends little; the victim spends a lot.
 - **Botnet**: each machine sends a trickle; victim sees a flood
 
 ::: {.notes}
-Asymmetry is *why* DoS is practical. If costs were symmetric, the attacker would
-exhaust their own resources first. Amplification and botnets are two different
-ways to buy asymmetry — one via protocol, one via scale.
+Asymmetry is *why* DoS is practical. If costs were symmetric, the attacker
+would exhaust their own resources first. There are two orthogonal ways to buy
+asymmetry: exploit a protocol (a small SYN forces a ~280-byte TCB per RFC
+4987; a small DNS query yields kilobytes of response; a TLS ClientHello
+triggers expensive server-side crypto per CVE-2011-1473), or exploit scale (a
+botnet, where each machine sends a trickle but the victim sees a flood). The
+next characteristic — indistinguishability — follows for free once you have
+enough real sources. The whole rest of the lecture is variations on this
+one idea; keep pointing back to it when a student asks "why is this so hard
+to stop?"
 :::
 
 ## 2. Hard to Distinguish Attack From Legit
@@ -87,8 +121,14 @@ Attack traffic **looks like normal requests**.
 
 ::: {.notes}
 This is what makes distributed attacks so much worse than single-source ones.
-With one attacker you blackhole an IP. With a botnet the "attackers" are
-indistinguishable from your customers. Connect to the Dyn death-spiral later.
+With one attacker you blackhole an IP; with a botnet the "attackers" are
+literally indistinguishable from your customers because many of them *are*
+your customers' compromised devices. Empirical scale for the room: Cloudflare's
+Q4 2025 report logged 47.1M attacks over the year, averaging 5,376 mitigations
+per hour, up 121% year over year. Any filter aggressive enough to stop the
+flood also blocks real users, which sets up the Dyn death-spiral slide later.
+Connect this back to characteristic #2 as it appears in the wild: legitimate
+retry traffic became the attack.
 :::
 
 ## 3. Hard to Attribute
@@ -101,14 +141,32 @@ The attacker doesn't care about the reply.
 - Enables **reflection** (covered shortly): bounce traffic off a third party
 
 ::: {.notes}
-Spoofing works for one-way floods because the attacker doesn't complete a
-handshake. This is also why reflection is possible. Note: TCP-based attacks
-can't fully spoof because you need the SYN-ACK back — a useful contrast.
+IP source spoofing is the enabling primitive for both unattributable floods
+and reflection attacks. It works for one-way floods because the attacker
+never completes a handshake — the SYN-ACK goes to a random address and the
+attacker does not care. TCP-based attacks cannot fully spoof for the same
+reason: they need the SYN-ACK back to complete the connection. RFC 2827 /
+BCP 38 (Ferguson and Senie, 2000) is the twenty-five-year-old fix: routers
+drop packets whose source address cannot legitimately come from that
+direction. CAIDA's Spoofer project publishes ongoing deployment data — as of
+2025 roughly 15–20% of tested ASes still permit spoofing. The recurring
+policy question: whose job is it to fix an externality that harms
+everyone else?
 :::
 
 # How Did We Get Here? {.center}
 
 A short history: **worms** built the machinery that **botnets** now industrialize.
+
+::: {.notes}
+Ten-minute historical block. The point of walking through 1988–2003 is not
+nostalgia — it is to show students where the primitives came from: worms
+established random-scanning propagation, buffer-overflow exploitation, and
+the CFAA case law that still governs security research. Botnets then
+industrialized what worms proved possible. The arc from Morris to Slammer to
+Mirai is one continuous story about attackers shedding constraints and
+about defenders always fighting the last war.
+:::
 
 ## Worms vs. Viruses
 
@@ -121,10 +179,16 @@ First worm: **Robert Morris, November 1988** — infected ~10% of Internet hosts
 and triggered the first **CFAA** prosecution.
 
 ::: {.notes}
-The Morris worm is the origin story: no malicious payload, just a reinfection
-bug that bogged machines down until admins pulled them off the net. Multiple
-vectors — fingerd buffer overflow, sendmail debug command, password guessing —
-the same pattern that recurs for decades.
+The Morris worm (Robert Tappan Morris, then a Cornell grad student, November 2,
+1988) is the origin story. Spafford's ACM classic "The Internet Worm Program:
+An Analysis" is the canonical write-up if a student wants the primary. No
+malicious payload — just a reinfection bug that Morris coded aggressively to
+avoid trivial detection, which bogged machines down until admins pulled them
+off the net. Multiple vectors: a fingerd buffer overflow, the sendmail debug
+command, and password guessing. Same pattern that recurs for decades. It also
+produced the first CFAA prosecution — *United States v. Morris* (1990) — which
+is the historical link to today's ethics and law discussion. NIST SP 800-83
+is the reference for the virus/worm/malware taxonomy.
 :::
 
 ## Worms Go Mainstream: 2001–2003 {.smaller}
@@ -144,9 +208,16 @@ the same pattern that recurs for decades.
 :::
 
 ::: {.notes}
-The arc to emphasize: worms got faster as they shed dependencies. TCP worms wait
-on round trips; Slammer's connectionless UDP design removed that limit entirely.
-Nimda is the lesson that signatures can't catch a brand-new infection.
+The arc to emphasize: worms got faster as they shed dependencies. Code Red
+(CERT CA-2001-19; Moore, Shannon, Voelker, Savage IMW 2002) exploited an IIS
+buffer overflow and scanned random IPv4 addresses; 350,000 hosts in fourteen
+hours, and it turned on whitehouse.gov as a coordinated flood target. Nimda
+(CERT CA-2001-26) went multi-vector and evaded signature-based filters — the
+canonical demonstration of the zero-day detection problem. Slammer (Jan 2003)
+was 404 bytes of UDP with no connection setup, so spread was limited only by
+bandwidth. TCP worms wait on round trips; Slammer's connectionless design
+removed that limit entirely. Cold-call: which of these three would be
+hardest to defend against today?
 :::
 
 ## Slammer in 30 Minutes {.smaller}
@@ -164,15 +235,32 @@ Doubling every **8.5 seconds**; saturated the Internet's capacity in ~10 minutes
 **$1.25B** damage — with **no malicious payload**, just bandwidth exhaustion.
 
 ::: {.notes}
-Moore et al., "The Spread of the Sapphire/Slammer Worm." Knocked out a Korean
-cell network, B of A ATMs, five root DNS servers, an airline's ticketing. The
-takeaway: spread *speed* alone is a weapon; you don't need a payload.
+Moore et al., "The Spread of the Sapphire/Slammer Worm" (CAIDA 2003) is the
+canonical measurement paper — put those two images (five minutes apart) side
+by side and let the visual do the work. Doubling every 8.5 seconds; saturated
+usable Internet capacity in about ten minutes. Collateral damage: a Korean
+cell network went down, Bank of America ATMs went dark, five root DNS servers
+were knocked out, and Continental Airlines ticketing failed. Computer
+Economics estimated $1.25B in damage. All of it from a 404-byte UDP packet
+with no malicious payload — just bandwidth exhaustion from replication.
+The takeaway students should remember: spread *speed* alone is a weapon; you
+do not need a payload to cause an outage.
 :::
 
 # Botnets {.center}
 
 A worm gets you in. A **botnet** is what you do with thousands of compromised
 machines once you control them.
+
+::: {.notes}
+Transition beat. The qualitative jump: worms are contagion (they reproduce),
+botnets are fleets (they take orders). Modern botnet economics are
+commercial — DDoS-for-hire booters, credential-stuffing services, ad-fraud
+farms, crypto-mining rentals — not hobbyist. Preview the case-study arc:
+we will spend the next block on Mirai and Dyn (2016), and then on
+Aisuru/Kimwolf as the 2025–2026 direct descendant. Same design, thirty
+times the scale.
+:::
 
 ## What Is a Botnet?
 
@@ -185,9 +273,15 @@ What botnets do: **DDoS**, spam, credential theft, click fraud, crypto-mining,
 mass identity theft.
 
 ::: {.notes}
-Emphasize "unified, simultaneous control" — that's the qualitative jump from a
-worm. The botnet is rentable infrastructure; today there are DDoS-for-hire
-"booter" services. Most modern botnet use is commercial, not hobbyist.
+Emphasize "unified, simultaneous control" — that is the qualitative jump from a
+worm. A worm is contagion; a botnet is a fleet. The canonical measurement
+treatment is Rajab, Zarfoss, Monrose, and Terzis, "A Multifaceted Approach to
+Understanding the Botnet Phenomenon" (IMC 2006). Today most modern botnet use
+is commercial, not hobbyist: DDoS-for-hire "booter" services rent capacity by
+the minute, and Krebs on Security's recurring booter takedowns (FBI Operation
+Power Off, with EUROPOL, has hit dozens over the last decade) document the
+market. Cold-call: if you can rent a hundred gigabits per second for twenty
+dollars, what does that change about who gets attacked and why?
 :::
 
 ## Command and Control (C&C)
@@ -214,9 +308,16 @@ move freely and survive takedown attempts.
 
 ::: {.notes}
 The C&C topology is the design tradeoff at the heart of botnet defense. Take
-down the central server and a centralized botnet dies; P2P botnets (Storm, 2007)
-forced defenders to poison the overlay instead. Dynamic DNS / fast-flux is the
-classic evasion.
+down the central server and a centralized botnet dies — which is why the
+Storm botnet (2007) went peer-to-peer and forced defenders to poison the
+overlay instead of decapitating a head. Fast-flux DNS (ICANN SSAC SAC 025) is
+the classic evasion for centralized designs: the controller domain resolves
+to a rotating pool of compromised proxies, so takedowns hit an infinite bench
+of stand-ins. Encrypted P2P C&C then hides even the message traffic. The
+arc: every generation of defenders shed the previous detection surface, and
+attackers moved to whatever came next. Sinkholing (later slide) is the
+current tradeoff — hijack the controller and the bots go dark, but so does
+your visibility.
 :::
 
 ## Mirai (2016): The IoT Turn {.smaller}
@@ -235,9 +336,17 @@ classic evasion.
 :::
 
 ::: {.notes}
-Mirai is the inflection point: the bots are no longer PCs, they're appliances
-that never get patched and ship with admin/admin. The release of the source code
-is what made it an *ecosystem* rather than one botnet. This sets up Dyn.
+Mirai is the inflection point: the bots are no longer PCs, they are
+appliances that never get patched and ship with admin/admin. Canonical
+measurement study is Antonakakis et al., "Understanding the Mirai Botnet"
+(USENIX Security 2017) — read it if you want the definitive account.
+"Anna-Senpai" posted the source code to Hack Forums in September 2016; Krebs
+on Security's investigation identified Paras Jha and colleagues, who pled
+guilty in 2017. The release of the code is what made Mirai an *ecosystem*
+rather than one botnet — Aisuru/Kimwolf and every "TurboMirai" descendant
+inherits from that codebase. This slide directly sets up Dyn on the next
+slide and the 2025–2026 vignette after it. Bots are cheap because devices
+are cheap and unpatched — the economics have not changed in a decade.
 :::
 
 ## Case Study: Mirai vs. Dyn, October 2016 {.smaller}
@@ -252,10 +361,18 @@ is what made it an *ecosystem* rather than one botnet. This sets up Dyn.
 down many services with one blow.
 
 ::: {.notes}
-This is the lecture's anchor case. The leverage point is the dependency: nobody
-attacked Netflix directly. Tie back to "Common Targets" — DNS is the
-force-multiplier target. And note the small size: scale isn't everything if you
-pick an application-level resource to exhaust.
+This is the lecture's anchor case, October 21, 2016. Three waves; Dyn's own
+post-mortem documented the sequence. The leverage point is the dependency:
+nobody attacked Netflix, Twitter, Spotify, or Reddit directly — they
+attacked what all four resolved through. Tie back to "Common Targets": DNS
+is the force-multiplier target. Note the small size — ~100,000 endpoints is
+tiny by botnet standards — because scale is not everything if you pick an
+application-level resource to exhaust (DNS query processing, not raw
+bandwidth). Peak attack traffic was around 1.2 Tbps, which the next-slide
+vignette will make look modest. If time permits, mention that the same year
+Mirai took KrebsOnSecurity offline — Krebs had published the "Anna-Senpai"
+identification, and Aisuru would return to hit Krebs again in May 2025 at
+6.35 Tbps, closing a nice ten-year loop.
 :::
 
 ## The Death Spiral {.smaller}
@@ -272,10 +389,17 @@ This is **Characteristic #2 in the wild**: the attack traffic and the legitimate
 traffic became literally the same packets.
 
 ::: {.notes}
-The cruel irony: the resilience feature (auto-retry) becomes the amplifier. You
-cannot filter your way out, because filtering the retries means filtering your
-own customers. Great place to cold-call: "What would *you* do as Dyn's on-call
-engineer at 3am?"
+The cruel irony: the resilience feature (auto-retry) becomes the amplifier.
+Dyn's own post-mortem estimated the death spiral produced "a legitimate
+response to malicious activity" that was "10 to 20 times more DNS traffic
+than what was actually consumed by the botnet." You cannot filter your way
+out, because filtering the retries means filtering your own customers'
+browsers — the retries came from real users' devices, not the bots. This is
+characteristic #2 in its purest form: attack and legitimate traffic became
+literally the same packets. Cold-call: you are Dyn's on-call engineer at
+3am — what do you do? Push past "block Mirai's IPs" (there are millions,
+scattered across every consumer ISP) to the honest answer: you shed load,
+you anycast wider, you call your CDN, and you wait it out.
 :::
 
 ## A 2026 Bookend: Mirai's Descendants {.smaller}
@@ -296,18 +420,37 @@ A decade after Dyn, the playbook is unchanged — **cheap, unpatched IoT** — o
 the scale has grown from gigabits to **tens of terabits**.
 
 ::: {.notes}
-Use this as the "current events" hook. The continuity is the lesson: Mirai wasn't
-a one-off, it was a template. Aisuru is Mirai-class, same default-credential and
-unpatched-device economics, now at 31.4 Tbps vs. Dyn's far smaller volumes. The
-March 2026 DoJ takedown shows the defensive response is now coordinated and
-international — Team Cymru, Cloudflare, AWS, Google, Akamai, and others assisted.
-Sources: Cloudflare 2025 Q4 DDoS Threat Report; DoJ/District of Alaska press
-release, March 19, 2026; Krebs on Security, March 2026.
+Use this as the current-events hook. The continuity is the lesson: Mirai was
+not a one-off, it was a template. Aisuru is Mirai-class — same default-
+credential trick, same unpatched-device economics — now at 31.4 Tbps versus
+Dyn's roughly 1.2 Tbps in 2016. Escalation curve for the board: 5.6 Tbps
+(Oct 2024) → 7.3 Tbps (Jun 2025) → 15.72 Tbps (Oct 2025, Microsoft) → 31.4
+Tbps (Nov 2025) → 200M+ HTTP requests per second in the December 2025
+"Night Before Christmas" campaign. The March 19, 2026 DoJ (District of
+Alaska) takedown, coordinated with EUROPOL, Germany's BKA, and Canadian
+authorities, shows the defensive response is now coordinated and
+international; private-sector assist list includes Akamai, AWS, Cloudflare,
+Google, Lumen, Nokia, Team Cymru, and QiAnXin XLab. Alleged Kimwolf
+operator "Dort" — Jacob Butler, age 23, Ottawa — was arrested May 20, 2026.
+Coda: FastNetMon reported new C2 scanning within weeks; the takedown cycle
+continues. Sources: Cloudflare Q4 2025 DDoS Threat Report; DoJ press
+release; Krebs on Security, March 2026.
 :::
 
 # Reflection and Amplification {.center}
 
 How a *small* attacker buys *enormous* asymmetry — without a big botnet.
+
+::: {.notes}
+Pause and reset. The last block was about scale (millions of bots).
+Reflection and amplification are the alternative: a single attacker with a
+laptop and a list of misconfigured servers can buy the same effect via
+protocol asymmetry. Draw the flow on the board before the slide: attacker →
+resolver (small, spoofed source) → victim (large response). Amplification
+factors up to ~50,000× for memcached — that is what makes the record-setting
+attacks possible without record-setting botnets. This is also the cleanest
+example of all three characteristics stacking on a single attack.
+:::
 
 ## DNS Reflection and Amplification {.smaller}
 
@@ -324,11 +467,18 @@ indistinguishability (looks like normal DNS), and unattributability (spoofed
 source).
 
 ::: {.notes}
-**Open resolvers** answer queries from anyone — Google's 8.8.8.8, Cloudflare's
-1.1.1.1 are intentionally open and well-run, but historically the Internet was
-full of misconfigured ones. The misaligned incentive: securing *your* resolver
-protects *other* people, so nobody bothers. Same logic as source-address
-spoofing being everyone-else's problem.
+Open resolvers answer queries from anyone. Google's 8.8.8.8 and Cloudflare's
+1.1.1.1 are intentionally open and well-run public services; historically the
+Internet was full of misconfigured resolvers that inherited that behavior by
+accident (see the Open Resolver Project, Rossow and Kuehrer). Amplification
+factor table for the board: DNS ~28–54×, NTP ~556×, SSDP ~30×, memcached
+~10,000–51,000× (US-CERT TA13-088A and TA14-017A). The February 2018 GitHub
+attack hit 1.35 Tbps using memcached alone. The misaligned incentive:
+securing *your* resolver protects *other* people, so nobody bothers. Same
+logic as source-address spoofing being everyone else's problem. This slide
+hits all three characteristics at once — asymmetry (small to large),
+indistinguishability (looks like normal DNS), and unattributability (spoofed
+source) — which is why it appears every year on the midterm.
 :::
 
 ## Defense, and Its New Vulnerability {.smaller}
@@ -346,10 +496,18 @@ Flood it with spoofed queries: it remembers them all, runs out of memory, and
 inside source but arrive from outside, so spoofing can't enter in the first place.
 
 ::: {.notes}
-This is the most important *principle* slide of the day, flagged for the midterm.
-The recurring question: "Have I introduced a new vulnerability?" Any defense that
-requires per-flow state can itself be exhausted. The cleaner fix attacks the root
-cause (spoofing) rather than filtering symptoms downstream.
+This is the most important *principle* slide of the day, flagged for the
+midterm. The recurring question: have I introduced a new vulnerability? Any
+defense that requires per-flow state can itself be exhausted — the stateful
+firewall is the canonical example, but the pattern generalizes to any
+security appliance that tracks connections, sessions, or requests. The
+cleaner fix attacks the root cause (spoofing) rather than filtering symptoms
+downstream, which is why BCP 38 keeps showing up. MANRS (Mutually Agreed
+Norms for Routing Security) tracks source-address-validation adoption
+publicly; CAIDA Spoofer measures the residual. Cold-call: how would you
+attack this stateful firewall — what packets would you send? Answer:
+spoofed queries that the firewall must remember, until it runs out of
+memory. That is the midterm question.
 :::
 
 ## Defenses: Monitoring and Takedown {.smaller}
@@ -366,11 +524,19 @@ cause (spoofing) rather than filtering symptoms downstream.
   governments + cloud/CDN providers acting together
 
 ::: {.notes}
-Walk the evolution: passive observation → signatures → active deception
-(honeypots) → traffic analysis (DNS) → legal/operational takedown. Each step is
-a response to attackers shedding the previous detection surface (clear-text IRC →
-encrypted P2P → fast-flux DNS). Sinkholing has a real tradeoff: hijack the C&C
-and the bots go dark, but so does your visibility.
+Walk the evolution as a co-evolution story: passive observation → signatures →
+active deception (honeypots) → traffic analysis (DNS) → legal and operational
+takedown. Freiling, Holz, and Wicherski's "Botnet Tracking" (ESORICS 2005) is
+the reference for IRC-C&C monitoring. Provos and Holz's *Virtual Honeypots*
+(2007) is the honeypot playbook — unpatched hosts get infected in about ten
+minutes, which is enough to capture the binary, map scanning targets, and
+watch C&C flow. Each defensive step provoked attackers to shed the previous
+detection surface: clear-text IRC → encrypted P2P → fast-flux DNS →
+domain-generation algorithms. Sinkholing has a real tradeoff: hijack the
+controller and the bots go dark, but so does your visibility (see the 2014
+Zeus/GameOver takedown). The March 2026 Aisuru action is the modern model —
+governments plus cloud and CDN providers acting together, not any one
+technique alone.
 :::
 
 ## What to Take Away {.smaller}
@@ -388,6 +554,15 @@ and the bots go dark, but so does your visibility.
 
 ::: {.notes}
 This is the slide students should photograph. If they remember the three
-characteristics and "any stateful defense is a potential DoS target," they can
-reason about an attack they've never seen — which is exactly the midterm task.
+characteristics — asymmetry, indistinguishability, unattributability — plus
+"any stateful defense is a potential DoS target," they can reason about an
+attack they have never seen, which is exactly the midterm task. Preview the
+next lecture: Internet Routing Security (BGP hijacks, RPKI, path
+authentication) — same "how do you trust anything at Internet scale?"
+question, applied to how packets actually get from A to B. This deck pairs
+with the Backdoors debate (state security versus consumer-device fragility)
+and the DoS/Botnets breakout (regulate the IoT externality or treat
+scrubbing providers as common carriers). Close on the through-line: the
+attacks scale with insecure IoT, and until device economics change the
+Mirai-to-Aisuru arc keeps going.
 :::

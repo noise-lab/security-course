@@ -14,12 +14,15 @@ The web is built so that **sites other than the one you visit** can watch
 where you go.
 
 ::: {.notes}
-Open with the cartoon framing. The joke from 1993 has completely inverted.
-Ask the room: in the last hour of browsing, how many companies do you think
-saw at least one page you loaded? The honest answer is usually dozens, and
-almost none of them are companies the student chose to interact with. That is
-the puzzle of this lecture: tracking is invisible, pervasive, and largely
-not consensual.
+Open with the Peter Steiner cartoon from The New Yorker, July 5, 1993 — the
+"nobody knows you're a dog" joke has completely inverted three decades later.
+Cold-call the room: in the last hour of browsing, how many companies do you
+think saw at least one page you loaded? Honest answer is usually dozens, and
+almost none are companies the student chose to interact with. Name the puzzle
+of the lecture up front — tracking is invisible, pervasive, largely
+non-consensual, and increasingly the subject of law. Foreshadow the companion
+Web Tracking hands-on activity later this week. The whole deck is an inversion
+joke on Steiner: today they know your breed, your food, the poodle at the park.
 :::
 
 ## What We'll Cover
@@ -32,11 +35,15 @@ not consensual.
 - **Defenses**: blocking, anti-fingerprinting, and opt-out signals like GPC
 
 ::: {.notes}
-Map the arc: we go from the mechanism (third parties + cookies), to the harder
-problem (fingerprinting that survives cookie deletion), to linking, then to
-defenses. The recurring theme is an arms race — every defense provokes a new
-evasion. Flag the midterm framing now: "is deleting cookies enough?" is a
-classic exam question and the answer is no.
+Map the arc explicitly. We move from the mechanism (third parties + cookies)
+to the harder problem (fingerprinting that survives cookie deletion), then to
+linking identities, then to defenses both technical and legal. The recurring
+theme is an arms race — every defense provokes a new evasion. Flag the midterm
+framing now: "is deleting cookies enough?" is a classic exam question and the
+answer is no, because of fingerprinting. Preview the bridge to Meeting 11 on
+privacy law — the GPC arc at the end is the handoff. Tell them to expect a
+recurring pattern in this section of the course: technology proposes, regulation
+disposes.
 :::
 
 # Third-Party Tracking {.center}
@@ -56,11 +63,14 @@ That recurrence is the whole game: one tracker embedded everywhere can stitch
 your visits into a **profile of your browsing history**.
 
 ::: {.notes}
-The key insight is recurrence, not any single page load. BlueKai or Google
-Analytics on both Amazon and Walmart means that company sees you on both. Most
-people have never heard of these firms (BlueKai, LiveRamp, Criteo) yet they
-observe a huge fraction of a person's web activity. Cold-call: name a third
-party you'd expect on a news site.
+The key insight is recurrence, not any single page load. Google Analytics or
+LiveRamp on both Amazon and Walmart means that one company sees you on both.
+Most students have never heard of these firms — BlueKai, LiveRamp, Criteo,
+media.net — yet they observe a huge fraction of a person's web activity.
+Cold-call: name a third party you'd expect on a news site. Prime the room with
+the usual suspects — Google Analytics, Meta Pixel, LiveRamp, Criteo, DoubleClick,
+Google Tag Manager. This recurrence property is exactly what enables one
+tracker to stitch your visits into a profile of your browsing history.
 :::
 
 ## A Single Page, Dozens of Trackers
@@ -79,11 +89,14 @@ social widgets** on a single load.
 :::
 
 ::: {.notes}
-The red boxes are content the NYT does not serve. The mechanism that makes
-third-party tracking work is the combination of a **cookie** (a persistent
-ID) and the **Referer** header (which tells the tracker which first-party page
-you were on). Funny aside: the HTTP spec misspells "referrer" as "referer" —
-it is baked into the protocol and cannot be fixed.
+Point at the red boxes and be clear these are content the New York Times does
+not serve. The mechanism that makes third-party tracking work is the
+combination of a cookie (a persistent ID) and the Referer header (which tells
+the tracker which first-party page you were on). Funny aside: the HTTP spec
+misspells "referrer" as "referer" — it is baked into the protocol and cannot
+be fixed. The original red-boxed image is from a 2012 Stanford study; modern
+news sites are strictly worse today. Ask a student to count the distinct
+third-party domains they see — the exercise makes the abstraction visceral.
 :::
 
 ## Visualizing the Web of Trackers
@@ -94,11 +107,14 @@ Each **hub** is a tracker; each **spoke** is a first-party site you visited.
 The hub sees *all* of them.
 
 ::: {.notes}
-Tools like Lightbeam (and today the Disconnect extension visualization) draw
-this graph live as you browse. After a few minutes of normal browsing you get
-a dense web with a handful of giant hubs — usually Google and Meta. This is the
-single most effective way to make the abstraction concrete in class; consider a
-live demo with the Disconnect plugin.
+Mozilla Lightbeam was the original tool; the modern equivalent is the
+Disconnect extension visualization. Both draw this graph live as you browse.
+After a few minutes of normal browsing you get a dense web with a handful of
+giant hubs — usually Google and Meta. This is the single most effective way to
+make the abstraction concrete in class; consider a live demo with the Disconnect
+plugin — browse two minutes and project the graph. Ask which hubs students
+expect to see, then reveal. The teaching point: consolidation and recurrence
+are why a small number of firms observe most of the web.
 :::
 
 ## Who Are the Third Parties?
@@ -113,10 +129,14 @@ The market is **highly consolidated** — a few companies see most of the web:
 
 ::: {.notes}
 The data plot makes the consolidation visceral: Google Analytics alone is on a
-huge share of page loads. Stat from class: ~50% of page loads carry Google
-Analytics, ~75% of sites carry some Google tracker. Ask why these firms are in
-the tracking business — the answer is the advertising auction on the next slide.
-The figures are from 2016–2017 studies and are almost certainly higher now.
+huge share of page loads. Concrete numbers to say out loud: roughly 50% of
+page loads carry Google Analytics, roughly 75% of sites carry some Google
+tracker. Beyond Google and Meta there is a long tail — LiveRamp, Criteo,
+media.net, Yandex — that most students have never heard of. Ask why these
+firms are in the tracking business; the answer is the real-time-bidding ad
+auction on the next slide. Note the figures are from 2016–2017 measurement
+studies and are almost certainly higher now. Debate hook: if three firms
+observe most of the web, is "notice and consent" a coherent regulatory model?
 :::
 
 ## Why They Track: Behavioral Targeting
@@ -129,12 +149,17 @@ The figures are from 2016–2017 studies and are almost certainly higher now.
 - Tracking is not the goal; **selling your attention** is
 
 ::: {.notes}
-This is the business model that funds the whole apparatus. Profiles built from
-past activity let advertisers bid for specific users via real-time bidding
-(RTB). Worth naming the privacy worries this raises: intellectual privacy (what
-you read), price discrimination (different prices for different profiles), and
-government piggybacking — the NSA was documented using ad cookies to pinpoint
-surveillance targets (Washington Post, 2013).
+This is the business model that funds the whole apparatus — call it out
+explicitly. Profiles built from past activity let advertisers bid for specific
+users via real-time bidding, or RTB, in the milliseconds a page loads. Name the
+privacy harms plainly: intellectual privacy (what you read), price
+discrimination (different prices for different profiles), and government
+piggybacking — the Washington Post reported in December 2013 that the NSA used
+Google PREF cookies to pinpoint surveillance targets. The strongest
+anti-RTB legal precedent is the Belgian DPA's 2022 ruling that the IAB Europe
+TCF consent framework is unlawful. Ask: is targeted advertising a legitimate
+business model with side effects, or the side effect itself? Good debate seed
+for the omnibus prompt later this month.
 :::
 
 ## Social Buttons Are Trackers Too
@@ -154,12 +179,20 @@ the hook for what the third-party code collects.
 :::
 
 ::: {.notes}
-The teaching point: merely loading a widget tracks you. The legal point is
-newer and important for the policy half of the course — embedding a third
-party's code can make the FIRST party legally responsible for the data that
-code collects (joint controllership under GDPR; class actions under CCPA and
-wiretap statutes in the US, e.g., the Meta Pixel healthcare suits). State the
-CJEU point as a reinforcement of joint-controllership, not a new doctrine.
+Lead with the technical teaching point: merely loading a Like button tells
+Facebook you visited — no click required. The legal point is newer and
+important for the policy half of the course — embedding a third party's code
+can make the FIRST party legally responsible for the data that code collects.
+That's the joint-controllership doctrine from Fashion ID GmbH v.
+Verbraucherzentrale NRW, CJEU C-40/17, decided July 29, 2019. Meta v.
+Bundeskartellamt (C-252/21, July 4, 2023) went further and knocked out most
+non-consent legal bases for combining off-platform data; Germany's Federal
+Cartel Office closed its Meta case in October 2024 on that footing. The U.S.
+analogue is the Meta Pixel healthcare wave — dozens of hospital-website class
+actions and HHS/OCR guidance treating the pixel as an impermissible disclosure
+of protected health information. Cross-reference to Meeting 11: joint
+controllership is the doctrine you'll see cited whenever a first party embeds
+tracking code.
 :::
 
 ## First-Party Tracking with Third-Party Code
@@ -176,12 +209,18 @@ origin**.
 collects — including PII it never meant to share.
 
 ::: {.notes}
-Distinguish from the third-party-resource model: here there is no SOP boundary
-at all because the code runs as first-party JavaScript. This is exactly how
-session-replay and re-marketing scripts vacuum up form inputs. It is also the
-fact pattern behind a wave of class actions where embedded ad/analytics code
-captured SSNs, health data, or search terms. First parties must audit what they
-embed.
+Distinguish carefully from the prior model: here there is no same-origin-policy
+boundary at all because the code runs as first-party JavaScript. This is
+exactly how session-replay and re-marketing scripts vacuum up form inputs
+including cart contents, clicks, and text as it's typed. It's also the fact
+pattern behind the wiretap and CIPA (California Invasion of Privacy Act)
+class-action wave — embedded ad/analytics code captured SSNs, health data,
+or search terms and the plaintiffs argued the first party effectively
+wiretapped its own visitors. The remediation lesson is uncomfortable: first
+parties must audit what they embed, because they are liable for what that
+code collects even when it collects things they never intended. Ask students
+whether that's a fair allocation of responsibility or one that only large
+firms can meet.
 :::
 
 # Cookies {.center}
@@ -198,10 +237,14 @@ The cookie is a **persistent ID** the tracker assigns once and recognizes
 everywhere it's embedded.
 
 ::: {.notes}
-Walk through the mechanics slowly; this is a guaranteed midterm question.
-Set-Cookie from the server, automatic resend by the browser, third-party
-cookies sent to the tracker across many first-party sites. The combination of
-cookie + Referer is what links the ID to a specific page.
+Walk the four-step mechanic slowly; this is a guaranteed midterm question.
+Set-Cookie from the server, automatic browser resend, third-party cookies sent
+to the tracker across many first-party sites, then Cookie + Referer link the
+ID to a specific page. Draw the state machine on the board if the room is
+confused — the browser doing this "helpful" behavior by default is the whole
+game. This is why blocking third-party cookies works at all: you're refusing
+to send the cookie back on cross-site requests. Foreshadow the next slide:
+Safari and Firefox now block third-party cookies by default; Chrome does not.
 :::
 
 ## Browsers Fought Back — Mostly
@@ -226,12 +269,18 @@ declared dead is, in the browser with the largest share, very much alive.
 :::
 
 ::: {.notes}
-This is the freshest, most counterintuitive update in the deck. For ~5 years
-"the death of the third-party cookie" was conventional wisdom; in 2025 Google
-walked it back and gutted Privacy Sandbox. The takeaway for students: technical
+This is the freshest, most counterintuitive update in the deck. Safari shipped
+Intelligent Tracking Prevention in 2020; Firefox shipped Total Cookie Protection
+by default in June 2022. For roughly five years "the death of the third-party
+cookie" was conventional wisdom. Then on April 22, 2025 Google reversed the
+Chrome third-party-cookie deprecation, and on October 17, 2025 shut down most
+of Privacy Sandbox — Topics, Protected Audience, Attribution Reporting, IP
+Protection, and Related Website Sets. What survives is CHIPS, FedCM, and
+Private State Tokens. Roughly a year in, third-party cookies remain
+Chrome-default with no timeline for removal. Takeaway for students: technical
 defaults are set by a tiny number of browser vendors, and their commercial
-incentives (Google is also the largest ad network) shape what protections
-billions of people get. Great debate fodder.
+incentives shape what protections billions of people get. The world's largest
+ad network also ships the world's largest browser — great debate fodder.
 :::
 
 ## "Just Delete Your Cookies"?
@@ -242,10 +291,15 @@ re-identify the same device with **no stored state at all**.
 That technique is **browser fingerprinting**.
 
 ::: {.notes}
-This slide is the pivot and the setup for the classic exam question: "Is
-deleting cookies enough to stop tracking?" Answer: no, because fingerprinting
+This slide is the pivot and the setup for the classic exam question: is
+deleting cookies enough to stop tracking? Answer: no, because fingerprinting
 identifies the device from its configuration, not from anything stored. Pause
-here and let them sit with why deletion fails before revealing fingerprinting.
+here and let the room sit with why deletion fails before revealing
+fingerprinting. Cold-call: if the tracker doesn't store anything on your
+machine, what could it possibly use to recognize you? The right intuition to
+draw out is that your browser broadcasts a huge amount of information about
+your device just to render pages — and that information is more unique than
+students expect.
 :::
 
 # Browser Fingerprinting {.center}
@@ -274,11 +328,16 @@ Any single attribute is common — but the **combination** is often unique among
 millions of devices.
 
 ::: {.notes}
-The insidious part: fingerprinting leaves **no trace** in the browser, so the
-user has no signal they are being tracked and nothing to "delete." JavaScript
-reads most of these properties freely. No single value identifies you; entropy
-comes from the joint distribution. Connect to the DNS lecture: website
-fingerprinting used ML on traffic patterns — same idea, different signal.
+The insidious part: fingerprinting leaves no trace in the browser, so the user
+has no signal they are being tracked and nothing to delete. JavaScript reads
+most of these properties freely without any permission prompt. No single value
+identifies you; the entropy comes from the joint distribution of many
+attributes. Foundational paper: Peter Eckersley, "How Unique Is Your Web
+Browser?" from EFF at PETS 2010 — the paper that turned fingerprinting from
+folklore into a measured entropy estimate. Connect to the DNS lecture:
+website fingerprinting used machine learning on traffic patterns — same idea,
+different signal. Cross-reference AmIUnique as a companion measurement site
+alongside Cover Your Tracks.
 :::
 
 ## Canvas Fingerprinting
@@ -295,8 +354,13 @@ hashes the pixels.
 ::: {.notes}
 Canvas is the canonical example because it is so non-obvious — you are
 fingerprinted by how your machine renders the letter "g." The vast majority of
-browser/device combinations turn out to be unique. Mention WebGL and AudioContext
-fingerprinting as the same idea applied to other subsystems.
+browser/device combinations turn out to be unique on that pixel hash alone.
+The canonical measurement is Acar et al., "The Web Never Forgets," ACM CCS
+2014 — the paper that first showed canvas fingerprinting deployed at scale in
+the wild. Mention WebGL and AudioContext fingerprinting as the same idea
+applied to other subsystems — anywhere the browser exposes a deterministic
+output that depends on GPU, drivers, or audio stack, someone will hash it.
+No permission prompt is required for any of these APIs.
 :::
 
 ## Hands-On: Cover Your Tracks
@@ -310,11 +374,15 @@ Run it on your own browser before next class: note which attributes are **rare**
 (high entropy) and whether your fingerprint is **unique**.
 
 ::: {.notes}
-This is the in-class / take-home exercise. Live-demo on the projector: my
-Firefox shows some common attributes and some near-unique ones, and the
-combination is identifying even with tracking protection on. Have students
-report their results — it always lands harder when it's their own browser.
-Tie to the assignment if one is active.
+This is the in-class or take-home exercise. Live-demo on the projector — my
+own Firefox shows some common attributes and some near-unique ones, and the
+combination is identifying even with tracking protection on. Have two or three
+students report their results out loud; it always lands harder when it's their
+own browser. Tie to the companion Web Tracking activity, which uses Cover Your
+Tracks as its first step. AmIUnique is the alternate site if EFF is down.
+Emphasize: even with every anti-tracking measure enabled, the fingerprint is
+often unique, which is exactly the "cookies aren't enough" punchline from two
+slides back.
 :::
 
 # Linking Identities Across Boundaries {.center}
@@ -337,11 +405,15 @@ Cookie:  id=35c192bcfe0000b1...
 ```
 
 ::: {.notes}
-Two distinct deanonymization paths. (1) Login: the Like-button cookie is
-anonymous until you log into Facebook, at which point it's tied to your real
-identity across the whole web. (2) Leakage: careless first-party programming
-puts the email/search term in the URL, and the Referer forwards it to every
-embedded third party. Search terms leak this way constantly.
+Two distinct deanonymization paths, both worth naming. First, login: the
+Like-button cookie is anonymous until you log into Facebook or Google, at
+which point that same cookie ID is tied to your real identity across the whole
+web — the third party is quietly also a first party. Second, leakage: careless
+first-party programming puts the email address or search term in the URL, and
+the Referer header forwards it to every embedded third party without the user
+noticing. Search terms leak this way constantly — you type into a form, the
+form does a GET, and every tracker on the results page sees what you typed.
+Cold-call: which of your logged-in accounts follows you across the most sites?
 :::
 
 ## Cookie Syncing
@@ -363,11 +435,15 @@ profile merges**.
 
 ::: {.notes}
 Cookie syncing is the glue of the tracking economy: it lets independent
-databases reconcile their IDs. Combine with **onboarding** (matching to
-offline retail databases) and **cross-device tracking** (linking your phone and
-laptop), and a tracker links across nearly every boundary. The hint to give
-students: it has to happen through the browser, because that's the only thing
-both trackers can touch.
+databases reconcile their IDs. The hint to give students first: it has to
+happen through the browser, because that's the only thing both trackers can
+touch. Combine cookie syncing with onboarding — LiveRamp matches online IDs
+to offline retail and location data — and with cross-device tracking that
+links your phone to your laptop, and one tracker's ID links across nearly
+every boundary you can name. This is why "just don't log in" isn't a defense:
+even pseudonymous profiles get stitched into a single identity through
+these joins. Debate seed: does the ad industry's own plumbing violate the
+purpose-limitation principle of every modern privacy framework?
 :::
 
 # Defenses {.center}
@@ -393,11 +469,14 @@ both trackers can touch.
 :::
 
 ::: {.notes}
-Referer blocking is the heavy-handed option that breaks the web and is
-defeated by cooperative tracking (where the first party hands the URL to the
-third party directly). Third-party cookie blocking is the pragmatic win that
-shipped by default — but it's only half the problem, because fingerprinting
-needs no cookies.
+Referer blocking is the heavy-handed option that breaks the web — sites use
+Referer for CSRF defense — and is defeated anyway by cooperative tracking,
+where the first party hands the URL to the third party directly. Third-party
+cookie blocking is the pragmatic win that shipped by default in Safari (2020)
+and Firefox — but it's only half the problem, because fingerprinting needs no
+cookies. This is the arms-race moment: every clean defense has an evasion.
+Contrast the "break the web" defense with the "block a subset by policy"
+defense — the second is where the sustainable wins live.
 :::
 
 ## Request Blocking: The Most Effective Defense
@@ -422,16 +501,18 @@ first-party-disguise their requests, the list must adapt.
 :::
 
 ::: {.notes}
-By far the most successful approach in practice. The exercise to pose: if
-trackers wanted to dodge these tools, what would they do (CNAME cloaking,
-first-party disguising, server-side tagging) — and in an arms race, who has the
-advantage? The recent wrinkle: Chrome **permanently disabled Manifest V2 in
-July 2025 (Chrome 138)** and is removing the last flag-based workarounds in
-**Chrome 151 (July 2026)**. The full uBlock Origin no longer runs on Chrome;
-users get "uBlock Origin Lite" (declarativeNetRequest, static rules, fewer
-filters) or must switch to Firefox or Brave. That the world's largest
-ad-network vendor also ships the world's largest browser is the whole
-conflict-of-interest teaching point.
+By far the most successful defensive approach in practice. Name the tools out
+loud: uBlock Origin, the EasyPrivacy filter list, Disconnect, Ghostery — each
+maintains a big crowd-curated list of tracker domains and patterns. The
+exercise to pose: if trackers wanted to dodge these tools, what would they
+do — CNAME cloaking, first-party disguising, server-side tagging — and in an
+arms race, who has the advantage? The recent wrinkle: Chrome permanently
+disabled Manifest V2 in Chrome 138 on July 24, 2025, and the flag-based
+workarounds go away in Chrome 151 around July 2026. The full uBlock Origin no
+longer runs on Chrome; users get uBlock Origin Lite (declarativeNetRequest,
+static rule cap, fewer filters) or must switch to Firefox or Brave. That the
+world's largest ad-network vendor also ships the world's largest browser is
+the conflict-of-interest teaching point — connect to the Web Privacy breakout.
 :::
 
 ## Opt-Out Signals: From "Do Not Track" to GPC
@@ -452,11 +533,18 @@ failed as DNT now has legal teeth.
 :::
 
 ::: {.notes}
-The arc is the whole point: the same technical idea (a header expressing a
-preference) failed when purely voluntary (DNT) and is succeeding only because
-law now compels compliance (GPC). This is the bridge to the privacy-law
-lectures: technology proposes, regulation disposes. Twelve+ state laws now
-recognize universal opt-out mechanisms.
+The arc is the whole point: the same technical idea — a browser header
+expressing a preference — failed when purely voluntary as Do Not Track around
+2011, and is succeeding only because law now compels compliance as Global
+Privacy Control. This is the bridge to the privacy-law lectures: technology
+proposes, regulation disposes. Landmark enforcement: California AG's Sephora
+settlement ($1.2M, August 2022) was the first major GPC case; Healthline
+($1.55M, July 2025) was the largest CCPA settlement to date, partly for
+failure to honor GPC. Twelve states now require recognition of a universal
+opt-out mechanism, and California AB 566 (effective Jan 1, 2027) will force
+Chrome, Safari, and Edge to actually ship a GPC control. The header that
+failed as DNT now has legal teeth — cross-reference to the state-privacy slide
+in Meeting 11.
 :::
 
 ## Takeaways {.center}
@@ -471,6 +559,10 @@ recognize universal opt-out mechanisms.
 Close by reconnecting to the exam framing and the policy bridge. The single
 most important conceptual takeaway: deleting cookies is not enough because of
 fingerprinting. The single most important policy takeaway: purely technical
-opt-outs fail without legal backing — which is exactly why the next block of the
-course is privacy law.
+opt-outs fail without legal backing — which is exactly why the next block of
+the course is privacy law. Two debate hooks for the term: the Web Privacy /
+Omnibus breakout asks whether a U.S. federal law would fix any of this, and
+the IoT debate pulls on the same technical-versus-legal tension. Land the
+plane on the through-line the course has been drawing since Meeting 1: the
+math is rarely the problem; the institutions around it are.
 :::

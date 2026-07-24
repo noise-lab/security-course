@@ -14,10 +14,15 @@ network. Each is a small, opaque computer with sensors, an internet connection, 
 business model.
 
 ::: {.notes}
-Frame the lecture: this is where *security* (devices can be discovered and controlled)
-and *privacy* (devices leak what you do at home) collide. The recurring research
-question for the whole deck: "What are these devices doing, and who are they talking
-to?" We have studied this for years; the answers keep getting worse.
+Frame the lecture: this is where security (devices can be discovered and controlled)
+and privacy (devices leak what you do at home) collide on one Wi-Fi network. The
+recurring research question for the whole deck is a single sentence: what are these
+devices doing, and who are they talking to? Cold-call the room — how many
+internet-connected devices in the place you sleep? Then how many can you name the
+last software update for? Almost nobody can answer both. Cross-reference the
+companion IoT breakout and the IoT debate that will run later this week. We've
+studied this problem for years; the answers keep getting worse, and this deck ends
+with state AGs treating the same findings as consumer-protection cases.
 :::
 
 ## Two Questions That Drive the Lecture
@@ -40,10 +45,16 @@ to?" We have studied this for years; the answers keep getting worse.
 :::
 
 ::: {.notes}
-This is the roadmap. First half: web-based attacks that cross the boundary from browser
-to LAN. Second half: measurement studies of what devices leak (IoT Inspector + the smart
-TV crawler). Tie back to earlier lectures — same-origin policy, third-party tracking,
-DNS — all reappear here in the IoT setting.
+This is the roadmap for the deck; keep it explicit. First half is web-based attacks
+that cross the boundary from browser to LAN — same-origin policy is the fence, DNS
+rebinding is how you jump it. Second half is measurement studies of what devices
+actually leak: IoT Inspector in the wild, plus the smart-TV crawler in the lab.
+Tie back to earlier lectures — same-origin policy from the web-security block,
+third-party tracking from Meeting 9, DNS from the networking basics — all reappear
+here in the IoT setting. The through-line: the browser security model becomes the
+IoT security model, and the ad-tech tracking economy becomes the IoT tracking
+economy. Preview the policy payoff on the last slide, which is the freshest research-
+to-enforcement arc in the course.
 :::
 
 ## Studying IoT Is Genuinely Hard
@@ -59,9 +70,15 @@ The core methodological problem: **how do you observe real devices in real homes
 without violating users' privacy?**
 
 ::: {.notes}
-Set up why measurement is the contribution. You cannot study the smart home the way you
-study the web (crawlers) or mobile (app stores + instrumentation). The two systems in
-this deck — IoT Inspector and the TV crawler — are answers to this observability problem.
+Methodological setup — this is why measurement is the whole contribution of the
+lecture. You cannot study the smart home the way you study the web (crawlers)
+or mobile (app stores plus instrumentation). Anecdotes don't generalize; Shodan
+only sees what's exposed to the public internet, and the interesting traffic is
+behind NAT. Add heterogeneity: Wi-Fi, Z-Wave, Zigbee, and BLE are all in the
+same room, none of them observable the same way. The two systems in this deck —
+IoT Inspector and the TV crawler — are direct answers to that observability
+problem. Ask: if you wanted to know what your neighbor's smart speaker was
+doing tonight, how would you find out without breaking any laws?
 :::
 
 # Part 1: Web-Based Attacks on Local Devices {.center}
@@ -77,10 +94,16 @@ That means the **classic web-attack toolkit applies to your living room**:
 - ...and then **talk to them directly**, as if it were the companion app
 
 ::: {.notes}
-This is the key insight of Acar, Huang, Li, Narayanan, Feamster (SIGCOMM IoT S&P
-Workshop 2018). Circa 2015 we bought the top devices on Amazon expecting hard reverse
-engineering — and found almost no encryption. The device's "API" is just an open web
-server. So the browser security model becomes the IoT security model.
+This is the key insight of Acar, Huang, Li, Narayanan, Feamster, "Web-based
+Attacks to Discover and Control Local IoT Devices," SIGCOMM 2018 Workshop on
+IoT Security and Privacy. Origin story worth telling out loud: circa 2015 the
+team bought the top-selling devices on Amazon expecting weeks of hard reverse
+engineering — and found almost no encryption and almost no authentication.
+The device's "API" is just an open web server on the local network. So the
+browser security model becomes the IoT security model, which means every web
+attack the class has already learned about applies inside your living room.
+Cold-call: which of the browser defenses you know about — SOP, CORS,
+HttpOnly cookies — would a device without any TLS actually get to rely on?
 :::
 
 ## Attack 1: Discover Local Devices from a Web Page {.smaller}
@@ -95,12 +118,18 @@ A page you visit runs JavaScript that fingerprints your LAN — without your kno
    leaks whether a cross-origin resource exists
 
 ::: {.notes}
-Walk the three steps slowly. Step 3 is the clever part: the same-origin policy is supposed
-to stop a page from learning anything about a cross-origin response (except images/CSS).
-The differing MediaError strings ("DEMUXER_ERROR..." vs "Format error") leak existence —
-a new side channel. Chrome paid a bug bounty for it. Note the defenses landed later:
-Safari timed the fetches out, Edge gave no error strings, so the attack didn't work there.
-This is the lateral, "stepping-stone" pattern: browser → LAN reconnaissance.
+Walk the three steps slowly; the payoff is understanding a new side channel.
+Step 1 uses WebRTC RTCPeerConnection to leak the victim's local IP through the
+SDP candidate — pure browser feature, no permission prompt. Step 2 is timing:
+TCP RST is fast (host up, port closed), timeout is slow (no host). Step 3 is
+the clever part: the same-origin policy is supposed to stop a page from
+learning anything about a cross-origin response (except images and CSS), but
+the differing HTML5 MediaError strings — "DEMUXER_ERROR..." versus "Format
+error" — leak existence. That's a new side channel the SOP is supposed to
+prevent. Chrome paid a bug bounty for it. Note the defenses that landed later:
+Safari timed the fetches out, Edge gave no error strings, so the attack didn't
+work there. This is the lateral, "stepping-stone" pattern: browser used as
+LAN reconnaissance tool with no malware installed on the victim's machine.
 :::
 
 ## Attack 2: DNS Rebinding to Control Devices {.smaller}
@@ -120,12 +149,18 @@ the same-origin policy with **DNS rebinding** (Dean, Felten, Wallach, IEEE S&P 1
 device, scan for nearby Wi-Fi networks.
 
 ::: {.notes}
-The attacker needs to control a domain, its web server, *and* its authoritative DNS. The
-trick is exploiting the gap between what the browser's SOP keys on (the hostname) and what
-the network actually routes to (the rebound IP). Emphasize: this is a 1996 attack that
-still works against 2018-era IoT because devices had no Host-header checks, no auth, no
-TLS. Defenses: DNS pinning, rejecting private IPs in public responses, Host allow-listing
-on the device.
+Original paper worth naming: Dean, Felten, and Wallach, "Java Security: From
+HotJava to Netscape and Beyond," IEEE S&P 1996 — the birth of the DNS
+rebinding attack. The attacker needs to control a domain, its web server, and
+its authoritative DNS. The trick is exploiting the gap between what the
+browser's SOP keys on (the hostname) and what the network actually routes to
+(the rebound IP). Emphasize: this is a 1996 attack that still worked against
+2018-era IoT because devices had no Host-header checks, no auth, and no TLS.
+Brannon Dorsey's 2018 disclosure demonstrated it on Google Home and
+Chromecast — arbitrary YouTube playback, reboot, Wi-Fi scanning. Fix classes
+to name: DNS pinning, rejecting private IPs in public DNS responses, Host
+header allow-listing on the device, and Chrome's Private Network Access. Ask
+the room: why did the same attack work 22 years after publication?
 :::
 
 ## Why These Attacks Matter
@@ -144,9 +179,15 @@ segmentation, Host-header validation, treating the LAN as **untrusted**.
 :::
 
 ::: {.notes}
-Connect to the Mirai story from the DDoS lecture: IoT is attractive *because* it is
-unpatched and unisolated. Here the takeaway is the "zero-trust LAN" idea — your home
-network should not be a soft interior behind a hard perimeter.
+Connect explicitly to the Mirai story from the DDoS lecture: the October 2016
+Dyn takedown showed that IoT is attractive to attackers precisely because it
+is unpatched and unisolated. Here the takeaway is the "zero-trust LAN" idea —
+your home network should not be a soft interior behind a hard perimeter,
+because a single malicious web page can be the perimeter breach. Segmentation,
+Host-header validation, and treating the LAN as untrusted are the defensive
+posture. Debate hook: consumers can't reasonably run their own segmentation —
+so does that shift the obligation to router vendors, ISPs, or device makers?
+That's the same debate that comes back on the last slide of this deck.
 :::
 
 # Part 2: Measuring the Smart Home at Scale {.center}
@@ -174,10 +215,17 @@ Publicly released **May 2019**; grew to **5,000+ users** and **50,000+ devices**
 (Huang, Apthorpe, Acar, Li, Feamster).
 
 ::: {.notes}
-This is the answer to the observability problem from earlier. The genius is aligning
-incentives: users get a privacy dashboard, researchers get ground-truth labeled data.
-20% of the 50k devices got user-supplied labels — that labeling is what makes the dataset
-scientifically valuable.
+This is the answer to the observability problem from earlier. Paper: Huang,
+Apthorpe, Acar, Li, Feamster, "IoT Inspector: Crowdsourcing Labeled Network
+Traffic from Smart Home Devices at Large Scale," PoPETS 2020 (arXiv 1909.09848).
+The genius is aligning incentives — users get a privacy dashboard, researchers
+get ground-truth labeled data. Roughly 20% of the 50,000 devices got
+user-supplied labels, and that labeling is what makes the dataset scientifically
+valuable. Publicly released May 2019; TechCrunch coverage in April 2019 helped
+seed adoption. Project now hosted at Princeton (inspector.cs.princeton.edu) and
+NYU (inspector.engineering.nyu.edu) under Danny Yuxing Huang. Recent extensions
+worth naming for follow-on reading: He et al. at EuroS&P 2024 on allowlists,
+and Kumar et al. at PoPETS 2024 on tracing IoT data endpoints.
 :::
 
 ## How It Sees the Traffic: ARP Spoofing
@@ -195,10 +243,16 @@ It also infers inbound data rates from **TCP ACK numbers** when it only sees one
 *Caveat:* some devices/routers reject spoofed ARP, so coverage isn't perfect.
 
 ::: {.notes}
-Same primitive an attacker would use — turned into a benign measurement tool on your own
-network. Good moment to recall ARP has no authentication (from the networking basics).
-Be explicit that this only works on your own LAN with consent; the consent + privacy
-design is what makes it ethical research.
+Same primitive an attacker would use — ARP spoofing, sometimes called
+man-in-the-middle — turned into a benign measurement tool on your own network.
+Good moment to recall from networking basics that ARP has no authentication;
+anyone on the LAN can announce whatever MAC-to-IP mapping they like. Inbound
+data rates are inferred from TCP ACK numbers when only one direction is
+observed. Be explicit that this only works on your own LAN with your consent;
+the consent, on-device design, and opt-in labeling are what make this ethical
+research rather than an attack. Ask: if the tool is technically indistinguishable
+from an attack, what makes it acceptable to run — is it the intent, the
+consent, or the design?
 :::
 
 ## What Devices Talk To {.smaller}
@@ -206,10 +260,16 @@ design is what makes it ethical research.
 ![A user's Roku, 20 minutes of traffic: every color is a different ad/tracking destination.](images/slide110_img182.png)
 
 ::: {.notes}
-This is the "aha" screenshot — Ira Flatow (Science Friday) ran it on his Roku, Oct 2019.
-A single streaming session fans out to dozens of tracking domains: doubleclick,
-scorecardresearch, conviva, etc. Point out the "no encryption / insecure encryption /
-weak encryption" view selectors at the top — the tool surfaces TLS hygiene too.
+This is the "aha" screenshot — Ira Flatow of Science Friday ran IoT Inspector
+on his Roku in October 2019 and got exactly this graph on the air. A single
+streaming session fans out to dozens of tracking domains: doubleclick,
+scorecardresearch, Conviva, and more. Point at the "no encryption / insecure
+encryption / weak encryption" view selectors at the top — the tool surfaces
+TLS hygiene alongside third-party contact. This one image is worth a full
+pause; students internalize that "my streaming stick" fans out to a whole
+tracking ecosystem faster from the picture than from the numbers on the next
+slide. Cold-call: which of these third-party domains do you recognize from
+the web-tracking lecture?
 :::
 
 ## Findings from 50,000 Devices
@@ -234,10 +294,14 @@ The dashboard turns invisible network behavior into something a non-expert can *
 gives researchers evidence that the problem is **systematic, not anecdotal**.
 
 ::: {.notes}
-The whole point of the "at scale" framing: anecdotes don't move policy, distributions do.
-"14.9% of smart TVs contact ad/tracking services" is the kind of claim you can put in
-front of a regulator. Segue: to know *what* leaks (not just *to whom*), you need to
-decrypt — which motivates the lab study.
+The whole point of the "at scale" framing: anecdotes don't move policy;
+distributions do. "14.9% of smart TVs contact ad/tracking services" is the
+kind of claim you can put in front of a regulator or a legislator. Note the
+security findings too: TLS 1.0 in production, one camera negotiating 13–21
+weak cipher suites, plenty of plaintext still in the wild. Segue: to know
+what leaks (not just to whom), you need to decrypt — which motivates the
+lab study on the next slide. Ask the room: which of these findings is a
+security problem, which is a privacy problem, and which is both? Most are both.
 :::
 
 # Part 3: What Your TV Tells On You {.center}
@@ -254,9 +318,16 @@ The lab study (Mohajeri Moghaddam et al., **ACM CCS 2019**) was the first **larg
 measurement of thousands of channels on these platforms.
 
 ::: {.notes}
-Contrast with the in-the-wild IoT Inspector study: here we go into the lab to *decrypt*
-and read content, trading scale for depth. Motivate why streaming is worth a whole study —
-it's the most-used IoT device in most homes and the ecosystem is wide open.
+Paper: Mohajeri Moghaddam, Acar, Yu, Li, Vallina-Rodriguez, Feamster,
+"Watching You Watch: The Tracking Ecosystem of Over-the-Top TV Streaming
+Devices," ACM CCS 2019 — the first large-scale measurement of thousands of
+channels on Roku and Amazon Fire TV. Contrast with the in-the-wild IoT
+Inspector study: here we go into the lab to decrypt and read content, trading
+scale for depth. Motivate why streaming is worth a whole study — it's the
+most-used IoT device in most homes and the ecosystem is wide open, with any
+channel able to bundle its own ad and tracking libraries. Ask: what's the
+equivalent of the app-store review process for a Roku channel? Effectively
+nothing, and that's why this study matters.
 :::
 
 ## Building a Smart-TV Crawler {.smaller}
@@ -273,11 +344,16 @@ So the crawler simulates a viewer end-to-end:
    and use **Frida** to defeat per-channel certificate pinning
 
 ::: {.notes}
-The engineering is the contribution: how do you "watch" 1,000 apps automatically when
-there's no Selenium for a TV? Audio detection as a playback oracle is the clever bit.
-Decryption is the hard part — pinning means you often can't read TLS; they rooted Fire TV
-and used Frida, and still only decrypted ≥1 connection from ~5% of channels on the harder
-platform. Be honest about that limitation.
+The engineering is the contribution: how do you watch a thousand apps
+automatically when there's no Selenium for a TV? Audio detection as a
+playback oracle is the clever bit — 96% accuracy, roughly 144 out of 150
+trials. Decryption is the hard part; certificate pinning means TLS is often
+unreadable to a MITM proxy. They rooted Fire TV and used Frida — the
+dynamic-instrumentation toolkit — to defeat per-channel certificate pinning,
+and still only decrypted at least one connection from about 5% of channels
+on the harder platform. Be honest about that limitation when you present the
+findings on the next slide. The methodological point matters: measurement
+studies live and die on how believable the coverage numbers are.
 :::
 
 ## Almost Every Channel Talks to a Known Tracker
@@ -290,10 +366,16 @@ platform. Be honest about that limitation.
 - Some channels leak **video titles** and **persistent IDs** to third parties
 
 ::: {.notes}
-Two things to draw out: (1) the same tracking oligopoly that runs the web has colonized
-your TV — these aren't exotic adversaries; (2) they also found *previously unknown*
-trackers (received the Ad ID / device serial, contacted by multiple channels, on no
-filter list) — meaning blocklists structurally miss new entrants.
+Two things to draw out. First: the same tracking oligopoly that runs the web
+has colonized your TV — DoubleClick, google-analytics, ScorecardResearch,
+amazon-adsystem. These aren't exotic adversaries; they're the same firms from
+last lecture. Second: the team also found previously unknown trackers —
+domains that received the Ad ID or device serial, were contacted by multiple
+independent channels, and appeared on no standard filter list. That last
+point is the structural finding: blocklists miss new entrants by construction,
+because they only know about what someone has already reported. Cross-reference
+back to the "list-based blocking" defense from Meeting 9 — same limitation,
+new setting. This is why measurement studies keep needing to be redone.
 :::
 
 ## Children's Privacy: COPPA Enters the Picture
@@ -305,14 +387,18 @@ leaking from **child-directed channels** — exactly the conduct that drew a rec
 enforcement action.
 
 ::: {.notes}
-September 2019: FTC + NY AG settled with Google/YouTube for $170M over COPPA — collecting
-persistent identifiers from viewers of child-directed channels without parental consent.
-The TV study found the same pattern on streaming platforms. Also cite the **FTC's May 2023
-Ring/Alexa settlements** (Amazon paid $31M total: $5.8M for Ring letting employees browse
-customer bedroom cameras; $25M for Alexa retaining children's voice recordings in
-violation of COPPA — Amazon barred from training models on data users deleted). This is
-the bridge to the privacy-law lectures: a technical measurement finding maps directly
-onto a legal regime (COPPA) and a concrete penalty.
+Anchor case: FTC and NY AG v. Google & YouTube, September 4, 2019 — a
+record $170M COPPA settlement for collecting persistent identifiers from
+viewers of child-directed channels without parental consent. The TV crawler
+found the same pattern on streaming platforms. Follow-on IoT precedent: on
+May 31, 2023 the FTC settled with Amazon over Ring and Alexa for $31M total —
+Ring paid $5.8M for letting employees browse customer bedroom cameras; Alexa
+paid $25M for indefinite retention of children's voice recordings, and Amazon
+was barred from training models on data users deleted. This is the bridge to
+the privacy-law lecture: a technical measurement finding maps directly onto a
+legal regime (COPPA) and a concrete penalty. Cross-reference the companion
+IoT breakout. Debate hook: is a $170M fine a deterrent, a cost of doing
+business, or a subsidy for a regulator?
 :::
 
 ## The Opt-Outs Don't Really Work
@@ -331,10 +417,16 @@ The measurement verdict: **largely ineffective.**
 **regulation and platform-level defaults**, not buried toggles.
 
 ::: {.notes}
-This is the policy punchline of the whole deck. The honest finding is that the controls
-users are given are theater. That hands you the debate question: should the burden be on
-the consumer (notice-and-choice) or on the platform/regulator (defaults + enforcement)?
-Tie to the privacy-law unit.
+This is the policy punchline of the whole deck. The honest finding is that
+the controls users are given — Roku's "Limit Ad Tracking" and Amazon's "No
+interest-based ads" — are theater. Channels still shared persistent IDs even
+with the toggles on; Pi-hole DNS blocking crashes some channels, and
+previously unknown trackers evade every standard filter list. That hands you
+the debate question: should the burden be on the consumer (notice-and-choice)
+or on the platform/regulator (defaults plus enforcement)? Cross-reference the
+IoT debate directly — this is the framing question. Tie to the privacy-law
+unit: this is exactly the argument the CCPA GPC requirement was designed to
+answer. Individual self-help has sharp limits when the platform is hostile.
 :::
 
 ## A 2026 Vignette: States Go After Your TV {.smaller}
@@ -354,11 +446,18 @@ This is the same finding the **2019** TV-crawler study made — now driving **st
 enforcement** and **new statutes**.
 
 ::: {.notes}
-This is the freshest hook and the strongest "research-to-policy" arc in the course: an
-academic measurement result (your TV watches you) became, six years later, a wave of AG
-lawsuits and the first ACR consent law. Recall the older Vizio $2.2M FTC/NJ settlement
-(2017) as the precedent. Ask: why did it take state AGs, not the FTC, this time? Connect
-to the state-vs-federal privacy patchwork from the privacy-law lecture.
+This is the freshest hook and the strongest research-to-policy arc in the
+course: an academic measurement result (your TV watches you) became, six years
+later, a wave of AG lawsuits and the first ACR consent law. Timeline to say
+out loud: Texas AG Ken Paxton sued Samsung, Sony, LG, Hisense, and TCL on
+December 15, 2025; a court issued the first-ever TRO against a TV maker
+(Hisense) two days later; Samsung settled February 26, 2026 with express
+consent and no fine; LG settled May 11, 2026 with an added no-transfer-to-CCP
+clause; Sony, Hisense, and TCL are still fighting as of mid-2026. Kentucky
+passed the first ACR-specific consent statute. The precedent to recall is
+the Vizio $2.2M FTC and NJ settlement, February 2017. Ask: why did it take
+state AGs, not the FTC, this time? Connect to the state-vs-federal privacy
+patchwork you'll see in Meeting 11.
 :::
 
 ## Putting It Together {.smaller}
@@ -382,16 +481,20 @@ to the state-vs-federal privacy patchwork from the privacy-law lecture.
 in the lab) turn anecdotes into evidence — and evidence is what moves **regulators**.
 
 ::: {.notes}
-Land the three threads: (1) the LAN must be treated as untrusted; (2) the tracking economy
-followed us from web → mobile → home → TV; (3) the contribution that lets you say anything
-policy-relevant is *measurement at scale*. Preview the privacy-law and consumer-protection
-lectures, where these findings become legal arguments. Regulatory horizon worth naming:
-the **EU Cyber Resilience Act** (in force Dec 10, 2024; reporting duties from
-**Sept 11, 2026**; full obligations Dec 11, 2027) classes connected toys as Class I
-"important products with digital elements"; the **EU AI Act** brings AI-enabled toys under
-its high-risk regime (application dates now Aug 2, 2027 / Dec 2, 2027 after the June 2026
-"Digital Omnibus on AI"). U.S. side: the **U.S. Cyber Trust Mark** is a voluntary label,
-not a mandate.
+Land the three threads. First: the LAN must be treated as untrusted, because a
+web page can discover and control devices on it. Second: the tracking economy
+followed us from web to mobile to home to TV, and the same handful of firms
+show up at every layer. Third: the contribution that lets you say anything
+policy-relevant is measurement at scale. Preview the privacy-law and
+consumer-protection lectures where these findings become legal arguments.
+Regulatory horizon worth naming: the EU Cyber Resilience Act came into force
+December 10, 2024, with reporting duties from September 11, 2026 and full
+obligations December 11, 2027; connected toys are Class I "important products
+with digital elements." The EU AI Act, as amended by the June 2026 "Digital
+Omnibus on AI," brings AI-enabled toys under its high-risk regime with
+application dates now August 2, 2027 and December 2, 2027. U.S. side: the
+U.S. Cyber Trust Mark is a voluntary label, not a mandate. Cross-reference
+the IoT debate as the discussion prompt for this arc.
 :::
 
 # Discussion {.center}
@@ -399,3 +502,17 @@ not a mandate.
 **Thought question:** you can't make your smart TV stop running ACR, and the opt-out
 doesn't work. Where *should* the obligation sit — the **device maker**, the **platform**,
 the **ISP/router**, or the **regulator**? Defend your answer.
+
+::: {.notes}
+Frame this as the debate seed for the IoT breakout later this week. Each of the
+four candidate loci has a real argument. Device makers know the hardware and set
+the defaults, but consumers can't credibly discipline them through market choice.
+Platforms sit closest to the tracking, but the platform is often also the ad
+seller. ISPs and router vendors could segment the LAN, but that shifts cost to
+consumers who didn't ask for it. Regulators can set floors — see the Texas AG
+Samsung and LG settlements from earlier in the deck — but move slowly and
+patchwork. Encourage the class to defend one and steelman the strongest
+objection. The purpose of the exercise is to sit with the fact that there is
+no obviously right answer, only a set of trade-offs — which is exactly why the
+policy landscape looks so uneven right now.
+:::

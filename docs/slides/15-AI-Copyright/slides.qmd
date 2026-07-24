@@ -72,8 +72,10 @@ works, ingested into the pipeline. That copy is what plaintiffs sue over.
 For non-CS students: traditional programming is a recipe; ML is learning to cook by
 tasting thousands of dishes. The point for this course is narrow and crucial — to learn
 the patterns, the system must first *reproduce* the works into the training pipeline.
-Whether that intermediate copy is fair use is the whole fight. Connect to the memorization
-risk introduced in the AI-Privacy lecture.
+Whether that intermediate copy is fair use is the whole fight. Cold-call: if I read a
+novel to learn how to write, am I "copying" it? Now scale that to seven million books.
+Connect to the memorization risk introduced in the AI-Privacy lecture (13) — the same
+copy that enables learning is what plaintiffs point to as infringement.
 :::
 
 ## What Is in the Training Data? {.smaller}
@@ -100,10 +102,13 @@ The scale dwarfs prior cases: Oracle was **11,500 lines of code**; a frontier mo
 trains on a meaningful fraction of the **entire public internet**.
 
 ::: {.notes}
-Anchor scale against Oracle from last lecture: 11,500 lines vs. ~the whole web. Books3
-is the "smoking gun" plaintiffs lean on — it came from a pirate site (Bibliotik), so
-training on it bundles a piracy problem with the fair-use problem (exactly the Anthropic
-split). Note Books3 was pulled offline in 2023, but models trained on it persist.
+Anchor scale against Oracle from last lecture: 11,500 lines vs. roughly the whole web.
+Books3 is the smoking gun plaintiffs lean on — about 196,000 titles scraped from the
+pirate library Bibliotik, then bundled into The Pile. Training on it fuses a piracy
+problem with the fair-use problem (exactly the Anthropic split). Books3 was pulled
+offline in 2023 but models trained on it persist. Common Crawl and LAION-5B are the
+scale anchors on the web side. Cold-call: how would you audit whether a given model
+saw your work? That's the transparency lever the EU AI Act is trying to pull.
 :::
 
 ## Does Scale Change the Fair-Use Answer? {.smaller}
@@ -121,11 +126,14 @@ Run the **four factors** against AI training (you already know the test):
 output* (which may substitute)?
 
 ::: {.notes}
-This is the slide to spend time on — it is the midterm drill in table form. Have them
-argue each cell both ways. Factor 1 is doing most of the work in the rulings (Anthropic,
-Meta leaned transformative; Ross leaned commercial-competition). Factor 4 is the authors'
-strongest card and the angle the Anthropic court flagged as potentially most persuasive:
-a model can *flood the market* with substitutes.
+Spend time here — this is the midterm drill in table form. Have them argue each cell
+both ways. Factor 1 (purpose) is doing most of the work in the rulings — Anthropic and
+Meta leaned transformative, Ross leaned commercial competition. Factor 4 (market) is
+the authors' strongest card and the angle Judge Chhabria flagged in *Kadrey* as
+potentially most persuasive: a model can flood the market with substitutes even without
+copying any single work verbatim. Cross-reference: this is exactly the four-factor test
+you drilled in Lecture 14 on *Google v. Oracle*. Cold-call one student per factor and
+make them steel-man both sides before you reveal how the court actually ruled.
 :::
 
 ## The Lawsuit Landscape {.smaller}
@@ -143,12 +151,16 @@ a model can *flood the market* with substitutes.
 The plaintiffs span **every creative sector** — text, news, images, legal content.
 
 ::: {.notes}
-Don't read the whole table — pick two contrasts. (1) Anthropic vs. Ross: same year, both
-N.D. Cal./D. Del., opposite outcomes, because Ross built a *direct competitor* to the
-source. (2) Getty's evidence is uniquely vivid: generated images carried a garbled "Getty
-Images" watermark — near-direct proof the training set was copied. The Meta and Anthropic
-training wins are district-court, not appellate; cases are consolidating and several will
-likely head up on appeal.
+Don't read the whole table — pick two contrasts. (1) Anthropic vs. Ross: same year,
+N.D. Cal. vs. D. Del., opposite outcomes because Ross built a direct competitor to the
+Westlaw source. (2) Getty's evidence is uniquely vivid: generated images carried a
+garbled "Getty Images" watermark — near-direct proof the training set was copied. The
+UK High Court still rejected the core copyright claims on Nov 4, 2025 and awarded only
+a narrow trademark win. The Meta and Anthropic training wins are district-court, not
+appellate; consolidation and appeals are inevitable. Cold-call: which case would you
+watch to predict the doctrine — the appellate Third Circuit *Ross* argument (June 11,
+2026), or the Andersen jury trial (Sept 8, 2026)? Debate hook for the moderation-day
+setup: does jurisdiction shopping between Japan, EU, UK, US become the real rule?
 :::
 
 ## NYT v. OpenAI: The Regurgitation Fight {.smaller}
@@ -200,12 +212,15 @@ from it.
 - Verbatim output is **direct market substitution** — and a *separate* infringement
 
 ::: {.notes}
-This is the through-line from the AI-Privacy lecture (memorization of training data) —
-now the same phenomenon is the copyright plaintiffs' best weapon. Contrast with Google
-Books, which was *designed* to never show the full text (snippets only); a generative
-model *can* emit full passages, even if rarely. The open legal question: is *any*
-memorization fatal, or is de minimis/adversarially-induced regurgitation excused? That is
-exactly what NYT v. OpenAI is testing.
+Through-line from the AI-Privacy lecture — the same memorization phenomenon is now the
+copyright plaintiffs' best weapon. Canonical extraction work: Carlini et al., *Extracting
+Training Data from Large Language Models* (USENIX Security 2021) and *Quantifying
+Memorization Across Neural Language Models* (ICLR 2023). Larger models memorize more,
+and duplicated or distinctive text is most extractable. Contrast with Google Books,
+which was designed to never show full text — snippets only, by design. A generative
+model can emit full passages even if rarely. Open legal question: is any memorization
+fatal, or is adversarially-induced regurgitation excused? Exactly what NYT v. OpenAI
+is testing right now.
 :::
 
 ## The "AI Learns Like a Human" Analogy {.smaller}
@@ -262,12 +277,14 @@ training destroy it?**
 is substantially similar** to their work — shifting the fight from *input* to *output*.
 
 ::: {.notes}
-Campbell v. Acuff-Rose: "copyright holders may not preempt the exploitation of
-transformative markets." AI companies use this; rights holders counter that the flood of
-deals (AP, FT, Reddit, etc.) shows a real, takeable market. The 2026 doctrinal shift is
-worth flagging as the freshest analytic move: even where training is deemed fair use,
-plaintiffs may still win on *outputs* that mirror specific works. That is where the next
-wave of litigation is heading.
+*Campbell v. Acuff-Rose* (1994, the 2 Live Crew "Pretty Woman" parody case) is the line
+AI companies quote: "copyright holders may not preempt the exploitation of transformative
+markets." Rights holders counter that the flood of deals — AP, Axel Springer, the FT,
+Reddit — proves a real, takeable market exists. Flag the 2026 doctrinal shift as the
+freshest analytic move: even where training is deemed fair use, plaintiffs may still
+win on outputs that mirror specific works. That is where the next wave of litigation
+is heading. Debate hook: if a licensing market exists but only the incumbents can
+afford it, does the fair-use exception become a competition-policy problem?
 :::
 
 ## Who Owns the *Output*? {.smaller}
@@ -285,12 +302,15 @@ So: you can't copyright what the model made for you, but you *can* copyright the
 human work you wrap around it.
 
 ::: {.notes}
-This is the ownership half of the lecture title and a common student question ("if I make
-an AI image, do I own it?"). Answer: not the raw output; possibly your creative additions.
-This is the same human-authorship line from the older Thaler "monkey selfie"-style
-reasoning, now formalized for generative AI. Tie it forward: this matters for whether
-AI-assisted student/portfolio work is protectable, and for downstream liability if an
-output infringes.
+This is the ownership half of the lecture title and the most common student question:
+"If I make an AI image, do I own it?" Answer: not the raw output; possibly your creative
+additions. Same human-authorship line the Copyright Office has held for decades (Thaler,
+monkey-selfie reasoning), now formalized for generative AI in the Jan 29, 2025 Part 2
+report. Cross-reference the syllabus's portfolio expectations: AI-assisted work still
+needs a defensible human-authorship story if you want it protected. Cold-call: what
+if you generate 200 images and pick one — does that selection alone confer authorship?
+The Copyright Office says maybe, case by case. Also flag the downstream side: if your
+prompt produces an infringing image, who is liable — you, or the platform?
 :::
 
 ## International Approaches Diverge {.smaller}
@@ -336,11 +356,15 @@ Every option faces the same hard problems: **valuation, attribution, retroactivi
 enforcement.**
 
 ::: {.notes}
-The deep tension: requiring opt-in protects creators but may make frontier training
-infeasible at scale (and favors incumbents who can afford licenses); opt-out maximizes
-data but offloads the burden onto creators. Watermarking has a retroactivity problem
-(existing works aren't marked) and an arms-race problem (marks get stripped). Mention
-UChicago's own Glaze/Nightshade as creator-side technical self-defense — good local hook.
+Deep tension: opt-in protects creators but may make frontier training infeasible at
+scale, and favors incumbents who can afford blanket licenses; opt-out maximizes data
+but offloads the burden onto individual creators. Watermarking has a retroactivity
+problem (existing works aren't marked) and an arms-race problem (marks get stripped).
+UChicago local hook: Ben Zhao's lab shipped Glaze and Nightshade as creator-side
+technical self-defense — poison the training set from the artist's side. Also mention
+Spawning's *Have I Been Trained?* opt-out database. Every option hits the same four
+hard problems: valuation, attribution, retroactivity, enforcement. Debate hook: pick
+your favorite lever and defend it against the other three.
 :::
 
 ## Activity: Argue the Case Both Ways {.smaller}

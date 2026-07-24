@@ -15,9 +15,16 @@ whether AI companies can train on your books.
 ::: {.notes}
 Open with the framing: copyright feels like an entertainment-industry topic, but for
 this class it is a tech-policy topic. The through-line of the lecture is one idea —
-*transformative use* — and one judge — Alsup — who shows up in both the Oracle API
-case and the 2025 Anthropic AI case. Tell students the four-factor test is a near-
-certain midterm question (per agenda).
+*transformative use* — and one judge — Alsup of the Northern District of California —
+who shows up in both the Oracle API case in 2012 and the Bartz v. Anthropic AI case
+in 2025. The constitutional hook is Article I, Section 8, Clause 8: "to promote the
+progress of science and useful arts." That utilitarian framing (progress, not
+authors' natural rights) matters — it is why fair use exists at all. Tell students
+now that the four-factor fair-use test is a near-certain midterm question; per the
+agenda the professor "put real money" on a for-versus-against fair-use case-study
+prompt. Cold-call: give me one thing you have copied this week that was arguably
+copyrighted. Ask "was that fair use?" and watch the class realize they cannot
+answer.
 :::
 
 ## A 2026 Vignette: The Anthropic Decision {.smaller}
@@ -36,13 +43,20 @@ Same doctrine, opposite outcomes — **how you acquire** the work matters as muc
 **what you do** with it.
 
 ::: {.notes}
-Freshest hook. Two load-bearing facts, both verified: (1) the split ruling — training
-transformative/fair use, pirated-acquisition not fair use; (2) the ~$1.5B settlement
-filed Sept 2025 and cruising through its May 14, 2026 fairness hearing (per Publishers
-Weekly, Authors Alliance). Note the irony: Alsup is the same judge (and former
-programmer) who first ruled APIs uncopyrightable in Oracle. Don't overstate — the
-settlement resolved the piracy liability; the fair-use-for-training holding stands as
-district-court precedent, not yet Supreme Court law.
+Freshest hook of the deck. Three load-bearing facts, all verified. First: on June 23,
+2025, Judge William Alsup ruled that training an LLM on books is "exceedingly
+transformative" and therefore fair use, but that downloading 7+ million pirated books
+to build a permanent library was not fair use. Second: in September 2025 Anthropic
+settled for roughly $1.5B, covering about 482,460 works at roughly $3,000/work —
+the largest copyright settlement in US history. Third: on May 14, 2026, Judge
+Martínez-Olguín took the fairness hearing under submission; claims rate stood at
+92.77% (447,576 of 482,460 works), about 53 objections, minuscule opt-out rate;
+questions focused on attorneys' fees. Initial payments are estimated for August 2026;
+Anthropic funds in four installments through September 2027. Alsup irony worth naming:
+he is the same former-programmer judge who first ruled APIs uncopyrightable in Oracle
+in 2012. Do not overstate — the settlement resolved *piracy* liability; the
+*training-is-fair-use* holding is district-court precedent, not Supreme Court law.
+Cold-call: why did Anthropic settle instead of appealing the piracy holding?
 :::
 
 ## What Copyright Protects
@@ -66,9 +80,17 @@ The line is **idea vs. expression**. You can't copyright *how* to sort a list �
 only a particular *written* implementation of it.
 
 ::: {.notes}
-Drive the idea/expression dichotomy hard — it is the root of the whole API debate.
-Feist v. Rural: phone-book listings are facts, not copyrightable. Code is treated as
-expression of an implementation; that is exactly what made Oracle plausible.
+Drive the idea/expression dichotomy hard — it is the root of the entire API debate
+later in the deck. Anchor case: Feist v. Rural Telephone (1991), where the Supreme
+Court held that alphabetical phone-book listings are facts, not copyrightable, even
+though the phone company invested labor in compiling them — "sweat of the brow"
+does not create copyright. Software became copyrightable expression with the
+Computer Software Copyright Act of 1980; before that its status was contested.
+Because code is treated as expression *of* an implementation of a system, not as
+the system itself, Oracle's argument that copying API declarations was infringement
+was at least plausible. Cold-call: is a recipe copyrightable? Answer: the list of
+ingredients is not (facts) but a distinctive prose narrative around it can be. Same
+line runs through everything today.
 :::
 
 ## The Rights a Holder Controls
@@ -85,10 +107,18 @@ A copyright is really a **bundle of exclusive rights**:
 these without permission — and at internet scale, damages reach the **billions**.
 
 ::: {.notes}
-Each right can be licensed separately — central to the entertainment business. Buying a
-film on iTunes licenses the *display to yourself*, not reproduction or public
-performance. Scale point: record-company suits against ISPs cover millions of works;
-statutory damages stack into billion-dollar jury verdicts.
+The exclusive rights are enumerated at 17 U.S.C. §106 — reproduction, derivative
+works, distribution, public performance, public display, digital audio transmission.
+Each is separately licensable, which is the whole architecture of the entertainment
+business. Buying a film on iTunes licenses display-to-yourself only; you cannot
+project it at a paid screening or make copies for friends. Scale point: statutory
+damages under §504 run $750 to $150,000 per work, and record-company suits against
+ISPs cover millions of works — that is how per-work damages stack into billion-dollar
+jury verdicts. Duration is currently life of the author plus 70 years, extended by
+the 1998 Copyright Term Extension Act — the "Mickey Mouse Protection Act" — passed
+just as Steamboat Willie was about to enter the public domain. Cold-call: does
+"life+70" plausibly promote progress? Debate hook — that is the utilitarian
+question the Constitution's copyright clause actually asks.
 :::
 
 ## Fair Use: An Affirmative Defense {.smaller}
@@ -113,10 +143,17 @@ Decided **case-by-case** — there are **no bright-line rules** (no "10% rule," 
 the artist is not permission).
 
 ::: {.notes}
-Emphasize "affirmative defense": you concede a copy was made, then argue it was fair.
-Common student misconceptions to pre-empt: crediting ≠ permission; "I changed 10%" is
-not a thing; Creative Commons is a *license*, not a fair-use exception. Examples from
-agenda: showing a reading in class, photocopying excerpts (not whole books).
+Emphasize the phrase "affirmative defense" — you concede a copy was made, and then
+argue it was fair. Codified at 17 U.S.C. §107. Pre-empt the common student
+misconceptions right now, before the four-factor slide, or you will fight them all
+class: crediting the artist is not permission; "I only used 10%" is not a rule that
+exists anywhere in the statute; Creative Commons is a *license* system, not a fair-use
+exception (always check the specific license terms — CC BY-NC is very different from
+CC0). "AI-generated content" is a separate question — the U.S. Copyright Office
+position is that human authorship is required. Everyday examples from the agenda:
+showing a reading in class (usually fair), photocopying excerpts (often fair),
+photocopying whole books for classroom distribution (usually not). Reference
+resources are the Stanford Fair Use site and the U.S. Copyright Office Fair Use Index.
 :::
 
 ## The Four-Factor Test {.smaller}
@@ -136,9 +173,17 @@ use given an AI case study.
 :::
 
 ::: {.notes}
-Per the agenda this is the single highest-probability midterm item — the professor "put
-real money" on a fair-use case-study question. Have them practice articulating both
-sides. Read the §107 statutory text aloud if time allows.
+Per the agenda this is the single highest-probability midterm item — the professor
+"put real money" on a fair-use case-study question. Have students practice
+articulating both sides for and against fair use on the same set of facts. Read the
+four-clause §107 statutory text aloud if time allows — it is short. Empirical anchor:
+Barton Beebe's "An Empirical Study of U.S. Copyright Fair Use Opinions, 1978-2005"
+(156 U. Pa. L. Rev. 549) showed Factor 1 (purpose and character) is by far the
+strongest predictor of case outcome — so weight your midterm-prep time accordingly.
+Courts are supposed to weigh all four together with no single factor decisive, but
+transformativeness bends the whole analysis in practice. Cold-call: which factor do
+*you* think matters most for AI training on books? Answer usually splits — that
+split is exactly the current litigation.
 :::
 
 ## Factor 1: Purpose and Character
@@ -166,10 +211,18 @@ sides. Read the §107 statutory text aloud if time allows.
 track (Beastie Boys) = transformative.
 
 ::: {.notes}
-Transformativeness came from Campbell v. Acuff-Rose (1994, 2 Live Crew parody). Souter:
-copyright's goal "is generally furthered by the creation of transformative works." This
-is the factor AI cases live or die on — courts are calling LLM training transformative
-because the model learns patterns to make something new, not to regurgitate the novel.
+Transformativeness as a doctrine came from Campbell v. Acuff-Rose Music, 510 U.S. 569
+(1994) — the 2 Live Crew "Pretty Woman" parody case. Justice Souter for a unanimous
+Court: copyright's goal "is generally furthered by the creation of transformative
+works." Give the music intuition — replaying a song verbatim is not transformative;
+sampling it into a new track (Beastie Boys, De La Soul) is. This is the factor that
+AI training cases live or die on. Courts calling LLM training transformative reason
+that the model learns statistical patterns to produce something new, not to regurgitate
+the novel. Plaintiffs push back on exactly this — memorization examples from Carlini
+et al. show the model can regurgitate. Cold-call: is Napster's user copying a song
+transformative? Answer: no, same use (listening) — that is the Napster/Grokster line.
+Contrast with Google Books scanning, which the Second Circuit called highly
+transformative in Authors Guild v. Google (2015).
 :::
 
 ## Factor 2: Nature of the Work
@@ -185,10 +238,18 @@ Verbatim copying tends to cut **against** fair use; unpublished works get **stro
 protection.
 
 ::: {.notes}
-This is the factor that helped Google: declaring code is functional, close to an
-unprotectable system. Feist again — facts aren't copyrightable at all. Note: in AI
-training, plaintiffs argue creative works (novels) sit at the strong end, so factor 2
-leans their way even when factor 1 favors the AI company.
+Factor 2 asks what kind of work was copied — the closer to pure fact or function,
+the weaker the protection. This is the factor that helped Google in Oracle:
+declaring code is functional, close to an unprotectable system. Feist v. Rural
+again — facts are not copyrightable at all. Unpublished works get stronger
+protection, which is why Harper & Row v. Nation Enterprises (1985) cut against
+fair use — Nation Magazine had leaked Ford's forthcoming memoir. In AI training,
+plaintiffs argue novels sit at the strong-creative end of the spectrum, so factor 2
+leans their way even when factor 1 favors the AI company; that partial-win pattern
+is why courts have been splitting the difference so often. Cold-call: does a
+functional/creative label bias the whole test toward defendants who copy code and
+plaintiffs who write novels? Answer usually: yes, and it is coherent with the
+Constitution's "progress of science and useful arts" goal.
 :::
 
 ## Factor 3: Amount and Substantiality
@@ -203,10 +264,17 @@ thumbnails). Conversely, **300 words** out of a 200,000-word memoir was *not* fa
 in *Harper & Row* — because it was the heart.
 
 ::: {.notes}
-Perfect 10 v. Amazon: entire thumbnail images copied, still fair use because
-transformative (search vs. aesthetic). Harper & Row: tiny excerpt, but the most
-newsworthy passage. Principle: amount is judged *relative to the transformative
-purpose* — copy only what you need.
+Two questions on factor 3, not one: how much was copied, and was it the "heart" of
+the work? Anchor cases. Perfect 10 v. Amazon (9th Cir. 2007): Google copied entire
+thumbnail images and it was still fair use because the use — image search — was
+transformative and the thumbnails were only as much as the search purpose required.
+Harper & Row v. Nation Enterprises, 471 U.S. 539 (1985): ~300 words out of a
+200,000-word Gerald Ford memoir, and it was NOT fair use because Nation Magazine
+took the newsworthy pardon-of-Nixon passage — the heart of the book. Principle:
+amount is judged *relative to the transformative purpose* — copy only what you need.
+AI training tension: models ingest entire books, but arguably need every token to
+learn distributional statistics. Cold-call: is that closer to Perfect 10 or Harper
+& Row?
 :::
 
 ## Factor 4: Effect on the Market
@@ -223,10 +291,19 @@ seconds — you're putting me out of business."*
 :::
 
 ::: {.notes}
-Sony v. Universal (Betamax, 1984): time-shifting TV didn't harm the market — fair use,
-and the home-video market then exploded. In AI litigation, market harm is the authors'
-strongest factor; recent rulings, though, have leaned more on transformativeness
-(factor 1) than on market effect.
+Factor 4 asks about market substitution — direct substitution, licensing markets,
+derivative-works markets, and potential future markets. Anchor case: Sony v. Universal
+City Studios, 464 U.S. 417 (1984) — the Betamax case. Home time-shifting of TV
+broadcasts was fair use; the home-video market then exploded, which vindicated the
+ruling from a progress-of-the-useful-arts point of view. In AI litigation, market
+harm is the authors' strongest factor. Load-bearing recent development: Judge
+Chhabria's "market dilution" theory in Kadrey v. Meta (June 25, 2025) — LLMs can
+flood the market with substitutable content, and even if any single generated
+romance novel does not compete with any single Sarah Silverman work, the aggregate
+effect is dilutive. That is the direction future plaintiffs are being pushed. Recent
+rulings have leaned more on transformativeness than on market effect, but Chhabria
+warned "in most cases the answer will likely be [that AI training is illegal]" —
+that quote lands.
 :::
 
 # Case Study: Google v. Oracle {.center}
@@ -242,9 +319,18 @@ The $9 billion fight over **11,500 lines of code**.
 - Oracle demanded **~$9 billion**
 
 ::: {.notes}
-Set the stakes. The dispute is narrow but the principle is huge: can you copyright the
-*interface* that lets software interoperate? Oracle's theory would let a company own a
-standard everyone else must license.
+Set the stakes and the timeline. Java was created by Sun Microsystems in 1995;
+Oracle acquired Sun in 2010 and immediately sued Google over Android, which had
+launched in 2007 and reused Java's API declarations so developers could reuse their
+Java skills. Google copied ~11,500 lines of declaring code — about 0.4% of the Java
+API — and wrote all of its own implementing code. Oracle sought approximately
+$9 billion in damages. The dispute is narrow but the principle is huge: can you
+copyright the *interface* that lets software interoperate? Oracle's theory would
+let a company own a de facto standard that everyone else must license — which is
+why Microsoft, IBM, Mozilla, and the software-industry amici lined up on Google's
+side. Full opinion is Google LLC v. Oracle America, 593 U.S. ___ (2021). Cold-call:
+if Oracle had won, what would that do to open-source software that reimplements
+Java, POSIX, or the Windows API?
 :::
 
 ## Declaring Code vs. Implementing Code {.smaller}
@@ -278,10 +364,18 @@ public static int max(int a, int b) {
 their skill — not copying anyone's prose.
 
 ::: {.notes}
-Restaurant analogy for non-CS students: declaring code is the menu listing, implementing
-code is the kitchen recipe. Google reused the menu so Java developers wouldn't have to
-relearn everything, and wrote its own kitchen. Justice Breyer leaned on exactly this
-intuition.
+Give the restaurant analogy explicitly for the non-CS students in the room:
+declaring code is the menu listing that tells you what's available and what to ask
+for; implementing code is the kitchen recipe that produces the dish. Google reused
+Sun's menu so that Java developers would not have to relearn how to order, and then
+wrote its own kitchen from scratch. Justice Breyer leaned on exactly this intuition
+in the majority opinion. The briefs invoked the QWERTY keyboard analogy too — you
+can copy the layout so typists reuse their skill without copying anyone's prose.
+Note that "declaring code" is a term of art that Alsup, himself a programmer,
+introduced at the district-court level; the doctrinal line between declaring and
+implementing code is what let the Court decide fair use without deciding
+copyrightability. Cold-call: is the QWERTY analogy fair? Or does it minimize the
+creative choices in API design?
 :::
 
 ## The Eleven-Year Journey {.smaller}
@@ -297,10 +391,18 @@ intuition.
 The Court **assumed** APIs were copyrightable and decided the case **on fair use**.
 
 ::: {.notes}
-The procedural ping-pong is the point: even expert judges disagreed four times over 11
-years. Judge Alsup — a programmer — sided with Google twice. Breyer's move was to sidestep
-the copyrightability question entirely and resolve it on fair use, which is why the case
-is precedent about *fair use of functional code*, not about whether APIs are copyrightable.
+The procedural ping-pong is the point — even expert judges disagreed four times over
+eleven years. Judge Alsup, a former programmer, sided with Google twice (2012 on
+copyrightability, 2016 jury verdict on fair use). The Federal Circuit reversed him
+both times. Justice Breyer's move in 2021 was to *assume* APIs are copyrightable and
+decide the case on fair use — which is why Google v. Oracle is precedent about *fair
+use of functional code*, not about whether APIs are copyrightable. The 6-2 majority
+(Barrett did not participate) with Alito and Thomas in dissent is worth naming. Read
+the EFF and Ars Technica plain-language summaries as background if students want
+them. Cold-call: what does it say about copyright doctrine that four sets of
+sophisticated judges reached different answers on the same facts? Answer usually
+lands on: the four-factor test is inherently indeterminate at the frontier — which
+is why the AI cases are so hard to predict.
 :::
 
 ## How the Court Applied the Four Factors {.smaller}
@@ -316,10 +418,18 @@ is precedent about *fair use of functional code*, not about whether APIs are cop
 > basic constitutional objective of copyright itself." — *Breyer, J.*
 
 ::: {.notes}
-Walk each cell. The unifying thread is factor 1 driving the rest: because the use was
-transformative, the amount is read generously and the market harm is discounted (Oracle's
-lost license fee isn't cognizable harm if the use is transformative). Alito/Thomas dissent:
-this weakens copyright's incentive to create. Worth noting the dissent for balance.
+Walk each cell of the table. The unifying thread is Factor 1 driving the rest —
+because the use was highly transformative (new platform, new developers, new
+market), the amount is read generously (only what compatibility required), and
+Oracle's lost license fee is not cognizable market harm (blocking would harm the
+public's interest in progress). This is exactly the Beebe empirical finding at work:
+Factor 1 predicts the rest. Alito and Thomas dissented (pp. 53-63 of the opinion),
+arguing this weakens copyright's incentive to create. Name the dissent for balance —
+some students will find it persuasive and it is worth engaging. Pull the Breyer
+quote from the slide: "Google's reimplementation... was consistent with that
+creative progress that is the basic constitutional objective of copyright itself."
+That is a utilitarian, not a natural-rights, framing — and it is the same framing
+the AI-training defendants will invoke in Bartz and Kadrey.
 :::
 
 # From Code to Content: Enforcement at Scale {.center}
@@ -338,9 +448,17 @@ The vast majority of YouTube copyright actions run through **Content ID**, not t
 DMCA process — billions of dollars routed to rights holders.
 
 ::: {.notes}
-Content ID is private ordering: YouTube built a faster, broader system than the law
-requires because manual review at this scale is impossible. The trade-off: it operates
-*above* the legal floor, so it sweeps in things the law would protect.
+Content ID is *private ordering* — YouTube built a system faster and broader than
+the DMCA requires because manual legal review at internet scale is impossible.
+Audio uses spectral hashing; video uses perceptual hashing; 100M+ reference files
+in the database. The vast majority of YouTube copyright *actions* run through
+Content ID, not the DMCA — that means the legal fair-use analysis you just learned
+governs a tiny fraction of what actually happens on the platform. Trade-off:
+Content ID operates *above* the legal floor, so it sweeps in things the law would
+protect. That is the tension of scale versus rights. Cold-call: if 500 hours of
+video are uploaded to YouTube every minute, is there any alternative to automated
+matching? Answer usually: no, but the terms of the automation should include due
+process the current system lacks. That is the setup for the next two slides.
 :::
 
 ## The DMCA §512 Safe Harbor {.smaller}
@@ -357,10 +475,18 @@ acts as judge in the early rounds, and **repeat strikes** can delete a channel �
 **chilling effect** on legitimate fair use.
 
 ::: {.notes}
-Distinguish Content ID (private, contractual) from DMCA (statutory). The safe harbor is
-why YouTube isn't liable for every user upload — but the incentive structure tilts toward
-over-removal. EFF calls automated filters "censorship machines." Note the power imbalance:
-the rights holder reviews the creator's own dispute.
+Distinguish Content ID (private, contractual) from DMCA (statutory, at 17 U.S.C.
+§512). The DMCA safe harbor is why YouTube, Twitter, and every UGC platform is not
+liable for every user upload — notice, remove, shield from liability, counter-notice,
+10-14 day restoration if no lawsuit. The structural problem is takedown-first: the
+claimant effectively acts as judge in the early rounds, and three strikes can delete
+a channel — a strong chilling effect on legitimate fair use. EFF calls automated
+filters "censorship machines." Note the specific power imbalance: the same rights
+holder that filed the takedown reviews the creator's counter-notice. Distinguish
+DMCA §512 (safe harbor for platforms) from DMCA §1201 (anti-circumvention) —
+different regime with security-research implications discussed elsewhere in the
+course. Debate seed: should platforms face strict liability for user uploads (kill
+§512), or is the current notice-and-takedown regime the least-bad compromise?
 :::
 
 ## When Filters Can't Read Context {.smaller}
@@ -376,10 +502,18 @@ Automated matching **cannot evaluate fair use** — it sees a match, not a *purp
 - **Government / public-domain** footage re-claimed by a broadcaster who aired it
 
 ::: {.notes}
-The classic illustration: NASA's own public-domain footage getting flagged because a news
-network that aired it claimed the broadcast. Keep this general rather than over-asserting a
-specific date. Tom Scott's video on why fair-use filters are impossible is a good optional
-assign. The deep point: fair use needs human judgment about purpose, and matching has none.
+Automated matching sees a match, not a purpose. Deep point: fair use requires human
+judgment about *why* a copy was made, and hash-matching has none. Classic pattern
+worth naming: NASA's own public-domain footage getting flagged because a broadcast
+network that aired it claimed the broadcast — The Verge covered a February 2021
+Perseverance-landing instance. Public-domain classical music routinely flagged because
+of the split between rights in the *composition* (public domain) and rights in a
+particular *recording* (still under copyright). Musicians' own songs flagged because
+of split distribution rights across labels. Tom Scott's YouTube video on why fair-use
+filters are structurally impossible is a good optional assignment. Cold-call: is
+there any technical fix here, or is this an inherent limit of automation? The honest
+answer is: current ML cannot judge purpose reliably; that is why fair use has stayed
+human-judged for 180 years.
 :::
 
 ## Activity: Run the Four-Factor Test {.smaller}
@@ -403,11 +537,17 @@ frame-by-frame analysis, and short comparison clips from other films.
 **Pair-share, 5 minutes** — then: *would Content ID block it anyway?*
 
 ::: {.notes}
-Expected: (1) transformative criticism — favors fair use; (2) creative film but published —
-roughly neutral; (3) ~2 min of ~100 min, fair *unless* it's the "heart"; (4) unlikely to
-substitute, may even promote the film — favors fair use. Likely fair use. Punchline: a
-filter would probably block it anyway, because it can't see the commentary. That gap *is*
-the policy problem.
+Five-minute pair-share, then reconvene. Expected answers to walk through: (1)
+purpose — transformative criticism/commentary, favors fair use; (2) nature — a
+creative film but published, roughly neutral; (3) amount — ~2 minutes of ~100
+minutes is small, favors fair use *unless* it happens to be the "heart" of the film
+(the twist ending, the key reveal); (4) market — a criticism video is unlikely to
+substitute for viewing the film and may promote it, favors fair use. Bottom line:
+likely fair use. Punchline: a Content ID filter would probably block it anyway,
+because it cannot see the commentary — it just sees a 2-minute audio-visual match.
+That gap between the doctrine and the enforcement layer *is* the policy problem
+the whole second half of the lecture identified. Route to the hands-on copyright
+activity and the copyright breakout for the extended version.
 :::
 
 ## Copyright Meets AI Training {.smaller}
@@ -437,11 +577,20 @@ narrow, fact-specific win and endorsed a **"market dilution"** theory of harm fo
 plaintiffs. *NYT v. OpenAI* is still in discovery; expect the Supreme Court eventually.
 
 ::: {.notes}
-This is the bridge to the AI-and-privacy/AI-copyright material and a near-certain midterm
-theme. The nuance students should carry: the *training* fight is bending toward
-transformative/fair use, but *how the data was obtained* is a separate, live exposure —
-which is what the ~$1.5B Anthropic settlement actually resolved. Don't claim the Supreme
-Court has ruled; it hasn't.
+Bridge to the AI/copyright material and a near-certain midterm theme. Three
+current-as-of-2026 cases to know. Bartz v. Anthropic (June 23, 2025, Alsup, N.D.
+Cal.): training on books is transformative and fair use, but downloading 7M+
+pirated books to build a permanent library is not — settled September 2025 for
+roughly $1.5B. Kadrey v. Meta (June 25, 2025, Chhabria, N.D. Cal.): Meta's use
+fair on this record, but Chhabria warned "in most cases the answer will likely
+be [that AI training is illegal]" and endorsed the market-dilution theory for
+future plaintiffs. NYT v. OpenAI: still in discovery, summary-judgment briefing
+concluded April 2, 2026, no merits ruling on fair use yet — and this is the case
+whose subpoena order pulled 20M user chat logs last lecture. Nuance students
+should carry: the *training* fight is bending toward transformative/fair use, but
+*how the data was obtained* is a separate live exposure. Do not claim the Supreme
+Court has ruled — it has not. Route the "AI training more like Google's API copy
+or Napster" question to the copyright debate.
 :::
 
 ## Key Takeaways
@@ -454,9 +603,16 @@ Court has ruled; it hasn't.
 6. **AI training** is the new Oracle — and *how you got the data* is its own question
 
 ::: {.notes}
-Close by returning to Alsup: the same judge and the same transformative-use idea connect a
-2010 API fight to a 2025 AI fight. Tell students the four factors and the for/against AI
-case-study drill are the things to over-prepare for the midterm.
+Close by returning to Alsup — the same Northern District of California judge and the
+same transformative-use doctrine connect a 2010 API fight to a 2025 AI fight. One
+idea (transformativeness, from Campbell 1994) is doing most of the doctrinal work
+across code, content, and training data. Tell students the two things to over-prepare
+for the midterm: the four factors of §107 cold (be able to name them and give one
+anchor case each), and the for-versus-against AI case-study drill (be able to argue
+both sides of Bartz or Kadrey on the same set of facts). Note the two independent
+tracks in the AI cases — training itself, and acquisition of the training corpus —
+because a lot of student answers collapse them. Bridge forward: the next lecture
+goes deeper into AI-copyright including memorization and active litigation.
 :::
 
 # Questions? {.center}

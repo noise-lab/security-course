@@ -14,13 +14,16 @@ A new technology arrives, a harm becomes visible, and the law reacts. That
 pattern repeats from gossip photography to mainframes to AI.
 
 ::: {.notes}
-Warren & Brandeis wrote the 1890 Harvard Law Review article in response to
-instantaneous photography and gossip journalism — Warren was upset about
-newspapers covering his family's social events. Sound familiar? The whole
-lecture is organized around this reactive pattern: name the technology, name
-the harm, name the law that followed. Ask: what's the 2026 version of "gossip
-photography"? Primary source if you want to show it:
-[Warren & Brandeis, "The Right to Privacy" (1890)](https://www.cs.cornell.edu/~shmat/courses/cs5436/warren-brandeis.pdf).
+Warren and Brandeis wrote "The Right to Privacy" for the Harvard Law Review in
+1890 in response to a new technology — instantaneous photography — and to
+gossip journalism. Warren was reportedly enraged by Boston newspapers covering
+his family's social events. The article invented the U.S. right-to-privacy
+tort. The whole lecture is organized around this reactive pattern: name the
+technology, name the harm, name the law that followed. Cold-call: what's the
+2026 version of gossip photography? Model training on scraped data,
+age-verification wallets, and always-on ACR on smart TVs are the ones I'd
+prime the room to consider. Hold this pattern as the deck's spine — every
+statute later in the deck is another instance of it.
 :::
 
 ## A 2026 Hook: The FTC Still Sets the Floor {.smaller}
@@ -40,11 +43,18 @@ without express consent ([FTC, May 2026](https://www.ftc.gov/news-events/news/pr
 Old statutes, new harms.
 
 ::: {.notes}
-This is the freshest concrete anchor. Two teaching points: (1) the regulator
-reaching for a narrow 1998 tool (COPPA) and a general one (Section 5) because
-there is nothing comprehensive; (2) enforcement is real and current, not
-historical. Swap in whatever broke this week — the FTC press feed always has
-something.
+This is the freshest concrete anchor for the deck. Two teaching points to
+land. First: the regulator is reaching for a narrow 1998 tool (COPPA) and a
+general 1914 consumer-protection statute (Section 5) because there is nothing
+comprehensive. Disney allegedly failed to label some YouTube uploads "Made
+for Kids" — the designation Google agreed to in the 2019 YouTube COPPA
+settlement — enabling targeted ads to under-13s. Second: enforcement is real
+and current, not historical. Kochava is the more legally interesting anchor
+because it rests on the unfairness prong of Section 5 (no broken promise
+required) after nearly four years of litigation. Both anchors make the same
+teaching point: no federal statute means a 1998 kids' law and a 1914
+consumer-protection statute do the work. Swap in whatever broke this week —
+the FTC press feed always has something.
 :::
 
 # Where Modern Privacy Law Comes From {.center}
@@ -61,10 +71,15 @@ By the 1970s, mainframes made four things newly possible:
 - **Linking** different kinds of information, gathered different ways
 
 ::: {.notes}
-These 1970s concerns sound quaint until you note that every one is ~100x worse
-with cloud, smartphones, and ad-tech. The point: the *structure* of the threat
-(scale, linkage, opacity) is what the law tried to address — and it's the same
-structure today.
+Standard historical anchor. These 1970s concerns sound quaint until you note
+that every one is roughly a hundred times worse with cloud, smartphones, and
+ad-tech. The four threats — unknown databases, mass collection, dissemination,
+linkage — are the same four Latanya Sweeney would empirically confirm with
+re-identification attacks two decades later, and the same four the AOL search
+log leak of 2006 realized in miniature. The point: the structure of the
+threat — scale, linkage, opacity — is what the law tried to address, and it's
+the same structure today. If a student pushes back that these worries are
+overblown, forward-reference the Sweeney and Netflix Prize slides.
 :::
 
 ## FIPPs: The Foundation (HEW, 1973) {.smaller}
@@ -81,10 +96,16 @@ The HEW report *Records, Computers, and the Rights of Citizens* gave us the
 Almost every privacy law worldwide descends from these five ideas.
 
 ::: {.notes}
-Emphasize the through-line: transparency, control, correction, security. Tell
-students to keep these five in their head — when we hit GDPR, they'll see the
-same DNA (notice, access/rectification, purpose limitation, security). The open
-question for the rest of the lecture: does this 1973 model still fit?
+Primary source is HEW's 1973 report "Records, Computers, and the Rights of
+Citizens" — every modern regime descends from these five principles: the OECD
+1980 guidelines, the EU 1995 Data Protection Directive, GDPR, and CCPA. Tell
+students to memorize the five FIPPs; when we hit GDPR two segments from now,
+they will see the same DNA — notice, access/rectification, purpose limitation,
+security — mapped cleanly onto GDPR Articles 5 and 12–22. Emphasize the
+through-line: transparency, control, correction, and security. The open
+question for the rest of the lecture: does this 1973 model still fit a world
+of inference and machine learning? That's the setup for the "Age of
+Inference" slide three slides from now.
 :::
 
 ## The FIPPs in Practice {.smaller}
@@ -108,11 +129,15 @@ law enforcement)
 :::
 
 ::: {.notes}
-Opt-in vs. opt-out is the sleeper concept — it looks technical but drives
-everything. GDPR is opt-in for most processing; the U.S. defaults to opt-out,
-and the empirical fact is that almost no one ever opts out. That single design
-choice determines whether a "choice" regime protects anyone. Foreshadows the
-Meeting 8 dark-patterns research.
+Opt-in versus opt-out is the sleeper concept — it looks technical but drives
+everything downstream. The canonical empirical result is Johnson and Goldstein,
+"Do Defaults Save Lives?", Science 302:1338, 2003 — default-opt-in produces
+roughly 90%+ compliance, default-opt-out produces under 5%. GDPR is opt-in
+for most processing; the U.S. defaults to opt-out, and the empirical fact is
+that almost no one ever opts out. That single design choice determines whether
+a "choice" regime protects anyone. Cookie banners, breach-notification
+opt-outs, GDPR consent, CCPA opt-out — one design switch, huge downstream
+effect. Foreshadows the Meeting 12 dark-patterns research.
 :::
 
 ## Notice and Consent Is Broken {.smaller}
@@ -126,10 +151,16 @@ The model assumes a person reads, understands, and meaningfully agrees.
 Demo: [tosdr.org](https://tosdr.org/) grades real privacy policies.
 
 ::: {.notes}
-This is the central critique of the orthodox model. The notice-and-consent
-paradigm puts the entire burden on the individual, who has neither the time nor
-the information to bear it. Connect forward: the FTC's deception theory exists
-*precisely because* the gap between promise and practice is where the harm lives.
+This is the central critique of the orthodox model. Canonical reading:
+Aleecia McDonald and Lorrie Cranor, "The Cost of Reading Privacy Policies,"
+I/S: A Journal of Law and Policy, 2008 — they estimated 244 hours per year
+per person to read the policies of the sites they visit. The definitive
+academic critique is Solove's "Privacy Self-Management and the Consent
+Dilemma," 126 Harvard Law Review 1880 (2013) — putting the burden on the
+individual doesn't work because the individual has neither the time nor the
+information to bear it. Live demo if time: ToS;DR grades real privacy
+policies. Connect forward: the FTC's deception theory exists precisely
+because the gap between promise and practice is where the harm lives.
 :::
 
 ## Re-Examining FIPPs in the Age of Inference {.smaller}
@@ -157,10 +188,18 @@ Example: differential privacy deliberately adds **noise** — violating "data mu
 be correct," yet *enhancing* privacy.
 
 ::: {.notes}
-This is the most intellectually interesting slide. FIPPs were built for static
-records; modern systems infer. Target inferring a teenager's pregnancy from
-purchase patterns is the canonical example — no "PII" was leaked, yet a deeply
-private fact was produced. The paradigm may be orthogonal to today's real harm.
+This is the most intellectually interesting slide in the deck. FIPPs were
+built for static records; modern systems infer. The canonical example is
+Kashmir Hill's February 2012 Forbes piece on Target inferring a teenager's
+pregnancy from purchase patterns — no PII was leaked, yet a deeply private
+fact was produced and mailed to the family home. On differential privacy,
+the readable intro is Chapter 1 of Dwork and Roth, "The Algorithmic
+Foundations of Differential Privacy," 2014 — noise is the privacy, which
+directly contradicts the FIPPs accuracy principle. That's the paradox: some
+FIPPs (accuracy, minimization-of-error) point the opposite direction from
+what actually protects privacy today. Ask: does the 1973 model even name the
+harm from inference? Debate hook — should we replace FIPPs, patch them, or
+build a parallel framework for inferential harms?
 :::
 
 ## PII Is Not a Bright Line {.smaller}
@@ -176,11 +215,19 @@ The classic assumption: scrub name, SSN, address → data is "safe."
 So is **ZIP code** PII? Is an **IP address**? The line dissolves under inference.
 
 ::: {.notes}
-PII is a legal fiction that engineering keeps breaking. The three re-id results
-are the canon — make students articulate *why* removing identifiers fails:
-quasi-identifiers in combination are uniquely identifying. This is why modern
-laws shifted from "remove PII" to "reasonably cannot be linked" standards
-(e.g., CCPA de-identification) — and why even that is hard to define.
+PII is a legal fiction that engineering keeps breaking. The three re-id
+results are the canon. AOL, August 2006: Barbaro and Zeller of the New York
+Times identified "AOL Searcher No. 4417749" as Thelma Arnold, a 62-year-old
+Georgia widow, from her supposedly-anonymized search log. Netflix Prize:
+Narayanan and Shmatikov, "Robust De-anonymization of Large Sparse Datasets,"
+IEEE S&P 2008. Sweeney: her 2000 paper "Simple Demographics Often Identify
+People Uniquely" showed 87% of U.S. residents were uniquely identified by
+ZIP plus date-of-birth plus sex. Modern update — Rocher, Hendrickx, and de
+Montjoye, Nature Communications 2019 — 15 attributes suffice for over 99.98%
+of Americans. Make students articulate why removing identifiers fails:
+quasi-identifiers in combination are uniquely identifying. Modern laws have
+shifted from "remove PII" to "reasonably cannot be linked" standards (e.g.,
+CCPA de-identification) — and even that is hard to define.
 :::
 
 # The U.S. Patchwork {.center}
@@ -210,9 +257,15 @@ This single distinction — **sectoral vs. omnibus** — explains most U.S./EU
 differences in this lecture.
 
 ::: {.notes}
-Burn this dichotomy in; it's a midterm staple. Sectoral means coverage has
-holes by construction. Omnibus means one rulebook but heavy compliance. Neither
-is obviously right — that's the GDPR debate at the end.
+Burn this dichotomy in — it's a midterm staple. Sectoral means coverage has
+holes by construction (every gap is a lawsuit or an FTC case). Omnibus means
+one rulebook but heavy compliance and often uneven enforcement. Neither is
+obviously right — that's the GDPR debate at the end of the deck, and the
+Omnibus breakout later this week. Best-of-both defenders point to Illinois
+BIPA (a sectoral state law with a private right of action, which produced a
+$650M Facebook settlement) as evidence that sectoral can be sharp when it
+wants to be. The private right of action is the sleeper design feature that
+turns sectoral law from paper into teeth.
 :::
 
 ## The Patchwork, Statute by Statute {.smaller}
@@ -244,11 +297,17 @@ is obviously right — that's the GDPR debate at the end.
 :::
 
 ::: {.notes}
-The VPPA story is the keeper: a reporter published Bork's video-rental list
-during his Supreme Court nomination, and Congress passed a law within months —
-but only about *video tapes*. That's sectoral lawmaking in a nutshell: each
-statute fights the last scandal. Note the dates aren't chronological because
-Congress reacted issue by issue.
+The VPPA story is the keeper — and the perfect illustration of the pattern.
+In September 1987 Michael Dolan published "The Bork Tapes" in the Washington
+City Paper, listing Judge Robert Bork's video rentals during his Supreme
+Court nomination. Congress passed the Video Privacy Protection Act,
+18 U.S.C. § 2710, in October 1988 — roughly a year later — but only about
+video tapes. That's sectoral lawmaking in a nutshell: each statute fights
+the last scandal and stops at the boundary of that scandal. The FCRA/FERPA/
+HIPAA/GLBA/COPPA/GINA statute list is the canonical "sectoral by anecdote"
+survey. Cold-call: what would the equivalent modern statute be — a
+"Streaming Video Privacy Act"? A "Voice Assistant Privacy Act"? Note the
+dates aren't chronological because Congress reacted issue by issue.
 :::
 
 ## The HIPAA Gap {.smaller}
@@ -265,10 +324,17 @@ So a *sensitive* category is wide open whenever the holder isn't a "covered
 entity."
 
 ::: {.notes}
-This is the single most useful slide for showing why sectoral law fails:
-"health privacy" feels protected, but HIPAA's definition of covered entity
-leaves the entire consumer-app economy outside it. The FTC stepped into that gap
-with Section 5 (GoodRx, BetterHelp) precisely because HIPAA didn't reach.
+This is the single most useful slide for showing why sectoral law fails.
+The key teaching move: HIPAA regulates covered entities — providers, plans,
+clearinghouses, and their business associates — not "health data as such."
+Consumer apps, wearables, period trackers, 23andMe, and most
+telehealth-adjacent services fall outside HIPAA entirely. Dates worth citing:
+GoodRx settled for $1.5M on February 1, 2023, for sharing health data for
+ads; BetterHelp settled for $7.8M on March 2, 2023, for sharing
+mental-health data with Facebook. In both cases, FTC Section 5 had to reach
+into the gap because HIPAA didn't. Cross-reference the HIPAA-gap breakout
+that runs alongside this lecture. Cold-call: name a health app on your phone;
+is its data covered by HIPAA?
 :::
 
 ## Breach Notification: Regulation by Consequence {.smaller}
@@ -276,11 +342,17 @@ with Section 5 (GoodRx, BetterHelp) precisely because HIPAA didn't reach.
 ![Breaches become front-page news — the lever behind notification law](images/slide025_img013.png){width="78%"}
 
 ::: {.notes}
-Before 2003, a company could be breached and tell no one. California's SB 1386
-(2003) required notifying any resident whose data was exposed — and suddenly
-breaches were headlines. Today all 50 states have a law, and HIPAA was amended
-to add one. Notification didn't mandate security; it made *insecurity* a PR and
-board-level liability. That's "regulation by consequence."
+Before 2003, a company could be breached and tell no one. California SB 1386,
+effective 2003 and codified at Civil Code sections 1798.29 and 1798.82,
+required notifying any California resident whose data was exposed — and
+suddenly breaches were headlines. Today all 50 states plus DC, Puerto Rico,
+and the Virgin Islands have breach-notification laws; the NCSL breach
+tracker is the canonical map. HIPAA was amended (HITECH, 2009) to add a
+similar notification duty. The teaching frame: notification didn't mandate
+security; it made insecurity a PR and board-level liability. That's
+"regulation by consequence" — you can't outlaw breaches, but you can make
+them impossible to hide. Ask: how many students have received a breach
+notice in the last year? Every hand goes up.
 :::
 
 ## What a Breach Law Requires Varies {.smaller}
@@ -295,10 +367,15 @@ board-level liability. That's "regulation by consequence."
 California) to everyone.
 
 ::: {.notes}
-50 different regimes is genuinely costly, and the rational response is to comply
-with the toughest one everywhere — which is *de facto* one national standard set
-by California, without Congress ever acting. Tie this to the broader theme:
-California has become the default U.S. privacy legislator.
+Fifty different regimes are genuinely costly, and the rational corporate
+response is to comply with the toughest one everywhere — which is de facto one
+national standard set by California, without Congress ever acting. This is the
+same "California effect" that will show up in Meeting 12 when we look at
+spillover from state privacy laws to national practice. Tie to the broader
+theme: California has become the default U.S. privacy legislator. Debate
+prompt: is that democratically legitimate — a state whose residents are
+14 percent of the country setting the effective national floor — or is it the
+predictable market response to a Congress that won't act?
 :::
 
 ## Equifax (2017): What a Bad Response Looks Like {.smaller}
@@ -316,10 +393,17 @@ Result: **~$700M** settlement; CEO resigned.
 :::
 
 ::: {.notes}
-Equifax is the case study in how *not* to respond. The data subjects were never
-Equifax customers — they couldn't "take their business elsewhere," which is
-exactly the FTC's "unfairness" condition (harm not reasonably avoidable). Use it
-to motivate why a market alone doesn't discipline data brokers.
+Equifax is the case study in how not to respond. Dates and numbers to say
+out loud: 147M Americans exposed, disclosure delayed roughly six weeks,
+notification site stood up on a domain so implausible that Krebs on Security
+called the response a "dumpster fire" in September 2017, credit-monitoring
+upsell to the very people whose data was leaked. Result: roughly $700M
+settlement announced July 2019, including a $300M consumer-compensation fund;
+CEO resigned. The data subjects were never Equifax customers — they couldn't
+take their business elsewhere, which is exactly the FTC's unfairness condition
+(harm not reasonably avoidable, not outweighed by benefits). Use this to
+motivate why a market alone doesn't discipline data brokers, and to set up
+Section 5 on the next slide.
 :::
 
 # The FTC: De Facto Privacy Regulator {.center}
@@ -348,10 +432,17 @@ The FTC stretched a consumer-protection statute into America's main privacy law
 — 60+ privacy cases, 2002–2017, and a steady stream since.
 
 ::: {.notes}
-The key insight: there is no federal "privacy right" being enforced — there's a
-*promise-keeping* and *anti-harm* statute doing double duty. Deception is the
-easy theory (sue on the gap between policy and practice). Unfairness is the hard
-one but reaches conduct even when no promise was broken. This is improvised law.
+The key insight to burn in: there is no federal "privacy right" being
+enforced — there's a 1914 promise-keeping and anti-harm statute
+(15 U.S.C. § 45) doing double duty. Deception is the easy theory — sue on
+the gap between policy and practice; policy statement dates to 1983.
+Unfairness is the harder theory (1980 policy statement) but reaches conduct
+even when no promise was broken — that's the doctrinal move in Kochava. The
+definitive academic take is Solove and Hartzog, "The FTC and the New Common
+Law of Privacy," Columbia Law Review 2014 — the FTC built a common law of
+privacy through 60+ cases without a privacy statute. This is improvised law,
+and it's the reason a 1998 kids' law and a 1914 general statute do most of
+the U.S. privacy work today.
 :::
 
 ## Section 5 in Action {.smaller}
@@ -372,11 +463,17 @@ harvested ~87M profiles → **$5B** fine, the largest ever
 :::
 
 ::: {.notes}
-Note the mechanism: cases almost always *settle* with a consent decree, not a
+Note the mechanism: cases almost always settle with a consent decree, not a
 trial — so the FTC builds privacy "common law" through orders, not statutes.
-Facebook's 2019 order is the model: 20-year program, executive certification,
-limits on facial recognition and on repurposing 2FA numbers. Ask: is governance
-by consent decree a feature or a bug?
+Facebook's July 2019 order is the template: $5B penalty, 20-year
+comprehensive privacy program, executive certification, limits on facial
+recognition and on repurposing 2FA numbers for advertising. Uber (August 2017)
+was about "God View" tracking of journalists, politicians, and exes despite
+privacy claims. Twitter's May 2022 $150M penalty was for using 2FA phone
+numbers as an ad-targeting signal — same fact pattern the Facebook order
+had already prohibited. Disney COPPA $10M closes the arc. Ask: is
+governance by consent decree a feature (flexible, evolves case by case) or a
+bug (no democratic input, no published rulemaking)? Good midterm question.
 :::
 
 # International: The Omnibus Model {.center}
@@ -394,10 +491,15 @@ The EU's **General Data Protection Regulation** applies to organizations:
 If EU residents can use your service, you must ask whether GDPR applies.
 
 ::: {.notes}
-Extraterritoriality is the whole game. A Chicago startup with EU users is in
-scope. Critics call it regulatory imperialism; defenders call it the only way to
-protect residents in a borderless internet. Either way, it made GDPR the global
-default — the "Brussels effect."
+Extraterritoriality is the whole game — Article 3 (territorial scope) is the
+hook. A Chicago startup with EU users is in scope. Critics call it regulatory
+imperialism; defenders call it the only way to protect residents in a
+borderless internet. Either way, it made GDPR the global default — the
+"Brussels effect," which is also the title of Anu Bradford's 2020 Oxford
+University Press book. Cold-call: what U.S. law has ever had comparable
+extraterritorial reach on private conduct? Very few, and none in privacy.
+This is why so many U.S. state privacy laws end up copying GDPR concepts —
+firms already had to build for the tougher regime.
 :::
 
 ## What GDPR Requires {.smaller}
@@ -420,12 +522,17 @@ default — the "Brussels effect."
 :::
 
 ::: {.notes}
-Point out the left column *is* FIPPs, four decades on. The right column is what's
-genuinely new and contested. Right-to-be-forgotten collides head-on with the
-U.S. First Amendment — Google delists in the EU but not the U.S. Cross-border:
-the EU has repeatedly held the U.S. lacks "adequate" protection (Schrems I & II
-invalidated Safe Harbor and Privacy Shield; the 2023 Data Privacy Framework is
-already under legal challenge).
+Point out the left column is FIPPs, four decades on. The right column is what's
+genuinely new and contested. Right to erasure (Article 17) comes from the 2014
+Google Spain v. AEPD case — the "right to be forgotten" ruling — and collides
+head-on with the U.S. First Amendment; Google delists in the EU but not the
+U.S. Cross-border transfers (Chapter V, Articles 44–50): the EU has repeatedly
+held the U.S. lacks "adequate" protection. Schrems I (2015) invalidated Safe
+Harbor; Schrems II (2020) invalidated Privacy Shield. The EU–US Data Privacy
+Framework, adopted July 2023, is the current successor and already under
+legal challenge. DPIAs (Article 35) are required before risky processing.
+Ask: which of these ideas would survive a U.S. First Amendment challenge if
+Congress ever tried to enact them?
 :::
 
 ## GDPR Enforcement Is Real {.smaller}
@@ -443,10 +550,18 @@ cookie-consent violations
 Live tracker: [enforcementtracker.com](https://www.enforcementtracker.com/).
 
 ::: {.notes}
-The numbers refute the "GDPR is toothless" claim about the old 1990s Directive
-(which was famously unenforced). The transfer cases (Meta, TikTok) show the
-cross-border rules from the prior slide have teeth. Use the tracker live if time
-allows.
+The numbers refute the "GDPR is toothless" claim that people made about the
+old 1995 Directive (famously unenforced). Concrete anchors: TikTok €530M
+(Irish DPC, May 2, 2025) — €485M under Article 46 and €45M under Article
+13(1)(f), for Chinese personnel remote access; the Irish High Court stayed
+the transfer-suspension order pending TikTok's appeal in September 2025.
+CNIL Google €325M (September 1, 2025) — Gmail "Promotions" and "Social" tabs
+contained ad emails without consent, plus a 6-clicks-to-refuse versus
+2-clicks-to-accept cookie flow when creating a Google account, affecting
+74 million French accounts. Meta €1.2B (May 22, 2023) — unlawful EU–US
+transfers, still the all-time record. Cumulative benchmark: DLA Piper's
+January 2026 survey puts total GDPR fines at €7.1B. Use the tracker live if
+time allows — filter by Meta, Amazon, and Google to see the pattern.
 :::
 
 ## The GDPR Debate {.smaller}
@@ -471,11 +586,15 @@ allows.
 :::
 
 ::: {.notes}
-This is a natural debate prompt (and a likely exam question). The strongest
-"against" point: if compliance is expensive enough, it entrenches the very firms
-it targets, because only they can afford it. The strongest "for": before GDPR,
-the 1990s Directive was omnibus *on paper* but unenforced — GDPR is what
-enforcement looks like.
+This is a natural debate prompt (and a likely exam question) — cross-reference
+the Omnibus debate that runs alongside this lecture. The strongest "against"
+point: compliance cost creates a moat for incumbents who can afford CPOs
+and DPIA teams; small firms can't. The strongest "for": before GDPR, the
+1990s Data Protection Directive was omnibus on paper but famously unenforced,
+and GDPR is what enforcement actually looks like — €7.1B says so. Ask
+students to defend one side, then swap. Note that the answer often depends on
+what you're optimizing for: individual redress, structural competition, or
+raising the global floor.
 :::
 
 ## Where U.S. Privacy Law Stands in 2026 {.smaller}
@@ -492,11 +611,22 @@ The U.S. is drifting from *purely sectoral* toward a **50-state quasi-omnibus** 
 without ever passing one national law.
 
 ::: {.notes}
-This is the live frontier and the bridge to Meeting 8 (automated compliance
-enforcement, CCPA measurement, dark patterns). The irony to land: the U.S. is
-getting something omnibus-like by accretion of state laws plus the
-California-default effect — not by congressional design. Ask whether that's a
-stable equilibrium.
+This is the live frontier and the bridge to Meeting 12 (automated compliance
+enforcement, CCPA measurement, dark patterns). Numbers to say: 20
+comprehensive state laws in effect in 2026, with Indiana, Kentucky, and
+Rhode Island effective January 1, 2026, and Connecticut, Arkansas, and Utah
+amendments effective July 1, 2026. 2025 was the first year in five with no
+new comprehensive law enacted, but 2026 is bringing a fresh wave (Alabama
+passed both chambers as of April). Federal front: the American Privacy Rights
+Act (APRA) expired at end of the 118th Congress in January 2025 and has not
+been reintroduced — killed by fights over California preemption and the
+private right of action. Only new federal privacy law of 2025 is the TAKE IT
+DOWN Act (non-consensual intimate imagery plus deepfakes, 48-hour removal,
+enforcement live May 2026). Texas AG's $1.375B Google settlement (October 31,
+2025) is the biggest single-state privacy settlement ever. The irony to land:
+the U.S. is getting something omnibus-like by accretion of state laws plus
+the California-default effect — not by congressional design. Ask whether
+that's a stable equilibrium.
 :::
 
 # Takeaways {.center}
@@ -507,9 +637,15 @@ stable equilibrium.
 - Enforcement is real and current: **Disney COPPA, TikTok €530M, CNIL Google €325M, the state wave**
 
 ::: {.notes}
-Close by returning to the opening pattern: every item here is the law chasing a
-technology. The next meeting (automated compliance) asks whether we can measure
-and enforce these rules at web scale.
+Close by returning to the opening Warren and Brandeis pattern: every item
+here is the law chasing a technology. Each of the three current enforcement
+anchors — Disney COPPA (Dec 2025), TikTok €530M (May 2025), CNIL Google
+€325M (Sept 2025) — is a law from a prior decade catching up to a technology
+that outran it. FIPPs (1973) are still the DNA of everything modern.
+Sectoral versus omnibus is the dichotomy to remember for the midterm. The
+next meeting on automated compliance asks whether we can measure and enforce
+these rules at web scale — the natural sequel to this deck. Land the plane
+on the through-line: privacy law is reactive, and the reaction is speeding up.
 :::
 
 # Resources & Live Demos {.center}
@@ -537,9 +673,15 @@ Tools to pull up in class — most update in real time
 :::
 
 ::: {.notes}
-Folded in from the prior speaker-notes file. Good cold-open or break filler: pull up the
-GDPR tracker and filter by Meta / Amazon / Google; run Have I Been Pwned on a volunteer's
-email; show ToS;DR on Instagram's policy. The full link catalog (FTC case URLs, Schrems,
-the EU–US Data Privacy Framework, Mozilla "Privacy Not Included: Cars") and the
+Folded in from the prior speaker-notes file. Good cold-open or break filler:
+pull up the GDPR Enforcement Tracker and filter by Meta, Amazon, or Google;
+run Have I Been Pwned on a volunteer's email; show ToS;DR on Instagram's
+policy. Additional tools worth mentioning: Google's EU-privacy transparency
+report on right-to-be-forgotten requests, the EU–US Data Privacy Framework
+site, Privacy Badger from EFF for tracker blocking, and the Google Takeout
+tool as a live GDPR-access-right demo. Companion materials: the Web Tracking
+activity for hands-on privacy audit, the Omnibus debate on whether the U.S.
+should adopt a GDPR-style federal law, and the privacy-law breakout that runs
+the federal-omnibus and HIPAA-gap prompts. The full link catalog and
 discussion prompts live in coverage-notes.md.
 :::

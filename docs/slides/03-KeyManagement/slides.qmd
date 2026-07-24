@@ -13,9 +13,17 @@ they share a key.*
 > them, and how you change your mind.
 
 ::: {.notes}
-Frame the whole lecture: last time we treated the shared key as a given. Today's
-question is the entire field of "key management" — and it turns out the social and
-institutional problems (who do you trust?) are harder than the cryptographic ones.
+Frame the whole lecture: last time we treated the shared key as a given.
+Today's question is the entire field of key management — and the social and
+institutional problems (who do you trust?) are harder than the cryptographic
+ones. Anchor to Ross Anderson's "Why Cryptosystems Fail" from Meeting 1 —
+the math is rarely the failure mode. The framing quote paraphrases Diffie's
+1976 line that "cryptography without key management is not cryptography, it
+is arithmetic." Cold-call: if we agreed a shared secret in Lecture 1, what
+did we actually assume, and where did that assumption break? Everything
+downstream — Diffie-Hellman, RSA, certificates, CAs, revocation — is
+scaffolding for one question: how do two strangers agree on a shared secret,
+and how do you know who's on the other end?
 :::
 
 ## The Setup: Alice, Bob, and Eve
@@ -29,9 +37,15 @@ institutional problems (who do you trust?) are harder than the cryptographic one
   a broadcast
 
 ::: {.notes}
-Reinforce the threat-model framing from Meeting 1. Eve = passive eavesdropper,
-Mallory = active man-in-the-middle. The "everything is a broadcast" assumption is
-what makes key management non-trivial — you can't whisper.
+Reinforce the threat-model framing from Meeting 1. Eve = passive
+eavesdropper; Mallory = active man-in-the-middle. The Alice/Bob/Eve cast
+comes from Rivest, Shamir, and Adleman's 1978 CACM paper on RSA — the full
+character genealogy (Charlie, Mallory, Trent, Peggy) grew from there. The
+"everything is a broadcast" assumption is what makes key management
+non-trivial — you can't whisper. Cold-call two students to state
+confidentiality vs. integrity in one sentence each, then use that split to
+introduce Mallory as the active counterpart to passive Eve. Every mechanism
+in the rest of the lecture defends against one or both of them.
 :::
 
 ## Symmetric Crypto: Same Key Both Ways
@@ -47,9 +61,14 @@ the actual bytes.
 :::
 
 ::: {.notes}
-Students should leave knowing the division of labor: asymmetric crypto for key
-agreement and signatures, symmetric crypto for bulk data. Don't dwell on cipher
-internals — the agenda explicitly says we skip implementation details.
+Students should leave knowing the division of labor: asymmetric crypto for
+key agreement and signatures, symmetric crypto for bulk data. Name the
+standards without derivation: AES (NIST FIPS 197, revised 2023) and
+ChaCha20-Poly1305 (RFC 8439) are the two ciphers in every TLS 1.3
+deployment. Don't dwell on cipher internals — the agenda explicitly says we
+skip implementation details. The point is the speed gap: AES-GCM runs
+gigabytes per second per core; RSA-2048 signs tens of ops per second. That
+asymmetry is why we use public-key only for setup and signatures.
 :::
 
 ## The Key-Distribution Problem
@@ -64,8 +83,12 @@ If everyone instead *shares one* key, anyone can read — and **impersonate** �
 everyone else.
 
 ::: {.notes}
-Cold-call the count. The quadratic blowup is the motivation for everything that
-follows. Symmetric keys don't scale to a planet of strangers who've never met.
+Cold-call the count: pick a student, say n = 100, see if they get 4,950.
+The quadratic blowup is the motivation for everything that follows.
+Symmetric keys don't scale to a planet of strangers who've never met.
+Preview the fix: with public-key crypto, 100 people need 100 key pairs
+published in a directory — linear, not quadratic. That directory becomes
+its own trust problem, which is the second half of today's lecture.
 :::
 
 # Diffie-Hellman: A Public Conversation, a Private Key {.center}
@@ -80,9 +103,15 @@ follows. Symmetric keys don't scale to a planet of strangers who've never met.
   1997)
 
 ::: {.notes}
-This was the conceptual breakthrough. Emphasize how counterintuitive it is: two
-strangers shouting across a room can agree on a secret nobody listening can learn.
-The GCHQ backstory is a nice "intelligence agencies got there first, in secret" hook.
+This was the conceptual breakthrough — Diffie and Hellman, "New Directions
+in Cryptography," IEEE Trans. Info. Theory, November 1976. Emphasize how
+counterintuitive it is: two strangers shouting across a room can agree on
+a secret nobody listening can learn. The GCHQ backstory is the "intelligence
+agencies got there first, in secret" hook — Ellis proposed non-secret
+encryption in 1970, Cocks worked out an RSA-shaped scheme in 1973, and
+Williamson landed the Diffie-Hellman construction in 1974; all classified
+until 1997. Steven Levy's Crypto (2001) is the readable social history if
+students want more.
 :::
 
 ## How Diffie-Hellman Works (the Idea)
@@ -94,9 +123,13 @@ The GCHQ backstory is a nice "intelligence agencies got there first, in secret" 
   no known efficient algorithm
 
 ::: {.notes}
-Per the agenda, do NOT prove anything or compute discrete logs. The takeaway is the
-*shape*: a one-way function (modular exponentiation) that's easy forward, hard to
-invert. That asymmetry is the whole game.
+Per the agenda, do NOT prove anything or compute discrete logs. The takeaway
+is the shape: a one-way function (modular exponentiation) that's easy
+forward, hard to invert. That asymmetry is the whole game. If a student
+wants the math, point them to Boneh and Shoup's free "A Graduate Course in
+Applied Cryptography," chapter 10. Emphasize that the hardness is a
+conjecture, not a theorem — which is exactly why the post-quantum migration
+at the end of the deck matters.
 :::
 
 ## D-H's Big Weakness: Man-in-the-Middle
@@ -111,9 +144,15 @@ invert. That asymmetry is the whole game.
 > their moves, and beat one of them. *In the middle is a powerful place to be.*
 
 ::: {.notes}
-This is the pivot of the entire lecture. Confidentiality without authentication is a
-trap. Everything after this — certificates, CAs, PKI — exists to answer "who is on the
-other end?" The SSH host-key warning later is the same problem made visible.
+This is the pivot of the entire lecture. Confidentiality without
+authentication is a trap. Everything after this — certificates, CAs, PKI —
+exists to answer "who is on the other end?" The SSH host-key warning later
+in the deck is the same problem made visible. Formal treatment: Diffie,
+van Oorschot, and Wiener, "Authentication and Authenticated Key Exchanges"
+(1992), which named the STS protocol. Cold-call: where else does "in the
+middle" win? Seed the list — BGP hijacks, DNS on-path attacks, enterprise
+TLS-inspection proxies, ARP spoofing on the local network. All of them
+extract value from sitting between two parties who assume they're alone.
 :::
 
 # Public-Key (Asymmetric) Cryptography {.center}
@@ -127,9 +166,13 @@ other end?" The SSH host-key warning later is the same problem made visible.
 - Independently invented in secret at GCHQ by **Clifford Cocks** (1973)
 
 ::: {.notes}
-Tie back to the key-distribution problem: n people now need n key pairs, not n²/2
-shared keys, and the public halves can sit in a directory. RSA is mentioned, not
-derived (per agenda).
+Tie back to the key-distribution problem: n people now need n key pairs,
+not n^2/2 shared keys, and the public halves can sit in a directory. RSA
+is mentioned, not derived (per agenda) — Rivest, Shamir, Adleman, CACM
+February 1978. Clifford Cocks wrote the same construction in a 1973 CESG
+memo that stayed classified for 24 years; the GCHQ story is a great
+"who really invented this?" hook. The catch we're about to introduce:
+publishing the public halves only helps if you can trust the directory.
 :::
 
 ## Two Use Cases, One Idea {.smaller}
@@ -156,10 +199,14 @@ Sign with **your private** key → anyone can verify with your public key.
 :::
 
 ::: {.notes}
-The symmetry is the point: same key pair, opposite directions. Real example for the
-integrity side: software and OS updates are signed so your device only installs code
-the vendor actually shipped (Apple, Microsoft, Android). Want both properties? Use the
-key pairs twice.
+The symmetry is the point: same key pair, opposite directions. Real
+example for the integrity side: software and OS updates are signed so your
+device only installs code the vendor actually shipped — Apple Notarization,
+Windows Authenticode, Google Play signing. Modern signed-supply-chain
+systems like Sigstore and in-toto are worth flagging as the bridge to the
+DigiCert code-signing compromise later in the deck. Want both
+confidentiality and authentication? Use the key pairs twice — encrypt to
+the recipient's public key, sign with your private key.
 :::
 
 ## What Public-Key Crypto Is *Not*
@@ -172,8 +219,13 @@ key pairs twice.
   answer: *whose public key is this?*
 
 ::: {.notes}
-This slide kills three common misconceptions. The third one is the bridge to PKI: a
+This slide kills three common misconceptions. The most persistent one is
+"asymmetric = more secure" — kill it with the speed numbers: AES-GCM at
+5-10 GB/s per core versus RSA-2048 signing at tens of ops per second. That
+performance gap is the entire reason TLS uses a hybrid design (public-key
+for setup, symmetric for bulk). The third bullet is the bridge to PKI: a
 published public key is worthless if you can't tie it to the right identity.
+That question — whose public key is this? — carries the rest of the lecture.
 :::
 
 # Certificates and Public-Key Infrastructure {.center}
@@ -188,8 +240,13 @@ published public key is worthless if you can't tie it to the right identity.
 - **Partial answer:** certificates
 
 ::: {.notes}
-This is the MITM problem again, now at the level of the key directory. The original
-paper already flagged it. Certificates don't eliminate trust — they relocate it.
+This is the MITM problem again, now at the level of the key directory. The
+Diffie-Hellman 1976 paper already flagged it in Section III — the quote on
+the slide is verbatim. Certificates don't eliminate trust; they relocate
+it, from "trust the wire" to "trust the signer." Every subsequent slide
+about CAs, CT logs, and short-lived certs is really about how to make that
+relocated trust auditable and revocable. Cold-call: if Mallory swaps in
+his public key for Bob's, where in the pipeline should you have caught it?
 :::
 
 ## What a Certificate Is
@@ -205,10 +262,14 @@ paper already flagged it. Certificates don't eliminate trust — they relocate i
 :::
 
 ::: {.notes}
-Walk through the real fields on the right: subject name, issuer, "not valid
-before/after," public key, signature algorithm. This is exactly what students inspect
-in the hands-on activity. The self-signed vs. CA-signed distinction sets up the
-chain-of-trust idea.
+Walk through the real fields on the right: subject name, issuer, "not
+valid before/after," public key, signature algorithm. Standard is X.509 v3,
+defined in RFC 5280 — the "P" in "the PKI." This is exactly what students
+inspect in the hands-on Certificate Chains activity, so preview it here.
+The self-signed vs. CA-signed distinction sets up the chain-of-trust idea:
+a self-signed cert only says "I am who I say I am," which is worthless
+without prior context; a CA-signed cert delegates that vouching to someone
+your software already trusts.
 :::
 
 ## Chains of Trust
@@ -221,9 +282,13 @@ chain-of-trust idea.
 ![A real chain: USERTrust root → Sectigo intermediate → nytimes.com leaf.](images/slide056_img032.png)
 
 ::: {.notes}
-This mirrors the in-class Firefox activity: example chain was course website →
-Let's Encrypt → ISRG Root X1. Have students walk a chain in their own browser. The key
-question to plant: where does the chain *stop*? — answer on the next slide.
+This mirrors the in-class Firefox activity — the example chain used last
+year was the course website leaf, chained through Let's Encrypt's R3
+intermediate, up to ISRG Root X1. Have students walk a chain in their own
+browser right now: click the lock icon, view certificate, examine each
+level. The key question to plant: where does the chain stop? Teed up for
+the trust-anchors slide next. The Chain of Trust page on
+letsencrypt.org has the canonical diagram if you want to project it.
 :::
 
 ## Where Does Trust Stop? Trust Anchors
@@ -237,9 +302,16 @@ question to plant: where does the chain *stop*? — answer on the next slide.
 ![macOS Keychain ships with roughly 200 trusted root certificates.](images/slide055_img031.png)
 
 ::: {.notes}
-This is the structural weakness of the web PKI: trust is "any one of ~hundreds," not
-"all of them." A single bad root anywhere can MITM your bank. That's why the rest of
-the lecture is about catching and removing bad CAs.
+This is the structural weakness of the web PKI: trust is "any one of
+hundreds," not "all of them." A single bad root anywhere can forge a cert
+for any site — MITM your bank, your email, your health portal. The four
+big root programs (Mozilla, Chrome Root Store, Microsoft Trusted Root,
+Apple) each publish their own list; students can reproduce the macOS count
+by running `security find-certificate -a` against the SystemRootCertificates
+keychain. Plant the governance question that recurs in Breakout A: should
+this trust-store curation be a public function, or is browser-vendor
+oversight the right model? That's why the rest of the lecture is about
+catching and removing bad CAs.
 :::
 
 ## Two Levels of Validation
@@ -263,9 +335,15 @@ Today browsers have **dropped the EV "green bar"** — the lock now means only "
 DV-or-better," not "this is the real company."
 
 ::: {.notes}
-Important update: students raised on screenshots of the green company-name bar should
-know it's gone (Chrome/Firefox removed it ~2019–2020 because users didn't read it). The
-lesson: the lock icon says *the connection* is private, not *who* you're talking to.
+Important update: students raised on screenshots of the green
+company-name bar should know it's gone. Chrome dropped the EV UI in
+Chrome 77 (2019); Firefox followed in Firefox 70 (October 2019). Both cited
+Stripe's 2019 usability research showing users didn't actually read the EV
+bar — the identity signal wasn't reaching anyone. The current specification
+lives in the CA/Browser Forum Baseline Requirements. The lesson to plant:
+the lock icon says the connection is private, not who you're talking to.
+Domain-validation certs — the free automated kind Let's Encrypt issues —
+say only "someone controlled this domain long enough to prove it."
 :::
 
 # When CAs Go Wrong {.center}
@@ -282,9 +360,15 @@ The perverse incentive: CAs are **paid by the very entities** they're supposed t
 vet — looser rules mean more customers.
 
 ::: {.notes}
-DigiNotar is the canonical "the trust model failed" story. One compromised CA =
-silent interception of an entire country's email. Note the business-model conflict:
-the customer pays the CA, but the public bears the risk.
+DigiNotar is the canonical "the trust model failed" story — Fox-IT's
+"Black Tulip" report (August 2012) is the definitive primary source. One
+compromised CA equaled silent interception of an entire country's Gmail
+for several weeks in summer 2011. The company was distrusted by all major
+browsers within days and bankrupt within months. Note the business-model
+conflict Schneier flagged in his 2011 post: the customer pays the CA, but
+the public bears the risk — looser vetting means more paying customers.
+That perverse incentive is what Certificate Transparency (two slides ahead)
+was built to expose.
 :::
 
 ## Rogue Issuance in the Wild
@@ -304,9 +388,16 @@ the customer pays the CA, but the public bears the risk.
 :::
 
 ::: {.notes}
-These show the spectrum from clearly hostile (CNNIC MITM) to "it's our network" (Gogo,
-corporate TLS inspection). All use the identical trick: a root the client trusts signs a
-cert for a site it shouldn't. Good debate fodder for the backdoor question later.
+These show the spectrum from clearly hostile (CNNIC MITM, distrusted by
+Mozilla and Google in April 2015) to "it's our network" (Gogo caught by
+Ars Technica in January 2015, and enterprise TLS-inspection appliances that
+do the same thing every day). Durumeric et al.'s NDSS 2017 paper "The
+Security Impact of HTTPS Interception" is the classic empirical study of
+how much traffic actually gets decrypted this way. All these cases use the
+identical trick: a root the client trusts signs a cert for a site it
+shouldn't. This is direct debate fodder for the backdoors debate at the
+end of the deck — a mandated exceptional-access key is exactly this
+attack, made legal.
 :::
 
 ## 2025–2026: Browsers Are Still Pulling CAs {.smaller}
@@ -327,9 +418,18 @@ sign the *Zhong Stealer* malware.
   as with DigiCert 2026 — **losing control of an issuance pipeline**
 
 ::: {.notes}
-Freshest hook in the deck, verified. The point for a policy class: enforcement of web
-PKI is privatized — Apple/Google/Mozilla/Microsoft root programs decide who's trusted.
-That's enormous, largely unaccountable power. Ask: should this be a public function?
+Freshest hook in the deck, all three cases verified this session. Google's
+May 30, 2025 Security Blog post announced the Chunghwa Telecom and Netlock
+distrust for a "pattern of compliance failures." The DigiCert G1 removal
+was an announced phase-out of multi-purpose roots, not a compromise. The
+April 2026 DigiCert incident is more instructive: attackers phished a
+support analyst with a malicious .scr file, harvested EV code-signing
+initialization codes, and got roughly 60 certificates revoked — some already
+used to sign Zhong Stealer malware. The point for a policy class:
+enforcement of web PKI is privatized — Apple, Google, Mozilla, and
+Microsoft root programs decide who's trusted. That's enormous, largely
+unaccountable power. This is the framing question for Breakout A: should
+this be a public function?
 :::
 
 # Detecting and Limiting Damage {.center}
@@ -343,9 +443,15 @@ That's enormous, largely unaccountable power. Ask: should this be a public funct
 - **Limitation:** CT detects misissuance *after the fact*; it doesn't prevent it
 
 ::: {.notes}
-CT is the post-DigiNotar fix that actually scaled: make misissuance *visible*. A bogus
-Google cert can't hide anymore — Google would see it in the logs. Detection, not
-prevention, but detection is what was missing in 2011.
+CT is the post-DigiNotar fix that actually scaled — RFC 9162 (2021) is
+the current specification, though the concept traces to Laurie, Langley,
+and Kasper's 2013 ACM Queue introduction. The design goal: make
+misissuance visible. A bogus Google cert can't hide anymore — Google would
+see it in the logs. Detection, not prevention, but detection is exactly
+what was missing in 2011. Walk students through querying their own domain
+at crt.sh — it's a striking demo of just how public every cert issuance
+now is. Cold-call: what would you monitor for if you ran a bank's
+security team?
 :::
 
 ## Key Pinning and the SSH Model
@@ -357,9 +463,15 @@ prevention, but detection is what was missing in 2011.
 ![SSH's blunt warning when a host key changes — possible MITM.](images/slide071_img047.png)
 
 ::: {.notes}
-SSH is "trust on first use" pinning made visible. Web key-pinning (HPKP) was tried and
-mostly abandoned — too easy to brick your own site. The tension: pinning catches MITM
-but is operationally brittle. Good place to discuss usable security.
+SSH is "trust on first use" pinning made visible — the StrictHostKeyChecking
+behavior is the canonical example. Web key-pinning via HPKP was tried and
+mostly abandoned; Chris Palmer's 2017 Chromium deprecation post is worth
+citing — you could brick your own site by pinning a key you then rotated.
+The tension is real: pinning catches MITM but is operationally brittle.
+Expect-CT filled part of the gap and is now largely superseded by
+CT enforcement in the trust store itself. Good place to discuss usable
+security — the mechanism that works for one sysadmin managing a handful of
+hosts breaks at web scale.
 :::
 
 ## Expiration and Revocation
@@ -379,9 +491,15 @@ but is operationally brittle. Good place to discuss usable security.
 :::
 
 ::: {.notes}
-Heartbleed is the canonical mass-revocation event: a bug that could leak private keys
-meant everyone had to reissue. Revocation is famously broken — soft-fail OCSP means an
-attacker who can block the check just wins. Which motivates the next slide.
+Heartbleed (April 2014) is the canonical mass-revocation event — Durumeric
+et al.'s IMC 2014 paper "The Matter of Heartbleed" is the empirical
+retrospective. A bug that could leak private keys meant everyone had to
+reissue, and the CRLs bloated overnight. Revocation is famously broken:
+Adam Langley's 2012 ImperialViolet post "Revocation is broken" is the
+classic critique — soft-fail OCSP means an attacker who can block the
+check just wins. Chrome went further and dropped OCSP checks entirely,
+pushing a curated CRLSet via updates instead. All of this motivates the
+next slide: if revocation doesn't work, shorten the lifetime.
 :::
 
 ## The 2026 Fix: Just Make Certs Short-Lived {.smaller}
@@ -400,10 +518,16 @@ cert expires on its own in weeks.
   the web on a handful of ACME providers
 
 ::: {.notes}
-This is the elegant systems answer to broken revocation: don't fix revocation, shrink
-the window. Verified, dated. Connects to operations: short certs force automated
-renewal, which centralizes more of the web on a few ACME providers — another
-concentration-of-power discussion.
+This is the elegant systems answer to broken revocation: don't fix
+revocation, shrink the window. Primary source is CA/Browser Forum Ballot
+SC-081v3 (April 11, 2025) — the vote was unanimous, 29-0, all four major
+browsers in favor. Timeline: 199-day cap in force since March 2026, 100
+days in March 2027, 47 days in March 2029. Let's Encrypt already offers
+opt-in 45-day certs as of May 2026 and will default to them in February
+2028. Connects to operations: short certs force automated renewal via ACME
+(RFC 8555), which centralizes more of the web on a handful of issuers.
+Cold-call: what new fragility does mandatory automation introduce? — teed
+up for the issuer-concentration discussion in Breakout A.
 :::
 
 ## TLS in Practice {.smaller}
@@ -418,12 +542,19 @@ concentration-of-power discussion.
   HTTPS traffic already uses hybrid PQ handshakes
 
 ::: {.notes}
-This is the Wireshark demo from class: capture a handshake, find the certificate, watch
-the switch to symmetric keys. The SNI point is the bridge to the privacy half of the
-course — even with TLS, the *name* of the site you visit can leak. ECH is the fix.
-The PQ bullet answers the "harvest now, decrypt later" concern — D-H's discrete-log
-hardness assumption breaks against a quantum adversary, so the industry is already
-migrating. Hybrid means classical + PQ in the same handshake; safe if either survives.
+This is the Wireshark demo from class: capture a handshake (RFC 8446 is
+the spec), find the certificate, watch the switch to symmetric keys.
+Sample PCAPs on the Wireshark wiki work fine if the room's network is
+locked down. The SNI point is the bridge to the privacy half of the
+course — even with TLS, the name of the site you visit historically leaked
+in cleartext. Encrypted Client Hello (draft-ietf-tls-esni) closes that
+leak and is default-on in Chrome, Firefox, and Safari when DoH is enabled.
+The post-quantum bullet answers the "harvest now, decrypt later" concern —
+Diffie-Hellman's discrete-log hardness breaks against a quantum adversary,
+so Chrome 131 (November 2024) shipped hybrid X25519+ML-KEM-768 by default,
+and Cloudflare Radar reports about one-third of human HTTPS traffic
+already uses it. Hybrid means classical plus PQ in the same handshake;
+safe if either survives.
 :::
 
 ## Policy Debate: Encryption Backdoors {.center}
@@ -437,10 +568,16 @@ read encrypted traffic with a warrant.
   backdoor would look like
 
 ::: {.notes}
-This is the term's recurring debate (also on the syllabus). Tie it directly to the
-lecture: we just spent an hour seeing how a single trusted key-holder going bad
-compromises everyone. A government backdoor is exactly that, by design. Run it Oxford
-style; grade contribution, not the "winning" side.
+This is the term's recurring debate (full prompts in the Backdoors debate
+handout). Tie it directly to the lecture: we just spent an hour seeing how
+a single trusted key-holder going bad compromises everyone — DigiNotar,
+Chunghwa, DigiCert 2026. A government backdoor is exactly that failure
+mode, but by design. The foundational rebuttal to exceptional-access
+proposals is Abelson et al., "Keys Under Doormats" (MIT CSAIL, 2015);
+Steven Levy's Crypto covers the 1990s Crypto Wars context. Live 2026
+policy anchor: the UK Investigatory Powers (Amendment) Act 2024 led Apple
+to pull end-to-end iCloud encryption from the UK in February 2025. Run it
+Oxford style; grade contribution, not the "winning" side.
 :::
 
 # Takeaways {.center}
@@ -453,7 +590,13 @@ style; grade contribution, not the "winning" side.
 - The modern playbook: **transparency**, **short-lived certs**, **automation**
 
 ::: {.notes}
-Leave students with the throughline: every layer we added (certs → CAs → CT →
-short-lived certs) is a patch on the same wound — *whom do you trust, and how do you
-change your mind?* That question recurs in OAuth, BGP/RPKI, and the privacy lectures.
+Leave students with the throughline: every layer we added — certs, CAs,
+CT logs, short-lived certs, ACME automation — is a patch on the same
+wound. Whom do you trust, and how do you change your mind? Preview the
+bridge to next lecture: Authentication and OAuth asks the same question
+about users and delegated access. Companion hands-on work: the Certificate
+Chains activity, and the GPG key-signing / Web of Trust activity for a
+non-CA answer to the same problem. Recommended follow-up reading: the
+GCHQ Ellis/Cocks/Williamson history, Diffie and Hellman 1976, and the
+Fox-IT Black Tulip DigiNotar report.
 :::

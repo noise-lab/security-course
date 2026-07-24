@@ -13,12 +13,15 @@ A founding article of faith for the early Internet. Three decades later, is it
 still true?
 
 ::: {.notes}
-Open with the date. In 1993 the commercial services (Prodigy, AOL, CompuServe) were
-dismantling the walls between their private gardens and the open Internet, and the open
-Net "imposed no restrictions." Ask the room: do you still believe Gilmore's line? What
-is the biggest threat to it today? The arc of this lecture is that the Internet has
-drifted *back* toward a handful of walled platforms — which makes control easier, not
-harder.
+Open with the date and the source. John Gilmore, EFF co-founder, is quoted in Philip
+Elmer-DeWitt's "First Nation in Cyberspace," *Time*, Dec 6, 1993 — the earliest
+independent recording is Rheingold's *The Virtual Community* (Sept 1993). In 1993 the
+commercial services (Prodigy, AOL, CompuServe) were dismantling the walls between
+their private gardens and the open Internet, and the open Net "imposed no restrictions."
+Cold-call: do you still believe Gilmore's line? What's the biggest threat to it today?
+The arc of this lecture is that the Internet has drifted back toward a handful of
+walled platforms — which makes control easier, not harder. Debate hook to plant early:
+if the chokepoints are private, does the First Amendment even reach them?
 :::
 
 ## What This Lecture Covers
@@ -29,9 +32,13 @@ harder.
 - A **modern theory**: censorship as *friction* and *flooding*, not just blocking
 
 ::: {.notes}
-Set the frame: this is not just "China blocks websites." Modern information control is
-subtler — a tax on attention, plausibly deniable, often porous by design. Keep that
-thesis in mind throughout.
+Roadmap slide. Set the frame explicitly: this is not just "China blocks websites."
+Modern information control is subtler — a tax on attention, plausibly deniable, often
+porous by design. Preview the fear/friction/flooding framing that lands at the end of
+the deck (Margaret Roberts' taxonomy). Cross-reference: this lecture rhymes with the
+moderation deck (private gatekeepers) and with the DNS/routing lectures (technical
+chokepoints). If students remember one thing, it should be that porous censorship is
+often more effective than airtight censorship.
 :::
 
 # What Is Internet Censorship? {.center}
@@ -56,10 +63,14 @@ thesis in mind throughout.
 :::
 
 ::: {.notes}
-The three verbs — access, publish, view — map to three points where a censor can
-intervene. Politics is the dominant driver, but economic protectionism (e.g., favoring
-a domestic platform over a foreign one) is increasingly important and harder to call
-out as "censorship."
+Book anchor: Margaret Roberts, *Censored: Distraction and Diversion Inside China's
+Great Firewall* (Princeton, 2018), Chapter 1. The three verbs — access, publish, view
+— map to three intervention points. Politics is the dominant driver, but economic
+protectionism (favoring a domestic platform over a foreign one) is increasingly
+important and harder to call out as "censorship." Cold-call: is India blocking TikTok
+in 2020 political, economic, or both? Both — and the ambiguity is itself the tool.
+Cross-reference the moderation lecture: private "trust and safety" is a fourth verb
+that doesn't fit the traditional taxonomy but often does the same work.
 :::
 
 ## A Brief History {.smaller}
@@ -75,11 +86,15 @@ out as "censorship."
 | 2017 | Cloudflare drops the **Daily Stormer** — a private-actor takedown |
 
 ::: {.notes}
-Note the shift over the decades: 1990s active disruption and protocol filtering, 2000s
-surveillance, 2010s platform-level and private-actor control. The 2017 Cloudflare/Daily
-Stormer episode is the pivot point — the gatekeeper here is a *company*, not a
-government, and the CEO openly worried about the precedent. That sets up the "protocols
-to platforms" theme later.
+Trace the shift over decades: 1990s protocol filtering and active disruption; 2000s
+surveillance; 2010s platform-level and private-actor control. China's Great Firewall
+and Golden Shield were built out from 1997–2006; Google agreed to censor in 2006 and
+withdrew in 2010, redirecting cn.google.com to Hong Kong. Egypt's 2011 shutdown was a
+BGP withdrawal (Cowie/Renesys, "Egypt Leaves the Internet") that disconnected roughly
+88% of Egyptian networks. The 2015 Great Cannon (Citizen Lab) weaponized in-network
+injection to DDoS GreatFire and GitHub. The 2017 Cloudflare / Daily Stormer takedown
+is the pivot point: the gatekeeper is a company, not a government, and Matthew Prince
+openly worried about the precedent. That sets up "protocols to platforms" later.
 :::
 
 ## A "Modern" Theory of Censorship
@@ -87,10 +102,14 @@ to platforms" theme later.
 ![Margaret Roberts' pyramid: censors don't need to delete every story — they shape what flows from "all possible stories" up to the media and the public.](images/slide007_img005.png){width="55%"}
 
 ::: {.notes}
-This is from Margaret Roberts' *Censored* (2018). The censor's job is not to erase the
-base of the pyramid; it is to control the narrow channel through which stories reach the
-public. That reframing — control the *flow*, not the *existence* — is the spine of the
-whole second half of the lecture.
+From Margaret Roberts' *Censored* (Princeton, 2018) — the information pyramid. The
+censor's job is not to erase the base of the pyramid; it is to control the narrow
+channel through which stories reach the public. Reframing "control the flow, not the
+existence" is the spine of the whole second half of the lecture. Cold-call: if you
+were a censor with a fixed budget, would you delete every offending story or slow
+their reach by 30%? Roberts's data says slowing is cheaper, more effective, and less
+politically costly. Cross-reference the personalization slide later: whoever ranks
+the feed controls the same pyramid.
 :::
 
 # How Widespread Is It? {.center}
@@ -143,10 +162,14 @@ state would prefer whitelisting despite the economic cost.
 
 ::: {.notes}
 You cannot govern (or contest) what you cannot measure. The Egypt plot is the classic
-example: Google's normalized traffic from Egypt drops to near zero, then spikes back when
-connectivity returns. Modern tools (OONI, Censored Planet) do this continuously and
-remotely, which is how we get the annual shutdown counts in the vignette. Herdict, an
-older crowdsourcing project, has shut down — replaced by these endpoint/remote methods.
+example: Google's normalized traffic from Egypt drops to near zero on Jan 27, 2011,
+then spikes back when connectivity returns days later. Modern tools do this continuously
+and remotely: OONI (Open Observatory of Network Interference) via volunteer endpoints;
+Censored Planet from Roya Ensafi's Michigan group via remote probing; SFLC.in's India
+shutdown tracker; Access Now's KeepItOn coalition tracks the shutdown counts in the
+vignette. Herdict, an older crowdsourcing project, shut down and has been replaced.
+Cold-call: which measurement approach would let you catch throttling (as opposed to a
+hard block)? Continuous remote probing sees the difference between "slow" and "off."
 :::
 
 # How Is Censorship Implemented? {.center}
@@ -166,10 +189,12 @@ Alice ──▶ [ Censor / Firewall ] ──╳──▶ Bob
 
 ::: {.notes}
 This is the mental model students arrive with, and it's a fine starting point: a
-chokepoint between a censored net and an uncensored net. "Suppose Alice wants content
-from Bob; if she reaches the Internet through a censorship firewall, the censor can
-monitor, block, or punish." The rest of the lecture complicates this — the chokepoint
-moves, and outright blocking is often the *least* favored tool.
+chokepoint between a censored net and an uncensored net. Alice wants content from Bob;
+behind a firewall, the censor can monitor, block, or punish. The rest of the lecture
+complicates this — the chokepoint moves, and outright blocking is often the *least*
+favored tool because it's the most visible. Cold-call: which of the three verbs
+(monitor, block, punish) creates the most self-censorship? Punishment is why "fear"
+is one of Roberts's three F's, and why arrests scale far beyond the people arrested.
 :::
 
 ## Technical Mechanisms {.smaller}
@@ -194,12 +219,16 @@ moves, and outright blocking is often the *least* favored tool.
 :::
 
 ::: {.notes}
-Walk down the stack. IP and DNS blocking are cheap and coarse; TCP RST injection and
-SNI-based filtering are how the Great Firewall does fine-grained, keyword-aware blocking
+Walk down the stack. IP and DNS blocking are cheap and coarse. TCP RST injection and
+SNI-based filtering are how the Great Firewall does fine-grained keyword-aware blocking
 on otherwise-encrypted connections. Encrypted DNS (DoH/DoT) and Encrypted Client Hello
-(ECH) are eroding the SNI vantage point — tie back to the DNS-security lecture. The
-right column matters more every year: control a registrar, a CA, or a CDN and you
-control reachability without touching a single packet on the wire.
+(ECH — see Cloudflare's ECH deployment notes) are eroding the SNI vantage point —
+tie back to the DNS-security lecture. Recent measurement anchor: Hoang et al.,
+*GFWeb* at USENIX Security 2024, quantified GFW web censorship at scale. The right
+column matters more every year: control a registrar, a CA, or a CDN and you control
+reachability without touching a packet on the wire. Cold-call: if the SNI goes away
+under ECH, where does the censor's next vantage point move to? Probably to the
+endpoint (client-side scanning) or to the platform (mandated takedowns).
 :::
 
 ## Points of Control Along the Path
@@ -209,10 +238,15 @@ control reachability without touching a single packet on the wire.
 - **Client endpoints** — devices and apps (mandated client-side scanning, app removals)
 
 ::: {.notes}
-Censorship requires a *point of control*. Centralized infrastructure — a national
-gateway, a dominant CDN, an app store — is what makes blocking feasible at scale. The
-trend is that control is migrating from the network core toward the platform and the
-endpoint, which is exactly why "protocols to platforms" is the throughline.
+Censorship requires a point of control. Centralized infrastructure — a national
+gateway, a dominant CDN, an app store, a mobile OS vendor — is what makes blocking
+feasible at scale. Control is migrating from the network core toward the platform
+and the endpoint, which is exactly why "protocols to platforms" is the throughline
+of this lecture. Concrete anchors: EU Chat Control (mandated client-side scanning
+proposals); Russia's forced removal of VPN apps from Apple's App Store in 2024;
+India-mandated app takedowns. Cold-call: which of these three vantage points would
+you find hardest to circumvent as a user? Endpoint scanning is nearly impossible
+without switching device stacks entirely.
 :::
 
 ## Non-Technical Censorship
@@ -224,9 +258,13 @@ endpoint, which is exactly why "protocols to platforms" is the throughline.
 
 ::: {.notes}
 The most effective censorship may leave no technical trace at all. Self-censorship is
-the hardest to measure and arguably the most powerful. Copyright takedown regimes are a
-favorite legal tool because they are fast, deniable, and outsourced to platforms. This
-connects directly to the content-moderation and copyright lectures.
+the hardest to measure and arguably the most powerful — pervasive and essentially
+undocumented. Copyright takedown regimes (DMCA §512, EU DSA) are a favorite legal
+tool because they are fast, deniable, and outsourced to platforms — the platform
+takes it down first and litigates later. Connects directly to the content-moderation
+(16) and copyright (14, 15) lectures — the same statutory tools that legitimately
+protect creators are repurposed for information control. Cold-call: name a recent
+news story about a takedown; whose "law" produced it — the state's, or the platform's?
 :::
 
 # How Can It Be Circumvented? {.center}
@@ -247,10 +285,15 @@ connects directly to the content-moderation and copyright lectures.
 
 ::: {.notes}
 VPNs are the workhorse — but censors fight back by blocking VPN endpoints and
-fingerprinting their handshakes, which is why obfuscation (pluggable transports,
-Snowflake) matters. Note the arms race: as censors detect a tool, the tool must look
-more like ordinary traffic. This is also why some states now *whitelist* (vignette) —
-it's the censor's answer to circumvention.
+fingerprinting their handshakes, which is why obfuscation matters. Tor's pluggable
+transports (obfs4, meek, Snowflake) exist to make Tor traffic look like ordinary
+web traffic. Signal has done similar domain-fronting work — see its own censorship-
+circumvention blog posts. Domain fronting was mostly killed when Google and AWS shut
+it off in 2018 (EFF: "domain fronting was a critical tool for the open web"). The
+arms race means: as censors detect a tool, the tool must look more like ordinary
+traffic. This is also why some states now whitelist (opening vignette) — it's the
+censor's ultimate answer to circumvention. Cold-call: which is easier to defeat,
+whitelisting or blacklisting? Whitelisting is expensive to build but nearly airtight.
 :::
 
 ## Two Clever Ideas Worth Knowing {.smaller}
@@ -271,11 +314,15 @@ your traffic to the real destination; to the censor it looks like an innocent si
 :::
 
 ::: {.notes}
-Decoy routing (a.k.a. refraction networking) is elegant because the censor would have to
+Decoy / refraction routing traces to Wustrow et al., *Telex: Anticensorship in the
+Network Infrastructure* (USENIX Security 2011), and continues via TapDance and Conjure
+in the Refraction Networking project. It's elegant because the censor would have to
 block huge swaths of innocuous traffic to stop it — raising collateral damage. The
-Weibo homophone example shows circumvention doesn't have to be technical at all; users
-out-creative the keyword filters. Both illustrate the next idea: censorship is rarely
-airtight, and the censor often *knows* it isn't.
+Weibo homophone example (政府 → 正夫) shows circumvention doesn't have to be technical
+at all; users out-creative the keyword filters. King, Pan & Roberts' work on Chinese
+censorship (APSR 2013, "How Censorship in China Allows Government Criticism but
+Silences Collective Expression") is the canonical study. Both illustrate the next
+idea: censorship is rarely airtight, and the censor often knows it isn't.
 :::
 
 # From Protocols to Platforms {.center}
@@ -287,9 +334,14 @@ airtight, and the censor often *knows* it isn't.
 - **Plausible deniability** — make control look like accident or "moderation"
 
 ::: {.notes}
-This is the second half's thesis, drawn from the course reading (Roberts; "From
-Protocols to Platforms"). Control has moved up the stack and into private hands, and the
-most effective methods are the ones that don't look like censorship at all.
+Second-half thesis, drawn from the course reading (Roberts, *Censored*; "From
+Protocols to Platforms"). Anchor essay: Jack Balkin's "Free Speech in the Algorithmic
+Society" (UC Davis L. Rev. 2018) — the free-speech triangle of state, platforms, and
+users. Also Kate Klonick, "The New Governors" (Harvard L. Rev. 2018). Control has
+moved up the stack and into private hands, and the most effective methods are the ones
+that don't look like censorship at all. Centralization is what makes modern takedown
+both easy and deniable. Cross-reference the content-moderation lecture (16): private
+governance of speech is the same story from a different angle.
 :::
 
 ## Manipulation: Sock-Puppets, Astroturf, Disinformation
@@ -299,10 +351,15 @@ most effective methods are the ones that don't look like censorship at all.
 - **Disinformation** — deliberately spread falsehoods to crowd out the truth
 
 ::: {.notes}
-China's "50 Cent Army" is the canonical study (King, Pan, Roberts): the goal of state
-commentators is mostly *distraction* — cheerleading and topic-shifting around sensitive
-dates — not argument. Connect to the "flooding" tactic below. Modern twist: generative
-AI makes plausible sock-puppet content nearly free, which scales flooding dramatically.
+China's "50 Cent Army" is the canonical study — King, Pan, Roberts, "How the Chinese
+Government Fabricates Social Media Posts for Strategic Distraction, Not Engaged
+Argument" (APSR 2017). Finding: state commentators mostly distract (cheerleading,
+topic-shifting around sensitive dates) rather than argue. Connect to the "flooding"
+tactic on the next slide. Modern twist: generative AI makes plausible sock-puppet
+content nearly free — see Goldstein et al., "Generative Language Models and Automated
+Influence Operations" (2023). This scales flooding dramatically. Cold-call: if a
+bot can post 10,000 comments per day, what's the marginal cost of drowning out any
+particular narrative? Nearly zero — which is the whole game.
 :::
 
 ## Roberts' Taxonomy: Fear, Friction, Flooding {.smaller}
@@ -314,10 +371,14 @@ AI makes plausible sock-puppet content nearly free, which scales flooding dramat
 | **Flooding** | Drown signal with distracting noise | Bots, astroturf, hashtag hijacking |
 
 ::: {.notes}
-This table is the single most important slide. Fear targets the sophisticated minority;
-friction and flooding work on everyone else. The genius is that friction and flooding
-are *deniable* — they look like a slow network or an organic trend, not a crackdown.
-Have students classify the day's news headline into one of the three F's.
+Single most important slide of the deck. Straight from Roberts, *Censored*, §1.2
+"Distraction and Diversion." Fear targets the sophisticated minority; friction and
+flooding work on everyone else. The genius is that friction and flooding are
+*deniable* — they look like a slow network or an organic trend, not a crackdown.
+Cold-call: have students classify the day's news headline into one of the three F's
+before you reveal your read. Debate hook for the censorship breakout: is age
+verification a form of friction masquerading as consumer protection? That's Breakout
+A. Cross-reference the moderation deck: private "shadowbanning" is textbook friction.
 :::
 
 ## Censorship as a Tax, Not a Ban
@@ -329,11 +390,14 @@ Have students classify the day's news headline into one of the three F's.
 - A small, deliberate inconvenience deters the **majority** — without backlash
 
 ::: {.notes}
-The throttling story: rather than a hard block, the page simply loads ~75% of the time,
-slowly. Most users give up; the determined few get through. Crucially, throttling is
-deniable — "the network is just slow." This is the "porous censorship" insight: holes
-are a feature, because the holes relieve pressure from the motivated minority who would
-otherwise cause backlash.
+Direct quote from Roberts (Ch. 1). The Google 2010 throttling story: rather than a
+hard block, pages loaded roughly 75% of the time, slowly. Most users give up; the
+determined few get through. Throttling is deniable — "the network is just slow."
+This is the "porous censorship" insight: the holes are a feature, because they relieve
+pressure from the motivated minority who would otherwise cause backlash and become
+martyrs. Cold-call: how would you empirically distinguish "network is bad" from
+"government is throttling"? Continuous remote probing (Censored Planet) is one answer;
+patterns tied to sensitive dates are another. Cross-reference the measurement slide.
 :::
 
 ## Personalization and "Filter Bubbles"
@@ -345,10 +409,15 @@ Personalized feeds show us what *already* suits our tastes — and that channel 
 > now than people dying in Africa." — Mark Zuckerberg
 
 ::: {.notes}
-The point isn't that filter bubbles are an unstoppable force (the empirical evidence is
-mixed) — it's that *whoever controls the ranking controls attention*, and attention is
-the scarce resource censors now compete for. Tie to flooding: you don't need to delete a
-story if the algorithm simply never surfaces it.
+Zuckerberg's "squirrel dying" quote originally appeared in David Kirkpatrick's *The
+Facebook Effect* (Simon & Schuster, 2010). Eli Pariser coined "filter bubble" the
+same year. Empirical pushback worth naming: Guess et al. in *Science* (2023) found
+reshares amplify political news but don't detectably move beliefs or opinions — the
+evidence for filter-bubble *effects* is mixed. The teaching point isn't "filter bubbles
+are unstoppable" but "whoever controls ranking controls attention," and attention is
+the scarce resource censors now compete for. Tie to flooding: you don't need to
+delete a story if the algorithm simply never surfaces it. Cold-call: is a downranked
+tweet censored? By whose definition?
 :::
 
 ## Why Control Information If It Leaks Anyway?
@@ -359,11 +428,14 @@ story if the algorithm simply never surfaces it.
 - Every method gives the censor **plausible deniability**
 
 ::: {.notes}
-This answers the lecture's central puzzle (the "why bother if it's circumventable?"
-slide). The answer: perfect censorship was never the goal. A leaky system that taxes
-attention, looks like technical failure, and avoids martyrs is *more* effective than an
-airtight one that provokes resistance. The future of censorship is the competition for
-limited human attention.
+Answers the lecture's central puzzle: why bother censoring if it's circumventable?
+Because perfect censorship was never the goal. A leaky system that taxes attention,
+looks like technical failure, and avoids martyrs is more effective than an airtight
+one that provokes resistance. Fear reserved for the sophisticated few; friction and
+flooding handle the majority; every method gives the censor plausible deniability.
+The future of censorship is the competition for limited human attention. Cold-call:
+if you were designing a control regime and could pick only one of the three F's,
+which would you pick and why? Roberts's data says friction gives the best ROI.
 :::
 
 ## Takeaways
@@ -376,10 +448,14 @@ limited human attention.
   race favors whoever controls the chokepoint
 
 ::: {.notes}
-Land the thesis: a "tax on access to information." Even citizens in democracies are
-vulnerable to friction and flooding, because attention is finite. Preview the link to
-content moderation and net-neutrality debates — when does platform moderation become
-censorship, and who decides?
+Land the thesis: censorship is a tax on access to information. Even citizens in
+democracies are vulnerable to friction and flooding because attention is finite.
+Recap ladder: packets → platforms → attention; fear/friction/flooding; measurement
+via OONI and Censored Planet; circumvention arms race. Preview the link to the
+content-moderation debate — when does platform moderation become censorship, and
+who decides? That's the discussion coming next, and Breakout A in the censorship
+breakout guide. Debate hook: is a private CDN pulling a controversial site
+censorship, moderation, or both?
 :::
 
 # Discussion {.center}
@@ -389,7 +465,12 @@ Is **content moderation** by a private platform a form of censorship? When does
 or *flooding*?
 
 ::: {.notes}
-Run as a cold-call into the three-F framework, then bridge to the content-moderation
-debate. Good follow-up: who should hold the chokepoint accountable — the state, the
-platform, or no one?
+Run as a cold-call into the three-F framework, then bridge to the moderation debate.
+Good follow-up: who should hold the chokepoint accountable — the state, the platform,
+or no one? Companion breakouts: Breakout A is age-verification / democratic-censorship,
+workshopping the friction/flooding/fear frame; Breakout B is whitelisting, VPN
+crackdowns, and splinternet. Flag the censorship debate if scheduled the same session.
+Best cold-call: "Pick this week's news story — is it fear, friction, or flooding?"
+Almost every headline maps onto one of the three, which is the durable takeaway you
+want students to leave with.
 :::

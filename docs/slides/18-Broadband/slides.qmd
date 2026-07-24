@@ -14,7 +14,11 @@ are trustworthy.
 Frame the day. This is not a networking lecture for its own sake — it is a case study
 in how technical measurement, policy, privacy, and equity collide. Every claim a
 regulator makes ("X% of homes have broadband") rests on a measurement someone designed,
-and those designs have biases. That is the consumer-protection angle.
+and those designs have biases. That is the consumer-protection angle. Cross-reference
+the whole term: security and privacy live inside infrastructure, and infrastructure is
+allocated by numbers that appear in a table. Cold-call: think of a consumer product
+you buy where "the number on the box" is really an argument, not a fact — broadband
+speed, phone battery life, camera megapixels. Broadband is the case study today.
 :::
 
 ## A 2026 Vignette: The Cliff and the Map {.smaller}
@@ -55,9 +59,13 @@ sets up the whole "measurement is hard and biased" arc.
 5. **As links get faster, measurement gets harder** — and more political.
 
 ::: {.notes}
-This is the spine. Each lesson is a slide or two. Tell students the through-line: every
-lesson is a reason that the "official" broadband numbers can be wrong — and wrong numbers
-drive billions in policy.
+Spine of the lecture. Each lesson is a slide or two. Tell students the through-line
+explicitly: every lesson is a reason the "official" broadband numbers can be wrong,
+and wrong numbers drive tens of billions in policy — BEAD alone is $42.45B, ACP was
+about $30/month for 23M households. Cold-call: rank the five lessons by which one
+surprises you most. That primes them to notice which of their intuitions the deck
+overturns. Cross-reference to the data-science workflow at the end: fixing a
+measurement is often the real research project.
 :::
 
 # What Are We Even Measuring? {.center}
@@ -81,9 +89,13 @@ The metric that matters depends on the **application**.
 :::
 
 ::: {.notes}
-Hammer the point that "speed" is marketing shorthand. A Zoom call cares about latency,
-jitter, and loss far more than peak throughput. This is why a household can have "fast
-internet" on paper and a terrible experience.
+Hammer that "speed" is marketing shorthand. A Zoom call cares about latency, jitter,
+and loss far more than peak throughput. Cloudflare's engineering blog puts this well:
+"aim for reliability, not speed." That's why a household can have "fast internet" on
+paper and a terrible experience — and why a family paying for a gigabit tier can
+still hit a rebuffering spinner on the same call. Cold-call: for the app you used
+last night, which of the four metrics mattered most? Gaming = latency; streaming =
+throughput + jitter; video calls = all four. Bridges to the "apps plateau" slide.
 :::
 
 ## Different Techniques Measure Different Things
@@ -102,9 +114,14 @@ The four lines below are all "the throughput of the same homes."
 :::
 
 ::: {.notes}
-Walk the CDF: single-threaded HTTP (NDT-style) systematically *under*-reports capacity
-vs. UDP capacity or multi-threaded tests. This is not noise — it is a methodological
-bias, and it matters because M-Lab/NDT data feeds public maps and policy.
+Walk the CDF: single-threaded HTTP (classic NDT-style) systematically under-reports
+capacity vs. UDP-capacity or multi-threaded tests. This is not noise — it's
+methodological bias. It matters because M-Lab / NDT data feeds public FCC maps and
+policy decisions. M-Lab publishes its own methodology (measurementlab.net) and has
+since evolved NDT (NDT7 uses BBR and TCP_INFO). Cold-call: if two speed tests
+disagree by 300 Mbps on the same link, which one is right? Neither — they answer
+different questions. Cross-reference the "who runs the test?" slide later: even
+before sampling bias, method choice already skews the answer.
 :::
 
 ## Many Factors Limit a Client-Based Speed Test {.smaller}
@@ -118,9 +135,14 @@ The number you get is the **minimum** across the whole chain:
 - **Test parameters** — duration, number of connections
 
 ::: {.notes}
-The key intuition: a speed test measures the weakest link, not the access link. If the
-phone's Wi-Fi caps at 80 Mbps, a 1 Gbps plan reads as 80. Students conflate "my speed
-test" with "my ISP's speed" constantly — this slide breaks that.
+Key intuition: a speed test measures the weakest link, not the access link. If your
+phone's Wi-Fi caps at 80 Mbps, a 1 Gbps plan reads as 80 — and you'll blame Comcast.
+Students conflate "my speed test" with "my ISP's speed" constantly; this slide breaks
+that. Cold-call: name every hop you can think of between your laptop and Zoom's
+server. Then ask which of those hops you as a consumer can even *see*, let alone
+control. Very few — which is exactly why measurement is a policy problem, not just
+a device problem. Cross-reference the next slide: even inside your home, Wi-Fi is
+usually the culprit above 35 Mbps.
 :::
 
 ## The Home Network Is Often the Bottleneck
@@ -137,10 +159,14 @@ test" with "my ISP's speed" constantly — this slide breaks that.
 :::
 
 ::: {.notes}
-Bubble plot: x-axis = fraction of time the access link is the bottleneck, y-axis =
-fraction of time Wi-Fi is. Mass sits in the upper-left: Wi-Fi limited, access link fine.
-Policy implication: subsidizing a faster tier may not help if the home network is the
-constraint — an equity nuance.
+Bubble plot: x-axis is fraction of time the access link is the bottleneck; y-axis
+is fraction of time Wi-Fi is. Mass sits in the upper-left — Wi-Fi limited, access
+link fine. Anchor: Sundaresan et al., "Home Network or Access Link? Locating Last-Mile
+Downstream Throughput Bottlenecks" (PAM 2016). Above roughly 35 Mbps the access link
+is almost never the bottleneck. Policy implication: subsidizing a faster *tier* may
+not help if the home network is the constraint — an important equity nuance for
+programs like ACP and BEAD. Cold-call: if you were the FCC, would you fund faster
+tiers or better routers? A live debate in current broadband policy circles.
 :::
 
 ## Faster "Speed" Doesn't Mean Better Performance
@@ -160,10 +186,15 @@ So the marginal gigabit buys almost no web-browsing benefit.
 :::
 
 ::: {.notes}
-This is the consumer-protection punchline: ISPs upsell ever-faster tiers, but for most
-everyday tasks the experience plateaus. The Wall Street Journal ran a well-known piece
-("You're probably paying for internet speed you don't need") on exactly this. Tie it to
-how we define a *useful* broadband benchmark.
+Consumer-protection punchline: ISPs upsell ever-faster tiers, but for most everyday
+tasks the experience plateaus. The *Wall Street Journal* piece "You're Probably Paying
+for Internet Speed You Don't Need" (2018) is the popular anchor; Sundaresan, Feamster
+& Teixeira's academic work quantifies the ~16 Mbps plateau for page loads. Beyond
+that, latency, protocol behavior (TCP slow start, HTTP/2 vs. 3), and page complexity
+are the bottleneck, not throughput. Cold-call: what would you actually notice if
+your ISP doubled your plan from 300 to 600 Mbps? Probably nothing for browsing.
+Ties directly to the benchmark-definition slide: the FCC's 100/20 threshold is
+already well past the plateau for most everyday tasks.
 :::
 
 ## User Experience Lives in the Application {.smaller}
@@ -180,8 +211,13 @@ link at all.
 
 ::: {.notes}
 The right thing to measure is experience, which is observable only by watching real
-application traffic. That motivates passive measurement — and the privacy tension we hit
-later. Note: ideally you'd also just ask users (experience sampling).
+application traffic — startup delay, resolution, bitrate changes, rebuffering.
+Motivates passive measurement, and the privacy tension we hit later. Reference for
+video-conferencing facts: MacMillan et al., "Measuring the Performance and Network
+Utilization of Popular Video Conferencing Applications" (IMC 2021). Ideally you'd
+also just ask users (experience sampling). Cold-call: what would a *user-experience*
+KPI look like for broadband, and how would you audit an ISP against it? The FCC's
+Measuring Broadband America program (via SamKnows) is the closest current example.
 :::
 
 # Measuring the Digital Divide {.center}
@@ -200,10 +236,14 @@ acute on the **South Side**, even in neighborhoods bordering the university
 :::
 
 ::: {.notes}
-Two homes, *same advertised 1 Gbps Comcast plan*, two neighborhoods. South Shore sits
-lower and dips harder. "Same service plan ≠ same performance." This is the equity heart
-of the lecture and it's measurable. Connect back to ACP: affordability and quality both
-vary by neighborhood.
+Two homes, *same advertised 1 Gbps Comcast plan*, two neighborhoods bordering the
+university (Hyde Park vs. South Shore). South Shore sits lower and dips harder.
+"Same service plan ≠ same performance." This is the equity heart of the lecture and
+it is measurable — anchor is the UChicago Internet Equity Initiative
+(internetequity.uchicago.edu). Connect back to ACP: affordability *and* delivered
+quality both vary by neighborhood. Cold-call: what would you need to prove to a
+regulator that this pattern is systematic, not one bad router? A sampling frame
+(next few slides) and controlled comparison — hard, hence why so few maps show it.
 :::
 
 ## What Counts as "Broadband"? {.smaller}
@@ -258,7 +298,11 @@ clean it.
 ::: {.notes}
 The data-science lesson. Students' instinct is "drop the bad rows." But sampling and
 methodological bias survive cleaning — you have to fix the *instrument*, not the
-spreadsheet. This is the bridge to "sometimes you must build a new measurement system."
+spreadsheet. Systematic errors are biased, not random; deleting outliers doesn't help.
+Bridge to "sometimes you must build a new measurement system." Cold-call: what's the
+difference between a random error and a systematic one, and which does data cleaning
+actually fix? Random shrinks with more samples; systematic doesn't. Cross-reference
+the broadband breakout on "who measures the internet?" as a political question.
 :::
 
 ## Limitation: Who Runs the Test? {.smaller}
@@ -280,10 +324,15 @@ policy is meant to help.
 :::
 
 ::: {.notes}
-Selection bias is the silent killer of broadband data. The map of "where tests ran" is
-not a map of "where people live." Designing a real **sampling frame** (red boundary,
-census blocks) is itself research. Tie back to the vignette: ACP-eligible households are
-under-sampled.
+Selection bias is the silent killer of broadband data. The map of "where tests ran"
+is not the map of "where people live." Crowdsourced speed tests over-represent people
+who already suspect a problem, households with devices and confidence to test, and
+the technically engaged. The least-connected are the least likely to appear in the
+data — exactly the people policy is meant to help. Designing a real sampling frame
+(red boundary, census blocks in the South Shore image) is itself research. Cold-call:
+in Hyde Park vs. South Shore, which neighborhood do you expect to run more speed
+tests? Almost certainly Hyde Park — biasing every downstream policy conclusion.
+Tie back to the ACP vignette: eligible households are precisely the ones under-sampled.
 :::
 
 ## Limitation: The Test Itself Lies {.smaller}
@@ -301,9 +350,14 @@ The result isn't a small error — it's **bad conclusions** baked into public ma
 :::
 
 ::: {.notes}
-This is delicate: M-Lab data is widely used and valuable, but a known methodological
-limitation means it can understate capacity. The teaching point is humility — know your
-instrument's bias before you publish a map that moves billions of dollars.
+Delicate slide: M-Lab data is widely used and valuable, but the classic single-threaded
+NDT implementation can under-report at high speeds. Not a smear — M-Lab publishes its
+methodology openly and has evolved NDT (NDT7 uses BBR and TCP_INFO). Teaching point
+is humility: know your instrument's bias before you publish a map that moves billions.
+Cold-call: if the FCC's broadband map is built on biased data, and BEAD money flows
+from that map, who is under-served in the resulting allocation? Rural + low-adoption
+communities twice over. Cross-reference the "who runs the test" slide: methodological
+bias and sampling bias compound rather than cancel.
 :::
 
 # Doing It Right: A Data-Science Workflow {.center}
@@ -318,9 +372,14 @@ Good broadband research **starts with people**, not a dataset:
 - The question determines what — and where — to measure
 
 ::: {.notes}
-Counter the Kaggle mindset. You don't start from "here's a CSV." You start from a
-community's actual question. Shaping research questions *in relation to people* is the
-work — and it's what keeps the measurement honest and useful.
+Counter the Kaggle mindset. You don't start from "here's a CSV" — you start from a
+community's actual question. Residents, community organizations, city agencies, ISPs,
+and regulators each frame a different question: "Is it affordable?" vs. "Is it fast?"
+vs. "Is it reliable?" The question determines what and where to measure. Shaping
+research questions in relation to people is the work — and it's what keeps the
+measurement honest and useful. UChicago Internet Equity Initiative case studies
+show the workflow in practice. Cold-call: what question would your hometown ask
+about its broadband, and how would you measure it? Almost never a Kaggle download.
 :::
 
 ## Step 2: Sometimes You Must Build the Instrument {.smaller}
@@ -344,9 +403,14 @@ tradeoff.
 
 ::: {.notes}
 The device sits in-line between the cable modem and the home router (or off-path),
-implemented on cheap hardware (Raspberry Pi / Odroid). It infers experience from traffic
-patterns instead of decrypting. This is how you escape the biases of crowdsourced client
-tests — but it introduces the privacy problem on the next slides.
+implemented on cheap hardware (Raspberry Pi, Odroid). It infers experience from
+traffic patterns instead of decrypting. Reference implementations: Netrics /
+NetMicroscope from the Internet Equity Initiative; BISmark; SamKnows (used by the
+FCC's Measuring Broadband America program). This is how you escape the biases of
+crowdsourced client tests — but it introduces the privacy problem on the next slides.
+Cold-call: what could you infer about a household from the *shape* of their traffic,
+without decrypting anything? Sleep schedules, streaming vs. work hours, number of
+active devices, even which app is in use. That's the tension.
 :::
 
 ## Step 3: Confront the Tradeoffs — Privacy {.smaller}
@@ -363,10 +427,15 @@ is a design decision, not an afterthought.
 :::
 
 ::: {.notes}
-This is where the lecture rejoins the privacy themes of the course. You can infer a lot —
-sleep schedules, which apps, household size — from metadata alone. Asking an
-under-resourced community to host a sensor demands earned trust and strong privacy
-guarantees. Current deployments often retreat to active-only measurement for this reason.
+Where the lecture rejoins the privacy themes of the course. You can infer sleep
+schedules, apps in use, household size, even individual identities from metadata
+alone — cross-reference the surveillance/metadata deck and the DNS-security lecture,
+where the same technique reveals browsing patterns without touching payloads. Asking
+an under-resourced community to host a sensor demands earned trust and strong privacy
+guarantees. Current deployments often retreat to active-only measurement for exactly
+this reason. Debate hook: is a "measurement device" in a low-income household closer
+to a smart meter or to a wiretap? Same technology can be either depending on
+governance. Cold-call: what consent regime would you build?
 :::
 
 ## Passive Measurement Yields Real Insight {.smaller}
@@ -381,8 +450,14 @@ From a lab study of video-conferencing apps over **constrained** links:
 
 ::: {.notes}
 Concrete payoff of passive measurement: you learn things no speed test could — fairness
-between apps, recovery dynamics, layout effects. Ties back to Lesson 4: experience is
-about app behavior under real conditions, not peak Mbps.
+between apps, recovery dynamics, layout effects. Anchor: MacMillan et al., "Measuring
+the Performance and Network Utilization of Popular Video Conferencing Applications"
+(IMC 2021) for the app-fairness and 20-second recovery findings. Zoom and Google Meet
+grab more than 75% of downlink when competing with Teams or a TCP flow — that's not a
+speed problem, it's a protocol-design and market-power problem. Ties back to Lesson 4:
+experience is about app behavior under real conditions, not peak Mbps. Cold-call:
+which of these findings is most actionable for a regulator, and which one would ISPs
+push back on hardest? Fairness measurements have the most policy leverage.
 :::
 
 # Why It Matters {.center}
@@ -410,8 +485,14 @@ Every one of these decisions rests on **a measurement someone designed**.
 
 ::: {.notes}
 Bring it home. The same measurement biases we discussed (sampling, method, definition)
-are deciding tens of billions in spending right now. A student who understands instrument
-bias can critique a broadband map — and that is a policy superpower.
+are deciding tens of billions in spending right now. Affordability side: ACP ended
+June 2024; no federal successor; NM LITAP (July 2026) and CA LifeLine Home Broadband
+Pilot (January 2026) are the leading state successors at up to $30/month; NY and CT
+took a different path (mandate large providers offer capped low-cost plans). Deployment
+side: BEAD dashboard shows 54/56 Final Proposals approved and 52 subgrant agreements
+signed by mid-2026; Alabama ($460M / 63 projects / March 2026), Mississippi ($508M
+/ February 2026), Massachusetts ($18.8M / February 2026) are examples. A student who
+understands instrument bias can critique a broadband map — that is a policy superpower.
 :::
 
 ## Conclusion {.smaller}
@@ -426,8 +507,13 @@ bias can critique a broadband map — and that is a policy superpower.
 > problem.
 
 ::: {.notes}
-End on the disposition you want: skepticism toward tidy numbers, respect for the people
-behind the data, and awareness that measurement choices are policy choices. If they
-remember one thing: "a broadband statistic is an argument, not a fact — ask how it was
-measured."
+End on the disposition you want: skepticism toward tidy numbers, respect for the
+people behind the data, and awareness that measurement choices are policy choices.
+If they remember one thing: "a broadband statistic is an argument, not a fact — ask
+how it was measured." Cross-links for the day: the broadband activity has students
+run Ookla and M-Lab on their own connection and reconcile the disagreement
+(operationalizes Lesson 2 and the sampling discussion). Broadband Breakout A is
+Title II / utility regulation (grounded in the ACP collapse); Breakout B is "who
+measures the internet?" — measurement methodology as a political question, exactly
+the disposition we just built. Debate hook: is broadband a public utility?
 :::

@@ -18,10 +18,18 @@ The naming layer is small, old, and quietly load-bearing. This lecture is about
 its **security** (integrity) and its **privacy** (confidentiality).
 
 ::: {.notes}
-Open with the AWS outage — most students felt it. The point: DNS is a single
-dependency that, when it fails, takes down "half the internet." Hold that
-centralization thread; we return to it with DoH. Source: AWS post-event summary,
-ThousandEyes / InfoQ analyses, Oct 2025.
+Open with the AWS us-east-1 DynamoDB outage of October 20, 2025 — most
+students felt it. The mechanism is worth having ready: a stale-plan check in
+the DNS Enactor allowed an old plan to overwrite a newer one, and cleanup
+automation then deleted the plan entirely, leaving dynamodb.us-east-1.
+amazonaws.com with an empty DNS record. Cascade: DynamoDB down took out
+DropletWorkflow Manager, which triggered EC2 lease timeouts, which produced
+"congestive collapse." About 15 hours; Snapchat, Fortnite, Roblox, Ring,
+McDonald's mobile, HMRC. Sources: AWS post-event summary, InfoQ, ThousandEyes,
+The Register, The Pragmatic Engineer. Not an attack — just DNS. The teaching
+point: DNS is a single dependency small enough for the whole cloud to trip
+over. Hold this centralization thread; we return to it under "Architectural
+Crisis" at the end of the lecture.
 :::
 
 ## What DNS Does
@@ -34,9 +42,14 @@ ThousandEyes / InfoQ analyses, Oct 2025.
 - **Decentralized** maintenance and **robust** to failure
 
 ::: {.notes}
-DNS is the phone book. Emphasize the design goals — scalability, decentralized
-control, global consistency. These goals are exactly what gets strained by the
-encrypted-DNS centralization story later.
+DNS is the phone book. Emphasize the design goals explicitly — scalability
+to billions of names, decentralized control, global consistency (a name
+means the same thing everywhere), and robustness to individual failures.
+These are exactly the goals that get strained by the encrypted-DNS
+centralization story we get to in the second half. References for framing:
+MDN's "What is DNS?" and Cloudflare Learning's "What is DNS?" Ask: which
+of these design goals is *hardest* to preserve if we bolt on encryption to
+a small set of providers? Foreshadow: the answer is decentralization.
 :::
 
 ## The DNS Hierarchy
@@ -50,9 +63,15 @@ A name space split into **zones**, served by a hierarchy of servers:
 Each level **refers** the query one step down the hierarchy.
 
 ::: {.notes}
-Draw the hierarchy on the board. The recursive resolver is the workhorse and the
-privacy chokepoint — it sees who you are AND what you ask. Caching is why one
-machine can answer most queries without hitting the root every time.
+Draw the hierarchy on the board while you talk. The recursive resolver is
+both the workhorse of the system and the privacy chokepoint — it sees who
+you are (your IP) *and* what you ask (the name). That coupling is exactly
+what ODoH is designed to break at the end of the lecture. Caching is why
+one recursive resolver can answer the vast majority of queries without ever
+hitting the root — most root servers see traffic dominated by junk and TTL
+expirations, not real queries. Reference for the walk-through: ICANN's
+Beginner's Guide to DNS. Cold-call: at which level of the hierarchy would
+you be most worried about surveillance, and why?
 :::
 
 ## A Single Lookup, Step by Step {.smaller}
@@ -68,9 +87,14 @@ machine can answer most queries without hitting the root every time.
 lookups (scripts, trackers, images, CDNs).
 
 ::: {.notes}
-Walk this slowly — it is a likely midterm question ("trace a lookup"). The
-"hundreds of lookups per page" fact sets up website fingerprinting: each page has
-a distinctive set of names.
+Walk this slowly — it is a likely midterm question ("trace a lookup for
+www.foo.com"). Have students name each transition and where the cache
+lives. The "hundreds of lookups per page" fact sets up website
+fingerprinting later in the deck: each modern page loads scripts, trackers,
+images, and CDN assets from dozens of distinct domains, so every page has a
+distinctive set of names. That is what makes even encrypted-content
+traffic fingerprintable at the DNS layer. Ask: on a page you visited this
+morning, how many third-party domains do you think were resolved?
 :::
 
 # Integrity: Can You Trust the Answer? {.center}
@@ -87,9 +111,17 @@ encryption**.
   inject forged answers at scale
 
 ::: {.notes}
-Cache poisoning is the integrity threat. Don't drill protocol mechanics — the
-agenda flags Kaminsky as conceptual only. The takeaway: without authentication,
-a lie propagates through the cache to every downstream user. Motivates DNSSEC.
+Cache poisoning is the integrity threat. Don't drill protocol mechanics —
+the agenda flags Kaminsky as conceptual only. The primary anchor is CERT
+Vulnerability Note VU#800113 (July 8, 2008): "Multiple DNS implementations
+vulnerable to cache poisoning." Dan Kaminsky's finding was coordinated with
+all major vendors before disclosure; the fix (mostly) was source-port
+randomization on top of TXID randomization, reducing the attacker's guess
+space from 2^16 to ~2^32. Not the end of the story — SAD DNS (2020) showed
+cache poisoning could return via ICMP side channels. The takeaway: without
+authentication, a lie propagates through the cache to every downstream
+user. That's what motivates DNSSEC on the next slide. Keep the exam framing
+at "why did the lie propagate to everyone."
 :::
 
 ## DNSSEC: Signatures Up the Hierarchy
@@ -105,8 +137,17 @@ idea as web certificates and RPKI for BGP.
 DNSSEC protects **integrity**, *not* confidentiality — queries are still visible.
 
 ::: {.notes}
-Use DNSSEC as a test of whether students understand PKI: who signs what, where
-the chain bottoms out. Connect to web PKI and RPKI from earlier lectures.
+Use DNSSEC as a live test of whether students actually internalized PKI:
+who signs what, where the chain bottoms out. Reference: RFCs 4033-4035;
+ICANN's "DNSSEC What Is It and Why Is It Important?" page. Validation
+stats: still under 40% globally by end-user resolver share as of mid-2026,
+per APNIC's DNSSEC validation dashboards — deployment lags DNSSEC's age.
+Connect explicitly to the two PKI stories students have already seen: web
+PKI (from the crypto lecture) and RPKI (from last week's routing lecture).
+Same architectural shape, different resource being certified: cert binds
+identity to key, ROA binds prefix to AS, DNSSEC record binds name to
+address. Ask: what does DNSSEC *not* protect? Answer for the next slide:
+confidentiality.
 :::
 
 ## Where Does the Chain of Trust Stop?
@@ -118,9 +159,16 @@ This is **"trusting trust"** again: the chain must terminate in *something* you
 take on faith. DNSSEC moves the trust, it doesn't eliminate it.
 
 ::: {.notes}
-Callback to the first lecture (Thompson's "Reflections on Trusting Trust").
-Every trust hierarchy bottoms out in a root you can't independently verify.
-Recurs throughout the course.
+Callback to Lecture 1 (Ken Thompson's 1984 Turing Award lecture, "Reflections
+on Trusting Trust"). Every trust hierarchy bottoms out in a root you can't
+independently verify — for DNSSEC, that root is the key ICANN and Verisign
+hold, and the copy of it that shipped with your resolver software. DNSSEC
+moves the trust, it does not eliminate it: you now trust whoever built the
+software instead of every intermediate resolver. This is a pattern that
+recurs throughout the course — browser CA stores, RPKI trust anchors, DNS
+root keys, Signal's key transparency, all of them terminate in something
+you take on faith. Ask: which of these roots would you trust *least*, and
+why?
 :::
 
 # Privacy: Who Sees Your Queries? {.center}
@@ -138,9 +186,16 @@ DNS metadata reveals **the sites you visit, the devices you own, and your
 activity patterns**.
 
 ::: {.notes}
-The "just metadata" line is the hook. Metadata IS content here: the names you
-resolve are the sites you read. Ask: do you trust your ISP/university with the
-full log of everything you look up?
+The "just metadata" line is the hook — and it should make your antenna go
+up every time you hear it. Metadata *is* content here: the names you
+resolve are the sites you read, the apps you run, the devices you own, and
+the activity patterns you exhibit. There is no meaningful distinction
+between "the log of every hostname you asked for" and "the log of every
+site you visited." Ask: do you trust your ISP or your university with the
+full log of everything you look up? Do you trust them enough to publish it
+without anonymization? The intuitive answer is no, but until DoH landed,
+that log existed at every recursive resolver on the path. This grounds the
+transition to encrypted DNS.
 :::
 
 ## Your Devices Announce Themselves
@@ -151,9 +206,15 @@ A Nest camera, an Echo, a sleep monitor — each makes a **signature set of
 lookups**. DNS alone can inventory your home.
 
 ::: {.notes}
-This table is the most memorable artifact in the deck. Even encrypted *content*
-leaves these names exposed if DNS is unencrypted. Ties to the smart-home /
-surveillance themes later in the course.
+This table from the IoT-inspection work is the most memorable artifact in
+the deck. Even fully encrypted *content* leaves these names exposed if DNS
+is unencrypted, so an ISP or a coffee-shop network operator can inventory
+every smart device in a home just from the DNS traffic. Companion reference:
+the IoT Inspector line of work at Princeton, at iotinspector.org. Ties
+directly to the smart-home and surveillance themes later in the course.
+Ask: how many devices in your dorm room or apartment would show up in this
+table? Most students underestimate — thermostats, TVs, and even light
+switches often make distinctive DNS queries to vendor telemetry endpoints.
 :::
 
 ## Website Fingerprinting
@@ -171,8 +232,17 @@ surveillance themes later in the course.
 :::
 
 ::: {.notes}
-The point: even an anonymity network leaks at the naming layer if DNS isn't
-handled carefully. The unique-name statistic is why fingerprinting works so well.
+The point: even an anonymity network leaks at the naming layer if DNS
+isn't handled carefully. Anchor paper: Greschbach, Pulls, Roberts, Winter,
+and Feamster, "The Effect of DNS on Tor's Anonymity," NDSS 2017 — showed
+that Tor exit DNS is disproportionately resolved by a small set of
+providers (Google prominently), and that page-load DNS patterns are unique
+enough to fingerprint the site being visited even without seeing content.
+The unique-name statistic (over 90% of the Alexa top 1M have at least one
+unique domain name) is why the ML classifiers work so well. Ask: if you
+wanted to defeat this, what would you change? Answer thread: fewer
+distinct names per page, padding queries, or splitting queries across
+resolvers — foreshadows ODoH.
 :::
 
 # Encrypting DNS {.center}
@@ -189,9 +259,15 @@ handled carefully. The unique-name statistic is why fingerprinting works so well
 server needs).
 
 ::: {.notes}
-Distinguish two goals: encrypt the channel (DoT/DoH) vs. reveal less per hop
-(QNAME minimization). DNSSEC is in a different column — integrity, not secrecy.
-Agenda flags DoT-vs-DoH mechanics as out of scope; keep it conceptual.
+Distinguish two goals: encrypt the channel (DoT, DoH, DoQ) versus reveal
+less per hop (QNAME minimization). References: RFC 7858 for DNS over TLS,
+RFC 8484 for DNS over HTTPS, RFC 9250 for DNS over QUIC, RFC 9156 for
+QNAME minimization. DNSSEC is in a different column entirely — integrity,
+not secrecy — which is why encrypted-DNS and DNSSEC are complementary, not
+alternatives. Agenda flags DoT-versus-DoH mechanics as out of scope; keep
+it conceptual and focus on which threat each defends against. Ask: if you
+had to pick just one to deploy at scale, which would you pick? The right
+answer depends entirely on who the threat model puts on the wire.
 :::
 
 ## The First Hop Is the Adversary
@@ -205,9 +281,16 @@ everything.
 This is the threat model DoH was built to change.
 
 ::: {.notes}
-Set up the DoH pitch: the eavesdropper you most worry about is often the first
-hop, the network you're sitting on. Encrypting to that resolver doesn't help if
-that resolver is the adversary.
+Set up the DoH pitch: the eavesdropper you most worry about is often the
+first hop, the network you are sitting on — your ISP, your university,
+the coffee-shop Wi-Fi. Encrypting DNS traffic *to* that resolver doesn't
+help if that resolver is itself the adversary. The classic encrypted-DNS
+schemes (DoT between resolvers) protect between-recursive traffic but
+leave the identity-plus-content log intact at the ISP resolver that runs
+by default on your device. That is precisely the gap DoH was designed to
+close, and it does so by re-routing the query to a resolver you choose
+rather than the one your network assigns. This framing is the pivot for
+the whole encrypted-DNS half of the deck.
 :::
 
 ## DNS-over-HTTPS (DoH)
@@ -221,9 +304,16 @@ that resolver is the adversary.
 - Firefox default partner: **Cloudflare**; Chrome: **Google Public DNS**
 
 ::: {.notes}
-Key shift: DNS moves up out of the OS stub into the browser, and out to a
-third-party resolver over HTTPS. Solves the eavesdropping problem. Now ask the
-hard question on the next slide.
+Key architectural shift: DNS moves *up* out of the OS stub into the
+browser, and *out* to a third-party resolver over HTTPS. Mozilla began
+rolling this out in 2018 (see Firefox's "Understand DNS-over-HTTPS"
+support page); Chrome followed with Secure DNS in Chrome 83 (May 2020,
+Google Security Blog). Firefox's default partner is Cloudflare (1.1.1.1);
+Chrome uses Google Public DNS (8.8.8.8) when it can. Because the query is
+inside HTTPS on port 443, it is indistinguishable from web traffic on the
+wire — that also makes it much harder for a network to block or downgrade.
+Solves the eavesdropping problem. Now ask the hard question on the next
+slide: who is looking on the *other* end?
 :::
 
 ## DoH Changes *Who* You Trust — Not *Whether*
@@ -245,9 +335,16 @@ Your **ISP / university** sees your queries (in the clear, on path).
 > all-seeing observer for another.
 
 ::: {.notes}
-The central trade-off. DoH genuinely fixes path eavesdropping, but the
-third-party resolver now holds the complete log. "You changed who you trust, not
-whether you trust someone." This is the slide they should remember.
+This is the slide they should remember. The central trade-off: DoH
+genuinely fixes path eavesdropping, but the third-party resolver now holds
+the complete log of every name your device asks for. "You changed who you
+trust, not whether you trust someone." A concrete framing: before DoH,
+your ISP could sell your DNS log; after DoH, Cloudflare or Google could
+(and both have public no-logs promises, but those are contractual
+commitments, not technical guarantees). Ask: which is worse — the ISP that
+sees only its own customers, or the global resolver that sees a large
+fraction of the entire Web? There is no obvious right answer, which is
+exactly what makes it a policy question.
 :::
 
 ## On by Default — Do Users Know?
@@ -259,9 +356,17 @@ Encrypted DNS now ships **on by default** in browsers and OSes, with the
 change it?*
 
 ::: {.notes}
-Tie to the in-class user-study work: most people stick with defaults, hold
-misconceptions, and don't know they can change the resolver. That makes the
-*choice of default* a major policy lever. Default = de facto policy.
+Tie to our lab's user-study work on encrypted-DNS defaults and
+understanding. The Firefox and Android UI screenshots on the slide are the
+artifacts most students recognize — most people stick with defaults, hold
+misconceptions about what the setting even does, and don't know they can
+change the resolver at all. That makes the *choice of default* a major
+policy lever: default equals de facto policy. If Firefox picks Cloudflare
+and Chrome picks Google, then two vendors have effectively chosen who sees
+the DNS traffic of a large fraction of the world's browsers. Ask: is that a
+technical decision, a business decision, or a policy decision? The right
+answer is "all three," which is precisely the discussion prompt at the end
+of the deck.
 :::
 
 ## Users Don't Understand — or Trust — Resolvers
@@ -281,9 +386,16 @@ Pilot-study findings:
 :::
 
 ::: {.notes}
-The interface and information matter. If you give people context, some switch —
-but the default still dominates. This is where security/privacy engineering meets
-consumer-protection policy.
+Pilot-survey findings from our lab's work. The interface and information
+matter: if you give people context — who runs the resolver, what they can
+see, what happens if you change it — some switch, but the default still
+dominates the population. Many users thought the default resolver was
+*required* for their phone to work, which is a striking measure of how
+opaque this is. This is exactly where security and privacy engineering
+meets consumer-protection policy: the FTC's "reasonable steps to inform
+consumers" theory applies whenever a default setting has significant
+privacy consequences. Cold-call: how would you redesign the setting
+interface so users actually understand the choice they're making?
 :::
 
 ## DoH Can Even Perform Well
@@ -294,10 +406,16 @@ Performance is **not** the blocker — the open questions are about **trust and
 centralization**.
 
 ::: {.notes}
-Kill the "encryption is too slow" objection with data: DoH is competitive,
-better in the tail. So the real debate is governance, not latency. Note this
-foreshadows Cloudflare's original ODoH objection ("too much latency") being
-wrong.
+Kill the "encryption is too slow" objection with data: DoH is competitive
+with Do53 on average and *better* in the tail — Cloudflare DoH beats DoT
+for about 50% of queries and edges out plain DNS in the slow tail. So the
+real debate is governance and trust, not latency. This also foreshadows
+Cloudflare's later objection to Oblivious DoH ("horrible, too much
+latency, too complex") being empirically wrong when we measured it — the
+same story twice. Ask: if performance isn't the blocker, what actually is?
+Answer thread: business models (who runs the resolver and monetizes the
+log), regulatory jurisdiction, and the network operators who lose
+visibility they used for filtering.
 :::
 
 ## The Architectural Crisis: Centralization {.smaller}
@@ -319,13 +437,21 @@ be compelled to block sites. Cisco pulled OpenDNS out of France.
 :::
 
 ::: {.notes}
-Bring the opening vignette full circle. Encryption solved confidentiality on the
-wire but made the trust/availability problem worse by concentrating it, on two
-axes: availability (AWS Oct 2025) and coercion (Italy AGCOM Jan 2026, French
-appeals Mar 2026). Sources: TorrentFreak coverage, Cloudflare blog "Standing up
-for the open Internet." Note: same court, same term, upheld ISP-level DNS
-blocking too — the block moved *up* to the public resolvers precisely because
-users had escaped ISP resolution.
+Bring the opening AWS vignette full circle and add the 2026 coercion
+vector. Encryption solved confidentiality on the wire but made the
+trust/availability problem worse *and* concentrated the takedown target.
+Two axes to name: availability (AWS October 2025) and coercion. Italy's
+AGCOM fined Cloudflare €14.2 million in January 2026 (1% of global
+revenue) for refusing to filter pirate domains on public 1.1.1.1; Cloudflare
+appealed on March 8, 2026. CEO Matthew Prince publicly threatened to pull
+Italian infrastructure. Then the Paris Court of Appeal, March 27, 2026
+(RG 24/09372), rejected appeals by Google, Cloudflare, and Cisco and held
+that third-party public DNS resolvers *can* be compelled to block domains
+under Article L.333-10 (dynamic sports-rightsholder blocking); Cisco
+pulled OpenDNS out of France pending appeal. The block moved *up* to the
+public resolvers precisely because users had escaped ISP resolution.
+Sources: TorrentFreak, Cloudflare's "Standing up for the open Internet"
+blog, heise online.
 :::
 
 # Re-Decentralizing Private DNS {.center}
@@ -341,9 +467,16 @@ A DoH resolver learns **two things at once**:
 parties, so **neither** ever holds both.
 
 ::: {.notes}
-This is the conceptual pivot. The privacy failure is the *coupling* of identity
-and query at a single point. Decouple them and you get privacy without trusting
-any single resolver fully.
+This is the conceptual pivot for the last section. The privacy failure of
+DoH is precisely the *coupling* of identity and query at a single point —
+one server sees your IP AND what you asked for, so it holds the full
+compromising log. Decouple those two facts across two parties, and you get
+privacy without having to fully trust any single resolver. The design goal
+is a strong property: even if either party is fully compromised,
+individually they cannot reconstruct your query stream. This is the same
+"split trust" idea students may have seen in Signal's sealed sender or
+Tor's circuit design — spread the knowledge so no one node has enough to
+identify you.
 :::
 
 ## How Oblivious DNS Works {.smaller}
@@ -361,9 +494,18 @@ any single resolver fully.
 identity. Collusion is the only way to recombine them.
 
 ::: {.notes}
-Encrypted with the *target's* key, not the proxy's — that's what blinds the
-proxy. The proxy acts as a masking relay. Stress the "neither alone has both"
-property; this is the whole security argument.
+The critical detail: the query is encrypted with the *target's* public key,
+not the proxy's — that is what blinds the proxy. The proxy acts as a
+masking relay that sees your IP but cannot read the query, and the target
+sees the query but not your IP. Reference: RFC 9230, Oblivious DNS over
+HTTPS (June 2022). Original academic paper: Edmundson, Schmitt, Feamster,
+and Mankin, "Oblivious DNS: Practical Privacy for DNS Queries," PoPETS
+2019; the design was first presented at IETF 102 DPRIVE (July 2018).
+Stress the "neither alone has both" property; this is the whole security
+argument, and collusion between the proxy and the target is the only way
+to reassemble the linkage. Ask: what stops the proxy and the target from
+colluding? Answer: pick them from non-cooperating operators — same trust
+model as Tor guard-versus-exit.
 :::
 
 ## From Rejected Idea to Deployed Standard
@@ -378,9 +520,18 @@ threatening — and valuable — idea.
 :::
 
 ::: {.notes}
-The research-process lesson: if a good idea makes people angry, keep running.
-The latency objection was empirically wrong (see the DoH CDF). ODoH is now real
-infrastructure. Sources: Cloudflare ODoH docs/blog; Apple iCloud Private Relay.
+The research-process lesson: if a good idea makes people angry, keep
+running. Cloudflare later shipped the design as Oblivious DoH, and it was
+standardized as RFC 9230 in June 2022; Apple's iCloud Private Relay now
+uses an ODoH-style split between an Apple ingress proxy and a third-party
+egress (Cloudflare, Akamai, or Fastly). The latency objection was
+empirically wrong when we measured it — see the DoH CDF two slides back.
+Sources: Cloudflare 1.1.1.1 ODoH documentation and blog; Apple's "About
+iCloud Private Relay" support page. Strong opposition to an idea from an
+incumbent is often a signal the idea is threatening — and therefore
+valuable. Ask: what other proposals in this course faced the same shape
+of pushback? Threads to pull: BGPsec, DNS-over-HTTPS itself, end-to-end
+messaging encryption.
 :::
 
 ## Distributing Queries Across Resolvers
@@ -395,9 +546,16 @@ your whole pattern.
 eavesdropper?
 
 ::: {.notes}
-The decentralization endgame: no single resolver, oblivious or not, should see
-your full query stream. The plot shows performance cost is modest. Leaves an open
-research question — good for the breakout/debate.
+The decentralization endgame: no single resolver, oblivious or not, should
+see your full query stream. Spread queries across many trusted resolvers
+via round-robin, random, "sticky random," or CDN-affinity strategies, and
+no one observer reconstructs your whole pattern. The plot shows the
+performance cost is modest, so the argument against isn't latency. This
+leaves an open research question — which strategy best defeats which
+adversary model — and it is exactly the material for Breakout A on the
+"encrypted DNS chokepoint." Good debate framing: is architectural
+decentralization achievable at scale, or does it inevitably re-centralize
+around whichever provider users end up trusting?
 :::
 
 ## What to Take Away {.smaller}
@@ -410,9 +568,16 @@ research question — good for the breakout/debate.
 - **ODoH** decouples identity from query; **distribution** re-decentralizes
 
 ::: {.notes}
-Map each bullet to a likely midterm question: trace a lookup, DNSSEC hierarchy,
-what DNSSEC does/doesn't protect, the DoH before/after trust model, ODoH split.
-End on the recurring theme: every fix relocates trust rather than removing it.
+Map each bullet to a likely midterm question: trace a lookup step by step;
+DNSSEC hierarchy and where the trust anchor lives; what DNSSEC does and
+doesn't protect (integrity yes, confidentiality no); the DoH before/after
+trust model; the ODoH identity/query split. End on the recurring theme of
+the course: every fix relocates trust rather than removing it — Thompson,
+Anderson, PKI, RPKI, DoH, ODoH all instantiate the same lesson. Bridge to
+the day's hands-on: the Wireshark + DoH activity lets students watch their
+own plaintext DNS queries and then switch them off. If run before the
+breakout, the discussion is much more concrete because they've just seen
+their own traffic.
 :::
 
 # Discussion {.center}
@@ -420,3 +585,17 @@ End on the recurring theme: every fix relocates trust rather than removing it.
 If a browser must pick a **default resolver** for millions of users, who should
 decide — the vendor, the user, or a regulator? Is that a **technical** choice or
 a **policy** choice?
+
+::: {.notes}
+Bridge to the two breakouts. Breakout A ("Encrypted DNS Just Moved the
+Chokepoint") pairs directly with the centralization vignette and the Italy
+and France coercion cases. Breakout B ("Kaminsky at 18 — Why Isn't DNSSEC
+Everywhere?") pairs with the DNSSEC deployment gap. Hands-on companion is
+the Wireshark + DoH activity — students can do it the same day. If they
+run the activity first, they'll have just watched their own plaintext DNS
+queries and switched them off, which makes the discussion much more
+visceral. Cold-call: name one stakeholder whose interests are not fully
+represented by any of "vendor, user, regulator" — good candidates include
+enterprise IT (loses filtering), CDNs (lose observability), and children/
+guardianship contexts. There is no clean answer, which is the point.
+:::
