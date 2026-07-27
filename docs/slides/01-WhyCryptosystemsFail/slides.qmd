@@ -4,114 +4,20 @@ subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
 ---
 
-## Two Questions for the Term {.center}
+## Where Does It Actually Break? {.center}
 
-> Can you trust code you didn't write yourself? And when a secure system
-> breaks, **where** does it actually break?
+> We just saw you can't fully trust code you didn't write. Now the term's
+> second question: when a "secure" system fails, **where** does it break?
 
-Today: **Reflections on Trusting Trust** (Thompson) and **Why Cryptosystems
-Fail** (Anderson) — two papers, one lesson.
-
-::: {.notes}
-This is Meeting 1's substantive content, after the course overview. Frame the
-day as two classic papers that still describe the headlines we'll read all
-term. Don't lecture the papers line by line — pull out the durable ideas.
-:::
-
-# Part 1: Trusting Trust {.center}
-
-## Thompson's Question
-
-In his 1984 Turing Award lecture, Ken Thompson asked: **how much do you have
-to trust a claim that a program is free of bugs and backdoors?**
-
-- He showed a compiler can be taught to insert a **backdoor** into a program
-- *And* to insert the same backdoor into **future compilers** — then erase the
-  evidence from its own source
-- You can audit every line of source and still ship the backdoor
-
-**You cannot trust code you did not totally create yourself.**
+Today: **Why Cryptosystems Fail** (Anderson, 1993) — the failure is almost
+never the math.
 
 ::: {.notes}
-The punchline: the malicious code lives in the binary, not the source. Audit
-the source all you want; the compiler reinfects. Trust has to bottom out
-somewhere, and that "somewhere" is rarely something you built.
+Follows the Trusting Trust segment that closes the overview deck. Frame
+Anderson as the empirical answer to the question Thompson raised in theory:
+here is where real deployed systems actually broke. Don't lecture the paper
+line by line — pull out the durable ideas.
 :::
-
-## Why It Still Matters
-
-Almost nothing you run is code you wrote. **All modern digital infrastructure**
-rests on dependencies maintained by people you've never met.
-
-::: {.columns}
-::: {.column width="55%"}
-- Compilers, OS kernels, package managers, CI/CD pipelines
-- Open-source libraries pulled in transitively, by the thousands
-- The **chain of trust must stop somewhere** — usually at a root you simply
-  *assume* is honest
-:::
-::: {.column width="45%"}
-![xkcd 2347, "Dependency"](images/slide002_img001.png)
-:::
-:::
-
-::: {.notes}
-The xkcd comic is the whole modern version of Thompson's point. Ask: in your
-last project, how many dependencies did you actually read? Tie to the agenda's
-recurring "chain of trust must stop somewhere" thread that returns in PKI.
-:::
-
-## Trusting Trust, Realized: xz-utils {.smaller}
-
-::: {.vignette}
-**March 29, 2024** — developer Andres Freund noticed `sshd` was burning extra
-CPU and traced it to a **backdoor hidden in xz-utils** (CVE-2024-3094, CVSS
-10.0, the maximum). A contributor using the name "Jia Tan" had spent **over
-two years** building trust in the project, then slipped obfuscated malicious
-code into the *build scripts* — not the readable source — that injected a
-remote-code-execution backdoor into OpenSSH on major Linux distros. It was
-caught by luck, days before reaching stable releases.
-:::
-
-This is Thompson's attack in the wild: the malice lived in the **build
-process**, the social engineering targeted **trust itself**. Attribution to
-"Jia Tan" is still unresolved as of mid-2026 — and backdoored versions were
-still found in **Debian Docker Hub images in August 2025**, more than a year
-after the patch.
-
-::: {.notes}
-This is the freshest, most exact realization of "Reflections on Trusting
-Trust" ever seen in production. Emphasize: SBOMs and code review would have
-walked right past it because the artifact looked fine — the exploit was a
-trust problem, not an artifact problem. Connect to agenda question: how does
-this extend to AI-generated and AI-assisted code? Freund was a Microsoft
-principal engineer benchmarking PostgreSQL who noticed sshd was ~500ms
-slower than expected — pure operational luck.
-:::
-
-## Supply Chain as a Trust Problem
-
-The attack surface is the **trust we extend to maintainers and registries**,
-not just the code.
-
-- **npm "Shai-Hulud" worm** — first outbreak Sept 2025 (500+ packages, credential
-  theft); **Shai-Hulud 2.0** (Dec 2025 / Jan 2026) added a destructive failsafe;
-  fresh waves in 2026 hit **TanStack, Mistral AI, UiPath** (May 11), the **AntV**
-  ecosystem (May 19), and **Red Hat's npm namespace** (~80K downloads/week, June 1);
-  the weaponized worm code was released publicly on **May 12, 2026**
-- Phishing one maintainer can poison **packages with billions of downloads**
-- Defenses (signing, SBOMs, SLSA, npm trusted publishing) help — but a maintainer
-  who *earns* trust, then abuses it, defeats them
-
-::: {.notes}
-Good debate seed (the agenda lists this paper for debate). Can we ever
-"solve" trusting trust, or only manage it? Reproducible builds and diverse
-double-compiling raise the bar but don't eliminate the regress. Note the
-progression: preinstall execution now bypasses even test-based defenses;
-the Red Hat case shows the worm reaching official corporate namespaces.
-:::
-
-# Part 2: Why Cryptosystems Fail {.center}
 
 ## Anderson's Surprise
 

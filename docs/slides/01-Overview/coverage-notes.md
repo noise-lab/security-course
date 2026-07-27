@@ -17,9 +17,12 @@ Instructor-facing companion to `slides.qmd`. Not shown to students.
   (the old photos can be re-added from `images/` if desired).
 
 ## Suggested missing coverage on broad themes (point 3)
-- **Course-level threat-modeling primer:** students would benefit from a one-slide
+- **Course-level threat-modeling primer:** ~~students would benefit from a one-slide
   shared vocabulary (assets, adversaries, capabilities) used consistently across
-  lectures.
+  lectures.~~ **Done (July 2026):** "The Security Mindset" section added to this deck
+  (Meet the Adversary / Threat Modeling vocabulary / lock-your-door exercise), adapted
+  from the archived Mindset lecture. The Trusting Trust segment also moved here from
+  the WhyCryptosystemsFail deck.
 - **AI as a cross-cutting theme:** AI now touches privacy, copyright, moderation, and
   accountability — consider a roadmap slide showing where AI recurs.
 - **Map of "what we actually covered" vs. the syllabus** — the new "What we actually
