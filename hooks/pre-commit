@@ -1,0 +1,20 @@
+#!/bin/sh
+# Rendered slides.html files are gitignored build artifacts; the only way they
+# stay fresh is rendering at commit time, whenever a deck's source changes.
+
+decks=$(git diff --cached --name-only --diff-filter=ACM | grep '^docs/slides/.*/slides\.qmd$')
+[ -z "$decks" ] && exit 0
+
+if ! command -v quarto >/dev/null 2>&1; then
+    echo "pre-commit: quarto not found; cannot re-render changed decks" >&2
+    echo "pre-commit: install quarto or commit with --no-verify to skip" >&2
+    exit 1
+fi
+
+for qmd in $decks; do
+    echo "pre-commit: quarto render ${qmd#docs/slides/}"
+    (cd docs/slides && quarto render "${qmd#docs/slides/}") || {
+        echo "pre-commit: render failed for $qmd (use --no-verify to skip)" >&2
+        exit 1
+    }
+done
