@@ -21,4 +21,5 @@ Lecture slides are authored in Quarto (`docs/slides/NN-Name/slides.qmd`); the
 rendered `slides.html` files are gitignored build artifacts. Render with
 `quarto render` from `docs/slides/` (all decks) or `quarto render
 NN-Name/slides.qmd` (one deck). The pre-commit hook re-renders any deck whose
-source is part of a commit, so local HTML never goes stale.
+source is part of a commit, and the post-merge hook re-renders decks changed
+by a pull, so local HTML never goes stale.

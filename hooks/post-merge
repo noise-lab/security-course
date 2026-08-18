@@ -1,0 +1,19 @@
+#!/bin/sh
+# After a pull/merge, re-render any slide decks whose Quarto source changed,
+# so the gitignored slides.html on disk stays current with commits made
+# elsewhere (the pre-commit hook only covers commits made in this clone).
+
+decks=$(git diff --name-only --diff-filter=ACM ORIG_HEAD HEAD 2>/dev/null |
+    grep '^docs/slides/.*/slides\.qmd$')
+[ -z "$decks" ] && exit 0
+
+if ! command -v quarto >/dev/null 2>&1; then
+    echo "post-merge: quarto not found; run 'quarto render' in docs/slides manually" >&2
+    exit 0
+fi
+
+for qmd in $decks; do
+    echo "post-merge: quarto render ${qmd#docs/slides/}"
+    (cd docs/slides && quarto render "${qmd#docs/slides/}") ||
+        echo "post-merge: render failed for $qmd" >&2
+done
