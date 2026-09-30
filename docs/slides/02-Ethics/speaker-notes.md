@@ -2,7 +2,9 @@
 
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also). In-deck notes (the `::: {.notes}` blocks) are also visible via reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page.
 
-## Why Ethics in Lecture 2?
+*Headings carry the slide number shown in the deck footer (title slide is 1 of 21).*
+
+## 2 · Why Ethics in Lecture 2?
 
 **Why this is live in 2026.** **Read first:** [USENIX Security '26 CFP, ethics section](https://www.usenix.org/conference/usenixsecurity26/call-for-papers). **What to say:** "Before we start: every paper submitted to USENIX Security this year had to carry a separate 'Ethical Considerations' appendix naming every stakeholder, every harm and every mitigation, and the chairs could reject it unread if the appendix was missing. CCS bounced 13 papers for exactly that, and 41 more for citations an AI tool invented. So this is not a values lecture; it is the vocabulary for a document you will be required to write." **Course tie-in:** transparency-based accountability (Menlo) as a venue rule; full brief, numbers and links in the **Codes, Contracts, and Other Standards** row.
 
@@ -10,11 +12,11 @@ Per-slide context + clickable links (one section per slide; case briefs are brok
 
 This lecture maps to **[Meeting 2](../../agenda.md)** and precedes the [Key Management](../03-KeyManagement/slides.qmd) block; ethics is placed early on purpose so that every subsequent lab and debate has a shared vocabulary. The framing quote is our own paraphrase of [Salganik, *Bit by Bit* (Princeton, 2018), Ch. 6 "Ethics"](https://www.bitbybitbook.com/en/1st-ed/ethics/) — recommended companion reading. Cold-call: *"Name one thing you could do with a laptop this afternoon that would be legal but you'd still feel bad about."*
 
-## A Cautionary Origin: Tuskegee
+## 3 · A Cautionary Origin: Tuskegee
 
 Primary sources: [CDC — Tuskegee Study Timeline](https://www.cdc.gov/tuskegee/timeline.htm), [HHS — National Research Act (P.L. 93-348, 1974)](https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html), [Belmont Report (1979)](https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html). Canonical academic history: [James H. Jones, *Bad Blood* (Free Press, 1993)](https://www.simonandschuster.com/books/Bad-Blood/James-H-Jones/9780029166765). Note the three Belmont principles were literally reverse-engineered from the Tuskegee violations. Cold-call: *"Which of the three Belmont principles does Tuskegee violate most badly?"* — trick question; it violates all three.
 
-## Why This Hits Close to Home
+## 4 · Why This Hits Close to Home
 
 **Original notes:**
 
@@ -36,7 +38,7 @@ Primary sources: [CDC — Tuskegee Study Timeline](https://www.cdc.gov/tuskegee/
 - It reframes all three cases on this slide (Hypocrite Commits, Carna, Encore) as failures that a checklist would not have caught.
 - In the breakout, use the 83% figure to push groups from "add a rule" answers to "which principle would have changed the design" answers.{B}**Also:** [Hantke, Mrowczynski, Dralle & Stock, "Reflection, Education, Consistency: Towards Best Ethics Practices At Security And Privacy Conferences" (arXiv 2608.00282, Jul 31 2026)](https://arxiv.org/abs/2608.00282) — the qualitative companion.
 
-## A 2026 Lens: AI Bots on Reddit
+## 5 · A 2026 Lens: AI Bots on Reddit
 
 **Original notes:**
 
@@ -64,7 +66,7 @@ Primary reporting on the Zurich case: [Washington Post — "Reddit slams Univers
 - Versus Zurich: same platform, same lack of consent, but approved and far lower harm; versus Emotional Contagion: same "realism requires no consent" argument that Facebook made in 2014.
 - In the IRB breakout, hand this to the LLM-field-experiment group as the "approved but not consented" variant and ask them to write the one design change that would make them comfortable.{B}**Also:** [Condom-Tibau, Puccetti, Bacciu, Abrate & Cresci, "Open Platform Field Experiments" (arXiv 2609.21608, Sep 18 2026)](https://arxiv.org/abs/2609.21608) — the methodological framing that makes this kind of intervention routine (full brief in the Emotional Contagion row).
 
-## Case Study: Emotional Contagion
+## 6 · Case Study: Emotional Contagion
 
 the [LSE Reddit study (Jul 2026)](https://arxiv.org/abs/2607.00854) is literally a "behavioral contagion" experiment run without consent under an ethics approval; Fiske's 2014 expression of concern reads differently when the experimenters are us (full brief in the 2026 Lens row).
 
@@ -91,11 +93,11 @@ Primary source: [Kramer, Guillory, Hancock, "Experimental evidence of massive-sc
 
 **Also for this slide:**
 
-## A Framework, Not a Rulebook** *(divider)
+## 7 · A Framework, Not a Rulebook (divider)
 
 Moor's "policy vacuum" formulation: [James H. Moor, "What Is Computer Ethics?", *Metaphilosophy* 16(4), 1985](https://onlinelibrary.wiley.com/doi/10.1111/j.1467-9973.1985.tb00173.x). This is the framing text for the entire ICT-ethics literature — worth naming for students who want to read the primary.
 
-## Key Idea: Digital Is Different
+## 8 · Key Idea: Digital Is Different
 
 **Original notes:**
 
@@ -118,7 +120,7 @@ The "database of ruin" line is [Paul Ohm, "Broken Promises of Privacy," *UCLA L.
 - Beneficence (informational risk) is the principle; the Weld and Netflix cases below are the ancestors.
 - Full brief (What happened, status, supporting links): see the **Beneficence and Justice in Practice** row.
 
-## Salganik's Layered Approach
+## 9 · Salganik's Layered Approach
 
 **Original notes:**
 
@@ -140,7 +142,7 @@ Direct from [Salganik, *Bit by Bit* Ch. 6](https://www.bitbybitbook.com/en/1st-e
 - The empirical case for teaching principles rather than checklists; use it every time a student says "but the IRB approved it.
 - Full brief (What happened, status, supporting links): see the **Why This Hits Close to Home** row.
 
-## IRB, Belmont, Menlo
+## 10 · IRB, Belmont, Menlo
 
 **Original notes:**
 
@@ -165,7 +167,7 @@ Primary sources: [Belmont Report (1979) — HHS](https://www.hhs.gov/ohrp/regula
 - In the breakout, ask each group whether their case would even reach an IRB under an expanded exemption regime.{B}**Also:** [Eto, Miller, Vidal & Lifson, "Streamlining IRB review of AI human subjects research: the three-stage framework" (Frontiers, Mar 6 2026)](https://www.frontiersin.org/journals/systems-biology/articles/10.3389/fsysb.2026.1804193/full) — how IRBs are trying to stage review for AI studies.
 - Science, "Ethicists flirt with AI to review human research" (Sep 2025): no IRB has formally put an LLM in the loop yet, though pilots caught most reviewer-flagged problems (URL not verifiable this session).
 
-## The Four Principles
+## 11 · The Four Principles
 
 **Live worked example to run all four on:** the [LSE Reddit bot study (arXiv, Jul 2026)](https://arxiv.org/abs/2607.00854) — respect for persons (no consent, mild deception), beneficence (paid awards, arguably minimal harm, but who judged?), justice (users of 12 unrelated subreddits bore the risk; who benefits?), respect for law and public interest (Reddit's bot norms; a post-hoc r/all debrief as "transparency"). Full brief in the **A 2026 Lens: AI Bots on Reddit** row. What to say: "Approval is not consent. Which principle does the approval number actually buy you?"
 
@@ -173,7 +175,7 @@ Primary sources: [Belmont Report (1979) — HHS](https://www.hhs.gov/ohrp/regula
 
 Text of the four principles is directly from [Belmont §B](https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html) and [Menlo §II](https://www.dhs.gov/sites/default/files/publications/CSD-MenloPrinciplesCORE-20120803_1.pdf). Drill the *beneficence is not "do no harm"* point — students consistently misremember it. Cold-call: *"Give me a study that is beneficent but doesn't respect persons — and vice versa."*
 
-## Respect for Persons: Informed Consent
+## 12 · Respect for Persons: Informed Consent
 
 **Original notes:**
 
@@ -198,7 +200,7 @@ The Zurich vignette explicitly fails this principle twice (undisclosed AI, fabri
 - Compared with Zurich and the LSE study it is the control case; compared with Emotional Contagion it answers the 2014 question ("could Facebook have asked?") with a yes.
 - In the breakout, give it to the LLM-field-experiment group as the design they have to beat.{B}**Also:** [LSE Reddit bot study (arXiv, Jul 2026)](https://arxiv.org/abs/2607.00854) — the no-consent counterpart (full brief in the 2026 Lens row).
 
-## Beneficence and Justice in Practice
+## 13 · Beneficence and Justice in Practice
 
 **Original notes:**
 
@@ -224,7 +226,7 @@ Concepts to review: [de-identification failure — Sweeney (1997)](https://datap
 - Compared with Tuskegee it is harm without intent, which is exactly the "violations occur even in benign studies" line on the consent slide.
 - For the breakout, this is the mitigation prompt: k-anonymity, differential privacy and retention plans are the tools, and the group should say which one would have helped here.{B}**Also:** [Lermen et al., "Large-scale online deanonymization with LLMs" (arXiv 2602.16800, Feb 2026)](https://arxiv.org/abs/2602.16800) — the scale result (68% recall at 90% precision).
 
-## Respect for Law and Public Interest
+## 14 · Respect for Law and Public Interest
 
 **Original notes:**
 
@@ -249,7 +251,7 @@ ToS-vs-ethics tension: the classic case is [ProPublica's 2016 Facebook ad discri
 - In the breakout, the privacy-regulation-compliance group should ask whether their scenario would go through Article 40 or around it.{B}**Also:** Brown, Gruen, Maldoff, Messing, Sanderson & Zimmer, "Web scraping for research: Legal, ethical, institutional, and scientific considerations," *Big Data & Society* (2025) — the U.S.-side framing for scraping decisions (URL not verifiable this session).
 - [USENIX Security '26 CFP](https://www.usenix.org/conference/usenixsecurity26/call-for-papers) — transparency-based accountability made mandatory in the field's own venue (full brief in the Why Ethics row).
 
-## Two Underlying Frameworks
+## 15 · Two Underlying Frameworks
 
 **Live 2026 split to diagnose: Microsoft vs. "Nightmare Eclipse."** The researcher's defenders argue consequences (Microsoft closed the reporting channel, users are better off knowing, vendors only move under pressure), while Microsoft argues duty ("uncoordinated disclosures ... are never justifiable") and its critics argue duty too (a company must not threaten researchers). What to say: "Before you pick a side, name the framework each side is using. Consequentialists have to answer for the three exploited-in-the-wild bugs; deontologists have to say whether a vendor has a duty to keep the reporting channel open." Full brief in the **Ethics ≠ Law** row.
 
@@ -257,7 +259,7 @@ ToS-vs-ethics tension: the classic case is [ProPublica's 2016 Facebook ad discri
 
 Consequentialism: [Bentham, *An Introduction to the Principles of Morals and Legislation* (1789)](https://www.econlib.org/library/Bentham/bnthPML.html); [Mill, *Utilitarianism* (1861)](https://www.utilitarianism.com/mill1.htm). Deontology: [Kant, *Groundwork of the Metaphysics of Morals* (1785)](https://www.earlymoderntexts.com/assets/pdfs/kant1785.pdf). The point isn't to pick a team — it's to notice which framework the *speaker* is using so debates become tractable.
 
-## Ethics ≠ Law
+## 16 · Ethics ≠ Law
 
 **Original notes:**
 
@@ -292,7 +294,7 @@ The quoted definition is a paraphrase of the working definition in [Bynum, "Comp
 - In the breakout it is the prompt for the coordinated-versus-full-disclosure group: what should each side have done differently, and at what point?{B}**Also:** [The Register, "Disgruntled 0-day hunter 'humiliated' by Microsoft pledges 'bone shattering drop' as Redmond calls cops" (May 28 2026)](https://www.theregister.com/security/2026/05/28/microsoft-0-day-feud-escalates-as-researcher-threatens-another-windows-exploit-dump/5248085) — the researcher's own framing and the in-the-wild exploitation detail.
 - [Cybersecurity News, "Microsoft Clarifies It Won't Sue Security Researchers" (Jun 1 2026)](https://cybersecuritynews.com/microsoft-clarifies-nightmare-eclipse-controversy/) — the walk-back text.
 
-## Laws Every Security Researcher Should Know
+## 17 · Laws Every Security Researcher Should Know
 
 **Two 2026 anchors for this slide.** **Case: tenth triennial §1201 rulemaking.** Read first: [Copyright Office announcement (NewsNet 1088, Jun 9 2026)](https://www.copyright.gov/newsnet/2026/1088.html). What to say: "The DMCA line on this slide, 'long a threat to vulnerability research,' is managed by a temporary exemption that must be re-petitioned every three years; petitions for the next cycle were due August 24 and comments September 28, two days ago." Course tie-in: compliance is a moving target; full brief in the **The Law Is (Slowly) Catching Up** row.
 
@@ -304,7 +306,7 @@ Primary text: [CFAA — 18 U.S.C. §1030](https://www.law.cornell.edu/uscode/tex
 
 ### Case: Microsoft's prosecution threat (May 2026)
 
-## The Law Is (Slowly) Catching Up
+## 18 · The Law Is (Slowly) Catching Up
 
 **Original notes:**
 
@@ -330,7 +332,7 @@ Primary: [*Van Buren v. United States*, 593 U.S. 374 (2021) — opinion](https:/
 - CDT, "Security Research and the DMCA: The Copyright Office streamlines the exemption process" — why streamlined renewal matters for researchers (URL not verifiable this session).
 - [Copyright Office, 2024 rulemaking page](https://www.copyright.gov/1201/2024/) — the ninth-round exemption that is up for renewal.
 
-## Codes, Contracts, and Other Standards
+## 19 · Codes, Contracts, and Other Standards
 
 **Original notes:**
 
@@ -396,7 +398,7 @@ Primary: [*Van Buren v. United States*, 593 U.S. 374 (2021) — opinion](https:/
 - [ACM IMC 2026 CFP](https://conferences.sigcomm.org/imc/2026/cfp/) — dates and pointer to the ethics requirements.
 - Then read the Nishi and Hantke briefs in the Close to Home row for whether any of this changes behavior.
 
-## Breakout: Apply the Four Principles
+## 20 · Breakout: Apply the Four Principles
 
 **Fresh 2026 prompts (full briefs in the rows named).** Disclosure sub-breakout: Microsoft vs. "Nightmare Eclipse" ([TechCrunch, May 2026](https://techcrunch.com/2026/05/29/microsoft-under-fire-for-threatening-security-researcher-with-criminal-investigation/); **Ethics ≠ Law** row) and AMD's out-of-scope bounty denial with retroactive silence terms ([TechSpot, Jun 2026](https://www.techspot.com/news/112746-amd-changes-rules-denies-researcher-10000-bounty-after.html); **Codes, Contracts** row) — ask each group which vendor behavior is worse for the ecosystem and what the researcher should have done at day 90. LLM/bot field-experiment sub-breakout: contrast the [LSE Reddit study (Jul 2026)](https://arxiv.org/abs/2607.00854) (**2026 Lens** row) with the [NeurIPS 2026 opt-in experiment](https://neurips.cc/Conferences/2026/ai-reviewing-experiment) (**Informed Consent** row) — ask for the one design change that would make the LSE study acceptable, and whether opt-in would have ruined it. Report-out template for every group: the USENIX '26 appendix structure (stakeholders, harms, mitigations, decision).
 
@@ -404,6 +406,6 @@ Primary: [*Van Buren v. United States*, 593 U.S. 374 (2021) — opinion](https:/
 
 Full prompts and prep reads: **[Ethics breakout doc](../../breakouts/ethics.md)** — two sub-breakouts: LLM field experiments (Zurich) and coordinated vs. full disclosure. Companion in-class exercise: **[IRB activity](../../activities/ethics.md)** (Carna / Emotional Contagion / Encore as case files). Related debates that recur later: [CFAA debate](../../debates/cfaa.md), [Backdoors debate](../../debates/backdoors.md). Give each group one scenario, ~10 minutes; push them past "it was bad" to *which principle* and *what specific design change* would have fixed it.
 
-## Takeaways
+## 21 · Takeaways (divider)
 
 Bridge: next lecture is **[Key Management and PKI](../03-KeyManagement/slides.qmd)** — the same "who do you trust?" question, now in the technical crypto plumbing. Recommended follow-on reading: [Salganik, *Bit by Bit* Ch. 6](https://www.bitbybitbook.com/en/1st-ed/ethics/) end-to-end; [Kenneally & Dittrich, "The Menlo Report" (IEEE S&P 2012)](https://www.caida.org/publications/papers/2012/menlo_report_actual/menlo_report_actual.pdf).

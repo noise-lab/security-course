@@ -2,7 +2,9 @@
 
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also) for the opening half of Meeting 1: course logistics, the threat-modeling primer (assets / adversaries / capabilities), and Trusting Trust. In-deck notes (the `::: {.notes}` blocks) are also visible in reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page. Pair this with the second half of the meeting: `../01-WhyCryptosystemsFail/speaker-notes.md`.
 
-## Why This Course Exists
+*Headings carry the slide number shown in the deck footer (title slide is 1 of 21).*
+
+## 2 · Why This Course Exists
 
 **Read first:** [FTC press release, Sep 24 2026 — "FTC Seeks Public Comment on Whether to Update Rule on Impersonation of Government and Businesses to Address Platforms' Role in Promoting Impersonation Scams"](https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-seeks-public-comment-whether-update-rule-impersonation-government-businesses-address-platforms).
 
@@ -25,11 +27,11 @@ The framing quote ("dearth of technologists in public policy") is Feamster's own
 - Who could explain what the FTC's legal authority to regulate that is?
 - Look around — almost nobody has both hands up."*{B}**Course tie-in:** regulation as a security incentive (the FTC is trying to move platform economics, not patch code); adversary economics (scam ads are a marketplace with ROI); foreshadows the web tracking / ad-tech lectures and the content-moderation and consumer-protection weeks, and it is a live example of the debate skill — translating a technical mechanism into a policy recommendation.{B}**Also:** the FTC's [Privacy and Security Enforcement](https://www.ftc.gov/news-events/topics/protecting-consumer-privacy-security/privacy-security-enforcement) topic hub is the canonical place to find the agency's other 2026 actions.
 
-## Who Am I?
+## 3 · Who Am I?
 
 Canonical bio: [people.cs.uchicago.edu/~feamster](https://people.cs.uchicago.edu/~feamster/). Neubauer Professor of CS, Director of the Network Operations and Internet Security Lab, Faculty Director of Research for the [Data Science Institute](https://datascience.uchicago.edu/people/nick-feamster/); ACM Fellow, PECASE, Sloan Research Fellow, 2026 Quantrell Award (undergraduate teaching). Policy roles: [BITAG](https://www.bitag.org/) (Broadband Internet Technical Advisory Group), FTC testimony, comments to FCC and USPTO. Keep this short — 60–90 sec.
 
-## Learning Objectives
+## 4 · Learning Objectives
 
 **Read first:** [European Commission, Jul 31 2026 — "Commission starts enforcing AI Act rules and new transparency requirements on 2 August"](https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august).
 
@@ -53,11 +55,11 @@ Read the three bullets aloud, then say: *"The third one is the reason the debate
 - Your third learning objective — translate technical ideas into policy — is now a job description in an EU regulator."* The detail they will remember: the fine is on *global* turnover, so a US company's non-EU revenue is in the base.
 - Throw to the room: *"If you were the AI Office, what is the first document you would demand from a model provider, and what would you do if they said it was a trade secret?"*{B}**Course tie-in:** accountability of automated decision-making (objective two, verbatim); regulation as a security incentive; foreshadows the AI-and-privacy lecture and the copyright/fair-use-and-AI week; pairs with the *A 2026 Vignette* row, which tracks the Act alongside the US cases.{B}**Also:** [Help Net Security, Aug 4 2026 — "EU begins enforcing AI Act, putting AI models under the microscope"](https://www.helpnetsecurity.com/2026/08/04/eu-ai-act-enforcement-ai-models/) (the clearest one-page summary of what applies now vs. later); [European Commission AI Act policy page](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai); [AI Act implementation timeline](https://artificialintelligenceact.eu/implementation-timeline/).
 
-## Is This Course for You?
+## 5 · Is This Course for You?
 
 Set the "not a programming-heavy course" expectation early to avoid unnecessary self-selection. Labs use Python/JavaScript; students without a CS background have consistently done fine when paired. Cold-call: *"What's a technical topic you've read a policy piece about recently and thought 'they got it wrong'?"*
 
-## Where This Can Take You
+## 6 · Where This Can Take You
 
 Four real career shapes: **FCC Commissioner** (e.g., [Jessica Rosenworcel](https://en.wikipedia.org/wiki/Jessica_Rosenworcel)), **U.S. Deputy CTO / FTC CTO** (e.g., [Ashkan Soltani](https://en.wikipedia.org/wiki/Ashkan_Soltani), CA Privacy Protection Agency ED; [Lorrie Cranor](https://lorrie.cranor.org/) served as FTC Chief Technologist), **civil-society NGO leader** (e.g., [Cindy Cohn](https://www.eff.org/about/staff/cindy-cohn) at EFF), **city/state data scientist** (e.g., [DataSF](https://datasf.org/), Chicago's [Mayor's Office of Public Safety](https://cityofchicago.org/)). The point isn't the specific people — it's that "technologist who understands policy" is a durable career, not a hobby.
 
@@ -73,11 +75,11 @@ Four real career shapes: **FCC Commissioner** (e.g., [Jessica Rosenworcel](https
 - The questions in it are about ranking incentives, advertiser verification, and detection — the law is the easy part.
 - An FTC or FCC technologist's job is to be the person in the building who can say 'here is what the optimization actually does, and here is what changing it would cost.'"* Throw to the room: *"Which of these four jobs would you want, and what technical question would land on your desk in week one?"*{B}**Course tie-in:** the career framing for the whole course; the same docket returns in the ad-tech/tracking and consumer-protection weeks as a worked example of writing a regulatory comment.
 
-## What We Actually Cover
+## 7 · What We Actually Cover
 
 This slide is the actual delivered content from [`agenda.md`](../../agenda.md), not the aspirational syllabus. If a topic gets cut for time, update both files in sync. Companion resource: the [`readings/`](../../readings/) directory has the reading list per meeting.
 
-## Course Components
+## 8 · Course Components
 
 Weights: **Midterm+Final 40% · Debate 35% · Labs 20% · Participation/quizzes 5%**. On labs: rubric published in each assignment; graded for thoughtful completion. **AI-tools policy:** allowed if you can defend the output — the "defend it" language matters, tell students you may cold-call about a specific choice. Debate format: Oxford-style, ~4 people per side, one debate per term. Format spec: [`../../debates/format.md`](../../debates/format.md). The Meeting 1 debate is on data breaches — [`../../debates/data-breach.md`](../../debates/data-breach.md).
 
@@ -93,7 +95,7 @@ Weights: **Midterm+Final 40% · Debate 35% · Labs 20% · Participation/quizzes 
 - A reporter found your data for sale before the company knew.
 - Argue: who should be liable, what should notification law require, and is 'free credit monitoring' a remedy or a punchline?"*{B}**Course tie-in:** debate mechanics (Oxford style, graded on contribution); previews the privacy-law-and-compliance week (breach-notification statutes, vendor liability) and the threat-modeling frame introduced later in this deck.{B}**Also:** [The Record, Sep 10 2026](https://therecord.media/idscan-data-breach-notice-drivers-licenses) (the company's confirmation, in the outlet's words); [TechCrunch, Sep 10 2026](https://techcrunch.com/2026/09/10/id-verification-giant-idscan-confirms-data-breach-with-more-than-150-million-drivers-licenses-stolen/).
 
-## A 2026 Vignette: Why This Is Timely
+## 9 · A 2026 Vignette: Why This Is Timely
 
 **Read first:** [European Commission, Jul 31 2026](https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august).
 
@@ -182,15 +184,19 @@ Weights: **Midterm+Final 40% · Debate 35% · Labs 20% · Participation/quizzes 
 - Four months in, no public cases.
 - Is that compliance, or is the FTC waiting for a good test case?"*{B}**Course tie-in:** content moderation week (a statutory takedown regime alongside Section 230); AI and privacy (deepfakes); regulation as incentive.{B}**Also:** [FTC business-guidance blog, May 19 2026 — what TIDA requires of platforms](https://www.ftc.gov/business-guidance/blog/2026/05/take-it-down-act-enforcement-starts-now-what-know-about-ftc-tida).
 
-## How a Typical Lecture Runs
+## 10 · How a Typical Lecture Runs
 
 3-hour block, mid-class break. Structure: vignette → key idea → thought question → breakout → debate portion where scheduled. Point students at the [`activities/`](../../activities/) directory for the hands-on activities we'll do (e.g., cert-chain inspection in Meeting 2). Feedback from last year's class: they wanted more explicit pacing — be transparent about the break.
 
-## Logistics
+## 11 · Logistics
 
 Communication policy: **public channel first**, DMs have no response-time guarantee. Assignments have hard deadlines published day one. Readings drop the week before; if it isn't up, it isn't due. Sample syllabus: [`../../syllabus.md`](../../syllabus.md). Course landing: [`../../index.md`](../../index.md). Student disability services: [`../../sds.md`](../../sds.md).
 
-## Meet the Adversary
+## 12 · The Security Mindset (divider)
+
+Section divider. Transition from logistics into the adversarial-thinking half of the lecture; the next slide (Meet the Adversary) carries the content.
+
+## 13 · Meet the Adversary
 
 **Second case: the 2026 breach ledger.** **Read first:** [TechCrunch, updated Sep 15 2026 — "Leaks, data breaches, and ransom notes: The worst hacks of 2026 so far" (Zack Whittaker)](https://techcrunch.com/2026/09/15/the-worst-hacks-and-breaches-of-2026-so-far/).
 
@@ -221,7 +227,7 @@ Communication policy: **public channel first**, DMs have no response-time guaran
 - Contrast with reliability engineering: a disk that fails randomly vs. an attacker who *chooses* the worst moment.
 - Cold-call: *"Give me a failure that is a reliability problem but not a security problem — now flip it."*
 
-## Threat Modeling: Vocabulary for the Whole Term
+## 14 · Threat Modeling: Vocabulary for the Whole Term
 
 The four-question frame — **assets, properties (CIA), adversaries, capabilities** — is the vocabulary every later lecture reuses (PKI trust roots, BGP hijacks, DNS privacy, moderation pipelines). Say explicitly that this frame returns weekly. Canonical references if students want more: [OWASP Threat Modeling](https://owasp.org/www-community/Threat_Modeling), [Microsoft STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats). Emphasize *limits*: a threat model that claims to cover everything covers nothing — deciding what you consciously ignore is part of the model.
 
@@ -238,15 +244,19 @@ The four-question frame — **assets, properties (CIA), adversaries, capabilitie
 - *"The threat model tells you where the countermeasure has to live.
 - Here it cannot live with the victim."*{B}**Course tie-in:** this is the template every later lecture reuses (PKI trust roots, BGP hijacks, DNS privacy, moderation pipelines); foreshadows privacy-law week and the data-breach debate.
 
-## Exercise: Should You Lock Your Door?
+## 15 · Exercise: Should You Lock Your Door?
 
 Classic mindset warm-up (from the archived Mindset deck). Two-minute pair discussion, then collect. Steer toward: different adversaries (burglar / roommate / landlord) have different capabilities and motives; countermeasure cost can rationally exceed risk; and the lock is a *deterrent*, not a guarantee — most residential locks are trivially picked, which is itself a nice threat-model point (what does the lock actually buy you?).
 
-## Thompson's Question
+## 16 · Trusting Trust (divider)
+
+Section divider. Introduces Thompson's 1984 lecture; the next three slides carry the content.
+
+## 17 · Thompson's Question
 
 The paper is short (~3 pages), the argument is simple, and it is *the* founding text of software supply chain security. **Ken Thompson, "Reflections on Trusting Trust"** — 1984 Turing Award lecture, CACM 27(8):761–763, [ACM DL](https://dl.acm.org/doi/10.1145/358198.358210); [Cambridge PDF](https://www.cl.cam.ac.uk/teaching/2223/R209/Reflections-Trusting-Trust.pdf); annotated at [Fermat's Library](https://fermatslibrary.com/s/reflections-on-trusting-trust). Cold-call: *"If a compiler binary lies about what its own source code compiles to, how could you ever prove it wasn't lying?"* Punchline in Thompson's own words: **"You can't trust code that you did not totally create yourself."** Partial defense: **David A. Wheeler's "Diverse Double-Compiling"** dissertation (2009) shows how compiling the same source with an independent, differently-compromised compiler can catch a Thompson attack — worth naming if a keener student asks whether the problem is unsolvable. Wheeler's [DDC paper](https://dwheeler.com/trusting-trust/) and [Reproducible Builds project](https://reproducible-builds.org/) are the modern partial answers.
 
-## Why It Still Matters
+## 18 · Why It Still Matters
 
 The image is **[xkcd 2347 "Dependency"](https://xkcd.com/2347/)** (Randall Munroe, Aug 17, 2020); explainer: [explain xkcd](https://www.explainxkcd.com/wiki/index.php/2347:_Dependency). Alt-text: *"All modern digital infrastructure"* rests on *"a project some random person in Nebraska has been thanklessly maintaining since 2003."* Interactive Matter.js version: [nesbitt.io/xkcd-2347](https://nesbitt.io/2026/02/27/xkcd-2347.html). Cold-call: *"In your last programming project, how many dependencies did `npm install` or `pip install` pull in? How many did you actually read?"* Tie forward to PKI (Meeting 2): the "chain of trust must stop somewhere" — usually at a root CA the OS ships.
 
@@ -259,7 +269,7 @@ The image is **[xkcd 2347 "Dependency"](https://xkcd.com/2347/)** (Randall Munro
 - One stolen token, four hours, two billion downloads a month.
 - Ask yourself how many of your projects are standing on it right now."*{B}**Course tie-in:** the transitive-dependency point on the slide; bridges to Thompson and to the PKI 'chain of trust must stop somewhere' thread.
 
-## Trusting Trust, Realized: xz-utils
+## 19 · Trusting Trust, Realized: xz-utils
 
 **Read first:** [Wikipedia — XZ Utils backdoor](https://en.wikipedia.org/wiki/XZ_Utils_backdoor) (the best consolidated timeline; read it end to end, ~15 min).
 
@@ -288,7 +298,7 @@ The image is **[xkcd 2347 "Dependency"](https://xkcd.com/2347/)** (Randall Munro
 - Teaching point: SBOM and code review would have walked right past this — the exploit was a *trust* problem, not an artifact problem.
 - Canonical maintainer statement: [tukaani.org/xz-backdoor](https://tukaani.org/xz-backdoor/).
 
-## Supply Chain as a Trust Problem
+## 20 · Supply Chain as a Trust Problem
 
 **Background — the Shai-Hulud lineage (Sept 2025 → June 2026):**
 
@@ -311,6 +321,6 @@ The image is **[xkcd 2347 "Dependency"](https://xkcd.com/2347/)** (Randall Munro
 - The detail to remember: it specifically went looking for your Claude and OpenAI API keys."* Throw: *"Which of the three defenses on this slide would have stopped it?
 - Argue for one."* (Answer you are steering toward: none of them alone — the token *was* the trust.){B}**Course tie-in:** trust extended to maintainers and registries as the attack surface; Thompson's regress made operational; the agenda's debate seed ('can trusting trust be solved or only managed?'); the AI-assisted-code question (an agent's config file is now an execution vector); foreshadows authentication (OIDC, tokens) and PKI.{B}**Also:** [JFrog Security Research, Aug 4 2026](https://research.jfrog.com/post/shai-hulud-is-back-august/) (Ethereum C2 and the OpenSearch trusted-publishing abuse); [Elastic Security Labs, Aug 6 2026](https://www.elastic.co/security-labs/shai-hulud-chaindrop-npm-supply-chain) (the 'claude' commits and per-package download counts); [Cyber Security Agency of Singapore advisory AD-2026-009, Aug 6 2026](https://www.csa.gov.sg/alerts-and-advisories/advisories/ad-2026-009/) (a national-CERT view: what to rotate); [The Register, Aug 15 2026](https://www.theregister.com/security/2026/08/15/chaindrop-worm-crawls-into-npm-supply-chain-evades-standard-defenses/5287958) (tarball propagation and the editor-config hooks).
 
-## Up Next
+## 21 · Up Next (divider)
 
 Transition to the second deck: Anderson's [Why Cryptosystems Fail](https://www.cl.cam.ac.uk/~rja14/Papers/wcf.pdf) ([`../../readings/`](../../readings/)). Next deck: [`../01-WhyCryptosystemsFail/`](../01-WhyCryptosystemsFail/). Framing line: Thompson gave us the theory of misplaced trust; Anderson has the field data on where deployed systems actually break.

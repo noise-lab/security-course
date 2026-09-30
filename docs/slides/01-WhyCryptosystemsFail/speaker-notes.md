@@ -2,7 +2,9 @@
 
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also) for the second half of Meeting 1 (the Trusting Trust segment now lives at the end of the overview deck — see [`../01-Overview/speaker-notes.md`](../01-Overview/speaker-notes.md)). In-deck notes (the `::: {.notes}` blocks) are also visible in reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page. Follows the course-overview deck: [`../01-Overview/speaker-notes.md`](../01-Overview/speaker-notes.md).
 
-## Where Does It Actually Break?
+*Headings carry the slide number shown in the deck footer (title slide is 1 of 15).*
+
+## 2 · Where Does It Actually Break?
 
 Both readings are canonical: **Ken Thompson, "Reflections on Trusting Trust"** — 1984 Turing Award lecture, CACM 27(8):761–763, [ACM DL](https://dl.acm.org/doi/10.1145/358198.358210); [Cambridge PDF](https://www.cl.cam.ac.uk/teaching/2223/R209/Reflections-Trusting-Trust.pdf); annotated at [Fermat's Library](https://fermatslibrary.com/s/reflections-on-trusting-trust). **Ross Anderson, "Why Cryptosystems Fail"** — 1st ACM CCS 1993, pp. 215–227, [ACM DL](https://dl.acm.org/doi/10.1145/168588.168615); [Cambridge PDF](https://www.cl.cam.ac.uk/~rja14/Papers/wcf.pdf); Anderson's own page: [`cl.cam.ac.uk/archive/rja14/wcf.html`](https://www.cl.cam.ac.uk/archive/rja14/wcf.html). Anderson died in March 2024; [Bruce Schneier's tribute](https://cacm.acm.org/news/in-memoriam-ross-anderson-1956-2024/) is a good one-line pointer if a student asks. Two papers, one lesson: the failure is almost never the math.
 
@@ -50,7 +52,7 @@ Both readings are canonical: **Ken Thompson, "Reflections on Trusting Trust"** �
 - [The Register — "ChainDrop worm crawls into npm supply chain, evades standard defenses" (Aug 15, 2026)](https://www.theregister.com/security/2026/08/15/chaindrop-worm-crawls-into-npm-supply-chain-evades-standard-defenses/5287958) — why source review, provenance and scanners all missed it.
 - Lineage back to Sept 2025 is summarized in `coverage-notes.md` in this directory.
 
-## Anderson's Surprise
+## 3 · Anderson's Surprise
 
 The paper's central claim: in the 1990s UK banking system, **customers bore the fraud burden**, so banks had structurally weak incentives to hunt for their own bugs; meanwhile, **cryptology got little public feedback** because governments (the main users) never disclosed how their systems failed. Contrast this with modern breach-notification laws (state laws in the US, GDPR Art. 33 in the EU) that *force* public feedback. Cold-call: *"If your bank told you 'the ATM never makes mistakes; if there's a discrepancy, it's your fault,' what would that do to their patch cycle?"* Ties to the agenda's discussion question on how GDPR/CCPA shape crypto implementation.
 
@@ -89,7 +91,7 @@ The paper's central claim: in the 1990s UK banking system, **customers bore the 
 
 - [UK Finance — "Fraud remains a national security threat as criminals steal almost £1.3 billion" (Jun 15, 2026)](https://www.ukfinance.org.uk/news-and-insight/press-release/fraud-report-2026-press-release) — the 2025 headline numbers.
 
-## How ATM Fraud Actually Happened
+## 4 · How ATM Fraud Actually Happened
 
 None of the failure modes Anderson catalogs is a break of DES. Contemporary analog: [Krebs on Security's ATM skimmer archive](https://krebsonsecurity.com/all-about-skimmers/) — the physical version is alive and well in 2026, especially at gas pumps. The image on the slide is a real skimmer overlay. Teaching move: give students the story of the clerk issuing an extra card and the customer whose complaint was stonewalled — this is a human-factors + institutional-power failure, not a cryptography failure.
 
@@ -134,7 +136,7 @@ None of the failure modes Anderson catalogs is a break of DES. Contemporary anal
 - [ABA Banking Journal — "FBI: Malware-enabled ATM jackpotting crimes on the rise" (Feb 25, 2026)](https://bankingjournal.aba.com/2026/02/fbi-malware-enabled-atm-jackpotting-crimes-on-the-rise/) — the banking industry's summary.
 - [FDIC OIG — ATM Jackpotting explainer](https://www.fdicoig.gov/atm-jackpotting) — one-page description for students.
 
-## And the Crypto-Adjacent Mistakes
+## 5 · And the Crypto-Adjacent Mistakes
 
 This is the crux for Meeting 2: the **PIN-derivation key** had to be both secret *and* widely distributed *and* available at all times. That contradiction is exactly why key management gets its own lecture. Modern echo: **hardcoded API keys and cloud credentials in public GitHub repos** — same class of failure, different decade. Reference point: [GitGuardian's "State of Secrets Sprawl"](https://www.gitguardian.com/state-of-secrets-sprawl-report-2024) reports millions of leaked secrets/year.
 
@@ -201,7 +203,7 @@ This is the crux for Meeting 2: the **PIN-derivation key** had to be both secret
 
 - Pre-existing pointer below: GitGuardian's secrets-sprawl report for the annual leaked-secret baseline.
 
-## The Takeaway
+## 6 · The Takeaway
 
 The quote *"The vast majority of security failures occur at the level of implementation detail"* is from Anderson's 1993 paper (CCS Proceedings, p. 226); read straight from the [Cambridge PDF](https://www.cl.cam.ac.uk/~rja14/Papers/wcf.pdf). The "seven-month tenure of US-agency security managers" figure is from Anderson quoting a Peter Neumann *ACM SIGSOFT Software Engineering Notes* observation — still directionally true; today the [ISACA "State of Cybersecurity" report](https://www.isaca.org/state-of-cybersecurity) tracks turnover. Put this line on the exam.
 
@@ -267,7 +269,7 @@ The quote *"The vast majority of security failures occur at the level of impleme
 
 - (No additional links; the OpenSSL half of the SecurityWeek piece is covered on the next slide.)
 
-## A Taxonomy of Failure
+## 7 · A Taxonomy of Failure
 
 Run the in-class activity: give students a headline breach and ask which bucket it fits. Seed examples with primary sources: **[Heartbleed (CVE-2014-0160)](https://heartbleed.com/)** — implementation (missing bounds check in OpenSSL); [OpenSSL advisory Apr 7, 2014](https://www.openssl.org/news/secadv/20140407.txt). **[Debian OpenSSL PRNG bug (CVE-2008-0166)](https://www.debian.org/security/2008/dsa-1571)** — key management (2 lines removed left PID as sole entropy source; only 32,767 possible RSA keys per architecture). **[DigiNotar (2011)](https://en.wikipedia.org/wiki/DigiNotar)** — key/CA trust (Iran-linked MITM on 300K Gmail users; Chrome cert pinning caught it; [EFF post-mortem](https://www.eff.org/deeplinks/2011/09/post-mortem-iranian-diginotar-attack)). Default passwords / Mirai — human factors. Cold-call: *"When was the last time cryptanalysis actually broke a real system?"* (Almost never — MD5/SHA-1 collisions are the rare exceptions, and they took decades and academic effort.)
 
@@ -337,13 +339,13 @@ Run the in-class activity: give students a headline breach and ask which bucket 
 - [SecurityWeek — "High-Severity Vulnerabilities Patched in OpenSSL, WolfSSL" (Sept 30, 2026)](https://www.securityweek.com/high-severity-vulnerabilities-patched-in-openssl-wolfssl/) — press summary of the OpenSSL release.
 - Cross-references: the Stripe/AWS key dumps (Aug 2026) are the *key management* seed — full write-up in the "And the Crypto-Adjacent Mistakes" row; IDScan.net (Sept 2026) is the *human factors / operations* seed — full write-up in the "Food for Thought" row.
 
-## Case in Point: Equifax (2017)
+## 8 · Case in Point: Equifax (2017)
 
 The clean case study: Apache Struts patch shipped **March 7, 2017** (CVE-2017-5638); Equifax ran a vulnerability scan Mar 15 that missed the unpatched instance; attackers were inside **May 13–July 30**; ~**147.9M** consumers affected. Primary sources: [Wikipedia: 2017 Equifax data breach](https://en.wikipedia.org/wiki/2017_Equifax_data_breach); [FTC Equifax Settlement page](https://www.ftc.gov/enforcement/refunds/equifax-data-breach-settlement); [CFPB settlement page](https://www.consumerfinance.gov/equifax-settlement/). July 2019 global settlement with FTC/CFPB/50 state AGs: up to **\$700M** total (\$425M consumer fund, \$175M states, \$100M CFPB civil penalty). Judge Thrash: "the largest and most comprehensive recovery in a data breach case in U.S. history by several orders of magnitude." Feb 2020: DOJ indicted **four PLA (Unit 54398)** officers for the attack ([DOJ press release](https://www.justice.gov/opa/pr/chinese-military-personnel-charged-computer-fraud-economic-espionage-and-wire-fraud-hacking)). 2026 status: settlement in wind-down; identity-restoration services free until **Jan 2029**; 7 free Equifax credit reports/yr through 2026 via [annualcreditreport.com](https://www.annualcreditreport.com/). Directly seeds the meeting's debate: [`../../debates/data-breach.md`](../../debates/data-breach.md) — *"Companies should be held liable for damages incurred from data breaches if there was a known vulnerability."*
 
 **2026 counterpoint on "just patch" — the Sept 2026 Windows Server Remote Desktop regression.** Full write-up (Read first / What happened / What to say) is in the "Specifications Should Plan for Failure" row below; use it here in one sentence: Microsoft's Sept 8 security updates froze Remote Desktop on Windows Server 2019/2022/2025, admins uninstalled the *security* fixes to get back in, and Microsoft needed an out-of-band patch on Sept 14 ([BleepingComputer, Sept 14 2026](https://www.bleepingcomputer.com/news/microsoft/microsoft-releases-emergency-windows-updates-to-fix-rds-failures/); [Cybersecurity News, Sept 11 2026](https://cybersecuritynews.com/remote-desktop-services-failures/)). Patching has real operational cost, which is why patch *management* (inventory, staging, testing) is the discipline, not the click — and why Equifax's ten-week miss on a known-exploited critical is still indefensible.
 
-## When Regulators Treat Patching as a Duty
+## 9 · When Regulators Treat Patching as a Duty
 
 **FTC Log4j warning, January 4, 2022** (CVE-2021-44228) — primary source: [FTC blog post](https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2022/01/ftc-warns-companies-remediate-log4j-security-vulnerability). Legal hooks: FTC Act §5 ("unfair or deceptive acts") and Gramm-Leach-Bliley Safeguards Rule. Key quote: *"When vulnerabilities are discovered and exploited, it risks a loss or breach of personal information… The FTC intends to use its full legal authority to pursue companies that fail to take reasonable steps to protect consumer data from exposure as a result of Log4j, or similar known vulnerabilities in the future."* Cited Equifax explicitly as the cautionary example. Modern counterpart to name: **CISA Secure by Design pledge** — [cisa.gov/securebydesign/pledge](https://www.cisa.gov/securebydesign/pledge); ~367 signatories as of mid-2026 (up from 68 at May 2024 launch). The regulator's message: fixing implementation and ops failures is now a legal duty, not just hygiene. Directly answers the agenda discussion question on GDPR/CCPA impact.
 
@@ -413,7 +415,11 @@ The clean case study: Apache Struts patch shipped **March 7, 2017** (CVE-2017-56
 
 - Both orders' 10-year terms (vs. the FTC's traditional 20) are themselves a policy shift worth one sentence.
 
-## What Good Vendors Owe Customers
+## 10 · Designing for Failure (divider)
+
+Section divider. Pivot from diagnosing failures (Anderson, Equifax, FTC) to what good design and good vendors do about them.
+
+## 11 · What Good Vendors Owe Customers
 
 (Full incident write-up is in the "Where Does It Actually Break?" row; this block is the angle for *this* slide.)
 
@@ -449,7 +455,7 @@ Anderson's three-part vendor prescription (build for real-world skill / train cu
 - [Microsoft Security Blog — ChainDrop anatomy (Aug 4, 2026)](https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/) — the full incident.
 - [The Register (Aug 15, 2026)](https://www.theregister.com/security/2026/08/15/chaindrop-worm-crawls-into-npm-supply-chain-evades-standard-defenses/5287958) — "evades standard defenses."
 
-## Specifications Should Plan for Failure
+## 12 · Specifications Should Plan for Failure
 
 This is **threat modeling avant la lettre**. Point to Meeting 2 (formal threat models / STRIDE) but tie the intuition to today. Named methodology: [Microsoft STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats), [OWASP threat modeling](https://owasp.org/www-community/Threat_Modeling). Contemporary case for "spec that plans for failure": the **CrowdStrike outage of July 19, 2024** — a Rapid Response Content update pushed globally with no staged rollout crashed ~8.5M Windows systems; the postmortem [RCA (Aug 6, 2024)](https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf) is a textbook enumeration of what a real spec should have caught. Also [Wikipedia: 2024 CrowdStrike-related IT outages](https://en.wikipedia.org/wiki/2024_CrowdStrike-related_IT_outages) — losses >\$5B.
 
@@ -491,7 +497,7 @@ This is **threat modeling avant la lettre**. Point to Meeting 2 (formal threat m
 - [Microsoft Support — KB5122882 release notes with the known-issue entry added Sept 12, 2026](https://support.microsoft.com/en-us/servicing/os/windows-server/2026/09/kb5122882-windows-server-2022-security-update) — the vendor's own record.
 - [Cybersecurity News — "Remote Desktop Services Failures on Windows Servers Following September Update" (Sept 11, 2026)](https://cybersecuritynews.com/remote-desktop-services-failures/) — the symptom report from before the fix.
 
-## Two Paradigms for Safety
+## 13 · Two Paradigms for Safety
 
 Anderson's contrast of **signalling/interlocks** (system in control, formal verification) with **aviation** (constant feedback, incremental improvement, pilot in control) is worth debating explicitly. Good debate seed: *"Which paradigm is a better model for modern software security — hard interlocks or feedback-driven aviation-style culture?"* Contemporary hook: post-incident review culture at large tech companies (SRE/Google-style blameless postmortems) is an "aviation" borrowing; regulated healthcare/embedded is more "signalling."
 
@@ -522,7 +528,7 @@ Among the Nomad order's terms is a requirement to build a system-pause capabilit
 
 - [FTC press release (Dec 16, 2025)](https://www.ftc.gov/news-events/news/press-releases/2025/12/ftc-will-require-illusory-systems-return-money-stolen-hackers-implement-information-security-program) — the agency's own statement.
 
-## Food for Thought
+## 14 · Food for Thought
 
 (Full write-up in the "Where Does It Actually Break?" row; this is the angle for the second prompt.)
 
@@ -612,6 +618,6 @@ Three prompts, all live in 2026: **(1) identity verification pushed to productio
 - [The Record — "IDScan confirms breach after hackers offer 153 million driver's license scans for sale" (Sept 10, 2026)](https://therecord.media/idscan-data-breach-notice-drivers-licenses) — record-type breakdown and the lawsuits.
 - [Techdirt — "Hackers Had A Live Feed Of Every ID This Verification Company Scanned. For Over A Year." (Sept 3, 2026)](https://www.techdirt.com/2026/09/03/hackers-had-a-live-feed-of-every-id-this-verification-company-scanned-for-over-a-year/) — the policy argument that no centralized age-verification store is safe.
 
-## The Through-Line
+## 15 · The Through-Line (divider)
 
 The one-line summary of both papers. Close with the agenda's transition to Meeting 2 (Key Management & PKI): *the reason we spend a whole lecture on keys is precisely because they are the single hardest implementation-and-operations problem in the field.* Related activities coming up: [`../../activities/`](../../activities/); the data-breach debate: [`../../debates/data-breach.md`](../../debates/data-breach.md).
