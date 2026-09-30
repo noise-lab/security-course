@@ -15,6 +15,11 @@ This course sits at the intersection of **technical security/privacy** and the
 Open with the framing question: who in the room sees themselves working on policy,
 and who sees themselves building systems? The whole point is that you need both. Tell
 the BITAG / FTC testimony story briefly to make it concrete.
+
+Fresh hook (Sept 24, 2026): the FTC opened an ANPRM asking whether platforms'
+ad-optimization tools drive impersonation scams (>1M reports, ~$3.5B in losses
+in 2025). The docket's central question is technical: how do ranking and
+targeting systems behave? That is exactly the room this course trains you for.
 :::
 
 ## Who Am I?
@@ -115,6 +120,12 @@ aspirational syllabus. If a topic gets cut for time, update agenda.md and this s
 Labs are graded primarily for **thoughtful completion** — each now ships with an
 **up-front rubric**. AI tools are allowed *if you understand and can defend the output*.
 
+::: {.notes}
+Live case for the Meeting 1 data-breach debate: IDScan (Sept 2026) -- 153M
+driver's-license scans held by an ID-verification vendor were offered for sale on
+a dark-web lookup service; the FBI is investigating. Details in speaker-notes.md.
+:::
+
 ## A 2026 Vignette: Why This Is Timely {.smaller}
 
 ::: {.vignette}
@@ -129,6 +140,11 @@ is enabled. Almost every headline this term will map onto a lecture.
 
 **Thought question:** pick a tech-policy story from this *week's* news — which lecture
 does it belong to?
+
+**Since this was written (Aug–Sep 2026):**
+
+- AI Act GPAI enforcement **went live Aug 2** — AI Office can demand model docs, run evaluations, fine 3% / €15M [(European Commission)](https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august)
+- *NYT v. OpenAI*: cross-motions for **summary judgment filed Sept 4**; replies due Nov 6 [(AI Lawsuit Tracker)](https://ailawsuittracker.com/cases/new-york-times-v-openai/)
 
 ::: {.notes}
 Swap this vignette for the freshest concrete example at the start of the term. The goal
@@ -173,6 +189,9 @@ responsiveness). Point students at the syllabus section on communication.
   to make the system misbehave
 - Not random failure, not bad luck: **someone trying, on purpose**
 - That's what separates security from reliability engineering
+- **Sept 2026 example:** IDScan, an ID-verification vendor — **153M** driver's-license
+  scans sold through a dark-web lookup service; the attacker picked the *aggregator*,
+  not 153M individuals [(Krebs on Security)](https://krebsonsecurity.com/2026/09/fbi-probes-service-selling-153m-drivers-licenses/)
 
 ::: {.notes}
 Reliability asks "what can go wrong?"; security asks "what can be *made* to go
@@ -196,6 +215,12 @@ This is the shared vocabulary every later lecture leans on: assets, adversaries,
 capabilities. Every system we study — PKI, BGP, DNS, moderation pipelines — gets
 run through these same four questions. Say that explicitly so students recognize
 the pattern when it returns.
+
+Worked example from the previous slide: IDScan (Sept 2026). Asset: your license
+scan, held by a vendor you never chose (Hertz or a dispensary chose it).
+Adversary: a criminal marketplace; motive is resale. Capability: cloud-account
+access at the vendor. Limits: no individual countermeasure exists, which is why
+this is a policy problem.
 :::
 
 ## Exercise: Should You Lock Your Door?
@@ -285,6 +310,9 @@ trust problem, not an artifact problem. Connect to agenda question: how does
 this extend to AI-generated and AI-assisted code? Freund was a Microsoft
 principal engineer benchmarking PostgreSQL who noticed sshd was ~500ms
 slower than expected — pure operational luck.
+
+Status check (Sept 2026): still no public attribution. Lasse Collin's canonical
+incident page at tukaani.org/xz-backdoor was last updated Jan 2025.
 :::
 
 ## Supply Chain as a Trust Problem
@@ -297,6 +325,11 @@ not just the code.
   fresh waves in 2026 hit **TanStack, Mistral AI, UiPath** (May 11), the **AntV**
   ecosystem (May 19), and **Red Hat's npm namespace** (~80K downloads/week, June 1);
   the weaponized worm code was released publicly on **May 12, 2026**
+- **ChainDrop** (Aug 4, 2026) — Shai-Hulud variant hit `keyv` and **444 packages /
+  ~2B monthly downloads** in under four hours; spread via tarballs and by committing
+  hooks into `.claude/settings.json` / `.vscode/tasks.json`
+  [(Datadog)](https://securitylabs.datadoghq.com/articles/npm-worm-compromises-popular-npm-packages/)
+  [(The Register)](https://www.theregister.com/security/2026/08/15/chaindrop-worm-crawls-into-npm-supply-chain-evades-standard-defenses/5287958)
 - Phishing one maintainer can poison **packages with billions of downloads**
 - Defenses (signing, SBOMs, SLSA, npm trusted publishing) help — but a maintainer
   who *earns* trust, then abuses it, defeats them
@@ -307,6 +340,12 @@ Good debate seed (the agenda lists this paper for debate). Can we ever
 double-compiling raise the bar but don't eliminate the regress. Note the
 progression: preinstall execution now bypasses even test-based defenses;
 the Red Hat case shows the worm reaching official corporate namespaces.
+
+ChainDrop (Aug 2026) sharpened both points: its malicious commits were authored
+as "claude" with the message "chore: update config" (Elastic), it abused
+OpenSearch's trusted publishing to sign releases with legitimate OIDC tokens
+(JFrog), and it planted hooks in editor/agent config files. The defenses on the
+slide were used *by* the worm. Ties directly to the AI-assisted-code question.
 :::
 
 # Up Next {.center}

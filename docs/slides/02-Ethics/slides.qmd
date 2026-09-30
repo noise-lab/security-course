@@ -22,7 +22,10 @@ scraping a public Reddit thread, deanonymizing a leaked dataset, running an
 unadvertised A/B test. The point of today is to give you a framework you can
 actually apply in your labs and your debate, not a rulebook. We will end at
 Belmont plus Menlo — four principles that translate the medical-ethics tradition
-into the ICT world.
+into the ICT world. One reason this is not abstract in 2026: USENIX Security '26
+now desk-rejects papers that lack a stakeholder-based "Ethical Considerations"
+appendix, and CCS '26 desk-rejected 13 papers for missing ethics sections — every
+student who publishes in this field will be writing one of these.
 :::
 
 ## A Cautionary Origin: Tuskegee {.smaller}
@@ -98,6 +101,11 @@ canonical LLM-field-experiment ethics case as of 2026.
 
 Same playbook as Emotional Contagion — now with generative AI doing the manipulating.
 
+- **Sequel, July 2026:** an LSE team ran a bot field experiment across 12 subreddits
+  (2,442 observations) — **ethics-approved and pre-registered, but no consent**, "mild
+  deception," and a debrief only *after* publication
+  [Oda et al., arXiv 2607.00854](https://arxiv.org/abs/2607.00854)
+
 ::: {.notes}
 This is the freshest, cleanest teaching case we have. Walk students through it
 against the four principles before we even define them: consent (none),
@@ -112,6 +120,16 @@ explicitly as the 2025 replay of Facebook's 2012 Emotional Contagion study —
 same playbook, generative AI upgrade. Cold-call before revealing the four
 principles: what specifically was wrong here, in your own words? Then map their
 answers onto Belmont plus Menlo on the next slides.
+
+2026 sequel to raise once the Zurich facts are on the table: Oda, Makovi, Yasseri,
+and Tsvetkova (LSE) posted a Reddit bot field experiment in July 2026 — bot and
+"human" accounts handing out paid Reddit awards with varying justifications across
+twelve subreddits, 2,442 observations. This one had ethics approval (LSE Ref.
+490807) and pre-registration, but the paper says plainly that consent was not
+obtained because the experiment "relied on realistic interventions," that it used
+"a mild form of deception," and that debriefing will be an r/all post after
+publication. Cold-call: is this the fix for Zurich, or the same playbook with
+paperwork? Which of the four principles does the approval actually satisfy?
 :::
 
 ## Case Study: Emotional Contagion {.smaller}
@@ -140,7 +158,13 @@ Cold-call: would an IRB have approved Emotional Contagion with a debrief? Would 
 have? Then land the connection: the 2025 Zurich case is the same argument twelve
 years later, only with generative AI doing the manipulating and a bigger scandal
 because the deception is more visceral. If we could not agree in 2014, we still
-have not agreed — hence the framework this course adopts.
+have not agreed — hence the framework this course adopts. 2026 wrinkle: the
+"A/B test versus research" line is no longer a platform-only question. A
+September 2026 arXiv paper (Condom-Tibau et al., "Open Platform Field
+Experiments") maps how independent researchers can now intervene directly on
+live platform components via Bluesky and the AT Protocol, and the July 2026 LSE
+Reddit study is literally a "behavioral contagion" experiment run without
+consent. The capability Facebook had in 2012 is now available to any lab.
 :::
 
 # A Framework, Not a Rulebook {.center}
@@ -180,7 +204,13 @@ measure, chilling. That makes a precautionary reflex tempting, but the
 precautionary principle itself can block beneficial work. The point of the
 frameworks-to-rules ladder on the next slide is exactly to reason under that
 uncertainty without defaulting to either "if it's legal, ship it" or "if we
-can't prove no harm, forbid it."
+can't prove no harm, forbid it." Fresh evidence that capabilities outrun rules:
+in January 2026 Tianshi Li showed that off-the-shelf agentic LLMs with web search
+could re-identify interviewees in Anthropic's public "Interviewer" dataset by
+splitting the attack into benign-looking steps, and in February 2026 Lermen,
+Carlini, Tramèr and colleagues linked pseudonymous accounts across platforms at
+roughly 68% recall at 90% precision where non-LLM methods got near zero. The
+"database of ruin" now has an agent that can query it in natural language.
 :::
 
 ## Salganik's Layered Approach {.smaller}
@@ -201,6 +231,13 @@ versus deontology — tell you *why* the principles point where they do, and
 predict which side of a debate a given speaker will land on. Every case in
 today's lecture will run bottom-up: what rule did they break, which principle
 was violated, which framework do their defenders and critics implicitly hold?
+Evidence that the rules layer alone does not work: Nishi et al. (arXiv, September
+2026) tracked 446 ethics-flagged ICLR rejections through resubmission and found
+that in 83% of cases the authors left the concern unaddressed or changed the
+framing without changing the method; Hantke, Mrowczynski, Dralle, and Stock
+(arXiv, July 2026) interviewed twenty security-and-privacy community members and
+found that inconsistent, fast-changing venue ethics policies encourage
+box-ticking over reflection. Rules without principles produce compliance theater.
 :::
 
 ## IRB, Belmont, Menlo {.smaller}
@@ -211,6 +248,10 @@ was violated, which framework do their defenders and critics implicitly hold?
   human-subjects regulation. Three principles
 - **Menlo Report (2012)** — DHS-commissioned; **re-applies Belmont to information and
   communication technology (ICT) research** and adds a fourth principle
+- **2026 watch:** OHRP has a Common Rule proposal on the HHS Unified Agenda that would
+  **expand exemptions** for low-risk research — text still unreleased as of Sep 2026
+  [Advarra, Sep 2026](https://www.advarra.com/blog/2026-dhhs-unified-agenda-four-areas-hrpp-and-irb-leaders-should-watch/)
+<!-- TODO: consider noting that DHS has reportedly archived the Menlo Report page without a successor document (seen in a 2026 UW Tech Policy Lab paper; not independently verified this session). -->
 
 ::: {.notes}
 Walk the full lineage on the board: Nuremberg Code (1947, in response to Nazi
@@ -277,6 +318,12 @@ The Reddit case fails here twice: bots **never disclosed** they were AI, and the
 **fabricated identities** designed to make the deception more persuasive.
 :::
 
+- **Two 2026 answers:** NeurIPS 2026's AI-assisted-review experiment is IRB-exempt and
+  **opt-in for both authors and reviewers**
+  [NeurIPS 2026](https://neurips.cc/Conferences/2026/ai-reviewing-experiment); the LSE
+  Reddit bot study got ethics approval but **skipped consent** for realism
+  [arXiv 2607.00854](https://arxiv.org/abs/2607.00854)
+
 ::: {.notes}
 Connect to the dark-patterns thread that returns in the Privacy Law lecture:
 is consent meaningful if obtained through deception or a fourteen-click
@@ -298,6 +345,10 @@ Not every research question deserves an answer.
   side of the ledger — but reproducibility can also raise informational risk
 - **Justice:** one group should not **bear the risks** while another **reaps the
   benefits**
+- **Informational risk, 2026 edition:** agentic LLMs re-identified interviewees in
+  Anthropic's public *Interviewer* dataset [Li, Jan 2026](https://arxiv.org/abs/2601.05918)
+  and linked pseudonymous accounts across platforms at ~68% recall / 90% precision
+  [Lermen et al., Feb 2026](https://arxiv.org/abs/2602.16800)
 
 **Concepts to know:** *minimal risk*, *power analysis*, *informational risk*
 
@@ -326,6 +377,9 @@ plans; we return to these in the AI and privacy lecture.
 - …but violating ToS may sometimes be **defensible** (e.g., to expose discrimination)
 - **Transparency-based accountability:** be open about goals, methods, and results;
   don't do research in secret
+- **Legal route around ToS:** EU DSA Art. 40 vetted-researcher data access (delegated act
+  adopted Jul 2025) — but platforms can still object, so the "data stand-off" persists
+  [Tech Policy Press](https://www.techpolicy.press/unpacking-the-eus-digital-services-act-delegated-act-on-data-access-/)
 :::
 ::: {.column width="42%"}
 ![The Menlo Report (2012)](images/slide032_img017.png)
@@ -391,6 +445,10 @@ bearing for the ethics breakout and the CFAA debate later this term.
 - A law can *illuminate* the line between beneficial and harmful acts — but it lags
 - If the security-research community sets **standards of practice**, it makes the work
   of legislatures and courts easier
+- **Live case (Apr–Sep 2026):** "Nightmare Eclipse" published a run of unpatched Windows
+  zero-days after Microsoft cut off their MSRC account; Microsoft's Digital Crimes Unit
+  threatened prosecution (May 28), then walked it back (Jun 1) — **legal? ethical? on
+  which side?** [TechCrunch](https://techcrunch.com/2026/05/29/microsoft-under-fire-for-threatening-security-researcher-with-criminal-investigation/)
 
 ::: {.notes}
 Hammer this: passing your IRB is not the end of ethical reasoning, and the
@@ -428,7 +486,14 @@ security and measurement research, and Mayer et al. (Science, 2019) documented
 that chill empirically in the compliance-audit context. There are now
 research-friendly carve-outs on the next slide, but the baseline risk is
 real, and EFF's Coders' Rights Project is the practical playbook for anyone
-worried about exposure.
+worried about exposure. The chill got a fresh data point in May 2026 when
+Microsoft's Digital Crimes Unit threatened a zero-day-dropping researcher with
+prosecution and law-enforcement referral; Katie Moussouris, who built Microsoft's
+own bounty program, called it "over the top" and warned of a chilling effect, and
+MSRC walked the language back within four days. Note also that the Copyright
+Office opened the tenth triennial §1201 rulemaking in June 2026 — the
+security-research exemption is up for streamlined renewal (petitions were due
+August 24, comments September 28, 2026).
 :::
 
 ## The Law Is (Slowly) Catching Up {.smaller}
@@ -445,6 +510,9 @@ the "gates-up-or-down" test still controls.
 - The **DMCA §1201 security-research exemption** (renewed by the Copyright Office) now
   shields good-faith vulnerability testing — but **contract, copyright, and GDPR**
   claims remain live risks that Van Buren did not resolve
+- **Tenth triennial §1201 rulemaking** opened Jun 9, 2026 — renewal petitions were due
+  Aug 24, comments Sep 28; renewed exemptions run Oct 2027–Oct 2030
+  [U.S. Copyright Office](https://www.copyright.gov/1201/2027/)
 
 ::: {.notes}
 These are the current-events updates to the old "you will go to jail for
@@ -470,12 +538,20 @@ resolve. Belmont plus Menlo still apply even when access is legal.
 
 - **ACM Code of Ethics** — "contribute to society," "avoid harm," respect privacy
 - **IEEE Code of Ethics** — honesty, avoid conflicts of interest, accept criticism
+- **Venue rules, 2026:** USENIX Security '26 desk-rejects papers without a
+  stakeholder-based ethics appendix
+  [CFP](https://www.usenix.org/conference/usenixsecurity26/call-for-papers); CCS '26
+  desk-rejected 13 for missing ethics sections
+  [transparency report](https://github.com/ACM-CCS-2026/Transparency-Report)
 :::
 ::: {.column width="50%"}
 **Contracts & policies**
 
 - **EULAs** (don't reverse-engineer; you'll be monitored)
 - **Organizational policies**
+- **Bounty terms as gag clauses:** AMD called CVE-2026-40677 "out of scope," took 124 days
+  to patch, then rewrote its terms to require silence on out-of-scope reports
+  [TechSpot, Jun 2026](https://www.techspot.com/news/112746-amd-changes-rules-denies-researcher-10000-bounty-after.html)
 - Older standards: **Nuremberg Code (1947)**, **Helsinki Declaration (1964)**
 :::
 :::
@@ -515,7 +591,13 @@ diagram — rules versus principles versus frameworks — so the same vocabulary
 carries into the CFAA and backdoors debates later this term. Reserve five
 minutes at the end for a whole-class comparison: is there one design pattern
 (consent, minimal risk, debrief, community consultation) that would rescue
-all three cases, or does each require a different fix?
+all three cases, or does each require a different fix? Fresh 2026 prompts if the
+historical cases feel stale: for the disclosure sub-breakout, Microsoft versus
+"Nightmare Eclipse" (April–September 2026 zero-day drops, prosecution threat, then
+retraction) and AMD's out-of-scope bounty denial with retroactive silence terms
+(June 2026); for the LLM/bot field-experiment sub-breakout, contrast the LSE
+Reddit study (July 2026, approval but no consent) with the NeurIPS 2026 AI-assisted
+reviewing experiment (opt-in for authors and reviewers).
 :::
 
 # Takeaways {.center}
