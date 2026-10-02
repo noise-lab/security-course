@@ -20,7 +20,7 @@ Additional requirements:
 
 ## Coverage
 
-The final exam covers material from **Meetings 7-8** according to the course agenda. Refer to `agenda.md` for the specific topics covered in these meetings.
+The final exam covers material from **Meetings 7-8** according to the course agenda. Refer to the current term's agenda file (`agenda/2026-autumn.md` for Autumn 2026; index at `agenda.md`) for the specific topics covered in these meetings.
 
 ## Permitted Materials (required, verbatim, in `instructions.tex`)
 

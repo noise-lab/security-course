@@ -20,8 +20,8 @@ and recommendations.
 
 More detailed information is available in the [syllabus](syllabus.md).
 
-Information about the agenda for each class meeting is available in the
-[agenda](agenda.md).
+Notes on what was covered in each class meeting are in the
+[agenda](agenda.md) (one file per term; the current term is [Autumn 2026](agenda/2026-autumn.md)).
 
 ## Class meeting agenda
 

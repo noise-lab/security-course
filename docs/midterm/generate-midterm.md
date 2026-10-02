@@ -106,7 +106,7 @@ make clean     # Removes auxiliary files
 
 1. **Include at least one question addressing Assignment 1** (typically PKI/certificates)
 2. **Avoid duplicating questions from previous years** - check 2023 and 2024 exams
-3. **Follow agenda's "possible midterm questions"** - these are specific topics called out in agenda.md
+3. **Follow agenda's "possible midterm questions"** - these are specific topics called out in the current term's agenda file (`agenda/2026-autumn.md` for Autumn 2026; index at `agenda.md`), marked **Midterm flag**
 4. **Only include content covered in class** - don't ask about topics not discussed
 5. **Use diagram-based questions** - include at least 2 visual/diagram questions
 6. **Balance question types** - mix multiple choice, short answer, and diagrams

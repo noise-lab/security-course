@@ -10,7 +10,7 @@ student-led discussion**. The debate is the anchor of the on-campus format
 (35% of the course grade — see [debates/format.md](debates/format.md)) and
 the shape below places it **in the middle** of class, right after the first
 break. This mirrors how the class has actually been run — see for example
-the pattern in [`agenda.md`](agenda.md) around Meeting 8.
+the pattern in [the Autumn 2025 agenda](agenda/2025-autumn.md) around Meeting 8.
 
 Two or three motifs work well. Pick whichever fits the day's material.
 For Lecture 1, when there is no assigned reading and no scheduled debate,
