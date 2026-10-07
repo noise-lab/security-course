@@ -141,4 +141,5 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 * **Debate: Data Breaches** (not recorded)
     * Resolution: *Companies should be held liable for damages incurred from data breaches if there was a known vulnerability in the software used by the company that led to the breach*
     * Oxford style: opening poll (thumbs up/down on the resolution posted in Slack), affirmative opening, negative response, affirmative reply, audience questions, closing poll. Six students signed up, three per side
+    * The debate took place as scheduled. One twist raised from the floor by the instructor: **how does liability shift when an AI agent is in the loop?** If an agent introduces the vulnerability (writes the code, misconfigures the system) or takes the action that leads to the breach, who is liable: the company that deployed it, the agent's vendor, the person who prompted it, or nobody? **Midterm flag:** apply the resolution to a breach caused by an autonomous agent
 * **Post-debate segment:** to be added from the recording (planned: OAuth / Modern Authentication, which is also the background for Assignment 2)

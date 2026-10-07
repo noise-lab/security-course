@@ -27,6 +27,13 @@ debate:
    vulnerabilities?
 5. What about smaller companies who have fewer resources? Should they be held
    to the same standard as larger companies?
+6. **The agent twist (added Autumn 2026).** Increasingly, code is written,
+   systems are configured, and actions are taken by AI agents rather than
+   people. If an agent introduces the vulnerability, or takes the action that
+   results in the breach, who should be liable: the company that deployed the
+   agent, the vendor that built it, the person who prompted it, or no one? Does
+   "known vulnerability" even mean the same thing when no human reviewed the
+   change?
 
 **Readings**
 
