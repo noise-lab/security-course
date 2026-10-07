@@ -173,48 +173,39 @@ phishing-resistant something-you-have. Brief in speaker-notes, slide 6.
 
 ## Passwords Are Losing; Passkeys Are Winning {.smaller}
 
-Passwords fail predictably: reuse, phishing, credential-stuffing from breach dumps.
-The industry response is **passkeys** — public-key credentials (FIDO2 / WebAuthn) bound
-to your device, so there's **no shared secret to steal or phish**.
+**Why passwords fail.** A password is a **shared secret**: you know it, the server stores it, and anything that sees it once (a phishing page, a keylogger, a breach dump) can use it anywhere you reused it.
 
-::: {.vignette}
-On **World Passkey Day, May 7, 2026**, the FIDO Alliance reported an estimated
-**5 billion passkeys in use worldwide**, support across **~48% of the top-100 sites**,
-**75% of consumers** having enabled a passkey on at least one account, and **68% of
-organizations** deploying or piloting passkeys for employee sign-in. **NIST SP 800-63-4**
-(finalized **July 31, 2025**) requires verifiers to offer a phishing-resistant option at
-AAL2 and mandates it at AAL3. Passwords aren't dead, but the default is shifting.
-:::
+**What a passkey is.** Not a secret you know. A **cryptographic key pair** your device makes, **one per site**. The site stores the public half. The private half stays inside your phone, laptop, or security key, unlocked by your face, fingerprint, or PIN.
 
-- **Sept 1, 2026:** Microsoft Entra ID made passkeys the **default** sign-in; Microsoft-provided
-  SMS/voice MFA retires **Feb 1, 2027**
-  ([Microsoft Security Blog, Jul 13, 2026](https://www.microsoft.com/en-us/security/blog/2026/07/13/microsoft-entra-id-security-updates-passkeys-are-the-default-authentication-method-in-entra-id/))
-- **Aug 2026, Black Hat:** "Pass-the-Passkey" — malware *already on the endpoint* could replay
-  logged WebAuthn assertions (Windows/Entra) or recover Google-synced private keys; the crypto
-  held, the surrounding infrastructure didn't
-  ([The Hacker News, Aug 10, 2026](https://thehackernews.com/2026/08/new-passkey-attacks-can-recover-synced.html))
+**How signing in works, in one sentence.** The site sends a random challenge; your device **signs the challenge plus the site's name** with the private key; the site checks the signature with the public key it stored. Nothing typed, nothing reusable sent. (Step by step: next slide.)
+
+**Why that beats a password**
+
+- **Nothing to phish:** no secret leaves the device, and the credential only works for the domain it was made for, so a lookalike site gets nothing useful
+- **Nothing to steal from the server:** it holds public keys only
+- **Nothing to reuse:** a different key for every site
+- **MFA in one gesture:** the key is *something you have*; the unlock is *something you are* or *know*
+
+**Where it stands:** ~5 billion passkeys in use (FIDO Alliance, May 2026); Microsoft Entra made them the default sign-in on Sept 1, 2026 and retires SMS codes Feb 2027; NIST SP 800-63-4 requires a phishing-resistant option at AAL2 and mandates device-bound keys at AAL3.
 
 ::: {.notes}
-Tie back to the three modes: a passkey is "something you have" (the
-device-bound private key) unlocked by "something you are or know"
-(biometric or PIN) — MFA folded into one tap, with no phishable secret
-crossing the wire. Verify the FIDO numbers before lecturing; the World
-Passkey Day 2026 announcement is the primary source. NIST SP 800-63-4
-(finalized July 31, 2025) is the regulatory anchor: verifiers at
-Authenticator Assurance Level 2 must offer a phishing-resistant option;
-AAL3 requires device-bound, non-exportable private keys. Cold-call: what
-category of attack does a passkey not stop? Answers to seed: post-auth
-token abuse, malware on the endpoint, account-recovery social engineering.
-All three now have 2026 citations (speaker-notes, slide 7): the Pass-the-
-Passkey research (SpecterOps / Unit 42 / Mollema, Black Hat Aug 2026) is
-"malware on the endpoint" — Entra accepted replayed assertions because it
-didn't enforce challenge freshness or session binding, and Chrome had
-been logging the master secret that encrypts synced passkeys; Microsoft's
-Sept 9, 2026 report on "update your passkey" help-desk calls (Storm-3121,
-Storm-3032) is "account-recovery social engineering" — no passkey is ever
-enrolled, the victim just logs in once more through an AiTM proxy or a
-device-code flow. SpecterOps' takeaway for high-value accounts: device-
-bound passkeys with attestation, not synced ones.
+Lead with the contrast: a password is a secret that has to travel; a
+passkey is a key that never does. Tie back to the three modes: the
+private key is "something you have," unlocked by "something you are or
+know," MFA folded into one tap. The mechanics are on the next slide; do
+not pre-empt them here beyond the one-sentence version.
+
+Current events for this slide (details and links in speaker-notes.md):
+Microsoft Entra passkeys-by-default from Sept 1, 2026, SMS/voice MFA
+retiring Feb 1, 2027 (Microsoft Security Blog, Jul 13, 2026);
+"Pass-the-Passkey" at Black Hat Aug 2026: malware already on the
+endpoint could replay logged WebAuthn assertions or recover Google-synced
+private keys; the crypto held, the surrounding infrastructure did not
+(The Hacker News, Aug 10, 2026); and Microsoft's Sept 9, 2026 report on
+"update your passkey" help-desk lures. Cold-call: what category of attack
+does a passkey not stop? Seed: post-auth token abuse, malware on the
+endpoint, account-recovery social engineering. NIST SP 800-63-4
+(finalized July 31, 2025) is the regulatory anchor.
 :::
 
 ## How a Passkey Actually Works {.smaller}
