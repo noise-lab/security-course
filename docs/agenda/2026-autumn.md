@@ -106,3 +106,13 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
     * Read Thompson and Anderson if you have not, and the ethics chapter from Salganik, *Bit by Bit*
     * Create your private GitHub repository, add `feamster` as a collaborator, and fill out the intake form
     * Sign up for a debate. Next week's debate is on data breach liability
+
+### Meeting 2 (Wed Oct 7)
+
+*Plan for today. This entry is replaced with what was actually covered once the class transcript is in.*
+
+* **Housekeeping:** Assignment 1 (PKI) is out; debate logistics; midterm reminder
+* **Lecture: Key Management and Public Key Infrastructure** (topic 3): symmetric and public-key cryptography, signatures, certificates and chains, the root of trust, validation levels, revocation
+* **Debate: Data Breaches.** *Companies should be held liable for damages incurred from data breaches if there was a known vulnerability in the software used by the company that led to the breach.* Oxford style with opening and closing polls
+* **Lecture: Modern Authentication** (topic 4): identification vs. authentication vs. authorization, the three modes, passkeys, access control models, least privilege, OAuth
+* **Activity:** certificate chains in the browser; key signing or OAuth if time allows
