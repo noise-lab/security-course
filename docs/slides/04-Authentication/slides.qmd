@@ -217,6 +217,44 @@ device-code flow. SpecterOps' takeaway for high-value accounts: device-
 bound passkeys with attestation, not synced ones.
 :::
 
+## How a Passkey Actually Works {.smaller}
+
+A passkey is a **per-site public-key pair** (FIDO2 / WebAuthn). The site keeps the public key; the private key never leaves your authenticator (phone, laptop, security key, or password manager).
+
+::: {.columns}
+::: {.column width="50%"}
+**Registration (once per site)**
+
+1. Site sends a random **challenge** + its identity (**relying-party ID** = its domain)
+2. Browser asks your authenticator; you unlock it (Face ID, fingerprint, PIN)
+3. Authenticator mints a **fresh key pair for this site only**
+4. Public key + credential ID go to the site; private key stays put
+:::
+::: {.column width="50%"}
+**Sign-in (every time)**
+
+1. Site sends a new random **challenge**
+2. Browser hands challenge + **origin** to the authenticator; you unlock it
+3. Authenticator **signs** (challenge, origin, counter) with the private key
+4. Site verifies the signature with the stored public key, checks the challenge is the one it sent and the origin is itself
+:::
+:::
+
+**Why phishing fails:** the browser only offers a credential to the domain it was registered for, and the signature names the origin, so a lookalike site gets nothing it can replay. **Why breaches fail:** the server holds only public keys. **Why replay fails:** every challenge is single-use.
+
+**Synced vs. device-bound:** synced passkeys are copied between your devices by a passkey provider (end-to-end encrypted; recoverable if you lose a phone). Device-bound ones never leave the hardware (NIST AAL3). Cross-device sign-in: scan a QR code, Bluetooth proves the phone is nearby.
+
+::: {.notes}
+Draw the two flows on the board as two round trips. The thing students
+miss: the private key signs the *origin*, not just the challenge, so the
+protection does not depend on the user noticing a lookalike URL. Tie to
+the three modes: the key is something you have; the unlock is something
+you are or know; one tap does both. Then the Pass-the-Passkey research on
+the previous slide reads correctly: malware on the endpoint sits *inside*
+the box that holds the private key, so none of the three "why X fails"
+lines applies to it.
+:::
+
 ## A Common Framework: Subject, Verb, Object
 
 Every access-control question reduces to one triple:
