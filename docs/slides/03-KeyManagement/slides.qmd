@@ -89,6 +89,12 @@ Symmetric keys don't scale to a planet of strangers who've never met.
 Preview the fix: with public-key crypto, 100 people need 100 key pairs
 published in a directory — linear, not quadratic. That directory becomes
 its own trust problem, which is the second half of today's lecture.
+Live example of the "one shared key" failure (added Oct 2026): the Ribon
+storefront app authenticated to every BigCommerce store that installed it
+with a single application key; when Fastr was compromised, that one key
+was used Sep 13-17, 2026 to inject scripts and download customer records
+"page by page" (SecurityWeek, Sep 22, 2026). Full brief in
+speaker-notes.md §5.
 :::
 
 # Diffie-Hellman: A Public Conversation, a Private Key {.center}
@@ -207,6 +213,11 @@ systems like Sigstore and in-toto are worth flagging as the bridge to the
 DigiCert code-signing compromise later in the deck. Want both
 confidentiality and authentication? Use the key pairs twice — encrypt to
 the recipient's public key, sign with your private key.
+Signature caveat worth one sentence: a valid signature proves the key
+signed it, not that the key was in the right hands. DigiCert's April 2026
+support-portal compromise produced real EV code-signing certificates that
+signed Zhong Stealer (Help Net Security, May 4, 2026); the case lives on
+the "Browsers Are Still Pulling CAs" slide.
 :::
 
 ## What Public-Key Crypto Is *Not*
@@ -226,6 +237,15 @@ performance gap is the entire reason TLS uses a hybrid design (public-key
 for setup, symmetric for bulk). The third bullet is the bridge to PKI: a
 published public key is worthless if you can't tie it to the right identity.
 That question — whose public key is this? — carries the rest of the lecture.
+Fresh hook for the "hardness assumptions" bullet (added Oct 2026): Shea,
+Haller, Suhl, Heninger, and Thomé (ePrint 2026/2131, Sep 20, 2026) forged
+1024-bit RSA signatures through a real HSM without ever extracting the key,
+given temporary access to a raw unpadded signing oracle: about 1,380 CPU
+core-years of precomputation, then forgeries at will. Caveats to state:
+padded signatures (PKCS#1 v1.5, PSS) are not exposed, and 1024-bit RSA has
+been disallowed since 2013. The lesson is that the HSM kept the key
+perfectly and the API leaked anyway. Schneier's Sep 28, 2026 post is the
+short version. Brief in speaker-notes.md §13.
 :::
 
 # Certificates and Public-Key Infrastructure {.center}
@@ -298,6 +318,10 @@ letsencrypt.org has the canonical diagram if you want to project it.
   cert says so — and the browser trusts that CA's root
 - **The risk:** browsers/OSes ship with **~hundreds of root CAs**. If *any one* is
   malicious or compromised, it can forge a cert for *any* site
+- **The other design:** DNSSEC has exactly **one** trust anchor — the root KSK — and it
+  rolls over to KSK-2024 on **Oct 11, 2026** (this Sunday); a validating resolver that
+  never learned the new key fails closed for *every* domain
+  [ICANN, Jul 27, 2026](https://www.icann.org/en/blogs/details/preparing-for-the-root-zone-ksk-rollover-what-you-need-to-know-27-07-2026-en)
 
 ![macOS Keychain ships with roughly 200 trusted root certificates.](images/slide055_img031.png)
 
@@ -344,6 +368,12 @@ lives in the CA/Browser Forum Baseline Requirements. The lesson to plant:
 the lock icon says the connection is private, not who you're talking to.
 Domain-validation certs — the free automated kind Let's Encrypt issues —
 say only "someone controlled this domain long enough to prove it."
+New since Mar 15, 2026: CA/Browser Forum Ballot SC-085v2 requires CAs to
+validate DNSSEC (when the domain is signed) on the CAA and domain-control
+lookups behind DV issuance, so DNS spoofing can no longer win a cert, and a
+broken DNSSEC chain now blocks issuance and renewal. The May 5, 2026 .de
+signature failure (see the trust-anchors notes) also meant German domains
+could not renew while it lasted. Brief in speaker-notes.md §19.
 :::
 
 # When CAs Go Wrong {.center}
@@ -416,6 +446,11 @@ sign the *Zhong Stealer* malware.
 - Browser vendors — not governments — are the de facto regulators of the web's trust
 - A CA can be removed for **misbehavior**, **failing to keep up** with rules, or —
   as with DigiCert 2026 — **losing control of an issuance pipeline**
+- The phase-out continues: since **Jul 1, 2026** Chrome no longer trusts *new* TLS certs
+  from three more multi-purpose DigiCert roots (Trusted Root G4, Assured ID G2/G3) —
+  date-scoped, so existing certs ride out their lifetime; the offense is the *shape* of
+  the root, not misconduct
+  [DigiCert KB ALERT100](https://knowledge.digicert.com/alerts/google-chrome-root-removal-trusted-root-g4-assured-id-g2-id-g3)
 
 ::: {.notes}
 Freshest hook in the deck, all three cases verified this session. Google's
@@ -441,6 +476,10 @@ this be a public function?
   domain
 - Browsers require proof of CT logging before they trust a cert
 - **Limitation:** CT detects misissuance *after the fact*; it doesn't prevent it
+- **2026 plumbing change:** since **Apr 15, 2026** Chrome accepts SCTs solely from
+  *static-ct-api* ("tiled") logs — cheaper to run, 1-minute merge delay instead of
+  4 hours, and the original RFC 6962 log requirement is gone
+  [Chrome CT team, Dec 1, 2025](https://groups.google.com/a/chromium.org/g/ct-policy/c/IXPT4r1CPdE)
 
 ::: {.notes}
 CT is the post-DigiNotar fix that actually scaled — RFC 9162 (2021) is
@@ -484,6 +523,10 @@ hosts breaks at web scale.
   - **CRL** — a signed list of revoked certs
   - **OCSP** — an online "is this still valid?" check
 - In practice, **detection** is the slow step, not the kill switch
+- **Aug 31, 2026:** multi-day global Microsoft 365 outage (Exchange, Teams, SharePoint,
+  Defender) — Microsoft blamed a "core authentication configuration"; admins' error
+  logs said an internal certificate **"is expired"**
+  [Born's Tech, Aug 31, 2026](https://borncity.com/win/2026/08/31/ex1464935-m365-outage-due-to-forgotten-certificate-renewal-august-31-2026/)
 :::
 ::: {.column width="45%"}
 ![After Heartbleed (2014), 80,000+ certificates were revoked.](images/slide074_img048.jpg)
@@ -516,8 +559,23 @@ cert expires on its own in weeks.
 - The trade-off: **automation becomes mandatory** (you can't renew by hand every 47
   days) — ACME / Let's Encrypt-style issuance is the new normal, which concentrates
   the web on a handful of ACME providers
+- **New dependency since Mar 15, 2026:** CAs must validate DNSSEC on the DNS lookups
+  behind issuance (Ballot SC-085v2) — a lapsed DNSSEC signature now blocks *renewal*,
+  and `.de` broke its own signatures during a key rollover on May 5, 2026
+  [CA/B Forum](https://cabforum.org/2025/06/18/ballot-sc-085v2-require-validation-of-dnssec-when-present-for-caa-and-dcv-lookups) ·
+  [Cloudflare](https://blog.cloudflare.com/de-tld-outage-dnssec/)
+- **The cost of forgetting:** 34% of companies had an outage from an expired cert in the
+  past year; nearly 1 in 4 say their worst cert incident cost >$250K
+  [DigiCert survey via Help Net Security, Sep 14, 2026](https://www.helpnetsecurity.com/2026/09/14/digicert-certificate-management-automation-report/)
 
 ::: {.notes}
+Let's Encrypt schedule, per its Dec 15, 2025 announcement: opt-in 45-day
+certs via the tlsserver profile in 2026, default down to 64 days in 2027,
+then 45 days in 2028 (the vignette's "Feb 2028 default" is right; the
+64-day step in 2027 is the intermediate milestone). The Aug 31, 2026
+Microsoft 365 outage on the previous slide is the marquee "someone forgot"
+example; at 45 days a silently failing renewal job is an outage within a
+week. Brief in speaker-notes.md §28.
 This is the elegant systems answer to broken revocation: don't fix
 revocation, shrink the window. Primary source is CA/Browser Forum Ballot
 SC-081v3 (April 11, 2025) — the vote was unanimous, 29-0, all four major
@@ -540,6 +598,16 @@ up for the issuer-concentration discussion in Breakout A.
 - **Post-quantum today:** Chrome ships **hybrid X25519+ML-KEM-768** key exchange by
   default (since Chrome 131, Nov 2024); Cloudflare reports **~one-third** of human
   HTTPS traffic already uses hybrid PQ handshakes
+- **Update, Sep 2026:** Cloudflare now reports **~70%** of browser traffic uses hybrid
+  ML-KEM — but only **~15%** of origin servers, and no public CA issues PQ-signed certs
+  yet [Cloudflare, Sep 29, 2026](https://blog.cloudflare.com/post-quantum-visibility/)
+- **ECH is now a standard:** [RFC 9849 (Mar 2026)](https://www.rfc-editor.org/rfc/rfc9849.html)
+- **Deadlines exist:** Executive Order 14412 (Jun 22, 2026) — federal high-value systems
+  must use PQ key establishment by **Dec 31, 2030** and PQ signatures by **Dec 31, 2031**
+  [91 FR 38483](https://www.whitehouse.gov/wp-content/uploads/2026/06/eo-14412.pdf)
+<!-- TODO: consider folding the "~one-third" figure in the bullet above into the Sep 2026
+     "~70%" update (the one-third stat is from Mar 2025 and is now stale); and consider
+     retitling "Encrypted SNI / ECH" to cite RFC 9849 directly. -->
 
 ::: {.notes}
 This is the Wireshark demo from class: capture a handshake (RFC 8446 is
@@ -566,6 +634,10 @@ read encrypted traffic with a warrant.
   vulnerability** for everyone — and **who holds the keys?**
 - Every CA story today (DigiNotar, Chunghwa, Gogo) is a *preview* of what a mandated
   backdoor would look like
+- **Live now:** the UK served Apple a *second* Technical Capability Notice (reportedly
+  UK-users-only); on **Sep 17, 2026** Apple asked the Investigatory Powers Tribunal to
+  end the government's "neither confirm nor deny" stance — the fight is over whether
+  the order may even be *discussed* [9to5Mac, Sep 17, 2026](https://9to5mac.com/2026/09/17/apple-pushes-uk-court-to-lift-secrecy-around-encryption-backdoor-order/)
 
 ::: {.notes}
 This is the term's recurring debate (full prompts in the Backdoors debate
