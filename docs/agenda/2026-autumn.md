@@ -116,3 +116,4 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 * **Debate: Data Breaches.** *Companies should be held liable for damages incurred from data breaches if there was a known vulnerability in the software used by the company that led to the breach.* Oxford style with opening and closing polls
 * **Lecture: Modern Authentication** (topic 4): identification vs. authentication vs. authorization, the three modes, passkeys, access control models, least privilege, OAuth
 * **Activity:** certificate chains in the browser; key signing or OAuth if time allows
+* **Not covered, by choice:** the remaining ethics material held over from Meeting 1, including the AI-bots-on-Reddit case study. It is in the Ethics deck and the Salganik reading. **Midterm flag:** worth reviewing on your own as a case to which the four principles can be applied
