@@ -3,18 +3,19 @@
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also). In-deck notes (the `::: {.notes}` blocks) are also visible via reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page.
 
 <!-- glance:start -->
-**At a glance**
+
+### At a glance
 
 | # | Slide | Cue | Read first |
 |---|---|---|---|
-| 2 | What Access Control Is For | Framing from the Tanenbaum & Bos, *Modern Operating Systems* (4th ed., 2015) — protection goals in Ch. |  |
+| 2 | What Access Control Is For | Framing from the Tanenbaum & Bos, Modern Operating Systems (4th ed., 2015) — protection goals in Ch. |  |
 | 3 | The Threat Model Has Shifted | The pivot from 1970s multi-user mainframes (trusted apps) → PC OS inheriting the model (apps get user's full p… |  |
 | 4 | Who Are You Defending Against? | Adversary taxonomy from Tanenbaum & Bos, Ch. |  |
 | 5 | Identification, Authentication, Authorization | The exam-critical distinction. |  |
 | 6 | The Three Modes of Authentication | Know/have/are — flagged as midterm material in agenda.md Meeting 3. |  |
 | 7 | Passwords Are Losing; Passkeys Are Winning | Vignette anchors verified this session. |  |
 | 8 | A Common Framework: Subject, Verb, Object | The (subject, verb, object) triple is from the Lampson access matrix (1971). |  |
-| 9 | ACLs vs. Capabilities | Foundational: Dennis & Van Horn (1966) *Programming Semantics for Multiprogrammed Computations* — first capabi… |  |
+| 9 | ACLs vs. Capabilities | Foundational: Dennis & Van Horn (1966) Programming Semantics for Multiprogrammed Computations — first capabili… |  |
 | 10 | Unix: A Simplified ACL Model | Live demo: ls -l, whoami, groups, ps per agenda Meeting 3. |  |
 | 11 | The Principle of Least Privilege | Saltzer & Schroeder, "The Protection of Information in Computer Systems" (1975) — principle #4. |  |
 | 12 | Phones: Per-App Sandboxes | Android Application Sandbox docs. |  |
@@ -31,6 +32,7 @@ Per-slide context + clickable links (one section per slide; case briefs are brok
 | 23 | Stepping Back: Timeless Design Principles | Saltzer & Schroeder (1975) — required reading. |  |
 | 24 | Scaling Access Control: Abstractions | RBAC: NIST RBAC standard (SP 800-207 for zero-trust context). |  |
 | 25 | Wrapping Up | Preview: next lecture (Meeting 3, second half / Meeting 5) = DoS and Botnets (see Botnets deck speaker-notes). |  |
+
 <!-- glance:end -->
 
 Hands-on: [OAuth activity](../../activities/oauth.md). Debate: [Data breaches](../../debates/data-breach.md). Breakout: [Modern Authentication and Access Control](../../breakouts/authentication.md).

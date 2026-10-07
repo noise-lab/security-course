@@ -3,18 +3,19 @@
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also) for the opening half of Meeting 1: course logistics, the threat-modeling primer (assets / adversaries / capabilities), and Trusting Trust. In-deck notes (the `::: {.notes}` blocks) are also visible in reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page. Pair this with the second half of the meeting: `../01-WhyCryptosystemsFail/speaker-notes.md`.
 
 <!-- glance:start -->
-**At a glance**
+
+### At a glance
 
 | # | Slide | Cue | Read first |
 |---|---|---|---|
 | 2 | Why This Course Exists | The framing quote ("dearth of technologists in public policy") is Feamster's own; it's the reason the course e… | [FTC press release, Sep 24 2026](https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-seeks-public-comment-whether-update-rule-impersonation-government-businesses-address-platforms) |
 | 3 | Who Am I? | Canonical bio: people.cs.uchicago.edu/~feamster. |  |
-| 4 | Learning Objectives | Read the three bullets aloud, then say: *"The third one is the reason the debate is 35% of your grade — transl… | [European Commission, Jul 31 2026](https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august) |
+| 4 | Learning Objectives | Read the three bullets aloud, then say: "The third one is the reason the debate is 35% of your grade — transla… | [European Commission, Jul 31 2026](https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august) |
 | 5 | Is This Course for You? | Set the "not a programming-heavy course" expectation early to avoid unnecessary self-selection. |  |
 | 6 | Where This Can Take You | Four real career shapes: FCC Commissioner (e.g., Jessica Rosenworcel), U.S. | [FTC press release, Sep 24 2026](https://www.ftc.gov/news-events/news/press-releases/2026/09/ftc-seeks-public-comment-whether-update-rule-impersonation-government-businesses-address-platforms) |
 | 7 | What We Actually Cover | This slide is the actual delivered content from agenda.md, not the aspirational syllabus. |  |
 | 8 | Course Components | Weights: Midterm+Final 40% · Debate 35% · Labs 20% · Participation/quizzes 5%. | [Krebs on Security, Sep 1 2026](https://krebsonsecurity.com/2026/09/fbi-probes-service-selling-153m-drivers-licenses/) |
-| 9 | A 2026 Vignette: Why This Is Timely | Case 2: *NYT v. | [European Commission, Jul 31 2026](https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august) |
+| 9 | A 2026 Vignette: Why This Is Timely | Case 2: NYT v. | [European Commission, Jul 31 2026](https://digital-strategy.ec.europa.eu/en/news/commission-starts-enforcing-ai-act-rules-and-new-transparency-requirements-2-august) |
 | 10 | How a Typical Lecture Runs | 3-hour block, mid-class break. |  |
 | 11 | Logistics | Communication policy: public channel first, DMs have no response-time guarantee. |  |
 | 12 | The Security Mindset | Section divider. |  |
@@ -22,11 +23,12 @@ Per-slide context + clickable links (one section per slide; case briefs are brok
 | 14 | Threat Modeling: Vocabulary for the Whole Term | The four-question frame — assets, properties (CIA), adversaries, capabilities — is the vocabulary every later … | [Krebs on Security, Sep 1 2026](https://krebsonsecurity.com/2026/09/fbi-probes-service-selling-153m-drivers-licenses/) |
 | 15 | Exercise: Should You Lock Your Door? | Classic mindset warm-up (from the archived Mindset deck). |  |
 | 16 | Trusting Trust | Section divider. |  |
-| 17 | Thompson's Question | The paper is short (~3 pages), the argument is simple, and it is *the* founding text of software supply chain … |  |
+| 17 | Thompson's Question | The paper is short (~3 pages), the argument is simple, and it is the founding text of software supply chain se… |  |
 | 18 | Why It Still Matters | The image is xkcd 2347 "Dependency" (Randall Munroe, Aug 17, 2020); explainer: explain xkcd. | [Datadog Security Labs, Aug 4 2026](https://securitylabs.datadoghq.com/articles/npm-worm-compromises-popular-npm-packages/) |
 | 19 | Trusting Trust, Realized: xz-utils | xz-utils is the compression library behind .xz and, via liblzma, a dependency of systemd on major Linux distri… | [Wikipedia](https://en.wikipedia.org/wiki/XZ_Utils_backdoor) |
 | 20 | Supply Chain as a Trust Problem | npm Shai-Hulud — self-replicating worm named for the Dune sandworms after the shai-hulud-workflow.yml file it … | [Datadog Security Labs, Aug 4 2026](https://securitylabs.datadoghq.com/articles/npm-worm-compromises-popular-npm-packages/) |
 | 21 | Up Next | Transition to the second deck: Anderson's Why Cryptosystems Fail (../../readings/). |  |
+
 <!-- glance:end -->
 
 *Headings carry the slide number shown in the deck footer (title slide is 1 of 21).*

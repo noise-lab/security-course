@@ -3,7 +3,8 @@
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also). In-deck notes (the `::: {.notes}` blocks) are also visible via reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page.
 
 <!-- glance:start -->
-**At a glance**
+
+### At a glance
 
 | # | Slide | Cue | Read first |
 |---|---|---|---|
@@ -12,9 +13,9 @@ Per-slide context + clickable links (one section per slide; case briefs are brok
 | 4 | Symmetric Crypto: Same Key Both Ways | Standards to name: AES (NIST FIPS 197, revised 2023), ChaCha20-Poly1305 (RFC 8439). |  |
 | 5 | The Key-Distribution Problem | The n(n−1)/2 blowup is the whole motivation for asymmetric crypto. | [SecurityWeek](https://www.securityweek.com/bigcommerce-data-stolen-via-ribon-apps-hack/) |
 | 6 | Diffie-Hellman: A Public Conversation, a Private Key | Setup for the conceptual heart of the lecture. |  |
-| 7 | 1976: "New Directions in Cryptography" | Primary source: Diffie & Hellman, "New Directions in Cryptography," *IEEE Trans. |  |
+| 7 | 1976: "New Directions in Cryptography" | Primary source: Diffie & Hellman, "New Directions in Cryptography," IEEE Trans. |  |
 | 8 | How Diffie-Hellman Works (the Idea) | Per agenda: no math proofs, no discrete-log computation. |  |
-| 9 | D-H's Big Weakness: Man-in-the-Middle | This is the *pivot* of the lecture. |  |
+| 9 | D-H's Big Weakness: Man-in-the-Middle | This is the pivot of the lecture. |  |
 | 10 | Public-Key (Asymmetric) Cryptography | Setup for the RSA / asymmetric block. |  |
 | 11 | Two Keys Instead of One | RSA primary: Rivest, Shamir, Adleman (1978). |  |
 | 12 | Two Use Cases, One Idea | Real integrity-side examples worth naming: software / OS updates are signed (Apple, Microsoft, Google Play) — … | [Help Net Security](https://www.helpnetsecurity.com/2026/05/04/digicert-breach-code-signing-certificates-malware/) |
@@ -36,7 +37,8 @@ Per-slide context + clickable links (one section per slide; case briefs are brok
 | 28 | The 2026 Fix: Just Make Certs Short-Lived | Primary: CA/Browser Forum — Ballot SC-081v3 (April 11, 2025). | [Let's Encrypt Community](https://community.letsencrypt.org/t/upcoming-changes-to-let-s-encrypt-certificates/243873) |
 | 29 | TLS in Practice | Primary: RFC 8446 — TLS 1.3. | [Cloudflare](https://blog.cloudflare.com/post-quantum-visibility/) |
 | 30 | Policy Debate: Encryption Backdoors | Full prompts: Backdoors debate. | [9to5Mac](https://9to5mac.com/2026/09/17/apple-pushes-uk-court-to-lift-secrecy-around-encryption-backdoor-order/) |
-| 31 | Takeaways | Bridge to next lecture: Authentication and OAuth — same "who do you trust?" question, now applied to *users* a… |  |
+| 31 | Takeaways | Bridge to next lecture: Authentication and OAuth — same "who do you trust?" question, now applied to users and… |  |
+
 <!-- glance:end -->
 
 *Headings carry the slide number shown in the deck footer (title slide is 1 of 31; `#` section dividers count as slides).*
