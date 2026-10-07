@@ -109,11 +109,36 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 
 ### Meeting 2 (Wed Oct 7)
 
-*Plan for today. This entry is replaced with what was actually covered once the class transcript is in.*
+*First segment written from the recording. The debate is not recorded (it is the students' session) and is logged by resolution and format only. The post-debate segment will be added from its recording.*
 
-* **Housekeeping:** Assignment 1 (PKI) is out; debate logistics; midterm reminder
-* **Lecture: Key Management and Public Key Infrastructure** (topic 3): symmetric and public-key cryptography, signatures, certificates and chains, the root of trust, validation levels, revocation
-* **Debate: Data Breaches.** *Companies should be held liable for damages incurred from data breaches if there was a known vulnerability in the software used by the company that led to the breach.* Oxford style with opening and closing polls
-* **Lecture: Modern Authentication** (topic 4): identification vs. authentication vs. authorization, the three modes, passkeys, access control models, least privilege, OAuth
-* **Activity:** certificate chains in the browser; key signing or OAuth if time allows
-* **Not covered, by choice:** the remaining ethics material held over from Meeting 1, including the AI-bots-on-Reddit case study. It is in the Ethics deck and the Salganik reading. **Midterm flag:** worth reviewing on your own as a case to which the four principles can be applied
+* **Housekeeping**
+    * Assignment 1 (PKI) is out. **Do the version on the course website**, not the one in the public GitHub template, which is older and shorter; the website version asks you to reflect on what a coding agent produces. The GitHub copy will be updated to match
+    * Dates are pinned in Slack as the "assignment deadlines" sheet; the first deadline is **Fri Oct 23**, and dates will not move. A calendar (ICS) file may follow
+    * Office hours: the instructor's are by sign-up, Tuesday evenings from next week (this week, Wednesday evening). TAs will announce theirs now that there is an assignment; a TA channel will be created
+    * Expect exam questions about the assignments; today's first hour is the background for Assignment 1
+* **Lecture: Key Management and Public Key Infrastructure** (topic 3)
+    * Review of the two properties from Meeting 1: confidentiality (keeping messages unreadable to others) and integrity (an adversary cannot alter a message in transit). **Midterm flag:** these definitions
+    * The math has been settled since the 1970s; managing keys is the hard, unsolved part of security, and its inventors also won the Turing Award
+    * Cast: Alice and Bob, Eve the eavesdropper (passive), Mallory the active attacker
+    * **Symmetric cryptography:** one shared key encrypts and decrypts. Fast, and what carries almost all real traffic eventually. The catch is that both sides must already share the key without Eve learning it: that is the key-distribution problem. Also pairwise keys do not scale (n² keys for n parties). Related questions: distribution, revocation, knowing a key really belongs to its claimed owner
+    * **Midterm flag (true/false style):** a browser connecting to a web site uses *both* symmetric and asymmetric cryptography. Algorithm names will not be asked
+    * **Diffie-Hellman (1976):** public generator and large prime; Alice raises the generator to her secret exponent modulo the prime and sends the result, Bob does the same; each raises the other's value to their own secret, and both arrive at the same shared key. Eve sees both transmitted values but cannot recover the secrets because the discrete-logarithm problem is hard with well-chosen numbers. Worked example of modular exponentiation on the board. The math will not be on the exam
+    * Quantum computing makes discrete log and factoring easy, which is what "quantum breaks crypto" and "post-quantum crypto" refer to
+    * **Man-in-the-middle:** Mallory on the path replaces each side's transmitted value with her own, ends up sharing one key with Alice and another with Bob, and neither notices. Example in practice: the first-connection host-key prompt in SSH, which only works if you can confirm the fingerprint out of band. MITM is itself a key-management problem: you need some trusted channel to know who is on the other end. Trusting Trust again. **Midterm flag:** given a different protocol, explain how a man-in-the-middle attack would work
+    * **Asymmetric (public-key) cryptography** (RSA, early 1980s, also a Turing Award): a key pair, one published, one secret. Door analogy: anyone can lock, only the owner can unlock
+        * Confidentiality: encrypt with the recipient's public key; only the private key decrypts
+        * Integrity: sign with your private key; anyone verifies with your public key
+        * **Midterm flag (multiple choice):** which key does Alice use to encrypt to Bob, and which does she use to sign
+    * Public-key crypto is slow and does not replace symmetric crypto, and it does not solve distribution: how do you know whose public key this is? Posting "here is my public key" anywhere can be impersonated. **Midterm flag:** what is wrong with publishing a public key on a web page or in a chat
+    * **Certificates:** a signed statement binding an identity to a public key, with subject, issuer, and validity period. Self-signed certificates prove nothing by themselves (Assignment 1 has you make one). A certificate authority signs the server's certificate; the chain runs up to a root; roots ship with the operating system or browser, hundreds of them, and any one malicious root breaks the whole chain. **Midterm flag:** what is a certificate
+    * Live demo: a news site's certificate (domain validation: only the domain name is attested), its issuer, the issuer's public key, and the matching root certificate found in the operating system's keychain. Then a bank's certificate (extended validation: the organization's legal identity and registration number, traceable to a state business registry)
+    * Why certificates expire: limits the damage from a compromised key. Subject alternative names let one certificate cover many related hostnames
+    * **When roots go bad:** compromised or shady certificate authorities, a rogue root once shipped in a browser, an in-flight Wi-Fi provider that intercepted TLS with its own certificate, and corporate laptops with a company root installed (assume the company can read your traffic; use a VPN)
+    * Defenses: certificate transparency (public append-only logs of every issued certificate; detects, does not prevent); key pinning (remember the key you saw before, as SSH does with `known_hosts`); expiration and revocation; much shorter-lived certificates
+    * Anecdote: intercepting a device's encrypted traffic with a man-in-the-middle proxy requires installing your own root on the device; that used to be routine and some apps now detect it and refuse. Possible future assignment
+    * Not covered: the key-signing (web of trust) hands-on, for time
+* **Break** (15 minutes)
+* **Debate: Data Breaches** (not recorded)
+    * Resolution: *Companies should be held liable for damages incurred from data breaches if there was a known vulnerability in the software used by the company that led to the breach*
+    * Oxford style: opening poll (thumbs up/down on the resolution posted in Slack), affirmative opening, negative response, affirmative reply, audience questions, closing poll. Six students signed up, three per side
+* **Post-debate segment:** to be added from the recording (planned: OAuth / Modern Authentication, which is also the background for Assignment 2)
