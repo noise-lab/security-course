@@ -54,7 +54,11 @@ almost no ambient authority, exactly the mainframe user-isolation model
 recast for untrusted JavaScript. SaaS multi-tenancy (Google Workspace,
 Salesforce) is the new shared mainframe — and the 2025-2026 breach
 vignette at the end of the deck is what happens when that isolation
-leaks.
+leaks. Fresh browser-as-OS example (Socket, Sept 23, 2026): a Firefox
+add-on posing as a "PDF Identity Verifier" shipped clean code, fetched
+its payload after store review, used FedCM to find the Google account
+already signed in, and drove accounts.google.com to steal the session
+cookie — no password ever phished. Brief in speaker-notes, slide 3.
 :::
 
 ## Who Are You Defending Against?
@@ -63,6 +67,7 @@ leaks.
 - **Insider attacks** — snooping by people who already have access
 - **Financial motive** — making money (fraud, ransomware, resale)
 - **Espionage** — commercial or state-sponsored data theft
+<!-- TODO: consider appending "(2026: China-aligned TA419 impersonated real AI-policy figures to AitM-phish US think tanks — Proofpoint, Oct 1)" to the Espionage bullet; left in notes for now -->
 
 Note the split between **passive** (read-only snooping) and **active** (modifying)
 intruders — and between **security** (keep people out) and **privacy** (limit what
@@ -74,7 +79,13 @@ security/privacy splits are Saltzer and Schroeder 1975 vocabulary. The
 point of naming intruders is that your design changes with the adversary.
 Defending against a curious roommate is not the same as defending against
 UNC6395 — the threat actor behind the August 2025 Salesloft-Drift OAuth
-token theft, whom we'll meet in the closing vignette. Cold-call: pick two
+token theft, whom we'll meet in the closing vignette. For the espionage
+row, the Oct 1, 2026 Proofpoint report on TA419 is the live example:
+a China-aligned actor impersonating a former White House OSTP deputy
+director (and, in Feb 2026, a senior Anthropic employee) to lure US
+AI-policy experts onto a Frameless-BitB adversary-in-the-middle page that
+relays the real Microsoft login and keeps the session cookie — password
+and MFA both succeed. Full brief in speaker-notes, slide 4. Cold-call: pick two
 adversary categories and name one control that differs between them
 (rate-limiting stops the curious, doesn't stop the espionage-motivated).
 :::
@@ -102,6 +113,13 @@ especially SP 800-63B, which walks the identify/authenticate/authorize/log
 sequence. Access control is often breached, so logging is defense-in-depth,
 not an afterthought — the whole point of the Salesloft-Drift breach is
 that the audit logs are what told anyone the tokens had been abused.
+Two Sept 2026 pieces make "logging is defense-in-depth" concrete: a
+Clear Path Security guide (via Security Boulevard, Sept 14) on which
+Microsoft 365 audit events expose OAuth consent phishing — consent
+grants, new service principals, broad scopes like mail/files/offline_access
+— and Microsoft's Sept 9 passkey-lure report, which says to hunt the
+*sequence* (new auth method added → Graph recon → bulk SharePoint reads)
+rather than any one indicator. Links in speaker-notes, slide 5.
 :::
 
 ## The Three Modes of Authentication {.smaller}
@@ -142,7 +160,16 @@ your fingerprint after a breach — the 2010 National Academies report
 formally. Legal wrinkle worth flagging: US case law splits on whether
 police can compel a biometric unlock (Fifth Amendment questions), whereas
 compelled password disclosure has stronger protection.
+2026 update for the "something you have" column: SMS codes are being
+retired at both ends. Microsoft Entra ID made passkeys the default on
+Sept 1, 2026 and retires Microsoft-provided SMS/voice MFA for ordinary
+users on Feb 1, 2027 (no opt-out from enforcement); Android 17 (June 2026)
+withholds OTP texts from non-default apps for three hours. Say it as:
+an SMS code is still "something you have," but no longer counts as
+phishing-resistant something-you-have. Brief in speaker-notes, slide 6.
 :::
+<!-- TODO: consider adding "- *2026:* SMS codes being retired (Entra: Feb 2027)" under "Something you have" — three-column layout is tight, so left to notes -->
+
 
 ## Passwords Are Losing; Passkeys Are Winning {.smaller}
 
@@ -159,6 +186,14 @@ organizations** deploying or piloting passkeys for employee sign-in. **NIST SP 8
 AAL2 and mandates it at AAL3. Passwords aren't dead, but the default is shifting.
 :::
 
+- **Sept 1, 2026:** Microsoft Entra ID made passkeys the **default** sign-in; Microsoft-provided
+  SMS/voice MFA retires **Feb 1, 2027**
+  ([Microsoft Security Blog, Jul 13, 2026](https://www.microsoft.com/en-us/security/blog/2026/07/13/microsoft-entra-id-security-updates-passkeys-are-the-default-authentication-method-in-entra-id/))
+- **Aug 2026, Black Hat:** "Pass-the-Passkey" — malware *already on the endpoint* could replay
+  logged WebAuthn assertions (Windows/Entra) or recover Google-synced private keys; the crypto
+  held, the surrounding infrastructure didn't
+  ([The Hacker News, Aug 10, 2026](https://thehackernews.com/2026/08/new-passkey-attacks-can-recover-synced.html))
+
 ::: {.notes}
 Tie back to the three modes: a passkey is "something you have" (the
 device-bound private key) unlocked by "something you are or know"
@@ -170,6 +205,16 @@ Authenticator Assurance Level 2 must offer a phishing-resistant option;
 AAL3 requires device-bound, non-exportable private keys. Cold-call: what
 category of attack does a passkey not stop? Answers to seed: post-auth
 token abuse, malware on the endpoint, account-recovery social engineering.
+All three now have 2026 citations (speaker-notes, slide 7): the Pass-the-
+Passkey research (SpecterOps / Unit 42 / Mollema, Black Hat Aug 2026) is
+"malware on the endpoint" — Entra accepted replayed assertions because it
+didn't enforce challenge freshness or session binding, and Chrome had
+been logging the master secret that encrypts synced passkeys; Microsoft's
+Sept 9, 2026 report on "update your passkey" help-desk calls (Storm-3121,
+Storm-3032) is "account-recovery social engineering" — no passkey is ever
+enrolled, the victim just logs in once more through an AiTM proxy or a
+device-code flow. SpecterOps' takeaway for high-value accounts: device-
+bound passkeys with attestation, not synced ones.
 :::
 
 ## A Common Framework: Subject, Verb, Object
@@ -274,6 +319,9 @@ Sets up the next slide on least privilege directly.
   process gain higher rights
 - The same idea reappears as **OAuth scope** — give an app *read playlists*, not
   *full account access*
+- **Real case:** an over-permissive GitHub-Actions→AWS deploy role let **UNC6426** go from one
+  stolen npm-delivered GitHub token to **AWS `AdministratorAccess` in < 72 hours** — every API
+  call authorized ([Google Cloud Threat Horizons H1 2026, p. 24](https://services.google.com/fh/files/misc/cloud_threat_horizons_report_h12026.pdf))
 
 This single principle ties the OS half and the OAuth half of this lecture together.
 
@@ -287,7 +335,15 @@ same idea reappears as OAuth scope — read playlists, not manage account.
 Cold-call: name a phone app that asks for a permission it doesn't need
 for its actual function. The over-permissioned flashlight app is the
 canonical answer; contacts-hungry games and cameras-hungry keyboards are
-the modern ones.
+the modern ones. The UNC6426 case (Google Cloud Threat Horizons H1 2026,
+Mandiant IR): a QUIETVAULT npm package stole a developer's GitHub PAT; a
+CI/CD secrets tool (NORDSTREAM) abused the GitHub-to-AWS OIDC trust to mint
+STS credentials for a CloudFormation deploy role; that role had standing
+permission to create IAM roles, so one stack later the attacker owned
+AdministratorAccess, read S3, terminated prod EC2/RDS, and made every
+internal repo public. Google's fix list is Saltzer–Schroeder verbatim:
+remove standing iam:CreateRole / iam:AttachRolePolicy, go just-in-time
+with a second approval. Full brief in speaker-notes, slide 11.
 :::
 
 ## Phones: Per-App Sandboxes {.smaller}
@@ -301,6 +357,10 @@ Android applies the same triple, but **each app gets its own user ID**:
 Early Android dumped **hundreds of permissions** on users at install time — nobody read
 them, *including developers*. The model got coarser (permission *groups*) and then
 **just-in-time**.
+
+- **Android 17 (June 2026):** local-network access becomes a **runtime permission**; a system
+  **contact picker** replaces blanket `READ_CONTACTS`; OTP texts hidden from non-default apps for
+  3 h ([Android Developers Blog, Jun 16, 2026](https://android-developers.googleblog.com/2026/06/Android-17.html))
 
 ::: {.notes}
 The original Android permission model is the cautionary tale: too many
@@ -324,6 +384,8 @@ The iOS move: don't front-load a wall of permissions. Ask **at the moment of use
 - "Why does Uber want my camera?" → because you tapped *scan my credit card*
 - Grant **only when needed**, not forever
 - Combine the user's *action* with the *permission grant* in one tap
+- **Android 17 (2026)** ships this as a system-drawn **location button**: one tap = precise
+  location *for this session only* ([Google Security Blog, May 12, 2026](https://blog.google/security/whats-new-in-android-security-privacy-2026/))
 
 This **emphasizes action over configuration** — and leans on sensible **defaults**.
 :::
@@ -342,6 +404,12 @@ the user's action with the permission grant in one tap makes least
 privilege the default. Same lesson the web learned with OAuth consent
 screens — which is exactly where the second half of the lecture goes.
 Android 6.0 (October 2015) adopted the same runtime-permission model.
+Counter-example worth 30 seconds: iOS 27 (Sept 2026) shipped a Siri that
+reads app content, and EFF's Sept 18 guide maps where the toggles stop —
+per-app "Show Content in Search" can be turned off, but EFF reports no
+switch exists for on-screen awareness. Ask: when the subject is the OS's
+own assistant, who is the prompt protecting you from? Speaker-notes,
+slide 13.
 :::
 
 # Delegated Access on the Web: OAuth 2.0 {.center}
@@ -511,6 +579,10 @@ The protocol is sound; **implementations** leak:
 - **CSRF on the redirect** — mitigate with the **`state`** parameter
 - **Redirect-URI manipulation** — require **exact match**, never prefix matching
 - **Over-broad scope** — violates least privilege; minimize what you request
+- **Trusting the other side (AI agents, Sept 2026)** — the official **MCP Python SDK** let a
+  malicious MCP server choose the *authorization server*, so the client shipped its **client
+  secret + auth code + PKCE verifier** to the attacker; two sibling MCP auth bugs in the same
+  month ([GHSA-qx49-fqc8-xw99, Sept 28, 2026](https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-qx49-fqc8-xw99))
 - **Defenses:** TLS everywhere, exact redirect matching, `state`, short scopes, never
   log tokens
 
@@ -523,7 +595,20 @@ section 10.12; redirect-URI exact match is section 4.1 of BCP 240. This
 slide sets up the closing vignette: the 2025-2026 breaches weren't OAuth
 being "broken." They were stolen bearer tokens being replayed — exactly
 the revocation and least-privilege weaknesses we've been flagging all
-lecture.
+lecture. The MCP bullet is the agent-permissions thread from last week
+with a CVE attached: Cycode found that if the MCP server answers the
+modern discovery request with a 404, the SDK falls back to accepting the
+server's own login configuration unverified, with the issuer spoofed to
+the victim's real provider; the user sees the genuine login page, approves,
+and the SDK posts code + client secret + PKCE verifier to the attacker's
+token endpoint — PKCE can't help when the verifier is stolen too. Fixed
+in 1.30.0 / 2.2.0 (machine-to-machine providers must also pass issuer=).
+WorkOS (Oct 2) counts three MCP auth bugs in 30 days with one root cause
+— trusting metadata the other party supplied: rmcp CVE-2026-63127 (resource
+field unchecked, CVSS 8.2) and LiteLLM CVE-2026-59822 (fabricated
+Authorization header → empty auth object, CISA KEV Sept 2). Point back to
+step 3 of the flow: right protocol, attacker-supplied address. Full brief
+in speaker-notes, slide 21.
 :::
 
 ## 2025–26: Attackers Stopped Stealing Passwords {.smaller}
@@ -545,6 +630,13 @@ The lesson of the whole lecture in one breach: **tokens are capabilities** — s
 bearer, hard to revoke. Defenses that worked on passwords (MFA, login monitoring) don't
 see a replayed token. **Scope tightly, expire fast, monitor token use.**
 
+**Fall 2026 update — the playbook is now a product.** **NovaCookies** sells Microsoft 365
+session-cookie capture as a **$320/month** service (755 domains; [Island, Aug 26, 2026](https://www.island.io/blog/novacookies-at-scale-inside-the-320-phishing-service-targeting-hundreds-of-organizations));
+help-desk callers use *"update your passkey"* as the pretext for AiTM / device-code session theft
+([Microsoft, Sept 9, 2026](https://www.microsoft.com/en-us/security/blog/2026/09/09/passkey-themed-social-engineering-leads-identity-cloud-compromise/));
+and **Klue** (June 2026) replayed the Salesloft pattern through an abandoned-but-still-valid
+credential ([CSO Online](https://www.csoonline.com/article/4187907/klue-breach-exposed-salesforce-crm-data-through-stolen-oauth-tokens.html)).
+
 ::: {.notes}
 Freshest, most load-bearing example in the deck — figures verified this
 session. Salesloft-Drift primary sources: Google Cloud Threat Intelligence
@@ -559,6 +651,22 @@ privilege, revocation, auth server as single point of failure. Cold-call:
 would a passkey have stopped Salesloft-Drift? No — the token was already
 issued, this is post-auth abuse. Would it have stopped Vercel? Also no —
 the OAuth grant was legitimate; the user was compromised via infostealer.
+Fall 2026 additions (briefs in speaker-notes, slide 22): NovaCookies is
+a subscription AiTM service — relays the real M365 login, passes MFA
+through, keeps the session cookie; Island tied it to hundreds of targeted
+orgs, ~half US, 90% on .vu domains, infrastructure surging from mid-May
+2026. Microsoft's Sept 9 report (Storm-3121 / Storm-3032, since May 2026):
+IT-help-desk calls about a passkey/MFA/SSO "update," then AiTM or
+device-code token issuance, attacker-added auth methods, Graph recon, and
+slow exfil under 1,000 files/hour. Klue (June 2026): a prototype
+credential never deactivated → code injected into the Salesforce
+integration → customers' OAuth access + refresh tokens harvested (Huntress,
+Recorded Future confirmed); Salesforce disabled the integration. Salesloft
+status: Salesforce's May 4, 2026 page still says Drift "will remain
+disabled until further notice"; class actions pending, no settlement found.
+Add to the cold-call: would a passkey stop NovaCookies? Yes — that is the
+one case tonight where it would. Would it stop the passkey-lure? No — the
+lure never enrolls a passkey.
 :::
 
 ## Stepping Back: Timeless Design Principles {.smaller}
@@ -586,7 +694,12 @@ memory page boundary could time the abort — page fault or not — and leak
 the password one character at a time. Same root cause as modern side
 channels like Spectre and Meltdown. TOCTTOU connects directly to "check
 current authority" — the gap between check and use is where the exploit
-lives.
+lives. 2026 instance of each principle, all from earlier slides: "check
+current authority" — Entra accepting a replayed WebAuthn assertion with no
+challenge freshness or session binding (Pass-the-Passkey, slide 7);
+"default no access" — the standing iam:CreateRole permission on a CI/CD
+role (UNC6426, slide 11); "least privilege" — Klue's prototype credential
+that outlived its purpose (slide 22). Speaker-notes, slide 23.
 :::
 
 ## Scaling Access Control: Abstractions {.smaller}
