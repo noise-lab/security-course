@@ -2,6 +2,27 @@
 
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also) for the second half of Meeting 1 (the Trusting Trust segment now lives at the end of the overview deck — see [`../01-Overview/speaker-notes.md`](../01-Overview/speaker-notes.md)). In-deck notes (the `::: {.notes}` blocks) are also visible in reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page. Follows the course-overview deck: [`../01-Overview/speaker-notes.md`](../01-Overview/speaker-notes.md).
 
+<!-- glance:start -->
+**At a glance**
+
+| # | Slide | Cue | Read first |
+|---|---|---|---|
+| 2 | Where Does It Actually Break? | Both readings are canonical: Ken Thompson, "Reflections on Trusting Trust" — 1984 Turing Award lecture, CACM 2… | [Microsoft Security Blog](https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/) |
+| 3 | Anderson's Surprise | The paper's central claim: in the 1990s UK banking system, customers bore the fraud burden, so banks had struc… | [Regulation Tomorrow](https://www.regulationtomorrow.com/2026/07/payment-fraud-falls-by-73m-following-psr-reimbursement-scheme/) |
+| 4 | How ATM Fraud Actually Happened | None of the failure modes Anderson catalogs is a break of DES. | [FBI FLASH-20260219-001, "Increase in Mal](https://www.ic3.gov/CSA/2026/260219.pdf) |
+| 5 | And the Crypto-Adjacent Mistakes | This is the crux for Meeting 2: the PIN-derivation key had to be both secret *and* widely distributed *and* av… | [Security Affairs](https://securityaffairs.com/197504/cyber-crime/50000-stripe-secrets-leaked-in-public-code.html) |
+| 6 | The Takeaway | The quote *"The vast majority of security failures occur at the level of implementation detail"* is from Ander… | [Help Net Security](https://www.helpnetsecurity.com/2026/09/17/cisco-ise-vulnerability-exploited-cve-2026-76460/) |
+| 7 | A Taxonomy of Failure | Run the in-class activity: give students a headline breach and ask which bucket it fits. | [OpenSSL Library](https://openssl-library.org/news/vulnerabilities/) |
+| 8 | Case in Point: Equifax (2017) | The clean case study: Apache Struts patch shipped March 7, 2017 (CVE-2017-5638); Equifax ran a vulnerability s… |  |
+| 9 | When Regulators Treat Patching as a Duty | FTC Log4j warning, January 4, 2022 (CVE-2021-44228) — primary source: FTC blog post. | [FTC press release](https://www.ftc.gov/news-events/news/press-releases/2025/12/ftc-will-require-illusory-systems-return-money-stolen-hackers-implement-information-security-program) |
+| 10 | Designing for Failure | Section divider. |  |
+| 11 | What Good Vendors Owe Customers | (Full incident write-up is in the "Where Does It Actually Break?" row; this block is the angle for *this* slid… | [Elastic Security Labs](https://www.elastic.co/security-labs/shai-hulud-chaindrop-npm-supply-chain) |
+| 12 | Specifications Should Plan for Failure | This is threat modeling avant la lettre. | [BleepingComputer](https://www.bleepingcomputer.com/news/microsoft/microsoft-releases-emergency-windows-updates-to-fix-rds-failures/) |
+| 13 | Two Paradigms for Safety | Anderson's contrast of signalling/interlocks (system in control, formal verification) with aviation (constant … | [Covington Inside Privacy](https://www.insideprivacy.com/united-states/federal-trade-commission/ftc-announces-10-year-information-security-consent-orders-with-illuminate-education-and-illusory-systems/) |
+| 14 | Food for Thought | (Full write-up in the "Where Does It Actually Break?" row; this is the angle for the second prompt.) | [TechCrunch](https://techcrunch.com/2026/09/10/id-verification-giant-idscan-confirms-data-breach-with-more-than-150-million-drivers-licenses-stolen/) |
+| 15 | The Through-Line | The one-line summary of both papers. |  |
+<!-- glance:end -->
+
 *Headings carry the slide number shown in the deck footer (title slide is 1 of 15).*
 
 ## 2 · Where Does It Actually Break?

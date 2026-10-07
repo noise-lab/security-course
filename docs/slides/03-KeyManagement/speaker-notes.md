@@ -2,6 +2,43 @@
 
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also). In-deck notes (the `::: {.notes}` blocks) are also visible via reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page.
 
+<!-- glance:start -->
+**At a glance**
+
+| # | Slide | Cue | Read first |
+|---|---|---|---|
+| 2 | Where We Are | This lecture maps to the PKI portion of Meeting 2. | [TechCrunch](https://techcrunch.com/2026/09/15/the-worst-hacks-and-breaches-of-2026-so-far/) |
+| 3 | The Setup: Alice, Bob, and Eve | Historical note: the Alice/Bob/Eve naming convention originates in Rivest, Shamir, Adleman, "A Method for Obta… |  |
+| 4 | Symmetric Crypto: Same Key Both Ways | Standards to name: AES (NIST FIPS 197, revised 2023), ChaCha20-Poly1305 (RFC 8439). |  |
+| 5 | The Key-Distribution Problem | The n(n−1)/2 blowup is the whole motivation for asymmetric crypto. | [SecurityWeek](https://www.securityweek.com/bigcommerce-data-stolen-via-ribon-apps-hack/) |
+| 6 | Diffie-Hellman: A Public Conversation, a Private Key | Setup for the conceptual heart of the lecture. |  |
+| 7 | 1976: "New Directions in Cryptography" | Primary source: Diffie & Hellman, "New Directions in Cryptography," *IEEE Trans. |  |
+| 8 | How Diffie-Hellman Works (the Idea) | Per agenda: no math proofs, no discrete-log computation. |  |
+| 9 | D-H's Big Weakness: Man-in-the-Middle | This is the *pivot* of the lecture. |  |
+| 10 | Public-Key (Asymmetric) Cryptography | Setup for the RSA / asymmetric block. |  |
+| 11 | Two Keys Instead of One | RSA primary: Rivest, Shamir, Adleman (1978). |  |
+| 12 | Two Use Cases, One Idea | Real integrity-side examples worth naming: software / OS updates are signed (Apple, Microsoft, Google Play) — … | [Help Net Security](https://www.helpnetsecurity.com/2026/05/04/digicert-breach-code-signing-certificates-malware/) |
+| 13 | What Public-Key Crypto Is *Not* | Common student misconception: "asymmetric = more secure." Kill it. | [Schneier on Security](https://www.schneier.com/blog/archives/2026/09/new-attack-against-rsa.html) |
+| 14 | Certificates and Public-Key Infrastructure | Setup for the trust-infrastructure block. |  |
+| 15 | The Problem with Public Keys | Diffie–Hellman 1976 already flagged the "protect the public file" problem — quoted from DH 1976, §III. |  |
+| 16 | What a Certificate Is | Standard: X.509 v3 — RFC 5280. |  |
+| 17 | Chains of Trust | Concrete example the agenda cites: course website → Let's Encrypt → ISRG Root X1. | [Let's Encrypt Community](https://community.letsencrypt.org/t/upcoming-changes-to-let-s-encrypt-certificates/243873) |
+| 18 | Where Does Trust Stop? Trust Anchors | Primary lists: Mozilla CA Certificate Program · Chrome Root Store · Microsoft Trusted Root Program · Apple Roo… | [ICANN](https://www.icann.org/en/blogs/details/preparing-for-the-root-zone-ksk-rollover-what-you-need-to-know-27-07-2026-en) |
+| 19 | Two Levels of Validation | CA/Browser Forum Baseline Requirements — the current DV/OV/EV specification. | [CA/Browser Forum](https://cabforum.org/2025/06/18/ballot-sc-085v2-require-validation-of-dnssec-when-present-for-caa-and-dcv-lookups) |
+| 20 | When CAs Go Wrong | Setup for the case-study block. |  |
+| 21 | DigiNotar, 2011: A CA Compromised | Primary: Fox-IT, "Black Tulip: Report of the investigation into the DigiNotar Certificate Authority breach" (A… |  |
+| 22 | Rogue Issuance in the Wild | CNNIC: Mozilla — "Removal of Trust for CNNIC" (Apr 2015) · Google Security Blog on CNNIC. |  |
+| 23 | 2025–2026: Browsers Are Still Pulling CAs | Chunghwa/Netlock (Chrome 139, Aug 2025): Google Security Blog — "Sustaining Digital Certificate Security — Chr… | [Help Net Security](https://www.helpnetsecurity.com/2026/05/04/digicert-breach-code-signing-certificates-malware/) |
+| 24 | Detecting and Limiting Damage | Setup for the mitigation block. |  |
+| 25 | Certificate Transparency | Primary: RFC 9162 — Certificate Transparency v2.0 (2021) · certificate-transparency.org. | [Chrome CT team](https://groups.google.com/a/chromium.org/g/ct-policy/c/IXPT4r1CPdE) |
+| 26 | Key Pinning and the SSH Model | HPKP retrospective: Chris Palmer — "Intent to Deprecate and Remove HTTP-Based Public Key Pinning" (Chromium, 2… | [ICANN](https://www.icann.org/en/blogs/details/preparing-for-the-root-zone-ksk-rollover-what-you-need-to-know-27-07-2026-en) |
+| 27 | Expiration and Revocation | CRL: RFC 5280 §5. | [Born's Tech and Windows World](https://borncity.com/win/2026/08/31/ex1464935-m365-outage-due-to-forgotten-certificate-renewal-august-31-2026/) |
+| 28 | The 2026 Fix: Just Make Certs Short-Lived | Primary: CA/Browser Forum — Ballot SC-081v3 (April 11, 2025). | [Let's Encrypt Community](https://community.letsencrypt.org/t/upcoming-changes-to-let-s-encrypt-certificates/243873) |
+| 29 | TLS in Practice | Primary: RFC 8446 — TLS 1.3. | [Cloudflare](https://blog.cloudflare.com/post-quantum-visibility/) |
+| 30 | Policy Debate: Encryption Backdoors | Full prompts: Backdoors debate. | [9to5Mac](https://9to5mac.com/2026/09/17/apple-pushes-uk-court-to-lift-secrecy-around-encryption-backdoor-order/) |
+| 31 | Takeaways | Bridge to next lecture: Authentication and OAuth — same "who do you trust?" question, now applied to *users* a… |  |
+<!-- glance:end -->
+
 *Headings carry the slide number shown in the deck footer (title slide is 1 of 31; `#` section dividers count as slides).*
 
 ## 2 · Where We Are

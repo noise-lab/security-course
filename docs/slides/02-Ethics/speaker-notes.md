@@ -2,6 +2,33 @@
 
 Per-slide context + clickable links (one section per slide; case briefs are broken into Read first / What happened / What to say / Course tie-in / Also). In-deck notes (the `::: {.notes}` blocks) are also visible via reveal.js speaker view (press **S**). Every URL was verified this session or is a canonical org landing page.
 
+<!-- glance:start -->
+**At a glance**
+
+| # | Slide | Cue | Read first |
+|---|---|---|---|
+| 2 | Why Ethics in Lecture 2? | Why this is live in 2026. | [USENIX Security '26 CFP, ethics section](https://www.usenix.org/conference/usenixsecurity26/call-for-papers) |
+| 3 | A Cautionary Origin: Tuskegee | Primary sources: CDC — Tuskegee Study Timeline, HHS — National Research Act (P.L. |  |
+| 4 | Why This Hits Close to Home | Hypocrite Commits (Univ. | [Nishi, Laprevotte, Bullock & Andrew, "Go](https://arxiv.org/abs/2609.10740) |
+| 5 | A 2026 Lens: AI Bots on Reddit | Primary reporting on the Zurich case: Washington Post — "Reddit slams University of Zurich experiment over sec… | [Oda, Makovi, Yasseri & Tsvetkova, "A fie](https://arxiv.org/abs/2607.00854) |
+| 6 | Case Study: Emotional Contagion | the LSE Reddit study (Jul 2026) is literally a "behavioral contagion" experiment run without consent under an … | [Condom-Tibau, Puccetti, Bacciu, Abrate &](https://arxiv.org/abs/2609.21608) |
+| 7 | A Framework, Not a Rulebook | Moor's "policy vacuum" formulation: James H. |  |
+| 8 | Key Idea: Digital Is Different | The "database of ruin" line is Paul Ohm, "Broken Promises of Privacy," *UCLA L. | [Li, "Agentic LLMs as Powerful Deanonymiz](https://arxiv.org/abs/2601.05918) |
+| 9 | Salganik's Layered Approach | Direct from Salganik, *Bit by Bit* Ch. | [Nishi et al.](https://arxiv.org/abs/2609.10740) |
+| 10 | IRB, Belmont, Menlo | Primary sources: Belmont Report (1979) — HHS · Menlo Report (2012) — DHS S&T · Menlo Companion. | [Advarra, "2026 DHHS Unified Agenda: Four](https://www.advarra.com/blog/2026-dhhs-unified-agenda-four-areas-hrpp-and-irb-leaders-should-watch/) |
+| 11 | The Four Principles | Live worked example to run all four on: the LSE Reddit bot study (arXiv, Jul 2026) — respect for persons (no c… |  |
+| 12 | Respect for Persons: Informed Consent | The Zurich vignette explicitly fails this principle twice (undisclosed AI, fabricated identities). | [NeurIPS 2026, "AI-Assisted Reviewing Exp](https://neurips.cc/Conferences/2026/ai-reviewing-experiment) |
+| 13 | Beneficence and Justice in Practice | Concepts to review: de-identification failure — Sweeney (1997); Netflix Prize re-identification — Narayanan & … | [Tianshi Li, "Agentic LLMs as Powerful De](https://arxiv.org/abs/2601.05918) |
+| 14 | Respect for Law and Public Interest | ToS-vs-ethics tension: the classic case is ProPublica's 2016 Facebook ad discrimination audit, which arguably … | [Jacob van de Kerkhof, "Unpacking the EU'](https://www.techpolicy.press/unpacking-the-eus-digital-services-act-delegated-act-on-data-access-/) |
+| 15 | Two Underlying Frameworks | Live 2026 split to diagnose: Microsoft vs. |  |
+| 16 | Ethics ≠ Law | The quoted definition is a paraphrase of the working definition in Bynum, "Computer and Information Ethics" — … | [TechCrunch, "Microsoft under fire for th](https://techcrunch.com/2026/05/29/microsoft-under-fire-for-threatening-security-researcher-with-criminal-investigation/) |
+| 17 | Laws Every Security Researcher Should Know | Two 2026 anchors for this slide. |  |
+| 18 | The Law Is (Slowly) Catching Up | Primary: *Van Buren v. | [U.S. Copyright Office, "U.S. Copyright O](https://www.copyright.gov/newsnet/2026/1088.html) |
+| 19 | Codes, Contracts, and Other Standards | ACM Code of Ethics (2018 revision) · IEEE Code of Ethics · Nuremberg Code (1947) · Declaration of Helsinki (20… | [TechSpot, "AMD changes rules, denies res](https://www.techspot.com/news/112746-amd-changes-rules-denies-researcher-10000-bounty-after.html) |
+| 20 | Breakout: Apply the Four Principles | Fresh 2026 prompts (full briefs in the rows named). |  |
+| 21 | Takeaways | Bridge: next lecture is Key Management and PKI — the same "who do you trust?" question, now in the technical c… |  |
+<!-- glance:end -->
+
 *Headings carry the slide number shown in the deck footer (title slide is 1 of 21).*
 
 ## 2 · Why Ethics in Lecture 2?
