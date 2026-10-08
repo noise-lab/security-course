@@ -109,7 +109,7 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 
 ### Meeting 2 (Wed Oct 7)
 
-*First segment written from the recording. The debate is not recorded (it is the students' session) and is logged by resolution and format only. The post-debate segment will be added from its recording.*
+*Both lecture segments written from their recordings. The debate is not recorded (it is the students' session) and is logged by resolution, format, and the one twist raised from the floor.*
 
 * **Housekeeping**
     * Assignment 1 (PKI) is out. **Do the version on the course website**, not the one in the public GitHub template, which is older and shorter; the website version asks you to reflect on what a coding agent produces. The GitHub copy will be updated to match
@@ -142,4 +142,16 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
     * Resolution: *Companies should be held liable for damages incurred from data breaches if there was a known vulnerability in the software used by the company that led to the breach*
     * Oxford style: opening poll (thumbs up/down on the resolution posted in Slack), affirmative opening, negative response, affirmative reply, audience questions, closing poll. Six students signed up, three per side
     * The debate took place as scheduled. One twist raised from the floor by the instructor: **how does liability shift when an AI agent is in the loop?** If an agent introduces the vulnerability (writes the code, misconfigures the system) or takes the action that leads to the breach, who is liable: the company that deployed it, the agent's vendor, the person who prompted it, or nobody? **Midterm flag:** apply the resolution to a breach caused by an autonomous agent
-* **Post-debate segment:** to be added from the recording (planned: OAuth / Modern Authentication, which is also the background for Assignment 2)
+* **Break** (10 minutes)
+* **Lecture: Modern Authentication and Access Control** (topic 4, first part; about 20 minutes)
+    * What access control is for: protecting users from each other (shared servers, shared documents), applications from each other (your browser should not touch your music app), and the system from the network (firewalls)
+    * The hard part is that you want the walls to be porous: apps that talk to each other (chat to code hosting, video calls to calendars, an instructor's software agent reading a sign-up sheet and posting to Slack) but with specific, limited permissions. That is where OAuth comes in (Assignment 2)
+    * **Three concepts to keep apart.** *Identification:* who do you claim to be? *Authentication:* prove it. *Authorization:* now that you are proven, what are you allowed to do? Then access control enforces it, and logging records what happened. Example: the agent that posts agendas authenticates with a token and is authorized to read a sheet but not write it; in OAuth those permissions are called scopes. **Midterm flag:** these definitions and the sequence identify, authenticate, authorize
+    * **The three modes of authentication**, each with weaknesses, which is why multi-factor exists
+        * Something you know (password, PIN, security questions): guessable, phishable, reused across sites, leaked
+        * Something you have (a phone receiving a code, an authenticator app, a hardware token): the campus two-factor login as the example; lost or stolen devices, backup codes nobody saves
+        * Something you are (fingerprint, face, iris): hard to revoke, can be spoofed, and a phone held up to a sleeping parent's face unlocks it
+    * **How a passkey works** (worked through on the spot, using the morning's public-key material): your device creates a key pair *per site*; the site stores the public key where it used to store a password; the private key stays on the device. To sign in, the site sends a random challenge, the device signs it with the private key, and the site verifies the signature with the stored public key. The private key is unlocked with a biometric, so a passkey is something you have plus something you are. The secret never leaves the device, the server holds only public keys (nothing to steal), and every site gets a different key (nothing to reuse). Adoption is widening. *The two passkey slides in the deck were rewritten after class to say exactly this; see slides 7 and 8*
+    * **Subject, verb, object:** who may do what to which thing. Classic Unix permissions as the example: read, write, execute bits for the owner, the group, and everyone, shown on a real directory listing. Will not be asked on the exam. **Midterm flag:** more likely, a modern app or website and the question of what its subjects, verbs, and objects should be
+    * **OAuth, motivation only:** budgeting apps used to need your bank password to read your balances; OAuth exists so a third party can be given limited, read-only access without your password. Assignment 2 is OAuth
+* **Not covered, carried to Meeting 3:** the rest of OAuth (roles, the flow, tokens and scopes, what goes wrong), then topics 5 and 6 (botnets and denial of service)
