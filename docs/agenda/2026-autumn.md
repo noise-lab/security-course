@@ -155,3 +155,21 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
     * **Subject, verb, object:** who may do what to which thing. Classic Unix permissions as the example: read, write, execute bits for the owner, the group, and everyone, shown on a real directory listing. Will not be asked on the exam. **Midterm flag:** more likely, a modern app or website and the question of what its subjects, verbs, and objects should be
     * **OAuth, motivation only:** budgeting apps used to need your bank password to read your balances; OAuth exists so a third party can be given limited, read-only access without your password. Assignment 2 is OAuth
 * **Not covered, carried to Meeting 3:** the rest of OAuth (roles, the flow, tokens and scopes, what goes wrong), then topics 5 and 6 (botnets and denial of service)
+
+### Meeting 3 (Wed Oct 14)
+
+*Plan, written before class. It will be replaced with what was actually covered once the recording is transcribed.*
+
+* **Housekeeping:** Assignment 1 (PKI) due Friday October 23; Assignment 2 (OAuth) opens Monday October 26; midterm Wednesday November 4 in class; all TA office hours are now posted in Slack
+* **Lecture: OAuth** (finishing Modern Authentication, topic 4)
+    * The four roles (resource owner, client, authorization server, resource server) and the six-step authorization-code flow, with a live demo of connecting an app
+    * Tokens as capabilities: scope as least privilege, expiry and refresh, why revocation is hard
+    * When OAuth goes wrong: token leakage, redirect and state attacks, over-broad scope; the September 2026 MCP SDK advisory; the Salesloft–Drift token-replay breach and its 2026 successors
+* **Lecture: Denial of Service and Botnets** (topic 5)
+    * The November 2025 record attack and the Mirai lineage behind it; what a denial-of-service attack exhausts and what it targets
+    * The three characteristics of every DoS attack: asymmetry, indistinguishability from legitimate traffic, and attribution
+    * Mirai and the Dyn attack (2016); reflection and amplification; SYN floods; application-layer and crypto DoS
+    * Defenses and their limits: ingress filtering, SYN cookies, when stateful defenses backfire, scrubbing and anycast; the Great Cannon (2015)
+* **Debate: Encryption Backdoors** ([resolution and readings](../debates/backdoors.md), [format](../debates/format.md)): *It should be legal to compel tech companies to provide a backdoor to law enforcement*
+* **Discussion:** who defends the defenders, from [the DoS breakouts](../breakouts/dos-botnets.md) (Breakout B)
+* **Next week:** routing security (topic 6) with the BGP activity; debate 4 is the CFAA
