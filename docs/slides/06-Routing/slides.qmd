@@ -49,6 +49,36 @@ looking glass. Reference: BGP is specified in RFC 4271; AS numbers are IANA-
 assigned. This grounds the abstraction before we break it.
 :::
 
+## BGP in One Picture {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+![](images/bgp-overview.png){width="100%"}
+:::
+::: {.column width="38%"}
+- **ASes** (clouds) peer over **BGP sessions** (black lines between border routers)
+- A **route advertisement** (green) says: *"I can reach prefix 128.135.0.0/16; here is the AS path to get there"*
+- **Traffic** (blue) flows the *opposite* way, toward the destination, hop by hop
+- Each router keeps a table of what it has heard:
+
+![](images/bgp-routing-table.png){width="100%"}
+
+- Same prefix, two next-hops, two AS paths: the router *chooses*. That choice is what every attack today manipulates
+:::
+:::
+
+::: {.notes}
+Walk the picture once, slowly: clouds are ASes, each with its own routers; the
+thick black lines are BGP sessions between border routers; green arrows are
+announcements ("I can reach 128.135.0.0/16, path is 10578 ... 160"); the blue
+line is the traffic, flowing back toward the destination along the path the
+announcements built. Destination-based: every router forwards on the prefix
+alone. The table is the whole state of the game: a prefix, a next-hop, an AS
+path. Two rows for the same prefix means the router has a choice, and the
+rest of the lecture is about how an attacker makes that choice go their way.
+128.135.0.0/16 is UChicago's block.
+:::
+
 ## BGP Has Essentially No Security
 
 > A router will believe **any** route advertised by a neighbor.
