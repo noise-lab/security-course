@@ -43,10 +43,11 @@ Keep this intuitive — the agenda explicitly says NOT to go deep on protocol
 mechanics. Destination-based, hop-by-hop. Each AS advertises prefixes (blocks
 of IP addresses) it can reach, plus the AS path to get there. Analogy: asking
 for directions in chunks — each AS knows only how to reach its own boundary,
-then hands you off. Cold-call: what is UChicago's upstream ASN? Answer to
-have ready: AS 6535 (UCHICAGO-AS), verifiable on the Hurricane Electric BGP
-looking glass. Reference: BGP is specified in RFC 4271; AS numbers are IANA-
-assigned. This grounds the abstraction before we break it.
+then hands you off. Cold-call: what is UChicago's AS number? Answer to
+have ready: AS 160 (U-CHICAGO-AS, allocated 1988), which originates
+128.135.0.0/16; its transit provider in the next slide's example is Cogent,
+AS 174. Verifiable in ARIN whois. Reference: BGP is specified in RFC 4271;
+AS numbers are IANA-assigned. This grounds the abstraction before we break it.
 :::
 
 ## BGP in One Picture {.smaller}
