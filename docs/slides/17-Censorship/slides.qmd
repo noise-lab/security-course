@@ -97,6 +97,27 @@ is the pivot point: the gatekeeper is a company, not a government, and Matthew P
 openly worried about the precedent. That sets up "protocols to platforms" later.
 :::
 
+## Three Eras of Censorship {.smaller}
+
+<!-- recovered from ppt-archive/17-Censorship.pptx slide 8 -->
+![](images/censorship-history-timeline.png){width="100%"}
+
+- **1990s — protocol filtering**: the Great Firewall starts as blocklists on IPs, DNS, and keywords
+- **2000s — surveillance**: Golden Shield and Google's 2006 bargain shift the game to *watching* and *shaping*
+- **2010s — active disruption**: Egypt's shutdown and the Great Cannon show the censor can *attack*, not just filter
+- The 2017 Cloudflare takedown is the outlier: a **private** actor, not a state, pulls the plug
+
+::: {.notes}
+Same events as the table, drawn as a timeline so the eras stand out. Walk it left to
+right: the 1990s censor filters packets; the 2000s censor surveils and negotiates with
+platforms (Golden Shield, Google's 2006 agreement, 2010 withdrawal to Hong Kong); the
+2010s censor disrupts — Egypt's BGP withdrawal and the Great Cannon's injected DDoS.
+The 2018 item is Google's "Dragonfly" prototype for a censored Chinese search engine,
+shelved in 2019. The original slide was static; the arrows from the era labels point at
+the events that define them. Cold-call: what would the 2020s label be? Candidates:
+platform leverage, whitelisting, or attention control — which is where the deck ends.
+:::
+
 ## A "Modern" Theory of Censorship
 
 ![Margaret Roberts' pyramid: censors don't need to delete every story — they shape what flows from "all possible stories" up to the media and the public.](images/slide007_img005.png){width="55%"}
@@ -197,6 +218,25 @@ favored tool because it's the most visible. Cold-call: which of the three verbs
 is one of Roberts's three F's, and why arrests scale far beyond the people arrested.
 :::
 
+## The Conventional Picture, Drawn
+
+<!-- recovered from ppt-archive/17-Censorship.pptx slide 14 -->
+![](images/conventional-censorship-model.png){width="92%"}
+
+- The **firewall** sits at the border between the censored and uncensored nets — one chokepoint, every packet
+- At the firewall the censor **blocks** Alice's traffic to Bob; behind it, the censor **punishes** Alice for trying
+- Everything that follows moves one of these pieces: the chokepoint, the verb, or the visibility
+
+::: {.notes}
+The original animated this in two clicks: first the firewall censor appears and blocks
+traffic, then the censor moves to Alice's side and punishes the user. Walk it in that
+order. Ask the room what each element assumes — a single border (true for Egypt or Iran,
+false for a CDN-fronted platform), a visible block (the least favored tool later in the
+deck), and a censor who can find Alice (which is why fear scales beyond the people
+arrested). Keep this picture in mind; the "Points of Control" slide moves the firewall
+to the CDN and the endpoint, and the Roberts slides replace "block" with "tax."
+:::
+
 ## Technical Mechanisms {.smaller}
 
 ::: {.columns}
@@ -247,6 +287,34 @@ proposals); Russia's forced removal of VPN apps from Apple's App Store in 2024;
 India-mandated app takedowns. Cold-call: which of these three vantage points would
 you find hardest to circumvent as a user? Endpoint scanning is nearly impossible
 without switching device stacks entirely.
+:::
+
+## Egypt 2011: A Shutdown as Seen in BGP
+
+::: {.columns}
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/17-Censorship.pptx slide 17 -->
+![Globally reachable Egyptian networks, Jan 27, 2011 (UTC). Source: Renesys.](images/egypt-2011-bgp-withdrawal.png){width="100%"}
+:::
+::: {.column width="45%"}
+- Each line is one **ISP**'s count of globally reachable prefixes
+- Between **22:15 and 22:35 UTC** every major provider withdraws its routes — one after another, not all at once
+- The order is the order in which **phone calls were made** to a handful of ISPs
+- Centralized routing is what made a nationwide shutdown a **20-minute** operation
+:::
+:::
+
+::: {.notes}
+Renesys (later Dyn, now Oracle) published this plot the night of the shutdown, in James
+Cowie's "Egypt Leaves the Internet." Read the staircase: Telecom Egypt (TE), Link
+Egypt, Etisalat Misr, Raya, and Internet Egypt each drop to zero within a few minutes of
+one another, over roughly twenty minutes, by withdrawing their BGP announcements. No
+filtering, no DPI — the routes simply disappear. Noor Group stayed up for a few more
+days, reportedly because it carried the stock exchange. Pair this with the Google
+traffic plot on the measurement slide: that one is the demand side (users vanish), this
+is the control plane (routes vanish). Cold-call: why is a BGP withdrawal easier to see
+from outside the country than a DNS poisoning? Because every BGP speaker in the world
+observes the withdrawal; DNS lies are only visible from inside.
 :::
 
 ## Non-Technical Censorship
