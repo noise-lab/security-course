@@ -74,6 +74,31 @@ factors. The skimmer photo is the physical-world version that still works in
 2026 — gas pumps, ATMs, point-of-sale terminals.
 :::
 
+## Hiding the PIN on a Card {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/01-WhyCryptosystemsFail.pptx slide 8 -->
+![The squared-cardboard scheme one bank mailed its cardholders in 1992 (Anderson, 1993, §3.1)](images/pin-mnemonic-grid.png)
+:::
+::: {.column width="50%"}
+- Early 1992: a bank warns customers **not** to write the PIN on the card — and
+  mails them this grid instead
+- PIN 2256? Pick a four-letter word, say *blue*; write its letters in columns
+  2, 2, 5, 6; fill the empty boxes with random letters
+- Only about **two dozen** four-letter words fit a given grid of random letters
+- A thief with the card and three guesses goes from **1 in 3,333** to **1 in 8**
+:::
+:::
+
+::: {.notes}
+Static figure recovered from the original deck; walk it rather than reading
+the bullets. Start from the bank's intent (stop people writing PINs on cards),
+then ask the room what the grid leaks before revealing the two-dozen-words
+point. This is the cleanest "well-meant procedure that destroyed the entropy"
+story in the paper, and it is a human-factors failure, not a crypto one.
+:::
+
 ## And the Crypto-Adjacent Mistakes
 
 - **Checksums that reduced PIN entropy** — fewer real possibilities than the
@@ -92,6 +117,33 @@ factors. The skimmer photo is the physical-world version that still works in
 This is the crux: even where crypto was "used," key management and operating
 procedure undid it. Foreshadows the entire Meeting 2 lecture on key management
 and PKI — keys that must be both secret and ubiquitous are the hard part.
+:::
+
+## Where the PIN Came From {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/01-WhyCryptosystemsFail.pptx slide 9 -->
+![The IBM-style PIN derivation, worked example from Anderson (1993), §3.2.1](images/pin-derivation-example.png)
+:::
+::: {.column width="45%"}
+- No PIN database: the PIN is **recomputed** from the account number
+- DES-encrypt the account number under the secret **PIN key**, decimalise,
+  take the first four digits — the **natural PIN**
+- The **offset** (added digit-wise) lets the customer pick a PIN; it has no
+  cryptographic role
+- Any ATM that checks PINs offline needs the PIN key — so the one secret has
+  to be **everywhere**
+:::
+:::
+
+::: {.notes}
+Static figure recovered from the original deck; walk the seven lines top to
+bottom. Have students verify the arithmetic: 0224 plus 6565 digit-wise mod 10
+is 6789. Then the punchline for the previous slide: the whole scheme is only as
+secret as the PIN key, and that key had to be shipped to every ATM (in the
+paper, as two printed components carried by two officials). This is the
+secret-and-ubiquitous contradiction that Meeting 2 is about.
 :::
 
 ## The Takeaway
