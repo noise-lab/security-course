@@ -114,6 +114,31 @@ touchscreens — trading one problem (unreadable ballots) for a worse one (no au
 record). That overcorrection is the story of the next decade.
 :::
 
+## Florida 2000, Up Close {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/XX-Election.pptx slide 30 (Sun-Sentinel graphic, Daniel Niblock) -->
+![Sun-Sentinel: Democrats are listed second, but theirs is the *third* hole](images/slide030_img024.png){width="92%"}
+:::
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/XX-Election.pptx slide 31 (New York Times graphic) -->
+![New York Times: which chads count in a hand recount](images/slide031_img025.png){width="92%"}
+:::
+:::
+
+- **Left:** a legal ballot layout that reliably mapped Gore voters onto Buchanan's hole — an *accuracy* failure with no bug anywhere
+- **Right:** the "chad" taxonomy that decided whether a machine-rejected punch card counted by hand — the recount could not even agree on what a vote *was*
+
+::: {.notes}
+Walk both pictures; the original slides were two full-screen graphics. Left: the butterfly
+ballot staggers the two facing columns, so the second hole from the top is Buchanan (Reform),
+not Gore. Palm Beach County gave Buchanan ~3,400 votes, far above neighboring counties. Right:
+the NYT chad diagram — hanging, swinging, tri-chad count; a pregnant or dimpled chad does not —
+and the lack of a statewide standard for these is what *Bush v. Gore* turned on. Both figures
+are someone else's (Sun-Sentinel; NYT); attribution is in the captions.
+:::
+
 ## The DRE Detour {.smaller}
 
 > "After the 2000 recount debacle... Congress passed the **Help America Vote Act** in
@@ -261,6 +286,22 @@ genuine policy success driven partly by the security research in this lecture. A
 did it take ~20 years? (Procurement cycles, cost, HAVA lock-in, contested politics.)
 :::
 
+## The Paper Trail, Six Years Later {.smaller}
+
+<!-- recovered from ppt-archive/XX-Election.pptx slide 2 (Verified Voting, The Verifier, November 2022) -->
+![Verified Voting, *The Verifier*: election-day equipment by county, November 2022](images/verifier-map-2022.png){width="78%" fig-align="center"}
+
+- Compare with the 2016 map: the paperless states (dark red) have shrunk to a few holdouts, mostly in Louisiana, Texas, Indiana, and the Nevada/New Jersey outliers
+- By 2022 about **two-thirds** of voters hand-marked paper; most of the rest used ballot-marking devices that still produce paper
+
+::: {.notes}
+Put this right after the 2016 map and let the color change do the talking. Dark green is
+hand-marked paper, yellow is BMDs for all voters, red shades are DREs (the darkest, ~6%, with no
+paper trail at all). Then the 2024 vignette on the previous slide (~98% paper) finishes the
+trend. The figure is Verified Voting's; the Verifier at verifiedvoting.org lets you scrub the
+timeline from 2006 to today, which is a good live demo if there is network.
+:::
+
 ## Risk-Limiting Audits {.smaller}
 
 A **risk-limiting audit (RLA)** hand-checks a random sample of paper ballots, stopping
@@ -279,6 +320,22 @@ The beauty of RLAs: the sample size scales with how close the race is, not the s
 the state. A landslide needs a few hundred ballots; a near-tie needs many. "Brush your
 teeth; eat your spinach; audit your elections!" (Vora). This is evidence-based elections
 made operational.
+:::
+
+## RLA: Sample, Check, Grow {.smaller}
+
+<!-- recovered from ppt-archive/XX-Election.pptx slide 56 -->
+![](images/rla-sample-structure.png){width="60%" fig-align="center"}
+
+- The wide bar is **every cast paper ballot**; the audit draws a small random **sample** from it
+- Check the sample by hand against the reported outcome; if the evidence clears the risk limit, **stop**
+- Otherwise the sample **grows** (the arrow): more ballots, same question, until it either confirms the result or becomes a full hand count
+
+::: {.notes}
+This is the original deck's one drawn diagram, and it animated: the bar first, then the arrow
+down to the sample, then the arrow to the right as the sample expands. Walk it in that order.
+The point of the picture is proportion: the sample is tiny relative to the ballots, and it only
+grows when the margin is close. Pair with the "1 / margin" line on the previous slide.
 :::
 
 ## RLAs in Practice, 2024–2025 {.smaller}
