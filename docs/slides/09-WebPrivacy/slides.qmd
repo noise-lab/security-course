@@ -99,6 +99,32 @@ news sites are strictly worse today. Ask a student to count the distinct
 third-party domains they see — the exercise makes the abstraction visceral.
 :::
 
+## The Request That Does the Tracking
+
+::: {.columns}
+::: {.column width="58%"}
+<!-- recovered from ppt-archive/09-WebPrivacy.pptx slide 5 -->
+![A page on nytimes.com, and the request the browser sends to an embedded third party](images/nyt-third-party-request.png)
+:::
+::: {.column width="42%"}
+- You load **`nytimes.com`**; the page embeds a resource from **`youtube.com`**
+- The browser fetches it, attaching YouTube's **Cookie** (its persistent ID for you)
+- It also attaches **`Referer: https://www.nytimes.com/`** — the page you were on
+- **ID + page**, on every site that embeds the same third party, is the browsing profile
+:::
+:::
+
+::: {.notes}
+Walk the picture: the page on the left is what you asked for; the grey box is
+one of the dozens of requests the page made on your behalf without asking.
+Point at the two headers. The Cookie is the identifier the third party set the
+first time you ever met it; the Referer is the first-party page you are on
+right now. Neither is sensitive alone; together, repeated across thousands of
+sites, they are a browsing history filed under one ID. In the original deck
+the request box flew in on a click after the page was shown; narrate it the
+same way, page first, then "and here is what your browser said to YouTube."
+:::
+
 ## Visualizing the Web of Trackers
 
 ![Lightbeam/Thunderbeam graph: hubs are trackers, spokes are sites you visited](images/slide006_img005.png){width="60%"}
@@ -446,6 +472,33 @@ these joins. Debate seed: does the ad industry's own plumbing violate the
 purpose-limitation principle of every modern privacy framework?
 :::
 
+## Cookie Syncing in One Picture
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/09-WebPrivacy.pptx slide 30 -->
+![Tracker X redirects the browser to tracker Y with X's user ID in the URL](images/cookie-syncing-redirect.png)
+:::
+::: {.column width="38%"}
+- Both trackers are embedded on the same first-party page
+- X's resource answers with a **redirect** to Y, putting X's ID for you in the
+  URL: `?uid=xxxxxxx`
+- The browser follows it and attaches **Y's cookie** `id=yyyyyyy`
+- Y now stores the pair **(x, y)**; the two databases are joined
+:::
+:::
+
+::: {.notes}
+Walk the picture left to right. The green box is the first-party page; both
+red boxes are tracker iframes on it. The request at the top is the one that
+matters: it goes to tracker Y, its URL carries X's identifier as a parameter,
+and the browser attaches Y's own cookie automatically. One request, two IDs,
+one row in Y's join table. In the original deck the redirect arrow, the Y box,
+and the request appeared on successive clicks; narrate it in that order. Ask
+why this cannot happen server to server: neither tracker holds the other's
+cookie, so only the browser can carry both.
+:::
+
 # Defenses {.center}
 
 ## Referer and Cookie Blocking
@@ -477,6 +530,34 @@ and Firefox — but it's only half the problem, because fingerprinting needs no
 cookies. This is the arms-race moment: every clean defense has an evasion.
 Contrast the "break the web" defense with the "block a subset by policy"
 defense — the second is where the sustainable wins live.
+:::
+
+## Cooperative Tracking: No Referer Needed
+
+::: {.columns}
+::: {.column width="58%"}
+<!-- recovered from ppt-archive/09-WebPrivacy.pptx slide 8 -->
+![First party embeds the tracker with its own name in the URL](images/cooperative-tracking.png)
+:::
+::: {.column width="42%"}
+- The first party **chooses** to tell the tracker where you are: it writes
+  `?from=firstparty.com` into the embed URL itself
+- The browser still sends the tracker's **Cookie**, so the tracker gets
+  **ID + page** without ever reading `Referer`
+- Blocking or trimming `Referer` does nothing here
+- Why cooperate? The tracker is usually the ad network **paying** the site
+:::
+:::
+
+::: {.notes}
+This is the picture behind the "doesn't stop cooperative tracking" bullet on
+the previous slide. The outer box is the first-party page, the inner box the
+tracker's iframe, and the request between them was written by the first
+party: the referring site is a query parameter, not a header the browser
+added. So the only defense that targets the Referer header is defeated by a
+site that wants to be tracked, and most ad-funded sites do. Ask the room what
+a first party gains by cooperating, and let them arrive at ad revenue and
+attribution. Walk the picture; there is no animation.
 :::
 
 ## Request Blocking: The Most Effective Defense
