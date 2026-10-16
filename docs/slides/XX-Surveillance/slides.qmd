@@ -114,9 +114,42 @@ graph, schedule, and locations. Metadata is structured, so it scales; content is
 unstructured and expensive to analyze.
 :::
 
+## Email Has Layers of Metadata {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/XX-Surveillance.pptx slide 21 -->
+![One message, three hops: client to provider, provider to provider, provider to recipient.](images/email-metadata-path.png){width="100%"}
+:::
+::: {.column width="40%"}
+- **Session metadata:** the login itself — IP address, device, time — lands at
+  your provider before any message exists.
+- **Message metadata:** sender, recipient, timestamps, size — visible at *every*
+  server the message touches.
+- The client hops are encrypted (**HTTPS, SMTP-TLS, IMAP-TLS**); the
+  **server-to-server SMTP hop** historically was not — hence the "?".
+- Each provider is a **third party** holding the envelope for both of its users.
+:::
+:::
+
+::: {.notes}
+Walk the picture left to right: sender's laptop to her provider, provider to the
+recipient's provider, provider to his laptop. The locks mark hop-by-hop
+encryption, not end-to-end: each server decrypts and sees the full envelope, and
+the middle SMTP hop was plaintext for most of email's history (opportunistic
+STARTTLS is now common but not guaranteed). This is the "layers of metadata"
+point: a single email generates session metadata at login and message metadata at
+every hop, and the NSA's bulk email program (next section) collected exactly the
+sender/recipient pairs that sit at those servers. The original slide was static;
+there is no build to click through.
+:::
+
 ## When the Definition Breaks Down {.smaller}
 
 Hard cases where content and metadata blur:
+
+<!-- recovered from ppt-archive/XX-Surveillance.pptx slide 15 -->
+![](images/url-metadata-or-content.png){width="78%" fig-align="center"}
 
 - **Not person-to-person — web browsing.** Is
   `searchengine.com/search?query=Stanford+map` metadata, or content?
@@ -167,6 +200,32 @@ orders before the Snowden disclosures made them public. The legal hook was Secti
 phone company's records, "knowingly divulged," so allegedly no warrant needed.
 :::
 
+## The Section 215 Exchange
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/XX-Surveillance.pptx slide 23 -->
+![The whole program in two arrows.](images/section-215-exchange.png){width="100%"}
+:::
+::: {.column width="38%"}
+- The government serves the carrier a **FISA business-records order**
+  (PATRIOT Act §215), approved by the FISC.
+- The carrier returns **all** call-detail records — not a target's, everyone's.
+- No individualized suspicion: the order names the *dataset*, not a person.
+- Third-party doctrine does the legal work: the records are the telco's, "knowingly
+  divulged."
+:::
+:::
+
+::: {.notes}
+Narrate the two arrows; the original built them one click at a time (order first,
+then the data coming back). The point to land is the direction and the scale: a
+single order flows out, the entire carrier's metadata flows back, renewed every
+90 days. Ask the room what "relevant to an investigation" can mean when the
+request is for everything. This is the picture to hold in mind when the USA
+FREEDOM reform on the next slides moves the database back to the carrier.
+:::
+
 ## How a Query Worked — and the USA FREEDOM Reform
 
 ::: {.columns}
@@ -191,6 +250,62 @@ huge population because of the social graph's structure (next section). USA
 FREEDOM moved storage back to carriers and narrowed queries, but the count on the
 slide (~25k per query, even after filtering high-degree numbers) shows reform
 narrowed but did not eliminate the dragnet effect.
+:::
+
+## Inside the Query Pipeline {.smaller}
+
+::: {.columns}
+::: {.column width="58%"}
+<!-- recovered from ppt-archive/XX-Surveillance.pptx slide 24 -->
+![The post-USA FREEDOM pipeline: raw records, a seed, two hops, a corporate store.](images/usa-freedom-query-pipeline.png){width="100%"}
+:::
+::: {.column width="42%"}
+- **Raw data** is retained for **18 months** (dashed box: at the carrier after
+  USA FREEDOM).
+- An analyst's **targeting** request needs a **RAS** finding — "reasonable,
+  articulable suspicion" — recorded in the station table.
+- The seed is expanded **2 hops** through the graph; the result lands in the
+  **corporate store**.
+- Once there, it is queried under the broader **foreign-intelligence** standard,
+  not the counter-terrorism one that justified the seed.
+:::
+:::
+
+::: {.notes}
+Walk it as a flow: records arrive on the top left and sit for 18 months; an
+analyst on the bottom left gets a RAS approval and a seed; the two branches merge
+into the "2 hops" expansion; the output is written to the corporate store on the
+right, where it can be analyzed and distributed. The two stamps are the teaching
+point: the seed is justified as counter-terrorism, but everything in the corporate
+store is thereafter searchable for foreign intelligence generally. That standard
+shift, plus the hop expansion on the next slide, is why one seed becomes tens of
+thousands of people. The "Station Table" label is clipped on the original slide
+too; it is the log of RAS-approved selectors. Static image; no build.
+:::
+
+## Why Two Hops Explode {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/XX-Surveillance.pptx slide 28 (embedded figure) -->
+![Each hop multiplies the population by the typical degree *d*.](images/slide028_img014.png){width="100%"}
+:::
+::: {.column width="45%"}
+- One seed; after one hop, **d** contacts; after two, **d²**; after *h*, **dʰ**.
+- With d ≈ 100 ordinary contacts, two hops is already **~10,000** people.
+- If any node on the path is a **hub** (next slide), d jumps to 10⁶–10⁷.
+- The pre-2015 limit was **three** hops: d³ from one seed.
+:::
+:::
+
+::: {.notes}
+Simple geometric growth, but students rarely do the arithmetic. Have them: a
+hundred contacts each with a hundred contacts is ten thousand people from one
+suspect, and that assumes no hubs. The next slide shows the real degree
+distribution is heavy-tailed, so the expectation is dominated by the hubs; that is
+why the popular-number filter exists and why ~25,000 subscribers per query survive
+even the reformed program. The picture is from the MetaPhone paper's framing of the
+problem (Mayer, Mutchler, Mitchell, PNAS 2016).
 :::
 
 # What Can You Learn From Metadata? {.center}
