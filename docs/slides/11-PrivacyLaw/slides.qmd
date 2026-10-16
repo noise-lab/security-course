@@ -163,6 +163,38 @@ policies. Connect forward: the FTC's deception theory exists precisely
 because the gap between promise and practice is where the harm lives.
 :::
 
+## The Model FIPPs Assumed: Records and Joins {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/11-PrivacyLaw.pptx slide 17 -->
+![](images/records-join-model.png){width="100%"}
+:::
+::: {.column width="45%"}
+- A computer **stores** a record and hands it back later
+- Each field **means what it says** — a name is a name, a ZIP is a ZIP
+- The only "processing" is a **join**: match two records on an ID
+- So FIPPs guard the **record** — notice, access, correction, security
+:::
+:::
+
+This is the 1973 picture of computing. The next slide asks what breaks when
+it stops being true.
+
+::: {.notes}
+Static figure recovered from the original deck; walk it left to right. Two
+tables, each keyed by an ID — one holds some data about you, the other holds
+more. The arrows are the only operation the 1970s model imagined: a join on
+the key, producing one wider record. Three assumptions ride along. The data
+sits still until someone retrieves it. Its meaning is evident on its face —
+no interpretation needed. And the harm model is linkage: if a bad actor can
+join these two rows, they learn more than either row revealed. Every FIPP
+makes sense against this picture — notice tells you a row exists, access
+lets you read it, correction fixes a wrong field, security locks the table.
+Then point to the next slide: today's systems query, infer, and generate
+conclusions you never wrote down anywhere, and the join is the least of it.
+:::
+
 ## Re-Examining FIPPs in the Age of Inference {.smaller}
 
 FIPPs assume a world that no longer exists:
