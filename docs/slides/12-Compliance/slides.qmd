@@ -267,6 +267,28 @@ or Share My Personal Information," "Your Privacy Choices") is what makes this
 automatable at all — a vague statute would defeat the whole method.
 :::
 
+## Method: Two Ways to Find the Link
+
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 12 -->
+![Keyword-matching pipeline (Tran et al.)](images/method-keyword-pipeline.png){width="88%"}
+
+- Render each site from each vantage point, then search for the statutory keywords
+  **two ways**: in the raw **page source** and **on the rendered page** (screenshot + OCR)
+- Each path produces its own keyword hits; the two lists are **compared**, and
+  disagreements go to a human
+- Why both? Some links exist only in the rendered DOM; others only in the source
+
+::: {.notes}
+Walk the picture left to right; the original built it in three clicks, so narrate
+the stages: render, then the two parallel search paths, then the comparison. The
+top path greps the HTML for the statutory phrases; the bottom path screenshots the
+rendered page and OCRs it. They disagree surprisingly often — a footer link injected
+by a consent-management script is invisible in the source, and a link hidden by CSS
+is invisible on screen — which is why the reconciliation step exists. Cold-call: if
+you could only afford one path, which would you pick, and what kind of site would you
+systematically miss?
+:::
+
 ## RQ1: Compliance Is Rising — but Incomplete
 
 ![Websites showing each opt-out link wording, CA vantage point, N=1016 (Tran et al.)](images/slide017_img023.png){width="70%"}
@@ -313,6 +335,32 @@ CPRA? Options — vendor template hasn't been updated, no compliance staff, or a
 deliberate calculation that enforcement is unlikely.
 :::
 
+## RQ2 as a Decision Tree {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 20 -->
+![Appearance-rule compliance tree, CA vantage point, July 2023 (Tran et al.)](images/rq2-compliance-tree.png)
+:::
+::: {.column width="38%"}
+- Start with **428** sites showing any opt-out link
+- First split is **wording**: 178 + 108 use a compliant phrase; 142 do not
+- Then **placement** (7 outside header/footer) and the **icon** (46 missing)
+- Green leaves: 171 + 62 = **233** fully compliant, so **195 (~45%)** fail somewhere
+:::
+:::
+
+::: {.notes}
+Static version of the previous slide's numbers, so students can see how the 45%
+is computed rather than take it on faith. Walk the tree top down: wording first,
+because the outdated "Do Not Sell" phrase alone knocks out 141 sites; then the
+placement rule for the "Do Not Sell or Share" branch; then the icon rule for the
+"Privacy Choices" branch. Only the two green leaves survive every test. Point out
+that each test is cheap and mechanical — that is why a crawler can do it — and
+that none of them says anything about whether the link works. Cold-call: which
+single rule change would move the most sites into the green?
+:::
+
 ## RQ3: Spillover to Other States {.smaller}
 
 ::: {.columns}
@@ -342,6 +390,29 @@ the site may reject the request on residency grounds once submitted. That gap is
 exactly what Study 2 investigates.
 :::
 
+## GPC Support: Disclosed by About a Quarter of Sites {.smaller}
+
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 24 -->
+![Opt-out link vs. GPC support disclosed in the privacy policy, N=911 (Tran et al.)](images/gpc-support-table.png){width="70%"}
+
+- **205** sites offer a link *and* say they honor GPC; **34** honor GPC with no link at
+  all (a legal path post-CPRA); **223** offer only the link; **449** offer neither
+- GPC support here is read from the **privacy-policy disclosure**, not by sending the
+  signal, so this measures what sites *claim*, not what they *do*
+- Per-site clicking is still the only route on most of the web
+
+::: {.notes}
+This is the measurement behind the GPC slide earlier in the deck. Add the rows:
+239 of 911 sites disclose honoring GPC, about 26%; 428 show a link, matching the RQ2
+denominator. The 34 GPC-only sites are interesting because they are compliant
+without any visible link — CPRA allows the frictionless signal as a substitute. The
+449 with neither are the RQ4 population. Stress the caveat: this is disclosure, not
+behavior; actually sending the GPC header and watching whether tracking changes is
+a different experiment, and it is exactly what the Disney settlement turned on.
+Cold-call: how would you design the experiment that checks whether a disclosed GPC
+promise is kept?
+:::
+
 ## RQ4: 30% of Covered Sites Have No Link {.smaller}
 
 ![Opt-out link presence by likely-covered category (Tran et al.)](images/slide026_img028.png){width="85%"}
@@ -363,6 +434,34 @@ in the privacy policy behind an email or phone number, which arguably fails the
 willful evasion and honest oversight are often indistinguishable. Cold-call: if you
 were a state AG with 20 investigators, how would you pick which 30 sites to open
 files on out of these 147? That is the concrete enforcement-triage question.
+:::
+
+## RQ4: Why Is the Link Missing? {.smaller}
+
+::: {.columns}
+::: {.column width="58%"}
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 27 -->
+![Reasons for potential non-compliance among the 147 likely-covered sites with no link (Tran et al.)](images/rq4-noncompliance-reasons.png)
+:::
+::: {.column width="42%"}
+- **43** say they "don't sell" — a pre-CPRA defense that CPRA's *sharing* language closes
+- **41** never mention CCPA; **6** mention it but give no method
+- **37** bury the method in the privacy policy (email, phone, form), which fails the
+  header/footer rule
+- **12** added the link late in the window
+:::
+:::
+
+::: {.notes}
+The table behind the previous slide's "varied and ambiguous." Walk the top three
+rows, which cover most of the 147. "Does not sell" was a plausible exemption under
+the 2020 CCPA, but CPRA extended the opt-out to sharing for cross-context behavioral
+advertising, which nearly every ad-supported site does — so most of those 43 are
+probably wrong about their own status. The 41 that never mention CCPA are either not
+covered or not paying attention; from outside you cannot tell. The 37 with a method
+buried in the privacy policy are the most interesting enforcement target: they are
+trying, but the statute requires a link in the header or footer. Cold-call: of these
+seven rows, which would you prioritize as a regulator with limited staff, and why?
 :::
 
 # Study 2: Dark Patterns in the Opt-Out Process {.center}
@@ -420,6 +519,35 @@ for eight full weeks is what lets the researchers measure the difference between
 "submitted" and "actually resolved."
 :::
 
+## Method: How Each Attempt Was Labelled {.smaller}
+
+::: {.columns}
+::: {.column width="42%"}
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 43 -->
+![Data collection and labelling process (Tran et al.)](images/labelling-process.png){width="88%"}
+:::
+::: {.column width="58%"}
+- **Team member 1** exercises the opt-out and answers a questionnaire: labels derived
+  from *experience*
+- The evidence (screenshots, page source, user actions) goes to **team member 2**, who
+  labels from the *screenshots alone*
+- The two label sets are **compared**; conflicts go to a **third member** for adjudication
+- Why it matters: "is this a dark pattern?" is a judgment call, and two independent
+  raters plus adjudication is what makes the counts defensible
+:::
+:::
+
+::: {.notes}
+Walk the three colored bands top to bottom. Blue: the person doing the opt-out
+collects evidence as they go and records their own labels. Green: a second person
+who never touched the site labels the same case from the screenshots. Purple: the
+labels are compared; agreement goes straight to final, disagreement is resolved by
+a third person. This is standard inter-rater practice from qualitative research
+applied to a measurement study, and it is the answer to the obvious objection that
+dark-pattern judgments are subjective. Cold-call: which kinds of dark pattern would
+you expect the screenshot-only rater to miss?
+:::
+
 ## Opt-Out Control Methods
 
 - **Browser opt-out** — toggle off sale/sharing; **no personal info** required
@@ -443,6 +571,54 @@ OneTrust or a similar vendor to be compliant and are still out of compliance —
 misconfiguration, no functional testing, corner-case dark patterns baked into the
 vendor UI. The EU analogue is IAB Europe's Transparency and Consent Framework,
 itself found unlawful by the CJEU in 2024.
+:::
+
+## How Many Clicks to Opt Out? {.smaller}
+
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 53 -->
+![Clicks required to submit an opt-out request, by control method, N=292 (Tran et al.)](images/clicks-by-control-method.png){width="95%"}
+
+- **Browser opt-out:** two or three clicks almost always; a toggle in a pop-up
+- **Opt-out form:** three to eleven clicks is typical, with a tail out to **14**
+  (identity fields, confirmation emails, extra pages)
+- **Both methods:** mode at eight clicks; the form path dominates
+- Opting *in* to tracking is usually **one** click ("Accept all"); that asymmetry is
+  the §7004 "symmetry in choice" test
+
+::: {.notes}
+Three histograms, same axes, so the shapes are comparable. The browser-toggle
+distribution is tight at two or three clicks; the form distribution is wide and
+shifted right; the "both" distribution is wider still because the form path sets the
+floor. Ask what a 14-click opt-out looks like in practice: find the footer link,
+open the portal, choose request type, fill five fields, solve a CAPTCHA, confirm by
+email, log in again. Then ask how many clicks the same site's "Accept all cookies"
+button takes. The regulation's "symmetry in choice" language is aimed precisely at
+that gap. Cold-call: should the law set a maximum click count, and what would
+sites do in response?
+:::
+
+## Scoring Each Request {.smaller}
+
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 47 -->
+![Categorizing the outcome of each opt-out request (Tran et al.)](images/outcome-decision-flow.png){width="80%"}
+
+- Three questions per site: did the request **submit**? was a **follow-up** required
+  (email confirmation, identity check)? did the follow-up **complete**?
+- Two red leaves, **fail to submit** and **fail to fulfill**; one green leaf, **resolved**
+- The two-month follow-up window is what separates *submitted* from *resolved*; many
+  sites say "thank you" and go silent
+
+::: {.notes}
+This is the decision procedure behind the failure taxonomy on the next slide.
+Walk it left to right. If the request never submits, that is the first red box:
+malfunctioning page, offline steps, instructions only. If it submits and nothing
+more is required, it resolves immediately: the browser-toggle case. If a follow-up
+is required, the clock starts: confirmation link, identity documents, a second
+form. Only a completed follow-up counts as resolved; an unanswered one after two
+months is "fail to fulfill." Emphasize that the researchers had to wait eight weeks
+per site to make this determination, which is why nobody does this at scale.
+Cold-call: where in this flow would a site that silently honors the request but
+never confirms end up, and is that fair to the site?
 :::
 
 ## ~30% of Opt-Out Attempts Fail {.smaller}
@@ -483,6 +659,35 @@ before honoring an opt-out — asking for more personal data as the price of
 exercising a data-minimization right is the canonical use of compliance as a
 data-collection lever. Cold-call: which of these buckets is a §7004 violation,
 and which is legal but adversarial?
+:::
+
+## Which Failures Break the Law? {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 55 -->
+![Mapping opt-out outcomes to CCPA requirements (Tran et al.)](images/outcomes-vs-ccpa.png)
+:::
+::: {.column width="40%"}
+- **Likely violate:** malfunctioning page, offline steps, instructions only, required
+  login, incomplete; the statute requires a *working online* method
+- **May violate:** demanding unavailable info, pointing to an industry opt-out tool,
+  unanswered follow-ups
+- **Not a violation:** ambiguous status; the law does not require a receipt
+:::
+:::
+
+::: {.notes}
+Answers the cold-call from the previous slide. The top box is the clean case:
+the regulations require an online method that works, so a broken page or an
+"email us" instruction is a violation on its face. The middle box is where
+lawyers argue: requiring a driver's license may be "reasonable verification" or
+may be an obstruction; routing to the DAA or NAI industry tool may or may not count
+as the business's own method. The bottom box is the loophole: 35 sites whose
+status is simply unknown. Nothing in the statute obliges a site to tell you the
+request was honored, so silence is legal, and silence is also exactly what a
+non-compliant site would do. That is the enforcement gap in one diagram.
+Cold-call: should the law require a receipt, and what would that cost sites?
 :::
 
 ## Three Families of Dark Patterns {.smaller}
@@ -568,6 +773,58 @@ violations. One row just moved from "may violate" to "does violate." The
 unaddressed column — CAPTCHAs, ambiguous receipts, ambiguous toggles — is the
 statutory loophole; watch for the first case citing §7004 directly on those.
 Cold-call: which row do you think enforcement targets next?
+:::
+
+## How Common Are Dark Patterns? {.smaller}
+
+::: {.columns}
+::: {.column width="44%"}
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 64 -->
+![Dark patterns per site, N=292 (Tran et al.)](images/dark-pattern-count-histogram.png)
+:::
+::: {.column width="56%"}
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 65 -->
+![Prevalence of each dark pattern (Tran et al.)](images/dark-pattern-prevalence-table.png)
+:::
+:::
+
+**200 of 292 sites (68%)** use at least one. The leaders are **identity
+confirmation** (24%), **unclear request receipt** (21%), and the **privacy maze** (19%).
+
+::: {.notes}
+Left: the distribution. 92 sites have none, 86 have one, 60 have two, and a tail
+out to five. Right: the catalog, grouped by the three families from the taxonomy
+slide. The top three are worth naming: identity confirmation (prove who you are
+before we stop selling your data), unclear request receipt (did it work? nobody
+knows), and the privacy maze (the opt-out is somewhere in here). CAPTCHA, the
+example students argued about earlier, is rare at under 3%. Cold-call: the three
+leaders are all about *information* rather than visual trickery; what does that say
+about where regulation should focus?
+:::
+
+## The Vendor Irony in One Figure {.smaller}
+
+<!-- recovered from ppt-archive/12-Compliance.pptx slide 67 -->
+![Dark patterns per site, split by the third-party platform that serves the opt-out, N=292 (Tran et al.)](images/dark-patterns-by-vendor.png){width="95%"}
+
+- Of the 292 sites whose opt-out could be examined, **37%** use OneTrust, **7.5%**
+  another vendor, and **55%** built their own
+- Sites with **no vendor** cluster at zero or one dark pattern; **OneTrust** sites
+  cluster at **two**
+- Top OneTrust patterns: identity confirmation (35%), verified email (33%), privacy
+  maze (29%), baked into the default flow
+- Paying for compliance tooling is not compliance; vendor defaults and
+  misconfiguration are the mechanism behind the "third-party irony"
+
+::: {.notes}
+This is the single most surprising figure in Study 2, so give it a beat. Same axes
+across the three panels. The in-house sites are mostly at zero or one; the OneTrust
+sites have a hump at two and a longer tail. Nobody is accusing OneTrust of malice;
+the point is that the vendor's default request flow asks for identity confirmation
+and a verified email, and most customers never change the defaults. That is why
+the enforcement-gap slide calls it an irony: the site paid for compliance and got
+a worse opt-out than the site that wrote its own. Cold-call: who should the
+regulator fine, the site or the vendor, and what would each do differently?
 :::
 
 # Why Automated Compliance Is Hard {.center}
