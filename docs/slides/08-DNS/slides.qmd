@@ -97,6 +97,33 @@ traffic fingerprintable at the DNS layer. Ask: on a page you visited this
 morning, how many third-party domains do you think were resolved?
 :::
 
+## The Lookup in One Picture {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/08-DNS.pptx slide 5 (eavesdropper and callout overlays stripped) -->
+![](images/dns-lookup-walk.png){width="100%"}
+:::
+::: {.column width="38%"}
+- The **stub** on the client hands `www.foo.com ??` to the **local recursive resolver** and waits
+- The recursive walks the hierarchy: the **root** answers with the `.com` server, `.com` answers with `foo.com`'s server, `foo.com` answers with the address
+- Every arrow on the right is a **referral**, not an answer; only the last one carries `3.4.5.6`
+- The recursive **caches** the result and returns it; the next client behind it never leaves the left half of the picture
+:::
+:::
+
+::: {.notes}
+Walk the picture once, slowly, left to right; the original slide built each
+arrow on a click, so narrate it in that order. The stub asks one question and
+waits. The recursive asks the root, gets a referral to .com at 1.2.3.4, asks
+.com, gets a referral to foo.com's name server at 2.3.4.5, asks that, and only
+then gets the answer 3.4.5.6. Point at the single arrow back to the stub: that
+is all the client ever sees. Then point at the recursive: it saw everything,
+and it will keep the answer for the next client. This is the picture for the
+midterm "trace a lookup" question, and it is also the picture every later
+slide in this deck is drawn on.
+:::
+
 # Integrity: Can You Trust the Answer? {.center}
 
 ## The Problem: DNS Had No Authentication
@@ -196,6 +223,33 @@ full log of everything you look up? Do you trust them enough to publish it
 without anonymization? The intuitive answer is no, but until DoH landed,
 that log existed at every recursive resolver on the path. This grounds the
 transition to encrypted DNS.
+:::
+
+## Where the Eavesdroppers Sit {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/08-DNS.pptx slide 5 (final build state, callout stripped) -->
+![](images/dns-lookup-eavesdroppers.png){width="100%"}
+:::
+::: {.column width="38%"}
+- Same lookup as before, now with two observers: one **on the path** between the stub and the resolver, one **running the resolver** itself
+- Both read `www.foo.com ??` in the clear; the path observer also sees who asked, and the resolver sees who asked *and* every answer it hands back
+- Nothing on the right half is hidden either; the root, TLD, and authoritative servers each learn a slice of the question
+- Traffic monitoring and **fingerprinting** need no decryption at all; the names are the content
+:::
+:::
+
+::: {.notes}
+Same picture as the lookup walk, with the two spies the original slide dropped
+in on the last two clicks. Name them: the on-path observer (the coffee-shop
+Wi-Fi, the campus network, anyone tapping the link) and the operator of the
+recursive resolver (your ISP by default). Ask which one is worse. The path
+observer sees each query once; the resolver operator sees every query from
+every customer, keeps the answers in its cache, and can log all of it. Then
+point at the right half: QNAME minimization exists because even the root and
+TLD servers were seeing the full name. This is the picture the next three
+slides, on IoT devices and fingerprinting, are evidence for.
 :::
 
 ## Your Devices Announce Themselves
@@ -345,6 +399,41 @@ commitments, not technical guarantees). Ask: which is worse — the ISP that
 sees only its own customers, or the global resolver that sees a large
 fraction of the entire Web? There is no obvious right answer, which is
 exactly what makes it a policy question.
+:::
+
+## Before and After DoH, Drawn {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Before:** the ISP runs the recursive resolver
+
+<!-- recovered from ppt-archive/08-DNS.pptx slide 9 (on-path spy and callout stripped) -->
+![](images/dns-first-hop-adversary.png){width="100%"}
+:::
+::: {.column width="50%"}
+**After:** a third party runs it, over HTTPS
+
+<!-- recovered from ppt-archive/08-DNS.pptx slide 23 (callouts stripped) -->
+![](images/doh-third-party-resolver.png){width="100%"}
+:::
+:::
+
+- The two pictures differ in **one label**: the spy did not leave, it moved
+- The client's **IP address and its queries** are still visible, and still **coupled**, at whichever resolver answers
+- Encrypting the first hop removes the on-path observer; it does nothing about the resolver operator, who is now Cloudflare or Google instead of your ISP
+
+::: {.notes}
+Put the two pictures side by side and let the room notice that they are the
+same drawing with one label changed. Left: existing encrypted-DNS schemes
+protect the wire, but the ISP operates the resolver, so it still sees every
+customer's browsing. Right: DoH moves the resolver to a third party and
+encrypts the hop, so the on-path observer is gone, but the resolver still
+sees the client's IP address together with every name it asks. The original
+slide's three callouts, which are the bullets here, were: shifts trust from
+ISP to third party; IP address and domain names still visible and coupled;
+still vulnerable to monitoring and data requests. That last phrase, data
+requests, is the bridge to the centralization slide: one resolver with a
+near-complete log is one subpoena away from being a surveillance tool.
 :::
 
 ## On by Default — Do Users Know?
@@ -506,6 +595,37 @@ argument, and collusion between the proxy and the target is the only way
 to reassemble the linkage. Ask: what stops the proxy and the target from
 colluding? Answer: pick them from non-cooperating operators — same trust
 model as Tor guard-versus-exit.
+:::
+
+## Oblivious DNS in One Picture {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/08-DNS.pptx slide 27 (one state of the build; overlapping transient labels stripped) -->
+![](images/odns-query-exchange.png){width="100%"}
+:::
+::: {.column width="38%"}
+- The **stub** encrypts `www.foo.com` with the ODNS server's public key (the red key) and appends `.odns`
+- The **recursive resolver** sees the client's IP but only ciphertext; it forwards `{www.foo.com}.odns` like any other name
+- The **ODNS authoritative server** decrypts, walks root, TLD, and name server as usual, and sees the query but not the client
+- The answer `{3.4.5.6}` returns **encrypted** through the recursive; only the stub can open it
+:::
+:::
+
+::: {.notes}
+The original slide animated the whole exchange, label by label; this is one
+still frame with the labels placed where each message starts. Walk it left to
+right and back. Stub: encrypt the name under the ODNS server's key, append
+.odns, hand it to the normal recursive. Recursive: sees the client's IP and a
+blob ending in .odns, resolves .odns to the ODNS authoritative server, and
+forwards. ODNS server: decrypts, resolves www.foo.com through root, TLD, and
+name server exactly as the lookup-walk picture showed, encrypts 3.4.5.6, and
+sends it back. Recursive: forwards the encrypted answer it cannot read. Stub:
+decrypts. Then say the property out loud: the recursive knows who but not
+what; the ODNS server knows what but not who. Collusion between the two is the
+only way to recombine them. This is the design Cloudflare shipped as
+Oblivious DoH with the recursive renamed "proxy" and the ODNS server renamed
+"target".
 :::
 
 ## From Rejected Idea to Deployed Standard
