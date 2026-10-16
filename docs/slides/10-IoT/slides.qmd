@@ -81,6 +81,32 @@ problem. Ask: if you wanted to know what your neighbor's smart speaker was
 doing tonight, how would you find out without breaking any laws?
 :::
 
+## Four Ways to Study IoT, Compared {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/10-IoT.pptx slide 100 -->
+![](images/iot-study-approaches.png){width="100%"}
+:::
+::: {.column width="38%"}
+- **Web & mobile** research gets all three — scale, active probing, passive traffic — because crawlers and app stores exist
+- **Lab studies** of IoT go deep but never scale past the devices on the bench
+- **Internet scanning** scales, but sees only exposed devices and never the passive traffic behind NAT
+- **Crowdsourcing** keeps probing and passive capture; whether it *scales* is the open question IoT Inspector was built to answer
+:::
+:::
+
+::: {.notes}
+Static capture of the original build; walk the table a row at a time rather
+than column by column. Scale: web and mobile have crawlers and app stores,
+lab studies stop at the bench, Internet scanning scales but only over what is
+exposed, and crowdsourcing's scale is the open question. Active probing: every
+approach can poke a device. Passive traffic from real homes is what only the
+lab and crowdsourcing see, and only crowdsourcing sees it at scale. The
+question mark in the crowdsourcing cell is the research bet of IoT Inspector,
+answered two slides on with 5,000 users and 50,000 devices.
+:::
+
 # Part 1: Web-Based Attacks on Local Devices {.center}
 
 ## Many IoT Devices Run an Unauthenticated Web Server
@@ -132,6 +158,33 @@ work there. This is the lateral, "stepping-stone" pattern: browser used as
 LAN reconnaissance tool with no malware installed on the victim's machine.
 :::
 
+## Attack 1 in One Picture: Timing the LAN Scan {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/10-IoT.pptx slide 7 -->
+![](images/lan-scan-timing.png){width="100%"}
+:::
+::: {.column width="40%"}
+- The malicious page already knows its own address, `192.168.6.6`, from the WebRTC leak
+- It fires a `fetch()` at every neighbor; each becomes a **TCP SYN to port 81**
+- A live host (`.88`, the smart plug) answers **at once**, with a RST or a SYN-ACK
+- An empty address (`.89`) answers **nothing**; the request hangs until the browser gives up — the "?" is the wait, and the wait is the side channel
+:::
+:::
+
+::: {.notes}
+Recovered from the original deck; the picture is static, so narrate the two
+arrows. The page knows it is 192.168.6.6 from WebRTC and sends a fetch to each
+address on the subnet, which the browser turns into a SYN to port 81. The live
+plug at .88 answers immediately (RST if the port is closed, SYN-ACK if open);
+the empty .89 never answers, so the fetch hangs until timeout. Fast failure
+means a host is there, slow failure means nothing is. No response body is ever
+read, so the same-origin policy never gets a say. This is port scanning with
+the victim's own browser as the scanner; ask what a router could do about it
+(nothing: it is all local traffic).
+:::
+
 ## Attack 2: DNS Rebinding to Control Devices {.smaller}
 
 The discovery side channel only *reads*. To **send commands**, the attacker fully bypasses
@@ -161,6 +214,38 @@ Chromecast — arbitrary YouTube playback, reboot, Wi-Fi scanning. Fix classes
 to name: DNS pinning, rejecting private IPs in public DNS responses, Host
 header allow-listing on the device, and Chrome's Private Network Access. Ask
 the room: why did the same attack work 22 years after publication?
+:::
+
+## DNS Rebinding in Two Pictures {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/10-IoT.pptx slide 17 (later HTTP overlay stripped) -->
+![](images/dns-rebinding-short-ttl.png){width="100%"}
+
+**Before:** the browser resolves `attacker.com`; the attacker's own nameserver answers `6.6.6.6` with a **1-second TTL**
+:::
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/10-IoT.pptx slide 22 -->
+![](images/dns-rebinding-rebound.png){width="100%"}
+
+**After:** the record expired and was re-answered as `192.168.6.88`; the page's next `GET /setup.xml` to "`attacker.com`" lands on the **smart plug**, which answers `200`
+:::
+:::
+
+- Same hostname, same origin, different IP: the SOP is satisfied and the device is wide open
+
+::: {.notes}
+Two static captures of the original build: narrate left, then right. Left:
+the browser asks attacker.com's authoritative server and gets 6.6.6.6 with
+TTL 1, so the record is discarded almost immediately; the page loads from the
+attacker's web server and starts polling. Right: on the next lookup the same
+nameserver answers 192.168.6.88, so "attacker.com" now means the smart plug;
+GET /setup.xml goes straight to the device, comes back 200, and the page can
+read it because its origin never changed. The SOP keys on the hostname, the
+network keys on the IP, and the attacker controls the mapping between them.
+Defenses to name: DNS pinning, refusing private addresses in public answers,
+Host-header checks on the device, Chrome's Private Network Access.
 :::
 
 ## Why These Attacks Matter
@@ -255,6 +340,56 @@ from an attack, what makes it acceptable to run — is it the intent, the
 consent, or the design?
 :::
 
+## ARP Spoofing, Pictured {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/10-IoT.pptx slide 105 -->
+![](images/arp-spoof-house.png){width="100%"}
+:::
+::: {.column width="45%"}
+- The laptop running IoT Inspector sends two **unsolicited ARP replies**
+- To the **router**: "the lightbulb's IP is at *my* MAC address"
+- To the **lightbulb**: "the router's IP is at *my* MAC address"
+- Both now forward through the laptop (green dashed links), which records and relays every packet — and it does the same for the camera and any other device
+- ARP has **no authentication**, so neither side can tell the difference
+:::
+:::
+
+::: {.notes}
+Recovered from the original deck; the two callouts appeared on successive
+clicks, so say them in order. To the router: the lightbulb's IP is at my MAC.
+To the lightbulb: the router's IP is at my MAC. Both now forward through the
+laptop, which records and relays; the green dashed lines are the new paths,
+and the same trick is played on the camera and every other device the user
+selects. ARP (RFC 826) has no authentication, so neither side can tell. It is
+the same primitive an attacker would use, run with the owner's consent on the
+owner's network. Ask what it would take to make ARP safe (static tables,
+802.1X, DHCP snooping on a managed switch) and why none of that exists on a
+home router.
+:::
+
+## Inferring the Inbound Rate from ACK Numbers {.smaller}
+
+<!-- recovered from ppt-archive/10-IoT.pptx slide 107 -->
+![](images/tcp-ack-inference.png){width="74%" fig-align="center"}
+
+- Some routers ignore the spoofed ARP, so IoT Inspector sees the camera's **outbound** packets but never the **inbound** ones
+- Every outbound TCP segment still carries an **ACK number**: how many bytes the camera has received so far
+- Ack 1 → Ack 51 means **50 inbound bytes** arrived in between; Ack 51 → Ack 72 means **20 more**. Difference the ACKs over time and you have the inbound rate without seeing a single inbound packet
+
+::: {.notes}
+Recovered from the original deck; the braces on the right built up one at a
+time. Some routers accept the spoofed ARP in one direction only, so the tool
+sees what the camera sends (green) but not what it receives (orange). Every
+outbound TCP segment carries the camera's cumulative ACK number: Ack 1 to
+Ack 51 means 50 inbound bytes arrived in between, Ack 51 to Ack 72 means 20
+more. Differencing the ACKs over time gives the inbound data rate with no
+inbound packets at all. It misses UDP and is coarse, but it is enough for the
+bandwidth graph in the dashboard. Quick refresher on sequence and
+acknowledgment numbers if the room needs it.
+:::
+
 ## What Devices Talk To {.smaller}
 
 ![A user's Roku, 20 minutes of traffic: every color is a different ad/tracking destination.](images/slide110_img182.png)
@@ -302,6 +437,29 @@ weak cipher suites, plenty of plaintext still in the wild. Segue: to know
 what leaks (not just to whom), you need to decrypt — which motivates the
 lab study on the next slide. Ask the room: which of these findings is a
 security problem, which is a privacy problem, and which is both? Most are both.
+:::
+
+## Ineffective Encryption, by Vendor {.smaller}
+
+<!-- recovered from ppt-archive/10-IoT.pptx slide 113 -->
+![](images/weak-tls-by-vendor.png){width="68%" fig-align="center"}
+
+- IoT Inspector records each device's **TLS ClientHello**, so it knows which protocol versions and ciphers the device *offers*
+- Dozens of devices from each big vendor still offered **TLS 1.0**; five Amazon devices offered **SSL 3.0**, deprecated in 2015
+- **RC4**, broken since 2002, was offered by 397 of 614 Amazon devices and 80 of 148 Samsung devices
+- Big-vendor branding is no guarantee of current crypto: the firmware on the shelf is years behind the browser on your laptop
+
+::: {.notes}
+Recovered from the original deck; no build. IoT Inspector records the TLS
+ClientHello, so this is what each device offers before any negotiation:
+TLS 1.0 from 31 Google, 67 Amazon, and 41 Samsung devices; SSL 3.0 from five
+Amazon devices, deprecated in 2015 after POODLE; RC4, broken since 2002,
+offered by 397 of 614 Amazon devices and 80 of 148 Samsung devices. Be
+precise: offered, not necessarily negotiated. A server that refuses RC4
+protects the device anyway, but a device that offers it is one downgrade away
+from using it. Brand is no proxy for crypto hygiene. Segue to the lab study:
+to know what is inside those connections you have to decrypt them, which is
+the next part.
 :::
 
 # Part 3: What Your TV Tells On You {.center}
@@ -356,6 +514,54 @@ findings on the next slide. The methodological point matters: measurement
 studies live and die on how believable the coverage numbers are.
 :::
 
+## The Crawler Rig {.smaller}
+
+::: {.columns}
+::: {.column width="58%"}
+<!-- recovered from ppt-archive/10-IoT.pptx slide 124 -->
+![](images/tv-crawler-rig.png){width="100%"}
+:::
+::: {.column width="42%"}
+- The laptop plays the **viewer**: remote-control commands go to the Roku or Fire TV over the platform's developer interface
+- The TV's **HDMI output** goes into a capture card, which feeds video and audio back over USB — that is how the crawler *sees* and *hears* what a channel does
+- The stick's **network traffic** is routed through the laptop, so every packet is captured
+- Three feedback loops a web crawler gets for free, rebuilt from hardware
+:::
+:::
+
+::: {.notes}
+Recovered from the original deck; the arrows appeared one build step at a
+time, so trace them: remote-control commands down to the stick, HDMI out to
+the capture card, video and audio back over USB, network traffic through the
+laptop. A web crawler gets the DOM, screenshots, and a network log for free;
+for a device with no automation API all three had to be rebuilt from
+hardware. The capture card is the key piece: without it the crawler is blind
+and deaf and cannot tell whether a channel ever played anything, which is
+what the next slide measures.
+:::
+
+## Audio as the Playback Oracle {.smaller}
+
+<!-- recovered from ppt-archive/10-IoT.pptx slide 129 -->
+![](images/audio-playback-oracle.png){width="85%" fig-align="center"}
+
+- No API says "a video is playing," so the crawler **listens**: five seconds of audio on the HDMI capture means playback
+- On Roku, audio was detected in **62%** of channel visits; a manual check of a sample found **96%** of those were real playback (the rest false positives)
+- Of the **38%** with no audio, about three quarters were channels the brute-force navigation got **stuck** in; the rest simply had **no video**
+- The coverage number is the honest part of the method: it says how much of the ecosystem the findings can speak for
+
+::: {.notes}
+Recovered from the original deck; the lower boxes appeared on successive
+clicks. There is no API that says a video is playing, so the crawler listens
+for five seconds of audio on the HDMI capture. On Roku, audio was detected in
+62% of visits; a manual sample found 96% of those were real playback. Of the
+38% with no audio, about three quarters were channels the brute-force
+navigation got stuck in and the rest had no video to play. The honest
+coverage number is what makes the tracker percentages on the later slides
+believable. Ask what a channel could do to fool this oracle (silent video, a
+menu with background music) and why no channel bothers.
+:::
+
 ## Almost Every Channel Talks to a Known Tracker
 
 ![Top tracking domains by channel count — Roku (left) and Fire TV (right).](images/slide079_img142.png)
@@ -401,6 +607,32 @@ IoT breakout. Debate hook: is a $170M fine a deterrent, a cost of doing
 business, or a subsidy for a regulator?
 :::
 
+## Child-Directed Channels That Leaked Persistent IDs {.smaller}
+
+::: {.columns}
+::: {.column width="58%"}
+<!-- recovered from ppt-archive/10-IoT.pptx slide 138 -->
+![](images/child-channel-leaks.png){width="100%"}
+:::
+::: {.column width="42%"}
+- Of the crawled channels, **470** on Roku and **220** on Fire TV sat in the platforms' own **kids** categories
+- **34** and **23** of those sent a **persistent identifier** (Ad ID, Android ID, serial number) to a third party during a single video play
+- Small absolute numbers, but each is a COPPA question: no parental consent was ever asked for
+- The team took these findings to the FTC; the YouTube settlement on the previous slide is the price of the same conduct on the web
+:::
+:::
+
+::: {.notes}
+Recovered from the original deck; no build. Of the crawled channels, 470 on
+Roku and 220 on Fire TV sat in the platforms' own kids categories; 34 and 23
+of those sent a persistent identifier to a third party during one video play,
+with no parental consent asked. The original slides say the team was
+"working with the FTC for further investigations." Small absolute numbers,
+but COPPA is strict about consent, and the platform's own category label is
+what makes a channel child-directed. The YouTube $170M settlement on the
+previous slide is the price of the same conduct on the web.
+:::
+
 ## The Opt-Outs Don't Really Work
 
 Both platforms offer a privacy toggle — Roku's **"Limit Ad Tracking,"** Amazon's
@@ -427,6 +659,29 @@ or on the platform/regulator (defaults plus enforcement)? Cross-reference the
 IoT debate directly — this is the framing question. Tie to the privacy-law
 unit: this is exactly the argument the CCPA GPC requirement was designed to
 answer. Individual self-help has sharp limits when the platform is hostile.
+:::
+
+## What the Toggles Actually Changed {.smaller}
+
+<!-- recovered from ppt-archive/10-IoT.pptx slide 145 -->
+![](images/limited-ads-table.png){width="76%" fig-align="center"}
+
+- The crawl was repeated with Roku's **"Limit Ad Tracking"** and Amazon's **"No interest-based ads"** switched on
+- Roku's toggle did one thing well: channels sending the **Ad ID** went from 30% to **0%**. Channels sending the **serial number** barely moved, 14% to 13%
+- On Fire TV, Ad-ID sharing halved (35% to 16%), but the **Android ID** still left from 65% of channels, and serial numbers and MAC addresses were untouched
+- The toggle governs the one identifier the platform controls; it cannot reach the **hardware identifiers** channels pick up on their own
+
+::: {.notes}
+Recovered from the original deck; no build. The crawl was repeated with the
+two toggles on. Roku's Ad-ID sharing went from 30% to 0%, which is the one
+thing the toggle does well, but serial-number sharing barely moved, 14% to
+13%. On Fire TV, Ad-ID sharing halved, 35% to 16%, while the Android ID still
+left from 65% of channels and serial number and MAC address were untouched.
+The toggle governs the one identifier the platform mints and can reset; it
+cannot reach the hardware identifiers that channels and their SDKs read for
+themselves, and those are the ones that cannot be reset. This is the
+technical core of the "opt-outs are theater" argument on the previous slide
+and the hook for the debate.
 :::
 
 ## A 2026 Vignette: States Go After Your TV {.smaller}
