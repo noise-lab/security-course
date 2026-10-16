@@ -59,6 +59,32 @@ case.
 
 The browser's foundational isolation rule.
 
+## A Page Load, One Request at a Time {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 9 -->
+![](images/http-page-load.png){width="100%"}
+:::
+::: {.column width="40%"}
+- The browser sends `GET /` with a `Host:` header; the server answers with **HTML**
+- That HTML contains a `<script>`, which the browser **runs**, and an `<img>`, which
+  triggers a **second request** to the same server
+- The page you see is assembled from several round trips, each one a chance for
+  a **different origin** to get involved
+- Every diagram that follows uses this vocabulary: green = request, blue = response
+:::
+:::
+
+::: {.notes}
+Recovered static figure; the original built arrow by arrow, so walk it in
+order: request, HTML response, the alert from the inline script, then the
+image request and the PNG bytes coming back. The point to land is that a
+"page" is not one thing the server sends — it is a program the browser
+assembles from pieces, and the next slides ask what happens when those
+pieces come from different origins.
+:::
+
 ## Browser Security: The Goal
 
 - A page from one site must not **spy on or tamper with** your data on another site
@@ -142,6 +168,34 @@ allowed action to a common web pattern; the blocked column is where the
 security promise actually lives.
 :::
 
+## SOP in One Picture: A Cross-Origin Read, Blocked {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 12 -->
+![](images/sop-cross-origin-read-blocked.png){width="100%"}
+:::
+::: {.column width="40%"}
+- You load a page from an **evil** `facebook.com`; its script asks for
+  `https://gmail.com/msgs.json`
+- The browser **sends** the request to gmail.com, with your Gmail cookie attached,
+  and gmail.com answers `{ new_msgs: 3 }`
+- SOP stops the facebook.com script from **reading** that answer: the request
+  went out, the response never reaches the script
+- This is the "allowed to send, forbidden to read" rule from the previous slide,
+  drawn
+:::
+:::
+
+::: {.notes}
+Walk the four arrows top to bottom; the original animated them one at a
+time. Make the subtle point explicit: the request to gmail.com really is
+sent, and gmail.com really does answer, cookie and all. The red X is on the
+*read*, inside the browser. Students who get this picture understand both
+why CSRF works later (the send is enough) and why XSS matters (it moves the
+script inside the origin so the read is allowed).
+:::
+
 ## Two Subtleties That Trip People Up
 
 ::: {.columns}
@@ -180,6 +234,62 @@ willing to execute. Flag this for the privacy/supply-chain lectures later
 in the term. The iframe boundary on the right is what makes embedded login
 widgets and payment frames safe-ish — the parent cannot reach in, the child
 cannot reach out.
+:::
+
+## Subtlety 1, Drawn: A Script Loaded From Another Origin {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 16 -->
+![](images/sop-script-embedding-origin.png){width="100%"}
+:::
+::: {.column width="40%"}
+- The facebook.com page says `<script src="https://gmail.com/chat.js">`
+- The browser fetches `chat.js` **from gmail.com** and runs it, no questions asked:
+  loading a cross-origin script is allowed
+- But the script runs **as facebook.com**, the page that embedded it, not as
+  gmail.com, where it came from
+- So when `chat.js` calls `$.get("https://gmail.com/chat.json")`, that read is
+  **blocked**, exactly like the previous picture
+:::
+:::
+
+::: {.notes}
+The original deck followed this slide with one more showing the red X on
+the chat.json response; narrate that ending rather than showing it. The
+question to ask the room: "what origin is chat.js running under?" Most say
+gmail.com because that is where it was fetched from. The answer is
+facebook.com, and that is the whole CDN story: a script you load from a
+CDN runs with your page's privileges, which is why a compromised CDN
+(Polyfill.io, June 2024) owns every page that embedded it.
+:::
+
+## Subtlety 2, Drawn: An iframe Keeps Its Own Origin {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 19 -->
+![](images/sop-iframe-own-origin.png){width="100%"}
+:::
+::: {.column width="40%"}
+- The facebook.com page embeds `<iframe src="https://gmail.com/chat">`
+- The browser fetches `/chat` from gmail.com and renders it **inside** the page,
+  as its own document with origin gmail.com
+- The script inside that frame calls `$.get("https://gmail.com/chat.json")`,
+  and this time it **succeeds**: same origin as the frame
+- The outer facebook.com page cannot read into the frame, and the frame cannot
+  read the outer page
+:::
+:::
+
+::: {.notes}
+Contrast with the previous slide: same two servers, same chat.json request,
+opposite outcome, and the only difference is the tag. A script tag merges
+the code into the embedding page's origin; an iframe keeps a separate
+document with its own origin. That separation is what makes embedded
+payment frames and login widgets defensible. Set up the XSS section with:
+"so what if the attacker could get their script *into* the gmail.com
+frame?"
 :::
 
 # Code Injection {.center}
@@ -362,6 +472,34 @@ output context was HTML without escaping for that context. Bridge: the
 attack.
 :::
 
+## Reflected XSS, Drawn: The Lure and the Echo {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 30 -->
+![](images/xss-reflected-lure.png){width="100%"}
+:::
+::: {.column width="40%"}
+- The attacker sends you a link whose query string **is a script**:
+  `vuln.com/?user=<script>alert('XSS')</script>`
+- vuln.com's PHP echoes `$_GET["user"]` straight into the page
+- Your browser receives `Hello, <script>alert('XSS')</script>!` and runs it,
+  **as vuln.com**
+- The alert box is the proof of concept; the next slides swap it for a payload
+  that reads your data
+:::
+:::
+
+::: {.notes}
+Static version of a three-step build: the lure at the bottom, then the
+request, then the echoed response and the alert. Emphasise where the
+attacker's bytes travel: from the email, into the URL, through the
+server's string concatenation, back into the victim's browser. The server
+never "ran" anything; it just failed to escape. Ask: who is the victim
+here, the user or vuln.com? Both, which is why the next slide's version
+matters.
+:::
+
 ## Why XSS Is So Dangerous: It Defeats SOP {.smaller}
 
 SOP **blocks** evil.com from reading gmail.com. But XSS doesn't break SOP — it
@@ -387,6 +525,60 @@ under?" question from earlier: the injected script's origin is the victim
 site's, so SOP correctly grants it every privilege of that origin. The
 browser cannot tell the script was injected — it just sees HTML from
 gmail.com. Ask: how would a defender detect this at runtime?
+:::
+
+## The Attack, Step 1: Injecting the Script Into gmail.com {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 32 -->
+![](images/xss-attack-injection.png){width="100%"}
+:::
+::: {.column width="40%"}
+- You visit the evil facebook.com page; its HTML contains an `<iframe>` whose
+  `src` is a gmail.com URL with a **script in the `user` parameter**
+- Your browser dutifully requests that URL from gmail.com, **with your Gmail
+  cookie**
+- gmail.com echoes the parameter back unescaped: the attacker's script is now
+  part of a **gmail.com document**
+- Nothing in SOP has been violated yet; the attacker has only moved their code
+  across the line
+:::
+:::
+
+::: {.notes}
+Walk it top to bottom: facebook.com response with the iframe, the browser's
+request to gmail.com carrying the injected query string, gmail.com's
+reflected response. The devil icons mark where the attacker's bytes are at
+each step. Stress that the browser is behaving correctly throughout and so
+is SOP; the bug is gmail.com's missing output escaping on `user`.
+:::
+
+## The Attack, Step 2: Reading Your Mail From Inside the Origin {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 33 -->
+![](images/xss-attack-exfiltration.png){width="100%"}
+:::
+::: {.column width="40%"}
+- The injected script now runs **as gmail.com** inside the frame
+- Its `$.get("https://gmail.com/msgs.json")` is a **same-origin** request, so the
+  browser hands the response to the script
+- Compare with the SOP picture earlier: same request, same server, but this time
+  the read is **allowed** because the script's origin changed
+- Here it just pops an alert; a real payload sends the data to the attacker's server
+:::
+:::
+
+::: {.notes}
+Same drawing as the previous slide with the first half faded out, which is
+how the original animated it. The payoff line: SOP is still enforced
+perfectly; the attacker changed which side of the line their script is on.
+Ask the room what the script would do instead of alert() in a real attack
+(a fetch to evil.com with the JSON in the body) and why SOP does not stop
+that either (sending is allowed, and the attacker does not need to read
+the reply).
 :::
 
 ## Reflected vs. Stored XSS
@@ -499,6 +691,32 @@ effect is the attack. That is why bank transfers, password changes, and
 the attacker never needs to see the reply.
 :::
 
+## CSRF, Drawn: One Click, One Forged Transfer {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 40 -->
+![](images/csrf-forged-transfer.png){width="100%"}
+:::
+::: {.column width="40%"}
+- bank.com remembers you: the session cookie `fde874` means **bob**
+- The attacker sends a link to `bank.com/transfer?to=badguy&amt=100`; it could just
+  as well be an `<img>` on evil.com
+- Your browser attaches `Cookie: login=fde874` **automatically**; the bank sees an
+  authenticated request from bob and executes it
+- The attacker never reads the response; the **side effect** is the attack
+:::
+:::
+
+::: {.notes}
+The original built the request and then the response. Point at the Cookie
+line: that is ambient authority, the single fact CSRF rests on. Connect to
+the SOP picture: cross-origin *sends* are allowed, and a transfer needs
+nothing more. Note the request is a GET for simplicity; a real bank would
+use POST, which an attacker forges with an auto-submitting form, and
+SameSite=Lax now blocks that case by default.
+:::
+
 ## A Realistic CSRF: Polluting What a Service Knows About You {.smaller}
 
 Beyond bank transfers, CSRF can **silently shape personalized services**:
@@ -562,6 +780,34 @@ drive-by CSRF. Gotcha for the paranoid: Chrome's "Lax+POST" two-minute
 window means a freshly-set cookie *can* still ride a cross-site POST — see
 PortSwigger's writeup on bypassing SameSite restrictions. Defense in depth:
 `SameSite=Lax` plus tokens, together.
+:::
+
+## The Token Defense, Drawn {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/07-WebSecurity.pptx slide 43 -->
+![](images/csrf-token-defense.png){width="100%"}
+:::
+::: {.column width="40%"}
+- bank.com puts an unpredictable token, `8d64`, in a hidden form field and sets it as
+  a cookie
+- A real transfer carries **both**: the session cookie and the token in the request;
+  the bank checks that they match
+- evil.com cannot learn `8d64`: reading bank.com's page cross-origin is exactly what
+  SOP forbids
+- A forged request arrives with the cookie but **no valid token**, and is refused
+:::
+:::
+
+::: {.notes}
+This is the legitimate flow; narrate the failing one. The attacker can make
+the browser send the cookie, but cannot fill in the token because that
+would require reading a bank.com page from evil.com, and SOP blocks the
+read. Everything rhymes: the same rule that failed to stop the send is the
+rule that protects the token. The Set-Cookie line makes this the
+"double-submit cookie" variant; a server-side session token works the same
+way. SameSite=Lax is the modern backstop on top of this.
 :::
 
 # The Common Thread {.center}
