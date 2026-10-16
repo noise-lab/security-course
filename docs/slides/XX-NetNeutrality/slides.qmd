@@ -77,6 +77,33 @@ lives at the *interconnection* layer as much as the last mile, and that's the pa
 the public conversation usually ignores.
 :::
 
+## The Plumbing in One Picture {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/XX-NetNeutrality.pptx slide 2 -->
+![Customer, peer, and provider relationships from the point of view of one AS (the unlabeled cloud).](images/internet-business-model.png)
+:::
+::: {.column width="40%"}
+- The **unlabeled cloud** is "you": one AS with three kinds of neighbors
+- **Up** to a **provider**: you **pay** to use that link
+- **Down** to a **customer**: you **get paid** when traffic uses it
+- **Sideways** to a **peer**: **free** to use, by barter
+- Three dotted paths reach the same **destination**; local preference picks the one that pays
+:::
+:::
+
+::: {.notes}
+Walk the picture: the original animated these one relationship at a time, so
+narrate it in that order. Start at the middle cloud and ask "which neighbor would
+you rather send this traffic through?" Customer first (you get paid), then peer
+(free), then provider (you pay). Then point at the three dotted routes to the
+destination: BGP's local-preference knob is how the business answer becomes a
+routing decision. Hold this picture in mind for the Comcast–Netflix dispute:
+the fight is about which of these links Netflix's traffic enters on, and who
+pays to keep it uncongested.
+:::
+
 ## The Bright-Line Rules (2015 Open Internet Order) {.smaller}
 
 The FCC's 2015 rules — the colloquial heart of net neutrality:
