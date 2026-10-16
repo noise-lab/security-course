@@ -145,6 +145,34 @@ a device problem. Cross-reference the next slide: even inside your home, Wi-Fi i
 usually the culprit above 35 Mbps.
 :::
 
+## The Device Can Be the Bottleneck {.smaller}
+
+::: {.columns}
+::: {.column width="45%"}
+Same plan tiers, different phones, different "speed":
+
+- Each box is one **plan tier × iPhone model** (50–300 Mbps tiers; iPhone 5 to 6s)
+- The 5 and 5s top out near **100 Mbps** on every tier — their radios lack 802.11ac
+- The 6 and 6s reach **240 Mbps** on the 200 and 300 tiers; the 5 on the same plan never gets close
+- The test measured the **phone**, not the ISP
+:::
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/18-Broadband.pptx slide 6 -->
+![Download speed by plan tier and device model, Aug 2015 – Jan 2016](images/device-bottleneck-by-model.png)
+:::
+:::
+
+::: {.notes}
+Recovered from the original deck as a static image; the callout and arrows used to
+fly in, so walk the picture. Read the x-axis as "tier – model": 50-5 is a 50 Mbps plan
+tested from an iPhone 5. Medians barely move with tier, and the 5/5s whiskers stop
+near 100 Mbps on every tier because those phones have no 802.11ac. The 6 and 6s on
+the 200 and 300 tiers are the only boxes that climb. Punchline for the lesson above:
+a crowdsourced test from an old phone under-reports the plan, the consumer blames the
+ISP, and the regulator inherits the error. Cold-call: which column would you pick to
+"prove" the ISP is cheating, and why is that dishonest?
+:::
+
 ## The Home Network Is Often the Bottleneck
 
 ::: {.columns}
@@ -195,6 +223,36 @@ are the bottleneck, not throughput. Cold-call: what would you actually notice if
 your ISP doubled your plan from 300 to 600 Mbps? Probably nothing for browsing.
 Ties directly to the benchmark-definition slide: the FCC's 100/20 threshold is
 already well past the plateau for most everyday tasks.
+:::
+
+## Applications Rarely Use the "Top Speed" {.smaller}
+
+::: {.columns}
+::: {.column width="40%"}
+Peak application usage vs. measured link capacity, one point per home:
+
+- The dashed line is "the app uses **all** the capacity"
+- Below ~**50 Mbps** points hug the line — the link *is* the limit
+- Above ~**100 Mbps** apps plateau at **50–100 Mbps**, however fast the link
+- A **600 Mbps** home streams at ~50 Mbps, like everyone else
+:::
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/18-Broadband.pptx slide 10 -->
+![Daily peak utilization vs. weekly measured capacity, by streaming app](images/app-utilization-vs-capacity.png)
+:::
+:::
+
+::: {.notes}
+Recovered from the original deck; walk the scatter. Both axes are log scale. Each
+point is one home's daily peak utilization for one app against that week's measured
+capacity, from the Internet Equity Initiative's in-home measurements. Low-capacity
+homes sit on the diagonal: the link really is the bottleneck there, and a faster
+tier would help. Past about 100 Mbps the cloud flattens at 50 to 100 Mbps: Netflix,
+YouTube, HBO and Hulu simply do not ask for more, and the two homes near 600 Mbps
+use the same 50 Mbps as a 150 Mbps home. This is Lesson 4 in one picture, and it
+is the setup for the next slide: if apps never saturate the link, the thing to
+measure is the application's experience, not peak throughput. Cold-call: where on
+this plot would a BEAD-funded gigabit upgrade move a household, and would they notice?
 :::
 
 ## User Experience Lives in the Application {.smaller}
@@ -305,6 +363,28 @@ actually fix? Random shrinks with more samples; systematic doesn't. Cross-refere
 the broadband breakout on "who measures the internet?" as a political question.
 :::
 
+## Limitation: Where the Tests Actually Ran {.smaller}
+
+<!-- recovered from ppt-archive/18-Broadband.pptx slide 17 (extracted media slide017_img019.png) -->
+![Crowdsourced speed-test density by grid cell: Chicago, Philadelphia, Washington](images/slide017_img019.png){width="82%"}
+
+- Dark cells are where tests cluster: the Loop and North Side, Center City, Northwest Washington
+- Chicago's South and West Sides are nearly blank — the neighbourhoods the divide is *about*
+- The dataset "covers the city," yet says least exactly where the question is sharpest
+
+::: {.notes}
+The three-city map from the original deck, embedded as-is. Each cell is a grid square;
+darker means more crowdsourced speed tests. In Chicago the mass sits downtown and up
+the North Side lakefront; the South and West Sides fade to white. Philadelphia and
+Washington show the same shape: tests follow income and density, not need. Say the
+sentence plainly: the map of where tests ran is not the map of where people live.
+This is the sampling-bias half of "bad data"; the next slide asks who those testers
+are, and the slide after that shows how to design a frame (South Shore) instead of
+accepting whatever the crowd produced. Attribution: the figure is from the Internet
+Equity Initiative's work on crowdsourced tests; the archived slide carries no citation,
+so name it as "our group's analysis" unless you recall the paper.
+:::
+
 ## Limitation: Who Runs the Test? {.smaller}
 
 ::: {.columns}
@@ -360,6 +440,36 @@ communities twice over. Cross-reference the "who runs the test" slide: methodolo
 bias and sampling bias compound rather than cancel.
 :::
 
+## Where M-Lab Sits on the Curve {.smaller}
+
+::: {.columns}
+::: {.column width="40%"}
+Same homes, four ways of measuring throughput:
+
+- **Single-threaded HTTP** (classic NDT) reports ~**70%** of capacity for most homes
+- **UDP capacity** and **multi-threaded HTTP** cluster at **90–95%** — the "reality" line
+- The gap is **systematic**: every home shifts the same way, so averaging never removes it
+- A public map built on the left curve under-counts "served" homes everywhere
+:::
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/18-Broadband.pptx slide 19 -->
+![Normalized throughput by measurement method; the labels mark where NDT falls](images/ndt-vs-reality-cdf.png)
+:::
+:::
+
+::: {.notes}
+The annotated version of the CDF from the "Different Techniques" slide, recovered
+from the original deck; the two red labels used to appear on a click, so point to
+them. Same homes, same links, four methods. The single-threaded HTTP curve (the
+classic NDT design that M-Lab maps were built on) sits at about 0.7 of true capacity;
+passive throughput at about 0.83; UDP capacity and multi-threaded HTTP at 0.9 to
+0.95. The curves are parallel: this is a bias, not noise, so more tests do not fix
+it and neither does dropping outliers. Underlying data: Sundaresan et al.,
+"Broadband Internet Performance: A View from the Gateway" (SIGCOMM 2011), the
+BISmark gateway deployment. Cold-call: if the FCC benchmark is 100/20 and a home's
+NDT result is 75 Mbps, is the home served? You cannot tell from that test alone.
+:::
+
 # Doing It Right: A Data-Science Workflow {.center}
 
 ## Step 1: Define the Question with Stakeholders
@@ -411,6 +521,29 @@ crowdsourced client tests — but it introduces the privacy problem on the next 
 Cold-call: what could you infer about a household from the *shape* of their traffic,
 without decrypting anything? Sleep schedules, streaming vs. work hours, number of
 active devices, even which app is in use. That's the tension.
+:::
+
+## Deployment Tradeoffs: Where the Device Sits {.smaller}
+
+<!-- recovered from ppt-archive/18-Broadband.pptx slide 32 -->
+![A Raspberry Pi hung off a switch between the router and the Wi-Fi access point](images/measurement-device-placement.png){width="78%"}
+
+- **Off a switch port** (highlighted): the Pi runs **active** tests but sees none of the household's traffic — privacy-safe, outage-safe, blind to experience
+- **In-line** between modem and router (previous slide): sees every packet, so passive inference works — but it is a single point of failure and a bigger ask
+- Placement is the privacy tradeoff made physical: directness of measurement vs. what you ask a home to accept
+
+::: {.notes}
+Recovered from the original deck; the blue frame used to appear on a click to
+highlight the switch. Walk the chain left to right: modem, router, switch, Wi-Fi AP
+with its 2.4 and 5 GHz radios. The Pi hangs off a spare switch port, so it can run
+active tests (speed, latency, DNS) but it is not on the path and sees no one else's
+packets. Contrast with the in-line device on the previous slide, which sits between
+modem and router and can do passive inference of application performance, at the
+cost of being a single point of failure and a much larger trust ask. The original
+deck followed this with "current deployment: active measurements only," which is
+where the Chicago pilot landed after privacy conversations with residents. That is
+the bridge to the next slide. Cold-call: which placement would you accept in your
+own apartment, and what would change your answer?
 :::
 
 ## Step 3: Confront the Tradeoffs — Privacy {.smaller}
