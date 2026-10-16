@@ -189,6 +189,34 @@ before the next slide reveals the answer. Copyright wins on consistency because
 Congress supplied the template — a preview of the paper's headline finding.
 :::
 
+
+## What Notice-and-Takedown Looks Like {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/16-Moderation.pptx slide 46 -->
+![One hosting company's DMCA §512 flow (Infusionsoft's published process diagram)](images/dmca-takedown-process.png)
+:::
+::: {.column width="40%"}
+- A rightsholder **submits a notice**; the host checks it for the statutory elements, not for merit
+- If it passes, the host **removes the content** and tells the poster
+- The poster may send a **counter-notice**; the host vets it and waits **10 business days**
+- Then: **restore** the content, or the rightsholder goes to **court**
+:::
+:::
+
+Congress wrote this choreography. For hate speech and misinformation, nobody did.
+
+::: {.notes}
+Walk the timeline left to right: notice, vet, remove, react, counter-notice, 10-day
+clock, restore or litigate. Stress the two dotted lines — the host crosses each one
+only because the statute says so; its own judgment is not in the loop. This is why
+copyright policies look so uniform across 43 platforms in the next slides: the
+template already existed. Ask the room to imagine drawing the same picture for hate
+speech — where would the dotted lines go, and who sets the clock? The figure is a
+vendor's own published process diagram, used as a representative example.
+:::
+
 ## Where Do We Look, and What Do We Do? {.smaller}
 
 ::: {.columns}
@@ -215,6 +243,28 @@ why? Answers reveal how much of "the internet" is really eight platforms plus a 
 tail — which is itself a governance story.
 :::
 
+
+## The Pipeline: Seed, Scrape, Extract, Annotate {.smaller}
+
+<!-- recovered from ppt-archive/16-Moderation.pptx slide 32 (media extracted as slide032_img028.png) -->
+![The four-stage collection and annotation pipeline](images/slide032_img028.png){width="92%"}
+
+- **Seed scraper:** hand-inspect each platform for its canonical policy pages (ToS,
+  help centers) and build a keyword list per moderation topic
+- **Web scraper:** follow seed links, keep pages that contain the keywords, save raw HTML
+- **Process text:** cut the passages around each keyword hit
+- **Annotate policy:** code every passage with the codebook on the next slide
+
+::: {.notes}
+Walk the four boxes left to right. The first stage is manual by design: there is no
+standard URL for "the hate speech policy," so a human finds the entry points and the
+vocabulary, and the machine does the rest. The arrows carry the hand-offs — seed
+links and keywords in, page HTML out, policy passages out — which is also the order
+of the paper's method section. The scraper's control flow comes later in the deck;
+here the point is that collection and annotation are one pipeline, so the dataset
+can be rebuilt when policies change.
+:::
+
 ## How We Read a Policy: The Annotation Scheme {.smaller}
 
 We hand-built a **codebook** capturing what a policy *can* contain — why a rule exists,
@@ -229,6 +279,28 @@ Walk the seven families quickly: **Why** (justification — community values vs.
 response — user- vs. content-targeted, investigation); **Then what** (redress/appeal);
 **Who** (binding legalese / liability); and **structural** signposts. The full codebook
 is in the paper. This scheme is the lens for every finding that follows.
+:::
+
+
+## The Codebook Applied: One Annotated Passage {.smaller}
+
+<!-- recovered from ppt-archive/16-Moderation.pptx slide 12 -->
+![A real hate-speech policy passage, coded span by span](images/annotation-example.png){width="100%"}
+
+- One paragraph, **five codes**: a community-values **justification**, an **exception**
+  for critical commentary, a **signpost** ("Read More"), an **example**, and a
+  three-part **definition**
+- Codes are applied to **spans**, not pages, so a passage can mix families
+- The definition here is unusual: most platforms stop at the example
+
+::: {.notes}
+Read the passage aloud from the figure, colour by colour, so students see the
+codebook turned into labels. Orange is the "why" (community, trust, and safety), green
+the carve-out, pink the structural signpost, light blue the example sentence, dark blue
+the definition with its three numbered prongs. Ask: if you removed the dark-blue span,
+would a user still know what gets taken down? That is the state of most of the
+corpus, which is the headline finding a few slides on. Mention that four annotators
+did this for 11,000-plus segments and reconciled disagreements through the codebook.
 :::
 
 ## A Dataset of Policy Text: OCMP-43 {.smaller}
@@ -321,6 +393,37 @@ is prohibited." Cross-reference the AI-Privacy and AI-Copyright lectures on wher
 LLM classifiers are and aren't reliable — those limits shape which of the three
 mechanisms actually scales. Cold-call: which mechanism would you trust to flag a
 deepfake in an election week?
+:::
+
+
+## Investigation and Appeal, by Topic {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/16-Moderation.pptx slide 16 -->
+![Share of platforms whose policy describes investigating a flag before acting](images/investigation-policies-table.png){height="290"}
+:::
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/16-Moderation.pptx slide 17 -->
+![Share of platforms whose policy offers an appeal](images/appeal-policies-table.png){height="290"}
+:::
+:::
+
+- **Copyright:** little investigation, lots of appeal. "GitHub isn't the judge... it is
+  up to the parties (and their lawyers)" — *GitHub DMCA Guide*
+- **Hate speech / misinformation:** the reverse. "Twitch will consider a number of
+  factors to determine the intent and context" — *Twitch Community Guidelines*
+- Where the statute supplies the procedure, platforms **act on notice** and leave
+  judgment to the appeal; where it doesn't, they **judge first** and rarely let you appeal
+
+::: {.notes}
+Two tables, one story: the DMCA tells a platform what to do, so it does not weigh the
+claim (about 15% of copyright policies mention investigation) but must offer a
+counter-notice (about 75% mention an appeal). Hate speech and misinformation have no
+statute, so platforms describe weighing intent and context (about 85%) and only a
+quarter offer any appeal. Read the GitHub and Twitch lines as the two ends of the
+spectrum. The next slide puts the user's side of the appeal gap in the platforms'
+own words. Numbers are approximate, from the CHI 2024 paper's policy counts.
 :::
 
 ## Can Users Push Back? {.smaller}
