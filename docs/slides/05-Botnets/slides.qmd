@@ -284,6 +284,39 @@ market. Cold-call: if you can rent a hundred gigabits per second for twenty
 dollars, what does that change about who gets attacked and why?
 :::
 
+## The Botnet Economy in One Picture {.smaller}
+
+::: {.columns}
+::: {.column width="40%"}
+<!-- recovered from ppt-archive/05-Botnets.pptx slide 44 -->
+![Diagram: Wikipedia, *Botnet* article (credited on the original slide)](images/botnet-spam-economy.png){height="440"}
+:::
+::: {.column width="60%"}
+1. A **botherd** launches a worm, a virus, or a default-credential scan and
+   infects machines that belong to someone else
+2. Each infected machine **phones home** to a controller, here an IRC channel
+3. A **sponsor**, here a spammer, **pays** the botherd for time on the fleet
+4. The sponsor issues the order through the controller and the bots do the
+   work: spam here; DDoS, click fraud, or crypto-mining elsewhere
+
+The dollar sign in the middle is the point: a botnet is **rented capacity**.
+The person who built it and the person who uses it are usually different people.
+:::
+:::
+
+::: {.notes}
+The original slide was a static picture, so walk the numbers in order: step 1
+is infection (any of the worm mechanics from the history block), step 2 is
+rendezvous with the controller, step 3 is the transaction, steps 4 and 5 are
+the paid job. Emphasize the division of labor: building a botnet and renting
+one are separate businesses, which is why DDoS-for-hire booters exist and why
+takedowns go after the market plumbing (controllers, payment, proxy providers)
+rather than the bots themselves. IRC dates the diagram; swap in "HTTP, P2P,
+or a Telegram bot" and the economics are unchanged. Cold-call: who in this
+picture is the victim? There are at least three answers, and the device owner
+is the one nobody compensates.
+:::
+
 ## Command and Control (C&C)
 
 How the **botmaster** reaches the fleet:
@@ -318,6 +351,72 @@ arc: every generation of defenders shed the previous detection surface, and
 attackers moved to whatever came next. Sinkholing (later slide) is the
 current tradeoff — hijack the controller and the bots go dark, but so does
 your visibility.
+:::
+
+## Rallying the Botnet {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+<!-- recovered from ppt-archive/05-Botnets.pptx slide 40, text boxes stripped -->
+![](images/botnet-rallying-clouds.png){width="100%"}
+:::
+::: {.column width="40%"}
+- A worm handles **infection**; it says nothing about **control**
+- Each new bot (yellow) scans and spreads into other networks (clouds) on
+  its own; nobody is steering
+- **The botmaster's problem**: which infections succeeded, and where are they?
+- Early answers: bots **email home**, or report to a **hard-coded address**.
+  Both are easy to find in the binary, and easy to cut off
+- This *rendezvous* problem is what every C&C design on the previous slide
+  is solving
+:::
+:::
+
+::: {.notes}
+Static image; the original built the text in over the picture, so narrate
+it. The clouds are separate networks, the yellow circles are compromised
+hosts, the red arrows are the worm propagating: one host in the left network
+infects one host in each of the other two, and those infect neighbors. The
+worm does not report back, so the botmaster has a fleet and no roster. The
+two "options" on the original slide, email and a hard-coded address, are the
+weakest possible rendezvous: anyone who reverse-engineers one sample learns
+where the whole fleet reports and can seize or block it. Next slide: the
+fix that lasted, which is to put a level of indirection (a DNS name) between
+the bots and the controller.
+:::
+
+## Rendezvous Through Dynamic DNS {.smaller}
+
+::: {.columns}
+::: {.column width="58%"}
+<!-- recovered from ppt-archive/05-Botnets.pptx slide 41 -->
+![](images/botnet-dynamic-dns-control.png){width="100%"}
+:::
+::: {.column width="42%"}
+- The bot never learns the controller's IP address; it only knows a **name**
+- It asks **dynamic DNS** for the name and gets wherever the controller is
+  *today*
+- Then it talks to the controller directly: commands down, status and loot up
+- Controller raided or blackholed? **Update the record**, and the fleet
+  follows within the TTL
+- The defender's lever is the same name: **sinkhole** it, or watch who
+  resolves it (the DNS-based detection on the defenses slide)
+:::
+:::
+
+::: {.notes}
+Walk the two legs: the diagonal pair of arrows is the DNS lookup, the
+horizontal pair is the C&C conversation. Dynamic DNS was built for home users
+with changing addresses; botmasters adopted it because it gives them a level
+of indirection, so losing a server costs them one record update rather than
+a fleet. Escalations in order: fast flux (the name resolves to a rotating pool
+of compromised proxies, ICANN SSAC SAC 025), then domain-generation
+algorithms (the bot computes thousands of candidate names per day, so there
+is no single name to seize; Conficker is the canonical case and the 2014
+GameOver Zeus takedown had to pre-register the DGA output). Every one of
+those keeps the same picture and just makes the DNS box harder to pin down,
+which is why the defenses slide leans on DNS traffic. Ask: if you control
+the name, what do you see, and what do you lose?
 :::
 
 ## Mirai (2016): The IoT Turn {.smaller}
