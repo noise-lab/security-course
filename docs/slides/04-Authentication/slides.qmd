@@ -61,6 +61,35 @@ already signed in, and drove accounts.google.com to steal the session
 cookie — no password ever phished. Brief in speaker-notes, slide 3.
 :::
 
+## The Threat Model in One Grid {.smaller}
+
+::: {.columns}
+::: {.column width="48%"}
+<!-- recovered from ppt-archive/04-Authentication.pptx slide 3 -->
+![](images/threat-model-grid.png){width="100%"}
+:::
+::: {.column width="52%"}
+- **Rows:** do you trust the code you run? **Columns:** how many people share the machine?
+- **Multi-user, trusted apps** — the 1970s mainframe: everyone had an account, everyone's code went through a systems programmer
+- **Single user, trusted apps** — the PC (DOS truly single-user; macOS, Linux, Windows multi-user but used by one person)
+- **Single user, untrusted apps** — the smartphone: one owner, hundreds of apps from strangers
+- **The `??` cell** is where we live now: many users *and* untrusted code — the browser, the cloud, SaaS tenants
+:::
+:::
+
+::: {.notes}
+Static capture of the original grid; the pptx built it a cell at a time,
+so walk it in the order of the bullets: mainframe, then PC, then phone,
+and let the room fill in the empty cell before you do. The answer is the
+previous slide's vignette: a browser tab running someone else's
+JavaScript, and a SaaS tenant sharing a database with a thousand other
+companies. The original callout on the PC cell read "DOS is truly single
+user; macOS, Linux, Windows are multi-user but typically used by only one
+user" — that is why PC OSes still carry the user/group machinery we will
+see in `ls -l`. Cold-call: which cell is a university lab machine in? (Multi-
+user, and the apps are only as trusted as the students who installed them.)
+:::
+
 ## Who Are You Defending Against?
 
 - **Casual prying** — curiosity, browsing what you shouldn't
@@ -102,6 +131,9 @@ distinction):
 The full sequence: **identify & authenticate → authorize → access control →
 logging & auditing → accountability.** The first three are *preventive*; the last
 two are *reactive* (forensics after the fact).
+
+<!-- recovered from ppt-archive/04-Authentication.pptx slide 7 -->
+![](images/security-sequence.png){.nostretch width="58%" fig-align="center"}
 
 ::: {.notes}
 This is a very likely exam distinction — students conflate all three
@@ -266,6 +298,29 @@ DM, a group). Note that the same person is different subjects depending on
 context (you-the-user vs. you-the-advertiser vs. you-the-page-admin). The
 triple is the through-line for the rest of the lecture — Unix, Android,
 OAuth all instantiate it.
+:::
+
+## The Reference Monitor {.smaller}
+
+<!-- recovered from ppt-archive/04-Authentication.pptx slide 50 -->
+![](images/reference-monitor.png){.nostretch width="62%" fig-align="center"}
+
+- The **subject** is a *(user, program)* pair — the same person is a different subject in a different program
+- Every **action** on a **resource** passes through one chokepoint, the **monitor**; nothing reaches the object any other way
+- The monitor consults a **policy**: the stored set of allowed *(subject, verb, object)* triples
+- An ACL is one way to store that policy (per object); a capability list is another (per subject) — next slide
+
+::: {.notes}
+This is the Anderson "reference monitor" from the 1972 Air Force report:
+tamper-proof, always invoked, small enough to verify. The picture is the
+previous slide's triple drawn as a machine, so point at each box and name
+it: subject on the left, verb on the arrow, object on the right, policy
+underneath. The one property to drill is "always invoked" — every attack
+on access control we will see tonight is a way around the monitor (a
+stolen token that the monitor accepts as legitimate), not a way through
+it. Walk it once, then ask where the monitor lives for a file (the kernel),
+for an Android camera (the system service), and for a GitHub API call
+(the resource server checking the token).
 :::
 
 ## ACLs vs. Capabilities {.smaller}
@@ -761,6 +816,38 @@ partial order, not a line. Modern practice worth naming: Google's Zanzibar
 (2019) drives access-control decisions for G Suite sharing at planet
 scale — an existence proof that the matrix problem is solvable when you
 push it hard enough.
+:::
+
+## Levels and Lattices, Drawn {.smaller}
+
+::: {.columns}
+::: {.column width="30%"}
+<!-- recovered from ppt-archive/04-Authentication.pptx slide 57 -->
+![](images/classification-levels.png){height="300"}
+:::
+::: {.column width="70%"}
+<!-- recovered from ppt-archive/04-Authentication.pptx slide 58 -->
+![](images/classification-lattice.png){height="320"}
+:::
+:::
+
+- **Left, a strict order:** every subject has a clearance, every object a classification; *no read up, no write down* (Bell–LaPadula)
+- **Right, a partial order:** add compartments and some pairs become **incomparable** — Top Secret (nuclear) can read neither Secret (bio) nor Top Secret (bio)
+- Reads flow **up** the lattice only: a subject may read anything at or below its node; the top node dominates everything, Public is dominated by everything
+
+::: {.notes}
+Static capture of the two original diagrams, side by side. Start on the
+left: five boxes, one line, the ladder everyone imagines when they hear
+"classified." Then move right and show why the ladder is not enough once
+you add compartments: a nuclear-weapons analyst with Top Secret clearance
+has no business reading a Secret biological-weapons memo, so the two
+Secret nodes have to be incomparable. Trace one legal read (Top Secret
+nuclear reads Secret nuclear, reads Public) and one illegal one (Top Secret
+nuclear reads Secret bio — no path downward). Denning's 1976 result is that
+any such set of labels forms a lattice as long as every pair has a least
+upper bound, which is what makes "the label on a document that combines
+two sources" well defined. Cold-call: what is the least upper bound of
+Secret (nuclear) and Secret (bio)? (Secret (nuclear, bio), the middle box.)
 :::
 
 # Wrapping Up {.center}
