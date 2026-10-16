@@ -245,6 +245,68 @@ attack stacks all three characteristics on one incident: asymmetric,
 indistinguishable, unattributable.
 :::
 
+## Amplification, the Original Recipe: Smurf {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/05-DoS.pptx slide 10 -->
+![](images/smurf-broadcast-amplification.png){width="100%"}
+:::
+::: {.column width="38%"}
+- One **ICMP Echo Request** to a network's **broadcast address**, with the
+  source forged to the **victim**
+- The switch hands it to **every host** on the segment
+- **Every host replies** to the forged source: one packet in, *N* packets out,
+  all landing on the target
+- The reflector network never notices it is part of the attack
+:::
+:::
+
+::: {.notes}
+Static capture of the original two-step build (request, then replies), so
+walk it left to right: attacker on the left sends one ping to the broadcast
+address of the middle network, source address set to the victim on the
+right; every host behind the switch answers the victim. This is the 1990s
+"smurf" attack and the template for every reflector since: find a protocol
+where one unauthenticated request yields many or large responses. The fix
+was to stop forwarding directed broadcasts by default (RFC 2644, BCP 34,
+1999), which is why smurf itself is dead. Cold-call: which of the three
+characteristics does this picture show? All three: the attacker spends one
+packet, the replies are legitimate ICMP from real hosts, and the victim
+sees the reflector's addresses, never the attacker's.
+:::
+
+## Reflection, Drawn Out: DNS Amplification {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/05-DoS.pptx slide 22 -->
+![](images/dns-amplification-reflection.png){width="100%"}
+:::
+::: {.column width="38%"}
+- A **60-byte** query, source address forged to the **target**
+- The open resolver answers with a **3,000-byte** EDNS response, delivered
+  to the target
+- About **40×** per query, and the target sees only the resolver's address
+- Thousands of open resolvers in parallel, and the attacker's own uplink is
+  no longer the limit
+:::
+:::
+
+::: {.notes}
+This is the picture the likely midterm question ("given a reflection
+diagram, explain how it works") is drawn from, so make every student able
+to reproduce it: three boxes, two arrows, the thin one is the small spoofed
+query and the thick one is the large response going to someone who never
+asked. The original slide built the two arrows in sequence and ended with
+"Prevention: reject DNS queries from external addresses", which is the next
+slide. Why 3,000 bytes: EDNS0 (RFC 6891) lifted the old 512-byte UDP limit,
+so a query for a large record set returns kilobytes. The Spamhaus attack in
+March 2013 (about 300 Gbps) was the one that made DNS amplification a
+household name among operators; memcached in 2018 pushed the factor past
+10,000. Tie back to asymmetry: the attacker's cost is the 60-byte query.
+:::
+
 ## Open Resolvers and Misaligned Incentives
 
 - **Open resolver** = a DNS server that answers queries from *anyone*
@@ -301,6 +363,65 @@ the bridge to the SYN cookies defense two slides later; the fix pattern is
 generalizes far beyond TCP.
 :::
 
+## The Handshake as a Timeline {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/05-DoS.pptx slide 14 -->
+![](images/tcp-three-way-handshake-timeline.png){width="100%"}
+:::
+::: {.column width="45%"}
+- Time runs **downward**; the colored bars are each side's state
+- On the first **SYN** the server **stores data** (the TCB) and starts
+  **waiting**
+- The client holds nothing until the SYN-ACK comes back
+- Only the final **ACK** moves the server to **Connected**: the server commits
+  first, the client second
+:::
+:::
+
+::: {.notes}
+Read the picture top to bottom. Client on the left, server on the right,
+each vertical bar is that host's state over time. The red block on the
+server's line is the moment it allocates a TCB on the strength of one
+unauthenticated SYN; the long "Wait" is the half-open period, bounded only
+by a timer. The client's own red block is short because it can act as soon
+as the SYN-ACK arrives. Point at the order of commitment: the responder
+pays first. That single fact is the whole SYN-flood vulnerability and the
+whole SYN-cookie fix, both on the next slides.
+:::
+
+## SYN Flooding as a Timeline {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/05-DoS.pptx slide 17 -->
+![](images/syn-flood-timeline.png){width="100%"}
+:::
+::: {.column width="45%"}
+- Same diagram, but the SYNs keep coming and **no ACK ever arrives**
+- Each SYN adds a slot to the server's **half-open queue**; the red bar
+  widens with every one
+- Spoofed sources mean the SYN-ACKs go nowhere, so nothing frees a slot
+  until a timeout
+- When the queue is full a real client's SYN is simply dropped: ~40 bytes
+  sent against ~280 bytes held
+:::
+:::
+
+::: {.notes}
+Same axes as the previous slide, so students can see the difference
+immediately: the SYN-ACKs are missing (they went to forged addresses and
+nothing comes back) and the red "store data" region grows as a staircase,
+one TCB per SYN. The staircase is the attack. Ask what bounds its height:
+the kernel's backlog limit, after which new SYNs, including legitimate ones,
+are refused. RFC 4987 (TCP SYN Flooding Attacks and Common Mitigations) is
+the reference for the mitigations we are about to see: SYN cookies, SYN
+caches, shorter timeouts, and filtering. Cold-call: why does a spoofed
+source make this *worse* for the server than a real one? Because a real
+host would send a RST on an unexpected SYN-ACK and free the slot.
+:::
+
 ## Application-Layer and Crypto DoS
 
 Asymmetry again — at the **server's CPU**, not its bandwidth:
@@ -324,6 +445,37 @@ without breaking real users. Modern attacks — including Aisuru's December
 increasingly target this layer rather than raw bandwidth. Cold-call: what
 request on *your* web service would be a nightmare if a bot hit it a
 million times an hour?
+:::
+
+## TLS Handshake DoS, Drawn Out {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/05-DoS.pptx slide 23 -->
+![](images/tls-handshake-dos.png){width="100%"}
+:::
+::: {.column width="38%"}
+- **Client Hello** and **Server Hello** are cheap on both sides
+- The **client key exchange** costs the client one **RSA encrypt** with the
+  server's public key
+- The server must **RSA decrypt** with its private key, roughly **10× the
+  work**
+- Loop the handshake and one client box keeps about ten servers busy
+:::
+:::
+
+::: {.notes}
+This diagram was hidden in the original deck but it is the clearest
+picture of compute asymmetry in the course, so it is worth the minute.
+Walk the three arrows: hello, hello with the public key, then the client
+key exchange where the client does the cheap public-key operation and the
+server does the expensive private-key one. The original slide's citation
+is "[SD '03]" on the ten-to-one ratio. With TLS 1.3 the key exchange is
+ECDHE and the server signs rather than decrypts, but the per-handshake cost
+is still on the server, and renegotiation or reconnection floods (the 2011
+THC-SSL-DoS tool) exploit exactly this. Cold-call: what is the SYN-cookie
+equivalent for TLS? Client puzzles and session resumption both push work
+back to the initiator.
 :::
 
 # Defenses {.center}
@@ -368,6 +520,39 @@ Section 5 of the FTC Act), or a market-driven push from downstream
 scrubbers? Cold-call: whose incentive would you change first?
 :::
 
+## Ingress Filtering in One Picture {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/05-DoS.pptx slide 26 -->
+![](images/ingress-filtering-edge.png){width="100%"}
+:::
+::: {.column width="38%"}
+- The customer network on the left owns exactly one prefix,
+  **204.69.207.0/24**
+- Its provider's border router knows that, so it can **drop anything else**
+  arriving on that link
+- A spoofed packet dies at the first hop; reflection attacks lose their forged
+  source
+- Deeper in, the set of legitimate sources on a link is huge and changes, so
+  the filter is hard to write
+:::
+:::
+
+::: {.notes}
+Also hidden in the original deck; it is the RFC 2827 figure redrawn. Left
+cloud is a stub customer with one prefix, the yellow circles are the two
+border routers, the right cloud is the rest of the Internet. The rule lives
+on the provider's router: anything from the customer link whose source is
+not 204.69.207.0/24 cannot be legitimate, so drop it. That is easy here
+because the answer to "what sources can arrive on this interface" is one
+line. Move the same filter to a core router with hundreds of thousands of
+routes behind an interface and the answer is no longer a line, which is the
+"feasible at edges, hard near the core" bullet on the previous slide and
+the reason uRPF exists. The incentive problem is unchanged: the provider
+pays to configure this and the beneficiaries are everyone else.
+:::
+
 ## Defense: SYN Cookies
 
 Don't allocate state until the client proves it can receive your reply.
@@ -394,6 +579,68 @@ time, but the server survives the flood. The critical point for the design
 principle running through the whole lecture: this defense adds *no* new
 exhaustible state — the server is stateless until the initiator has proven
 reachability. Contrast that with the stateful firewall two slides ahead.
+:::
+
+## SYN Cookies: The Exchange {.smaller}
+
+::: {.columns}
+::: {.column width="60%"}
+- Client sends **SYN** with its initial sequence number
+- Server answers **SYN-ACK** whose sequence number *is* the cookie, and
+  **allocates nothing**
+- A real client echoes the cookie (plus one) in its **ACK**; the server
+  recomputes and checks it
+- Only then is the **TCP buffer allocated**: a spoofed SYN costs the server
+  one packet, not a table entry
+- The fourth arrow (a server SYN-ACK after allocation) is the original
+  diagram's start of the data phase, not a second handshake
+:::
+::: {.column width="40%"}
+<!-- recovered from ppt-archive/05-DoS.pptx slide 30 -->
+![](images/syn-cookie-exchange.png){width="62%" fig-align="center"}
+:::
+:::
+
+::: {.notes}
+Walk it against the SYN-flood timeline two slides back: the red "store
+data" block has moved from the first message to the third. The server
+answers the SYN with a SYN-ACK whose sequence number is a function of the
+connection 4-tuple, a timestamp, and a server secret; it keeps nothing.
+When an ACK arrives for a connection the server does not remember, it
+recomputes the function and, if the acknowledged number matches, creates
+the connection then. A spoofed SYN now costs the server exactly one
+outgoing packet. The original diagram ends with a server SYN-ACK after the
+buffer is allocated; treat that as the start of the data phase. Caveat to
+mention: because the server kept no state, options from the SYN (window
+scale, SACK) are lost unless encoded elsewhere, which is why cookies are
+normally switched on only under attack.
+:::
+
+## SYN Cookie: Inside the Sequence Number {.smaller}
+
+<!-- recovered from ppt-archive/05-DoS.pptx slide 29 -->
+![](images/syn-cookie-sequence-number-layout.png){width="85%" fig-align="center"}
+
+- **t mod 32** (5 bits): a counter that ticks every 64 s, so an old cookie
+  expires
+- **MSS** (3 bits): the server's maximum segment size squeezed into eight
+  choices, because there is nowhere to store the real option
+- **Cookie** (24 bits): `HMAC(t, server nonce, src IP, src port, dst IP,
+  dst port)`, cheap to recompute and hard to forge
+- The entire state of a half-open connection fits in these 32 bits, and the
+  **client** carries it
+
+::: {.notes}
+This is Bernstein's 1996 layout. Bits 31 to 27 are the time counter so the
+server can reject replays after a few minutes; bits 26 to 24 encode which of
+eight MSS values the server picked; the low 24 bits are the keyed hash that
+makes forging an ACK for a connection you never started as hard as guessing
+24 bits per attempt, per 64-second window. The point to land is not the
+bit positions but the design move: state that the responder would have
+stored is instead serialized, authenticated, and handed to the initiator to
+carry. Same trick as a signed session cookie on the web and the same trick
+as a stateless firewall token. Ask students where else in the course a
+protocol could use it.
 :::
 
 ## When Defenses Backfire: Stateful Firewalls {.smaller}
@@ -452,6 +699,40 @@ defenses. Real defense is layered — no single mechanism is sufficient, and
 that layering is why scrubbing services now dominate commercial defense.
 Bridge to the next slide: what BCP 38 and uRPF fail to deploy universally,
 scrubbing centralizes into a handful of providers.
+:::
+
+## Strict uRPF, Worked Example {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/05-DoS.pptx slide 31 -->
+![](images/urpf-strict-mode-check.png){width="100%"}
+:::
+::: {.column width="38%"}
+- Router **A** has two customer routes: 10.0.1.0/24 via interface 1,
+  10.0.18.0/24 via interface 2
+- Packets from **10.0.1.5** and **10.0.1.8** arrive on interface 1, the table
+  agrees, they pass
+- **10.0.18.3** shows up on interface 1; the table says interface 2, so it is
+  **dropped**
+- **10.12.0.3** has no entry at all, so strict mode drops it too: the routing
+  lookup *is* the filter
+:::
+:::
+
+::: {.notes}
+Diagram as embedded in the original deck (it appears to follow Cisco's
+uRPF documentation; credit Cisco if asked). Walk the four dashed arrows
+into router A. Red and green come from 10.0.1.x hosts on the 10.0.1.1/24
+interface and the table's next hop for 10.0.1.0/24 is that interface, so
+they pass. Blue is 10.0.18.3 arriving on the 10.0.1.1 side: the table says
+10.0.18.0/24 lives on interface 2, so strict mode discards it, which is the
+callout. Magenta is 10.12.0.3 with no route at all, also discarded. Now ask
+the question that the next slide answers: what if 10.0.18.3 legitimately
+sends via interface 1 because the customer is multihomed and routing is
+asymmetric? Strict mode drops real traffic; loose mode (any route to the
+source, any interface) catches only unrouted bogons. RFC 3704 (BCP 84)
+covers the modes.
 :::
 
 ## Operational Defenses: The Mirai/Dyn Playbook
