@@ -48,6 +48,29 @@ introduce Mallory as the active counterpart to passive Eve. Every mechanism
 in the rest of the lecture defends against one or both of them.
 :::
 
+## Confidentiality vs. Integrity, in Pictures {.smaller}
+
+<!-- recovered from ppt-archive/03-KeyManagement.pptx slide 4 -->
+![Confidentiality: Alice encrypts under the shared key $k$; Eve, tapping the wire, sees only $c$.](images/symmetric-confidentiality-eve.png){width="72%"}
+
+<!-- recovered from ppt-archive/03-KeyManagement.pptx slide 5 -->
+![Integrity: Alice appends a tag $v := f_k(m)$; Mallory can change $m$ but can't forge a tag that checks.](images/mac-integrity-mallory.png){width="95%"}
+
+- **Top, Eve (passive):** the same $k$ sits at both ends, $c := E_k(p)$ crosses the wire, and Eve learns only $c$
+- **Bottom, Mallory (active):** Bob recomputes $f_k(m')$ on what arrived and rejects anything whose tag doesn't match
+- Two goals, two mechanisms, **one shared secret** — the thing we have not yet explained how to get
+
+::: {.notes}
+Static pictures recovered from the original deck; walk them. Top: point
+at the two k's first, then the arrow, then Eve's tap — she gets c and
+nothing else, and the key never crosses the wire. Bottom: the tag v is a
+keyed function of the message (a MAC, HMAC in practice); Mallory can
+rewrite m but without k cannot produce a v' that Bob's recomputation
+accepts. Make the pairing explicit: Eve is the confidentiality threat,
+Mallory the integrity threat, and both figures assume the same shared k.
+That assumption is the key-distribution problem two slides ahead.
+:::
+
 ## Symmetric Crypto: Same Key Both Ways
 
 - Encryption and decryption use the **same secret key**
@@ -94,7 +117,7 @@ storefront app authenticated to every BigCommerce store that installed it
 with a single application key; when Fastr was compromised, that one key
 was used Sep 13-17, 2026 to inject scripts and download customer records
 "page by page" (SecurityWeek, Sep 22, 2026). Full brief in
-speaker-notes.md §5.
+speaker-notes.md §6.
 :::
 
 # Diffie-Hellman: A Public Conversation, a Private Key {.center}
@@ -138,6 +161,33 @@ conjecture, not a theorem — which is exactly why the post-quantum migration
 at the end of the deck matters.
 :::
 
+## Diffie-Hellman in One Picture {.smaller}
+
+::: {.columns}
+::: {.column width="62%"}
+<!-- recovered from ppt-archive/03-KeyManagement.pptx slide 25 -->
+![Two public values cross the wire; both sides land on the same $z$.](images/dh-exchange.png)
+:::
+::: {.column width="38%"}
+- Alice keeps $x$ and sends $g^x \bmod p$; Bob keeps $y$ and sends $g^y \bmod p$
+- Each raises what they *received* to their *own* secret: $(g^y)^x = (g^x)^y = g^{xy}$
+- The dashed line is the network — everything that crosses it is public
+- The gray box is the practical ending: hash $z$ into a session key, never use it raw
+:::
+:::
+
+::: {.notes}
+Static figure recovered from the original deck; walk it left to right.
+Step 2: each side picks a secret and sends only g to that secret. Step 3:
+each side exponentiates the received value with its own secret, and the
+two expressions are the same number because exponents commute. Stop
+there; per the agenda, no proofs and no discrete-log computation. The
+HMAC box is worth one sentence: real protocols (TLS 1.3's key schedule)
+never use the raw shared value as a key, they run it through a key
+derivation function. The picture also sets up the next slide: nothing in
+it says who Alice is actually talking to.
+:::
+
 ## D-H's Big Weakness: Man-in-the-Middle
 
 - Alice runs D-H — but really with **Mallory**. Bob does too.
@@ -159,6 +209,31 @@ van Oorschot, and Wiener, "Authentication and Authenticated Key Exchanges"
 middle" win? Seed the list — BGP hijacks, DNS on-path attacks, enterprise
 TLS-inspection proxies, ARP spoofing on the local network. All of them
 extract value from sitting between two parties who assume they're alone.
+:::
+
+## Eve vs. Mallory on the Same Exchange {.smaller}
+
+<!-- recovered from ppt-archive/03-KeyManagement.pptx slide 26 -->
+![Passive: Eve copies $g^x$ and $g^y$ and is stuck on the discrete log.](images/dh-passive-eavesdropper.png){width="68%"}
+
+<!-- recovered from ppt-archive/03-KeyManagement.pptx slide 27 -->
+![Active: Mallory runs one D-H with Alice (secret $u$) and another with Bob (secret $v$).](images/dh-mitm.png){width="95%"}
+
+- **Eve** knows $p$, $g$, $g^x$, $g^y$ and wants $g^{xy}$ — no known shortcut past the discrete log
+- **Mallory** never touches the math: Alice ends up with $g^{xu}$, Bob with $g^{yv}$, and Mallory holds both
+- Same wire, same protocol — the difference is whether the attacker only *reads* or also *replaces*
+
+::: {.notes}
+Two static figures recovered from the original deck, stacked so the
+contrast is visible. Top: Eve's two taps copy exactly the public values;
+the "Eve knows" line is her entire view, and turning it into z is the
+discrete-log problem. Bottom: Mallory does not break anything; she just
+answers Alice's g^x with her own g^u and opens a second, independent
+exchange with Bob. Trace the two key colors: Alice-Mallory share g^xu,
+Mallory-Bob share g^yv, and Mallory decrypts and re-encrypts in the
+middle. Cold-call: what would Alice need to receive to notice? The
+answer, something that only Bob could have produced, is the whole second
+half of the lecture.
 :::
 
 # Public-Key (Asymmetric) Cryptography {.center}
@@ -245,7 +320,7 @@ core-years of precomputation, then forgeries at will. Caveats to state:
 padded signatures (PKCS#1 v1.5, PSS) are not exposed, and 1024-bit RSA has
 been disallowed since 2013. The lesson is that the HSM kept the key
 perfectly and the API leaked anyway. Schneier's Sep 28, 2026 post is the
-short version. Brief in speaker-notes.md §13.
+short version. Brief in speaker-notes.md §16.
 :::
 
 # Certificates and Public-Key Infrastructure {.center}
@@ -373,7 +448,7 @@ validate DNSSEC (when the domain is signed) on the CAA and domain-control
 lookups behind DV issuance, so DNS spoofing can no longer win a cert, and a
 broken DNSSEC chain now blocks issuance and renewal. The May 5, 2026 .de
 signature failure (see the trust-anchors notes) also meant German domains
-could not renew while it lasted. Brief in speaker-notes.md §19.
+could not renew while it lasted. Brief in speaker-notes.md §22.
 :::
 
 # When CAs Go Wrong {.center}
@@ -575,7 +650,7 @@ then 45 days in 2028 (the vignette's "Feb 2028 default" is right; the
 64-day step in 2027 is the intermediate milestone). The Aug 31, 2026
 Microsoft 365 outage on the previous slide is the marquee "someone forgot"
 example; at 45 days a silently failing renewal job is an outage within a
-week. Brief in speaker-notes.md §28.
+week. Brief in speaker-notes.md §31.
 This is the elegant systems answer to broken revocation: don't fix
 revocation, shrink the window. Primary source is CA/Browser Forum Ballot
 SC-081v3 (April 11, 2025) — the vote was unanimous, 29-0, all four major
