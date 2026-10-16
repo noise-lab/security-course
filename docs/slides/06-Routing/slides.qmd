@@ -233,6 +233,75 @@ cert issuance or ACME validation traffic, so downstream defenses don't rescue
 you from a compromised route.
 :::
 
+
+## Redirection, Drawn: Two Routes to Lie About {.smaller}
+
+<!-- recovered from ppt-archive/06-Routing.pptx slide 16 -->
+![](images/hijack-phishing-redirect.png){width="72%" fig-align="center"}
+
+- Before a login page ever loads, the user's packets ride **two** BGP routes:
+  one to the **authoritative DNS server**, one to the **web server**
+- Hijack the first and you answer the name lookup yourself (cache poisoning
+  without touching a resolver); hijack the second and you *are* the bank
+- "SSL should protect, but…" — a hijacker who also intercepts certificate
+  issuance or ACME validation traffic can obtain a *valid* certificate for the
+  stolen route
+
+::: {.notes}
+Static image from the original deck; the three clouds flew in one at a time,
+so walk it: the user on the left, her ISP's cloud, then the two red routes.
+The point is that "redirection for phishing" has two independent targets. The
+DNS route is the subtle one: if the attacker's network receives the queries
+destined for the authoritative server, it can answer with whatever address it
+likes, and no resolver cache was ever poisoned in the classic sense. The web
+server route is the blunt one. Then the SSL line: in theory the certificate
+should save the user, but the same hijack can intercept the CA's domain
+validation, so the attacker gets a legitimate certificate. Foreshadows the DNS
+lecture and the "Two Problems" slide next.
+:::
+
+## Interception, Step by Step {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/06-Routing.pptx slide 22 (final-state overlays stripped) -->
+![Before: every AS forwards 10.10.220.0/22 toward the target](images/bgp-mitm-before.png){width="88%"}
+:::
+::: {.column width="50%"}
+<!-- recovered from ppt-archive/06-Routing.pptx slide 24 -->
+![After: a more-specific /24 pulls traffic to AS 100, which hands it back via AS 10 → AS 20](images/bgp-mitm-after.png){width="88%"}
+:::
+:::
+
+- **Before:** AS 200 announces its /22; every AS's forwarding path (dotted
+  blue) leads to it
+- **The trick:** AS 100 announces a more-specific **/24** so the Internet
+  routes to *it*, but **prepends AS 10, 20 and 200** to the path, so those
+  three ASes reject the route as a loop and keep the real one
+- **After:** victims' traffic flows to AS 100, and a static route sends it
+  back out through AS 10 → AS 20 → target, which sees nothing unusual
+- Shown live at DEFCON 16 (Pilosov and Kapela, "Stealing the Internet",
+  2008); figures after their talk
+
+::: {.notes}
+Two static frames from a three-slide build in the original deck; narrate the
+missing middle step. Before: the target originates its /22, the Internet
+converges, every dotted line ends at the target. Planning: the attacker
+traceroutes to the target and notes the ASes on its own path there, AS 10
+and AS 20. The trick: announce a more-specific /24, which wins everywhere by
+longest-prefix match, but prepend the ASNs on the planned reply path. BGP
+loop detection makes AS 10, AS 20 and AS 200 drop an announcement that
+already contains their own number, so they keep the honest route. After: the
+rest of the Internet sends traffic for the /24 to AS 100, and a static route
+there forwards it to AS 10, which still has the real path. The target sees
+nothing unusual, maybe a few extra hops. This is the Pilosov and Kapela
+DEFCON 16 demo from 2008, which the deck's slides 19 to 28 originally walked
+through with real traceroutes, including TTL adjustment to hide the extra
+hops. Ask: what in RPKI stops this? Nothing, if AS 100 is not filtered on
+the /24; ROV with a tight maxLength would mark the /24 invalid. Bridge to
+the July 2025 APNIC/LACNIC case where exactly that maxLength gap mattered.
+:::
+
 ## Two Problems We Must Solve {.center}
 
 To trust a route, a receiver needs to verify two things:
@@ -278,6 +347,39 @@ hands out the addresses in the first place — ARIN, RIPE, APNIC, LACNIC,
 AFRINIC each anchor their own tree. Ask: who is the analogue of the browser's
 built-in root store in this system? Answer: your router's set of RIR trust
 anchors.
+:::
+
+
+## The Address Hierarchy Is Already a Tree {.smaller}
+
+::: {.columns}
+::: {.column width="58%"}
+<!-- recovered from ppt-archive/06-Routing.pptx slide 40 (figure after Kent, Lynn and Seo, "Secure BGP (S-BGP)", IEEE JSAC 2000) -->
+![Address-block PKI (after Kent, Lynn and Seo, S-BGP, IEEE JSAC 2000)](images/address-block-pki-hierarchy.png){width="100%"}
+:::
+::: {.column width="42%"}
+- Address space is **delegated top-down**: IANA/ICANN → regional registries →
+  ISPs → customers
+- Every allocation is already a signed-off handover; RPKI makes each step a
+  **certificate**
+- An **ROA** is the leaf: *"this block, this AS"*, signed by whoever holds the
+  block
+- A web CA has to go *verify* who owns a name; a registry **already knows**
+  who holds a block. That is what makes this PKI "natural"
+:::
+:::
+
+::: {.notes}
+The figure is the S-BGP paper's address-allocation hierarchy (Kent, Lynn and
+Seo, IEEE JSAC 2000); the names are dated, GTE-I and MCI, but the shape is
+exactly today's RPKI. Walk it top-down: ICANN/IANA holds everything, hands
+blocks to the regional registries, which hand sub-blocks to ISPs, which hand
+smaller ones to customers. Each arrow is a delegation that already happened
+on paper, so making it a certificate chain adds no new trust relationship.
+Contrast with the web PKI from the earlier lecture, where a CA has to
+establish from scratch that you control a domain. Then the question for the
+room: where is the trust anchor? Each RIR publishes its own; your router's
+validator holds those five anchors the way a browser holds root CAs.
 :::
 
 ## Why Origin Authentication Got Deployed
@@ -335,6 +437,31 @@ the next slide. Ask: what would you have to sign to make this attack
 impossible?
 :::
 
+
+## Path Shortening, Drawn {.smaller}
+
+<!-- recovered from ppt-archive/06-Routing.pptx slide 42 -->
+![](images/path-shortening-attack.png){width="70%" fig-align="center"}
+
+- AS 4 originates a prefix; the honest routes reach AS 1 as **4 → 3 → 2 → 1**
+  (three hops) and **4 → 6 → 1** (two hops), so AS 1 prefers AS 6
+- AS 2 (shaded) deletes AS 3 and advertises **AS path "2 4"**: now as short as
+  the honest alternative, and AS 1's traffic can be diverted through AS 2
+- The origin is still AS 4, so an ROA says **Valid**; nothing in plain BGP
+  lets AS 1 check that AS 2 and AS 4 are even neighbours
+
+::: {.notes}
+Same attack as the previous slide's AS100/AS6167/AS22394 example, in the
+original deck's picture. Walk the red arrows: AS 4 is the origin, its
+announcement goes up through AS 3 to AS 2 and down through AS 6, both
+arriving at AS 1. Honest, AS 2 would say "2 3 4" and lose to "6 4" on
+length. By dropping AS 3 it ties, and with any local preference or tie-break
+in its favour it wins. (The label wraps "2 4" onto two lines in the render;
+read it as one path.) The origin field is untouched, so origin validation is
+satisfied. Ask the room what AS 1 would need to see to catch the lie: a proof
+that AS 4 actually handed the route to AS 2. That is the next slide.
+:::
+
 ## Path Authentication: Sign the Path
 
 Idea (S-BGP / BGPsec): each AS adds a **signed attestation** as it forwards a
@@ -359,6 +486,48 @@ certificates trustworthy — reuse the mental model. Ask students to reason
 about it as an induction step: what property is preserved at each hop?
 :::
 
+
+## What the Signature Must Cover {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+<!-- recovered from ppt-archive/06-Routing.pptx slide 43 -->
+![Stopping shortening](images/path-shortening-sbgp-fix.png){width="100%"}
+
+<!-- recovered from ppt-archive/06-Routing.pptx slide 54 -->
+![Stopping false edges](images/false-edge-sbgp-fix.png){width="100%"}
+:::
+::: {.column width="45%"}
+- **Shortening (top):** to send "2 4", AS 2 would need AS 4's signature
+  saying *"I gave this route to AS 2"*. AS 4 only ever signed *"to AS 3"*, so
+  AS 2 cannot build the chain
+- **False edge (bottom):** AS 3 claims a direct link to AS 4 and offers path
+  **1 3 4**; it needs a *signed* attestation from AS 4 naming AS 3 as next hop,
+  which does not exist
+- Both attacks fail for the same reason: each hop's signature covers the
+  **path so far** *and* the **recipient**
+- What it cannot stop: AS 3 and AS 4 **colluding** to sign an edge that exists
+  on paper but not on the wire (next slide)
+:::
+:::
+
+::: {.notes}
+The two pictures the original deck used to make the induction concrete. Top:
+the shortening attack from the previous slide, now with the requirement
+spelled out: to announce "2 4", AS 2 must produce a signature chain for that
+exact path, and the first link would have to be AS 4 signing "path 4, sent
+to AS 2". AS 4 signed "path 4, sent to AS 3", nothing else, so the chain
+cannot be forged. Bottom: a different lie. AS 3 is adjacent to AS 1 but not
+to AS 4; it invents the edge 3-4 and offers AS 1 the path 1 3 4. Again the
+missing piece is AS 4's signed attestation naming AS 3 as the recipient.
+Hammer the invariant: every signature covers the path so far plus the next
+AS, so neither removing a hop nor inventing one survives verification. Then
+the honest caveat that sets up the next slide: if AS 3 and AS 4 cooperate,
+they can sign an edge that is not physically there, and nothing in BGPsec
+notices. The source slide for the bottom figure was hidden in the original
+deck, from the soBGP comparison section that this deck skips.
+:::
+
 ## What Path Authentication Still Can't Do
 
 Even fully signed paths leave gaps:
@@ -380,6 +549,36 @@ who fabricate an edge between them. Recent Cloudflare guidance on BGP first-
 AS enforcement makes this concrete: "BGPsec is deployed" would still not
 mean "routing is safe." Ask: which of these residual attacks matters most
 for a censorship regime? For an intelligence agency? For a botnet operator?
+:::
+
+
+## Control Plane vs. Data Plane, Drawn {.smaller}
+
+<!-- recovered from ppt-archive/06-Routing.pptx slide 18 -->
+![](images/data-plane-deflection.png){width="68%" fig-align="center"}
+
+- AS 1 *announces* "AS Path = 1 2 …" (red arrow); every signature on that
+  announcement can be perfectly valid
+- Inside AS 1 a misconfigured router forwards the packets (blue) toward
+  **AS 3** instead; nothing in BGP, signed or not, notices the **deflection**
+- Signatures secure what routers *say*, not what they *do*; verifying the data
+  plane is a separate and mostly unsolved problem
+
+::: {.notes}
+The original slide built in two clicks: first the announcement, then the
+deflection. Narrate it that way. Red: AS 1 tells its left-hand neighbour
+"reach this prefix via 1 2 ...", and with BGPsec every AS on that path has
+signed its link. Blue: the packets enter AS 1, hit a router whose internal
+routing (iBGP, IGP, a static route, a bad route-map) points at the wrong
+exit, and leave toward AS 3. Deflection, not hijack: no false announcement
+was ever made. The teaching point is that control-plane security is a
+statement about messages, and the forwarding table is built from messages
+plus local policy plus mistakes. Tie back to the "no data-plane guarantee"
+bullet on the previous slide and to the 2021 Facebook outage, where the
+announcements were withdrawn correctly and the data plane simply had nowhere
+to go. Research directions if asked: traceroute-based detection, path-aware
+networking, and the RPKI-to-router protocol, which still only feeds the
+control plane.
 :::
 
 ## So Why Isn't Path Authentication Deployed?
@@ -454,6 +653,9 @@ Cheap, partial measures that predate RPKI and are still everywhere:
 - Most eBGP peers are **one hop** away
 - Send packets with **TTL 255**, reject anything arriving with **TTL < 254**
 - Remote attackers can't forge a high enough TTL
+
+<!-- recovered from ppt-archive/06-Routing.pptx slide 31 -->
+![](images/gtsm-ttl-hack.png){width="80%"}
 :::
 :::
 
