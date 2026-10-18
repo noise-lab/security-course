@@ -380,9 +380,8 @@ Washington show the same shape: tests follow income and density, not need. Say t
 sentence plainly: the map of where tests ran is not the map of where people live.
 This is the sampling-bias half of "bad data"; the next slide asks who those testers
 are, and the slide after that shows how to design a frame (South Shore) instead of
-accepting whatever the crowd produced. Attribution: the figure is from the Internet
-Equity Initiative's work on crowdsourced tests; the archived slide carries no citation,
-so name it as "our group's analysis" unless you recall the paper.
+accepting whatever the crowd produced. Attribution: this is our own figure, from the
+Internet Equity Initiative's crowdsourced speed-test analysis.
 :::
 
 ## Limitation: Who Runs the Test? {.smaller}
