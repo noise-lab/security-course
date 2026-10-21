@@ -214,9 +214,10 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 
 *Plan; replaced with the record after class.*
 
-- Denial of Service, the remaining pieces: reflection and amplification, open resolvers, ingress filtering (BCP 38), SYN cookies, the Great Cannon
-- Routing Security, finished: origin authentication with RPKI and route origin validation, why origin alone is not enough, path authentication (BGPsec) and why it is not deployed, the FCC's 2024 proposed rule
-- BGP activity: reading routes from a RouteViews looking glass ([activity](../activities/bgp.md))
+- Denial of Service, closed out: SYN cookies as the pattern of pushing work back to the requester; amplification, ingress filtering, and the Great Cannon left as reading
+- Routing Security, finished: origin authentication with RPKI and route origin validation, coverage versus enforcement, why origin alone is not enough, path authentication (BGPsec) and why it is not deployed, the FCC's 2024 proposed rule
+- Web Security: the same-origin policy, SQL injection, cross-site scripting, cross-site request forgery, and the common thread
 - Debate: CFAA safe harbor for security researchers ([resolution and readings](../debates/cfaa.md); [format](../debates/format.md))
-- DNS Security, part 1: how lookups work, cache poisoning and DNSSEC, where the chain of trust stops, what DNS traffic reveals
-- Next: encrypted DNS and resolver centralization, the DNS privacy activity, web security; Assignment 2 (Authentication) opens Mon Oct 26
+- DNS Security: how lookups work, cache poisoning and DNSSEC, where the chain of trust stops, what DNS traffic reveals, encrypted DNS and who it makes you trust, resolver centralization, Oblivious DNS
+- Posted for self-study, not run in class: the [BGP looking-glass activity](../activities/bgp.md) and the [DNS privacy activity](../activities/dns.md)
+- Next: Web Privacy and Device Privacy; Assignment 2 (Authentication) opens Mon Oct 26
