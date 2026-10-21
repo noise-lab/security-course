@@ -209,3 +209,14 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
     * **The two problems to solve,** teed up for next week: **origin authentication** (is the announcing network the rightful holder of that address space?) and **path authentication** (is the AS path real, or forged?). Origin is the critical one. Both are solved with public-key cryptography: every AS gets a public key tied to its identity through a public key infrastructure, the same shape as the web PKI from Meeting 2
     * Not covered: RPKI, path validation, the FCC proceeding, and the rest of the Routing deck from "Origin Authentication With RPKI" onward
 * **Next week (Wed Oct 21):** a slower review of how BGP works, then the routing-security defenses, then DNS security, which uses its own public key infrastructure to do the same thing for DNS records that RPKI does for routes. Assignment 2 (OAuth) opens Mon Oct 26
+
+### Meeting 4 (Wed Oct 21)
+
+*Plan; replaced with the record after class.*
+
+- Denial of Service, the remaining pieces: reflection and amplification, open resolvers, ingress filtering (BCP 38), SYN cookies, the Great Cannon
+- Routing Security, finished: origin authentication with RPKI and route origin validation, why origin alone is not enough, path authentication (BGPsec) and why it is not deployed, the FCC's 2024 proposed rule
+- BGP activity: reading routes from a RouteViews looking glass ([activity](../activities/bgp.md))
+- Debate: CFAA safe harbor for security researchers ([resolution and readings](../debates/cfaa.md); [format](../debates/format.md))
+- DNS Security, part 1: how lookups work, cache poisoning and DNSSEC, where the chain of trust stops, what DNS traffic reveals
+- Next: encrypted DNS and resolver centralization, the DNS privacy activity, web security; Assignment 2 (Authentication) opens Mon Oct 26
