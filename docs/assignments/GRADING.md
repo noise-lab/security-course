@@ -87,3 +87,4 @@ targeted feedback students said they wanted, beyond a bare number.
 - [`privacy/grading-key.md`](privacy/grading-key.md)
 - [`copyright/grading-key.md`](copyright/grading-key.md)
 - [`moderation/grading-key.md`](moderation/grading-key.md)
+- [`access/grading-key.md`](access/grading-key.md) (pairs with [`access.md`](access.md), which is not in its own folder)
