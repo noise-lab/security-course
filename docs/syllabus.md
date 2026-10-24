@@ -100,9 +100,9 @@ assignments according to the following policy:
   due date.
 - For each assignment, every hour late (or fraction thereof) that you
   turn in the assignment will subtract one hour from your grace-period
-  balance. For example, if you turn in your assignment at 6:02 p.m. on
-  the due date, we will count this as two hours against your grace
-  period.
+  balance. For example, if you turn in your assignment at 1:02 a.m. the
+  morning after the due date, we will count this as two hours against your
+  grace period.
 - As long as your grace period balance is positive, you can turn in any
   assignment late without penalty.
 - Once your grace period balance reaches zero, you will receive half
