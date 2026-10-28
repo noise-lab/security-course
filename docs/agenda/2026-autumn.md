@@ -250,3 +250,25 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 * **Debate: CFAA safe harbor** ([resolution and readings](../debates/cfaa.md), [format](../debates/format.md)): *The CFAA should provide safe harbor from prosecution to security researchers who attempt to discover and exploit computing software and systems, even if they violate a company's terms of service.* Nine students signed up. Ran the rest of the session after the break. Not recorded
 * **Not reached:** DNS Security (topic 8), the BGP looking-glass activity, and the DNS privacy activity. The activities are posted for self-study and are not graded
 * **Next week (Wed Oct 28):** DNS Security (8), Web Privacy (9), Device Privacy (10); debate 5. Assignment 1 is due Fri Oct 23; Assignment 2 (Authentication) opens Mon Oct 26
+
+### Meeting 5 (Wed Oct 28)
+
+*Plan; replaced with the record after class.*
+
+* Housekeeping: Assignment 2 (Authentication / API access control) is out, due Friday November 6; midterm Wednesday November 4, in class, covering Meetings 1 through 5; add the TAs as collaborators on your private repository; every repository now has a "Gradebook" issue showing what has been received
+* Lecture: DNS Security (topic 8), carried from last week
+    * What DNS does and a single lookup step by step
+    * Integrity: cache poisoning, the Kaminsky attack, DNSSEC and where the chain of trust stops
+    * Privacy: what DNS reveals and to whom; encrypted DNS (DoH) and whom it makes you trust instead; centralization as a single point of failure and a single takedown target; Oblivious DNS
+* Lecture: Web Privacy (topic 9)
+    * Third-party tracking and the request that does the tracking
+    * How cookies enable cross-site tracking; what browsers block by default and what Chrome decided in 2025; why deleting cookies is not enough
+    * Browser fingerprinting, with a hands-on on your own browser (EFF Cover Your Tracks)
+    * Linking identities across trackers; defenses from cookie blocking to Global Privacy Control
+* Debate: Privacy Omnibus ([resolution and prep](../debates/omnibus.md); [format](../debates/format.md))
+* Lecture: Device Privacy (topic 10)
+    * Why the smart home is hard to study and four ways to do it
+    * Security: unauthenticated web servers on the LAN, discovery and control from a web page, DNS rebinding
+    * Privacy: IoT Inspector and what 50,000 devices talk to; smart-TV tracking, opt-outs that do not work, and the 2026 state lawsuits over automatic content recognition
+* Take-home, not graded: [DNS privacy](../activities/dns.md) and [web tracking](../activities/web.md) activities
+* Next: midterm (Wed Nov 4), then Privacy Law and Regulations (11) with the Copyright debate
