@@ -2,6 +2,13 @@
 title: "DNS Security and Privacy"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
+header-includes: |
+  <style>
+    .reveal .cell-output-display svg, .reveal .cell-output-display img { width: 100%; height: auto; }
+    .reveal .cell-output-display { margin: 0; }
+    .reveal .diagram-wide .cell-output-display svg { height: 300px; width: auto; max-width: 96%; display: block; margin: 0 auto; }
+    .reveal .diagram-wide { margin-bottom: 0.3em; }
+  </style>
 ---
 
 ## When DNS Breaks, the Internet Breaks {.center}
@@ -54,6 +61,8 @@ a small set of providers? Foreshadow: the answer is decentralization.
 
 ## The DNS Hierarchy
 
+::: {.columns}
+::: {.column width="46%"}
 A name space split into **zones**, served by a hierarchy of servers:
 
 - **Stub resolver** — on your device; launches queries
@@ -61,6 +70,31 @@ A name space split into **zones**, served by a hierarchy of servers:
 - **Root servers** → **TLD servers** (`.com`, `.edu`) → **authoritative servers**
 
 Each level **refers** the query one step down the hierarchy.
+:::
+::: {.column width="54%"}
+<!-- redrawn from the Oct 28, 2026 board (Dropbox/Tmp/2026-10-28 18-32.pdf, page 1) -->
+```{dot}
+//| fig-width: 6.2
+//| fig-height: 4.2
+digraph dnstree {
+  rankdir=TB; bgcolor="transparent"; nodesep=0.35; ranksep=0.55;
+  node [shape=ellipse, style=filled, fontname="Helvetica", fontsize=18, color="#444444", penwidth=1.6];
+  edge [color="#555555", penwidth=1.6, arrowhead=none];
+  root [label=". (root)", fillcolor="#f2d9a8"];
+  edu  [label=".edu", fillcolor="#cfe3f5"]; com [label=".com", fillcolor="#cfe3f5"]; net [label=".net", fillcolor="#cfe3f5"];
+  uchicago [label="uchicago", fillcolor="#d9efd3"]; mit [label="mit", fillcolor="#d9efd3"];
+  foo [label="foo", fillcolor="#d9efd3"]; google [label="google", fillcolor="#d9efd3"];
+  cs [label="cs", fillcolor="#ffffff"];
+  root -> edu; root -> com; root -> net;
+  edu -> uchicago; edu -> mit; com -> foo; com -> google;
+  uchicago -> cs;
+  { rank=same; edu; com; net; }
+  { rank=same; uchicago; mit; foo; google; }
+}
+```
+Every node is a **zone** with an authoritative server that either answers or refers you one level down.
+:::
+:::
 
 ::: {.notes}
 Draw the hierarchy on the board while you talk. The recursive resolver is
@@ -149,6 +183,57 @@ cache poisoning could return via ICMP side channels. The takeaway: without
 authentication, a lie propagates through the cache to every downstream
 user. That's what motivates DNSSEC on the next slide. Keep the exam framing
 at "why did the lie propagate to everyone."
+:::
+
+## The Kaminsky Attack, Drawn {.smaller}
+
+::: {.diagram-wide}
+<!-- redrawn from the Oct 28, 2026 board (Dropbox/Tmp/2026-10-28 18-32.pdf, page 2) -->
+```{dot}
+//| fig-width: 8.5
+//| fig-height: 2.9
+digraph kaminsky {
+  rankdir=LR; bgcolor="transparent"; nodesep=0.6; ranksep=1.0;
+  node [fontname="Helvetica", fontsize=20, style=filled, penwidth=1.8];
+  edge [fontname="Helvetica", fontsize=16, penwidth=1.8];
+  stub [label="stub\nresolver", shape=ellipse, fillcolor="#ffffff", color="#444444"];
+  rec  [label="local\nrecursive", shape=ellipse, fillcolor="#cfe3f5", color="#444444"];
+  auth [label="authoritative\n(google.com)", shape=ellipse, fillcolor="#d9efd3", color="#444444"];
+  evil [label="off-path\nattacker", shape=box, style="filled,rounded", fillcolor="#f7c6c6", color="#a33", fontsize=20, penwidth=2.2];
+  stub -> rec [label="google.com?", color="#555555"];
+  rec  -> auth [label="google.com?  txid = 0x3a7f", color="#555555"];
+  auth -> rec [label="google.com = 142.250.x.x  (txid 0x3a7f)", color="#2a7", fontcolor="#2a7", constraint=false];
+  evil -> rec [label="google.com = 6.6.6.6\nfor every txid 0x0000 … 0xffff", color="#c33", fontcolor="#c33", style=dashed, penwidth=2.2];
+  { rank=same; auth; evil; }
+}
+```
+:::
+
+::: {.columns}
+::: {.column width="50%"}
+- The attacker **never sees the query**: not when it leaves, not its 16-bit **transaction ID**
+- So it waits for the cached entry to **expire** and floods the recursive with forged answers for **every one of the 65,536 IDs**
+:::
+::: {.column width="50%"}
+- One matches before the real answer lands; the lie is **cached** and served to everyone behind the resolver
+- Fix: randomize the **source port** too (about 2^32 guesses), then **sign** (DNSSEC) and **encrypt** (DoH)
+:::
+:::
+
+::: {.notes}
+Redrawn from the board (Oct 28). Walk it left to right: the stub asks the
+recursive, the recursive asks the authoritative with a transaction ID, and the
+only check on the answer is that the ID matches. The attacker is off path, so
+it cannot read the ID; it does not need to. It knows the recursive will re-ask
+when the cache expires, and 65,536 forged responses are a trivial burst, so it
+sends all of them, one per ID, each saying google.com is 6.6.6.6. Whichever
+one carries the right ID wins the race if it arrives before the legitimate
+answer, and the poisoned record now sits in the cache for its TTL. Kaminsky's
+2008 refinement (not on the exam) was to ask for random non-existent
+subdomains so the cache never blocks a retry. The fix in 2008 was source-port
+randomization, which multiplies the guess space by another 2^16; signing the
+records (DNSSEC, next slide) is the real fix because a forged answer then
+fails verification no matter how lucky the guess.
 :::
 
 ## DNSSEC: Signatures Up the Hierarchy
