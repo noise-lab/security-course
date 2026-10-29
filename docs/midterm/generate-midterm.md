@@ -86,16 +86,25 @@ decide how it looks**, and nothing is asked that was not taught.
   the best answer.)" in the stem. Keep options to one line each.
 - Yes/no: `\yesnoyes` or `\yesnono` at the end of the statement, then a separate
   `\prob` "Explain why or why not." with an `\answerbox`.
-- Short answer: `\answerbox{height-in-inches}{solution}`; 1.0–2.5 in by expected
-  length. The solution is one paragraph, no `&`, and a blank line precedes the box.
-  Very short answers: `\shortanswerbox{width}{text}`.
-- Diagrams: `\includegraphics[width=0.65\textwidth]{name.png}`, with a solution
-  variant selected by the version switch:
+- Short answer: `\answerbox{height}{solution}`; the height unit is 1.5 cm, and
+  0.8–1.1 is the range that fits six pages (1.0 holds about three lines of
+  `\small` text, roughly 380 characters at full width). Start the solution with
+  `\small`, keep it to one paragraph with no `&`, and put a blank line before the
+  box. Very short answers: `\shortanswerbox{width}{text}`.
+- Diagrams: place the figure beside its question text in two `[t]` minipages
+  (about `0.40` and `0.57\linewidth`, each starting with `\vspace{0pt}`), with
+  `\par\noindent` right after `\prob{N}` so the pair starts on its own line; a
+  full-width figure under its stem costs a third of a page. Put `\Needspace{2.5in}`
+  (needspace package, capital N) before every figure question so it never splits;
+  lowercase `\needspace` adds a penalty that TeX takes early. Draw labels large
+  enough to print at 7 pt or more once the figure is 4 in wide (with matplotlib,
+  shrink the canvas rather than the data coordinates). Select the solution variant
+  by the version switch:
   ```latex
   \ifthenelse{\equal{\version}{solution}}{% raw %}{%{% endraw %}
-  \includegraphics[width=0.65\textwidth]{name-solution.png}%
+  \includegraphics[width=\linewidth]{name-solution.png}%
   }{% raw %}{%{% endraw %}
-  \includegraphics[width=0.65\textwidth]{name.png}%
+  \includegraphics[width=\linewidth]{name.png}%
   }
   ```
   Draw the student version with the thing to be labelled left blank, and the
@@ -105,8 +114,12 @@ decide how it looks**, and nothing is asked that was not taught.
 - Case studies: a `\framebox[0.9\linewidth]{\parbox{0.8\linewidth}{{\bf Case
   Study:} …}}` block, centered, followed by two or three questions that apply named
   ethical principles or threat-model elements to it.
-- Sections: `\section*{Name}` preceded by `\vspace*{-0.1in}`; `\newpage` where a
-  section would otherwise split a diagram or a case study.
+- Sections: `\section*{Name}` preceded by `\vspace*{-0.1in}`; never `\newpage`.
+  `exam.tex` tightens the spacing globally with
+  `\titlespacing*{\section}{0pt}{1.2ex}{0.3ex}` and
+  `\setlist[itemize]{topsep=1pt,partopsep=0pt,parsep=0pt}` after loading the
+  style file; a `\Needspace` before a section heading keeps it with its first
+  question.
 - Points: multiple choice 3–4; short answer 3–4; yes/no 1–2 plus 2–3 for the
   explanation; diagram 3–4; feedback 1 + 1.
 - `exam.tex` sets `\term` and uses `\usepackage[]{feamster}`; the Makefile builds
@@ -135,9 +148,12 @@ grep -o '\\prob{[0-9]*}' questions.tex | grep -o '[0-9]*' | awk '{s+=$1} END {pr
 
 Open both PDFs. No overlapping text, every answer box starts on its own line, no
 multiple-choice option wraps, every diagram has a student and a solution version,
-and the solution PDF shows an answer for every question. Too long: drop the page
-breaks between sections, shrink answer boxes, merge two short questions. Too
-short: enlarge boxes or add one short-answer question on an under-covered meeting.
+and the solution PDF shows an answer for every question. Too long, in this
+order: tighten the stems (the 2025 exam is about 1,700 words in `questions.tex`; a
+3,000-word draft runs to seven pages), move figures beside their text, shrink
+answer boxes toward 0.9, then cut the weakest multiple-choice question and move
+its points to a neighbor. Too short: enlarge boxes or add one short-answer
+question on an under-covered meeting.
 
 ## Checklist before handing the draft to the instructor
 
