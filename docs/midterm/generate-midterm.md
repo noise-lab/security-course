@@ -14,10 +14,10 @@ decide how it looks**, and nothing is asked that was not taught.
 |---|---|
 | Exam | `midterm`, given in class in week 6 |
 | Agenda | `docs/agenda/<year>-<term>.md` (index at `docs/agenda.md`), the meetings the agenda says the midterm covers; by default Meetings 1–5 |
-| Past exams | `docs/midterm/<YYYY>/`, the two or three most recent (each has `questions.tex`, `instructions.tex`, `exam.tex`, `feamster.sty`, a `Makefile`, and any diagram PNGs) |
+| Past exams | `docs/midterm/<YYYY>/`, the two or three most recent (each has `questions.tex`, `instructions.tex`, `exam.tex`, `feamster.sty`, a `Makefile`, and any diagram PNGs). From 2026 on, each also carries `rubric.yaml` (how it was scored), `grading-notes.md` (decisions made while giving it), and `analysis.md` (where the class split from the key): read those three first, and do not reuse a question they mark as ambiguous |
 | Length | **6 pages, 85 points**, written for about an hour; students may take the whole period. Ends with a 2-point feedback section |
 | Must include | at least one question on each lab assignment due in the range (Assignment 1, PKI, is always in range); every bullet the agenda marks **Midterm flag**; at least two diagram-based questions |
-| Instructor output | `/Users/feamster/Dropbox/Tmp/exams/security-course/midterm/<YYYY>/`, cloud-backed and outside the public repository. **Never commit an exam before it has been given.** Afterwards it is committed to `docs/midterm/<YYYY>/` with solutions as practice material |
+| Instructor output | `/Users/feamster/Dropbox/Tmp/exams/security-course/midterm/<YYYY>/`, cloud-backed and outside the public repository. **Never commit an exam before it has been given.** Afterwards, when the instructor says so, it is committed to `docs/midterm/<YYYY>/` with solutions as practice material, together with `rubric.yaml`, `grading-notes.md`, and `analysis.md` from the grading directory in instructor-data (never the scores, details, review pages, or return manifest) |
 | Student output | any directory of your own; nothing here is secret |
 
 ## What the exam must do
