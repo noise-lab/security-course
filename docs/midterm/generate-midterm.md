@@ -95,6 +95,18 @@ decide how it looks**, and nothing is asked that was not taught.
   `\yesnoyes` and `\yesnono`, in no fixed pattern. Before finishing, write out
   the whole key (for example "Q1: B, C, F; Q5: no; Q9: D") and fix any pattern
   you can see in it.
+- **Show the answer key as a table before the exam is final**, for the
+  instructor to look over, one row per question with an answer to check:
+
+  | Question | Type | Correct answer(s) |
+  |---|---|---|
+  | Q3 | single answer | 2 of 5 |
+  | Q5 | select all | 1, 2, 4 of 5 |
+  | Q8 | yes/no | no |
+
+  Give positions as they appear on the page (count across the row, then down,
+  in a two-column grid). Note under the table any pattern still visible, such
+  as two single-answer keys in the same position, so the instructor can decide.
 - Yes/no: `\yesnoyes` or `\yesnono` at the end of the statement, then a separate
   `\prob` "Explain why or why not." with an `\answerbox`.
 - Short answer: `\answerbox{height}{solution}`; the height unit is 1.5 cm, and
