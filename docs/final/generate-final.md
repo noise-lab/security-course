@@ -42,6 +42,17 @@ soften, or change it:
 - Use `\correctanswercircle{text}` for correct answers
 - Use `\answercircle{text}` for incorrect answers
 - Clearly indicate "Select all that apply" in question text
+- **Randomize where the correct answers sit.** The key must not be readable
+  from the layout. In every multiple-choice question put the correct options at
+  random positions: in a two-column grid spread them across both columns and
+  different rows, never all in the left column or the top rows; in a
+  single-column list, not always first. Across the exam, correct options should
+  land about evenly in every position and column, consecutive single-answer
+  questions should not share the key's position, and select-all questions should
+  vary in how many options are correct. Balance yes/no keys too: use both
+  `\yesnoyes` and `\yesnono`, in no fixed pattern. Before finishing, write out
+  the whole key (for example "Q1: B, C, F; Q5: no; Q9: D") and fix any pattern
+  you can see in it.
 
 ### Yes/No Questions with Explanation
 - **Count**: 3 questions

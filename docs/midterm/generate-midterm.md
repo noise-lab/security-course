@@ -84,6 +84,17 @@ decide how it looks**, and nothing is asked that was not taught.
 - Multiple choice: `\correctanswercircle{text}` for correct options,
   `\answercircle{text}` for the others; say "(Select all that apply.)" or "(Select
   the best answer.)" in the stem. Keep options to one line each.
+- **Randomize where the correct answers sit.** The key must not be readable
+  from the layout. In every multiple-choice question put the correct options at
+  random positions: in a two-column grid spread them across both columns and
+  different rows, never all in the left column or the top rows; in a
+  single-column list, not always first. Across the exam, correct options should
+  land about evenly in every position and column, consecutive single-answer
+  questions should not share the key's position, and select-all questions should
+  vary in how many options are correct. Balance yes/no keys too: use both
+  `\yesnoyes` and `\yesnono`, in no fixed pattern. Before finishing, write out
+  the whole key (for example "Q1: B, C, F; Q5: no; Q9: D") and fix any pattern
+  you can see in it.
 - Yes/no: `\yesnoyes` or `\yesnono` at the end of the statement, then a separate
   `\prob` "Explain why or why not." with an `\answerbox`.
 - Short answer: `\answerbox{height}{solution}`; the height unit is 1.5 cm, and
