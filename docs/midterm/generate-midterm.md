@@ -134,7 +134,7 @@ decide how it looks**, and nothing is asked that was not taught.
   solution version with it filled in. A figure from the lecture deck
   (`docs/slides/<deck>/images/`) is a good base. Negative `\vspace*` before a figure
   saves space.
-- Case studies: a `\framebox[0.9\linewidth]{\parbox{0.8\linewidth}{{\bf Case
+{% raw %}- Case studies: a `\framebox[0.9\linewidth]{\parbox{0.8\linewidth}{{\bf Case{% endraw %}
   Study:} …}}` block, centered, followed by two or three questions that apply named
   ethical principles or threat-model elements to it.
 - Sections: `\section*{Name}` preceded by `\vspace*{-0.1in}`; never `\newpage`.
