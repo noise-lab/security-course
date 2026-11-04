@@ -61,7 +61,13 @@ decide how it looks**, and nothing is asked that was not taught.
    multiple-choice list stays with its stem, a yes/no stays with its explanation
    box, every sub-part box stays with the question, and a figure stays with its
    text. Put `\Needspace` before any `\prob` that could straddle a break and
-   before every section heading. Check the rendered PDF page by page.
+   before every section heading. Better, and what the 2026 exam does: wrap every
+   `\prob` … `\eprob` in `\par\noindent\begin{minipage}{\linewidth}` …
+   `\end{minipage}\par`, and put each section heading inside the minipage of
+   its first question (with `\vspace{1.2ex}` before the minipage instead of the
+   negative `\vspace*`). A minipage cannot break, so no question can straddle a
+   page and no heading can be orphaned, and no `\Needspace` guessing is needed.
+   Check the rendered PDF page by page anyway.
 
 ## Steps
 
@@ -87,6 +93,8 @@ decide how it looks**, and nothing is asked that was not taught.
   the name box in `instructions.tex`**; it would add a phantom point. The name box
   is `\shortanswerbox{4.0}{Nick Feamster}`, labeled inline ("Write your full name
   here to acknowledge these instructions:"), and the first `\prob` is question 1.
+  Keep the front matter to one short paragraph (points, bubbles, permitted
+  materials) plus the name line: it costs a third of a page otherwise.
 - Multiple choice: `\correctanswercircle{text}` for correct options,
   `\answercircle{text}` for the others; say "(Select all that apply.)" or "(Select
   the best answer.)" in the stem. Keep options to one line each.
@@ -175,8 +183,7 @@ decide how it looks**, and nothing is asked that was not taught.
   `exam.tex` tightens the spacing globally with
   `\titlespacing*{\section}{0pt}{1.2ex}{0.3ex}` and
   `\setlist[itemize]{topsep=1pt,partopsep=0pt,parsep=0pt}` after loading the
-  style file; a `\Needspace` before a section heading keeps it with its first
-  question.
+  style file; the heading goes inside the first question's minipage (above).
 - Points: multiple choice 3–4; short answer 3–4; yes/no with its explanation
   3–4 as a single question; diagram 3–4; feedback 1 + 1.
 - `exam.tex` sets `\term` and uses `\usepackage[]{feamster}`; the Makefile builds
