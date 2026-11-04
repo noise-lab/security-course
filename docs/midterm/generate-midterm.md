@@ -155,15 +155,23 @@ decide how it looks**, and nothing is asked that was not taught.
   0.8–1.1 is the range that fits six pages (1.0 holds about three lines of
   `\small` text, roughly 380 characters at full width). Start the solution with
   `\small`, keep it to one paragraph with no `&`, and put a blank line before the
-  box. Very short answers: `\shortanswerbox{width}{text}`.
+  box. Very short answers: `\shortanswerbox{width}{text}`. Once the exam fits
+  six pages, **grow the boxes until every page is full**: render at 72 dpi,
+  measure the free space above the footer on each page, and add it to that
+  page's boxes (a box unit is 0.59 in). Students never complain that a box is
+  too big.
 - Diagrams: place the figure beside its question text in two `[t]` minipages
   (about `0.40` and `0.57\linewidth`, each starting with `\vspace{0pt}`), with
   `\par\noindent` right after `\prob{N}` so the pair starts on its own line; a
-  full-width figure under its stem costs a third of a page. Put `\Needspace{2.5in}`
-  (needspace package, capital N) before every figure question so it never splits;
-  lowercase `\needspace` adds a penalty that TeX takes early. Draw labels large
-  enough to print at 7 pt or more once the figure is 4 in wide (with matplotlib,
-  shrink the canvas rather than the data coordinates). Select the solution variant
+  full-width figure under its stem costs a third of a page. The question's
+  minipage (above) keeps the figure with its text. Draw labels large enough to
+  print at 8 pt or more once the figure is 4 in wide (with matplotlib, shrink the
+  canvas rather than the data coordinates; `SCALE = 0.55` and label `fontsize`
+  8.5–10 worked in 2026). Any box the student writes in inside a figure must be
+  at least two handwriting lines tall and as wide as the figure allows; if the
+  figure needs more room for it, extend the canvas rather than shrinking the box.
+  Ask for the shortest possible mark in a figure box: a letter (R/A), a number, a
+  circled hop, not a sentence. Select the solution variant
   by the version switch:
   ```latex
   \ifthenelse{\equal{\version}{solution}}{% raw %}{%{% endraw %}
@@ -200,7 +208,39 @@ must contain exactly:
 ```
 
 (Older exams said "handwritten"; as of Autumn 2026 the sheet may be typed. Past
-exams are being recompiled to match.)
+exams are being recompiled to match.) The instructions do not state how
+select-all items are scored; if the instructor sets a policy, add one sentence
+there.
+
+## Pre-copy review (required before the copier)
+
+Run two independent reviews of the built PDFs, one on the answer key and one
+reading the exam as a student would, and fold both into the source before
+printing. The 2026 reviews caught a reversed arrow in a figure, a keyed option
+that was true for half the room, a stem that handed students the secret the
+attacker was not supposed to know, and a double negative. Each reviewer checks
+every item for:
+
+- **Key:** is the keyed answer uniquely right? Could a prepared student defend
+  another option? Widen the key (accept X) rather than argue later.
+- **Wording:** two readings; a term never used in class ("Anderson's
+  taxonomy"); "the two reasons" when other pairs are also right (say "two");
+  "by default" claims that differ by browser or OS; a stem that reveals what the
+  question pretends is hidden (a transaction ID, a key); a question about the
+  lab that does not match what the lab actually did (a loopback capture has no
+  DNS query); a yes/no that is a double negative.
+- **Select-all:** every option must answer the stem's question, not a nearby
+  one (a script's origin vs. its URL's origin); nothing promised "will not be
+  asked" (port numbers).
+- **Form of answer:** does the stem say what to write (a letter, a word, a
+  sentence, three items)? Is the box big enough for it?
+- **Lab coverage:** at least one question only a student who did the assignment
+  can answer (the trust-store step for a self-signed certificate, not just
+  "what leaks over HTTPS").
+- **Layout on paper:** nothing straddles a page, no heading orphaned, figures
+  legible on a black-and-white copier, every box reachable with a pen.
+
+Record what the review changed in the exam's `README.md`.
 
 ## Validation
 
