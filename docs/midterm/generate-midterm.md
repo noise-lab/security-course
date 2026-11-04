@@ -85,7 +85,8 @@ decide how it looks**, and nothing is asked that was not taught.
 
 - `\prob{N}` … `\eprob` wraps a question worth N points. **Do not use `\prob{}` for
   the name box in `instructions.tex`**; it would add a phantom point. The name box
-  is `\shortanswerbox{4.0}{Nick Feamster}` and the first `\prob` is question 1.
+  is `\shortanswerbox{4.0}{Nick Feamster}`, labeled inline ("Write your full name
+  here to acknowledge these instructions:"), and the first `\prob` is question 1.
 - Multiple choice: `\correctanswercircle{text}` for correct options,
   `\answercircle{text}` for the others; say "(Select all that apply.)" or "(Select
   the best answer.)" in the stem. Keep options to one line each.
@@ -119,8 +120,9 @@ decide how it looks**, and nothing is asked that was not taught.
 - Multi-part questions: when a question asks for two or more distinct things
   (an argument against and one for; what leaks and what the trust-store step
   does; the attack and its defense), label the parts (a), (b) in the stem and
-  give **each part its own box**. Short parts get small labeled boxes, side by
-  side where they fit. A question asking for N named items (asset, property,
+  give **each part its own box, with that part's instruction written next to
+  (or directly above) its box**, not folded into the stem. Short parts get small
+  labeled boxes, side by side where they fit. A question asking for N named items (asset, property,
   adversary, capability; subject, verb, object; the three roots of trust) gets a
   grid of labeled small boxes rather than one large box. Define this at the top
   of `questions.tex` and use it for all of them:
