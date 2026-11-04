@@ -57,14 +57,19 @@ decide how it looks**, and nothing is asked that was not taught.
 8. **Fit exactly:** 6 single-sided pages, 85 points, a mix of question types in
    roughly the past exams' proportions (about a third multiple choice, a third
    short answer, the rest yes/no-with-explanation and diagrams), sections in the
-   order the material was taught.
+   order the material was taught. **No question may split across a page:** a
+   multiple-choice list stays with its stem, a yes/no stays with its explanation
+   box, every sub-part box stays with the question, and a figure stays with its
+   text. Put `\Needspace` before any `\prob` that could straddle a break and
+   before every section heading. Check the rendered PDF page by page.
 
 ## Steps
 
 1. Read the agenda for the meeting range. List, per meeting: the concepts taught,
    the examples used, every Midterm flag, and every exclusion.
 2. Read the past exams for form only: LaTeX conventions, point values, section
-   style, how diagrams are used, the feedback section.
+   style, how diagrams are used, the feedback section (headed **Course Feedback**,
+   so students know it is about the course, not the exam).
 3. Draft the question list against the agenda list: every flag covered, every
    assignment covered, proportions by time spent, nothing excluded, nothing
    duplicated from a past exam. Decide which two or more questions are
@@ -107,8 +112,35 @@ decide how it looks**, and nothing is asked that was not taught.
   Give positions as they appear on the page (count across the row, then down,
   in a two-column grid). Note under the table any pattern still visible, such
   as two single-answer keys in the same position, so the instructor can decide.
-- Yes/no: `\yesnoyes` or `\yesnono` at the end of the statement, then a separate
-  `\prob` "Explain why or why not." with an `\answerbox`.
+- Yes/no: **one question, not two.** `\yesnoyes` or `\yesnono` at the end of the
+  statement, then `\ Explain why or why not.` in the same `\prob`, then the
+  `\answerbox`. Never a separate numbered "Explain why or why not" item. State
+  the yes/no claim positively (no "can no longer", no double negatives).
+- Multi-part questions: when a question asks for two or more distinct things
+  (an argument against and one for; what leaks and what the trust-store step
+  does; the attack and its defense), label the parts (a), (b) in the stem and
+  give **each part its own box**. Short parts get small labeled boxes, side by
+  side where they fit. A question asking for N named items (asset, property,
+  adversary, capability; subject, verb, object; the three roots of trust) gets a
+  grid of labeled small boxes rather than one large box. Define this at the top
+  of `questions.tex` and use it for all of them:
+
+  ```latex
+  \newcommand{\gridbox}[3]{% raw %}{%{% endraw %}
+    \ifthenelse{\equal{\version}{solution}}{% raw %}{%{% endraw %}
+      \tikz[baseline=(x.base)]\draw (0,0) rectangle node (x) [text width=\dimexpr#1-6pt\relax, align=left] {\scriptsize #3} (#1, #2);%
+    }{% raw %}{%{% endraw %}
+      \tikz[baseline=(x.base)]\draw (0,0) rectangle node (x) {\vphantom{Aq}} (#1, #2);%
+    }}
+  % \gridbox{width}{height}{solution}, e.g. \gridbox{6cm}{1.2cm}{integrity}, in a tabular with the labels
+  ```
+- "Identify the role" questions (OAuth parties, protocol participants): make
+  them **matching**. Name the roles in the stem, letter the parties in the
+  diagram, and give a small box per role for the letter. Do not ask students to
+  write a role name into a box next to a letter; the term "role" alone is not
+  self-explanatory on an exam.
+- A box asks for what it can hold. "Name three" needs a box three lines tall;
+  if the page budget allows only one or two lines, ask for two.
 - Short answer: `\answerbox{height}{solution}`; the height unit is 1.5 cm, and
   0.8–1.1 is the range that fits six pages (1.0 holds about three lines of
   `\small` text, roughly 380 characters at full width). Start the solution with
@@ -143,8 +175,8 @@ decide how it looks**, and nothing is asked that was not taught.
   `\setlist[itemize]{topsep=1pt,partopsep=0pt,parsep=0pt}` after loading the
   style file; a `\Needspace` before a section heading keeps it with its first
   question.
-- Points: multiple choice 3–4; short answer 3–4; yes/no 1–2 plus 2–3 for the
-  explanation; diagram 3–4; feedback 1 + 1.
+- Points: multiple choice 3–4; short answer 3–4; yes/no with its explanation
+  3–4 as a single question; diagram 3–4; feedback 1 + 1.
 - `exam.tex` sets `\term` and uses `\usepackage[]{feamster}`; the Makefile builds
   the solution by substituting `[solution]` (`make exam`, `make solution`, `make
   all`, `make clean`). Margins are 0.5 in.
