@@ -78,6 +78,17 @@ soften, or change it:
 - **Points**: 3 points each
 - **Total**: 12-15 points
 - Use `\answerbox{height}{solution}` for answer boxes
+- **The solution box grows to fit its answer.** In `feamster.sty`, the solution
+  branch of `\answerbox` must draw a node that stretches to its text, never
+  shorter than the student's box, so a long model answer (or one amended after
+  grading) can't spill over the next question. The student version keeps the
+  fixed-height rectangle. If the copied `feamster.sty` still has the
+  fixed-height solution branch, replace that one line with:
+
+  ```latex
+  % the box grows to fit a long solution (never shorter than the exam's box)
+  \tikz\node[draw, align=left, inner xsep=.025\textwidth, text width=.95\textwidth, minimum height=#1 * 1.5cm] (sol) {\textbf{Solution:} #2} node[anchor=south east] at (sol.north east) {(Answer inside the box)};%
+  ```
 - Typical heights: 1.25-2.0 inches
 - Solutions should be 2-4 sentences
 

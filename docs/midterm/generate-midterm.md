@@ -160,6 +160,17 @@ decide how it looks**, and nothing is asked that was not taught.
   measure the free space above the footer on each page, and add it to that
   page's boxes (a box unit is 0.59 in). Students never complain that a box is
   too big.
+- **The solution box grows to fit its answer.** In `feamster.sty`, the solution
+  branch of `\answerbox` must draw a node that stretches to its text, never
+  shorter than the student's box, so a long model answer (or one amended after
+  grading) can't spill over the next question. The student version keeps the
+  fixed-height rectangle. If the copied `feamster.sty` still has the
+  fixed-height solution branch, replace that one line with:
+
+  ```latex
+  % the box grows to fit a long solution (never shorter than the exam's box)
+  \tikz\node[draw, align=left, inner xsep=.025\textwidth, text width=.95\textwidth, minimum height=#1 * 1.5cm] (sol) {\textbf{Solution:} #2} node[anchor=south east] at (sol.north east) {(Answer inside the box)};%
+  ```
 - Diagrams: place the figure beside its question text in two `[t]` minipages
   (about `0.40` and `0.57\linewidth`, each starting with `\vspace{0pt}`), with
   `\par\noindent` right after `\prob{N}` so the pair starts on its own line; a
