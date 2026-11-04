@@ -54,7 +54,7 @@ decide how it looks**, and nothing is asked that was not taught.
    situation and asks the student to apply something taught; a bad one asks for a
    number or a name from a single sentence. Yes/no questions always ask "Why or
    why not?" for the real points.
-8. **Fit exactly:** 6 single-sided pages, 85 points, a mix of question types in
+8. **Fit exactly:** 6 pages (printed double-sided and stapled), 85 points, a mix of question types in
    roughly the past exams' proportions (about a third multiple choice, a third
    short answer, the rest yes/no-with-explanation and diagrams), sections in the
    order the material was taught. **No question may split across a page:** a
