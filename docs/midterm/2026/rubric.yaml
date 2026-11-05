@@ -1,0 +1,944 @@
+# Grading rubric. Generated from the exam source, then edited by hand.
+# Edit points, criteria, and select_all_policy freely; `grade` re-reads it.
+# select_all_policy: one of right_minus_wrong, per_option, all_or_nothing
+title: Security, Privacy, and Consumer Protection Midterm, Autumn 2026
+source_dir: /Users/feamster/Dropbox/Tmp/exams/security-course/midterm/2026
+total_points: 85.0
+select_all_policy: right_minus_wrong
+round_to: 0.25
+questions:
+- number: 1
+  points: 4.0
+  section: Threat Models and Foundations
+  text: 'An AI agent that posts class announcements holds a stored Slack token. An attacker obtains the token and
+    posts "The midterm is canceled" to the course channel. Give the threat model, one item per box: the asset harmed
+    (not the token itself), the property violated, a plausible adversary and their motive, and the capability the
+    attacker needed. p0.72inp2.45inp0.85inp2.45in@ Asset: & & Property: & [8pt] Adversary: & & Capability: &'
+  parts:
+  - kind: short
+    grid: true
+    label: Asset
+    prompt: Asset
+    solution: the channel; the instructor's voice
+    width_in: 2.36
+    height_in: 0.71
+    id: 1a
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: 'Names a valid asset harmed other than the token: the course channel / its trustworthiness, or
+        the instructor''s voice/credibility, or students'' schedule/trust'
+  - kind: short
+    grid: true
+    label: Property
+    prompt: Property
+    solution: integrity (accept authenticity)
+    width_in: 2.36
+    height_in: 0.71
+    id: 1b
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Integrity (accept authenticity/message authenticity)
+  - kind: short
+    grid: true
+    label: Adversary
+    prompt: Adversary
+    solution: a prankster or a student wanting a delay
+    width_in: 2.36
+    height_in: 0.71
+    id: 1c
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Plausible adversary with motive, e.g., prankster or student wanting a delay
+  - kind: short
+    grid: true
+    label: Capability
+    prompt: Capability
+    solution: 'the stored token: acts as the instructor, no second factor'
+    width_in: 2.36
+    height_in: 0.71
+    id: 1d
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: 'Capability: possession of the stored token (e.g., theft/leak), which lets attacker act as instructor
+        with no second factor'
+- number: 2
+  points: 3.0
+  section: Threat Models and Foundations
+  text: 'Every security system has a root of trust: the point where the chain of trust stops and you simply accept
+    something. For each, name the key or certificate that is accepted without being checked, and who ships it. p3.0inp3.5in@
+    A browser''s TLS connection to a web site: & [10pt] DNSSEC validation of a DNS answer: & [10pt] RPKI''s check
+    that an AS may announce a prefix: &'
+  parts:
+  - kind: short
+    grid: true
+    label: A browser's TLS connection to a web site
+    prompt: A browser's TLS connection to a web site
+    solution: the root CAs shipped with the OS or browser (accept the vendor that ships the root store)
+    width_in: 3.46
+    height_in: 0.59
+    id: 2a
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Root CA certificates/public keys, shipped by OS or browser vendor (root store)
+  - kind: short
+    grid: true
+    label: DNSSEC validation of a DNS answer
+    prompt: DNSSEC validation of a DNS answer
+    solution: the root zone's public key built into the resolver software
+    width_in: 3.46
+    height_in: 0.59
+    id: 2b
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Root zone public key (trust anchor / KSK) built into resolver software, shipped by resolver vendor/OS
+        (or IANA/ICANN as origin)
+  - kind: short
+    grid: true
+    label: RPKI's check that an AS may announce a prefix
+    prompt: RPKI's check that an AS may announce a prefix
+    solution: the regional registries' trust-anchor keys in the validator (accept IANA/ICANN as the top of the delegation)
+    width_in: 3.46
+    height_in: 0.59
+    id: 2c
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Regional registries' (RIRs') trust-anchor keys/certificates configured in the validator (accept
+        IANA/ICANN as top)
+- number: 3
+  points: 3.0
+  section: Threat Models and Foundations
+  text: 'A payments startup discovers that a production API key committed to a public GitHub repository eight months
+    ago has been used by an outsider to issue refunds. Among the failure modes in Anderson''s "Why Cryptosystems
+    Fail," this is primarily a failure of: (Select the best answer.)'
+  parts:
+  - kind: choice
+    options:
+    - text: The cryptographic algorithm protecting the key
+      correct: false
+      label: A
+    - text: Key management and operational procedure
+      correct: true
+      label: B
+    - text: A remote software vulnerability in the API server
+      correct: false
+      label: C
+    - text: A fake terminal or skimmer
+      correct: false
+      label: D
+    - text: Usability of the customer-facing product
+      correct: false
+      label: E
+    prompt: 'A payments startup discovers that a production API key committed to a public GitHub repository eight
+      months ago has been used by an outsider to issue refunds. Among the failure modes in Anderson''s "Why Cryptosystems
+      Fail," this is primarily a failure of: (Select the best answer.)'
+    select_all: false
+    id: '3'
+    points: 3.0
+- number: 4
+  points: 4.0
+  section: Threat Models and Foundations
+  text: 'Case study. In 2012 an anonymous researcher logged into hundreds of thousands of home routers that still
+    had their factory default passwords, used them to scan the entire Internet, and published the data set (the
+    "Carna botnet"). The owners were never asked. Today a graduate student proposes to use the published data set
+    to study how address usage has changed since 2012. Using respect for persons, give one argument against the
+    original collection; using beneficence, give one argument for the reuse today. p3.15inp3.15in@ Against the collection
+    (respect for persons): & For the reuse (beneficence): &'
+  parts:
+  - kind: short
+    grid: true
+    label: Against the collection (respect for persons)
+    prompt: Against the collection (respect for persons)
+    solution: 'The owners'' devices were accessed and modified without informed consent: never asked, never told,
+      no way to opt out, so they were treated as means rather than persons.'
+    width_in: 3.07
+    height_in: 0.94
+    id: 4a
+    points: 2.0
+    criteria:
+    - id: c1
+      points: 2
+      description: 'Valid respect-for-persons argument: owners'' devices accessed without informed consent/knowledge/opt-out,
+        treated as means (full credit for one clear argument; 1 if vague)'
+  - kind: short
+    grid: true
+    label: For the reuse (beneficence)
+    prompt: For the reuse (beneficence)
+    solution: The data already exists and cannot be un-collected; reuse adds no new risk to the owners (decade-old
+      address-level data) and the benefit, a baseline for Internet growth, is real; risk against benefit favors
+      reuse even though it did not favor collection.
+    width_in: 3.07
+    height_in: 0.94
+    id: 4b
+    points: 2.0
+    criteria:
+    - id: c1
+      points: 2
+      description: 'Valid beneficence argument for reuse: data already exists, little new risk/harm to owners, real
+        benefit (e.g., baseline of Internet address usage); 1 if only benefit or only low risk stated'
+- number: 5
+  points: 4.0
+  section: Key Management and Public Key Infrastructure
+  text: Which of the following statements are true? (Select all that apply.)
+  parts:
+  - kind: choice
+    options:
+    - text: A browser uses asymmetric cryptography to establish a symmetric key, which then encrypts the traffic
+      correct: true
+      label: A
+    - text: To send Bob a message only he can read, Alice encrypts it with Bob's public key
+      correct: true
+      label: B
+    - text: To sign a message so others can verify it came from her, Alice uses Bob's public key
+      correct: false
+      label: C
+    - text: A certificate is a signed statement binding an identity to a public key, with an issuer and validity
+        period
+      correct: true
+      label: D
+    - text: Integrity means that only authorized parties can read a message
+      correct: false
+      label: E
+    prompt: Which of the following statements are true? (Select all that apply.)
+    select_all: true
+    id: '5'
+    points: 4.0
+- number: 6
+  points: 4.0
+  section: Key Management and Public Key Infrastructure
+  text: The first time you connect to a new server with SSH, the client shows a key fingerprint and asks whether
+    to trust it. Explain how Mallory, on the network path, mounts a man-in-the-middle attack on that first connection,
+    and what a careful user must do to defeat it.
+  parts:
+  - kind: free
+    prompt: The first time you connect to a new server with SSH, the client shows a key fingerprint and asks whether
+      to trust it. Explain how Mallory, on the network path, mounts a man-in-the-middle attack on that first connection,
+      and what a careful user must do to defeat it.
+    solution: 'The client has no prior key, so Mallory intercepts the connection, presents her own key and fingerprint,
+      and connects onward to the real server as the client; she shares one session key with each side and reads
+      and re-encrypts everything. Defeat: confirm the fingerprint out of band over a channel Mallory does not control
+      (the admin''s web page, a phone call, a key published in advance); afterwards known-hosts pins the key.'
+    height_in: 1.0
+    id: '6'
+    points: 4.0
+    criteria:
+    - id: c2
+      points: 2.0
+      description: Mallory intercepts, presents her own key/fingerprint, and relays to the real server, with separate
+        session keys so she reads/modifies traffic
+    - id: c3
+      points: 2.0
+      description: 'Defense: verify fingerprint out of band via a channel Mallory doesn''t control (phone, admin''s
+        page, pre-published key)'
+    note: 'The question asks how the attack works and what the user must do. That the client has no prior key is
+      context: do not require it.'
+- number: 7
+  points: 4.0
+  section: Key Management and Public Key Infrastructure
+  text: In Assignment 1 you captured your own HTTPS traffic with Wireshark and served your site with a self-signed
+    certificate. p3.15inp3.15in@ (a) Even though the payload was encrypted, name two things an on-path eavesdropper
+    could still learn from an HTTPS connection like the one you captured. & (b) The browser warned about your self-signed
+    certificate until you took one step. What was it, and what could someone who performed that same step on your
+    laptop without your knowledge then do to your other HTTPS traffic? &
+  parts:
+  - kind: short
+    grid: true
+    label: (a) Even though the payload was encrypted, name two things an on-path eavesdropper could still learn
+      from an HTTPS connection like the one you captured.
+    prompt: (a) Even though the payload was encrypted, name two things an on-path eavesdropper could still learn
+      from an HTTPS connection like the one you captured.
+    solution: 'Visible: SNI in the ClientHello; the server''s and client''s IP addresses; sizes and timing of records;
+      the preceding DNS query. Any two.'
+    width_in: 3.07
+    height_in: 0.94
+    id: 7a
+    points: 2.0
+    criteria:
+    - id: c1
+      points: 2
+      description: 'Two valid items visible to eavesdropper: SNI/hostname, IP addresses, packet sizes/timing, DNS
+        query (1 point each)'
+  - kind: short
+    grid: true
+    label: (b) The browser warned about your self-signed certificate until you took one step. What was it, and what
+      could someone who performed that same step on your laptop without your knowledge then do to your other HTTPS
+      traffic?
+    prompt: (b) The browser warned about your self-signed certificate until you took one step. What was it, and
+      what could someone who performed that same step on your laptop without your knowledge then do to your other
+      HTTPS traffic?
+    solution: Add the certificate to the machine's (or browser's) trust store, making it a root of trust. Anyone
+      who can install a root on your machine can mint a certificate for any site and sit on the path as a man in
+      the middle with no browser warning.
+    width_in: 3.07
+    height_in: 0.94
+    id: 7b
+    points: 2.0
+    criteria:
+    - id: c1
+      points: 1
+      description: 'Step: added/trusted the certificate in the browser or machine trust store (made it a root)'
+    - id: c2
+      points: 1
+      description: Someone with such a root can forge certificates for any site and man-in-the-middle other HTTPS
+        traffic without warning
+- number: 8
+  points: 3.0
+  section: Key Management and Public Key Infrastructure
+  text: Alice posts her public key in the course Slack channel so people can send her encrypted mail. This solves
+    the key-distribution problem for anyone who wants to write to her. Explain why or why not.
+  parts:
+  - kind: yes_no
+    prompt: Alice posts her public key in the course Slack channel so people can send her encrypted mail. This solves
+      the key-distribution problem for anyone who wants to write to her.
+    answer: 'no'
+    id: 8a
+    points: 1.0
+  - kind: free
+    prompt: Explain why or why not.
+    solution: No. Anyone who can post as Alice, alter the message, or sit between the reader and the channel can
+      substitute their own key, and the reader cannot tell. Distribution needs a trusted binding of identity to
+      key (a certificate from a party already trusted, a fingerprint confirmed out of band, a pinned key), not just
+      a place to post it.
+    height_in: 1.0
+    id: 8b
+    points: 2.0
+    explains: 8a
+    criteria:
+    - id: c1
+      points: 1
+      description: 'Answers No: posting the key in Slack doesn''t solve distribution'
+    - id: c2
+      points: 1
+      description: 'Reason: attacker can post as Alice, alter the message, or sit in the path and substitute their
+        own key, or no binding of identity to key (needs certificate, out-of-band fingerprint, or pinning)'
+    note: 'A student who answered Yes and explains that posting a public key removes the n-squared shared-key part
+      of the problem (n key pairs instead of a shared key for every pair) earns 1 of 2: that part is solved, though
+      binding the key to Alice is not. A Yes with no such explanation earns nothing extra.'
+- number: 9
+  points: 4.0
+  section: Authentication and Access Control
+  text: 'A desktop AI assistant asks to read the files in your Dropbox. The diagram shows the OAuth flow between
+    four parties, A through D. OAuth names four roles: resource owner, client, authorization server, and resource
+    server. Write the letter of the party that plays each role. [t]0.40 p1.45inp0.8in@ Resource owner: & [2pt] Client:
+    & [2pt] Authorization server: & [2pt] Resource server: & [t]0.57 solution'
+  parts:
+  - kind: short
+    grid: true
+    label: Resource owner
+    prompt: Resource owner
+    solution: A
+    width_in: 0.55
+    height_in: 0.35
+    id: 9a
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Resource owner = A
+  - kind: short
+    grid: true
+    label: Client
+    prompt: Client
+    solution: B
+    width_in: 0.55
+    height_in: 0.35
+    id: 9b
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Client = B
+  - kind: short
+    grid: true
+    label: Authorization server
+    prompt: Authorization server
+    solution: C
+    width_in: 0.55
+    height_in: 0.35
+    id: 9c
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Authorization server = C
+  - kind: short
+    grid: true
+    label: Resource server
+    prompt: Resource server
+    solution: D
+    width_in: 0.55
+    height_in: 0.35
+    id: 9d
+    points: 1.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Resource server = D
+- number: 10
+  points: 3.0
+  section: Authentication and Access Control
+  text: The agent that posts the class agenda presents a token to Slack, which checks the token and then lets it
+    post in one channel but not delete messages. Which statements use the right term? (Select all that apply.)
+  parts:
+  - kind: choice
+    options:
+    - text: Presenting the token and having Slack verify it is authentication
+      correct: either
+      label: A
+    - text: Presenting the token is authorization; checking it is identification
+      correct: false
+      label: B
+    - text: Allowing posting but not deletion is authorization, enforced by access control
+      correct: true
+      label: C
+    - text: Allowing posting but not deletion is authentication
+      correct: false
+      label: D
+    - text: Recording that the agent posted at 3:05 pm is logging, which supports accountability
+      correct: true
+      label: E
+    prompt: The agent that posts the class agenda presents a token to Slack, which checks the token and then lets
+      it post in one channel but not delete messages. Which statements use the right term? (Select all that apply.)
+    select_all: true
+    id: '10'
+    points: 3.0
+    note: 'Option A is ambiguous (the token is an authorization credential, so checking it can be read as
+      authorization; with commas it reads as authentication). It is credited marked or blank (decided
+      2026-11-04).'
+- number: 11
+  points: 3.0
+  section: Authentication and Access Control
+  text: 'A budgeting app offers to track your spending if you give it your username and password for your bank''s
+    web site. (a) Explain why this violates least privilege. (b) Describe the narrow OAuth scope the bank should
+    grant instead, as who (subject) may do what (verb) to which data (object). p0.6inp1.6inp0.5inp1.0inp0.6inp1.9in@
+    Subject: & & Verb: & & Object: &'
+  parts:
+  - kind: free
+    prompt: A budgeting app offers to track your spending if you give it your username and password for your bank's
+      web site. (a) Explain why this violates least privilege.
+    solution: 'With your password the app can do anything you can (read every account, move money, change settings)
+      and looks like you in every log; it cannot be limited, audited, or revoked short of a password change. Least
+      privilege: grant only what the task needs.'
+    height_in: 0.9
+    id: 11a
+    points: 1.5
+    criteria:
+    - id: c1
+      points: 1.5
+      description: Password gives app full power of the user (all accounts, move money, change settings), far more
+        than needed; cannot be limited/audited/revoked
+  - kind: short
+    grid: true
+    label: Subject
+    prompt: Subject
+    solution: the budgeting app (accept "the app acting for the user")
+    width_in: 1.57
+    height_in: 0.35
+    id: 11b
+    points: 0.5
+    criteria:
+    - id: c1
+      points: 0.5
+      description: the budgeting app (accept "the app acting for the user")
+  - kind: short
+    grid: true
+    label: Verb
+    prompt: Verb
+    solution: read (only); accept "track" or "view", which describe a read-only use
+    width_in: 0.94
+    height_in: 0.35
+    id: 11c
+    points: 0.5
+    criteria:
+    - id: c1
+      points: 0.5
+      description: 'A read-only verb: read, view, or track (track spending without changing anything)'
+    note: '"track" describes a non-modifying use and earns full credit.'
+  - kind: short
+    grid: true
+    label: Object
+    prompt: Object
+    solution: transactions and balances on the accounts the user selects
+    width_in: 1.81
+    height_in: 0.35
+    id: 11d
+    points: 0.5
+    criteria:
+    - id: c1
+      points: 0.5
+      description: transactions and balances on the accounts the user selects
+- number: 12
+  points: 4.0
+  section: Denial of Service
+  text: To stop a denial-of-service attack coming from one region, campus IT installs a firewall at the edge of
+    the network that inspects every incoming connection and drops the attack traffic. Deploying the firewall has
+    introduced a new denial-of-service vulnerability. Explain why or why not.
+  parts:
+  - kind: yes_no
+    prompt: To stop a denial-of-service attack coming from one region, campus IT installs a firewall at the edge
+      of the network that inspects every incoming connection and drops the attack traffic. Deploying the firewall
+      has introduced a new denial-of-service vulnerability.
+    answer: 'yes'
+    id: 12a
+    points: 1.0
+  - kind: free
+    prompt: Explain why or why not.
+    solution: Yes. The firewall has finite memory and CPU, and every packet, including all the attack traffic, must
+      now pass through it and be inspected. Enough traffic exhausts its state table or CPU, and when it fails nobody
+      gets through, so the appliance added to stop the attack is the new, easier target. Any device placed in front
+      of a service becomes the next finite resource to exhaust.
+    height_in: 1.0
+    id: 12b
+    points: 3.0
+    explains: 12a
+    criteria:
+    - id: c1
+      points: 1
+      description: Answers Yes, the firewall introduces a new DoS vulnerability
+    - id: c2
+      points: 2
+      description: 'Reason: firewall has finite CPU/memory/state, all traffic passes through and is inspected, so
+        it can be exhausted and then blocks everyone (new bottleneck/single point of failure)'
+- number: 13
+  points: 4.0
+  section: Denial of Service
+  text: A new chat service allocates a 64 KB message buffer for every connection request the moment it arrives,
+    before the client has sent anything else. Describe one way an attacker exploits this, and redesign the protocol
+    in the spirit of SYN cookies so that the attack no longer works. A sentence or two of design is enough; no cryptographic
+    detail is needed.
+  parts:
+  - kind: free
+    prompt: A new chat service allocates a 64 KB message buffer for every connection request the moment it arrives,
+      before the client has sent anything else. Describe one way an attacker exploits this, and redesign the protocol
+      in the spirit of SYN cookies so that the attack no longer works. A sentence or two of design is enough; no
+      cryptographic detail is needed.
+    solution: 'Exploit: flood the server with connection requests from spoofed or throwaway sources and never follow
+      up; each costs the attacker one small packet and the server 64 KB, so memory runs out first. Redesign: do
+      no work on the first packet; reply with a small cookie derived from the client''s address and a secret, and
+      allocate the buffer only when the client returns it, proving it is real and reachable. The client spends effort
+      before the server does.'
+    height_in: 1.1
+    id: '13'
+    points: 4.0
+    criteria:
+    - id: c1
+      points: 2
+      description: 'Exploit: flood of connection requests (spoofed/never completed) each making server allocate
+        64 KB, exhausting memory'
+    - id: c2
+      points: 2
+      description: 'Redesign: allocate nothing on first packet; return a stateless cookie (derived from client address
+        and secret) and allocate only when the client echoes it'
+- number: 14
+  points: 2.0
+  section: Routing Security
+  text: YouTube announces its addresses as a /22. Pakistan Telecom, intending to block YouTube inside Pakistan,
+    announces two /24s covering the same space, and the announcement leaks to the whole Internet. Why did the world's
+    YouTube traffic go to Pakistan? (Select the best answer.)
+  parts:
+  - kind: choice
+    options:
+    - text: Pakistan Telecom's AS path was shorter
+      correct: false
+      label: A
+    - text: Routers prefer the more specific (longer) prefix, so the /24s won over the /22
+      correct: true
+      label: B
+    - text: YouTube's RPKI certificate had expired
+      correct: false
+      label: C
+    - text: Pakistan Telecom signed its announcement with BGPsec
+      correct: false
+      label: D
+    prompt: YouTube announces its addresses as a /22. Pakistan Telecom, intending to block YouTube inside Pakistan,
+      announces two /24s covering the same space, and the announcement leaks to the whole Internet. Why did the
+      world's YouTube traffic go to Pakistan? (Select the best answer.)
+    select_all: false
+    id: '14'
+    points: 2.0
+- number: 15
+  points: 3.0
+  section: Routing Security
+  text: Name two different things an attacker can do with someone else's addresses or traffic once a hijacked announcement
+    is believed.
+  parts:
+  - kind: free
+    prompt: Name two different things an attacker can do with someone else's addresses or traffic once a hijacked
+      announcement is believed.
+    solution: Eavesdrop on the traffic; black-hole it (denial of service, as Pakistan did); forward it to the real
+      destination as a man in the middle (needs a path to the destination); or use hijacked, unused space as a disposable
+      source for spam, then withdraw the route to defeat address-based block lists. Any two.
+    height_in: 0.9
+    id: '15'
+    points: 3.0
+    criteria:
+    - id: c1
+      points: 1.5
+      description: First valid action (eavesdrop, black-hole/DoS, MITM forward, spam source then withdraw)
+    - id: c2
+      points: 1.5
+      description: Second, different valid action
+- number: 16
+  points: 4.0
+  section: Routing Security
+  text: In BGPsec, each AS signs an attestation covering the AS path so far and the AS it is sending the announcement
+    to. AS 160 originates a prefix and announces it to AS 174, which announces it to AS 15169. Suppose each AS signed
+    the path so far but not the AS it was sending the announcement to. What could a dishonest AS 15169 announce
+    to its own neighbors that would still pass validation, and why does 160's signature naming 174 prevent it?
+  parts:
+  - kind: free
+    prompt: In BGPsec, each AS signs an attestation covering the AS path so far and the AS it is sending the announcement
+      to. AS 160 originates a prefix and announces it to AS 174, which announces it to AS 15169. Suppose each AS
+      signed the path so far but not the AS it was sending the announcement to. What could a dishonest AS 15169
+      announce to its own neighbors that would still pass validation, and why does 160's signature naming 174 prevent
+      it?
+    solution: 'Signing only one''s own hop lets AS 15169 drop 174 from the announcement it received and re-announce
+      160 then 15169 with the origin''s genuine signature intact: a shorter path with a correct origin, so origin
+      validation passes. With the next hop signed, 160''s attestation says "to 174"; a path omitting 174 would need
+      160 to have signed "to 15169", which it never did and 15169 cannot forge.'
+    height_in: 1.2
+    id: '16'
+    points: 4.0
+    criteria:
+    - id: c1
+      points: 2
+      description: 'Attack: 15169 removes 174 and re-announces path 160→15169 (shorter path) reusing 160''s genuine
+        signature, which passes validation'
+    - id: c2
+      points: 2
+      description: 160's signature names 174 as next hop, so a path omitting 174 would need 160 to have signed for
+        15169, which it didn't and 15169 can't forge
+- number: 17
+  points: 3.0
+  section: Web Security
+  text: A page is loaded from https://www.cs.uchicago.edu/courses. Which of the following share its origin under
+    the same-origin policy? (Select all that apply.)
+  parts:
+  - kind: choice
+    options:
+    - text: https://www.cs.uchicago.edu/people
+      correct: true
+      label: A
+    - text: http://www.cs.uchicago.edu/courses
+      correct: false
+      label: B
+    - text: https://cs.uchicago.edu/courses
+      correct: false
+      label: C
+    - text: https://www.cs.uchicago.edu/courses?term=autumn
+      correct: true
+      label: D
+    - text: A script the page loads from https://cdn.example.com/jquery.js runs in the page's origin
+      correct: true
+      label: E
+    prompt: A page is loaded from https://www.cs.uchicago.edu/courses. Which of the following share its origin under
+      the same-origin policy? (Select all that apply.)
+    select_all: true
+    id: '17'
+    points: 3.0
+- number: 18
+  points: 3.0
+  section: Web Security
+  text: A web application runs the pseudocode run\_shell("ls " + request.parameter("dir")) when a user requests
+    a directory listing. What class of vulnerability is this, and what would an attacker put in the dir parameter
+    to make the server run a command of the attacker's choosing? (An English description of the value is fine.)
+  parts:
+  - kind: free
+    prompt: A web application runs the pseudocode run\_shell("ls " + request.parameter("dir")) when a user requests
+      a directory listing. What class of vulnerability is this, and what would an attacker put in the dir parameter
+      to make the server run a command of the attacker's choosing? (An English description of the value is fine.)
+    solution: 'Shell (command) injection: request data is pasted into a command and the shell cannot tell data from
+      code. A dir value such as "; <command>" (any separator such as a semicolon or a pipe, followed by the attacker''s
+      command: a reverse shell, reading a password file, deleting files) runs ls and then that command with the
+      web application''s permissions. Fix: never build commands from strings; allow-list the value or pass it as
+      an argument, not through a shell.'
+    height_in: 1.15
+    id: '18'
+    points: 3.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Command/shell injection (OS command injection)
+    - id: c2
+      points: 2
+      description: Value containing a separator (; | && etc.) followed by an attacker command, e.g., "; cat /etc/passwd"
+- number: 19
+  points: 3.0
+  section: Web Security
+  text: A discussion forum displays each comment exactly as the author typed it, and a user posts a comment containing
+    a <script> tag. Is this
+  parts:
+  - kind: choice
+    options:
+    - text: reflected
+      correct: false
+      label: A
+    - text: stored
+      correct: true
+      label: B
+    prompt: A discussion forum displays each comment exactly as the author typed it, and a user posts a comment
+      containing a <script> tag. Is this
+    select_all: false
+    id: 19a
+    points: 1.0
+  - kind: free
+    prompt: A discussion forum displays each comment exactly as the author typed it, and a user posts a comment
+      containing a <script> tag. Is this
+    solution: Stored. The same-origin policy does not help because the forum itself delivers the script, so it runs
+      in the forum's origin with full access to its DOM, cookies, and storage; the policy separates origins, but
+      the attacker's code is inside the trusted one.
+    height_in: 1.15
+    id: 19b
+    points: 2.0
+    criteria:
+    - id: c2
+      points: 2.0
+      description: Same-origin policy doesn't help because script is delivered by the forum itself, so runs in the
+        forum's origin
+    note: Stored vs. reflected is graded by the bubbles (19a). Grade only why the same-origin policy does not protect
+      the other users.
+- number: 20
+  points: 3.0
+  section: Web Security
+  text: 'You are logged in to your bank in one tab and visit a page showing a picture of a muffin in another. (a)
+    What kind of attack can the muffin page mount against your bank account, and why does it work? (b) Name one
+    defense that stops it:'
+  parts:
+  - kind: free
+    prompt: You are logged in to your bank in one tab and visit a page showing a picture of a muffin in another.
+      (a) What kind of attack can the muffin page mount against your bank account, and why does it work?
+    solution: 'Cross-site request forgery: the muffin page embeds a hidden image or request whose URL is a bank
+      action, and the browser attaches your bank session cookie because it sends a domain''s cookies with every
+      request to that domain, whatever page caused it.'
+    height_in: 1.05
+    id: 20a
+    points: 1.5
+    criteria:
+    - id: c1
+      points: 1.5
+      description: 'CSRF: muffin page triggers a request to the bank and the browser automatically attaches the
+        bank''s session cookie'
+  - kind: short
+    grid: true
+    label: (b) Name one defense that stops it
+    prompt: (b) Name one defense that stops it
+    solution: a per-session token in the bank's own forms (unreadable to the muffin page under the same-origin policy),
+      or SameSite cookies, now the default, which are withheld on cross-site subresource requests and POSTs
+    width_in: 4.13
+    height_in: 0.43
+    id: 20b
+    points: 1.5
+    criteria:
+    - id: c1
+      points: 1.5
+      description: 'One valid defense: anti-CSRF token, SameSite cookies, (or Origin/Referer check, re-authentication)'
+- number: 21
+  points: 3.0
+  section: Web Privacy
+  text: nytimes.com and walmart.com both embed a script from tracker.example. Explain how tracker.example learns
+    that the same person visited both sites.
+  parts:
+  - kind: free
+    prompt: nytimes.com and walmart.com both embed a script from tracker.example. Explain how tracker.example learns
+      that the same person visited both sites.
+    solution: 'On the first visit the script sets a tracker.example cookie holding an identifier. On every later
+      page embedding the script, the browser (1) sends that cookie back automatically, because a domain''s cookies
+      go with every request to that domain whatever page caused it, and (2) sends a Referer header naming the page.
+      The tracker sees the same identifier arrive from nytimes.com and then walmart.com. Accept any two of: fetching
+      embedded third-party resources automatically, sending the tracker''s cookie with every request to its domain,
+      sending Referer (or the script reporting the page URL).'
+    height_in: 1.2
+    id: '21'
+    points: 3.0
+    criteria:
+    - id: c1
+      points: 1
+      description: Tracker sets a cookie with a unique identifier on first visit
+    - id: c2
+      points: 1
+      description: Browser automatically sends that cookie to tracker.example with every request from any embedding
+        site
+    - id: c3
+      points: 1
+      description: Tracker sees same ID with Referer/page URL from both sites, linking visits
+- number: 22
+  points: 3.0
+  section: Web Privacy
+  text: You are not signed in to any account, you have deleted all your cookies, and you use a private-browsing
+    window. A tracking script embedded on the sites you visit can still recognize that your visits come from the
+    same browser. Explain why or why not.
+  parts:
+  - kind: yes_no
+    prompt: You are not signed in to any account, you have deleted all your cookies, and you use a private-browsing
+      window. A tracking script embedded on the sites you visit can still recognize that your visits come from the
+      same browser.
+    answer: 'yes'
+    id: 22a
+    points: 1.0
+  - kind: free
+    prompt: Explain why or why not.
+    solution: 'Yes. The script can fingerprint the browser with no stored state: user-agent, fonts, plugins, screen
+      size, time zone, canvas rendering combine into a value that is unique or nearly so (one in hundreds of thousands
+      in the class demo). It is recomputed on every visit, so deleting cookies and staying signed out does not reset
+      it; the tracker can even re-create the cookie.'
+    height_in: 1.0
+    id: 22b
+    points: 2.0
+    explains: 22a
+    criteria:
+    - id: c1
+      points: 1
+      description: Answers Yes, tracking is still possible
+    - id: c2
+      points: 1
+      description: Browser fingerprinting from attributes (user agent, fonts, screen, canvas, etc.) needs no stored
+        state, so clearing cookies/private mode doesn't reset it
+- number: 23
+  points: 3.0
+  section: DNS Security and Privacy
+  text: Which of the following statements are true? (Select all that apply.)
+  parts:
+  - kind: choice
+    options:
+    - text: 'DNSSEC provides confidentiality: an eavesdropper cannot see which names you look up'
+      correct: false
+      label: A
+    - text: Encryption provides confidentiality; signatures provide integrity
+      correct: true
+      label: B
+    - text: A browser cannot resolve names itself; every lookup must go through the operating system's stub resolver
+      correct: false
+      label: C
+    - text: With Oblivious DNS, no single server sees both your address and your query
+      correct: true
+      label: D
+    - text: DNS-over-HTTPS moves trust from your network operator to the resolver provider rather than eliminating
+        it
+      correct: true
+      label: E
+    prompt: Which of the following statements are true? (Select all that apply.)
+    select_all: true
+    id: '23'
+    points: 3.0
+- number: 24
+  points: 3.0
+  section: DNS Security and Privacy
+  text: '[t]0.36 The diagram shows a lookup of www.foo.com with nothing cached. [leftmargin=*,itemsep=0pt,topsep=2pt]
+    [(a)] In each dashed box, label message 3, 5, 7, or 8 with R if it is a referral to another server or A if it
+    is an answer carrying the record. [(b)] Draw a box around the link (both directions) that DNS-over-HTTPS encrypts.
+    [t]0.62 solution'
+  parts:
+  - kind: free
+    figure: dns-lookup.png
+    grade_from: image
+    prompt: (a) In each dashed box, label message 3, 5, 7, or 8 with R (referral to another server) or A (answer
+      carrying the record). (b) Draw a box around the link (both directions) that DNS-over-HTTPS encrypts.
+    solution: '(a) 3: R (referral to the .com TLD server); 5: R (referral to foo.com''s authoritative server); 7:
+      A (the answer, www.foo.com is 3.4.5.6, from the authoritative server); 8: A (the answer, from the recursive
+      resolver to the stub). (b) A box around the link between the stub resolver (laptop) and the local recursive
+      resolver, messages 1 and 8.'
+    height_in: null
+    id: '24'
+    points: 3.0
+    criteria:
+    - id: a
+      points: 2.0
+      description: 'Labels: 3 R, 5 R, 7 A, 8 A; 0.5 for each correct label'
+    - id: b
+      points: 1.0
+      description: Box around the stub resolver <-> local recursive resolver link (messages 1 and 8); a box that
+        clearly marks that hop counts
+- number: 25
+  points: 3.0
+  section: DNS Security and Privacy
+  text: '[t]0.46 The resolver''s cache entry for google.com has expired; it re-queries the authoritative server
+    with transaction ID 0x3a7f, which the off-path attacker cannot see. In the dashed box, write what the attacker
+    sends (its content, and how many); below, explain in one sentence why it works. [0.5ex] [t]0.52 solution'
+  parts:
+  - kind: free
+    prompt: Below the figure, explain in one sentence why it works.
+    solution: The 16-bit transaction ID is the resolver's only check that a reply is genuine, and the attacker can
+      send every ID without seeing the query, so one forged reply matches; if it arrives before the real one it
+      is accepted and cached. Credit answers that add source spoofing or the race.
+    height_in: 1.4
+    id: 25a
+    points: 1.5
+    criteria:
+    - id: why
+      points: 1.5
+      description: The ID is the only check and can be enumerated without seeing the query, so a matching forged
+        reply that beats the real one is cached (accept spoofing / race)
+    note: 'Credit what the student wrote in either place: the dashed box on the figure or the answer box below it.
+      Content in the other place counts for this part.'
+  - kind: free
+    figure: kaminsky.png
+    grade_from: image
+    prompt: In the dashed box on the figure, write what the attacker sends (its content, and how many).
+    solution: 'Forged replies saying google.com = the attacker''s address (e.g. 6.6.6.6), one for every transaction
+      ID 0x0000-0xffff: 65,536 of them (accept "every possible ID" or "all 2^16"), sent with the authoritative server''s
+      address as the source.'
+    height_in: null
+    id: 25b
+    points: 1.5
+    criteria:
+    - id: content
+      points: 0.75
+      description: Forged DNS answers mapping google.com to an attacker-controlled address
+    - id: count
+      points: 0.75
+      description: 'One per transaction ID: all 65,536 / every possible 16-bit ID (many guesses earns partial)'
+    note: 'Credit what the student wrote in either place: the dashed box on the figure or the answer box below it.
+      Content in the other place counts for this part.'
+- number: 26
+  points: 1.0
+  section: Course Feedback
+  text: 'Interest (1=Boring!; 10=Amazing!): Difficulty (1=Too easy; 10=Too hard):'
+  parts:
+  - kind: short
+    grid: true
+    label: Interest (1=Boring!; 10=Amazing!)
+    prompt: Interest (1=Boring!; 10=Amazing!)
+    solution: '8'
+    width_in: 0.47
+    height_in: 0.31
+    id: 26a
+    points: 0.5
+    grading: completion
+  - kind: short
+    grid: true
+    label: Difficulty (1=Too easy; 10=Too hard)
+    prompt: Difficulty (1=Too easy; 10=Too hard)
+    solution: '6'
+    width_in: 0.47
+    height_in: 0.31
+    id: 26b
+    points: 0.5
+    grading: completion
+- number: 27
+  points: 1.0
+  section: Course Feedback
+  text: '(a) One thing you liked about the course so far. (b) One suggestion for improvement:'
+  parts:
+  - kind: free
+    prompt: '(a) One thing you liked about the course so far. (b) One suggestion for improvement:'
+    solution: The debates. More time on the hands-on activities.
+    height_in: 1.6
+    id: '27'
+    points: 1.0
+    grading: completion
+image_if_confidence: 0.8
+second_opinion: higher
+ambiguous_bubbles: favor_student
