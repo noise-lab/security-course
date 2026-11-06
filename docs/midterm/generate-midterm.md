@@ -151,15 +151,17 @@ decide how it looks**, and nothing is asked that was not taught.
   self-explanatory on an exam.
 - A box asks for what it can hold. "Name three" needs a box three lines tall;
   if the page budget allows only one or two lines, ask for two.
-- Short answer: `\answerbox{height}{solution}`; the height unit is 1.5 cm, and
-  0.8–1.1 is the range that fits six pages (1.0 holds about three lines of
-  `\small` text, roughly 380 characters at full width). Start the solution with
-  `\small`, keep it to one paragraph with no `&`, and put a blank line before the
-  box. Very short answers: `\shortanswerbox{width}{text}`. Once the exam fits
-  six pages, **grow the boxes until every page is full**: render at 72 dpi,
-  measure the free space above the footer on each page, and add it to that
-  page's boxes (a box unit is 0.59 in). Students never complain that a box is
-  too big.
+- Short answer: `\answerbox{height}{solution}`; the height unit is 1.5 cm.
+  **Boxes are generous:** 1.2 for a one-part explanation, 1.5 for anything that
+  asks for two things or a design, never below 1.0 for an explanation (1.0
+  holds about three lines of handwriting). The 2026 midterm's survey and the
+  ML class both asked for bigger boxes; the 9 pt body type (below) is what pays
+  for them. Start the solution with `\small`, keep it to one paragraph with no
+  `&`, and put a blank line before the box. Very short answers:
+  `\shortanswerbox{width}{text}`. Once the exam fits six pages, **grow the boxes
+  until every page is full**: render at 72 dpi, measure the free space above the
+  footer on each page, and add it to that page's boxes (a box unit is 0.59 in).
+  Students never complain that a box is too big.
 - **The solution box grows to fit its answer.** In `feamster.sty`, the solution
   branch of `\answerbox` must draw a node that stretches to its text, never
   shorter than the student's box, so a long model answer (or one amended after
@@ -207,7 +209,10 @@ decide how it looks**, and nothing is asked that was not taught.
   3–4 as a single question; diagram 3–4; feedback 1 + 1.
 - `exam.tex` sets `\term` and uses `\usepackage[]{feamster}`; the Makefile builds
   the solution by substituting `[solution]` (`make exam`, `make solution`, `make
-  all`, `make clean`). Margins are 0.5 in.
+  all`, `make clean`). Margins are 0.5 in. **Body type is 9 pt:**
+  `\documentclass[9pt]{extarticle}` (the ML exams use it; the 2026 security
+  midterm was the last at 10 pt). The smaller type is for fitting the question
+  text; spend the space it frees on answer boxes, not on more questions.
 
 ## Permitted materials (required, verbatim, in `instructions.tex`)
 

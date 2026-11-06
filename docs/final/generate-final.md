@@ -14,8 +14,11 @@ Additional requirements:
 
 - **Total Points**: 85 points (MUST match midterm exactly)
 - **Format**: Multiple choice, short answer, yes/no with explanation, and case study questions
-- **Margins**: 0.4 inches (all sides) - reduced to fit on 6 pages
-- **Target Pages**: 6 pages (compress if needed by reducing margins, not shrinking answer boxes excessively)
+- **Margins**: 0.5 inches (all sides), as in `generate-midterm.md`
+- **Body type**: 9 pt, `\documentclass[9pt]{extarticle}` (the ML exams use it; the 2026 security midterm was the last at 10 pt). The smaller type is for fitting the question text; spend the space it frees on answer boxes, not on more questions
+- **Target Pages**: 6 pages, printed double-sided and stapled. Fit by trimming question text, never by shrinking answer boxes
+- **Answer boxes are generous**: the unit is 1.5 cm; 1.2 for a one-part explanation, 1.5 for anything that asks for two things or a design, never below 1.0 for an explanation. Once the exam fits, grow the boxes until every page is full (render at 72 dpi, measure the free space above each footer, add it to that page's boxes). Students asked for bigger boxes on the 2026 midterm
+- **Layout rules**: everything in `generate-midterm.md` applies here too: every question wrapped in a minipage so nothing splits across a page; a yes/no and its explanation are **one** numbered question with the box directly under the bubbles; multi-part questions get (a), (b) with each part's instruction next to its own box; lists of named items get a grid of labeled boxes; "identify which is which" questions are matching; the heading is **Course Feedback**; a two-reviewer pre-print review for key errors and ambiguous wording
 - **Solutions**: Use solution macros to enable/disable answers
 
 ## Coverage
@@ -68,10 +71,9 @@ soften, or change it:
 
 ### Yes/No Questions with Explanation
 - **Count**: 3 questions
-- **Points**: 4 points (yes/no) + 3 points (explanation) = 7 points total
-- Use `\yesnoyes` or `\yesnono` for the yes/no answer
-- Follow with explanation using `\answerbox{height}{solution}`
-- Note: Some yes/no questions may be 4 points standalone
+- **Points**: 3-4 points each, yes/no and explanation together as one question
+- Use `\yesnoyes` or `\yesnono` at the end of the statement, then `\ Explain why or why not.` in the **same** `\prob`, then the `\answerbox` (height 1.2 or more). Never a separate numbered "Explain" item
+- State the claim positively; no double negatives
 
 ### Short Answer Questions
 - **Count**: 4-5 questions
@@ -89,7 +91,7 @@ soften, or change it:
   % the box grows to fit a long solution (never shorter than the exam's box)
   \tikz\node[draw, align=left, inner xsep=.025\textwidth, text width=.95\textwidth, minimum height=#1 * 1.5cm] (sol) {\textbf{Solution:} #2} node[anchor=south east] at (sol.north east) {(Answer inside the box)};%
   ```
-- Typical heights: 1.25-2.0 inches
+- Heights: 1.2 to 1.6 units (1.5 cm each); never below 1.0 for an explanation
 - Solutions should be 2-4 sentences
 
 ### Case Study Questions
@@ -218,7 +220,7 @@ make clean     # Removes auxiliary files
 - Multiple choice (select all that apply): 4 points
 - Multiple choice (select one): 3 points
 - Short answer: 2-3 points
-- Yes/No with explanation: 4 points (yes/no) + 3 points (explanation)
+- Yes/No with explanation: 3-4 points as a single question
 - Feedback: 1-2 points
 
 ## Iterative Refinement Process
@@ -232,7 +234,7 @@ When generating the exam, expect multiple rounds of revision:
 5. **Bold key terms** - Emphasize important distinctions in questions
 6. **Verify coverage** - Only include material actually covered in class
 7. **Check point total** - Must equal midterm (85 points)
-8. **Compress to 6 pages** - Adjust margins first (0.4in), then answer box heights if needed
+8. **Fit 6 pages** - Trim question text and move to 9 pt type; never shrink answer boxes. Then grow the boxes until every page is full
 9. **Build and verify** - Compile both versions and confirm page count
 
 ## Final Checklist
