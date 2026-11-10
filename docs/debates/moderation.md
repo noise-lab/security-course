@@ -21,8 +21,9 @@ Here are some resources and questions to help guide and nuance the debate:
 
 **Readings**
 
-- [Automated Content Moderation: Flagging and Filtering](https://www.eff.org/issues/content-moderation)
-- [The Impact of AI on Free Speech](https://www.brookings.edu/research/the-impact-of-ai-on-free-speech/)
+- [Automated Moderation Is Here to Stay, part 1: how we got here](https://www.eff.org/deeplinks/2026/07/part-1-automated-moderation-here-stay) (EFF, July 2026)
+- [Automated Moderation Is Here to Stay, part 2: accountability must keep pace](https://www.eff.org/deeplinks/2026/07/part-2-automated-moderation-here-stay-accountability-must-keep-pace) (EFF, July 2026)
+- [The Santa Clara Principles on Transparency and Accountability in Content Moderation](https://santaclaraprinciples.org/)
 - [Automated Content Moderation: Benefits and Challenges](https://www.cfr.org/report/automated-content-moderation-benefits-and-challenges)
 - [Platform Regulation and Automated Content Moderation](https://www.oxfordmartin.ox.ac.uk/news/automated-content-moderation/)
 - [Challenges of Automated Content Moderation in Social Media](https://ec.europa.eu/digital-strategy/news/challenges-automated-content-moderation-social-media_en)
