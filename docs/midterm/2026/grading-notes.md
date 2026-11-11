@@ -172,6 +172,17 @@ Effect: mean 73.0 to 73.4 of 85.
   score went down. Q6 raised 21 students, Q7b 4, Q11d 4, Q16 15. Notes on
   each part in rubric.yaml.
 
+## Q2a (the trust anchor for a browser's TLS connection): the root CA is enough, class-wide regrade (2026-11-11)
+
+- **Q2a, where the browser's trust ultimately comes from.** The rubric
+  required the root CAs *shipped by the OS or browser*. The root CAs are the
+  answer; who ships them is detail. Any answer that names the root or
+  pre-trusted CA(s) (root certificates, the root store, a pretrusted CA) now
+  earns full credit. A plain "the CA" or a CA-signed certificate is one
+  level below the root and stays at partial credit.
+- Applied to every exam with `grade --parts 2a`, keeping the higher score:
+  no score went down. 7 students went up. Note on the part in rubric.yaml.
+
 ## Answers added to the solutions on regrade (2026-11-11)
 
 Reasonable, correct answers the original key did not list. Each is now in
@@ -210,4 +221,6 @@ Bigger answer boxes on the final.
   regrade requests and 1 request for a clearer copy of the scan; 3 asked
   for the instructor to read them. All answered on the issue. With the
   class-wide fixes above, 54 of 60 students went up; nobody went down.
-  Class mean 73.4 → 75.0 of 85 (median 74.25 → 75.5).
+  Class mean 73.4 → 75.0 of 85 (median 74.25 → 75.5). A request that
+  arrived by Slack, not on the Gradebook issue, raised Q2a, applied
+  class-wide the same day (7 students up; mean 75.0 → 75.03).

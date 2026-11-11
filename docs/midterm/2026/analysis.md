@@ -8,7 +8,7 @@ Exams: 60. Flags appear once there are at least 5. A flagged part may be an ambi
 | 1b | short | 0.92 / 1 | mean 0.92 / 1 |  |
 | 1c | short | 0.9 / 1 | mean 0.9 / 1 |  |
 | 1d | short | 0.95 / 1 | mean 0.95 / 1 |  |
-| 2a | short | 0.86 / 1 | mean 0.86 / 1 |  |
+| 2a | short | 0.92 / 1 | mean 0.92 / 1 |  |
 | 2b | short | 0.85 / 1 | mean 0.85 / 1 |  |
 | 2c | short | 0.82 / 1 | mean 0.82 / 1 |  |
 | 3 | choice | 2.95 / 3 | marked: A 0%, B* 100%, C 2%, D 2%, E 0%  (* = key) |  |

@@ -87,6 +87,7 @@ questions:
     height_in: 0.59
     id: 2a
     points: 1.0
+    note: "The root CAs are the answer: credit any answer that names the root or pre-trusted CA(s) (root certificates, root store, pretrusted CA) in full; who ships them is detail and is not required. A plain 'the CA' or a CA-signed certificate is one level below the root and stays at partial credit (regrade 2026-11-11)."
     criteria:
     - id: c1
       points: 1
