@@ -64,6 +64,7 @@ questions:
     height_in: 0.71
     id: 1d
     points: 1.0
+    note: "The stem already gives the attacker the token, and the asset box says not the token itself. Credit a capability that says what holding it lets the attacker do (post or act as the agent or instructor); restating possession of the token is not required (regrade 2026-11-11)."
     criteria:
     - id: c1
       points: 1
@@ -244,7 +245,9 @@ questions:
       description: 'Defense: verify fingerprint out of band via a channel Mallory doesn''t control (phone, admin''s
         page, pre-published key)'
     note: 'The question asks how the attack works and what the user must do. That the client has no prior key is
-      context: do not require it.'
+      context: do not require it. Defense (regrade 2026-11-11): credit verifying the fingerprint against a value from
+      a source Mallory does not control (out of band is what verify means here), a trusted channel, or a CA-signed host
+      certificate the client checks; each defeats the key substitution.'
 - number: 7
   points: 4.0
   section: Key Management and Public Key Infrastructure
@@ -286,6 +289,7 @@ questions:
     height_in: 0.94
     id: 7b
     points: 2.0
+    note: "Credit 'accepted/allowed/trusted the certificate locally' as the trust-store step when the answer shows it was trust, not a one-time click-through; the words 'trust store' are not required (regrade 2026-11-11)."
     criteria:
     - id: c1
       points: 1
@@ -435,6 +439,7 @@ questions:
     height_in: 0.9
     id: 11a
     points: 1.5
+    note: "The question asks only why this violates least privilege. Full credit: the password gives the app far more access than tracking spending needs (it can do anything the user can). Revocation and auditability are related problems, not required here (regrade 2026-11-11)."
     criteria:
     - id: c1
       points: 1.5
@@ -476,6 +481,7 @@ questions:
     height_in: 0.35
     id: 11d
     points: 0.5
+    note: "Read 11b-11d together as one scope. If the narrow data (spending, transactions, balances) appears in the verb or object, credit the object even when it names where the data lives (bank, bank database) (regrade 2026-11-11)."
     criteria:
     - id: c1
       points: 0.5
@@ -503,6 +509,7 @@ questions:
     height_in: 1.0
     id: 12b
     points: 3.0
+    note: "Full credit for the reason: the firewall has finite resources and the traffic must pass through it, so it becomes the new target or bottleneck. Saying that its failure blocks everyone is not required (regrade 2026-11-11)."
     explains: 12a
     criteria:
     - id: c1
@@ -533,6 +540,7 @@ questions:
     height_in: 1.1
     id: '13'
     points: 4.0
+    note: "A sentence or two of design is enough: 'allocate nothing on the first request; allocate only after the client returns or proves something the server sent it' is the SYN-cookie idea and earns full redesign credit without the word cookie or how it is derived (regrade 2026-11-11)."
     criteria:
     - id: c1
       points: 2
@@ -612,6 +620,7 @@ questions:
     height_in: 1.2
     id: '16'
     points: 4.0
+    note: "Credit equivalent statements of the defense: 160's signature names 174 as the next hop, so a path without 174 does not match any signature 160 made and is rejected, and 15169 cannot forge one naming itself. Saying 'would need 160 to have signed for 15169' in those words is not required (regrade 2026-11-11)."
     criteria:
     - id: c1
       points: 2

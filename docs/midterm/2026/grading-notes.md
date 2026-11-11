@@ -120,3 +120,94 @@ earns partial credit. 35 answers were raised, by part:
 - **25a** (0.5): the poisoning or enumeration idea without the ID reasoning (3).
 
 Effect: mean 73.0 to 73.4 of 85.
+
+## Q1d, Q11a, Q12b, Q13 (answers that asked more than the question): one correct answer is enough, class-wide regrade (2026-11-11)
+
+- **Q1d, the attacker's capability.** The rubric required the answer to
+  name possession of the token, but the question already gives the
+  attacker the token, and the asset box says "not the token itself". A
+  capability that says what holding it lets the attacker do (post or act
+  as the agent or the instructor) now earns full credit.
+- **Q11a, why sharing a bank password violates least privilege.** The
+  rubric required that the password cannot be limited, audited, or revoked.
+  Those are real problems with password sharing, but the question asks only
+  why it violates least privilege, so "the password gives the app far more
+  access than tracking spending needs" now earns full credit.
+- **Q12b, why the firewall is a new DoS vulnerability.** The rubric
+  required the consequence that a failed firewall blocks everyone. The
+  question asks why it is a new vulnerability, so "the firewall has finite
+  resources (or keeps state) and the traffic must pass through it, so it
+  becomes the new target" now earns full credit.
+- **Q13, the SYN-cookie redesign.** The question says a sentence or two of
+  design is enough and no cryptographic detail is needed. "Allocate nothing
+  on the first request; allocate only after the client returns or proves
+  something the server sent it" now earns full redesign credit without the
+  word "cookie" or how the cookie is derived.
+- Applied to every exam with `grade --parts`, keeping the higher score: no
+  score went down. Q1d raised 15 students, Q11a 34, Q12b 18, Q13 18. Notes
+  on each part in rubric.yaml.
+
+## Q6, Q7b, Q11d, Q16 (equivalent wording): the key's words are not required, class-wide regrade (2026-11-11)
+
+- **Q6, defeating the SSH man in the middle.** Verifying the fingerprint
+  against a value from a source Mallory does not control is what the key's
+  "out of band" means, so "verify the fingerprint" earns the defense credit
+  without those words. A trusted channel, or a CA-signed host certificate
+  the client checks, also defeats the key substitution and earns full
+  defense credit.
+- **Q7b, the step that silenced the certificate warning.** "Accepted",
+  "allowed", or "trusted the certificate locally" is the trust-store step
+  when the answer shows it was trust and not a one-time click-through; the
+  words "trust store" are not required.
+- **Q11d, the object of the narrow scope.** Parts b through d are read
+  together as one scope. When the narrow data (spending, transactions,
+  balances) appears in the verb or the object, the object earns credit even
+  when it names where the data lives (the bank, the bank's database).
+- **Q16, why 160's signature naming 174 prevents the attack.** The key says
+  a path omitting 174 would need 160 to have signed for 15169. Saying it
+  from the other side earns the same credit: 160's signature names 174 as
+  the next hop, so a path without 174 does not match any signature 160
+  made and is rejected, and 15169 cannot forge one.
+- Applied to every exam with `grade --parts`, keeping the higher score: no
+  score went down. Q6 raised 21 students, Q7b 4, Q11d 4, Q16 15. Notes on
+  each part in rubric.yaml.
+
+## Answers added to the solutions on regrade (2026-11-11)
+
+Reasonable, correct answers the original key did not list. Each is now in
+the rubric notes, and the students who gave it received credit.
+
+- **Q6:** a CA-signed SSH host certificate, checked by the client, as the
+  defense.
+- **Q15:** flooding the hijacked traffic (denial of service) counts as the
+  black-hole action.
+- **Q20a:** CSRF explained as the muffin page making a request to the bank
+  with the stored bank cookie.
+
+## Scan and reading corrections (2026-11-11)
+
+Regrade requests also caught places where the scan, not the answer, was
+the problem. Each was checked against the page image and corrected:
+
+- light pencil fills and check marks read as blank on a select-all question
+  (Q5, five exams; Q17, one exam);
+- a semicolon written tightly before a command read as a letter (Q18);
+- a number in the feedback box read as blank (Q26a);
+- a box drawn around the right link on the DNS figure, or the link named in
+  words beside it, read as no box (Q24, two exams).
+
+After the first Q5 requests, every exam was swept for bubbles read as blank
+that had some pencil in them on a question the student lost points on. The
+sweep found one more light fill (Q17) that no one had asked about; the
+other flagged bubbles were crossed out or check marks already read
+correctly.
+
+Bigger answer boxes on the final.
+
+## Regrade batch log
+
+- **2026-11-11.** 12 comments about the midterm on Gradebook issues: 11
+  regrade requests and 1 request for a clearer copy of the scan; 3 asked
+  for the instructor to read them. All answered on the issue. With the
+  class-wide fixes above, 54 of 60 students went up; nobody went down.
+  Class mean 73.4 → 75.0 of 85 (median 74.25 → 75.5).
