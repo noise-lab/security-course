@@ -2,16 +2,41 @@
 title: "Privacy Law"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
+header-includes: |
+  <style>
+    .reveal { font-size: 32px; }
+    .reveal .smaller, .reveal section.smaller { font-size: 0.85em; }
+    .reveal li { line-height: 1.25; margin-bottom: 0.12em; }
+    .reveal .cell-output-display svg, .reveal .cell-output-display img { width: 100%; height: auto; }
+    .reveal .cell-output-display { margin: 0; }
+    .reveal .capture img { border: 1px solid #999; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+    .reveal .capture p { font-size: 0.55em; color: #555; margin-top: 0.15em; line-height: 1.2; }
+    .reveal .caption { font-size: 0.55em; color: #555; margin-top: 0.1em; }
+    .reveal .legacy img { border: 1px solid #bbb; }
+  </style>
 ---
 
 ## Privacy Law Always Chases Technology {.center}
 
+::: {.columns}
+::: {.column width="58%"}
 > The law must provide some relief to individuals when the acts of others
 > interfere with their **right to be let alone.**
 > — Warren & Brandeis, *The Right to Privacy*, 1890
 
 A new technology arrives, a harm becomes visible, and the law reacts. That
 pattern repeats from gossip photography to mainframes to AI.
+:::
+::: {.column width="42%"}
+::: {.legacy}
+<!-- from ppt-archive/11-PrivacyLaw.pptx slide 2 -->
+![](images/slide002_img002.png){height="430px"}
+:::
+::: {.caption}
+*Harvard Law Review*, Dec. 15, 1890: the article that invented the privacy tort.
+:::
+:::
+:::
 
 ::: {.notes}
 Warren and Brandeis wrote "The Right to Privacy" for the Harvard Law Review in
@@ -26,21 +51,85 @@ prime the room to consider. Hold this pattern as the deck's spine — every
 statute later in the deck is another instance of it.
 :::
 
-## A 2026 Hook: The FTC Still Sets the Floor {.smaller}
+## The Pattern, Four Times {.smaller}
 
-::: {.vignette}
-On **Dec. 31, 2025** a federal court approved a **$10M** order against **Disney**
-to settle FTC/DOJ allegations it let children's data be collected through
-mislabeled "Made for Kids" YouTube videos — a **COPPA** violation
-([FTC, Dec. 2025](https://www.ftc.gov/news-events/news/press-releases/2025/12/court-approves-order-requiring-disney-pay-10-million-settle-ftc-allegations-firm-enabled-unlawful)).
-The U.S. *still* has **no comprehensive federal privacy law** — so a 1998
-children's statute plus the FTC's general authority do the work.
+```{dot}
+//| fig-width: 12
+//| fig-height: 4.2
+digraph pattern {
+  rankdir=LR; nodesep=0.25; ranksep=0.7;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=20, color="#555555", penwidth=1.4, margin="0.18,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=18];
+bgcolor="transparent";
+
+  subgraph cluster_t { label="Technology"; fontname="Helvetica"; fontsize=22; color="#bbbbbb"; style="rounded";
+    t1 [label="Instantaneous photography\n+ mass-market newspapers (1880s)", fillcolor="#cfe3f5"];
+    t2 [label="Mainframe databases (1960s)", fillcolor="#cfe3f5"];
+    t3 [label="Video-store rental records (1980s)", fillcolor="#cfe3f5"];
+    t4 [label="Ad-tech, apps, location SDKs (2020s)", fillcolor="#cfe3f5"]; }
+  subgraph cluster_h { label="Harm"; fontname="Helvetica"; fontsize=22; color="#bbbbbb"; style="rounded";
+    h1 [label="Gossip press invades\nprivate life", fillcolor="#f8d7c4"];
+    h2 [label="Secret records, linkage,\nno way to correct", fillcolor="#f8d7c4"];
+    h3 [label="A nominee's rentals\nprinted in a newspaper", fillcolor="#f8d7c4"];
+    h4 [label="Children tracked; sensitive\nlocation data sold", fillcolor="#f8d7c4"]; }
+  subgraph cluster_l { label="Law"; fontname="Helvetica"; fontsize=22; color="#bbbbbb"; style="rounded";
+    l1 [label="Privacy tort\n(Warren & Brandeis, 1890)", fillcolor="#d9efd3"];
+    l2 [label="FIPPs (1973), Privacy Act (1974)", fillcolor="#d9efd3"];
+    l3 [label="Video Privacy Protection\nAct (1988)", fillcolor="#d9efd3"];
+    l4 [label="COPPA + FTC Section 5\nenforcement (2025–26)", fillcolor="#d9efd3"]; }
+  t1 -> h1 -> l1; t2 -> h2 -> l2; t3 -> h3 -> l3; t4 -> h4 -> l4;
+}
+```
+
+Every statute in this lecture is a row in this table: name the technology, name the harm, name the law that followed.
+
+::: {.notes}
+A one-slide version of the deck's spine. Walk one row (the Bork tapes to the
+VPPA in about a year) and then ask the room to fill in a fifth row for 2026:
+model training on scraped data, age-verification wallets, always-on smart-TV
+recognition. The last row is deliberately not a new statute: it is old law
+stretched over a new technology, which is the U.S. story from here on.
 :::
 
-On **May 4, 2026** the FTC settled its long-running case against **Kochava**,
-banning sale of *sensitive* location data (medical, religious, shelters, schools)
-without express consent ([FTC, May 2026](https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-ban-kochava-subsidiary-selling-sensitive-location-data-settle-charges-they-sold-location-data)).
+
+## A 2026 Hook: The FTC Still Sets the Floor {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.vignette}
+**Dec. 31, 2025:** a federal court approved a **$10M** order against **Disney**
+for letting children's data be collected through mislabeled "Made for Kids"
+YouTube videos, a **COPPA** violation
+([FTC, Dec. 2025](https://www.ftc.gov/news-events/news/press-releases/2025/12/court-approves-order-requiring-disney-pay-10-million-settle-ftc-allegations-firm-enabled-unlawful)).
+:::
+
+**May 4, 2026:** the FTC settled with **Kochava**, banning sale of *sensitive*
+location data (medical, religious, shelters, schools) without express consent
+([FTC, May 2026](https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-ban-kochava-subsidiary-selling-sensitive-location-data-settle-charges-they-sold-location-data)).
+
 Old statutes, new harms.
+:::
+::: {.column width="50%"}
+```{dot}
+//| fig-width: 5.6
+//| fig-height: 4.6
+digraph floor {
+  rankdir=TB; nodesep=0.3; ranksep=0.45;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=19, color="#555555", penwidth=1.4, margin="0.18,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=17];
+bgcolor="transparent";
+
+  none [label="No comprehensive federal\nprivacy law", fillcolor="#f8d7c4", penwidth=2];
+  coppa [label="COPPA (1998)\nchildren under 13", fillcolor="#cfe3f5"];
+  s5 [label="FTC Act Section 5 (1914)\nunfair or deceptive practices", fillcolor="#cfe3f5"];
+  d [label="Disney, $10M\n(Dec. 2025)", fillcolor="#d9efd3"];
+  k [label="Kochava: sensitive location\ndata ban (May 2026)", fillcolor="#d9efd3"];
+  none -> coppa [label="so the regulator reaches for"]; none -> s5;
+  coppa -> d; s5 -> k;
+}
+```
+:::
+:::
 
 ::: {.notes}
 This is the freshest concrete anchor for the deck. Two teaching points to
@@ -63,12 +152,37 @@ FIPPs → PII → the U.S. patchwork → the FTC → GDPR
 
 ## Computerized Records Created New Threats {.smaller}
 
+::: {.columns}
+::: {.column width="42%"}
 By the 1970s, mainframes made four things newly possible:
 
 - **Unknown databases** holding information about you
-- **Cheap mass collection** — scale flips the cost-benefit of surveillance
+- **Cheap mass collection**: scale flips the cost-benefit of surveillance
 - **One-to-many dissemination** of records
-- **Linking** different kinds of information, gathered different ways
+- **Linking** information gathered different ways
+:::
+::: {.column width="58%"}
+```{dot}
+//| fig-width: 6.8
+//| fig-height: 4.6
+digraph threats {
+  rankdir=LR; nodesep=0.18; ranksep=0.55;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=18, color="#555555", penwidth=1.4, margin="0.18,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=16];
+bgcolor="transparent";
+
+  bank [label="Bank", fillcolor="#cfe3f5"]; emp [label="Employer", fillcolor="#cfe3f5"];
+  hosp [label="Hospital", fillcolor="#cfe3f5"]; gov [label="Agency", fillcolor="#cfe3f5"]; school [label="School", fillcolor="#cfe3f5"];
+  db [label="Database you\ndo not know exists", fillcolor="#f8d7c4", penwidth=2];
+  link [label="Linked on name,\nSSN, address", fillcolor="#f8d7c4"];
+  dossier [label="One dossier", fillcolor="#f2d9a8"];
+  out1 [label="Lender", fillcolor="#d9efd3"]; out2 [label="Employer", fillcolor="#d9efd3"]; out3 [label="Police", fillcolor="#d9efd3"];
+  bank -> db; emp -> db; hosp -> db; gov -> db; school -> db;
+  db -> link -> dossier; dossier -> out1; dossier -> out2; dossier -> out3;
+}
+```
+:::
+:::
 
 ::: {.notes}
 Standard historical anchor. These 1970s concerns sound quaint until you note
@@ -84,6 +198,8 @@ overblown, forward-reference the Sweeney and Netflix Prize slides.
 
 ## FIPPs: The Foundation (HEW, 1973) {.smaller}
 
+::: {.columns}
+::: {.column width="58%"}
 The HEW report *Records, Computers, and the Rights of Citizens* gave us the
 **Fair Information Practice Principles**:
 
@@ -94,6 +210,19 @@ The HEW report *Records, Computers, and the Rights of Citizens* gave us the
 5. **Reasonable security** and reliability for intended use
 
 Almost every privacy law worldwide descends from these five ideas.
+:::
+::: {.column width="42%"}
+::: {.legacy}
+<!-- from ppt-archive/11-PrivacyLaw.pptx slides 4 and 6 -->
+![](images/slide004_img004.png){height="330px"}
+
+![](images/slide006_img007.png){width="100%"}
+:::
+::: {.caption}
+The 1973 report and its transmittal letter: "a framework for recordkeeping about people."
+:::
+:::
+:::
 
 ::: {.notes}
 Primary source is HEW's 1973 report "Records, Computers, and the Rights of
@@ -108,24 +237,14 @@ of inference and machine learning? That's the setup for the "Age of
 Inference" slide three slides from now.
 :::
 
-## The FIPPs in Practice {.smaller}
+## The FIPPs in Practice: the Default Decides {.smaller}
 
-::: {.columns}
-::: {.column width="50%"}
-**Notice** — tell people what you collect, use, share
+**Notice** · **appropriate use** (primary vs. secondary) · **individual choice** (opt-in vs. opt-out) · **access and correction** · **security** · **minimization**
 
-**Appropriate uses** — primary vs. secondary (national security, public health,
-law enforcement)
+![](images/consent-defaults.svg){width="88%" fig-align="center"}
 
-**Individual choice** — **opt-in** vs. **opt-out**
-:::
-::: {.column width="50%"}
-**Access & correction** — see and fix your record
-
-**Security** — no privacy without it; the root of breach-notification law
-
-**Minimization** — collect only what you need
-:::
+::: {.caption}
+Effective consent to organ donation by national default (Johnson & Goldstein, *Science* 2003). Same question, opposite default, opposite answer. The U.S. privacy default is opt-out; GDPR's is opt-in.
 :::
 
 ::: {.notes}
@@ -142,13 +261,24 @@ effect. Foreshadows the Meeting 12 dark-patterns research.
 
 ## Notice and Consent Is Broken {.smaller}
 
+::: {.columns}
+::: {.column width="48%"}
 The model assumes a person reads, understands, and meaningfully agrees.
 
 - Policies run **thousands of words** and change without warning
-- Stated policy and actual practice **diverge** — that gap is what the FTC sues on
+- Stated policy and actual practice **diverge**; that gap is what the FTC sues on
 - "Consent" via a cookie wall is not a real choice
 
-Demo: [tosdr.org](https://tosdr.org/) grades real privacy policies.
+Reading every policy you encounter would take about **244 hours a year** (McDonald & Cranor, 2008).
+:::
+::: {.column width="52%"}
+::: {.capture}
+[![](images/captures/tosdr-instagram.png){width="100%"}](https://tosdr.org/en/service/219)
+
+ToS;DR grades Instagram's terms "E". Live site, captured Nov 11 2026; click to open.
+:::
+:::
+:::
 
 ::: {.notes}
 This is the central critique of the orthodox model. Canonical reading:
@@ -195,29 +325,29 @@ Then point to the next slide: today's systems query, infer, and generate
 conclusions you never wrote down anywhere, and the join is the least of it.
 :::
 
+
 ## Re-Examining FIPPs in the Age of Inference {.smaller}
 
-FIPPs assume a world that no longer exists:
+```{dot}
+//| fig-width: 12
+//| fig-height: 3.3
+digraph infer {
+  rankdir=LR; nodesep=0.25; ranksep=0.5;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=19, color="#555555", penwidth=1.4, margin="0.18,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=17];
+bgcolor="transparent";
 
-::: {.columns}
-::: {.column width="50%"}
-**Old model**
+  subgraph cluster_old { label="The 1973 model: records"; fontname="Helvetica"; fontsize=21; color="#bbbbbb"; style="rounded";
+    o1 [label="Collect", fillcolor="#cfe3f5"]; o2 [label="Store", fillcolor="#cfe3f5"]; o3 [label="Retrieve or join", fillcolor="#cfe3f5"]; o4 [label="Act on what\nyou disclosed", fillcolor="#d9efd3"];
+    o1 -> o2 -> o3 -> o4; }
+  subgraph cluster_new { label="Today: inference"; fontname="Helvetica"; fontsize=21; color="#bbbbbb"; style="rounded";
+    n1 [label="Collect\n(and query, not ship)", fillcolor="#cfe3f5"]; n2 [label="Train a model", fillcolor="#cfe3f5"]; n3 [label="Infer facts you\nnever disclosed", fillcolor="#f8d7c4", penwidth=2]; n4 [label="Act on the\ninference", fillcolor="#d9efd3"];
+    n1 -> n2 -> n3 -> n4; }
+}
+```
 
-- Data sits in a database for later retrieval
-- Meaning is **evident on its face**
-- Processing = simple joins
-:::
-::: {.column width="50%"}
-**Today**
-
-- Data accessed via **queries**, not shipping
-- Harm is new **inference**, not record-linking
-- Probabilistic ML draws conclusions you never disclosed
-:::
-:::
-
-Example: differential privacy deliberately adds **noise** — violating "data must
-be correct," yet *enhancing* privacy.
+- FIPPs guard the **record**: notice, access, correction, security. Inference produces conclusions that were never in any record (a retailer inferring a pregnancy from purchases).
+- **Differential privacy** deliberately adds **noise**: it violates "data must be correct," yet *enhances* privacy. Some FIPPs now point the wrong way.
 
 ::: {.notes}
 This is the most intellectually interesting slide in the deck. FIPPs were
@@ -236,15 +366,40 @@ build a parallel framework for inferential harms?
 
 ## PII Is Not a Bright Line {.smaller}
 
-The classic assumption: scrub name, SSN, address → data is "safe."
+::: {.columns}
+::: {.column width="46%"}
+The classic assumption: scrub name, SSN, address, and the data is "safe."
 
-**Wrong.** Any attribute that distinguishes one person can re-identify them.
+**Wrong.** Any combination of attributes that singles out one person re-identifies them.
 
 - **AOL (2006):** "anonymized" search logs re-identified by *The New York Times*
 - **Netflix Prize (2006):** ratings re-identified by Narayanan & Shmatikov
-- **MA health records:** Sweeney re-identified the governor via ZIP + DOB + sex
+- **Massachusetts health records:** Sweeney re-identified the governor via ZIP + birth date + sex
 
 So is **ZIP code** PII? Is an **IP address**? The line dissolves under inference.
+:::
+::: {.column width="54%"}
+```{dot}
+//| fig-width: 6.4
+//| fig-height: 4.6
+digraph sweeney {
+  rankdir=TB; nodesep=0.5; ranksep=0.5;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=18, color="#555555", penwidth=1.4, margin="0.18,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=17];
+bgcolor="transparent";
+
+  med [label="Hospital discharge data\n(sold as \"anonymized\")\nZIP · birth date · sex\ndiagnosis · procedures", fillcolor="#cfe3f5"];
+  vote [label="Voter list ($20)\nname · address · party\nZIP · birth date · sex", fillcolor="#cfe3f5"];
+  key [label="ZIP + birth date + sex\nunique for 87% of Americans", fillcolor="#f8d7c4", penwidth=2];
+  out [label="Name + diagnosis", fillcolor="#f2d9a8", penwidth=2];
+  med -> key; vote -> key; key -> out;
+}
+```
+::: {.caption}
+Sweeney (2000). Today 15 attributes re-identify 99.98% of Americans (Rocher et al., 2019).
+:::
+:::
+:::
 
 ::: {.notes}
 PII is a legal fiction that engineering keeps breaking. The three re-id
@@ -264,29 +419,32 @@ CCPA de-identification) — and even that is hard to define.
 
 # The U.S. Patchwork {.center}
 
-Sectoral, reactive, incomplete — by design
+Sectoral, reactive, incomplete, by design
 
 ## Sectoral vs. Omnibus {.smaller}
 
-::: {.columns}
-::: {.column width="50%"}
-**United States — sectoral**
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 4.2
+digraph sect {
+  rankdir=TB; nodesep=0.18; ranksep=0.4;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=18, color="#555555", penwidth=1.4, margin="0.16,0.07"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=16];
+bgcolor="transparent";
+  subgraph cluster_us { label="United States: one law per sector, per harm, per actor"; fontname="Helvetica"; fontsize=21; color="#bbbbbb"; style="rounded";
+    u1 [label="Health providers\nHIPAA", fillcolor="#cfe3f5"]; u2 [label="Credit bureaus\nFCRA", fillcolor="#cfe3f5"]; u3 [label="Children\nCOPPA", fillcolor="#cfe3f5"];
+    u4 [label="Schools\nFERPA", fillcolor="#cfe3f5"]; u5 [label="Banks\nGLBA", fillcolor="#cfe3f5"]; u6 [label="Video rentals\nVPPA", fillcolor="#cfe3f5"];
+    g1 [label="Fitness and\nperiod apps", style="dashed,rounded", fillcolor="#ffffff", fontcolor="#a00000"]; g2 [label="Data brokers", style="dashed,rounded", fillcolor="#ffffff", fontcolor="#a00000"];
+    g3 [label="Ad-tech", style="dashed,rounded", fillcolor="#ffffff", fontcolor="#a00000"]; g4 [label="Smart TVs,\nvoice assistants", style="dashed,rounded", fillcolor="#ffffff", fontcolor="#a00000"];
+    gap [label="The gaps: FTC Section 5 or nothing", fillcolor="#f8d7c4", penwidth=2];
+    u1 -> g1 [style=invis]; u2 -> g2 [style=invis]; u3 -> g3 [style=invis]; u4 -> g4 [style=invis];
+    g1 -> gap; g2 -> gap; g3 -> gap; g4 -> gap; }
+  subgraph cluster_eu { label="European Union: one law"; fontname="Helvetica"; fontsize=21; color="#bbbbbb"; style="rounded";
+    eu [label="GDPR\nall personal data, any sector,\nany organization that touches\nan EU resident", fillcolor="#d9efd3", penwidth=2]; }
+}
+```
 
-- No comprehensive federal law
-- A patch per sector / harm / actor
-- Driven by *who holds the data*, *what harm*, *what data-sharing deal*
-:::
-::: {.column width="50%"}
-**EU — omnibus**
-
-- One law (**GDPR**) over nearly all personal data
-- Rights attach to the **data**, not the industry
-- Extraterritorial reach
-:::
-:::
-
-This single distinction — **sectoral vs. omnibus** — explains most U.S./EU
-differences in this lecture.
+Rights attach to the **industry** in the U.S. and to the **data** in the EU. This one distinction explains most U.S./EU differences in the lecture.
 
 ::: {.notes}
 Burn this dichotomy in — it's a midterm staple. Sectoral means coverage has
@@ -302,31 +460,9 @@ turns sectoral law from paper into teeth.
 
 ## The Patchwork, Statute by Statute {.smaller}
 
-::: {.columns}
-::: {.column width="50%"}
-**Based on who has the data**
+![](images/statute-timeline.svg){width="100%"}
 
-- **Privacy Act (1974)** — federal agencies (post-Watergate)
-- **FCRA (1970)** — credit bureaus
-
-**Based on anecdote / specific harm**
-
-- **FERPA (1974)** — schools surveilling kids' home life
-- **VPPA (1988)** — Judge Bork's video rentals leaked
-- **DPPA (1994)** — states selling DMV data
-:::
-::: {.column width="50%"}
-**Data-sharing initiatives**
-
-- **HIPAA (1996)** — health portability & e-records
-- **GLBA (1999)** — banks sharing among affiliates
-
-**Special category**
-
-- **COPPA (1998)** — kids under 13
-- **GINA (2008)** — genetic discrimination
-:::
-:::
+Each statute fights the last scandal and stops at its boundary: **who holds the data** (FCRA, Privacy Act), **a specific anecdote** (VPPA, DPPA), **a data-sharing deal** (HIPAA, GLBA), or **a special category** (COPPA, GINA). The dates are not a plan; Congress reacted issue by issue.
 
 ::: {.notes}
 The VPPA story is the keeper — and the perfect illustration of the pattern.
@@ -344,16 +480,27 @@ dates aren't chronological because Congress reacted issue by issue.
 
 ## The HIPAA Gap {.smaller}
 
-HIPAA covers only **providers, plans, and clearinghouses** (and their vendors).
+HIPAA covers **covered entities** (providers, plans, clearinghouses) and their vendors, not "health data" as such.
 
-**Not covered:** fitness apps, period trackers, mental-health apps, 23andMe,
-most "health" data you actually generate.
+```{dot}
+//| fig-width: 12
+//| fig-height: 4
+digraph hipaa {
+  rankdir=TB; nodesep=0.22; ranksep=0.35;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=18, color="#555555", penwidth=1.4, margin="0.16,0.07"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=16];
+bgcolor="transparent";
+  subgraph cluster_in { label="Inside HIPAA"; fontname="Helvetica"; fontsize=20; color="#4f81bd"; style="rounded"; bgcolor="#eaf2fb";
+    p [label="Providers", fillcolor="#cfe3f5"]; h [label="Health plans", fillcolor="#cfe3f5"]; c [label="Clearinghouses", fillcolor="#cfe3f5"]; ba [label="Their business\nassociates", fillcolor="#cfe3f5"]; }
+  subgraph cluster_out { label="Outside HIPAA: the health data you actually generate"; fontname="Helvetica"; fontsize=20; color="#a00000"; style="rounded,dashed";
+    a1 [label="Fitness apps", fillcolor="#f8d7c4"]; a2 [label="Period trackers", fillcolor="#f8d7c4"]; a3 [label="Mental-health apps", fillcolor="#f8d7c4"]; a4 [label="Consumer DNA kits", fillcolor="#f8d7c4"]; a5 [label="Pharmacy discount apps", fillcolor="#f8d7c4"]; }
+  s5 [label="Only FTC Section 5 reaches here", fillcolor="#f2d9a8", penwidth=2];
+  p -> a1 [style=invis]; h -> a2 [style=invis]; c -> a3 [style=invis]; ba -> a4 [style=invis];
+  a1 -> s5; a2 -> s5; a3 -> s5; a4 -> s5; a5 -> s5;
+}
+```
 
-- **GoodRx** — fined $1.5M (2023) for sharing health data for ads
-- **BetterHelp** — $7.8M (2023) for sharing mental-health data with Facebook
-
-So a *sensitive* category is wide open whenever the holder isn't a "covered
-entity."
+- **GoodRx**, $1.5M (2023), shared health data for ads; **BetterHelp**, $7.8M (2023), shared mental-health data with Facebook. Both reached by **FTC Section 5**, because HIPAA could not.
 
 ::: {.notes}
 This is the single most useful slide for showing why sectoral law fails.
@@ -371,7 +518,20 @@ is its data covered by HIPAA?
 
 ## Breach Notification: Regulation by Consequence {.smaller}
 
-![Breaches become front-page news — the lever behind notification law](images/slide025_img013.png){width="78%"}
+::: {.columns}
+::: {.column width="46%"}
+- Before 2003 a company could be breached and tell no one. **California SB 1386** changed that; now all 50 states have a notification law
+- Notification did not mandate security; it made insecurity a **headline and a board-level liability**
+- You cannot outlaw breaches. You can make them impossible to hide
+:::
+::: {.column width="54%"}
+::: {.capture}
+[![](images/captures/hibp.png){width="100%"}](https://haveibeenpwned.com/)
+
+Have I Been Pwned: 1,051 breached sites, 17.9 billion addresses. Live site, captured Nov 11 2026; click to check your own.
+:::
+:::
+:::
 
 ::: {.notes}
 Before 2003, a company could be breached and tell no one. California SB 1386,
@@ -389,14 +549,24 @@ notice in the last year? Every hand goes up.
 
 ## What a Breach Law Requires Varies {.smaller}
 
-- Triggering "**personal information**": name + SSN, driver's license, account
-  numbers; some states add medical, biometric, student data
-- Some states notify on **any** breach; others only on **risk of harm**
-- Some require notifying **the media**; timelines range from "without
-  unreasonable delay" to a fixed number of days
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 2.8
+digraph breach {
+  rankdir=LR; nodesep=0.25; ranksep=0.4;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=19, color="#555555", penwidth=1.4, margin="0.16,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=16];
+bgcolor="transparent";
+  b [label="Breach", fillcolor="#f8d7c4", penwidth=2];
+  t [label="\"Personal information\"\nexposed?\nname + SSN, license,\naccount; some states add\nmedical, biometric, student", fillcolor="#cfe3f5"];
+  r [label="Risk-of-harm test?\nsome states: any breach;\nothers: only if harm\nis likely", fillcolor="#cfe3f5"];
+  n [label="Notify residents,\nattorney general,\ncredit bureaus;\nsome: the media", fillcolor="#d9efd3"];
+  d [label="Deadline:\n\"without unreasonable\ndelay\" to a fixed\nnumber of days", fillcolor="#d9efd3"];
+  b -> t -> r -> n -> d;
+}
+```
 
-**The patchwork tax:** firms just apply the **strictest** state law (usually
-California) to everyone.
+**The patchwork tax:** fifty regimes are costly, so firms apply the **strictest** state law (usually California) to everyone. California sets the national floor without Congress acting.
 
 ::: {.notes}
 Fifty different regimes are genuinely costly, and the rational corporate
@@ -413,14 +583,24 @@ predictable market response to a Congress that won't act?
 ## Equifax (2017): What a Bad Response Looks Like {.smaller}
 
 ::: {.columns}
-::: {.column width="60%"}
+::: {.column width="50%"}
 - **147M** Americans' data exposed
 - **Six weeks** to disclose
 - Stood up a separate, **spoofable** notification site
 - Tried to **upsell** credit monitoring to victims
+
+Result: **~$700M** settlement (a $575M floor); CEO resigned. The victims were never Equifax customers and could not take their business elsewhere: the FTC's **unfairness** condition in one case.
 :::
-::: {.column width="40%"}
-Result: **~$700M** settlement; CEO resigned.
+::: {.column width="50%"}
+::: {.legacy}
+<!-- from ppt-archive/11-PrivacyLaw.pptx slide 29 -->
+![](images/slide029_img014.png){height="215px"}
+
+![](images/slide029_img015.png){height="190px"}
+:::
+::: {.caption}
+CNBC, Sept 2017; the FTC's settlement summary, July 2019.
+:::
 :::
 :::
 
@@ -438,30 +618,35 @@ motivate why a market alone doesn't discipline data brokers, and to set up
 Section 5 on the next slide.
 :::
 
+
 # The FTC: De Facto Privacy Regulator {.center}
 
-No privacy statute — one very flexible section
+No privacy statute, one very flexible section
 
 ## Section 5 of the FTC Act {.smaller}
 
-> "**Unfair or deceptive** acts or practices in or affecting commerce are
-> declared unlawful."
+> "**Unfair or deceptive** acts or practices in or affecting commerce are declared unlawful."
 
-::: {.columns}
-::: {.column width="50%"}
-**Deceptive**
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 3.6
+digraph s5 {
+  rankdir=LR; nodesep=0.3; ranksep=0.5;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=18, color="#555555", penwidth=1.4, margin="0.18,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=16];
+bgcolor="transparent";
 
-You promised X, did Y. A representation or omission likely to mislead.
-:::
-::: {.column width="50%"}
-**Unfair**
+  p [label="A company's data practice", fillcolor="#cfe3f5"];
+  q1 [label="Did it promise X\nand do Y?", shape=diamond, style="filled", fillcolor="#f2d9a8"];
+  q2 [label="Substantial injury,\nnot reasonably avoidable,\nnot outweighed by benefits?", shape=diamond, style="filled", fillcolor="#f2d9a8"];
+  dec [label="Deceptive\n(the easy theory: policy vs. practice)", fillcolor="#f8d7c4"];
+  unf [label="Unfair\n(the hard theory: no promise needed;\nKochava, Equifax's non-customers)", fillcolor="#f8d7c4"];
+  cd [label="Complaint, then a consent decree:\n20-year privacy program,\npenalties on violation", fillcolor="#d9efd3", penwidth=2];
+  p -> q1; p -> q2; q1 -> dec [label="yes"]; q2 -> unf [label="yes"]; dec -> cd; unf -> cd;
+}
+```
 
-Substantial injury, **not reasonably avoidable**, not outweighed by benefits.
-:::
-:::
-
-The FTC stretched a consumer-protection statute into America's main privacy law
-— 60+ privacy cases, 2002–2017, and a steady stream since.
+A 1914 consumer-protection statute stretched into America's main privacy law: 60+ privacy cases from 2002 to 2017 and a steady stream since, with no privacy statute behind them.
 
 ::: {.notes}
 The key insight to burn in: there is no federal "privacy right" being
@@ -508,19 +693,43 @@ governance by consent decree a feature (flexible, evolves case by case) or a
 bug (no democratic input, no published rulemaking)? Good midterm question.
 :::
 
+
 # International: The Omnibus Model {.center}
 
-140+ countries have privacy laws — GDPR is the gravitational center
+140+ countries have privacy laws; GDPR is the gravitational center
 
 ## GDPR: Scope and Reach {.smaller}
 
+::: {.columns}
+::: {.column width="44%"}
 The EU's **General Data Protection Regulation** applies to organizations:
 
 - **located in the EU**, and
 - **anywhere**, if any component is in the EU, and
-- **anywhere**, if they offer goods/services to, or **monitor**, people in the EU
+- **anywhere**, if they offer goods or services to, or **monitor**, people in the EU
 
 If EU residents can use your service, you must ask whether GDPR applies.
+:::
+::: {.column width="56%"}
+```{dot}
+//| fig-width: 6.6
+//| fig-height: 4.4
+digraph scope {
+  rankdir=LR; nodesep=0.35; ranksep=0.5;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=18, color="#555555", penwidth=1.4, margin="0.16,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=16];
+bgcolor="transparent";
+  ex [label="A Chicago startup\nwith EU users", fillcolor="#f8d7c4"];
+  a [label="Established in the EU", fillcolor="#cfe3f5"]; b [label="A branch, server, or\nprocessor in the EU", fillcolor="#cfe3f5"]; c [label="Offers goods or services to,\nor monitors, people in the EU", fillcolor="#cfe3f5"];
+  s [label="In scope\n(Article 3)", fillcolor="#d9efd3", penwidth=2];
+  ex -> c [style=dashed, label="e.g."]; a -> s; b -> s; c -> s;
+}
+```
+::: {.caption}
+Extraterritorial reach made GDPR the global default: the "Brussels Effect."
+:::
+:::
+:::
 
 ::: {.notes}
 Extraterritoriality is the whole game — Article 3 (territorial scope) is the
@@ -534,24 +743,27 @@ This is why so many U.S. state privacy laws end up copying GDPR concepts —
 firms already had to build for the tougher regime.
 :::
 
-## What GDPR Requires {.smaller}
+## What GDPR Requires: FIPPs With Articles {.smaller}
 
-::: {.columns}
-::: {.column width="50%"}
-**Familiar (the FIPPs DNA)**
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 4.3
+digraph map {
+  rankdir=LR; nodesep=0.12; ranksep=0.9;
+node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=17, color="#555555", penwidth=1.4, margin="0.18,0.08"];
+edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=15];
+bgcolor="transparent";
 
-- Notice; access **with rectification**
-- A **lawful basis** to process (consent, contract, legitimate interest)
-- Security
-:::
-::: {.column width="50%"}
-**Newer / sharper**
+  subgraph cluster_f { label="FIPPs (1973)"; fontname="Helvetica"; fontsize=20; color="#bbbbbb"; style="rounded";
+    f1 [label="No secret systems; know\nwhat is collected", fillcolor="#cfe3f5"]; f2 [label="No secondary use\nwithout consent", fillcolor="#cfe3f5"]; f3 [label="Access and correct\nyour record", fillcolor="#cfe3f5"]; f4 [label="Reasonable security", fillcolor="#cfe3f5"]; }
+  subgraph cluster_g { label="GDPR (2018)"; fontname="Helvetica"; fontsize=20; color="#bbbbbb"; style="rounded";
+    g1 [label="Transparency and notice\n(Art. 12–14)", fillcolor="#d9efd3"]; g2 [label="Lawful basis and purpose\nlimitation (Art. 5, 6)", fillcolor="#d9efd3"]; g3 [label="Access and rectification\n(Art. 15, 16)", fillcolor="#d9efd3"]; g4 [label="Security of processing\n(Art. 32)", fillcolor="#d9efd3"];
+    n1 [label="Right to erasure\n(Art. 17)", fillcolor="#f8d7c4"]; n2 [label="Cross-border transfer limits\n(Art. 44–50)", fillcolor="#f8d7c4"]; n3 [label="Impact assessment before\nrisky processing (Art. 35)", fillcolor="#f8d7c4"]; }
+  f1 -> g1; f2 -> g2; f3 -> g3; f4 -> g4;
+}
+```
 
-- **Right to be forgotten** (erasure, with free-expression exceptions)
-- **Cross-border transfer** limits — only to "adequate" countries
-- **DPIA** before risky processing
-:::
-:::
+The left column is FIPPs four decades on. The right-hand red boxes are what is new: erasure collides with the First Amendment; transfer limits have twice invalidated the EU–US arrangement (Schrems I, II).
 
 ::: {.notes}
 Point out the left column is FIPPs, four decades on. The right column is what's
@@ -569,17 +781,31 @@ Congress ever tried to enact them?
 
 ## GDPR Enforcement Is Real {.smaller}
 
-::: {.vignette}
-Cumulative GDPR fines topped **€7.1B by Jan. 2026** (DLA Piper survey). **Meta** still
-holds the all-time record at **€1.2B** (2023, unlawful EU–US transfers). The
-largest of **2025 was €530M against TikTok**
-([Irish DPC, May 2, 2025](https://www.dataprotection.ie/en/news-media/latest-news/irish-data-protection-commission-fines-tiktok-eu530-million-and-orders-corrective-measures-following))
-for EU–China data flows. In **Sept. 2025 CNIL fined Google €325M** for Gmail-ad and
-cookie-consent violations
-([CNIL, Sept. 2025](https://www.cnil.fr/en/cookies-and-advertisements-inserted-between-emails-google-fined-325-million-euros-cnil)).
+::: {.columns}
+::: {.column width="33%"}
+::: {.capture}
+[![](images/captures/enforcement-tracker.png){width="100%"}](https://www.enforcementtracker.com/)
+
+GDPR Enforcement Tracker: 3,417 fines, **€7.59B** total. Live; captured Nov 11 2026.
+:::
+:::
+::: {.column width="33%"}
+::: {.capture}
+[![](images/captures/dpc-tiktok.png){width="100%"}](https://www.dataprotection.ie/en/news-media/latest-news/irish-data-protection-commission-fines-tiktok-eu530-million-and-orders-corrective-measures-following)
+
+Irish DPC, May 2 2025: **TikTok €530M**, EEA-to-China transfers.
+:::
+:::
+::: {.column width="33%"}
+::: {.capture}
+[![](images/captures/cnil-google.png){width="100%"}](https://www.cnil.fr/en/cookies-and-advertisements-inserted-between-emails-google-fined-325-million-euros-cnil)
+
+CNIL, Sept 2025: **Google €325M**, ads between emails and cookie consent.
+:::
+:::
 :::
 
-Live tracker: [enforcementtracker.com](https://www.enforcementtracker.com/).
+**Meta** holds the record at **€1.2B** (2023, unlawful EU–US transfers). The 1995 Directive was omnibus on paper and famously unenforced; this is what enforcement looks like.
 
 ::: {.notes}
 The numbers refute the "GDPR is toothless" claim that people made about the
@@ -629,18 +855,30 @@ what you're optimizing for: individual redress, structural competition, or
 raising the global floor.
 :::
 
+
 ## Where U.S. Privacy Law Stands in 2026 {.smaller}
 
+::: {.columns}
+::: {.column width="50%"}
 ::: {.vignette}
-With no federal law, the states moved: **~20 now have comprehensive privacy
-laws**, with Indiana, Kentucky, and Rhode Island taking effect **Jan. 1, 2026**.
-But **2025 was the first year in five with no new state law passed** — the wave
-may be leveling off
-([MultiState, 2026](https://www.multistate.us/insider/2026/2/4/all-of-the-comprehensive-privacy-laws-that-take-effect-in-2026)).
+With no federal law, the states moved: **about 20 comprehensive state privacy laws**, with Indiana, Kentucky, and Rhode Island effective **Jan. 1, 2026**. But **2025 was the first year in five with no new state law**; the wave may be leveling off.
 :::
 
-The U.S. is drifting from *purely sectoral* toward a **50-state quasi-omnibus** —
-without ever passing one national law.
+The U.S. is drifting from *purely sectoral* toward a **50-state quasi-omnibus**, without ever passing one national law.
+:::
+::: {.column width="50%"}
+::: {.capture}
+[![](images/captures/multistate-2026.png){width="100%"}](https://www.multistate.us/insider/2026/2/4/all-of-the-comprehensive-privacy-laws-that-take-effect-in-2026)
+
+MultiState, Feb 4 2026. Captured Nov 11 2026; click to open.
+:::
+::: {.capture}
+[![](images/captures/iapp-state-tracker.png){width="100%"}](https://iapp.org/resources/article/us-state-privacy-legislation-tracker/)
+
+IAPP state privacy legislation tracker, updated Sept 2026.
+:::
+:::
+:::
 
 ::: {.notes}
 This is the live frontier and the bridge to Meeting 12 (automated compliance
@@ -690,17 +928,19 @@ Tools to pull up in class — most update in real time
 ::: {.column width="50%"}
 **Enforcement, live**
 
-- [GDPR Enforcement Tracker](https://www.enforcementtracker.com/) — every EU fine since 2018
-- [FTC Cases & Proceedings](https://www.ftc.gov/legal-library/browse/cases-proceedings)
-- [IAPP US State Privacy Tracker](https://iapp.org/resources/article/us-state-privacy-legislation-tracker/)
+- GDPR Enforcement Tracker, every EU fine since 2018: [enforcementtracker.com](https://www.enforcementtracker.com/)
+- FTC cases and proceedings: [ftc.gov/legal-library/browse/cases-proceedings](https://www.ftc.gov/legal-library/browse/cases-proceedings)
+- IAPP US state privacy tracker: [iapp.org/resources/article/us-state-privacy-legislation-tracker](https://iapp.org/resources/article/us-state-privacy-legislation-tracker/)
+- MultiState, the 2026 effective dates: [multistate.us/insider/2026/2/4/…](https://www.multistate.us/insider/2026/2/4/all-of-the-comprehensive-privacy-laws-that-take-effect-in-2026)
 :::
 ::: {.column width="50%"}
 **See it on yourself**
 
-- [ToS;DR](https://tosdr.org/) — privacy policies, graded
-- [Have I Been Pwned](https://haveibeenpwned.com/) — breach lookup
-- [Privacy Badger](https://privacybadger.org/) — tracker blocking
-- [Download your Google data](https://support.google.com/accounts/answer/3024190) — GDPR access, live
+- ToS;DR, privacy policies graded: [tosdr.org](https://tosdr.org/)
+- Have I Been Pwned, breach lookup: [haveibeenpwned.com](https://haveibeenpwned.com/)
+- Privacy Badger, tracker blocking: [privacybadger.org](https://privacybadger.org/)
+- Download your Google data (a live GDPR access request): [takeout.google.com](https://takeout.google.com/)
+- Irish DPC decisions: [dataprotection.ie/en/news-media/latest-news](https://www.dataprotection.ie/en/news-media/latest-news)
 :::
 :::
 

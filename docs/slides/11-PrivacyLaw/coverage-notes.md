@@ -170,3 +170,24 @@ the new "Resources & Live Demos" slide). Verify dates/links before class — som
 4. How do we balance data-driven innovation with privacy?
 5. Is privacy a fundamental human right or a consumer-protection issue?
 6. What about privacy after death (digital estate, social media)?
+
+## Figures added (Nov 11 2026)
+
+Root font raised to 32px (`.smaller` 0.85em). Nothing dated was brought in from
+the legacy deck; the historical primary sources and current captures replace it.
+
+- Legacy deck (`ppt-archive/11-PrivacyLaw.pptx`): the 1890 *Harvard Law Review*
+  page (slide 2), the HEW 1973 report cover and transmittal quote (slides 4, 6),
+  the Equifax response headline and the FTC settlement summary (slide 29).
+- Live captures, clickable (`images/captures/`, headless Chrome, Nov 11 2026):
+  ToS;DR Instagram (grade E), Have I Been Pwned, the GDPR Enforcement Tracker
+  (3,417 fines, €7.59B), Irish DPC TikTok €530M, CNIL Google €325M, MultiState's
+  2026 effective dates, the IAPP state tracker. The two FTC press releases
+  (Disney, Kochava) bot-walled both headless browsers and stay as links.
+- Generated (`../src/privacy_law_figures.py`): the Johnson & Goldstein 2003
+  consent-by-default bars; the US statute timeline with each law's trigger.
+- Graphviz: the pattern four times (new slide 3); no-federal-law funnel; the
+  1970s threats; records vs. inference pipelines; the Sweeney linkage; sectoral
+  boxes with gaps vs. one GDPR box; the HIPAA covered-entity boundary; the
+  breach-law flow; the Section 5 two-prong decision; GDPR Article 3 scope; the
+  FIPPs-to-GDPR article map.

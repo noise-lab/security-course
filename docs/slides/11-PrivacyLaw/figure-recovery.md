@@ -46,3 +46,9 @@ source: `ppt-archive/11-PrivacyLaw.pptx` slide 17, shapes 8–20 (two record
 groups, joined group, two arrow connectors), rendered at 220 dpi, cropped
 box 500,1060,1700,1520 then auto-trimmed → `images/records-join-model.png`
 (1170×455).
+
+Nov 11 2026: also embedded, unmodified, from the June extraction:
+`slide002_img002.png` (HLR page) on "Privacy Law Always Chases Technology";
+`slide004_img004.png` and `slide006_img007.png` (HEW cover, transmittal quote)
+on "FIPPs: The Foundation"; `slide029_img014.png` and `slide029_img015.png`
+(CNBC headline, FTC settlement summary) on the Equifax slide.
