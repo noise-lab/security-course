@@ -62,3 +62,30 @@ ax.axis("off")
 fig.tight_layout()
 fig.savefig(OUT + "statute-timeline.svg")
 print("ok")
+
+# 3. FTC Section 5 privacy enforcement timeline
+cases = [
+    (2011, "Facebook consent\norder", "deception: privacy\nsettings vs. practice"),
+    (2017, "Uber", "\"God View\" tracking;\n20-year program"),
+    (2019, "Facebook $5B", "Cambridge Analytica;\norder violated"),
+    (2022, "Twitter $150M", "2FA phone numbers\nused for ads"),
+    (2023, "GoodRx, BetterHelp", "health data shared\nfor ads (HIPAA gap)"),
+    (2025, "Disney $10M", "COPPA: mislabeled\nkids' videos"),
+    (2026, "Kochava", "unfairness: sensitive\nlocation data ban"),
+]
+fig, ax = plt.subplots(figsize=(14, 5.2))
+ax.hlines(0, 2009.5, 2027.5, color="#444", lw=2)
+for i, (y, name, why) in enumerate(cases):
+    tier = [1.0, -1.0][i % 2]
+    up = tier > 0
+    ax.plot([y], [0], "o", color="#800000", ms=10, zorder=3)
+    ax.vlines(y, 0, tier, color="#999", lw=1)
+    ax.text(y, tier + (0.1 if up else -0.1), f"{name}\n{y}", ha="center", va="bottom" if up else "top",
+            fontsize=14, weight="bold")
+    ax.text(y, tier + (1.35 if up else -1.35), why, ha="center", va="bottom" if up else "top", fontsize=12, color="#444")
+ax.set_xlim(2009.5, 2027.5)
+ax.set_ylim(-4.2, 4.2)
+ax.axis("off")
+fig.tight_layout()
+fig.savefig(OUT + "section5-timeline.svg")
+print("ok3")

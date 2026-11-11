@@ -664,20 +664,9 @@ the U.S. privacy work today.
 
 ## Section 5 in Action {.smaller}
 
-::: {.columns}
-::: {.column width="50%"}
-**Uber (2017)** — "God View" tracking of journalists, politicians, exes despite
-privacy claims → consent decree + comprehensive privacy program
+![](images/section5-timeline.svg){width="100%"}
 
-**Twitter (2022)** — used 2FA phone numbers for ad targeting → penalty
-:::
-::: {.column width="50%"}
-**Facebook (2019)** — violated its 2011 consent decree; **Cambridge Analytica**
-harvested ~87M profiles → **$5B** fine, the largest ever
-
-**Disney (2025)** — COPPA, **$10M** (see opening vignette)
-:::
-:::
+Almost every case ends in a **consent decree**, not a trial: a 20-year privacy program, executive certification, and civil penalties if the order is violated. The FTC has built a common law of privacy out of orders, with no privacy statute and no rulemaking.
 
 ::: {.notes}
 Note the mechanism: cases almost always settle with a consent decree, not a
