@@ -300,3 +300,28 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 * **Debate: Privacy Omnibus** ([resolution and prep](../debates/omnibus.md); [format](../debates/format.md)). Not recorded
 * **Not covered:** Device Privacy (topic 10); from Web Privacy, Global Privacy Control and the 2025 Chrome cookie decision were not reached. Neither will be on the midterm
 * **Next week (Wed Nov 4):** midterm in class, then Privacy Law and Regulations (11) with the Copyright debate
+
+### Meeting 6 (Wed Nov 4)
+
+*No recording. Written from the announcements and the published exam materials.*
+
+* **Midterm**, in class from 4:30 pm, untimed within the class period
+    * Covered Meetings 1 through 5 as recorded above; one 8.5 by 11 inch note sheet, both sides, typed or handwritten; no devices
+    * Everything used to grade is published with the exam: the [solutions](../midterm/2026/exam-solution.pdf), the [grading notes](../midterm/2026/grading-notes.md), and the [class-wide analysis](../midterm/2026/analysis.md). Regrade requests go on the Gradebook issue in your private repository
+* **Debate: Software Copyright** ([resolution and prep](../debates/copyright.md); [format](../debates/format.md)), after the exam. Not recorded
+* **Not covered:** Privacy Law and Regulations (11), moved to Meeting 7
+
+### Meeting 7 (Wed Nov 11)
+
+*Plan; replaced with the record after class.*
+
+- In person at the Gleacher Center, Room 600, with Zoom for the class portion; class runs through to the Graham School panel at 6:15 pm
+- Housekeeping: Assignment 3 (Internet Privacy) is out, due Friday November 20; midterm regrades; the final is Wednesday December 2, in class
+- Debate, on Zoom: Automated Content Moderation ([resolution and prep](../debates/moderation.md); [format](../debates/format.md))
+- Lecture: Privacy Law and Regulations (11)
+    - Why privacy law chases technology; the 1973 Fair Information Practice Principles and what inference breaks; why removing identifiers does not anonymize
+    - The US sectoral patchwork, the HIPAA gap, breach notification, and Equifax
+    - The FTC's Section 5 as the de facto privacy law: deception and unfairness
+    - GDPR: scope, requirements, enforcement, and the debate; where US privacy law stands in 2026
+- Panel, 6:15 to 7:30 pm: Could AI Put Our Democracy at Risk? (Graham School; in person only)
+- Reserve if time allows: Device Privacy (10)
