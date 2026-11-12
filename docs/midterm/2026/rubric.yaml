@@ -331,7 +331,9 @@ questions:
         own key, or no binding of identity to key (needs certificate, out-of-band fingerprint, or pinning)'
     note: 'A student who answered Yes and explains that posting a public key removes the n-squared shared-key part
       of the problem (n key pairs instead of a shared key for every pair) earns 1 of 2: that part is solved, though
-      binding the key to Alice is not. A Yes with no such explanation earns nothing extra.'
+      binding the key to Alice is not. A Yes that names binding the key to Alice''s identity as what distribution
+      requires, but assumes the channel (Slack accounts) provides that binding, earns 0.5 of 2: the right requirement,
+      the wrong conclusion about the channel (regrade 2026-11-12). A Yes with neither explanation earns nothing extra.'
 - number: 9
   points: 4.0
   section: Authentication and Access Control

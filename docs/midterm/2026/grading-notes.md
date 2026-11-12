@@ -183,6 +183,19 @@ Effect: mean 73.0 to 73.4 of 85.
 - Applied to every exam with `grade --parts 2a`, keeping the higher score:
   no score went down. 7 students went up. Note on the part in rubric.yaml.
 
+## Q8b (a Yes that relies on Slack for the binding): half a point for naming the requirement, class-wide regrade (2026-11-12)
+
+- **Q8b, why posting the key in Slack does or does not solve distribution.**
+  Some answers said Yes because Slack accounts tie the post to Alice. That
+  names the right requirement (the key must be bound to Alice's identity),
+  but it assumes the channel provides the binding, which is what the
+  question asks you to doubt: anyone who can post as Alice or alter the
+  message can substitute a key. Such an answer now earns **0.5 of 2**. A Yes
+  with the n-squared explanation still earns 1 of 2; a Yes with neither
+  explanation earns nothing.
+- Applied to every exam with `grade --parts 8b`, keeping the higher score:
+  no score went down. 2 students went up. Note on the part in rubric.yaml.
+
 ## Answers added to the solutions on regrade (2026-11-11)
 
 Reasonable, correct answers the original key did not list. Each is now in
@@ -224,3 +237,9 @@ Bigger answer boxes on the final.
   Class mean 73.4 → 75.0 of 85 (median 74.25 → 75.5). A request that
   arrived by Slack, not on the Gradebook issue, raised Q2a, applied
   class-wide the same day (7 students up; mean 75.0 → 75.03).
+- **2026-11-12.** 1 further regrade request listing 15 questions. 6 were
+  already raised by the 2026-11-11 class-wide fixes and scan corrections; 4
+  went up on individual reading of the scan (Q16, Q18, Q19b, Q25b); 1 led to
+  the Q8b class-wide rule above (2 students up); 4 kept as graded with the
+  reason given on the issue. Class mean 75.03 → 75.1 (median 75.5 →
+  75.625).

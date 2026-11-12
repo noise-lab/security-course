@@ -19,7 +19,7 @@ Exams: 60. Flags appear once there are at least 5. A flagged part may be an ambi
 | 7a | short | 1.92 / 2 | mean 1.92 / 2 |  |
 | 7b | short | 1.59 / 2 | mean 1.59 / 2 |  |
 | 8a | yes_no | 0.82 / 1 | 82% answered 'no' (the key) |  |
-| 8b | free | 1.64 / 2 | mean 1.64 / 2 |  |
+| 8b | free | 1.66 / 2 | mean 1.66 / 2 |  |
 | 9a | short | 0.97 / 1 | mean 0.97 / 1 |  |
 | 9b | short | 0.97 / 1 | mean 0.97 / 1 |  |
 | 9c | short | 1.0 / 1 | mean 1.0 / 1 |  |
@@ -34,11 +34,11 @@ Exams: 60. Flags appear once there are at least 5. A flagged part may be an ambi
 | 13 | free | 3.67 / 4 | mean 3.67 / 4 |  |
 | 14 | choice | 1.93 / 2 | marked: A 3%, B* 97%, C 0%, D 0%  (* = key) |  |
 | 15 | free | 2.9 / 3 | mean 2.9 / 3 |  |
-| 16 | free | 2.42 / 4 | mean 2.42 / 4 |  |
+| 16 | free | 2.44 / 4 | mean 2.44 / 4 |  |
 | 17 | choice | 2.52 / 3 | marked: A* 93%, B 5%, C 7%, D* 97%, E* 73%  (* = key) |  |
-| 18 | free | 2.44 / 3 | mean 2.44 / 3 |  |
+| 18 | free | 2.45 / 3 | mean 2.45 / 3 |  |
 | 19a | choice | 0.95 / 1 | marked: A 5%, B* 95%  (* = key) |  |
-| 19b | free | 1.67 / 2 | mean 1.67 / 2 |  |
+| 19b | free | 1.69 / 2 | mean 1.69 / 2 |  |
 | 20a | free | 1.34 / 1.5 | mean 1.34 / 1.5 |  |
 | 20b | short | 1.45 / 1.5 | mean 1.45 / 1.5 |  |
 | 21 | free | 2.42 / 3 | mean 2.42 / 3 |  |
@@ -47,7 +47,7 @@ Exams: 60. Flags appear once there are at least 5. A flagged part may be an ambi
 | 23 | choice | 2.55 / 3 | marked: A 0%, B* 92%, C 18%, D* 88%, E* 93%  (* = key) |  |
 | 24 | free | 2.75 / 3 | mean 2.75 / 3 |  |
 | 25a | free | 1.07 / 1.5 | mean 1.07 / 1.5 |  |
-| 25b | free | 0.97 / 1.5 | mean 0.97 / 1.5 |  |
+| 25b | free | 0.98 / 1.5 | mean 0.98 / 1.5 |  |
 | 26a | short | 0.5 / 0.5 | mean 0.5 / 0.5 |  |
 | 26b | short | 0.5 / 0.5 | mean 0.5 / 0.5 |  |
 | 27 | free | 1.0 / 1 | mean 1.0 / 1 |  |
