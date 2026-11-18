@@ -362,7 +362,7 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 *Plan; replaced with the record after class.*
 
 - Housekeeping: Assignment 3 (Internet Privacy) due Fri Nov 20; Assignment 4 (Copyright and Content Platforms) out Wed Nov 25, due Fri Dec 11; the final is Wed Dec 2, in class
-- Lecture: Automated Compliance Enforcement (12): CCPA and CPRA opt-out rights, Global Privacy Control, the 2026 enforcement turn, and two measurement studies of whether opt-out links exist and whether opt-outs work (dark patterns)
+- Lecture: Automated Compliance Enforcement (12): CCPA and CPRA opt-out rights, who is covered, Global Privacy Control, the 2026 enforcement turn, measuring whether opt-out links exist and whether opt-outs work, and the families of dark patterns in the way
+- Lecture: AI and Privacy (13): traditional versus AI-specific privacy risks, what people disclose to chatbots, memorization and extraction, interdependent privacy, the interface and the memory prompt, how users cope, and recent enforcement
 - Debate: AI Accountability ([resolution and prep](../debates/accountability.md); [format](../debates/format.md))
-- Lecture: Device Privacy (10), the smart-TV part: streaming-channel tracking, children's channels and COPPA, why the privacy toggles do little, and the 2026 ACR lawsuits
-- Reserve: [breakout on automated compliance auditing](../breakouts/compliance.md)
+- Lecture: Copyright and Fair Use (14): what copyright protects, the four fair-use factors, Google v. Oracle, Content ID and the DMCA safe harbor, the AI-training cases, who owns AI output, and licensing markets
