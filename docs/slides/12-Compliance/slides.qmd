@@ -2,6 +2,17 @@
 title: "Privacy Law in Practice: Compliance, Opt-Out, and Dark Patterns"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
+header-includes: |
+  <style>
+    .reveal { font-size: 32px; }
+    .reveal .smaller, .reveal section.smaller { font-size: 0.85em; }
+    .reveal .larger, .reveal section.larger { font-size: 1.15em; }
+    .reveal li { line-height: 1.25; margin-bottom: 0.12em; }
+    .reveal .cell-output-display svg, .reveal .cell-output-display img { width: 100%; height: auto; }
+    .reveal .capture img { border: 1px solid #999; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+    .reveal .capture p { font-size: 0.55em; color: #555; margin-top: 0.15em; line-height: 1.2; }
+    .reveal .caption { font-size: 0.55em; color: #555; margin-top: 0.1em; }
+  </style>
 ---
 
 ## From Law on the Books to Law in Action {.center}
@@ -60,7 +71,7 @@ that lever to be real, a link? a working link? a signal your browser sends
 automatically? That question sets up GPC later in the deck.
 :::
 
-## Potential Harms to Consumers
+## Potential Harms to Consumers {.larger}
 
 - Targeted advertising
 - Consumer profiling
@@ -114,7 +125,7 @@ California Privacy Protection Agency, the first US privacy-only regulator. We us
 not Congress, produce the first comprehensive US privacy law?
 :::
 
-## Who Is Subject to the CCPA?
+## Who Is Subject to the CCPA? {.larger}
 
 Any **for-profit** entity that does business in California and satisfies **at
 least one** of the following thresholds:
@@ -188,7 +199,7 @@ the researchers the keywords their crawler searches for. Cold-call: which of the
 paths would you pick to minimize compliance burden, and which to maximize user rights?
 :::
 
-## Global Privacy Control (GPC): Opt Out Once
+## Global Privacy Control (GPC): Opt Out Once {.larger}
 
 - A **browser-level signal** that broadcasts "do not sell or share" to every site
 - The **frictionless** alternative: opt out once, not site-by-site
@@ -210,26 +221,40 @@ enable Firefox's or DuckDuckGo's GPC toggle live, then load a site and see if be
 changes. Cold-call: if GPC works, why do sites still bother with per-site links at all?
 :::
 
-## A 2026 Enforcement Wake-Up Call {.smaller}
+## A 2026 Enforcement Wake-Up Call
 
+::: {.columns}
+::: {.column width="54%"}
 ::: {.vignette}
-California is now enforcing the *practice*, not just the *paperwork*. On **Feb 11,
+California now enforces the *practice*, not just the *paperwork*. On **Feb 11,
 2026**, AG Rob Bonta announced a **\$2.75M** settlement with **Disney** for failing
-to honor opt-out preference signals (including **GPC**) across its streaming
-services
-([CA AG, Feb 11, 2026](https://oag.ca.gov/news/press-releases/california-wont-let-it-go-attorney-general-bonta-announces-275-million)).
-On **May 8, 2026**, that record was eclipsed by a **\$12.75M** settlement with
-**General Motors**, the largest CCPA penalty to date, and the first CCPA action
-built on **data minimization and purpose limitation**, for selling OnStar
-drivers' location and behavior data to LexisNexis and Verisk without notice or
-consent
-([CA AG, May 8, 2026](https://oag.ca.gov/news/press-releases/when-it-comes-data-privacy-consumers-must-be-driver%E2%80%99s-seat-attorney-general)).
-These follow earlier actions against **Healthline (\$1.55M, Jul 2025)**,
-**Sephora**, **DoorDash**, and **Sling TV**.
+to honor opt-out requests and preference signals (including **GPC**) across its
+streaming services
+([CA AG press release, Feb 11, 2026](https://oag.ca.gov/news/press-releases/california-wont-let-it-go-attorney-general-bonta-announces-275-million)).
+On **May 8, 2026**, a **\$12.75M** settlement with **General Motors**, the largest
+CCPA penalty to date and the first built on **data minimization and purpose
+limitation**, for selling OnStar drivers' location and behavior data to LexisNexis
+and Verisk without notice or consent
+([CA AG press release, May 8, 2026](https://oag.ca.gov/news/press-releases/when-it-comes-data-privacy-consumers-must-be-driver%E2%80%99s-seat-attorney-general)).
+Earlier: **Healthline**, **Sephora**, **DoorDash**, **Sling TV**.
 :::
 
-Regulators are explicit: they care whether consumer choices **actually work**
-across real tech stacks, not "paper compliance."
+Regulators ask whether choices **actually work**, not "paper compliance."
+:::
+::: {.column width="46%"}
+::: {.capture}
+[![](images/captures/record-disney-ccpa.png){width="100%"}](https://therecord.media/california-fines-disney-data-privacy)
+
+The Record, Feb 12, 2026: Disney's opt-out worked per device and per service, not per account. Captured Nov 18, 2026; click to open.
+:::
+
+::: {.capture}
+[![](images/captures/calmatters-gm-ccpa.png){width="100%"}](https://calmatters.org/economy/technology/2026/05/gm-record-california-penalty-onstar-data/)
+
+CalMatters, May 8, 2026: GM's record penalty for selling OnStar driving data to brokers. Captured Nov 18, 2026; click to open.
+:::
+:::
+:::
 
 ::: {.notes}
 Freshest hook of the deck and it ties directly to both studies. The Disney case
@@ -250,7 +275,7 @@ still small relative to the data economy, and would $128M change behavior? What 
 question is exactly what the two studies answer.
 :::
 
-## Research Questions {.smaller}
+## Research Questions
 
 - **RQ1:** How does the implementation of the CCPA's opt-out requirements change
   over time?
@@ -298,7 +323,7 @@ The outline of the first study: dataset and vantage-point selection, methodology
 findings, and limitations.
 :::
 
-## A. Vantage Point & Dataset Selection
+## A. Vantage Point & Dataset Selection {.larger}
 
 | Vantage point | State privacy law in effect |
 |---|---|
@@ -861,7 +886,7 @@ California show it everywhere; 30% of likely-subject sites have no link, for var
 ambiguous reasons.
 :::
 
-## Summary {.smaller}
+## Summary
 
 | Research question | Finding |
 |---|---|
@@ -903,7 +928,7 @@ Title slide of the second study. Where the first study asked whether the link ex
 this one actually submits opt-out requests and follows them for two months.
 :::
 
-## Beyond the Link: Does Opt-Out Actually Work?
+## Beyond the Link: Does Opt-Out Actually Work? {.larger}
 
 - Study 1 asked: **is there a link, and does it look right?**
 - Study 2 asks: **can a real consumer actually complete the opt-out?**
@@ -1304,7 +1329,7 @@ Resolved, 245 websites: 193 confirmed successful, and 51 where the site reported
 non-matching profile for the identity used.
 :::
 
-## ~30% of Opt-Out Attempts Fail {.smaller}
+## ~30% of Opt-Out Attempts Fail
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -1426,7 +1451,7 @@ should the law require a receipt, and what would that cost sites?
 Third finding: the dark patterns themselves, by family.
 :::
 
-## Three Families of Dark Patterns {.smaller}
+## Three Families of Dark Patterns {.larger}
 
 ::: {.columns}
 ::: {.column width="33%"}
@@ -1710,7 +1735,7 @@ Disney and GM settlements are the first recommendation starting to happen.
 
 # Why Automated Compliance Is Hard {.center}
 
-## The Enforcement Gap {.smaller}
+## The Enforcement Gap
 
 - **Determining coverage** is hard: key thresholds rely on **non-public** data
 - **Presence ≠ function:** a compliant-looking link may not work
@@ -1735,7 +1760,7 @@ program, or hire more lawyers? The 2026 enforcement turn toward functional opt-o
 why the answer is starting to look like "both". Route to the compliance breakout.
 :::
 
-## What Measurement Tells Policy {.smaller}
+## What Measurement Tells Policy
 
 - Compliance is **rising but incomplete**; ~45% fail even appearance rules
 - **Spillover is real** (78% extend opt-out nationwide): a strong state law can set
