@@ -995,7 +995,3 @@ because a lot of student answers collapse them. New seventh point: the output si
 accumulate). Bridge forward: the next lecture goes deeper into AI-copyright including
 memorization and active litigation.
 :::
-
-# Questions? {.center}
-
-Next: **AI and Copyright** — training data, memorization, and the active litigation.
