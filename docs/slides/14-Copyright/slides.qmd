@@ -13,10 +13,11 @@ header-includes: |
     .reveal .capture p { font-size: 0.55em; color: #555; margin-top: 0.15em; line-height: 1.2; }
     .reveal .caption { font-size: 0.55em; color: #555; margin-top: 0.1em; }
     .reveal .vignette { font-size: 0.9em; }
+    .reveal .larger, .reveal section.larger { font-size: 1.15em; }
   </style>
 ---
 
-## Why Copyright Is in This Course {.center}
+## Why Copyright Is in This Course {.center .larger}
 
 > "To **promote the Progress of Science and useful Arts**..." — U.S. Constitution, Art. I, §8
 
@@ -60,9 +61,9 @@ Same doctrine, opposite outcomes — **how you acquire** the work matters as muc
 :::
 ::: {.column width="40%"}
 ::: {.capture}
-[![](images/captures/authors-alliance.png){width="100%"}](https://www.authorsalliance.org/2026/07/21/bartz-v-anthropic-settlement-receives-final-approval/)
+[![](images/captures/cnbc-anthropic.png){width="100%"}](https://www.cnbc.com/2025/09/05/anthropic-to-pay-1point5-billion-to-settle-authors-copyright-lawsuit-.html)
 
-Authors Alliance, Jul 21 2026: the settlement receives final approval. Captured Nov 18 2026; click to open.
+CNBC, Sep 5 2025: Anthropic agrees to pay $1.5 billion. Captured Nov 18 2026; click to open. Primary sources: [settlement site](https://www.anthropiccopyrightsettlement.com/) · [docket](https://www.courtlistener.com/docket/69058235/bartz-v-anthropic-pbc/) · [final approval (Authors Alliance)](https://www.authorsalliance.org/2026/07/21/bartz-v-anthropic-settlement-receives-final-approval/)
 :::
 :::
 :::
@@ -131,7 +132,7 @@ dramatic, artistic works are protected; facts, concepts, ideas, systems, methods
 and processes are not.
 :::
 
-## The Rights a Holder Controls
+## The Rights a Holder Controls {.larger}
 
 A copyright is really a **bundle of exclusive rights**:
 
@@ -200,20 +201,30 @@ fair), photocopying whole books for classroom distribution (usually not). Refere
 resources are the Stanford Fair Use site and the U.S. Copyright Office Fair Use Index.
 :::
 
-## The Four-Factor Test {.smaller}
+## The Four-Factor Test
 
+::: {.columns}
+::: {.column width="62%"}
 Courts weigh **all four together** — no single factor decides:
 
 | # | Factor | Core question |
 |---|--------|---------------|
-| 1 | **Purpose and character** | Why the copy? Is it **transformative**? |
-| 2 | **Nature of the work** | Creative vs. factual/functional? |
-| 3 | **Amount and substantiality** | How much — and was it the "heart"? |
-| 4 | **Effect on the market** | Does it substitute for the original? |
+| 1 | **Purpose, character** | Why? Is it **transformative**? |
+| 2 | **Nature of the work** | Creative or factual? |
+| 3 | **Amount** | How much; the "heart"? |
+| 4 | **Market effect** | A substitute for the original? |
 
 ::: {.vignette}
-**Midterm signal:** know all four cold, and be ready to argue *for* and *against* fair
-use given an AI case study.
+**Midterm signal:** know all four cold; argue *for* and *against* fair use on an AI case study.
+:::
+:::
+::: {.column width="38%"}
+::: {.capture}
+[![](images/captures/scotusblog-warhol.png){width="100%"}](https://www.scotusblog.com/2023/05/justices-rule-against-andy-warhol-estate-in-copyright-dispute/)
+
+SCOTUSblog, May 19 2023: *Warhol v. Goldsmith*, the Supreme Court's latest word on Factor 1 (7–2 against the Warhol estate). Captured Nov 18 2026; click to open. [Opinion at Cornell LII](https://www.law.cornell.edu/supremecourt/text/21-869).
+:::
+:::
 :::
 
 ::: {.notes}
@@ -268,7 +279,7 @@ authors' strongest ground in the AI cases. Cold-call: if you were drafting the
 statute today, would you keep "weigh together" or write bright-line rules?
 :::
 
-## Factor 1: Purpose and Character
+## Factor 1: Purpose and Character {.larger}
 
 **The most important factor — and it turns on *transformativeness*.**
 
@@ -307,7 +318,7 @@ Contrast with Google Books scanning, which the Second Circuit called highly
 transformative in Authors Guild v. Google (2015).
 :::
 
-## Factor 2: Nature of the Work
+## Factor 2: Nature of the Work {.larger}
 
 **What kind of work was copied?** Copyright protects *expression*, so the closer a work
 is to pure fact or function, the weaker its protection.
@@ -334,7 +345,7 @@ plaintiffs who write novels? Answer usually: yes, and it is coherent with the
 Constitution's "progress of science and useful arts" goal.
 :::
 
-## Factor 3: Amount and Substantiality
+## Factor 3: Amount and Substantiality {.larger}
 
 Two questions, not one:
 
@@ -363,13 +374,25 @@ learn distributional statistics. Cold-call: is that closer to Perfect 10 or Harp
 
 **Does the use substitute for, or undercut the market for, the original?**
 
+::: {.columns}
+::: {.column width="55%"}
 - Direct substitution (a pirated copy people use instead of buying)
 - Harm to **licensing** and **derivative-work** markets
 - Considers **potential future** markets, not just current losses
 
 ::: {.vignette}
 This is the authors' core argument in the AI cases: *"AI generates a romance novel in
-seconds — you're putting me out of business."*
+seconds — you're putting me out of business."* In *Kadrey v. Meta* the authors lost
+on this record, but the court named **market dilution** as the harm to prove next time.
+:::
+:::
+::: {.column width="45%"}
+::: {.capture}
+[![](images/captures/engadget-meta.png){width="100%"}](https://www.engadget.com/ai/meta-wins-ai-copyright-case-filed-by-sarah-silverman-and-other-authors-120035768.html)
+
+Engadget, Jun 26 2025: Meta wins on fair use because the authors showed no market harm. Captured Nov 18 2026; click to open. [Order (PDF)](https://media.npr.org/assets/artslife/arts/2025/order1.pdf) · [docket](https://www.courtlistener.com/docket/67569326/kadrey-v-meta-platforms-inc/).
+:::
+:::
 :::
 
 ::: {.notes}
@@ -428,7 +451,7 @@ would that do to open-source software that reimplements Java, POSIX, or the Wind
 API?
 :::
 
-## Declaring Code vs. Implementing Code {.smaller}
+## Declaring Code vs. Implementing Code {.larger}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -518,7 +541,7 @@ lands on: the four-factor test is inherently indeterminate at the frontier — w
 is why the AI cases are so hard to predict.
 :::
 
-## How the Court Applied the Four Factors {.smaller}
+## How the Court Applied the Four Factors {.larger}
 
 | Factor | Court's finding for Google |
 |--------|----------------------------|
@@ -686,7 +709,7 @@ should platforms face strict liability for user uploads (kill §512), or is the
 current notice-and-takedown regime the least-bad compromise?
 :::
 
-## When Filters Can't Read Context {.smaller}
+## When Filters Can't Read Context {.larger}
 
 Automated matching **cannot evaluate fair use** — it sees a match, not a *purpose*.
 
@@ -713,7 +736,7 @@ answer is: current ML cannot judge purpose reliably; that is why fair use has st
 human-judged for 180 years.
 :::
 
-## Activity: Run the Four-Factor Test {.smaller}
+## Activity: Run the Four-Factor Test {.larger}
 
 **Scenario.** A YouTuber posts a **15-minute film-criticism** video: a **2-minute clip**,
 frame-by-frame analysis, and short comparison clips from other films.
@@ -747,7 +770,7 @@ the whole second half of the lecture identified. Route to the hands-on copyright
 activity and the copyright breakout for the extended version.
 :::
 
-## Copyright Meets AI Training {.smaller}
+## Copyright Meets AI Training
 
 The Oracle question — *can you copy functional material for a transformative new
 purpose?* — is now the **AI training** question.
@@ -770,10 +793,8 @@ purpose?* — is now the **AI training** question.
 **Where it stands (Bartz v. Anthropic):** training on books = **fair use**; building a
 library from **pirated** copies = **not** fair use. **Meta won a parallel fair-use ruling**
 two days later (Kadrey v. Meta, June 25, 2025) — but Judge Chhabria called it a narrow,
-fact-specific win, endorsed a **"market dilution"** theory of harm, and in **July 2026**
-refused to send the piracy question up early: the Ninth Circuit gets the whole package
-after final judgment. *NYT v. OpenAI* (S.D.N.Y.): cross-motions for summary judgment on fair
-use filed **September 2026**, no ruling yet. Expect the Supreme Court eventually.
+fact-specific win and endorsed a **"market dilution"** theory of harm. *NYT v. OpenAI*
+(S.D.N.Y.): summary-judgment motions on fair use filed **September 2026**, no ruling yet.
 
 ::: {.notes}
 Bridge to the AI/copyright material and a near-certain midterm theme. Three
@@ -971,7 +992,7 @@ offered a deal. Debate seed: compulsory licensing with a collecting society (the
 ASCAP/BMI model for music) versus the current bilateral deals.
 :::
 
-## Key Takeaways
+## Key Takeaways {.larger}
 
 1. Copyright protects **expression**, not ideas — and serves a **constitutional** goal
 2. **Fair use** is a four-factor, case-by-case **defense** — no bright lines
