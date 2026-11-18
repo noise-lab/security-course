@@ -286,7 +286,7 @@ things getting better over time; RQ2 shows appearance still fails; RQ3 shows
 spillover; RQ4 shows an irreducible fraction just does not comply at all.
 :::
 
-## Outline
+## Outline {visibility="hidden"}
 
 - **A.** Vantage Point & Dataset Selection
 - **B.** Methodology
@@ -326,7 +326,7 @@ top of it; Illinois is the control (it has BIPA for biometrics but no comprehens
 law, so a link appearing to an Illinois vantage point is spillover, not compliance).
 :::
 
-## A. Vantage Point & Dataset Selection
+## A. Vantage Point & Dataset Selection {visibility="hidden"}
 
 - Measured **twice per month** from **1/2023 to 7/2023**
 - **1016** unique websites
@@ -338,7 +338,7 @@ ranking site. We selected top websites from 80 categories to create a diverse se
 The seven-month window straddles the CPRA effective date.
 :::
 
-## B. Methodology
+## B. Methodology {visibility="hidden"}
 
 <!-- recovered from ppt-archive/12-Compliance.pptx slide 11 -->
 ![](images/keyword-list-sources.png){width="60%"}
@@ -352,7 +352,7 @@ phrases ("Do Not Sell or Share My Personal Information", "Your Privacy Choices")
 what makes this automatable at all; a vague statute would defeat the whole method.
 :::
 
-## B. Methodology {.smaller}
+## B. Methodology {.smaller visibility="hidden"}
 
 <!-- recovered from ppt-archive/12-Compliance.pptx slide 12 -->
 ![](images/method-keyword-pipeline.png){width="88%"}
@@ -377,7 +377,7 @@ when they disagree. Cold-call: if you could only afford one path, which would yo
 and what kind of site would you systematically miss?
 :::
 
-## Verify Methods
+## Verify Methods {visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -404,7 +404,7 @@ California vantage point on that date, and compared the results against those fr
 method. This yielded two false positive cases and two false negative cases, shown here.
 :::
 
-## Verify Methods
+## Verify Methods {visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -427,7 +427,7 @@ element that a search of the page source does not find). This is why both detect
 paths exist.
 :::
 
-## Outline
+## Outline {visibility="hidden"}
 
 - A. Vantage Point & Dataset Selection
 - B. Methodology
@@ -438,7 +438,7 @@ paths exist.
 To answer these research questions, we now turn to the findings.
 :::
 
-## Research Questions {.smaller}
+## Research Questions {.smaller visibility="hidden"}
 
 - [**RQ1:** How does the implementation of the CCPA's opt-out requirements change
   over time?]{style="color:#c00000"}
@@ -483,7 +483,7 @@ its footer? This measures only whether the link exists with the right wording, n
 whether it is in the right place, has the icon, or works.
 :::
 
-## Research Questions {.smaller}
+## Research Questions {.smaller visibility="hidden"}
 
 - **RQ1:** How does the implementation of the CCPA's opt-out requirements change
   over time?
@@ -505,7 +505,7 @@ the first step toward checking the other requirements: if websites fail this fir
 step, it is unlikely they fulfil the others.
 :::
 
-## Opt-out Methods
+## Opt-out Methods {visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="40%"}
@@ -576,7 +576,7 @@ staff, or a bet that enforcement is unlikely. Which single rule change would mov
 most sites into the green?
 :::
 
-## Research Questions {.smaller}
+## Research Questions {.smaller visibility="hidden"}
 
 - **RQ1:** How does the implementation of the CCPA's opt-out requirements change
   over time?
@@ -623,7 +623,7 @@ slide builds the four law-date annotations one click at a time, then replaces th
 with the table on the next slide.
 :::
 
-## RQ3: Do Businesses That Implement the Opt-Out Link Also Let Non-Californians Opt Out? {.smaller}
+## RQ3: Do Businesses That Implement the Opt-Out Link Also Let Non-Californians Opt Out? {.smaller visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="58%"}
@@ -657,7 +657,7 @@ prove an Illinois resident can complete the opt-out; the site may reject the req
 residency grounds once submitted. That gap is exactly what Study 2 investigates.
 :::
 
-## Research Questions {.smaller}
+## Research Questions {.smaller visibility="hidden"}
 
 - **RQ1:** How does the implementation of the CCPA's opt-out requirements change
   over time?
@@ -716,7 +716,7 @@ settlement turned on. Cold-call: design the experiment that checks whether a dis
 GPC promise is kept.
 :::
 
-## Who Is Subject to the CCPA?
+## Who Is Subject to the CCPA? {visibility="hidden"}
 
 Any **for-profit** entity that does business in California and satisfies **at
 least one** of the following thresholds:
@@ -804,7 +804,7 @@ statute requires a link in the header or footer. Cold-call: which row would you
 prioritize as a regulator with limited staff, and why?
 :::
 
-## D. Limitations
+## D. Limitations {visibility="hidden"}
 
 - Presence of the opt-out link does **not** mean it is functional or compliant
   with the CCPA.
@@ -880,7 +880,7 @@ five states. Last, the reasons for the absence of the link: 30% of likely-subjec
 sites have none, for varied and ambiguous reasons.
 :::
 
-## Future Direction
+## Future Direction {visibility="hidden"}
 
 - Automatically measure whether opt-out methods are **functional**? Contain **dark
   patterns**?
@@ -924,7 +924,7 @@ Cold-call: what's the difference between a dark pattern and just a bad UI? The a
 usually surfaces intent and asymmetry: the design privileges one outcome over another.
 :::
 
-## Summary of Findings {.smaller}
+## Summary of Findings {.smaller visibility="hidden"}
 
 - **RQ1: Can consumers successfully exercise their opt-out rights?**
   Nearly 30% of the attempted opt-out requests could not be submitted, did not
@@ -948,7 +948,7 @@ usually surfaces intent and asymmetry: the design privileges one outcome over an
 The findings up front, one per research question; the same slide closes the study.
 :::
 
-## The California Consumer Privacy Act (CCPA) {.smaller}
+## The California Consumer Privacy Act (CCPA) {.smaller visibility="hidden"}
 
 - Enacted in **2018**, a significant stride in US consumer privacy protection law
 - The **right to opt out of sale/sharing** is a cornerstone provision
@@ -966,7 +966,7 @@ interfaces designed to trick, deceive, or confuse users into actions that benefi
 business rather than the consumer, which makes it difficult to opt out.
 :::
 
-## The California Privacy Rights Act (CPRA)
+## The California Privacy Rights Act (CPRA) {visibility="hidden"}
 
 - Went into effect in **January 2023**
 - Introduces additional clarifications on opt-out requirements and **explicitly
@@ -982,7 +982,7 @@ original slide said "January 2021"; the CPRA became operative on January 1, 2023
 the first study's slides say.)
 :::
 
-## CCPA Opt-Out Requirements {.smaller}
+## CCPA Opt-Out Requirements {.smaller visibility="hidden"}
 
 > "at minimum, allow consumers to submit requests to opt-out of sale/sharing through
 > an opt-out preference signal and at least one of the following methods: an
@@ -1004,7 +1004,7 @@ than frictionless preference signals, so this study focuses on the process via t
 link.
 :::
 
-## Research Questions {.smaller}
+## Research Questions {.smaller visibility="hidden"}
 
 1. Can consumers successfully exercise their opt-out rights?
 2. What does it take for a consumer to submit an opt-out request?
@@ -1020,7 +1020,7 @@ process and whether they violate the CCPA or exploit loopholes; and what charact
 the websites that use them.
 :::
 
-## Outline
+## Outline {visibility="hidden"}
 
 - Dataset selection
 - Method
@@ -1034,7 +1034,7 @@ the websites that use them.
 Outline of the second study.
 :::
 
-## Dataset Selection {.smaller}
+## Dataset Selection {.smaller visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="60%"}
@@ -1064,7 +1064,7 @@ et al., "'It's a scavenger hunt': Usability of Websites' Opt-Out and Data Deleti
 Choices," CHI 2020.
 :::
 
-## Method
+## Method {visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="33%"}
@@ -1085,7 +1085,7 @@ data collection and labelling process; and finally how we followed up on each op
 request.
 :::
 
-## Opt-Out Metrics
+## Opt-Out Metrics {visibility="hidden"}
 
 - **Number of clicks**
 - **Personal information required**
@@ -1104,7 +1104,7 @@ and possibly confirming via email. Both: consumers must use browser opt-out in a
 to completing a form with personal information.
 :::
 
-## Opt-Out Control Methods
+## Opt-Out Control Methods {visibility="hidden"}
 
 - **Browser opt-out**: toggle off sale/sharing; **no personal info** required
   (often a pop-up via a third party like OneTrust)
@@ -1128,7 +1128,7 @@ patterns baked into the vendor UI. The EU analogue is IAB Europe's Transparency 
 Consent Framework, itself found unlawful by the CJEU in 2024.
 :::
 
-## Opt-Out Control Methods {.smaller}
+## Opt-Out Control Methods {.smaller visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="34%"}
@@ -1156,7 +1156,7 @@ number, and more. Right: both, a toggle plus a link to an opt-out form for addit
 preferences.
 :::
 
-## Dark Patterns Taxonomy Development
+## Dark Patterns Taxonomy Development {visibility="hidden"}
 
 - Leverage **existing dark pattern taxonomies**
 - Our **observations** of possible dark patterns during the pilot study
@@ -1168,7 +1168,7 @@ patterns observed during the pilot study; the specific patterns are explained wi
 findings.
 :::
 
-## Data Collection & Labelling Process {.smaller}
+## Data Collection & Labelling Process {.smaller visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="42%"}
@@ -1198,7 +1198,7 @@ judgments are subjective. Cold-call: which kinds of dark pattern would you expec
 screenshot-only rater to miss?
 :::
 
-## Follow-Up Process
+## Follow-Up Process {visibility="hidden"}
 
 - Track and follow up with the opt-out process for **two months** after the
   request is submitted
@@ -1215,13 +1215,13 @@ eight full weeks is what lets the researchers measure the difference between
 
 # Findings {.center}
 
-## RQ1: Can Consumers Successfully Exercise Their Opt-Out Rights? {.center}
+## RQ1: Can Consumers Successfully Exercise Their Opt-Out Rights? {.center visibility="hidden"}
 
 ::: {.notes}
 First finding: whether the opt-out requests actually succeed.
 :::
 
-## Categorizing Opt-Out Request Outcome {.smaller}
+## Categorizing Opt-Out Request Outcome {.smaller visibility="hidden"}
 
 <!-- recovered from ppt-archive/12-Compliance.pptx slide 47 -->
 ![](images/outcome-decision-flow.png){width="80%"}
@@ -1243,7 +1243,7 @@ flow would a site that silently honors the request but never confirms end up, an
 that fair to the site?
 :::
 
-## Opt-Out Request Outcomes {.smaller}
+## Opt-Out Request Outcomes {.smaller visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="55%"}
@@ -1268,7 +1268,7 @@ again" error shown), offline steps required (the quoted instruction to email or 
 or instructions only.
 :::
 
-## Opt-Out Request Outcomes {.smaller}
+## Opt-Out Request Outcomes {.smaller visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -1292,7 +1292,7 @@ and nothing further), outstanding follow-up actions (such as the identity verifi
 request quoted, asking for high-school name and test name), or incomplete.
 :::
 
-## Opt-Out Request Outcomes
+## Opt-Out Request Outcomes {visibility="hidden"}
 
 **Resolved (245 websites)**
 
@@ -1342,13 +1342,13 @@ right is the canonical use of compliance as a data-collection lever. Cold-call: 
 of these buckets is a §7004 violation, and which is legal but adversarial?
 :::
 
-## RQ2: What Does It Take for a Consumer to Submit an Opt-Out Request? {.center}
+## RQ2: What Does It Take for a Consumer to Submit an Opt-Out Request? {.center visibility="hidden"}
 
 ::: {.notes}
 Second finding: the shape of the opt-out process itself.
 :::
 
-## Opt-Out Control Methods
+## Opt-Out Control Methods {visibility="hidden"}
 
 <!-- recovered from ppt-archive/12-Compliance.pptx slide 52 -->
 ![](images/control-methods-by-vendor-table.png){width="85%"}
@@ -1381,7 +1381,7 @@ takes. Cold-call: should the law set a maximum click count, and what would sites
 response?
 :::
 
-## Personal Information Required
+## Personal Information Required {visibility="hidden"}
 
 ![](images/slide054_img036.png){width="60%"}
 
@@ -1391,7 +1391,7 @@ Table 3: the personal information required to submit a request, N=292. 115 sites
 email, address, and phone number.
 :::
 
-## Do Opt-Out Processes Violate CCPA Requirements? {.smaller}
+## Do Opt-Out Processes Violate CCPA Requirements? {.smaller visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="62%"}
@@ -1420,7 +1420,7 @@ non-compliant site would do. That is the enforcement gap in one diagram. Cold-ca
 should the law require a receipt, and what would that cost sites?
 :::
 
-## RQ3: What Types of Dark Patterns Are Used in the Opt-Out Process? {.center}
+## RQ3: What Types of Dark Patterns Are Used in the Opt-Out Process? {.center visibility="hidden"}
 
 ::: {.notes}
 Third finding: the dark patterns themselves, by family.
@@ -1494,7 +1494,7 @@ That asymmetry test is closer to §7004's "symmetry in choice" language and ofte
 people's answer.
 :::
 
-## Obstruction {.smaller}
+## Obstruction {.smaller visibility="hidden"}
 
 "Obstruction" refers to dark patterns where users encounter barriers or hurdles that
 make it difficult for them to complete a task or access information.
@@ -1562,7 +1562,7 @@ Misdirection example, apartmenttherapy.com: "use this toggle switch", with no
 indication of which position means opted out.
 :::
 
-## RQ3: Are These Dark Patterns Violating CCPA Requirements, or Exploiting Loopholes the CCPA Has Not Addressed? {.center}
+## RQ3: Are These Dark Patterns Violating CCPA Requirements, or Exploiting Loopholes the CCPA Has Not Addressed? {.center visibility="hidden"}
 
 ::: {.notes}
 Second half of the third question: which of these patterns the law actually reaches.
@@ -1594,7 +1594,7 @@ case citing §7004 directly on those. Cold-call: which row do you think enforcem
 targets next?
 :::
 
-## RQ4: What Are the Characteristics of Websites That Employ Dark Patterns? {.center}
+## RQ4: What Are the Characteristics of Websites That Employ Dark Patterns? {.center visibility="hidden"}
 
 ::: {.notes}
 Fourth finding: which sites use dark patterns, and which patterns.
@@ -1610,7 +1610,7 @@ Number of dark patterns per site, N=292: 92 sites have none, 86 have one, 60 hav
 with a tail out to five. 200 of 292 sites (68%) use at least one.
 :::
 
-## Prevalence of Dark Patterns {.smaller}
+## Prevalence of Dark Patterns {.smaller visibility="hidden"}
 
 <!-- recovered from ppt-archive/12-Compliance.pptx slide 65 -->
 ![](images/dark-pattern-prevalence-table.png){width="58%"}
@@ -1628,7 +1628,7 @@ all about information rather than visual trickery; what does that say about wher
 regulation should focus?
 :::
 
-## Distribution of Dark Patterns Across Opt-Out Control Methods
+## Distribution of Dark Patterns Across Opt-Out Control Methods {visibility="hidden"}
 
 <!-- recovered from ppt-archive/12-Compliance.pptx slide 66 -->
 ![](images/dark-patterns-by-control-method.png){width="88%"}
@@ -1672,7 +1672,7 @@ parties lead with identity confirmation (50.0%). Cold-call: who should the regul
 fine, the site or the vendor, and what would each do differently?
 :::
 
-## Discussion {.smaller}
+## Discussion {.smaller visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="30%"}
@@ -1757,7 +1757,7 @@ from honest error? Bridge back to the federal-vs-state debate and forward to the
 and privacy meeting.
 :::
 
-## Summary of Findings {.smaller}
+## Summary of Findings {.smaller visibility="hidden"}
 
 - **RQ1: Can consumers successfully exercise their opt-out rights?**
   Nearly 30% of the attempted opt-out requests could not be submitted, did not
