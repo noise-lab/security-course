@@ -361,7 +361,7 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
 
 *Plan; replaced with the record after class.*
 
-- Housekeeping: Assignment 3 (Internet Privacy) due Fri Nov 20; Assignment 4 out Wed Nov 25; the final is Wed Dec 2, in class
+- Housekeeping: Assignment 3 (Internet Privacy) due Fri Nov 20; Assignment 4 (Copyright and Content Platforms) out Wed Nov 25, due Fri Dec 11; the final is Wed Dec 2, in class
 - Lecture: Automated Compliance Enforcement (12): CCPA and CPRA opt-out rights, Global Privacy Control, the 2026 enforcement turn, and two measurement studies of whether opt-out links exist and whether opt-outs work (dark patterns)
 - Debate: AI Accountability ([resolution and prep](../debates/accountability.md); [format](../debates/format.md))
 - Lecture: Device Privacy (10), the smart-TV part: streaming-channel tracking, children's channels and COPPA, why the privacy toggles do little, and the 2026 ACR lawsuits
