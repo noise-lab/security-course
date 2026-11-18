@@ -6,6 +6,7 @@ header-includes: |
   <style>
     .reveal { font-size: 32px; }
     .reveal .smaller, .reveal section.smaller { font-size: 0.85em; }
+    .reveal .larger, .reveal section.larger { font-size: 1.15em; }
     .reveal li { line-height: 1.25; margin-bottom: 0.12em; }
     .reveal .cell-output-display svg, .reveal .cell-output-display img { width: 100%; height: auto; }
     .reveal .cell-output-display { margin: 0; }
@@ -15,7 +16,7 @@ header-includes: |
   </style>
 ---
 
-## Why AI Privacy Is Different {.center}
+## Why AI Privacy Is Different {.center .larger}
 
 > We protect our data with VPNs and encrypted messaging — then paste our medical
 > symptoms and confidential emails into a chatbot.
@@ -39,6 +40,8 @@ on user-vs-design responsibility to the accountability debate.
 
 ## A 2026 Vignette: Your Chat Logs in Court
 
+::: {.columns}
+::: {.column width="55%"}
 ::: {.vignette}
 In **May 2025**, a magistrate judge ordered OpenAI to **preserve all ChatGPT logs**
 — including conversations users had deleted — as evidence in *NYT v. OpenAI*. In
@@ -51,6 +54,18 @@ sanctions, alleging OpenAI concealed internal searches of its training corpus.
 
 A copyright suit became a **privacy crisis**: "delete" no longer meant deleted, and
 control over your conversations shifted from you to a litigation hold.
+:::
+::: {.column width="45%"}
+::: {.capture}
+[![](images/captures/nyt-openai-ars.png){width="100%"}](https://arstechnica.com/tech-policy/2025/06/openai-says-court-forcing-it-to-save-all-chatgpt-logs-is-a-privacy-nightmare/)
+
+Ars Technica, Jun 4, 2025: OpenAI objects to the preservation order. Captured
+Nov 18, 2026; click to open. Primary source: the
+[*In re OpenAI* MDL docket, S.D.N.Y. 1:25-md-03143](https://www.courtlistener.com/docket/69879510/in-re-openai-inc-copyright-infringement-litigation/)
+(preservation order May 13, 2025; production order Nov 7, 2025; affirmed Jan 5, 2026).
+:::
+:::
+:::
 
 ::: {.notes}
 Freshest and most concrete hook of the lecture. The timeline is worth naming
@@ -411,6 +426,8 @@ paste session notes into ChatGPT? Follow up: is there a reason *you* should be?
 Even when you *withhold* explicit PII, the model can **infer** it from context:
 age, gender, location, income, health, ethnicity.
 
+::: {.columns}
+::: {.column width="55%"}
 ::: {.vignette}
 **Wang, Peddinti, Taft & Feamster, "Beyond PII" (arXiv:2509.12152, Sept 2025):** in
 a survey of 240 U.S. participants, people could barely anticipate what a model could
@@ -422,6 +439,16 @@ ambiguity** worked better.
 
 So "just remove the names" is **not** enough — and people are bad at knowing what gives
 them away.
+:::
+::: {.column width="45%"}
+::: {.capture}
+[![](images/captures/beyondpii-arxiv.png){width="100%"}](https://arxiv.org/abs/2509.12152)
+
+The paper on arXiv (2509.12152, Sep 15, 2025; later published at CHI 2026). Captured
+Nov 18, 2026; click to open.
+:::
+:::
+:::
 
 ::: {.notes}
 The newest result and it reframes the whole lecture. Wang, Peddinti, Taft & Feamster,
@@ -519,7 +546,7 @@ Bridge to the next slide: even users with the correct mental model do not typica
 know an opt-out exists.
 :::
 
-## The Opt-Out Problem and Dark Patterns
+## The Opt-Out Problem and Dark Patterns {.larger}
 
 - In the same study, **14 of 19** users didn't know conversations are used for training
   by default — or that they could opt out
@@ -558,11 +585,16 @@ prove? Answer usually: obstruction, because click counts are objective.
 ::: {.columns}
 ::: {.column width="54%"}
 ::: {.capture}
-[![](images/captures/anthropic-consumer-terms.png){width="100%"}](https://www.anthropic.com/news/updates-to-our-consumer-terms)
+[![](images/captures/anthropic-consumer-terms-top.png){width="78%"}](https://www.anthropic.com/news/updates-to-our-consumer-terms)
 
-Anthropic, Aug 28, 2025: consumer chats used for training unless the user opts out;
-retention 30 days → **5 years** for those who allow it. Captured Nov 18, 2026; click
-to open.
+Anthropic, Aug 28, 2025 (primary source): consumer chats used for training unless the
+user opts out; retention 30 days → **5 years**. Captured Nov 18, 2026; click to open.
+:::
+
+::: {.capture}
+[![](images/captures/anthropic-techcrunch.png){width="78%"}](https://techcrunch.com/2025/08/28/anthropic-users-face-a-new-choice-opt-out-or-share-your-data-for-ai-training/)
+
+TechCrunch, Aug 28, 2025, same-day coverage. Captured Nov 18, 2026; click to open.
 :::
 :::
 ::: {.column width="46%"}
@@ -649,7 +681,7 @@ you learned two slides ago? The answer "none of them reliably" is the setup for 
 fair-game thesis.
 :::
 
-## Is It Really a "Fair Game"?
+## Is It Really a "Fair Game"? {.larger}
 
 Users *believe* they're trading privacy for utility in an informed exchange. But:
 
@@ -858,7 +890,7 @@ what would make the tool safe for sensitive tasks, and do users know the risks t
 are taking.
 :::
 
-## Discussion / Activity
+## Discussion / Activity {.larger}
 
 **Think–Pair–Share (10 min):**
 
@@ -885,7 +917,7 @@ regulatory category for AI mental-health and companion apps? That question alway
 generates strong disagreement and lands the lecture's ethical stakes.
 :::
 
-## Key Takeaways
+## Key Takeaways {.larger}
 
 1. LLMs carry **traditional and novel** privacy risks — and they compound.
 2. Users disclose **highly sensitive** data, often without realizing where it goes.
