@@ -94,3 +94,58 @@ figures, so the triage below is deliberately selective.
 - `images/audio-playback-oracle.png` (2203×724) — source: ppt-archive/10-IoT.pptx slide 129, final build state
 - `images/child-channel-leaks.png` (2393×1198) — source: ppt-archive/10-IoT.pptx slide 138
 - `images/limited-ads-table.png` (2688×927) — source: ppt-archive/10-IoT.pptx slide 145
+
+## Captured 2026-11-18 for the slide-for-slide conform (whole-content crops at 220 dpi, downscaled to 1500 px wide)
+
+- `images/iot-inspector-abstract-house.png` (1500×833) — source: ppt-archive/10-IoT.pptx slide 1, final state, title and slide number excluded
+- `images/initial-work-testbed.png` (1500×674) — source: ppt-archive/10-IoT.pptx slide 2, final state, title and slide number excluded
+- `images/webrtc-local-ip.png` (477×552) — source: ppt-archive/10-IoT.pptx slide 4, final state, title and slide number excluded
+- `images/get-setup-xml-probe.png` (1500×467) — source: ppt-archive/10-IoT.pptx slide 9, final state, title and slide number excluded
+- `images/google-home-chromecast.png` (975×471) — source: ppt-archive/10-IoT.pptx slide 23, final state, title and slide number excluded
+- `images/web-attack-demo.png` (1500×844) — source: ppt-archive/10-IoT.pptx slide 24, final state, title and slide number excluded
+- `images/anecdotal-reports-clippings.png` (1127×983) — source: ppt-archive/10-IoT.pptx slide 28, final state, title and slide number excluded
+- `images/iot-inspector-open-dialog.png` (1500×1034) — source: ppt-archive/10-IoT.pptx slide 30, final state, title and slide number excluded
+- `images/iot-inspector-discover-devices.png` (1500×850) — source: ppt-archive/10-IoT.pptx slide 31, final state, title and slide number excluded
+- `images/iot-inspector-bandwidth-graph.png` (1500×891) — source: ppt-archive/10-IoT.pptx slide 32, final state, title and slide number excluded
+- `images/iot-inspector-endpoints-table.png` (1500×807) — source: ppt-archive/10-IoT.pptx slide 33, final state, title and slide number excluded
+- `images/arp-spoofing-2018.png` (1500×662) — source: ppt-archive/10-IoT.pptx slide 34, final state, title and slide number excluded
+- `images/insight-communicate-with-whom.png` (1500×446) — source: ppt-archive/10-IoT.pptx slide 35, final state, title and slide number excluded
+- `images/roku-tv-trackers-bandwidth.png` (1500×757) — source: ppt-archive/10-IoT.pptx slide 36, final state, title and slide number excluded
+- `images/roku-bloomberg-cbsn.png` (1500×605) — source: ppt-archive/10-IoT.pptx slide 37, final state, title and slide number excluded
+- `images/samsung-fridge-dashboard.png` (1500×844) — source: ppt-archive/10-IoT.pptx slide 38, final state, title and slide number excluded
+- `images/iot-inspector-name-device.png` (1500×847) — source: ppt-archive/10-IoT.pptx slide 39, final state, title and slide number excluded
+- `images/fire-tv-roku-devices.png` (1500×674) — source: ppt-archive/10-IoT.pptx slide 42, final state, title and slide number excluded
+- `images/paid-tv-subscribers-chart.png` (1482×883) — source: ppt-archive/10-IoT.pptx slide 43, final state, title and slide number excluded
+- `images/household-penetration-by-device.png` (1500×648) — source: ppt-archive/10-IoT.pptx slide 44, final state, title and slide number excluded
+- `images/ott-device-share.png` (1500×1139) — source: ppt-archive/10-IoT.pptx slide 46, final state, title and slide number excluded
+- `images/hidden-data-flows-headlines.png` (1500×577) — source: ppt-archive/10-IoT.pptx slide 47, final state, title and slide number excluded
+- `images/crawler-system-design.png` (1500×786) — source: ppt-archive/10-IoT.pptx slide 55, final state, title and slide number excluded
+- `images/fire-tv-stick-board.png` (1050×671) — source: ppt-archive/10-IoT.pptx slide 61, final state, title and slide number excluded
+- `images/channel-navigation-screens.png` (1500×868) — source: ppt-archive/10-IoT.pptx slide 65, final state, title and slide number excluded
+- `images/channel-store-screenshot.png` (948×579) — source: ppt-archive/10-IoT.pptx slide 75, final state, title and slide number excluded
+- `images/previously-unknown-trackers-roku.png` (1244×1091) — source: ppt-archive/10-IoT.pptx slide 81, final state, title and slide number excluded
+- `images/identifier-leak-counts.png` (1500×779) — source: ppt-archive/10-IoT.pptx slide 83, final state, title and slide number excluded
+- `images/video-title-leaks-roku.png` (1500×470) — source: ppt-archive/10-IoT.pptx slide 85, final state, title and slide number excluded
+- `images/platform-privacy-screens.png` (1500×428) — source: ppt-archive/10-IoT.pptx slide 86, final state, title and slide number excluded
+- `images/cbs-watching-cbs.png` (1500×849) — source: ppt-archive/10-IoT.pptx slide 92, final state, title and slide number excluded
+- `images/consumer-threats-icons.png` (1500×1036) — source: ppt-archive/10-IoT.pptx slide 93, final state, title and slide number excluded
+- `images/measurement-wild-lab.png` (1500×772) — source: ppt-archive/10-IoT.pptx slide 94, final state, title and slide number excluded
+- `images/smart-home-wild-lab.png` (1500×779) — source: ppt-archive/10-IoT.pptx slide 95, final state, title and slide number excluded
+- `images/cybercrime-wild-lab.png` (1500×781) — source: ppt-archive/10-IoT.pptx slide 96, final state, title and slide number excluded
+- `images/talk-focus-wild-lab.png` (1500×459) — source: ppt-archive/10-IoT.pptx slide 97, final state, title and slide number excluded
+- `images/many-devices-few-insights.png` (1500×692) — source: ppt-archive/10-IoT.pptx slide 99, final state, title and slide number excluded
+- `images/crowdsourcing-vision-houses.png` (1479×800) — source: ppt-archive/10-IoT.pptx slide 101, final state, title and slide number excluded
+- `images/iot-inspector-house.png` (1500×1162) — source: ppt-archive/10-IoT.pptx slide 102, final state, title and slide number excluded
+- `images/samsung-tv-device-activities.png` (1500×775) — source: ppt-archive/10-IoT.pptx slide 109, final state, title and slide number excluded
+- `images/smart-tv-tracker-shares.png` (1500×806) — source: ppt-archive/10-IoT.pptx slide 114, final state, title and slide number excluded
+- `images/research-opportunities.png` (1500×658) — source: ppt-archive/10-IoT.pptx slide 115, final state, title and slide number excluded
+- `images/iot-inspector-summary-icons.png` (1500×573) — source: ppt-archive/10-IoT.pptx slide 116, final state, title and slide number excluded
+- `images/cbs-roku-dashboard-questions.png` (1500×849) — source: ppt-archive/10-IoT.pptx slide 119, final state, title and slide number excluded
+- `images/smart-tv-lab-tcpdump-spotx.png` (1500×805) — source: ppt-archive/10-IoT.pptx slide 121, final state, title and slide number excluded
+- `images/roku-home-screen.png` (1500×1006) — source: ppt-archive/10-IoT.pptx slide 125, final state, title and slide number excluded
+- `images/mitm-fake-account.png` (1318×945) — source: ppt-archive/10-IoT.pptx slide 131, final state, title and slide number excluded
+- `images/mitm-opportunistic.png` (1500×771) — source: ppt-archive/10-IoT.pptx slide 132, final state, title and slide number excluded
+- `images/child-channels-amazon-leaks.png` (1500×758) — source: ppt-archive/10-IoT.pptx slide 139, final state, title and slide number excluded
+- `images/child-channels-roku-leaks.png` (1500×759) — source: ppt-archive/10-IoT.pptx slide 140, final state, title and slide number excluded
+- `images/pihole-crash.png` (907×1078) — source: ppt-archive/10-IoT.pptx slide 141, final state, title and slide number excluded
+- `images/platform-privacy-settings-screens.png` (1500×712) — source: ppt-archive/10-IoT.pptx slide 142, final state, title and slide number excluded
