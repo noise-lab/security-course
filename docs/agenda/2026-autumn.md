@@ -356,3 +356,13 @@ No debate this week. First half: course mechanics. Second half: threat modeling,
     * **Not covered** from the deck: the ToS;DR walkthrough, differential privacy and the accuracy trade-off, the Schrems decisions and the Data Privacy Framework, the Section 5 enforcement timeline, and the 2026 state-law and federal-bill detail. **Device Privacy (topic 10) was not covered**
 * **Panel: Could AI Put Our Democracy at Risk?** (Graham School, 6:15 to 7:30, in person). Not recorded and not course material
 * **Next week (Wed Nov 18):** Automated Compliance Enforcement (12) with the AI Accountability debate; Assignment 3 due Friday November 20
+
+### Meeting 8 (Wed Nov 18)
+
+*Plan; replaced with the record after class.*
+
+- Housekeeping: Assignment 3 (Internet Privacy) due Fri Nov 20; Assignment 4 out Wed Nov 25; the final is Wed Dec 2, in class
+- Lecture: Automated Compliance Enforcement (12): CCPA and CPRA opt-out rights, Global Privacy Control, the 2026 enforcement turn, and two measurement studies of whether opt-out links exist and whether opt-outs work (dark patterns)
+- Debate: AI Accountability ([resolution and prep](../debates/accountability.md); [format](../debates/format.md))
+- Lecture: Device Privacy (10), the smart-TV part: streaming-channel tracking, children's channels and COPPA, why the privacy toggles do little, and the 2026 ACR lawsuits
+- Reserve: [breakout on automated compliance auditing](../breakouts/compliance.md)
