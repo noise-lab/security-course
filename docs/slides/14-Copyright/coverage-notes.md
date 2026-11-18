@@ -85,3 +85,78 @@ Refresh the dated content below per `../TEMPLATE.md` → "Annual current-events 
   `agenda.md` Meeting on "Copyright Law and Fair Use" (lines ~1158–1264). Consolidated to
   **22 slides** (incl. 3 section dividers). Prioritized the agenda's flagged midterm items:
   four-factor test, transformative use, and the for/against AI fair-use case-study drill.
+
+## 2026-11-18 graphics pass (deck-graphics skill)
+
+Deck went from 23 headings (22 slides + title) to 30 rendered slides. No legacy
+clippings exist for this topic (no pptx), so every picture is new; the
+dated-vs-landmark rule applied only to captures, all of which are live refreshes
+of the primary source and should be re-captured at the next annual pass.
+
+**Graphviz diagrams (8):** idea/expression split (slide 4); four-factor weighing
+diagram (new slide 8, "Weighing the Four Factors"); Oracle ruling ping-pong strip
+under the timeline table (slide 16); Content ID pipeline, reference → fingerprint
+→ compare → policy → block/monetize/track (slide 19); DMCA §512 notice,
+takedown, counter-notice, 10–14 days, suit-or-restore flow with repeat-strike
+box (slide 21); AI-training decision flow, acquisition → transformative →
+market dilution (new slide 25); human-control spectrum for AI output (new slide
+27); licensing-market feedback loop (new slide 28).
+
+**Live captures (6, all clickable, captured Nov 18 2026):** Authors Alliance
+final-approval post (slide 3); 17 U.S.C. §107 at Cornell LII (slide 6); Google
+v. Oracle opinion page at Cornell LII (slide 14); YouTube Copyright Transparency
+Report summary (new slide 20, "Content ID by the Numbers"); U.S. Copyright
+Office AI page (new slide 26). Also captured and kept in `images/captures/` but
+linked from the notes rather than placed on a slide: 17 U.S.C. §512 at LII
+(`s512.png`; the slide links the statute in text) and YouTube's Content ID
+help page (`contentid.png`). Dropped: `anthropiccopyrightsettlement.com`
+returned "The request is blocked" (linked in the notes instead); Oyez's case
+page captured fine but duplicated the LII capture; AI Lawsuit Tracker's NYT page
+captured fine but there was no room on the AI-training slide (linked in the
+notes). `copyright.gov/ai` hung headless Chrome on the first attempt (no
+timeout in `deck-graphics.py capture`); it captured on a second run with a
+per-page timeout.
+
+**Current-events verification (web, Nov 18 2026):**
+- Bartz v. Anthropic: final approval **July 20, 2026** (Judge Martínez-Olguín),
+  fees cut to ~$101.5M, >91% of authors claimed, appeals of the final judgment
+  filed; first payments expected the **week of Nov 23, 2026** at ~70% of each
+  claim pending the Sept 2026/Sept 2027 installments (Authors Guild page updated
+  Nov 16 2026; Authors Alliance; JURIST; Writer Beware). Vignette rewritten to
+  replace the May 14 fairness-hearing/August-payment text.
+- Kadrey v. Meta: no Ninth Circuit appeal pending; Chhabria **denied interlocutory
+  appeal July 8, 2026** ("tidy package" after final judgment); remaining claims in
+  discovery. Added to slide 24.
+- NYT v. OpenAI: cross-motions for summary judgment on fair use filed **Sept 4,
+  2026**, oppositions Oct 23, replies due Nov 20; **no ruling** (AI Lawsuit
+  Tracker, reviewed Nov 16 2026). Slide 24 updated from "still in discovery".
+  A DOJ statement of interest backing OpenAI's fair-use defense was reported but
+  only by secondary trackers; not placed on the slide.
+- Content ID statistics restored with a primary source: YouTube Copyright
+  Transparency Report, calendar 2025 (2.5B claims, >99% of actions, >99%
+  automated, >90% monetized, 0.51% disputed, 67% of disputes to the uploader,
+  $12B+ cumulative to rights holders by Dec 2024; TorrentFreak Jun 6 2026 for
+  the exact figures).
+
+**Missing coverage now added (two of the point-3 items):**
+- *AI output and authorship* (slides 26–27): Copyright Office *Copyright and AI,
+  Part 2* (Jan 29, 2025) and Thaler v. Perlmutter (D.C. Cir. 2025; **cert denied
+  March 2, 2026**, No. 25-449; Holland & Knight, Finnegan, Baker Donelson).
+- *Licensing markets* (slide 28): News Corp–OpenAI ($250M+/5 yr, 2024),
+  Reddit–Google (~$60M/yr, 2024), Wiley $49M FY2026 (CASRAI roundup citing
+  Wiley's results), Press Gazette tracker's four-in-five-undisclosed count (via
+  secondary summaries; the tracker URL itself 404'd on fetch). Framed as a
+  Factor 4 feedback loop.
+
+**Type:** `.smaller` dropped from the Anthropic vignette (slide 3), which now has
+a capture beside it. Every other `.smaller` slide carries a table, a code block,
+two columns, or a figure.
+
+**Still missing (unchanged from the July list):** data-provenance beat as its own
+slide (now partly covered by the decision flow), EU DSM Art. 17 / TDM opt-out,
+DMCA §1201, statutory-damages mechanics, Beebe chart as a generated figure.
+
+**Next refresh:** re-capture all six pages; swap in the Bartz payment outcome and
+any appellate ruling; check for a NYT v. OpenAI summary-judgment decision and a
+Ninth Circuit Kadrey appeal; refresh the 2025 Content ID numbers with the 2026
+report; re-check the licensing figures (Wiley FY2027, new disclosed deals).

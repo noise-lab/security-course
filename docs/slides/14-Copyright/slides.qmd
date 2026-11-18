@@ -2,6 +2,18 @@
 title: "Copyright and Fair Use"
 subtitle: "Security, Privacy, and Consumer Protection"
 author: "Nick Feamster · University of Chicago"
+header-includes: |
+  <style>
+    .reveal { font-size: 32px; }
+    .reveal .smaller, .reveal section.smaller { font-size: 0.85em; }
+    .reveal li { line-height: 1.25; margin-bottom: 0.12em; }
+    .reveal .cell-output-display svg, .reveal .cell-output-display img { width: 100%; height: auto; }
+    .reveal .cell-output-display { margin: 0; }
+    .reveal .capture img { border: 1px solid #999; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+    .reveal .capture p { font-size: 0.55em; color: #555; margin-top: 0.15em; line-height: 1.2; }
+    .reveal .caption { font-size: 0.55em; color: #555; margin-top: 0.1em; }
+    .reveal .vignette { font-size: 0.9em; }
+  </style>
 ---
 
 ## Why Copyright Is in This Course {.center}
@@ -27,20 +39,33 @@ copyrighted. Ask "was that fair use?" and watch the class realize they cannot
 answer.
 :::
 
-## A 2026 Vignette: The Anthropic Decision {.smaller}
+## A 2026 Vignette: The Anthropic Decision
 
+::: {.columns}
+::: {.column width="60%"}
 ::: {.vignette}
 On **June 23, 2025**, Judge William Alsup (N.D. Cal.) ruled in **Bartz v. Anthropic**
 that training an LLM on books is "**exceedingly transformative**" and therefore *fair
 use* — but that **downloading 7+ million pirated books** to build a permanent library
 was **not** fair use. **September 2025:** Anthropic agreed to a **~$1.5 billion**
 settlement (~482k works, ~$3,000/work), the largest copyright settlement in U.S.
-history. **May 14, 2026:** final fairness hearing before Judge Martínez-Olguín;
-claims rate **92.77%**, initial payments estimated **August 2026**.
+history. **July 20, 2026:** Judge Martínez-Olguín granted **final approval** and
+entered judgment, cutting class counsel's fee request to **~$101.5M**; the first
+payments (about **70%** of each claim, pending Anthropic's remaining installments) are
+expected in **late November 2026**.
 :::
 
 Same doctrine, opposite outcomes — **how you acquire** the work matters as much as
 **what you do** with it.
+:::
+::: {.column width="40%"}
+::: {.capture}
+[![](images/captures/authors-alliance.png){width="100%"}](https://www.authorsalliance.org/2026/07/21/bartz-v-anthropic-settlement-receives-final-approval/)
+
+Authors Alliance, Jul 21 2026: the settlement receives final approval. Captured Nov 18 2026; click to open.
+:::
+:::
+:::
 
 ::: {.notes}
 Freshest hook of the deck. Three load-bearing facts, all verified. First: on June 23,
@@ -48,49 +73,62 @@ Freshest hook of the deck. Three load-bearing facts, all verified. First: on Jun
 transformative" and therefore fair use, but that downloading 7+ million pirated books
 to build a permanent library was not fair use. Second: in September 2025 Anthropic
 settled for roughly $1.5B, covering about 482,460 works at roughly $3,000/work —
-the largest copyright settlement in US history. Third: on May 14, 2026, Judge
-Martínez-Olguín took the fairness hearing under submission; claims rate stood at
-92.77% (447,576 of 482,460 works), about 53 objections, minuscule opt-out rate;
-questions focused on attorneys' fees. Initial payments are estimated for August 2026;
-Anthropic funds in four installments through September 2027. Alsup irony worth naming:
-he is the same former-programmer judge who first ruled APIs uncopyrightable in Oracle
-in 2012. Do not overstate — the settlement resolved *piracy* liability; the
+the largest copyright settlement in US history. Third: on July 20, 2026, Judge
+Martínez-Olguín granted final approval and entered final judgment, rejecting
+objections that the price was too low; more than 91% of eligible authors claimed;
+she cut class counsel's fee request (originally $300M, trimmed to $187.5M) to about
+$101.5M, roughly 6.8% of the fund. Several appeals of the final judgment were filed.
+The Authors Guild (Nov 16, 2026) says first payments go out the week of Nov 23, 2026
+at about 70% of each claim because Anthropic has not yet paid all four installments
+(Oct 2025, within a week of final approval, Sept 2026, Sept 2027). Alsup irony worth
+naming: he is the same former-programmer judge who first ruled APIs uncopyrightable
+in Oracle in 2012. Do not overstate — the settlement resolved *piracy* liability; the
 *training-is-fair-use* holding is district-court precedent, not Supreme Court law.
 Cold-call: why did Anthropic settle instead of appealing the piracy holding?
 :::
 
 ## What Copyright Protects
 
-::: {.columns}
-::: {.column width="50%"}
-**Protected** — original *expression*
-
-- Literary, musical, dramatic, artistic works
-- **Software code** (since 1980)
-:::
-::: {.column width="50%"}
-**Not protected** — the *idea*, not the expression
-
-- Facts, concepts, ideas
-- Systems, methods, processes
-:::
-:::
-
 The line is **idea vs. expression**. You can't copyright *how* to sort a list —
 only a particular *written* implementation of it.
 
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 3.6
+digraph ideaexpr {
+  rankdir=LR; nodesep=0.3; ranksep=1.1; bgcolor="transparent";
+  node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=22,
+        color="#555555", penwidth=1.4, margin="0.2,0.1"];
+  edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=19];
+  subgraph cluster_i { label="Not protected: the idea"; fontname="Helvetica"; fontsize=24; color="#bbbbbb"; style="rounded";
+    i1 [label="How to sort a list\n(a method, a system)", fillcolor="#f8d7c4", style="filled,rounded,dashed"];
+    i2 [label="Who has which phone number\n(facts: Feist, 1991)", fillcolor="#f8d7c4", style="filled,rounded,dashed"];
+    i3 [label="A recipe's list of ingredients", fillcolor="#f8d7c4", style="filled,rounded,dashed"]; }
+  subgraph cluster_e { label="Protected: original expression"; fontname="Helvetica"; fontsize=24; color="#bbbbbb"; style="rounded";
+    e1 [label="Your quicksort.c\n(software code, since 1980)", fillcolor="#d9efd3"];
+    e2 [label="A directory with original\nselection and arrangement", fillcolor="#d9efd3"];
+    e3 [label="The cookbook's prose\naround the recipe", fillcolor="#d9efd3"]; }
+  i1 -> e1 [label="written down as"]; i2 -> e2 [label="written down as"]; i3 -> e3 [label="written down as"];
+}
+```
+
 ::: {.notes}
 Drive the idea/expression dichotomy hard — it is the root of the entire API debate
-later in the deck. Anchor case: Feist v. Rural Telephone (1991), where the Supreme
-Court held that alphabetical phone-book listings are facts, not copyrightable, even
-though the phone company invested labor in compiling them — "sweat of the brow"
-does not create copyright. Software became copyrightable expression with the
-Computer Software Copyright Act of 1980; before that its status was contested.
-Because code is treated as expression *of* an implementation of a system, not as
-the system itself, Oracle's argument that copying API declarations was infringement
-was at least plausible. Cold-call: is a recipe copyrightable? Answer: the list of
-ingredients is not (facts) but a distinctive prose narrative around it can be. Same
-line runs through everything today.
+later in the deck. The diagram's three rows: a method (sorting), facts (phone
+numbers), and a list of ingredients sit on the unprotected side; a particular written
+implementation, a directory with original selection and arrangement, and the prose
+around a recipe sit on the protected side. Anchor case: Feist v. Rural Telephone
+(1991), where the Supreme Court held that alphabetical phone-book listings are facts,
+not copyrightable, even though the phone company invested labor in compiling them —
+"sweat of the brow" does not create copyright. Software became copyrightable
+expression with the Computer Software Copyright Act of 1980; before that its status
+was contested. Because code is treated as expression *of* an implementation of a
+system, not as the system itself, Oracle's argument that copying API declarations was
+infringement was at least plausible. Cold-call: is a recipe copyrightable? Answer:
+the list of ingredients is not (facts) but a distinctive prose narrative around it
+can be. Same line runs through everything today. Also covered: literary, musical,
+dramatic, artistic works are protected; facts, concepts, ideas, systems, methods,
+and processes are not.
 :::
 
 ## The Rights a Holder Controls
@@ -123,36 +161,42 @@ question the Constitution's copyright clause actually asks.
 
 ## Fair Use: An Affirmative Defense {.smaller}
 
+::: {.columns}
+::: {.column width="50%"}
 **Fair use is not a loophole — it's a defense you raise *after* you've copied.**
 
 Codified at **17 U.S.C. §107**. Permits limited unlicensed use for purposes like:
 
-::: {.columns}
-::: {.column width="50%"}
 - Criticism and commentary
 - News reporting
 - Teaching and research
-:::
-::: {.column width="50%"}
 - Scholarship
 - Parody
-:::
-:::
 
 Decided **case-by-case** — there are **no bright-line rules** (no "10% rule," crediting
 the artist is not permission).
+:::
+::: {.column width="50%"}
+::: {.capture}
+[![](images/captures/s107.png){width="100%"}](https://www.law.cornell.edu/uscode/text/17/107)
+
+17 U.S.C. §107 at Cornell's Legal Information Institute: the whole statute is one paragraph and four factors. Captured Nov 18 2026; click to read it.
+:::
+:::
+:::
 
 ::: {.notes}
 Emphasize the phrase "affirmative defense" — you concede a copy was made, and then
-argue it was fair. Codified at 17 U.S.C. §107. Pre-empt the common student
+argue it was fair. Codified at 17 U.S.C. §107; the capture on the right is the
+statute itself, short enough to read aloud. Pre-empt the common student
 misconceptions right now, before the four-factor slide, or you will fight them all
 class: crediting the artist is not permission; "I only used 10%" is not a rule that
 exists anywhere in the statute; Creative Commons is a *license* system, not a fair-use
 exception (always check the specific license terms — CC BY-NC is very different from
 CC0). "AI-generated content" is a separate question — the U.S. Copyright Office
-position is that human authorship is required. Everyday examples from the agenda:
-showing a reading in class (usually fair), photocopying excerpts (often fair),
-photocopying whole books for classroom distribution (usually not). Reference
+position is that human authorship is required (its own slide near the end). Everyday
+examples: showing a reading in class (usually fair), photocopying excerpts (often
+fair), photocopying whole books for classroom distribution (usually not). Reference
 resources are the Stanford Fair Use site and the U.S. Copyright Office Fair Use Index.
 :::
 
@@ -184,6 +228,44 @@ Courts are supposed to weigh all four together with no single factor decisive, b
 transformativeness bends the whole analysis in practice. Cold-call: which factor do
 *you* think matters most for AI training on books? Answer usually splits — that
 split is exactly the current litigation.
+:::
+
+## Weighing the Four Factors
+
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 5
+digraph weigh {
+  rankdir=LR; nodesep=0.3; ranksep=0.8; bgcolor="transparent";
+  node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=22,
+        color="#555555", penwidth=1.4, margin="0.2,0.1"];
+  edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=19];
+  f1 [label="1. Purpose and character\nnew meaning or purpose?\ncommercial?", fillcolor="#cfe3f5"];
+  f2 [label="2. Nature of the work\ncreative or factual?\npublished?", fillcolor="#cfe3f5"];
+  f3 [label="3. Amount\nhow much, and\nwas it the heart?", fillcolor="#cfe3f5"];
+  f4 [label="4. Market effect\nsubstitute? lost licensing?\nfuture markets?", fillcolor="#cfe3f5"];
+  w  [label="Weigh all four\ntogether\n(no bright lines)", fillcolor="#f2d9a8", penwidth=2];
+  fu [label="Fair use:\nthe defense succeeds", fillcolor="#d9efd3"];
+  inf [label="Infringement:\ndamages, injunction", fillcolor="#f8d7c4"];
+  f1 -> w [label="transformative:\nheaviest weight"]; f2 -> w; f3 -> w; f4 -> w [label="strongest for\nplaintiffs"];
+  w -> fu [label="favors"]; w -> inf [label="disfavors"];
+}
+```
+
+::: {.caption}
+Factor 1 is the strongest single predictor of outcome in the case law (Beebe, 2008); Factor 4 is where rights holders push back hardest in the AI cases.
+:::
+
+::: {.notes}
+Use this picture to make the structure concrete before walking the factors one at a
+time. Four inputs feed one weighing step; the output is binary (the defense succeeds
+or it does not), but the inputs are not scored and summed — a court can let a
+strongly transformative purpose carry the day even when the whole work was copied
+(Google Books, search thumbnails), or let a 300-word excerpt sink a defendant when
+it was the heart of the work (Harper & Row). The edge labels record Beebe's finding
+that Factor 1 predicts outcomes best, and the litigation reality that Factor 4 is the
+authors' strongest ground in the AI cases. Cold-call: if you were drafting the
+statute today, would you keep "weigh together" or write bright-line rules?
 :::
 
 ## Factor 1: Purpose and Character
@@ -303,7 +385,8 @@ romance novel does not compete with any single Sarah Silverman work, the aggrega
 effect is dilutive. That is the direction future plaintiffs are being pushed. Recent
 rulings have leaned more on transformativeness than on market effect, but Chhabria
 warned "in most cases the answer will likely be [that AI training is illegal]" —
-that quote lands.
+that quote lands. The licensing-market slide near the end closes the loop: once
+paid licensing deals exist, "harm to the licensing market" is easier to show.
 :::
 
 # Case Study: Google v. Oracle {.center}
@@ -312,11 +395,22 @@ The $9 billion fight over **11,500 lines of code**.
 
 ## Google v. Oracle: The Dispute
 
+::: {.columns}
+::: {.column width="52%"}
 - **Java** API created by Sun (1995); **Oracle** bought Sun in **2010**, then sued
 - **Android** (2007) reused Java's **API declarations** so developers could reuse skills
 - Google copied **~11,500 lines** of *declaring code* (0.4% of the API) and wrote its
   **own** implementing code
 - Oracle demanded **~$9 billion**
+:::
+::: {.column width="48%"}
+::: {.capture}
+[![](images/captures/lii-oracle.png){width="100%"}](https://www.law.cornell.edu/supremecourt/text/18-956)
+
+Google LLC v. Oracle America, Inc., No. 18-956 (Apr. 5, 2021), full opinion at Cornell LII. Captured Nov 18 2026; click to open.
+:::
+:::
+:::
 
 ::: {.notes}
 Set the stakes and the timeline. Java was created by Sun Microsystems in 1995;
@@ -328,9 +422,10 @@ $9 billion in damages. The dispute is narrow but the principle is huge: can you
 copyright the *interface* that lets software interoperate? Oracle's theory would
 let a company own a de facto standard that everyone else must license — which is
 why Microsoft, IBM, Mozilla, and the software-industry amici lined up on Google's
-side. Full opinion is Google LLC v. Oracle America, 593 U.S. ___ (2021). Cold-call:
-if Oracle had won, what would that do to open-source software that reimplements
-Java, POSIX, or the Windows API?
+side. Full opinion is Google LLC v. Oracle America, 593 U.S. ___ (2021); the capture
+links to the Cornell LII copy of the opinion. Cold-call: if Oracle had won, what
+would that do to open-source software that reimplements Java, POSIX, or the Windows
+API?
 :::
 
 ## Declaring Code vs. Implementing Code {.smaller}
@@ -388,11 +483,29 @@ creative choices in API design?
 | 2018 | Federal Circuit | **Not** fair use *(reversed again)* |
 | **2021** | **Supreme Court** | Google's use **was** fair use, **6–2** |
 
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 2.2
+digraph journey {
+  rankdir=LR; nodesep=0.3; ranksep=0.45; bgcolor="transparent";
+  node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=22,
+        color="#555555", penwidth=1.4, margin="0.2,0.1"];
+  edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=19];
+  a [label="2012 District\nGoogle wins", fillcolor="#d9efd3"];
+  b [label="2014 Fed. Cir.\nOracle wins", fillcolor="#f8d7c4"];
+  c [label="2016 Jury\nGoogle wins", fillcolor="#d9efd3"];
+  d [label="2018 Fed. Cir.\nOracle wins", fillcolor="#f8d7c4"];
+  e [label="2021 Supreme Court\nGoogle wins, 6–2", fillcolor="#d9efd3", penwidth=2.2];
+  a -> b [label="reversed"]; b -> c [label="remand"]; c -> d [label="reversed"]; d -> e [label="cert."];
+}
+```
+
 The Court **assumed** APIs were copyrightable and decided the case **on fair use**.
 
 ::: {.notes}
 The procedural ping-pong is the point — even expert judges disagreed four times over
-eleven years. Judge Alsup, a former programmer, sided with Google twice (2012 on
+eleven years; the strip under the table alternates green (Google) and orange
+(Oracle). Judge Alsup, a former programmer, sided with Google twice (2012 on
 copyrightability, 2016 jury verdict on fair use). The Federal Circuit reversed him
 both times. Justice Breyer's move in 2021 was to *assume* APIs are copyrightable and
 decide the case on fair use — which is why Google v. Oracle is precedent about *fair
@@ -438,55 +551,139 @@ The law is case-by-case. The internet is **500 hours of video per minute**.
 
 ## Content ID: Filtering by Fingerprint {.smaller}
 
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 3.4
+digraph contentid {
+  rankdir=LR; nodesep=0.22; ranksep=0.5; bgcolor="transparent";
+  node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=24,
+        color="#555555", penwidth=1.4, margin="0.2,0.1"];
+  edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=20];
+  ref [label="Rights holder uploads\nreference files;\nsystem fingerprints them", fillcolor="#cfe3f5"];
+  db  [label="Reference database\n100M+ fingerprints\n(audio spectral,\nvideo perceptual)", fillcolor="#cfe3f5"];
+  up  [label="Every new upload\nfingerprinted\nand compared", fillcolor="#cfe3f5"];
+  m   [label="Match?", fillcolor="#f2d9a8", penwidth=2];
+  pol [label="Rights holder's\npreset policy", fillcolor="#f2d9a8"];
+  blk [label="Block", fillcolor="#f8d7c4"];
+  mon [label="Monetize\n(take the ad revenue)", fillcolor="#d9efd3"];
+  trk [label="Track\n(watch the stats)", fillcolor="#d9efd3"];
+  pub [label="Publish normally", fillcolor="#d9efd3"];
+  ref -> db; db -> m; up -> m;
+  m -> pol [label="yes"]; m -> pub [label="no"];
+  pol -> blk; pol -> mon; pol -> trk;
+}
+```
+
 1. **Rights holders upload reference files** (songs, films) — 100M+ in the database
 2. **The system fingerprints** them — audio spectral hashing, video perceptual hashing
 3. **Every upload is scanned** against the database
-4. **The rights holder picks an action:** **block**, **monetize** (take the ad revenue),
-   or **track**
+4. **The rights holder picks an action:** **block**, **monetize** (take the ad revenue), or **track**
 
-The vast majority of YouTube copyright actions run through **Content ID**, not the legal
-DMCA process — billions of dollars routed to rights holders.
+No lawyer, no judge, no fair-use analysis — *private ordering*, not the DMCA.
 
 ::: {.notes}
 Content ID is *private ordering* — YouTube built a system faster and broader than
-the DMCA requires because manual legal review at internet scale is impossible.
-Audio uses spectral hashing; video uses perceptual hashing; 100M+ reference files
-in the database. The vast majority of YouTube copyright *actions* run through
-Content ID, not the DMCA — that means the legal fair-use analysis you just learned
-governs a tiny fraction of what actually happens on the platform. Trade-off:
-Content ID operates *above* the legal floor, so it sweeps in things the law would
-protect. That is the tension of scale versus rights. Cold-call: if 500 hours of
-video are uploaded to YouTube every minute, is there any alternative to automated
-matching? Answer usually: no, but the terms of the automation should include due
-process the current system lacks. That is the setup for the next two slides.
+the DMCA requires because manual legal review at internet scale is impossible. Walk
+the pipeline on the slide: the rights holder uploads reference files, the system
+fingerprints them (audio uses spectral hashing; video uses perceptual hashing) into a
+database of 100M+ references, every upload is fingerprinted and compared, and a match
+triggers the rights holder's *preset* policy: block, monetize (take the ad revenue),
+or track. The numbers are from YouTube's own copyright transparency report for
+calendar 2025 (TorrentFreak's write-up has the exact figures): 2,502,941,368 Content
+ID claims, over 99% of all copyright actions on the platform, over 90% monetized
+rather than blocked, 12.8M disputes (0.51%), 67% of disputes resolved for the
+uploader; cumulative ad revenue paid to rights holders through Content ID passed $12B
+by December 2024. So the legal fair-use analysis you just learned governs a tiny
+fraction of what actually happens on the platform. Trade-off: Content ID operates
+*above* the legal floor, so it sweeps in things the law would protect. Cold-call: if
+500 hours of video are uploaded to YouTube every minute, is there any alternative to
+automated matching? Answer usually: no, but the terms of the automation should
+include due process the current system lacks. That is the setup for the next two
+slides.
+:::
+
+## Content ID by the Numbers {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**YouTube's copyright transparency report, calendar 2025:**
+
+- **2.5 billion** Content ID claims — over **99%** of all copyright actions on YouTube
+- Over **99%** of those claims were **automated**
+- Rights holders chose to **monetize over 90%** of claims, not block
+- Uploaders disputed about **0.5%**; about **two-thirds** of disputes went the uploader's way
+- Cumulative ad revenue routed to rights holders through Content ID: **$12B+** (Dec 2024)
+
+The vast majority of YouTube copyright actions never touch the **legal** DMCA process.
+:::
+::: {.column width="50%"}
+::: {.capture}
+[![](images/captures/yt-transparency.png){width="100%"}](https://transparencyreport.google.com/youtube-copyright/summary)
+
+Google's YouTube Copyright Transparency Report summary page, 2025 edition. Captured Nov 18 2026; click to open.
+:::
+:::
+:::
+
+::: {.notes}
+The numbers are from YouTube's own copyright transparency report for calendar 2025
+(the capture is the summary page; TorrentFreak's June 2026 write-up has the exact
+figures): 2,502,941,368 Content ID claims, up 14% on 2024; over 99% of all copyright
+actions on the platform, and over 99% of Content ID claims automated; over 90%
+monetized rather than blocked; 12.8M disputes (0.51%), 67.42% of them resolved for
+the uploader because the claimant released the claim or let it lapse; cumulative ad
+revenue paid to rights holders through Content ID passed $12B by December 2024.
+Also from the report: over 7,600 partners have Content ID access, and about 6% of
+webform removal requests in 2025 were judged likely false assertions of ownership.
+The point for the lecture: the legal fair-use analysis students just learned governs
+a tiny fraction of what happens on the platform, and the choice of monetize over
+block means rights holders mostly treat Content ID as a revenue pipe, not a wall.
+Cold-call: if two-thirds of the disputes succeed, what does that say about the
+0.5% who dispute — and about the 99.5% who do not?
 :::
 
 ## The DMCA §512 Safe Harbor {.smaller}
 
-The legal baseline that lets platforms exist:
+The legal baseline that lets platforms exist: **notice and takedown**.
 
-1. Rights holder sends a **takedown notice**
-2. Platform **removes** the content (and is **shielded from liability**)
-3. User can file a **counter-notice**
-4. If no lawsuit in **10–14 days**, content is **restored**
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 3.6
+digraph dmca {
+  rankdir=LR; nodesep=0.25; ranksep=0.5; bgcolor="transparent";
+  node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=24,
+        color="#555555", penwidth=1.4, margin="0.2,0.1"];
+  edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=20];
+  n  [label="Rights holder sends\na takedown notice", fillcolor="#cfe3f5"];
+  r  [label="Platform removes it\n'expeditiously'\n→ shielded from liability", fillcolor="#d9efd3"];
+  cn [label="User files a\ncounter-notice\n(under penalty of perjury)", fillcolor="#cfe3f5"];
+  w  [label="Rights holder has\n10–14 business days", fillcolor="#f2d9a8", penwidth=2];
+  suit [label="Files suit:\ncontent stays down", fillcolor="#f8d7c4"];
+  back [label="No suit:\ncontent restored", fillcolor="#d9efd3"];
+  strike [label="Repeat strikes:\naccount terminated", fillcolor="#f8d7c4", style="filled,rounded,dashed"];
+  n -> r -> cn -> w; w -> suit; w -> back; r -> strike [style=dashed];
+}
+```
 
 **The structural problem:** the law rewards **takedown first**. The claimant effectively
 acts as judge in the early rounds, and **repeat strikes** can delete a channel — a strong
-**chilling effect** on legitimate fair use.
+**chilling effect** on legitimate fair use. [Statute: 17 U.S.C. §512](https://www.law.cornell.edu/uscode/text/17/512).
 
 ::: {.notes}
 Distinguish Content ID (private, contractual) from DMCA (statutory, at 17 U.S.C.
-§512). The DMCA safe harbor is why YouTube, Twitter, and every UGC platform is not
-liable for every user upload — notice, remove, shield from liability, counter-notice,
-10-14 day restoration if no lawsuit. The structural problem is takedown-first: the
-claimant effectively acts as judge in the early rounds, and three strikes can delete
-a channel — a strong chilling effect on legitimate fair use. EFF calls automated
-filters "censorship machines." Note the specific power imbalance: the same rights
-holder that filed the takedown reviews the creator's counter-notice. Distinguish
-DMCA §512 (safe harbor for platforms) from DMCA §1201 (anti-circumvention) —
-different regime with security-research implications discussed elsewhere in the
-course. Debate seed: should platforms face strict liability for user uploads (kill
-§512), or is the current notice-and-takedown regime the least-bad compromise?
+§512; the link on the slide opens the statute). The DMCA safe harbor is why YouTube,
+Twitter, and every UGC platform is not liable for every user upload — walk the flow:
+notice, expeditious removal, shield from liability, counter-notice under penalty of
+perjury, 10-14 business days for the claimant to sue, restoration if no lawsuit. The
+structural problem is takedown-first: the claimant effectively acts as judge in the
+early rounds, and three strikes can delete a channel (the dashed box) — a strong
+chilling effect on legitimate fair use. EFF calls automated filters "censorship
+machines." Note the specific power imbalance: the same rights holder that filed the
+takedown reviews the creator's counter-notice. Distinguish DMCA §512 (safe harbor
+for platforms) from DMCA §1201 (anti-circumvention) — different regime with
+security-research implications discussed elsewhere in the course. Debate seed:
+should platforms face strict liability for user uploads (kill §512), or is the
+current notice-and-takedown regime the least-bad compromise?
 :::
 
 ## When Filters Can't Read Context {.smaller}
@@ -570,27 +767,208 @@ purpose?* — is now the **AI training** question.
 :::
 :::
 
-**2025 reality (Bartz v. Anthropic):** training on books = **fair use**; building a library
-from **pirated** copies = **not** fair use. **Meta won a parallel fair-use ruling** two
-days later (Kadrey v. Meta, June 25, 2025) — but Judge Chhabria warned it was a
-narrow, fact-specific win and endorsed a **"market dilution"** theory of harm for future
-plaintiffs. *NYT v. OpenAI* is still in discovery; expect the Supreme Court eventually.
+**Where it stands (Bartz v. Anthropic):** training on books = **fair use**; building a
+library from **pirated** copies = **not** fair use. **Meta won a parallel fair-use ruling**
+two days later (Kadrey v. Meta, June 25, 2025) — but Judge Chhabria called it a narrow,
+fact-specific win, endorsed a **"market dilution"** theory of harm, and in **July 2026**
+refused to send the piracy question up early: the Ninth Circuit gets the whole package
+after final judgment. *NYT v. OpenAI* (S.D.N.Y.): cross-motions for summary judgment on fair
+use filed **September 2026**, no ruling yet. Expect the Supreme Court eventually.
 
 ::: {.notes}
 Bridge to the AI/copyright material and a near-certain midterm theme. Three
-current-as-of-2026 cases to know. Bartz v. Anthropic (June 23, 2025, Alsup, N.D.
-Cal.): training on books is transformative and fair use, but downloading 7M+
-pirated books to build a permanent library is not — settled September 2025 for
-roughly $1.5B. Kadrey v. Meta (June 25, 2025, Chhabria, N.D. Cal.): Meta's use
-fair on this record, but Chhabria warned "in most cases the answer will likely
-be [that AI training is illegal]" and endorsed the market-dilution theory for
-future plaintiffs. NYT v. OpenAI: still in discovery, summary-judgment briefing
-concluded April 2, 2026, no merits ruling on fair use yet — and this is the case
-whose subpoena order pulled 20M user chat logs last lecture. Nuance students
-should carry: the *training* fight is bending toward transformative/fair use, but
-*how the data was obtained* is a separate live exposure. Do not claim the Supreme
-Court has ruled — it has not. Route the "AI training more like Google's API copy
-or Napster" question to the copyright debate.
+current-as-of-November-2026 cases to know. Bartz v. Anthropic (June 23, 2025,
+Alsup, N.D. Cal.): training on books is transformative and fair use, but downloading
+7M+ pirated books to build a permanent library is not — settled September 2025 for
+roughly $1.5B, final approval July 20, 2026. Kadrey v. Meta (June 25, 2025, Chhabria,
+N.D. Cal.): Meta's use fair on this record, but Chhabria warned "in most cases the
+answer will likely be [that AI training is illegal]" and endorsed the market-dilution
+theory for future plaintiffs; on July 8, 2026 he denied the authors' motion to
+certify the shadow-library downloading ruling for interlocutory appeal, saying the
+Ninth Circuit should get the issues "as a tidy package" after a final judgment in
+one of the Meta cases; the remaining claims (including a distribution claim over
+Meta's torrenting) are in discovery. NYT v. OpenAI (Judge Stein, S.D.N.Y., MDL
+25-md-03143): cross-motions for summary judgment on fair use were filed September 4,
+2026, oppositions October 23, replies due in November; no fair-use merits ruling yet
+— and this is the case whose subpoena order pulled 20M user chat logs, discussed in
+the AI-privacy lecture. Nuance students should carry: the *training* fight is
+bending toward transformative/fair use, but *how the data was obtained* is a
+separate live exposure. Do not claim the Supreme Court has ruled — it has not.
+Route the "AI training more like Google's API copy or Napster" question to the
+copyright debate.
+:::
+
+## The AI-Training Question as a Decision Flow
+
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 5.4
+digraph aiflow {
+  rankdir=LR; nodesep=0.4; ranksep=0.45; bgcolor="transparent";
+  node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=24,
+        color="#555555", penwidth=1.4, margin="0.2,0.1"];
+  edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=20];
+  how [label="Copyrighted works\nused to train\na model: how were\nthe copies obtained?", fillcolor="#f2d9a8", penwidth=2];
+  pir [label="Shadow library,\ntorrents\nBartz: not fair use\n→ $1.5B settlement", fillcolor="#f8d7c4"];
+  tr [label="Is training\ntransformative?\n(Factor 1)\nBartz, Kadrey 2025:\n'exceedingly' so", fillcolor="#f2d9a8", penwidth=2];
+  mkt [label="Does the output\nsubstitute for or\ndilute the market?\n(Factor 4)", fillcolor="#f2d9a8", penwidth=2];
+  fu [label="No evidence\non the record\n→ fair use\n(Kadrey, on\nthose facts)", fillcolor="#d9efd3"];
+  no [label="Shown with\nevidence\n→ likely not fair use\n(Chhabria's warning;\nNYT v. OpenAI pending)", fillcolor="#f8d7c4"];
+  how -> pir [label="pirated"]; how -> tr [label="bought, scanned,\nor licensed"];
+  tr -> mkt [label="yes"]; mkt -> fu [label="not shown"]; mkt -> no [label="shown"];
+}
+```
+
+::: {.caption}
+Two separable questions: the *source* of the copies and the *use* made of them. A fair use of the training can coexist with liability for the download.
+:::
+
+::: {.notes}
+This is the midterm drill in one picture. First branch: acquisition. Alsup held
+that building a permanent library from pirated books is not fair use regardless of
+what you do with it later, and that branch cost Anthropic $1.5B. Second branch:
+is training transformative? Both N.D. Cal. judges said yes in June 2025. Third
+branch: market harm. Chhabria found fair use for Meta *only* because the plaintiffs
+did not put evidence of market dilution on the record, and said that in most cases
+plaintiffs who do will win; NYT v. OpenAI, with its unsealed market-harm evidence,
+is the test of that branch. Drill: have students argue each decision node for and
+against on the Bartz facts, then on a hypothetical where the training set was
+licensed. Cold-call: which node would you attack if you represented the authors?
+:::
+
+## Who Owns AI Output? {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+The deck so far is about copying *into* a model. The other question: can the model's
+*output* be copyrighted? **Only where a human authored the expression.**
+
+- **U.S. Copyright Office, *Copyright and AI, Part 2* (Jan 29, 2025):** human
+  authorship required; prompts "convey unprotectable ideas"; AI-assisted works are
+  registrable for the human-authored part; no new legislation needed
+- ***Thaler v. Perlmutter*:** D.C. Circuit (2025) affirmed refusal to register a
+  work Thaler said his AI made alone; **Supreme Court denied cert, March 2, 2026**
+:::
+::: {.column width="45%"}
+::: {.capture}
+[![](images/captures/uspto-ai.png){width="100%"}](https://www.copyright.gov/ai/)
+
+U.S. Copyright Office, Copyright and Artificial Intelligence: the policy statement, the Part 1–3 reports, and registration guidance. Captured Nov 18 2026; click to open.
+:::
+:::
+:::
+
+::: {.notes}
+Natural contrast with the training debate: copying *into* a model may be fair use;
+what comes *out* may belong to nobody. The Copyright Office's Part 2 report
+(January 29, 2025, drawn from 10,000+ comments) holds the line it has drawn since
+Zarya of the Dawn: copyright protects only what a human authored. Register
+Perlmutter: extending protection to machine-determined expression "would undermine
+rather than further the constitutional goals of copyright." The office said no new
+law is needed. Thaler v. Perlmutter is the litigation test: Stephen Thaler sought to
+register "A Recent Entrance to Paradise," listing his DABUS system as sole author
+and disclaiming any human contribution; the Office refused, the district court and
+then the D.C. Circuit (2025) agreed that the Act presupposes a human author
+(ownership, duration measured by a life, signatures), and on March 2, 2026 the
+Supreme Court denied certiorari in No. 25-449 without comment. The capture is the
+Office's AI page, where the reports and the registration guidance live. Next slide:
+the spectrum of human control.
+:::
+
+## How Much Human Control Is Enough?
+
+```{dot}
+//| fig-width: 12.4
+//| fig-height: 4.4
+digraph authorship {
+  rankdir=LR; nodesep=0.5; ranksep=1.0; bgcolor="transparent";
+  node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=24,
+        color="#555555", penwidth=1.4, margin="0.22,0.12"];
+  edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=20];
+  a [label="AI as a tool\n(Auto-Tune, color correction)\n→ protected", fillcolor="#d9efd3"];
+  b [label="Human selects, arranges,\nor modifies AI output\n→ protected in that part", fillcolor="#d9efd3"];
+  c [label="Prompts alone,\nhowever detailed\n→ not protected (Office, 2025)", fillcolor="#f8d7c4", style="filled,rounded,dashed"];
+  d [label="Autonomous machine output\n(Thaler v. Perlmutter)\n→ no author, no copyright", fillcolor="#f8d7c4", style="filled,rounded,dashed"];
+  { rank=same; a; c; }
+  { rank=same; b; d; }
+  a -> b [label="less human control"]; b -> c [label="less"]; c -> d [label="none"];
+}
+```
+
+The Office's line, left to right: protection follows the **human's expressive choices**,
+not the effort spent prompting. Nobody has yet said exactly where on this axis the line sits.
+
+::: {.notes}
+Walk the axis. Using AI as a tool (the report's own examples are Auto-Tune and color
+correction) does not affect protection; a human who selects, arranges, or creatively
+modifies AI output owns that contribution, like the author of a derivative work;
+prompts alone, however detailed and however many times re-run, are instructions
+conveying ideas, because the system interprets them and the same prompt yields
+different outputs — the Office compares re-rolling a prompt to rolling dice; and a
+work the machine made with no human input at all has no author, which is Thaler.
+Because Thaler disclaimed human input, the open question is *how much* human
+control suffices — no court has drawn that line, and the Office decides
+registrations case by case. Cold-call: you spend a week iterating prompts and
+curating 500 images down to one — author or not? Then: does your answer change if
+you also retouch the one you picked?
+:::
+
+## Licensing Markets: The Feedback Loop {.smaller}
+
+::: {.columns}
+::: {.column width="56%"}
+```{dot}
+//| fig-width: 7
+//| fig-height: 5.2
+digraph loop {
+  rankdir=TB; nodesep=0.3; ranksep=0.4; bgcolor="transparent";
+  node [shape=box, style="filled,rounded", fontname="Helvetica", fontsize=22,
+        color="#555555", penwidth=1.4, margin="0.2,0.1"];
+  edge [color="#555555", penwidth=1.5, fontname="Helvetica", fontsize=19];
+  d [label="Rights holders sign paid\nlicensing deals with AI firms", fillcolor="#cfe3f5"];
+  m [label="A licensing market\nfor training data exists", fillcolor="#cfe3f5"];
+  f4 [label="Factor 4: unlicensed training\nnow harms a real market", fillcolor="#f2d9a8", penwidth=2];
+  c [label="Courts weigh that harm;\nfair use gets harder", fillcolor="#f8d7c4"];
+  more [label="More firms license\nrather than litigate", fillcolor="#d9efd3"];
+  d -> m -> f4 -> c -> more; more -> d [constraint=false, label="loop"];
+}
+```
+:::
+::: {.column width="44%"}
+**Deals with a reported price**
+
+- News Corp – OpenAI (2024): **$250M+** over five years
+- Reddit – Google (2024): **~$60M/year**
+- Wiley: **$49M** AI-licensing revenue in FY2026 (up 23%)
+
+Most deals disclose **no** price at all (Press Gazette's tracker counts about four in five
+that way).
+
+**The bind:** a licensing market makes Factor 4 **stronger for plaintiffs** — and small
+rights holders, with no deal, get neither a check nor a say.
+:::
+:::
+
+::: {.notes}
+Coverage-notes item: licensing markets as the emerging "answer." Walk the loop on
+the left: once rights holders sign paid deals with AI companies, a market for
+training data demonstrably exists; Factor 4 then asks whether unlicensed training
+harms that market, and the answer gets easier for plaintiffs (lost licensing revenue
+is cognizable harm; compare Oracle, where the Court refused to treat a lost license
+fee as decisive because the use was transformative). That makes fair use harder to
+win, which pushes more firms to license, which deepens the market — a feedback loop
+between business model and doctrine. The figures: News Corp–OpenAI, May 2024,
+reported at more than $250M over five years (Wall Street Journal and Dow Jones
+titles are in the deal); Reddit–Google, reported at about $60M a year, and Reddit's
+IPO filing disclosed $203M of aggregate data-licensing contract value; Wiley reported
+$49M of AI-licensing revenue for the fiscal year ended April 30, 2026, up 23%, with
+lifetime AI revenue past $110M. Press Gazette's tracker (mid-2026) counted 49
+publisher deals, of which only about one in five disclosed a price; OpenAI is the
+buyer in the most. Anthropic is the outlier with essentially no publisher deals and
+the $1.5B settlement instead. The bind: a licensing market is good evidence for the
+publishers who have one, and nothing for the individual author who was never
+offered a deal. Debate seed: compulsory licensing with a collecting society (the
+ASCAP/BMI model for music) versus the current bilateral deals.
 :::
 
 ## Key Takeaways
@@ -601,6 +979,7 @@ or Napster" question to the copyright debate.
 4. **Google v. Oracle:** transformative use can justify copying **functional** code
 5. **Content ID / DMCA** scale enforcement but **can't judge fair use** → over-blocking
 6. **AI training** is the new Oracle — and *how you got the data* is its own question
+7. **AI output** needs a human author; **licensing deals** feed back into Factor 4
 
 ::: {.notes}
 Close by returning to Alsup — the same Northern District of California judge and the
@@ -611,8 +990,10 @@ for the midterm: the four factors of §107 cold (be able to name them and give o
 anchor case each), and the for-versus-against AI case-study drill (be able to argue
 both sides of Bartz or Kadrey on the same set of facts). Note the two independent
 tracks in the AI cases — training itself, and acquisition of the training corpus —
-because a lot of student answers collapse them. Bridge forward: the next lecture
-goes deeper into AI-copyright including memorization and active litigation.
+because a lot of student answers collapse them. New seventh point: the output side
+(human authorship, Thaler) and the licensing loop (Factor 4 strengthens as deals
+accumulate). Bridge forward: the next lecture goes deeper into AI-copyright including
+memorization and active litigation.
 :::
 
 # Questions? {.center}
