@@ -320,6 +320,16 @@ the demo video; this is its opening frame.
 - Low barrier to attacks on local IoT devices via malicious websites.
 - Need defenses that protect against lateral attacks.
 
+::: {.notes}
+Regulatory horizon worth naming here as well: the EU Cyber Resilience Act
+came into force December 10, 2024, with reporting duties from September 11,
+2026 and full obligations December 11, 2027; connected toys are Class I
+"important products with digital elements." The EU AI Act, as amended by the
+June 2026 Digital Omnibus on AI, brings AI-enabled toys under its high-risk
+regime (August 2, 2027 and December 2, 2027). In the U.S. the Cyber Trust
+Mark is a voluntary label, not a mandate.
+:::
+
 ## Why These Attacks Matter
 
 ::: {.columns}
@@ -1791,7 +1801,7 @@ unit: this is exactly the argument the CCPA GPC requirement was designed to
 answer. Individual self-help has sharp limits when the platform is hostile.
 :::
 
-## A 2026 Vignette: States Go After Your TV {.smaller}
+## States Go After ACR: 2025–2026 {.smaller}
 
 ::: {.vignette}
 On **December 15, 2025**, Texas AG Ken Paxton sued **five TV makers** — Samsung, Sony, LG,

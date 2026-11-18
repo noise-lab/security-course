@@ -138,7 +138,7 @@ cuts if the deck is too long for one meeting.
 Slides: Why the Smart Home Is Hard; Two Questions That Drive the Lecture; Many
 IoT Devices Run an Unauthenticated Web Server; Why These Attacks Matter;
 Studying IoT Is Genuinely Hard; Findings from 50,000 Devices; The Opt-Outs
-Don't Really Work; A 2026 Vignette: States Go After Your TV; Putting It
+Don't Really Work; States Go After ACR: 2025–2026; Putting It
 Together (EU CRA / AI Act / Cyber Trust Mark in its notes); Discussion. The
 earlier rebuild's other slides duplicated pptx slides (same figure or same
 bullets); their narration was merged into the matching pptx slide's notes
