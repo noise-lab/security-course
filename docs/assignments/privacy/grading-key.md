@@ -87,7 +87,7 @@ Maps to **"5. Encrypted DNS Repeat"**.
 | Check | Pts |
 |---|---|
 | Enabled DoH and recaptured the same site | 4 |
-| Shows **evidence**: plain `dns` filter now shows nothing for the load, while `tcp.port == 443` (DoH) / `853` (DoT) traffic to the resolver appears | 4 |
+| Shows **evidence**: plain `dns` filter now shows nothing for the load, while 443 (DoH, TCP or UDP/QUIC) / `853` (DoT) traffic to the resolver appears; the resolver is often a hostname such as `chrome.cloudflare-dns.com`, not `1.1.1.1` | 4 |
 | States **who can see your activity now** (the resolver operator, not the ISP, for the lookups) | 4 |
 
 **Expected answer:** with DoH, the lookups ride inside TLS to the resolver, so the `dns`

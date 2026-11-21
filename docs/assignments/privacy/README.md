@@ -64,8 +64,20 @@ Based on your unencrypted capture:
 [Enable encrypted DNS (DoH) in your browser](https://developers.cloudflare.com/1.1.1.1/encrypted-dns/dns-over-https/encrypted-dns-browsers),
 clear caches again, and recapture the same site. Show your **evidence**: with DoH on, the
 plain `dns` filter should show **nothing** for the page load, while traffic to the
-resolver on `tcp.port == 443` (DoH) or `853` (DoT) appears instead. Paste a short note of
+resolver on port `443` (DoH) or `853` (DoT) appears instead. Paste a short note of
 what you observed. Then state **who can see your activity now**.
+   - **Where to look.** Browsers usually send DoH to a resolver *hostname*, not to
+     `1.1.1.1`: Chrome and Brave use `chrome.cloudflare-dns.com` and Firefox uses
+     `mozilla.cloudflare-dns.com` (addresses like `162.159.61.x` or `172.64.41.x`), and
+     the traffic is often **UDP** 443 (QUIC), not TCP. A filter of `tcp.port == 443 &&
+     ip.addr == 1.1.1.1` can show nothing even when DoH is working. Try
+     `udp.port == 443 || tcp.port == 443`, and look for the resolver's name in the TLS or
+     QUIC SNI (`tls.handshake.extensions_server_name` or `quic`).
+   - **If the secure-DNS setting is greyed out in Chrome** ("managed by your
+     organization"), a leftover device policy, for example from a UChicago Microsoft 365
+     or SharePoint setup, is marking Chrome as managed, and Chrome turns secure DNS off
+     on managed browsers unless a policy turns it on. `chrome://policy` lists what is set.
+     Use Firefox or another browser for this task instead, and say so in your report.
 
 6. **Privacy tradeoffs: trust shift, SNI, and ECH (depth).**
 Encrypted DNS does **not** make you anonymous. Analyze the tradeoff carefully:
